@@ -1,7 +1,7 @@
 # Aim: get, filter and re-upload data for regions
 
 library(sf)
-library(dplyr)
+library(tidyverse)
 
 # get large datasets ------------------------------------------------------
 
@@ -41,8 +41,6 @@ ul = readLines(url(u))
 ul[1]
 ul[1] = "{"
 writeLines(ul, "/tmp/ul.json")
-pct_la_summaries = jsonlite::read_json("/tmp/ul.json")
-str(pct_la_summaries)
 pct_la_summaries = sf::read_sf("/tmp/ul.json")
 head(pct_la_summaries)
 
@@ -88,12 +86,15 @@ las_other = pct_la_summaries %>%
   summarise_if(is.numeric, sum) %>% 
   add_column(name = "Newcastle", .before = 1) %>% 
   add_column(CODE = "10", .before = 1)
-
 las_other$dutch_slc
+
+las_other2 = pct_la_summaries %>% 
+  filter(name %in% c("Cambridge", "Sheffield"))
+
 
 names(pct_london_aggregated)
 names(las_top)
-las_top = rbind(pct_london_aggregated, las_top, las_other) %>% 
+las_top = rbind(pct_london_aggregated, las_top, las_other, las_other2) %>% 
   arrange(desc(dutch_slc))
 
 las_top %>% 

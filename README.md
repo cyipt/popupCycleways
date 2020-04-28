@@ -21,7 +21,8 @@ Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
 The first stage was to identify cities with high cycling potential. We
 did this by analysing data from the PCT project and selecting the top 10
-cities, presented in the table below and figure below:
+cities in terms of long term cycling potential, plus Sheffield and
+Cambridge, presented in the table and figure below:
 
 | name       |     all | bicycle | dutch\_slc |
 | :--------- | ------: | ------: | ---------: |
@@ -35,6 +36,8 @@ cities, presented in the table below and figure below:
 | Newcastle  |  197070 |    4545 |      37327 |
 | Leicester  |  128501 |    4999 |      35253 |
 | Portsmouth |   89822 |    7038 |      28036 |
+| Sheffield  |  226477 |    4276 |      25973 |
+| Cambridge  |   53295 |   17313 |      20056 |
 
 Top 10 cities by cycling potential in England, with ‘all’ representing
 all commuters in the 2011 Census, ‘bicycle’ representing the number who
@@ -42,6 +45,24 @@ cycled to work and ‘dutch\_slc’ the number who could cycle to work under
 a ‘Go Dutch’ scenario of cycling uptake.
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+
+These 12 study cities coincidentally represent almost exactly 1/4 of the
+population in England. Welsh and Scottish cities with high cycling
+potential such as Cardiff and Edinbugh were not included in the analysis
+because the CyIPT does not currently have data outside of England,
+although we could extend the methods to cover all UK cities at some
+point.
+
+Below we show the results for a selection of cities, with cycling
+potential on the road network visualised under the ‘Government Target’
+scenario, which represents a doubling in cycling compared with 2011
+levels. London is close to meeting this target already.
+
+We filtered-out roads with low levels of cycling potential and focus
+only on roads that have at least one ‘spare lane’, defined as having
+more than 1 lane in either direction. Roads that could be made oneway,
+or that could be converted into ‘liveable streets’ by preventing through
+traffic were not considered.
 
 # London
 

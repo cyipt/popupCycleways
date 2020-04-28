@@ -84,7 +84,7 @@ in the context of increased for demand for cycling to keyworker workplaces.
 It is based on an analysis of data generated for the Department for Transport funded projects the Propensity to Cycle Tool (PCT) and the Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
 The first stage was to identify cities with high cycling potential.
-We did this by analysing data from the PCT project and selecting the top 10 cities, presented in the table below and figure below:
+We did this by analysing data from the PCT project and selecting the top 10 cities in terms of long term cycling potential, plus Sheffield and Cambridge, presented in the table and figure below:
 
 ```{r cities}
 las_top %>% 
@@ -98,6 +98,16 @@ las_top %>%
 tm_shape(las_top) +
   tm_polygons("blue")
 ```
+
+These 12 study cities coincidentally represent almost exactly 1/4 of the population in England.
+Welsh and Scottish cities with high cycling potential such as Cardiff and Edinbugh were not included in the analysis because the CyIPT does not currently have data outside of England, although we could extend the methods to cover all UK cities at some point.
+
+Below we show the results for a selection of cities, with cycling potential on the road network visualised under the 'Government Target' scenario, which represents a doubling in cycling compared with 2011 levels.
+London is close to meeting this target already.
+
+We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction.
+Roads that could be made oneway, or that could be converted into 'liveable streets' by preventing through traffic were not considered.
+
 
 # London
 
