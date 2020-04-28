@@ -127,7 +127,7 @@ roads_top = roads %>%
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
-  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+  tm_view(set.zoom.limits = c(12, 13)) + tm_scale_bar()
 
 roads_top %>%
   st_drop_geometry() %>% 
@@ -142,7 +142,7 @@ roads_top %>%
 ```{r}
 roads = rsf %>% filter(region == "Leeds", pctgov > 100)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+  tm_view(set.zoom.limits = c(12, 13)) + tm_scale_bar()
 ```
 
 The top 10 roads:
@@ -154,7 +154,7 @@ roads_top = roads %>%
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
-  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+  tm_view(set.zoom.limits = c(12, 13)) + tm_scale_bar()
 
 roads_top %>%
   st_drop_geometry() %>% 
@@ -165,7 +165,8 @@ roads_top %>%
 
 ```{r}
 roads = rsf %>% filter(region == "Cambridge", pctgov > 400)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis")
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
 ```
 
 The top 10 roads:
@@ -177,7 +178,7 @@ roads_top = roads %>%
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
-  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+  tm_view(set.zoom.limits = c(14, 15)) + tm_scale_bar()
 
 roads_top %>%
   st_drop_geometry() %>% 
