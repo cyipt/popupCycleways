@@ -17,10 +17,59 @@ library(tmap)
 tmap_mode("view")
 piggyback::pb_download("las_top.Rds")
 las_top = readRDS("las_top.Rds")
+rsf = readRDS("rsf_grouped_long.Rds")
 # piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
 ```
 
-# tempCycleways
+```{r, eval=FALSE}
+# general analysis of data
+rsf = readRDS("rsf.Rds")
+names(rsf)
+rtid = readr::read_csv("~/cyipt/cyipt-server-data/malcolm/roadtypes.csv")
+rsf = left_join(rsf, rtid)
+rsf_spare_lane = rsf %>% filter(
+  (lanespsvforward + lanesforward) > 1 |
+  (lanespsvbackward + lanesbackward) > 1,
+  ! grepl(pattern = "motorway", highway)
+  ) 
+saveRDS(rsf_spare_lane, "rsf_spare_line.Rds")
+
+rsf = readRDS("rsf_spare_line.Rds")
+summary(rsf$length)
+unique(rsf$region)
+head(rsf$name)
+rsf %>% 
+  select(calcwidthnow) %>% 
+  sf::st_drop_geometry() %>%
+  group_by(calcwidthnow) %>% 
+  summarise(n = n()) %>% 
+  filter(n > 500)
+wide_potential1 = rsf %>% filter(width > 10, pct.dutch > 100)
+wide_potential2 = rsf %>% filter(
+  (lanespsvforward + lanesforward) > 1 |
+  (lanespsvbackward + lanesbackward) > 1,
+  pctdutch > 50)
+# mapview::mapview(wide_potential2) # very patchy
+rsf_grouped = rsf %>% 
+  group_by(name, ref, highway, region) %>% 
+  summarise(pctgov = mean(pctgov)) %>% 
+  ungroup()
+
+rsf_grouped$length = sf::st_length(rsf_grouped) %>% as.numeric()
+summary(rsf_grouped$length)
+rsf_grouped_long = rsf_grouped %>% filter(length > 100)
+# mapview::mapview(rsf_grouped_long)
+rsf_grouped_long %>%
+  st_drop_geometry() %>% 
+  arrange(desc(pctgov)) %>%
+  group_by(region) %>% 
+  slice(1:10) 
+tm_shape(rsf_grouped_long) + tm_lines("pctgov", lwd = 3, palette = "viridis")  
+saveRDS(rsf_grouped_long, "rsf_grouped_long.Rds")
+```
+
+
+# Data analysis to support temporary cycleways
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -52,49 +101,76 @@ tm_shape(las_top) +
 
 # London
 
+```{r}
+roads = rsf %>% filter(region == "London", pctgov > 500)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.zoom.limits = c(12, 13)) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 500) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  knitr::kable(digits = 0)
+```
+
+
 
 
 # Leeds
 
-```{r cycling}
-# Aim: identify wide roads that have high cycling potential
-
-
-# input data --------------------------------------------------------------
-
-up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Leeds/osm-lines.Rds"
-roads = readRDS(url(up))
-# names(roads)
-# summary(roads$width)
-wide_potential1 = roads %>% filter(width > 10, pct.dutch > 100)
-wide_potential2 = roads %>% filter(
-  lanes.forward > 1 |
-  lanes.backward > 1,
-  pct.dutch > 50)
-mapview::mapview(wide_potential2)
-
-# # relationship between cycling and 2 way ----------------------------------
-# cor(roads$lanes.forward, roads$pct.census) # there is a small correlation
-# cor(roads$lanes.forward, roads$pct.dutch) # larger for go dutch scenario
-# cor(roads$width, roads$pct.census, use = "complete.obs") # also a positive correlation
-# plot(roads$width, roads$lanes.forward + roads$lanes.backward)
-# 
-
-
-
-# out-takes ---------------------------------------------------------------
-
-# u = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-clean/Leeds/osm-lines.Rds"
-# osm_lines = readRDS(url(u))
-# names(osm_lines)
-# plot(osm_lines) # long time to plot...
-# 
-# uz = "https://github.com/cyipt/cyipt-bigdata/raw/master/forDB/roads.zip"
-# d = file.path(tempdir(), "roads.zip")
-# download.file(uz, d)
-# r = readr::read_csv(d)
-# head(r$elevation)
-
+```{r}
+roads = rsf %>% filter(region == "Leeds", pctgov > 100)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 500) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  knitr::kable(digits = 0)
+```
+
+# Birmingham
+
+
+```{r}
+roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 500) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  knitr::kable(digits = 0)
+```
