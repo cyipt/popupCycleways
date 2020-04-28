@@ -40,12 +40,19 @@ tmap_mode("view")
 # input data --------------------------------------------------------------
 
 up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Leeds/osm-lines.Rds"
+up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Cambridge/osm-lines.Rds"
+up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Cambridge/osm-lines.Rds"
+up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-recc/Hereford/osm-lines.Rds"
+
 roads = readRDS(url(up))
 names(roads)
 summary(roads$width)
 wide_potential1 = roads %>% filter(width > 10, pct.dutch > 100)
 mapview::mapview(wide_potential1)
-wide_potential2 = roads %>% filter(lanes.forward > 1, pct.dutch > 100)
+wide_potential2 = roads %>% filter(
+  lanes.forward > 1 |
+  lanes.backward > 1,
+  pct.dutch > 50)
 mapview::mapview(wide_potential2)
 wide_potential3 = roads %>% filter(lanes.forward + lanes.backward > 2, pct.dutch > 100)
 mapview::mapview(wide_potential3)
