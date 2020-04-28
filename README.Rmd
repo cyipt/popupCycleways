@@ -6,9 +6,18 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  warning = FALSE,
+  echo = FALSE,
   collapse = TRUE,
   comment = "#>"
 )
+library(tidyverse)
+library(sf)
+library(tmap)
+tmap_mode("view")
+piggyback::pb_download("las_top.Rds")
+las_top = readRDS("las_top.Rds")
+# piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
 ```
 
 # tempCycleways
@@ -25,44 +34,51 @@ in the context of increased for demand for cycling to keyworker workplaces.
 
 It is based on an analysis of data generated for the Department for Transport funded projects the Propensity to Cycle Tool (PCT) and the Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
+The first stage was to identify cities with high cycling potential.
+We did this by analysing data from the PCT project and selecting the top 10 cities, presented in the table below and figure below:
 
-```{r cars}
+```{r cities}
+las_top %>% 
+  select(name, all, bicycle, dutch_slc) %>% 
+  sf::st_drop_geometry() %>%
+  knitr::kable(caption = "Top 10 cities by cycling potential in England, with 'all' representing all commuters in the 2011 Census, 'bicycle' representing the number who cycled to work and 'dutch_slc' the number who could cycle to work under a 'Go Dutch' scenario of cycling uptake.")
+```
+
+
+```{r}
+tm_shape(las_top) +
+  tm_polygons("blue")
+```
+
+# London
+
+
+
+# Leeds
+
+```{r cycling}
 # Aim: identify wide roads that have high cycling potential
 
-
-# setup -------------------------------------------------------------------
-
-library(tidyverse)
-library(sf)
-library(tmap)
-tmap_mode("view")
 
 # input data --------------------------------------------------------------
 
 up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Leeds/osm-lines.Rds"
-up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Cambridge/osm-lines.Rds"
-up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Cambridge/osm-lines.Rds"
-up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-recc/Hereford/osm-lines.Rds"
-
 roads = readRDS(url(up))
-names(roads)
-summary(roads$width)
+# names(roads)
+# summary(roads$width)
 wide_potential1 = roads %>% filter(width > 10, pct.dutch > 100)
-mapview::mapview(wide_potential1)
 wide_potential2 = roads %>% filter(
   lanes.forward > 1 |
   lanes.backward > 1,
   pct.dutch > 50)
 mapview::mapview(wide_potential2)
-wide_potential3 = roads %>% filter(lanes.forward + lanes.backward > 2, pct.dutch > 100)
-mapview::mapview(wide_potential3)
 
-# relationship between cycling and 2 way ----------------------------------
-cor(roads$lanes.forward, roads$pct.census) # there is a small correlation
-cor(roads$lanes.forward, roads$pct.dutch) # larger for go dutch scenario
-cor(roads$width, roads$pct.census, use = "complete.obs") # also a positive correlation
-plot(roads$width, roads$lanes.forward + roads$lanes.backward)
-
+# # relationship between cycling and 2 way ----------------------------------
+# cor(roads$lanes.forward, roads$pct.census) # there is a small correlation
+# cor(roads$lanes.forward, roads$pct.dutch) # larger for go dutch scenario
+# cor(roads$width, roads$pct.census, use = "complete.obs") # also a positive correlation
+# plot(roads$width, roads$lanes.forward + roads$lanes.backward)
+# 
 
 
 

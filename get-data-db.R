@@ -72,31 +72,112 @@ pct_london_aggregated = pct_london %>%
 setdiff(names(pct_london_aggregated), names(las_top))
 mapview::mapview(pct_london_aggregated)  
 
+pct_la_summaries %>% 
+  filter(!grepl(pattern = "Wand|West|Southw|Lamb|Hack|Towe|Eal|Houns|Wilt|Cheshire E|Sef|Isl|Riding", name)) %>% 
+  select(name, all, bicycle, dutch_slc) %>% 
+  arrange(desc(dutch_slc)) %>%
+  head(15) 
+
 las_top = pct_la_summaries %>% 
   filter(!grepl(pattern = "Wand|West|Southw|Lamb|Hack|Towe|Eal|Houns|Wilt|Cheshire E|Sef|Isl|Riding", name)) %>% 
   arrange(desc(dutch_slc)) %>%
   head(8) 
 
 las_other = pct_la_summaries %>% 
-  filter(name == "Newcastle")
+  filter(name == "Newcastle" | name == "Gateshead") %>% 
+  summarise_if(is.numeric, sum) %>% 
+  add_column(name = "Newcastle", .before = 1) %>% 
+  add_column(CODE = "10", .before = 1)
+
+las_other$dutch_slc
 
 names(pct_london_aggregated)
 names(las_top)
-las_top = rbind(pct_london_aggregated, las_top, las_other)
+las_top = rbind(pct_london_aggregated, las_top, las_other) %>% 
+  arrange(desc(dutch_slc))
 
 las_top %>% 
   select(name, all, bicycle, dutch_slc) %>% 
   sf::st_drop_geometry() %>%
   knitr::kable()
 
+pct_la_summaries %>% 
+  select(name, all, bicycle, dutch_slc) %>% 
+  sf::st_drop_geometry() %>%
+  filter(name == "Cambridge") %>% 
+  knitr::kable()
 
 sum(las_top$all) / sum(pct_la_summaries$all) # 9%
 mapview::mapview(las_top)
 
 regions_of_interest[!regions_of_interest %in% regions] # just Cardiff not in there
-regions_of_interest2 = 
 regions2 = c(regions_of_interest, las_top$name[!las_top$name %in% regions_of_interest])
 length(regions2)
 regions[!regions %in% regions2]
 regions2
 regions2[!regions2 %in% regions]
+regions2[!regions2 %in% las_top$name]
+
+r_regions = r %>% 
+  filter(region %in% regions2)
+
+nrow(r_regions) / nrow(r)
+r_regions_sfc = sf::st_as_sfc(r_regions$geotext, crs = 4326)
+names(r_regions)
+r_subset_of_data = r_regions %>% 
+  select(-geotext)
+rsf = sf::st_sf(r_subset_of_data, geometry = r_regions_sfc)
+write_rds(rsf, "rsf.Rds")
+piggyback::pb_upload("rsf.Rds", "cyipt/cyipt-phase-1-data")
+write_rds(las_top, "las_top.Rds")
+piggyback::pb_upload("las_top.Rds")
+
+# old analysis code -------------------------------------------------------
+
+# library(tidyverse)
+# library(sf)
+# library(tmap)
+# tmap_mode("view")
+# 
+# # input data --------------------------------------------------------------
+# 
+# up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Leeds/osm-lines.Rds"
+# up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Cambridge/osm-lines.Rds"
+# up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Cambridge/osm-lines.Rds"
+# up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-recc/Hereford/osm-lines.Rds"
+# 
+# roads = readRDS(url(up))
+# names(roads)
+# summary(roads$width)
+# wide_potential1 = roads %>% filter(width > 10, pct.dutch > 100)
+# mapview::mapview(wide_potential1)
+# wide_potential2 = roads %>% filter(
+#   lanes.forward > 1 |
+#     lanes.backward > 1,
+#   pct.dutch > 50)
+# mapview::mapview(wide_potential2)
+# wide_potential3 = roads %>% filter(lanes.forward + lanes.backward > 2, pct.dutch > 100)
+# mapview::mapview(wide_potential3)
+# 
+# # relationship between cycling and 2 way ----------------------------------
+# cor(roads$lanes.forward, roads$pct.census) # there is a small correlation
+# cor(roads$lanes.forward, roads$pct.dutch) # larger for go dutch scenario
+# cor(roads$width, roads$pct.census, use = "complete.obs") # also a positive correlation
+# plot(roads$width, roads$lanes.forward + roads$lanes.backward)
+
+
+
+
+# out-takes ---------------------------------------------------------------
+
+# u = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-clean/Leeds/osm-lines.Rds"
+# osm_lines = readRDS(url(u))
+# names(osm_lines)
+# plot(osm_lines) # long time to plot...
+# 
+# uz = "https://github.com/cyipt/cyipt-bigdata/raw/master/forDB/roads.zip"
+# d = file.path(tempdir(), "roads.zip")
+# download.file(uz, d)
+# r = readr::read_csv(d)
+# head(r$elevation)
+
