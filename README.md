@@ -106,7 +106,7 @@ The top 10 roads:
 | Hunslet Road      | A639  | primary   | Leeds  |    221 |   1860 |
 | The Headrow       |       | service   | Leeds  |    216 |    547 |
 
-# Birmingham
+# Cambridge
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
@@ -114,15 +114,13 @@ The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-| name                     | ref   | highway | region     | pctgov | length |
-| :----------------------- | :---- | :------ | :--------- | -----: | -----: |
-| Pershore Road            | A441  | primary | Birmingham |    618 |   3672 |
-| Hagley Road              | A456  | trunk   | Birmingham |    504 |   4229 |
-| Bristol Street           | A38   | trunk   | Birmingham |    474 |   1185 |
-| Suffolk Street Queensway | A38   | trunk   | Birmingham |    410 |   1595 |
-| Queensway                | A38   | trunk   | Birmingham |    332 |   2138 |
-| Belgrave Middleway       | A4540 | trunk   | Birmingham |    306 |   2225 |
-| High Street              | A34   | trunk   | Birmingham |    301 |   1068 |
-| Gravelly Hill North      | A5127 | primary | Birmingham |    261 |    592 |
-| Aldridge Road            | A453  | primary | Birmingham |    260 |   2674 |
-| New Town Row             | A34   | trunk   | Birmingham |    244 |    870 |
+| name                  | ref   | highway     | region    | pctgov | length |
+| :-------------------- | :---- | :---------- | :-------- | -----: | -----: |
+| Saint Andrew’s Street |       | residential | Cambridge |   2449 |    164 |
+| Hobson Street         |       | residential | Cambridge |   2393 |    216 |
+| Hills Road            | A1307 | primary     | Cambridge |   1662 |    147 |
+| Bridge Street         |       | residential | Cambridge |    878 |    194 |
+| Elizabeth Way         | A1134 | primary     | Cambridge |    860 |    812 |
+|                       | A1134 | primary     | Cambridge |    639 |    187 |
+| Emmanuel Street       |       | residential | Cambridge |    586 |    151 |
+| Chesterton Road       | A1134 | primary     | Cambridge |    530 |    194 |

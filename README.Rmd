@@ -33,6 +33,7 @@ rsf_spare_lane = rsf %>% filter(
   ! grepl(pattern = "motorway", highway)
   ) 
 saveRDS(rsf_spare_lane, "rsf_spare_line.Rds")
+# piggyback::pb_upload("rsf_spare_line.Rds", "cyipt/cyipt-phase-1-data")
 
 rsf = readRDS("rsf_spare_line.Rds")
 summary(rsf$length)
@@ -160,20 +161,18 @@ roads_top %>%
   knitr::kable(digits = 0)
 ```
 
-# Birmingham
-
+# Cambridge
 
 ```{r}
-roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+roads = rsf %>% filter(region == "Cambridge", pctgov > 400)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis")
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 500) %>% 
+  filter(length > 100) %>% 
   arrange(desc(pctgov)) %>%
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +

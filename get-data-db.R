@@ -15,11 +15,11 @@ for(i in seq_along(f)) {
   zip(z[i], f[i])
   piggyback::pb_upload(z[i], "cyipt/cyipt-phase-1-data")
 }
+r = data.table::fread("roads.csv")
 setwd(old)
 
 # test read-in as geographic object ---------------------------------------
 
-r = data.table::fread("roads.csv")
 names(r)
 r1 = r[1, ]
 r1$geotext
@@ -31,7 +31,7 @@ r1_sf = sf::st_as_sfc(r1$geotext, crs = 4326)
 
 regions = unique(r$region)
 regions_cyipt_df = data.frame(regions)
-View(regions_cyipt_df)
+# View(regions_cyipt_df)
 regions_of_interest = c(
   "Leeds", "Liverpool", "London", "Bristol",
   "Birmingham", "Manchester", "Newcastle"
@@ -90,7 +90,6 @@ las_other$dutch_slc
 
 las_other2 = pct_la_summaries %>% 
   filter(name %in% c("Cambridge", "Sheffield"))
-
 
 names(pct_london_aggregated)
 names(las_top)
