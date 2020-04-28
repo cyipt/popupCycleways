@@ -1,0 +1,77 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# tempCycleways
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of this project is to flag roads on which there is
+
+- high cycling potential
+- road space that could be re-allocated
+
+in the context of increased for demand for cycling to keyworker workplaces.
+
+It is based on an analysis of data generated for the Department for Transport funded projects the Propensity to Cycle Tool (PCT) and the Cycling Infrastructure Prioritisation Toolkit (CyIPT).
+
+
+```{r cars}
+# Aim: identify wide roads that have high cycling potential
+
+
+# setup -------------------------------------------------------------------
+
+library(tidyverse)
+library(sf)
+library(tmap)
+tmap_mode("view")
+
+# input data --------------------------------------------------------------
+
+up = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-prep/Leeds/osm-lines.Rds"
+roads = readRDS(url(up))
+names(roads)
+summary(roads$width)
+wide_potential1 = roads %>% filter(width > 10, pct.dutch > 100)
+mapview::mapview(wide_potential1)
+wide_potential2 = roads %>% filter(lanes.forward > 1, pct.dutch > 100)
+mapview::mapview(wide_potential2)
+wide_potential3 = roads %>% filter(lanes.forward + lanes.backward > 2, pct.dutch > 100)
+mapview::mapview(wide_potential3)
+
+# relationship between cycling and 2 way ----------------------------------
+cor(roads$lanes.forward, roads$pct.census) # there is a small correlation
+cor(roads$lanes.forward, roads$pct.dutch) # larger for go dutch scenario
+cor(roads$width, roads$pct.census, use = "complete.obs") # also a positive correlation
+plot(roads$width, roads$lanes.forward + roads$lanes.backward)
+
+
+
+
+# out-takes ---------------------------------------------------------------
+
+# u = "https://github.com/cyipt/cyipt-bigdata/raw/master/osm-clean/Leeds/osm-lines.Rds"
+# osm_lines = readRDS(url(u))
+# names(osm_lines)
+# plot(osm_lines) # long time to plot...
+# 
+# uz = "https://github.com/cyipt/cyipt-bigdata/raw/master/forDB/roads.zip"
+# d = file.path(tempdir(), "roads.zip")
+# download.file(uz, d)
+# r = readr::read_csv(d)
+# head(r$elevation)
+
+```
+
+In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
