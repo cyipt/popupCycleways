@@ -353,7 +353,11 @@ The top 10 roads:
 ```{r}
 roads_top = roads %>%
   filter(length > 600) %>% 
+  filter(!name == "") %>% 
   arrange(desc(pctgov)) %>%
+  group_by(name, ref, highway) %>% 
+  summarise(pctgov = mean(pctgov), length = mean(length)) %>% 
+  ungroup() %>% 
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +

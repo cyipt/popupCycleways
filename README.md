@@ -246,18 +246,18 @@ The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
-| name                | ref   | road\_type | cycling\_potential | length\_m |
-| :------------------ | :---- | :--------- | -----------------: | --------: |
-| Redheugh Bridge     | A189  | primary    |                688 |       649 |
-| Park Road           | A184  | trunk      |                666 |      2849 |
-| Coast Road          | A1058 | trunk      |                529 |     17203 |
-| Felling Bypass      | A184  | trunk      |                490 |      8164 |
-| Barrack Road        | A189  | primary    |                344 |      1063 |
-| Newcastle Road      | A184  | trunk      |                293 |      4492 |
-| Great North Road    | B1318 | secondary  |                214 |       781 |
-| Jesmond Road        | A1058 | trunk      |                211 |      1356 |
-| St James’ Boulevard | A189  | primary    |                169 |      1042 |
-| Askew Road          | A184  | trunk      |                169 |      2131 |
+| name             | ref   | road\_type | cycling\_potential | length\_m |
+| :--------------- | :---- | :--------- | -----------------: | --------: |
+| Askew Road       | A184  | trunk      |                169 |      2131 |
+| Barrack Road     | A189  | primary    |                344 |      1063 |
+| Coast Road       | A1058 | trunk      |                529 |     17203 |
+| Felling Bypass   | A184  | trunk      |                490 |      8164 |
+| Great North Road | B1318 | secondary  |                214 |       781 |
+| Jedburgh Road    | A167  | trunk      |                130 |      5621 |
+| Jesmond Road     | A1058 | trunk      |                211 |      1356 |
+| Kingsway South   |       | tertiary   |                113 |      2467 |
+| Newcastle Road   | A184  | trunk      |                293 |      4492 |
+| Park Lane        | A184  | trunk      |                144 |       917 |
 
 # Cambridge
 
