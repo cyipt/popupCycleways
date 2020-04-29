@@ -16,10 +16,14 @@ library(tidyverse)
 library(sf)
 library(tmap)
 tmap_mode("view")
-# piggyback::pb_download("las_top.Rds")
+piggyback::pb_download("las_top.Rds")
 pct_las = sf::read_sf("https://github.com/cyipt/tempCycleways/releases/download/0.1/pct_la_summaries.geojson")
 las_top = readRDS("las_top.Rds")
+st_make_valid(las_top)
+piggyback::pb_download("rsf_grouped_long.Rds")
 rsf = readRDS("rsf_grouped_long.Rds")
+piggyback::pb_download("Builtup_Areas_December_2011_Boundaries_V2.geojson")
+builtup = sf::read_sf("Builtup_Areas_December_2011_Boundaries_V2.geojson") %>% sf::st_transform(27700)
 ```
 
 ```{r, eval=FALSE}
@@ -119,7 +123,12 @@ Roads that could be made oneway, or that could be converted into 'liveable stree
 # London
 
 ```{r}
+##Mask not required for London, so no need to slow down the code unnecessarily
+# london_centroids = get_pct_centroids("london",geography = "lsoa") %>% sf::st_transform(27700)
+# london_lsoa_buff = st_buffer(x = london_centroids, dist = 1000)
+# london_res_buff = st_intersection(builtup,london_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "London", pctgov > 500)
+# roads = roads %>% st_transform(27700) %>% st_intersection(london_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 11) + tm_scale_bar()
 ```
@@ -144,7 +153,11 @@ roads_top %>%
 # Birmingham
 
 ```{r}
+birmingham_centroids = get_pct_centroids("west-midlands",geography = "lsoa") %>% sf::st_transform(27700)
+birmingham_lsoa_buff = st_buffer(x = birmingham_centroids, dist = 1000)
+birmingham_res_buff = st_intersection(builtup,birmingham_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
+roads = roads %>% st_transform(27700) %>% st_intersection(birmingham_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 12) + tm_scale_bar()
 ```
@@ -168,7 +181,11 @@ roads_top %>%
 # Manchester
 
 ```{r}
+manchester_centroids = get_pct_centroids("greater-manchester",geography = "lsoa") %>% sf::st_transform(27700)
+manchester_lsoa_buff = st_buffer(x = manchester_centroids, dist = 1000)
+manchester_res_buff = st_intersection(builtup,manchester_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Manchester", pctgov > 100)
+roads = roads %>% st_transform(27700) %>% st_intersection(manchester_res_buff) %>% st_transform(4326)
 region_centre = tmaptools::geocode_OSM("Manchester", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 7000)
 roads = st_intersection(roads, region_buff)
@@ -196,7 +213,11 @@ roads_top %>%
 # Leeds
 
 ```{r}
+leeds_centroids = get_pct_centroids("west-yorkshire",geography = "lsoa") %>% sf::st_transform(27700)
+leeds_lsoa_buff = st_buffer(x = leeds_centroids$geometry, dist = 1000)
+leeds_res_buff = st_intersection(builtup,leeds_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Leeds", pctgov > 100)
+roads = roads %>% st_transform(27700) %>% st_intersection(leeds_res_buff) %>% st_transform(4326)
 region_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 3000)
 roads = st_intersection(roads, region_buff)
@@ -225,10 +246,14 @@ roads_top %>%
 # Liverpool
 
 ```{r}
+liverpool_centroids = get_pct_centroids("liverpool-city-region",geography = "lsoa") %>% sf::st_transform(27700)
+liverpool_lsoa_buff = st_buffer(x = liverpool_centroids, dist = 1000)
+liverpool_res_buff = st_intersection(builtup,liverpool_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Liverpool", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Liverpool", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
+roads = roads %>% st_transform(27700) %>% st_intersection(liverpool_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 12) + tm_scale_bar()
 ```
@@ -252,11 +277,15 @@ roads_top %>%
 # Bristol
 
 ```{r}
+bristol_centroids = get_pct_centroids("avon",geography = "lsoa") %>% sf::st_transform(27700)
+bristol_lsoa_buff = st_buffer(x = bristol_centroids, dist = 1000)
+bristol_res_buff = st_intersection(builtup,bristol_lsoa_buff) %>% st_union()
 region = pct_las %>% filter(name == "Bristol")
 region = sf::st_make_valid(region)
 roads = rsf %>% filter(region == "Bristol", pctgov > 100)
 roads = roads[region, ]
 roads = st_intersection(roads, region)
+roads = roads %>% st_transform(27700) %>% st_intersection(bristol_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_shape(region) + tm_borders() +
   tm_scale_bar() 
@@ -286,10 +315,14 @@ roads_top %>%
 # Leicester
 
 ```{r}
+leicester_centroids = get_pct_centroids("leicestershire",geography = "lsoa") %>% sf::st_transform(27700)
+leicester_lsoa_buff = st_buffer(x = leicester_centroids, dist = 1000)
+leicester_res_buff = st_intersection(builtup,leicester_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Leicester", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Leicester", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
+roads = roads %>% st_transform(27700) %>% st_intersection(leicester_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 12) + tm_scale_bar()
 ```
@@ -313,10 +346,14 @@ roads_top %>%
 # Sheffield
 
 ```{r}
+sheffield_centroids = get_pct_centroids("south-yorkshire",geography = "lsoa") %>% sf::st_transform(27700)
+sheffield_lsoa_buff = st_buffer(x = sheffield_centroids, dist = 1000)
+sheffield_res_buff = st_intersection(builtup,sheffield_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Sheffield", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Sheffield", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
+roads = roads %>% st_transform(27700) %>% st_intersection(sheffield_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 12) + tm_scale_bar()
 ```
@@ -340,10 +377,14 @@ roads_top %>%
 # Newcastle
 
 ```{r}
+newcastle_centroids = get_pct_centroids("north-east",geography = "lsoa") %>% sf::st_transform(27700)
+newcastle_lsoa_buff = st_buffer(x = newcastle_centroids, dist = 1000)
+newcastle_res_buff = st_intersection(builtup,newcastle_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Newcastle", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Newcastle", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
+roads = roads %>% st_transform(27700) %>% st_intersection(newcastle_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 12) + tm_scale_bar()
 ```
@@ -373,7 +414,11 @@ roads_top %>%
 # Cambridge
 
 ```{r}
+cambridge_centroids = get_pct_centroids("cambridgeshire",geography = "lsoa") %>% sf::st_transform(27700)
+cambridge_lsoa_buff = st_buffer(x = cambridge_centroids, dist = 1000)
+cambridge_res_buff = st_intersection(builtup,cambridge_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Cambridge", pctgov > 400)
+roads = roads %>% st_transform(27700) %>% st_intersection(cambridge_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 13) + tm_scale_bar()
 ```
