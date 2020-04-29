@@ -1,5 +1,6 @@
 ---
-output: github_document
+output: html_document
+always_allow_html: yes
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -32,6 +33,7 @@ piggyback::pb_download("Builtup_Areas_December_2011_Boundaries_V2.geojson")
 ```
 
 ```{r, eval=FALSE}
+webshot::install_phantomjs()
 # general analysis of data
 # piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
 rsf = readRDS("rsf.Rds")
@@ -132,24 +134,30 @@ Roads that could be made oneway, or that could be converted into 'liveable stree
 # london_centroids = get_pct_centroids("london",geography = "lsoa") %>% sf::st_transform(27700)
 # london_lsoa_buff = st_buffer(x = london_centroids, dist = 1000)
 # london_res_buff = st_intersection(builtup,london_lsoa_buff) %>% st_union()
+s = c(
+  "Esri.WorldGrayCanvas",
+  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+)
+region = las_top %>% filter(name == "London")
 roads = rsf %>% filter(region == "London", pctgov > 500)
 # roads = roads %>% st_transform(27700) %>% st_intersection(london_res_buff) %>% st_transform(4326)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 11) + tm_scale_bar()
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
   filter(length > 500) %>%
   filter(!name == "Talgarth Road", length > 500) %>%
+  filter(!name == "Whitechapel Road", length > 500) %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+# tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+#   tm_text("name") +
+#   tm_view(set.view = 12) + tm_scale_bar()
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar()
-
+  tm_view(set.view = 12) +
+  tm_scale_bar() +
+  tm_basemap(server = s)
 roads_top %>%
   st_drop_geometry() %>%
   select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
@@ -169,25 +177,15 @@ roads_top %>%
 #   st_intersection(birmingham_res_buff) %>%
 #   st_transform(4326)
 # idea: look for other basemaps
-s = c(
-  "Esri.WorldGrayCanvas",
-  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
-  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
-)
 region = las_top %>% filter(name == "Birmingham")
 roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
 roads = st_intersection(roads, region) # remove roads outside region
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
   filter(length > 300) %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(region) + tm_borders() +
   tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
   tm_view(set.view = 11) + tm_scale_bar() +
@@ -206,11 +204,7 @@ roads = rsf %>% filter(region == "Manchester", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Manchester", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 7000)
 roads = st_intersection(roads, region_buff)
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
   filter(length > 300) %>%
   arrange(desc(pctgov)) %>%
@@ -234,11 +228,7 @@ roads = rsf %>% filter(region == "Leeds", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
   filter(length > 300) %>%
   filter(name != "Broadway") %>%
@@ -267,11 +257,7 @@ roads = st_intersection(roads, region)
 # tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
 #   tm_view(set.view = 10) + tm_scale_bar() +
 #   tm_shape(region) + tm_borders()
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
   filter(length > 300) %>%
   filter(name != "Queensway (Mersey Tunnel)") %>%
@@ -293,15 +279,11 @@ roads_top %>%
 # Bristol
 
 ```{r}
-region = pct_las %>% filter(name == "Bristol")
+region = las_top %>% filter(name == "Bristol")
 region = sf::st_make_valid(region)
 roads = rsf %>% filter(region == "Bristol", pctgov > 100)
 roads = st_intersection(roads, region)
-```
 
-The top 10 roads:
-
-```{r}
 bristol_centre = tmaptools::geocode_OSM("Bristol", as.sf = TRUE)
 bristol_buff = stplanr::geo_buffer(bristol_centre, dist = 1500)
 roads_top = roads[bristol_buff, ] %>%
@@ -332,13 +314,7 @@ roads = rsf %>% filter(region == "Leicester", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Leicester", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 12) + tm_scale_bar()
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
   filter(length > 300) %>%
   arrange(desc(pctgov)) %>%
@@ -363,13 +339,11 @@ roads = rsf %>% filter(region == "Sheffield", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Sheffield", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
-  filter(length > 600) %>% # remove 500m roundabouts - is there a better way?
+  filter(length > 200) %>% 
+  filter(!name == "Tinsley Roundabout")  %>%
+  filter(!name == "Meadowhead Roundabout")  %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
 
@@ -391,16 +365,16 @@ roads_top %>%
 roads = rsf %>% filter(region == "Newcastle", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Newcastle", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-roads = st_intersection(roads, region_buff)
-```
+region = las_top %>% filter(name == "Newcastle")
+region = st_intersection(region_buff, region)
+roads = st_intersection(roads, region)
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
-  filter(length > 600) %>%
+  filter(length > 250) %>%
   filter(!name == "") %>%
-  filter(!name == "Redheugh Bridge") %>%
+  filter(!name == "Redheugh Bridge")  %>%
+  filter(!name == "Derwenthaugh Road", !name == "") %>%
+  filter(!name == "East Denton Interchange", !name == "") %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
 
@@ -424,14 +398,10 @@ roads = rsf %>% filter(region == "Cambridge", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Cambridge", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 3000)
 roads = st_intersection(roads, region_buff)
-```
 
-The top 10 roads:
-
-```{r}
 roads_top = roads %>%
   filter(length > 100) %>%
-  # filter(name != "Chesterton Road") %>%
+  filter(name != "") %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
