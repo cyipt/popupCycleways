@@ -139,14 +139,15 @@ The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-| name                 | ref   | road\_type | cycling\_potential | length\_m |
-| :------------------- | :---- | :--------- | -----------------: | --------: |
-| Temple Way Underpass | A4044 | trunk      |                471 |       691 |
-| Temple Way           | A4044 | trunk      |                432 |       708 |
-| St James’ Barton     | A38   | trunk      |                276 |       264 |
-| Bond Street          | A4044 | trunk      |                268 |       442 |
-| Newfoundland Street  | A4044 | trunk      |                255 |       496 |
-| Bond Street South    | A4044 | trunk      |                246 |      1039 |
-| Bedminster Parade    | A38   | trunk      |                234 |       401 |
-| Temple Gate          | A4    | trunk      |                206 |       279 |
-| Bath Road            | A4    | trunk      |                191 |      6227 |
+| name                | ref   | road\_type   | cycling\_potential | length\_m |
+| :------------------ | :---- | :----------- | -----------------: | --------: |
+| Temple Way          | A4044 | trunk        |                432 |       708 |
+| Newfoundland Street | A4044 | trunk        |                255 |       496 |
+| Bond Street South   | A4044 | trunk        |                246 |      1039 |
+| Bedminster Parade   | A38   | trunk        |                234 |       401 |
+| Bath Road           | A4    | trunk        |                191 |      6227 |
+| Coronation Road     | A370  | trunk        |                179 |      2033 |
+| Clarence Road       | A370  | trunk        |                124 |       666 |
+| Malago Road         | A38   | trunk        |                123 |       478 |
+| Hotwell Road        | A4    | primary      |                117 |       533 |
+| East Street         |       | unclassified |                111 |       392 |

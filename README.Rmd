@@ -215,9 +215,10 @@ The top 10 roads:
 bristol_centre = tmaptools::geocode_OSM("Bristol", as.sf = TRUE)
 bristol_buff = stplanr::geo_buffer(bristol_centre, dist = 1500)
 roads_top = roads[bristol_buff, ] %>%
-  filter(length > 200) %>% 
+  filter(length > 300) %>% 
+  filter(!name == "Bond Street", !name == "") %>% 
   arrange(desc(pctgov)) %>%
-  slice(2:10) %>% 
+  slice(2:11) %>% 
   distinct(name, .keep_all = TRUE)
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
