@@ -27,7 +27,8 @@ las_top = sf::read_sf("https://github.com/cyipt/tempCycleways/releases/download/
 piggyback::pb_download("rsf_grouped_long.Rds")
 rsf = readRDS("rsf_grouped_long.Rds")
 piggyback::pb_download("Builtup_Areas_December_2011_Boundaries_V2.geojson")
-builtup = sf::read_sf("Builtup_Areas_December_2011_Boundaries_V2.geojson") %>% sf::st_transform(27700)
+# could use in subsequent analysis - removes part of Liverpool tunnel?
+# builtup = sf::read_sf("Builtup_Areas_December_2011_Boundaries_V2.geojson") %>% sf::st_transform(27700)
 ```
 
 ```{r, eval=FALSE}
@@ -39,9 +40,9 @@ rtid = readr::read_csv("~/cyipt/cyipt-server-data/malcolm/roadtypes.csv")
 rsf = left_join(rsf, rtid)
 rsf_spare_lane = rsf %>% filter(
   (lanespsvforward + lanesforward) > 1 |
-  (lanespsvbackward + lanesbackward) > 1,
-  ! grepl(pattern = "motorway", highway)
-  ) 
+    (lanespsvbackward + lanesbackward) > 1,
+  !grepl(pattern = "motorway", highway)
+)
 saveRDS(rsf_spare_lane, "rsf_spare_line.Rds")
 # piggyback::pb_upload("rsf_spare_line.Rds", "cyipt/cyipt-phase-1-data")
 
@@ -49,21 +50,21 @@ rsf = readRDS("rsf_spare_line.Rds")
 summary(rsf$length)
 unique(rsf$region)
 head(rsf$name)
-rsf %>% 
-  select(calcwidthnow) %>% 
+rsf %>%
+  select(calcwidthnow) %>%
   sf::st_drop_geometry() %>%
-  group_by(calcwidthnow) %>% 
-  summarise(n = n()) %>% 
+  group_by(calcwidthnow) %>%
+  summarise(n = n()) %>%
   filter(n > 500)
 wide_potential1 = rsf %>% filter(width > 10, pct.dutch > 100)
 wide_potential2 = rsf %>% filter(
   (lanespsvforward + lanesforward) > 1 |
-  (lanespsvbackward + lanesbackward) > 1,
+    (lanespsvbackward + lanesbackward) > 1,
   pctdutch > 50)
 # mapview::mapview(wide_potential2) # very patchy
-rsf_grouped = rsf %>% 
-  group_by(name, ref, highway, region) %>% 
-  summarise(pctgov = mean(pctgov)) %>% 
+rsf_grouped = rsf %>%
+  group_by(name, ref, highway, region) %>%
+  summarise(pctgov = mean(pctgov)) %>%
   ungroup()
 
 rsf_grouped$length = sf::st_length(rsf_grouped) %>% as.numeric()
@@ -71,11 +72,11 @@ summary(rsf_grouped$length)
 rsf_grouped_long = rsf_grouped %>% filter(length > 100)
 # mapview::mapview(rsf_grouped_long)
 rsf_grouped_long %>%
-  st_drop_geometry() %>% 
+  st_drop_geometry() %>%
   arrange(desc(pctgov)) %>%
-  group_by(region) %>% 
-  slice(1:10) 
-tm_shape(rsf_grouped_long) + tm_lines("pctgov", lwd = 3, palette = "viridis")  
+  group_by(region) %>%
+  slice(1:10)
+tm_shape(rsf_grouped_long) + tm_lines("pctgov", lwd = 3, palette = "viridis")
 saveRDS(rsf_grouped_long, "rsf_grouped_long.Rds")
 piggyback::pb_upload("rsf_grouped_long.Rds")
 ```
@@ -101,8 +102,8 @@ Estimates of current and potential numbers who could cycle to work in these citi
 <!-- We did this by analysing data from the PCT project and selecting the top 10 cities in terms of long term cycling potential, plus Sheffield and Cambridge, : -->
 
 ```{r cities}
-las_top %>% 
-  select(name, all, bicycle, dutch_slc) %>% 
+las_top %>%
+  select(name, all, bicycle, dutch_slc) %>%
   sf::st_drop_geometry() %>%
   knitr::kable(caption = "Selection of 10 cities in England with high cycling potential or active adovcacy groups. 'All' represents all commuters in the 2011 Census, 'bicycle' represents the number who cycled to work and 'dutch_slc' the number who could cycle to work under a 'Go Dutch' scenario of cycling uptake.")
 ```
@@ -127,7 +128,7 @@ Roads that could be made oneway, or that could be converted into 'liveable stree
 # London
 
 ```{r}
-##Mask not required for London, so no need to slow down the code unnecessarily
+## Mask not required for London, so no need to slow down the code unnecessarily
 # london_centroids = get_pct_centroids("london",geography = "lsoa") %>% sf::st_transform(27700)
 # london_lsoa_buff = st_buffer(x = london_centroids, dist = 1000)
 # london_res_buff = st_intersection(builtup,london_lsoa_buff) %>% st_union()
@@ -141,158 +142,161 @@ The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 500) %>% 
-  filter(!name == "Talgarth Road", length > 500) %>% 
+  filter(length > 500) %>%
+  filter(!name == "Talgarth Road", length > 500) %>%
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
+  slice(1:10)
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
   tm_view(set.view = 12) + tm_scale_bar()
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 # Birmingham
 
 ```{r}
-birmingham_centroids = get_pct_centroids("west-midlands",geography = "lsoa") %>% sf::st_transform(27700)
-birmingham_lsoa_buff = st_buffer(x = birmingham_centroids, dist = 1000)
-birmingham_res_buff = st_intersection(builtup,birmingham_lsoa_buff) %>% st_union()
+# idea: use buffers of LSOA centroids to supplent built-up areas
+# birmingham_centroids = get_pct_centroids("west-midlands", geography = "lsoa")
+# birmingham_lsoa_buff = stplanr::geo_buffer(birmingham_centroids, dist = 1000)
+# mapview::mapview(birmingham_lsoa_buff)
+# birmingham_res_buff = st_intersection(builtup, birmingham_lsoa_buff) %>% st_union()
+# roads = roads %>%
+#   st_transform(27700) %>%
+#   st_intersection(birmingham_res_buff) %>%
+#   st_transform(4326)
+# idea: look for other basemaps
+s = c(
+  "Esri.WorldGrayCanvas",
+  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+)
+region = las_top %>% filter(name == "Birmingham")
 roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
-roads = roads %>% st_transform(27700) %>% st_intersection(birmingham_res_buff) %>% st_transform(4326)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 12) + tm_scale_bar()
+roads = st_intersection(roads, region) # remove roads outside region
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 300) %>% 
+  filter(length > 300) %>%
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(region) + tm_borders() +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 13) + tm_scale_bar()
+  tm_view(set.view = 11) + tm_scale_bar() +
+  tm_basemap(server = s)
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 # Manchester
 
 ```{r}
-manchester_centroids = get_pct_centroids("greater-manchester",geography = "lsoa") %>% sf::st_transform(27700)
-manchester_lsoa_buff = st_buffer(x = manchester_centroids, dist = 1000)
-manchester_res_buff = st_intersection(builtup,manchester_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Manchester", pctgov > 100)
-roads = roads %>% st_transform(27700) %>% st_intersection(manchester_res_buff) %>% st_transform(4326)
 region_centre = tmaptools::geocode_OSM("Manchester", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 7000)
 roads = st_intersection(roads, region_buff)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 12) + tm_scale_bar()
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 300) %>% 
+  filter(length > 300) %>%
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 13) + tm_scale_bar()
-
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 
 # Leeds
 
 ```{r}
-leeds_centroids = get_pct_centroids("west-yorkshire",geography = "lsoa") %>% sf::st_transform(27700)
-leeds_lsoa_buff = st_buffer(x = leeds_centroids$geometry, dist = 1000)
-leeds_res_buff = st_intersection(builtup,leeds_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Leeds", pctgov > 100)
-roads = roads %>% st_transform(27700) %>% st_intersection(leeds_res_buff) %>% st_transform(4326)
 region_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 3000)
+region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_scale_bar()
 ```
 
 The top 10 roads:
 
 ```{r}
-region_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 3000)
 roads_top = roads %>%
-  filter(length > 300) %>% 
+  filter(length > 300) %>%
+  filter(name != "Broadway") %>%
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 13) + tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 # Liverpool
 
 ```{r}
-liverpool_centroids = get_pct_centroids("liverpool-city-region",geography = "lsoa") %>% sf::st_transform(27700)
-liverpool_lsoa_buff = st_buffer(x = liverpool_centroids, dist = 1000)
-liverpool_res_buff = st_intersection(builtup,liverpool_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Liverpool", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Liverpool", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-roads = st_intersection(roads, region_buff)
-roads = roads %>% st_transform(27700) %>% st_intersection(liverpool_res_buff) %>% st_transform(4326)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 12) + tm_scale_bar()
+region = las_top %>% filter(name == "Liverpool")
+roads = st_intersection(roads, region)
+# region_centre = tmaptools::geocode_OSM("Liverpool", as.sf = TRUE)
+# region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
+# tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+#   tm_view(set.view = 10) + tm_scale_bar() +
+#   tm_shape(region) + tm_borders()
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 300) %>% 
+  filter(length > 300) %>%
+  filter(name != "Queensway (Mersey Tunnel)") %>%
+  filter(name != "Queensway") %>%
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 # Bristol
 
 ```{r}
-bristol_centroids = get_pct_centroids("avon",geography = "lsoa") %>% sf::st_transform(27700)
-bristol_lsoa_buff = st_buffer(x = bristol_centroids, dist = 1000)
-bristol_res_buff = st_intersection(builtup,bristol_lsoa_buff) %>% st_union()
 region = pct_las %>% filter(name == "Bristol")
 region = sf::st_make_valid(region)
 roads = rsf %>% filter(region == "Bristol", pctgov > 100)
-roads = roads[region, ]
 roads = st_intersection(roads, region)
-roads = roads %>% st_transform(27700) %>% st_intersection(bristol_res_buff) %>% st_transform(4326)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_shape(region) + tm_borders() +
-  tm_scale_bar() 
 ```
 
 The top 10 roads:
@@ -301,32 +305,33 @@ The top 10 roads:
 bristol_centre = tmaptools::geocode_OSM("Bristol", as.sf = TRUE)
 bristol_buff = stplanr::geo_buffer(bristol_centre, dist = 1500)
 roads_top = roads[bristol_buff, ] %>%
-  filter(length > 300) %>% 
-  filter(!name == "Bond Street", !name == "") %>% 
+  filter(length > 300) %>%
+  filter(name != "Temple Way Underpass") %>%
+  filter(!name == "Newfoundland Street", !name == "") %>%
   arrange(desc(pctgov)) %>%
-  slice(2:11) %>% 
-  distinct(name, .keep_all = TRUE)
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+
+
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 
 # Leicester
 
 ```{r}
-leicester_centroids = get_pct_centroids("leicestershire",geography = "lsoa") %>% sf::st_transform(27700)
-leicester_lsoa_buff = st_buffer(x = leicester_centroids, dist = 1000)
-leicester_res_buff = st_intersection(builtup,leicester_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Leicester", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Leicester", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
-roads = roads %>% st_transform(27700) %>% st_intersection(leicester_res_buff) %>% st_transform(4326)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_view(set.view = 12) + tm_scale_bar()
 ```
@@ -335,82 +340,79 @@ The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 300) %>% 
+  filter(length > 300) %>%
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 # Sheffield
 
 ```{r}
-sheffield_centroids = get_pct_centroids("south-yorkshire",geography = "lsoa") %>% sf::st_transform(27700)
-sheffield_lsoa_buff = st_buffer(x = sheffield_centroids, dist = 1000)
-sheffield_res_buff = st_intersection(builtup,sheffield_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Sheffield", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Sheffield", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
-roads = roads %>% st_transform(27700) %>% st_intersection(sheffield_res_buff) %>% st_transform(4326)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 12) + tm_scale_bar()
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 600) %>% 
+  filter(length > 600) %>% # remove 500m roundabouts - is there a better way?
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 # Newcastle
 
 ```{r}
-newcastle_centroids = get_pct_centroids("north-east",geography = "lsoa") %>% sf::st_transform(27700)
-newcastle_lsoa_buff = st_buffer(x = newcastle_centroids, dist = 1000)
-newcastle_res_buff = st_intersection(builtup,newcastle_lsoa_buff) %>% st_union()
 roads = rsf %>% filter(region == "Newcastle", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Newcastle", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
-roads = roads %>% st_transform(27700) %>% st_intersection(newcastle_res_buff) %>% st_transform(4326)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 12) + tm_scale_bar()
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 600) %>% 
-  filter(!name == "") %>% 
+  filter(length > 600) %>%
+  filter(!name == "") %>%
+  filter(!name == "Redheugh Bridge") %>%
   arrange(desc(pctgov)) %>%
-  group_by(name, ref, highway) %>% 
-  summarise(pctgov = mean(pctgov), length = mean(length)) %>% 
-  ungroup() %>% 
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar()
+  slice(1:10)
 
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
+  tm_text("name") +
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 
@@ -418,29 +420,30 @@ roads_top %>%
 # Cambridge
 
 ```{r}
-cambridge_centroids = get_pct_centroids("cambridgeshire",geography = "lsoa") %>% sf::st_transform(27700)
-cambridge_lsoa_buff = st_buffer(x = cambridge_centroids, dist = 1000)
-cambridge_res_buff = st_intersection(builtup,cambridge_lsoa_buff) %>% st_union()
-roads = rsf %>% filter(region == "Cambridge", pctgov > 400)
-roads = roads %>% st_transform(27700) %>% st_intersection(cambridge_res_buff) %>% st_transform(4326)
-tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.view = 13) + tm_scale_bar()
+roads = rsf %>% filter(region == "Cambridge", pctgov > 100)
+region_centre = tmaptools::geocode_OSM("Cambridge", as.sf = TRUE)
+region_buff = stplanr::geo_buffer(region_centre, dist = 3000)
+roads = st_intersection(roads, region_buff)
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 100) %>% 
+  filter(length > 100) %>%
+  # filter(name != "Chesterton Road") %>%
   arrange(desc(pctgov)) %>%
-  slice(1:10) 
-tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  slice(1:10)
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 14) + tm_scale_bar()
+  tm_view(set.view = 13) + tm_scale_bar() +
+  tm_basemap(server = s)
 
 roads_top %>%
-  st_drop_geometry() %>% 
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
 ```
 
 
