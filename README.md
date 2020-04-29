@@ -256,8 +256,8 @@ The top 10 roads:
 | Jedburgh Road    | A167  | trunk      |                130 |      5621 |
 | Jesmond Road     | A1058 | trunk      |                211 |      1356 |
 | Kingsway South   |       | tertiary   |                113 |      2467 |
-| Newcastle Road   | A184  | trunk      |                293 |      4492 |
 | Park Lane        | A184  | trunk      |                144 |       917 |
+| Park Road        | A184  | trunk      |                666 |      2849 |
 
 # Cambridge
 
