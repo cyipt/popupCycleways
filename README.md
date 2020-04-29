@@ -19,10 +19,15 @@ It is based on an analysis of data generated for the Department for
 Transport funded projects the Propensity to Cycle Tool (PCT) and the
 Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
-The first stage was to identify cities with high cycling potential. We
-did this by analysing data from the PCT project and selecting the top 10
-cities in terms of long term cycling potential, plus Sheffield and
-Cambridge, presented in the table and figure below:
+To overcome issues associated with doing this at a national level and
+elicit feedback on the methods and preliminary results, we ran the
+analysis on a sample of cities. We chose the top 5 in terms of absolute
+long-term cycling potential (London, Birmingham, Manchester, Leeds,
+Liverpool) plus an additional 5 cities that have active advocacy groups
+(Newcastle, Sheffield, Cambridge, Bristol, Leicester). Estimates of
+current and potential numbers who could cycle to work in these cities is
+presented in the table below.
+<!-- We did this by analysing data from the PCT project and selecting the top 10 cities in terms of long term cycling potential, plus Sheffield and Cambridge, : -->
 
 | name       |     all | bicycle | dutch\_slc |
 | :--------- | ------: | ------: | ---------: |
@@ -31,18 +36,19 @@ Cambridge, presented in the table and figure below:
 | Manchester |  199011 |    8447 |      54419 |
 | Leeds      |  326680 |    6250 |      51046 |
 | Liverpool  |  185117 |    3978 |      48306 |
-| Hull       |  105527 |    8974 |      39302 |
 | Bristol    |  192881 |   15797 |      37909 |
-| Newcastle  |  197070 |    4545 |      37327 |
 | Leicester  |  128501 |    4999 |      35253 |
-| Portsmouth |   89822 |    7038 |      28036 |
 | Sheffield  |  226477 |    4276 |      25973 |
+| Newcastle  |  111295 |    3229 |      24792 |
 | Cambridge  |   53295 |   17313 |      20056 |
 
-Top 10 cities by cycling potential in England, with ‘all’ representing
-all commuters in the 2011 Census, ‘bicycle’ representing the number who
-cycled to work and ‘dutch\_slc’ the number who could cycle to work under
-a ‘Go Dutch’ scenario of cycling uptake.
+Selection of 10 cities in England with high cycling potential or active
+adovcacy groups. ‘All’ represents all commuters in the 2011 Census,
+‘bicycle’ represents the number who cycled to work and ‘dutch\_slc’
+the number who could cycle to work under a ‘Go Dutch’ scenario of
+cycling uptake.
+
+The geographic distribution of these cities is shown in the map below:
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 

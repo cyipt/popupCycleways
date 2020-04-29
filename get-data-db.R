@@ -76,24 +76,31 @@ pct_la_summaries %>%
   arrange(desc(dutch_slc)) %>%
   head(15) 
 
+pct_la_summaries %>% 
+  filter(!grepl(pattern = "Wand|West|Southw|Lamb|Hack|Towe|Eal|Houns|Wilt|Cheshire E|Sef|Isl|Riding", name)) %>% 
+  arrange(desc(govtarget_slc)) %>%
+  select(name, all, bicycle, dutch_slc) %>% 
+  st_drop_geometry() %>% 
+  head(15) 
+
 las_top = pct_la_summaries %>% 
   filter(!grepl(pattern = "Wand|West|Southw|Lamb|Hack|Towe|Eal|Houns|Wilt|Cheshire E|Sef|Isl|Riding", name)) %>% 
   arrange(desc(dutch_slc)) %>%
-  head(8) 
+  head(4) 
 
-las_other = pct_la_summaries %>% 
-  filter(name == "Newcastle" | name == "Gateshead") %>% 
-  summarise_if(is.numeric, sum) %>% 
-  add_column(name = "Newcastle", .before = 1) %>% 
-  add_column(CODE = "10", .before = 1)
-las_other$dutch_slc
+# las_other = pct_la_summaries %>% 
+#   filter(name == "Newcastle" | name == "Gateshead") %>% 
+#   summarise_if(is.numeric, sum) %>% 
+#   add_column(name = "Newcastle", .before = 1) %>% 
+#   add_column(CODE = "10", .before = 1)
+# las_other$dutch_slc
 
 las_other2 = pct_la_summaries %>% 
-  filter(name %in% c("Cambridge", "Sheffield"))
+  filter(name %in% c("Cambridge", "Sheffield", "Newcastle", "Bristol", "Leicester"))
 
 names(pct_london_aggregated)
 names(las_top)
-las_top = rbind(pct_london_aggregated, las_top, las_other, las_other2) %>% 
+las_top = rbind(pct_london_aggregated, las_top, las_other2) %>% 
   arrange(desc(dutch_slc))
 
 las_top %>% 

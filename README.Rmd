@@ -87,16 +87,19 @@ in the context of increased for demand for cycling to keyworker workplaces.
 
 It is based on an analysis of data generated for the Department for Transport funded projects the Propensity to Cycle Tool (PCT) and the Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
-The first stage was to identify cities with high cycling potential.
-We did this by analysing data from the PCT project and selecting the top 10 cities in terms of long term cycling potential, plus Sheffield and Cambridge, presented in the table and figure below:
+To overcome issues associated with doing this at a national level and elicit feedback on the methods and preliminary results, we ran the analysis on a sample of cities.
+We chose the top 5 in terms of absolute long-term cycling potential (London, Birmingham, Manchester, Leeds, Liverpool) plus an additional 5 cities that have active advocacy groups (Newcastle, Sheffield, Cambridge, Bristol, Leicester).
+Estimates of current and potential numbers who could cycle to work in these cities is presented in the table below.
+<!-- We did this by analysing data from the PCT project and selecting the top 10 cities in terms of long term cycling potential, plus Sheffield and Cambridge, : -->
 
 ```{r cities}
 las_top %>% 
   select(name, all, bicycle, dutch_slc) %>% 
   sf::st_drop_geometry() %>%
-  knitr::kable(caption = "Top 10 cities by cycling potential in England, with 'all' representing all commuters in the 2011 Census, 'bicycle' representing the number who cycled to work and 'dutch_slc' the number who could cycle to work under a 'Go Dutch' scenario of cycling uptake.")
+  knitr::kable(caption = "Selection of 10 cities in England with high cycling potential or active adovcacy groups. 'All' represents all commuters in the 2011 Census, 'bicycle' represents the number who cycled to work and 'dutch_slc' the number who could cycle to work under a 'Go Dutch' scenario of cycling uptake.")
 ```
 
+The geographic distribution of these cities is shown in the map below:
 
 ```{r}
 tm_shape(las_top) +
