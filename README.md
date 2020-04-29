@@ -78,18 +78,18 @@ The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-| name                 | ref   | highway | region | pctgov | length |
-| :------------------- | :---- | :------ | :----- | -----: | -----: |
-| Kennington Park Road | A3    | trunk   | London |   3255 |    925 |
-| Brixton Road         | A23   | trunk   | London |   2606 |   2849 |
-| Stoke Newington Road | A10   | trunk   | London |   2501 |    590 |
-| Talgarth Road        | A4    | trunk   | London |   2480 |   1454 |
-| Camberwell New Road  | A202  | trunk   | London |   2420 |   1630 |
-| Waterloo Bridge      | A301  | primary | London |   2398 |   1166 |
-| Theobalds Road       | A401  | primary | London |   2267 |    565 |
-| Whitechapel Road     | A11   | trunk   | London |   2111 |   1560 |
-| Old Street           | A5201 | primary | London |   2012 |    505 |
-| West Cromwell Road   | A4    | trunk   | London |   1971 |   1024 |
+| name                 | ref   | road\_type | cycling\_potential | length\_m |
+| :------------------- | :---- | :--------- | -----------------: | --------: |
+| Kennington Park Road | A3    | trunk      |               3255 |       925 |
+| Brixton Road         | A23   | trunk      |               2606 |      2849 |
+| Stoke Newington Road | A10   | trunk      |               2501 |       590 |
+| Talgarth Road        | A4    | trunk      |               2480 |      1454 |
+| Camberwell New Road  | A202  | trunk      |               2420 |      1630 |
+| Waterloo Bridge      | A301  | primary    |               2398 |      1166 |
+| Theobalds Road       | A401  | primary    |               2267 |       565 |
+| Whitechapel Road     | A11   | trunk      |               2111 |      1560 |
+| Old Street           | A5201 | primary    |               2012 |       505 |
+| West Cromwell Road   | A4    | trunk      |               1971 |      1024 |
 
 # Leeds
 
@@ -99,18 +99,18 @@ The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-| name              | ref   | highway   | region | pctgov | length |
-| :---------------- | :---- | :-------- | :----- | -----: | -----: |
-| Wellington Street |       | secondary | Leeds  |    546 |   1027 |
-| Woodhouse Lane    | A660  | trunk     | Leeds  |    368 |   2373 |
-| Otley Road        | A660  | trunk     | Leeds  |    325 |   7273 |
-| Crown Point Road  | A653  | primary   | Leeds  |    316 |    652 |
-| Broadway          | A6120 | trunk     | Leeds  |    267 |   1042 |
-| Kirkstall Road    | A65   | primary   | Leeds  |    261 |   3774 |
-| Clay Pit Lane     | A58   | trunk     | Leeds  |    257 |   2163 |
-| Dewsbury Road     | A6110 | trunk     | Leeds  |    231 |    539 |
-| Hunslet Road      | A639  | primary   | Leeds  |    221 |   1860 |
-| The Headrow       |       | service   | Leeds  |    216 |    547 |
+| name              | ref  | road\_type | cycling\_potential | length\_m |
+| :---------------- | :--- | :--------- | -----------------: | --------: |
+| Wellington Street |      | secondary  |                546 |      1027 |
+| Willow Road       |      | tertiary   |                466 |       316 |
+| Woodhouse Lane    | A660 | trunk      |                368 |      2373 |
+| Blenheim Walk     | A660 | trunk      |                340 |       347 |
+| Swinegate         |      | secondary  |                318 |       309 |
+| Crown Point Road  | A653 | primary    |                316 |       652 |
+| Kirkstall Road    | A65  | primary    |                261 |      3774 |
+| Clay Pit Lane     | A58  | trunk      |                257 |      2163 |
+| The Headrow       |      | tertiary   |                250 |       440 |
+| Hunslet Road      | A639 | primary    |                221 |      1860 |
 
 # Cambridge
 
@@ -120,16 +120,16 @@ The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
-| name                  | ref   | highway     | region    | pctgov | length |
-| :-------------------- | :---- | :---------- | :-------- | -----: | -----: |
-| Saint Andrew’s Street |       | residential | Cambridge |   2449 |    164 |
-| Hobson Street         |       | residential | Cambridge |   2393 |    216 |
-| Hills Road            | A1307 | primary     | Cambridge |   1662 |    147 |
-| Bridge Street         |       | residential | Cambridge |    878 |    194 |
-| Elizabeth Way         | A1134 | primary     | Cambridge |    860 |    812 |
-|                       | A1134 | primary     | Cambridge |    639 |    187 |
-| Emmanuel Street       |       | residential | Cambridge |    586 |    151 |
-| Chesterton Road       | A1134 | primary     | Cambridge |    530 |    194 |
+| name                  | ref   | road\_type  | cycling\_potential | length\_m |
+| :-------------------- | :---- | :---------- | -----------------: | --------: |
+| Saint Andrew’s Street |       | residential |               2449 |       164 |
+| Hobson Street         |       | residential |               2393 |       216 |
+| Hills Road            | A1307 | primary     |               1662 |       147 |
+| Bridge Street         |       | residential |                878 |       194 |
+| Elizabeth Way         | A1134 | primary     |                860 |       812 |
+|                       | A1134 | primary     |                639 |       187 |
+| Emmanuel Street       |       | residential |                586 |       151 |
+| Chesterton Road       | A1134 | primary     |                530 |       194 |
 
 # Bristol
 
@@ -139,14 +139,14 @@ The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-| name                 | ref   | highway | region  | pctgov | length | CODE      | name.1  |    all | bicycle |  foot | car\_driver | govtarget\_slc | govtarget\_slw | govtarget\_sld | gendereq\_slc | gendereq\_slw | gendereq\_sld | dutch\_slc | dutch\_slw | dutch\_sld | ebike\_slc | ebike\_slw | ebike\_sld | govtarget\_sldeath\_heat | govtarget\_slvalue\_heat | govtarget\_sideath\_heat | govtarget\_sivalue\_heat | gendereq\_sldeath\_heat | gendereq\_slvalue\_heat | gendereq\_sideath\_heat | gendereq\_sivalue\_heat | dutch\_sldeath\_heat | dutch\_slvalue\_heat | dutch\_sideath\_heat | dutch\_sivalue\_heat | ebike\_sldeath\_heat | ebike\_slvalue\_heat | ebike\_sideath\_heat | ebike\_sivalue\_heat | govtarget\_slco2 | govtarget\_sico2 | gendereq\_slco2 | gendereq\_sico2 | dutch\_slco2 | dutch\_sico2 | ebike\_slco2 | ebike\_sico2 |
-| :------------------- | :---- | :------ | :------ | -----: | -----: | :-------- | :------ | -----: | ------: | ----: | ----------: | -------------: | -------------: | -------------: | ------------: | ------------: | ------------: | ---------: | ---------: | ---------: | ---------: | ---------: | ---------: | -----------------------: | -----------------------: | -----------------------: | -----------------------: | ----------------------: | ----------------------: | ----------------------: | ----------------------: | -------------------: | -------------------: | -------------------: | -------------------: | -------------------: | -------------------: | -------------------: | -------------------: | ---------------: | ---------------: | --------------: | --------------: | -----------: | -----------: | -----------: | -----------: |
-| Temple Way Underpass | A4044 | trunk   | Bristol |    471 |    691 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| Temple Way           | A4044 | trunk   | Bristol |    432 |    708 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| St James’ Barton     | A38   | trunk   | Bristol |    276 |    264 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| Bond Street          | A4044 | trunk   | Bristol |    268 |    442 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| Newfoundland Street  | A4044 | trunk   | Bristol |    255 |    496 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| Bond Street South    | A4044 | trunk   | Bristol |    246 |   1039 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| Bedminster Parade    | A38   | trunk   | Bristol |    234 |    401 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| Temple Gate          | A4    | trunk   | Bristol |    206 |    279 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
-| Bath Road            | A4    | trunk   | Bristol |    191 |   6227 | E06000023 | Bristol | 192881 |   15797 | 38973 |      100080 |          21061 |          37574 |          97341 |         22961 |         37189 |         96441 |      37909 |      32523 |      88702 |      57768 |      27776 |      78006 |                      \-4 |                        7 |                      \-1 |                        2 |                     \-3 |                       6 |                     \-1 |                       2 |                  \-7 |                   13 |                  \-5 |                    8 |                  \-9 |                   16 |                  \-6 |                   11 |           \-2926 |            \-747 |          \-3236 |          \-1057 |       \-4869 |       \-2690 |       \-8311 |       \-6132 |
+| name                 | ref   | road\_type | cycling\_potential | length\_m |
+| :------------------- | :---- | :--------- | -----------------: | --------: |
+| Temple Way Underpass | A4044 | trunk      |                471 |       691 |
+| Temple Way           | A4044 | trunk      |                432 |       708 |
+| St James’ Barton     | A38   | trunk      |                276 |       264 |
+| Bond Street          | A4044 | trunk      |                268 |       442 |
+| Newfoundland Street  | A4044 | trunk      |                255 |       496 |
+| Bond Street South    | A4044 | trunk      |                246 |      1039 |
+| Bedminster Parade    | A38   | trunk      |                234 |       401 |
+| Temple Gate          | A4    | trunk      |                206 |       279 |
+| Bath Road            | A4    | trunk      |                191 |      6227 |
