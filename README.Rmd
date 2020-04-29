@@ -121,7 +121,7 @@ Roads that could be made oneway, or that could be converted into 'liveable stree
 ```{r}
 roads = rsf %>% filter(region == "London", pctgov > 500)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.zoom.limits = c(12, 13)) + tm_scale_bar()
+  tm_view(set.view = 11) + tm_scale_bar()
 ```
 
 The top 10 roads:
@@ -129,18 +129,68 @@ The top 10 roads:
 ```{r}
 roads_top = roads %>%
   filter(length > 500) %>% 
+  filter(!name == "Talgarth Road", length > 500) %>% 
   arrange(desc(pctgov)) %>%
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
-  tm_view(set.zoom.limits = c(12, 13)) + tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar()
 
 roads_top %>%
   st_drop_geometry() %>% 
   select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
 ```
 
+# Birmingham
 
+```{r}
+roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.view = 12) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 300) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.view = 13) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+```
+
+# Manchester
+
+```{r}
+roads = rsf %>% filter(region == "Manchester", pctgov > 100)
+region_centre = tmaptools::geocode_OSM("Manchester", as.sf = TRUE)
+region_buff = stplanr::geo_buffer(region_centre, dist = 7000)
+roads = st_intersection(roads, region_buff)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.view = 12) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 300) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.view = 13) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+```
 
 
 # Leeds
@@ -172,24 +222,27 @@ roads_top %>%
   select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
 ```
 
-# Cambridge
+# Liverpool
 
 ```{r}
-roads = rsf %>% filter(region == "Cambridge", pctgov > 400)
+roads = rsf %>% filter(region == "Liverpool", pctgov > 100)
+region_centre = tmaptools::geocode_OSM("Liverpool", as.sf = TRUE)
+region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
+roads = st_intersection(roads, region_buff)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar()
 ```
 
 The top 10 roads:
 
 ```{r}
 roads_top = roads %>%
-  filter(length > 100) %>% 
+  filter(length > 300) %>% 
   arrange(desc(pctgov)) %>%
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
-  tm_view(set.zoom.limits = c(14, 150)) + tm_scale_bar()
+  tm_view(set.view = 12) + tm_scale_bar()
 
 roads_top %>%
   st_drop_geometry() %>% 
@@ -228,4 +281,113 @@ roads_top %>%
   st_drop_geometry() %>% 
   select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
 ```
+
+
+# Leicester
+
+```{r}
+roads = rsf %>% filter(region == "Leicester", pctgov > 100)
+region_centre = tmaptools::geocode_OSM("Leicester", as.sf = TRUE)
+region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
+roads = st_intersection(roads, region_buff)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.view = 12) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 300) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.view = 12) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+```
+
+# Sheffield
+
+```{r}
+roads = rsf %>% filter(region == "Sheffield", pctgov > 100)
+region_centre = tmaptools::geocode_OSM("Sheffield", as.sf = TRUE)
+region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
+roads = st_intersection(roads, region_buff)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.view = 12) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 600) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.view = 12) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+```
+
+# Newcastle
+
+```{r}
+roads = rsf %>% filter(region == "Newcastle", pctgov > 100)
+region_centre = tmaptools::geocode_OSM("Newcastle", as.sf = TRUE)
+region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
+roads = st_intersection(roads, region_buff)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.view = 12) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 600) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.view = 12) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+```
+
+
+
+# Cambridge
+
+```{r}
+roads = rsf %>% filter(region == "Cambridge", pctgov > 400)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_view(set.view = 13) + tm_scale_bar()
+```
+
+The top 10 roads:
+
+```{r}
+roads_top = roads %>%
+  filter(length > 100) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(1:10) 
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_view(set.view = 14) + tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>% knitr::kable(digits = 0)
+```
+
 

@@ -83,21 +83,63 @@ The top 10 roads:
 | Kennington Park Road | A3    | trunk      |               3255 |       925 |
 | Brixton Road         | A23   | trunk      |               2606 |      2849 |
 | Stoke Newington Road | A10   | trunk      |               2501 |       590 |
-| Talgarth Road        | A4    | trunk      |               2480 |      1454 |
 | Camberwell New Road  | A202  | trunk      |               2420 |      1630 |
 | Waterloo Bridge      | A301  | primary    |               2398 |      1166 |
 | Theobalds Road       | A401  | primary    |               2267 |       565 |
 | Whitechapel Road     | A11   | trunk      |               2111 |      1560 |
 | Old Street           | A5201 | primary    |               2012 |       505 |
 | West Cromwell Road   | A4    | trunk      |               1971 |      1024 |
+| Jamaica Road         | A200  | primary    |               1926 |      1361 |
 
-# Leeds
+# Birmingham
 
 ![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 The top 10 roads:
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+| name                     | ref   | road\_type | cycling\_potential | length\_m |
+| :----------------------- | :---- | :--------- | -----------------: | --------: |
+| Pershore Road            | A441  | primary    |                618 |      3672 |
+| Hagley Road              | A456  | trunk      |                504 |      4229 |
+| Bristol Street           | A38   | trunk      |                474 |      1185 |
+| Suffolk Street Queensway | A38   | trunk      |                410 |      1595 |
+| Queensway                | A38   | trunk      |                332 |      2138 |
+| Belgrave Middleway       | A4540 | trunk      |                306 |      2225 |
+| High Street              | A34   | trunk      |                301 |      1068 |
+| Chad Road                | B4124 | secondary  |                284 |       322 |
+| Gravelly Hill North      | A5127 | primary    |                261 |       592 |
+| Aldridge Road            | A453  | primary    |                260 |      2674 |
+
+# Manchester
+
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+The top 10 roads:
+
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+
+| name                    | ref   | road\_type | cycling\_potential | length\_m |
+| :---------------------- | :---- | :--------- | -----------------: | --------: |
+| Anson Road              | A34   | trunk      |                773 |       729 |
+| Upper Brook Street      | A34   | trunk      |                637 |      1727 |
+| Birchfields Road        | A34   | trunk      |                631 |      1424 |
+| Princess Street         | A34   | primary    |                553 |       446 |
+| Stockport Road          | A6    | trunk      |                522 |      4991 |
+| Great Ducie Street      | A56   | trunk      |                516 |       824 |
+| Devonshire Street North | A665  | trunk      |                474 |       373 |
+| Edge Lane               | A5145 | trunk      |                471 |      1814 |
+| Regent Road             | A57   | trunk      |                451 |      2701 |
+| Princess Road           | A5103 | trunk      |                438 |     12230 |
+
+# Leeds
+
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+
+The top 10 roads:
+
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
 | name              | ref  | road\_type | cycling\_potential | length\_m |
 | :---------------- | :--- | :--------- | -----------------: | --------: |
@@ -112,32 +154,34 @@ The top 10 roads:
 | The Headrow       |      | tertiary   |                250 |       440 |
 | Hunslet Road      | A639 | primary    |                221 |      1860 |
 
-# Cambridge
+# Liverpool
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 The top 10 roads:
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-| name                  | ref   | road\_type  | cycling\_potential | length\_m |
-| :-------------------- | :---- | :---------- | -----------------: | --------: |
-| Saint Andrew’s Street |       | residential |               2449 |       164 |
-| Hobson Street         |       | residential |               2393 |       216 |
-| Hills Road            | A1307 | primary     |               1662 |       147 |
-| Bridge Street         |       | residential |                878 |       194 |
-| Elizabeth Way         | A1134 | primary     |                860 |       812 |
-|                       | A1134 | primary     |                639 |       187 |
-| Emmanuel Street       |       | residential |                586 |       151 |
-| Chesterton Road       | A1134 | primary     |                530 |       194 |
+| name          | ref   | road\_type | cycling\_potential | length\_m |
+| :------------ | :---- | :--------- | -----------------: | --------: |
+| Queensway     | A41   | primary    |                906 |      1746 |
+| Dale Street   | A57   | trunk      |                828 |       474 |
+| Princes Road  | B5175 | secondary  |                399 |       797 |
+| Crosby Road   | A565  | trunk      |                346 |      1393 |
+| Scotland Road | A59   | trunk      |                342 |      2847 |
+| Low Hill      | A580  | trunk      |                306 |      1174 |
+| Byrom Street  | A59   | trunk      |                293 |       922 |
+| Netherton Way | A5038 | primary    |                285 |      1889 |
+| Longmoor Lane | A506  | primary    |                284 |       369 |
+| Edge Lane     | A5047 | trunk      |                280 |      5270 |
 
 # Bristol
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-14-1.png)<!-- -->
 
 The top 10 roads:
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
 
 | name                | ref   | road\_type   | cycling\_potential | length\_m |
 | :------------------ | :---- | :----------- | -----------------: | --------: |
@@ -151,3 +195,85 @@ The top 10 roads:
 | Malago Road         | A38   | trunk        |                123 |       478 |
 | Hotwell Road        | A4    | primary      |                117 |       533 |
 | East Street         |       | unclassified |                111 |       392 |
+
+# Leicester
+
+![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+
+The top 10 roads:
+
+![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+
+| name            | ref   | road\_type   | cycling\_potential | length\_m |
+| :-------------- | :---- | :----------- | -----------------: | --------: |
+| Charles Street  |       | unclassified |                326 |       527 |
+| London Road     | A6    | primary      |                321 |       437 |
+| Hinckley Road   | A47   | primary      |                211 |      1506 |
+| Abbey Park Road |       | tertiary     |                184 |       645 |
+| St Johns        | B4114 | secondary    |                175 |      2403 |
+| Melton Road     | A607  | primary      |                168 |      1571 |
+| Belgrave Gate   |       | tertiary     |                160 |       569 |
+| Belgrave Gate   | A607  | primary      |                156 |       822 |
+| London Road     | A6    | trunk        |                152 |      4927 |
+| Troon Way       | A563  | trunk        |                127 |      1306 |
+
+# Sheffield
+
+![](README_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+The top 10 roads:
+
+![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
+| name                    | ref   | road\_type | cycling\_potential | length\_m |
+| :---------------------- | :---- | :--------- | -----------------: | --------: |
+| Ecclesall Road          | A625  | primary    |                416 |      1495 |
+| Arundel Gate            |       | tertiary   |                262 |       693 |
+| Chesterfield Road       | A61   | trunk      |                228 |      2705 |
+| Greenland Road          | A6102 | trunk      |                213 |      2301 |
+| Meadowhead              | A61   | trunk      |                191 |      1792 |
+| Abbeydale Road          | A621  | primary    |                185 |      2044 |
+| Chesterfield Road South | A61   | trunk      |                182 |      2180 |
+| Norton Avenue           | A6102 | trunk      |                176 |      2711 |
+| Attercliffe Common      | A6178 | primary    |                172 |      1301 |
+| Ridgeway Road           | A6102 | trunk      |                169 |      3765 |
+
+# Newcastle
+
+![](README_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+
+The top 10 roads:
+
+![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+
+| name                | ref   | road\_type | cycling\_potential | length\_m |
+| :------------------ | :---- | :--------- | -----------------: | --------: |
+| Redheugh Bridge     | A189  | primary    |                688 |       649 |
+| Park Road           | A184  | trunk      |                666 |      2849 |
+| Coast Road          | A1058 | trunk      |                529 |     17203 |
+| Felling Bypass      | A184  | trunk      |                490 |      8164 |
+| Barrack Road        | A189  | primary    |                344 |      1063 |
+| Newcastle Road      | A184  | trunk      |                293 |      4492 |
+| Great North Road    | B1318 | secondary  |                214 |       781 |
+| Jesmond Road        | A1058 | trunk      |                211 |      1356 |
+| St James’ Boulevard | A189  | primary    |                169 |      1042 |
+| Askew Road          | A184  | trunk      |                169 |      2131 |
+
+# Cambridge
+
+![](README_files/figure-gfm/unnamed-chunk-22-1.png)<!-- -->
+
+The top 10 roads:
+
+![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+
+| name                  | ref   | road\_type  | cycling\_potential | length\_m |
+| :-------------------- | :---- | :---------- | -----------------: | --------: |
+| Saint Andrew’s Street |       | residential |               2449 |       164 |
+| Hobson Street         |       | residential |               2393 |       216 |
+| Hills Road            | A1307 | primary     |               1662 |       147 |
+| Bridge Street         |       | residential |                878 |       194 |
+| Elizabeth Way         | A1134 | primary     |                860 |       812 |
+|                       | A1134 | primary     |                639 |       187 |
+| Emmanuel Street       |       | residential |                586 |       151 |
+| Chesterton Road       | A1134 | primary     |                530 |       194 |
