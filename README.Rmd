@@ -6,6 +6,7 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  message = FALSE,
   warning = FALSE,
   echo = FALSE,
   collapse = TRUE,
@@ -15,14 +16,15 @@ library(tidyverse)
 library(sf)
 library(tmap)
 tmap_mode("view")
-piggyback::pb_download("las_top.Rds")
+# piggyback::pb_download("las_top.Rds")
+pct_las = sf::read_sf("https://github.com/cyipt/tempCycleways/releases/download/0.1/pct_la_summaries.geojson")
 las_top = readRDS("las_top.Rds")
 rsf = readRDS("rsf_grouped_long.Rds")
-# piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
 ```
 
 ```{r, eval=FALSE}
 # general analysis of data
+# piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
 rsf = readRDS("rsf.Rds")
 names(rsf)
 rtid = readr::read_csv("~/cyipt/cyipt-server-data/malcolm/roadtypes.csv")
@@ -67,6 +69,7 @@ rsf_grouped_long %>%
   slice(1:10) 
 tm_shape(rsf_grouped_long) + tm_lines("pctgov", lwd = 3, palette = "viridis")  
 saveRDS(rsf_grouped_long, "rsf_grouped_long.Rds")
+piggyback::pb_upload("rsf_grouped_long.Rds")
 ```
 
 
@@ -166,7 +169,7 @@ roads_top %>%
 ```{r}
 roads = rsf %>% filter(region == "Cambridge", pctgov > 400)
 tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-  tm_view(set.zoom.limits = c(13, 14)) + tm_scale_bar()
+  tm_scale_bar()
 ```
 
 The top 10 roads:
@@ -178,9 +181,42 @@ roads_top = roads %>%
   slice(1:10) 
 tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
   tm_text("name") +
-  tm_view(set.zoom.limits = c(14, 15)) + tm_scale_bar()
+  tm_view(set.zoom.limits = c(14, 150)) + tm_scale_bar()
 
 roads_top %>%
   st_drop_geometry() %>% 
   knitr::kable(digits = 0)
 ```
+
+# Bristol
+
+```{r}
+region = pct_las %>% filter(name == "Bristol")
+region = sf::st_make_valid(region)
+roads = rsf %>% filter(region == "Bristol", pctgov > 100)
+roads = roads[region, ]
+roads = st_intersection(roads, region)
+tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_shape(region) + tm_borders() +
+  tm_scale_bar() 
+```
+
+The top 10 roads:
+
+```{r}
+bristol_centre = tmaptools::geocode_OSM("Bristol", as.sf = TRUE)
+bristol_buff = stplanr::geo_buffer(bristol_centre, dist = 1500)
+roads_top = roads[bristol_buff, ] %>%
+  filter(length > 200) %>% 
+  arrange(desc(pctgov)) %>%
+  slice(2:10) %>% 
+  distinct(name, .keep_all = TRUE)
+tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+  tm_text("name") +
+  tm_scale_bar()
+
+roads_top %>%
+  st_drop_geometry() %>% 
+  knitr::kable(digits = 0)
+```
+
