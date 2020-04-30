@@ -84,7 +84,7 @@ projects, three filtering methods were used:
   - Number of lanes: roads with more than 1 lane in either direction
     were identified
   - Cycling potential: only roads with high cycling potential, of 100 or
-    more in the long-term Go Dutch scenario, were selected
+    more in the long-term Government Target scenario, were selected
   - Length of road: only road sections at least 100m long were included
     in the analysis, in some cities this threshold was raised to
     identify the ‘top 10’ roads for new cycleways
@@ -200,18 +200,18 @@ under the Government Target scenario in the PCT (dark blue).
 
 ![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
-| name            | ref   | road\_type | cycling\_potential | length\_m |
-| :-------------- | :---- | :--------- | -----------------: | --------: |
-| Dale Street     | A57   | trunk      |                828 |       474 |
-| Princes Road    | B5175 | secondary  |                399 |       797 |
-| Scotland Road   | A59   | trunk      |                342 |      2847 |
-| Low Hill        | A580  | trunk      |                306 |      1174 |
-| Byrom Street    | A59   | trunk      |                293 |       922 |
-| Longmoor Lane   | A506  | primary    |                284 |       369 |
-| Edge Lane       | A5047 | trunk      |                280 |      5270 |
-| Brownlow Hill   |       | tertiary   |                262 |       790 |
-| Erskine Street  | A580  | trunk      |                253 |       469 |
-| West Derby Road | A5049 | trunk      |                250 |      4137 |
+| name           | ref   | road\_type | cycling\_potential | length\_m |
+| :------------- | :---- | :--------- | -----------------: | --------: |
+| Dale Street    | A57   | trunk      |                828 |       474 |
+| Princes Road   | B5175 | secondary  |                399 |       797 |
+| Scotland Road  | A59   | trunk      |                342 |      2847 |
+| Low Hill       | A580  | trunk      |                306 |      1174 |
+| London Road    | A57   | primary    |                305 |       220 |
+| Byrom Street   | A59   | trunk      |                293 |       922 |
+| Longmoor Lane  | A506  | primary    |                284 |       369 |
+| Edge Lane      | A5047 | trunk      |                280 |      5270 |
+| Brownlow Hill  |       | tertiary   |                262 |       790 |
+| Erskine Street | A580  | trunk      |                253 |       469 |
 
 # Bristol
 
@@ -236,16 +236,16 @@ under the Government Target scenario in the PCT (dark blue).
 
 | name            | ref   | road\_type   | cycling\_potential | length\_m |
 | :-------------- | :---- | :----------- | -----------------: | --------: |
+| Infirmary Road  | A594  | primary      |                361 |       282 |
 | Charles Street  |       | unclassified |                326 |       527 |
 | London Road     | A6    | primary      |                321 |       437 |
+| Newarke Street  | A594  | primary      |                220 |       217 |
 | Hinckley Road   | A47   | primary      |                211 |      1506 |
 | Abbey Park Road |       | tertiary     |                184 |       645 |
 | St Johns        | B4114 | secondary    |                175 |      2403 |
 | Melton Road     | A607  | primary      |                168 |      1571 |
 | Belgrave Gate   |       | tertiary     |                160 |       569 |
 | Belgrave Gate   | A607  | primary      |                156 |       822 |
-| London Road     | A6    | trunk        |                152 |      4927 |
-| Troon Way       | A563  | trunk        |                127 |      1306 |
 
 # Sheffield
 
