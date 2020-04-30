@@ -1,5 +1,9 @@
 ---
-output: github_document
+title: Data analysis to support temporary cycleways
+output:
+  github_document:
+    toc: true
+    toc_depth: 2
 # uncomment the next line if no phantomjs
 # always_allow_html: no
 ---
@@ -85,7 +89,7 @@ piggyback::pb_upload("rsf_grouped_long.Rds")
 ```
 
 
-# Data analysis to support temporary cycleways
+# Introduction
 
 <!-- badges: start -->
 <!-- badges: end -->

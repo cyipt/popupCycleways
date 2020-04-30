@@ -1,7 +1,24 @@
+Data analysis to support temporary cycleways
+================
+
+  - [Introduction](#introduction)
+  - [Method](#method)
+  - [Interpreting the results](#interpreting-the-results)
+      - [What the maps show](#what-the-maps-show)
+  - [London](#london)
+  - [Birmingham](#birmingham)
+  - [Manchester](#manchester)
+  - [Leeds](#leeds)
+  - [Liverpool](#liverpool)
+  - [Bristol](#bristol)
+  - [Leicester](#leicester)
+  - [Sheffield](#sheffield)
+  - [Newcastle](#newcastle)
+  - [Cambridge](#cambridge)
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Data analysis to support temporary cycleways
+# Introduction
 
 <!-- badges: start -->
 
