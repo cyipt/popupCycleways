@@ -83,15 +83,32 @@ the ‘Government Target’ scenario, which represents a doubling in cycling
 compared with 2011 levels. London is close to meeting this target
 already.
 
+# Interpreting the results
+
+The results are not intended to be a definitive list of places where
+popup cycleways should be prioritised. There may be ‘false positives’
+where there are strong reasons for not converting a ‘spare lane’ into a
+cycleway or temporary pavement. There will be many road sections that
+would benefit from interventions not shown in the maps below: roads with
+only one lane in each direction could be made oneway temporarily,
+creating a spare lane for cycleways or extra pavement width.
+
 <!-- We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction. -->
 
-Roads that could be made oneway, or that could be converted into
-‘liveable streets’ by preventing through traffic have not been
-considered at this stage. Providing evidence to identify such roads,
-e.g. where there is high demand but little road width, suggesting a
-strong argument for making them one-way during a period of vital
-physical distancing, in addition to the roads with ‘spare lanes’
-identified below, could be an aim of future work.
+Such roads and roads that could be converted into ‘liveable streets’ by
+preventing through traffic have not been considered at this stage.
+Providing evidence to identify such roads, e.g. where there is high
+demand but little road width, suggesting a strong argument for making
+them one-way during a period of vital physical distancing, in addition
+to the roads with ‘spare lanes’ identified below, could be an aim of
+future work.
+
+## What the maps show
+
+The results below show all roads with a ‘spare lane’ in the low average
+traffic conditions created by the partial lockdown (light blue) plus the
+top 10 roads of a minimum length in terms of estimated cycling potential
+under the Government Target scenario in the PCT.
 
 # London
 
