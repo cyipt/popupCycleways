@@ -123,9 +123,10 @@ future work.
 ## What the maps show
 
 The results below show all roads with a ‘spare lane’ in the low average
-traffic conditions created by the partial lockdown (light blue) plus the
+traffic conditions created by the partial lockdown (light blue) based on
+the three criteria listed above (lanes, potential and length) plus the
 top 10 roads of a minimum length in terms of estimated cycling potential
-under the Government Target scenario in the PCT.
+under the Government Target scenario in the PCT (dark blue).
 
 # London
 
