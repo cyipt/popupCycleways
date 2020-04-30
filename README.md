@@ -52,31 +52,50 @@ The geographic distribution of these cities is shown in the map below:
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-These 12 study cities coincidentally represent almost exactly 1/4 of the
-population in England. Welsh and Scottish cities with high cycling
-potential such as Cardiff and Edinbugh were not included in the analysis
-because the CyIPT does not currently have data outside of England,
-although we could extend the methods to cover all UK cities at some
-point.
+These cities represent around 1/4 of the population in England. Welsh
+and Scottish cities with high cycling potential such as Cardiff and
+Edinbugh were not included in the analysis because the CyIPT does not
+currently have data outside of England, although we could extend the
+methods to cover all UK cities at some point.
 
-Below we show the results for a selection of cities, with cycling
-potential on the road network visualised under the ‘Government Target’
-scenario, which represents a doubling in cycling compared with 2011
-levels. London is close to meeting this target already.
+# Method
 
-We filtered-out roads with low levels of cycling potential and focus
-only on roads that have at least one ‘spare lane’, defined as having
-more than 1 lane in either direction. Roads that could be made oneway,
-or that could be converted into ‘liveable streets’ by preventing through
-traffic were not considered.
+To identify streets that may be strong candidates for the provision of
+temporary or ‘pop-up’ cycleways, building on data from the CyIPT and PCT
+projects, three filtering methods were used:
+
+  - Number of lanes: roads with more than 1 lane in either direction
+    were identified
+  - Cycling potential: only roads with high cycling potential, of 100 or
+    more in the long-term Go Dutch scenario, were selected
+  - Length of road: only road sections at least 100m long were included
+    in the analysis, in some cities this threshold was raised to
+    identify the ‘top 10’ roads for new cycleways
+
+More criteria such as road width and proximity to key services such as
+hospitals could be added at a later date. A final stage involved
+manually removing road sections such as roads on which there is already
+good quality dedicated infrastructure and roundabouts. This final stage
+could be automated in future work.
+
+The cycling potential of the ‘top 10’ streets is presented in terms of
+the ‘Government Target’ scenario, which represents a doubling in cycling
+compared with 2011 levels. London is close to meeting this target
+already.
+
+<!-- We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction. -->
+
+Roads that could be made oneway, or that could be converted into
+‘liveable streets’ by preventing through traffic have not been
+considered at this stage. Providing evidence to identify such roads,
+e.g. where there is high demand but little road width, suggesting a
+strong argument for making them one-way during a period of vital
+physical distancing, in addition to the roads with ‘spare lanes’
+identified below, could be an aim of future work.
 
 # London
 
 ![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
-
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 | name                 | ref   | road\_type | cycling\_potential | length\_m |
 | :------------------- | :---- | :--------- | -----------------: | --------: |
@@ -86,16 +105,14 @@ The top 10 roads:
 | Camberwell New Road  | A202  | trunk      |               2420 |      1630 |
 | Waterloo Bridge      | A301  | primary    |               2398 |      1166 |
 | Theobalds Road       | A401  | primary    |               2267 |       565 |
-| Whitechapel Road     | A11   | trunk      |               2111 |      1560 |
 | Old Street           | A5201 | primary    |               2012 |       505 |
 | West Cromwell Road   | A4    | trunk      |               1971 |      1024 |
 | Jamaica Road         | A200  | primary    |               1926 |      1361 |
+| Tower Bridge Road    | A100  | trunk      |               1899 |      1191 |
 
 # Birmingham
 
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 | name                     | ref   | road\_type | cycling\_potential | length\_m |
 | :----------------------- | :---- | :--------- | -----------------: | --------: |
@@ -112,9 +129,7 @@ The top 10 roads:
 
 # Manchester
 
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 | name                    | ref   | road\_type | cycling\_potential | length\_m |
 | :---------------------- | :---- | :--------- | -----------------: | --------: |
@@ -131,9 +146,7 @@ The top 10 roads:
 
 # Leeds
 
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
 | name              | ref  | road\_type | cycling\_potential | length\_m |
 | :---------------- | :--- | :--------- | -----------------: | --------: |
@@ -150,9 +163,7 @@ The top 10 roads:
 
 # Liverpool
 
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
 
 | name            | ref   | road\_type | cycling\_potential | length\_m |
 | :-------------- | :---- | :--------- | -----------------: | --------: |
@@ -169,9 +180,7 @@ The top 10 roads:
 
 # Bristol
 
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-15-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
 
 | name              | ref   | road\_type   | cycling\_potential | length\_m |
 | :---------------- | :---- | :----------- | -----------------: | --------: |
@@ -188,11 +197,7 @@ The top 10 roads:
 
 # Leicester
 
-![](README_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
-
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 | name            | ref   | road\_type   | cycling\_potential | length\_m |
 | :-------------- | :---- | :----------- | -----------------: | --------: |
@@ -209,47 +214,41 @@ The top 10 roads:
 
 # Sheffield
 
-The top 10 roads:
+![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
 
-![](README_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
-
-| name                    | ref   | road\_type | cycling\_potential | length\_m |
-| :---------------------- | :---- | :--------- | -----------------: | --------: |
-| Ecclesall Road          | A625  | primary    |                416 |      1495 |
-| Arundel Gate            |       | tertiary   |                262 |       693 |
-| Chesterfield Road       | A61   | trunk      |                228 |      2705 |
-| Greenland Road          | A6102 | trunk      |                213 |      2301 |
-| Meadowhead              | A61   | trunk      |                191 |      1792 |
-| Abbeydale Road          | A621  | primary    |                185 |      2044 |
-| Chesterfield Road South | A61   | trunk      |                182 |      2180 |
-| Norton Avenue           | A6102 | trunk      |                176 |      2711 |
-| Attercliffe Common      | A6178 | primary    |                172 |      1301 |
-| Ridgeway Road           | A6102 | trunk      |                169 |      3765 |
+| name              | ref   | road\_type | cycling\_potential | length\_m |
+| :---------------- | :---- | :--------- | -----------------: | --------: |
+| London Road       | A61   | trunk      |                466 |       530 |
+| Ecclesall Road    | A625  | primary    |                416 |      1495 |
+| Shoreham Street   | A61   | trunk      |                348 |       426 |
+| Moore Street      | A61   | trunk      |                280 |       208 |
+| Arundel Gate      |       | tertiary   |                262 |       693 |
+| Chesterfield Road | A61   | trunk      |                228 |      2705 |
+| Greenland Road    | A6102 | trunk      |                213 |      2301 |
+| Meadowhead        | A61   | trunk      |                191 |      1792 |
+| Park Square       | A61   | trunk      |                186 |       516 |
+| Abbeydale Road    | A621  | primary    |                185 |      2044 |
 
 # Newcastle
 
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
 
 | name                | ref   | road\_type | cycling\_potential | length\_m |
 | :------------------ | :---- | :--------- | -----------------: | --------: |
-| Park Road           | A184  | trunk      |                666 |      2849 |
 | Coast Road          | A1058 | trunk      |                529 |     17203 |
-| Felling Bypass      | A184  | trunk      |                490 |      8164 |
 | Barrack Road        | A189  | primary    |                344 |      1063 |
-| Newcastle Road      | A184  | trunk      |                293 |      4492 |
+| Ponteland Road      | A189  | primary    |                314 |       530 |
+| Grandstand Road     | A189  | primary    |                234 |       253 |
 | Great North Road    | B1318 | secondary  |                214 |       781 |
 | Jesmond Road        | A1058 | trunk      |                211 |      1356 |
+| Scotswood Bridge    | A695  | primary    |                191 |       281 |
 | St James’ Boulevard | A189  | primary    |                169 |      1042 |
-| Askew Road          | A184  | trunk      |                169 |      2131 |
-| Park Lane           | A184  | trunk      |                144 |       917 |
+| Stamfordham Road    | A167  | primary    |                139 |      1984 |
+| Jedburgh Road       | A167  | trunk      |                130 |      5621 |
 
 # Cambridge
 
-The top 10 roads:
-
-![](README_files/figure-gfm/unnamed-chunk-23-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
 | name                  | ref   | road\_type  | cycling\_potential | length\_m |
 | :-------------------- | :---- | :---------- | -----------------: | --------: |
@@ -258,8 +257,8 @@ The top 10 roads:
 | Hills Road            | A1307 | primary     |               1662 |       147 |
 | Bridge Street         |       | residential |                878 |       194 |
 | Elizabeth Way         | A1134 | primary     |                860 |       812 |
-|                       | A1134 | primary     |                639 |       187 |
 | Emmanuel Street       |       | residential |                586 |       151 |
 | Chesterton Road       | A1134 | primary     |                530 |       194 |
 | Milton Road           | A1309 | primary     |                364 |      1730 |
 | Victoria Road         | A1134 | primary     |                312 |       114 |
+| Milton Road           | A1134 | primary     |                192 |       441 |

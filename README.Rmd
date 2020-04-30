@@ -1,6 +1,7 @@
 ---
-output: html_document
-always_allow_html: yes
+output: github_document
+# uncomment the next line if no phantomjs
+# always_allow_html: no
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -117,14 +118,26 @@ tm_shape(las_top) +
   tm_polygons("blue")
 ```
 
-These 12 study cities coincidentally represent almost exactly 1/4 of the population in England.
+These cities represent around 1/4 of the population in England.
 Welsh and Scottish cities with high cycling potential such as Cardiff and Edinbugh were not included in the analysis because the CyIPT does not currently have data outside of England, although we could extend the methods to cover all UK cities at some point.
 
-Below we show the results for a selection of cities, with cycling potential on the road network visualised under the 'Government Target' scenario, which represents a doubling in cycling compared with 2011 levels.
+# Method
+
+To identify streets that may be strong candidates for the provision of temporary or 'pop-up' cycleways, building on data from the CyIPT and PCT projects, three filtering methods were used:
+
+- Number of lanes: roads with more than 1 lane in either direction were identified
+- Cycling potential: only roads with high cycling potential, of 100 or more in the long-term Go Dutch scenario, were selected
+- Length of road: only road sections at least 100m long were included in the analysis, in some cities this threshold was raised to identify the 'top 10' roads for new cycleways
+
+More criteria such as road width and proximity to key services such as hospitals could be added at a later date.
+A final stage involved manually removing road sections such as roads on which there is already good quality dedicated infrastructure and roundabouts. This final stage could be automated in future work.
+
+The cycling potential of the 'top 10' streets is presented in terms of the 'Government Target' scenario, which represents a doubling in cycling compared with 2011 levels.
 London is close to meeting this target already.
 
-We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction.
-Roads that could be made oneway, or that could be converted into 'liveable streets' by preventing through traffic were not considered.
+<!-- We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction. -->
+Roads that could be made oneway, or that could be converted into 'liveable streets' by preventing through traffic have not been considered at this stage.
+Providing evidence to identify such roads, e.g. where there is high demand but little road width, suggesting a strong argument for making them one-way during a period of vital physical distancing, in addition to the roads with 'spare lanes' identified below, could be an aim of future work.
 
 
 # London
@@ -188,7 +201,7 @@ roads_top = roads %>%
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
   tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 11) + tm_scale_bar() +
+  tm_view(set.view = 12) + tm_scale_bar() +
   tm_basemap(server = s)
 
 roads_top %>%
@@ -237,7 +250,7 @@ roads_top = roads %>%
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
   tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_view(set.view = 13) + tm_scale_bar() +
   tm_basemap(server = s)
 
 roads_top %>%
@@ -267,7 +280,7 @@ roads_top = roads %>%
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
   tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_view(set.view = 13) + tm_scale_bar() +
   tm_basemap(server = s)
 
 roads_top %>%
@@ -297,7 +310,7 @@ roads_top = roads[bristol_buff, ] %>%
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
   tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
   tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_view(set.view = 13) + tm_scale_bar() +
   tm_basemap(server = s)
 
 roads_top %>%
