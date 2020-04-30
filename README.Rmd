@@ -130,7 +130,7 @@ Welsh and Scottish cities with high cycling potential such as Cardiff and Edinbu
 To identify streets that may be strong candidates for the provision of temporary or 'pop-up' cycleways, building on data from the CyIPT and PCT projects, three filtering methods were used:
 
 - Number of lanes: roads with more than 1 lane in either direction were identified
-- Cycling potential: only roads with high cycling potential, of 100 or more in the long-term Go Dutch scenario, were selected
+- Cycling potential: only roads with high cycling potential, of 100 or more in the long-term Government Target scenario, were selected
 - Length of road: only road sections at least 100m long were included in the analysis, in some cities this threshold was raised to identify the 'top 10' roads for new cycleways
 
 More criteria such as road width and proximity to key services such as hospitals could be added at a later date.
@@ -286,7 +286,7 @@ roads = st_intersection(roads, region)
 #   tm_shape(region) + tm_borders()
 
 roads_top = roads %>%
-  filter(length > 300) %>%
+  filter(length > 200) %>%
   filter(name != "Queensway (Mersey Tunnel)") %>%
   filter(name != "Queensway") %>%
   arrange(desc(pctgov)) %>%
@@ -343,7 +343,7 @@ region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
 
 roads_top = roads %>%
-  filter(length > 300) %>%
+  filter(length > 200) %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
 
