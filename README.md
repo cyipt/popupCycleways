@@ -29,21 +29,23 @@ The goal of this project is to flag roads on which there is
   - high cycling potential
   - road space that could be re-allocated
 
-in the context of increased for demand for cycling to keyworker
-workplaces.
+in the context of increased demand for cycling to keyworker workplaces.
 
-It is based on an analysis of data generated for the Department for
+It is based on an analysis of data generated for Department for
 Transport funded projects the Propensity to Cycle Tool (PCT) and the
 Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
-To overcome issues associated with doing this at a national level and
-elicit feedback on the methods and preliminary results, we ran the
-analysis on a sample of cities. We chose the top 5 in terms of absolute
-long-term cycling potential (London, Birmingham, Manchester, Leeds,
-Liverpool) plus an additional 5 cities that have active advocacy groups
-(Newcastle, Sheffield, Cambridge, Bristol, Leicester). Estimates of
-current and potential numbers who could cycle to work in these cities is
-presented in the table below.
+As an initial analysis, to elicit feedback on the methods and
+preliminary results, we have focused on a sample of major cities. We
+hope this can be further developed and expanded in due course to provide
+nationwide coverage.
+
+We chose the top 5 cities in terms of absolute long-term cycling
+potential (London, Birmingham, Manchester, Leeds, Liverpool) plus an
+additional 5 cities that have active advocacy groups (Newcastle,
+Sheffield, Cambridge, Bristol, Leicester). Estimates of current and
+potential numbers of commuters who could cycle to work in these cities
+are presented in the table below.
 <!-- We did this by analysing data from the PCT project and selecting the top 10 cities in terms of long term cycling potential, plus Sheffield and Cambridge, : -->
 
 | name       |     all | bicycle | dutch\_slc |
@@ -69,7 +71,7 @@ The geographic distribution of these cities is shown in the map below:
 
 ![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
 
-These cities represent around 1/4 of the population in England. Welsh
+These cities represent around 1/4 of the population of England. Welsh
 and Scottish cities with high cycling potential such as Cardiff and
 Edinbugh were not included in the analysis because the CyIPT does not
 currently have data outside of England, although we could extend the
@@ -86,8 +88,12 @@ projects, three filtering methods were used:
   - Cycling potential: only roads with high cycling potential, of 100 or
     more in the long-term Government Target scenario, were selected
   - Length of road: only road sections at least 100m long were included
-    in the analysis, in some cities this threshold was raised to
-    identify the ‘top 10’ roads for new cycleways
+    in the analysis
+
+From the resulting selections we then identified the ‘top 10’ routes in
+each city based on cycling potential. In most cities, only road sections
+longer than a threshold of 200-300m were considered for entry to this
+‘top 10’ list.
 
 More criteria such as road width and proximity to key services such as
 hospitals could be added at a later date. A final stage involved
@@ -103,12 +109,13 @@ already.
 # Interpreting the results
 
 The results are not intended to be a definitive list of places where
-popup cycleways should be prioritised. There may be ‘false positives’
+pop-up cycleways should be prioritised. There may be ‘false positives’
 where there are strong reasons for not converting a ‘spare lane’ into a
 cycleway or temporary pavement. There will be many road sections that
-would benefit from interventions not shown in the maps below: roads with
-only one lane in each direction could be made oneway temporarily,
-creating a spare lane for cycleways or extra pavement width.
+would benefit from interventions not shown in the maps below: for
+example roads with only one lane in each direction could be made oneway
+temporarily, creating a spare lane for cycleways or extra pavement
+width.
 
 <!-- We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction. -->
 
@@ -183,18 +190,18 @@ under the Government Target scenario in the PCT (dark blue).
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
 
-| name              | ref  | road\_type | cycling\_potential | length\_m |
-| :---------------- | :--- | :--------- | -----------------: | --------: |
-| Wellington Street |      | secondary  |                546 |      1027 |
-| Willow Road       |      | tertiary   |                466 |       316 |
-| Woodhouse Lane    | A660 | trunk      |                368 |      2373 |
-| Blenheim Walk     | A660 | trunk      |                340 |       347 |
-| Otley Road        | A660 | trunk      |                325 |      7273 |
-| Swinegate         |      | secondary  |                318 |       309 |
-| Crown Point Road  | A653 | primary    |                316 |       652 |
-| Kirkstall Road    | A65  | primary    |                261 |      3774 |
-| Clay Pit Lane     | A58  | trunk      |                257 |      2163 |
-| The Headrow       |      | tertiary   |                250 |       440 |
+| name             | ref  | road\_type | cycling\_potential | length\_m |
+| :--------------- | :--- | :--------- | -----------------: | --------: |
+| Willow Road      |      | tertiary   |                466 |       316 |
+| Woodhouse Lane   | A660 | trunk      |                368 |      2373 |
+| Blenheim Walk    | A660 | trunk      |                340 |       347 |
+| Otley Road       | A660 | trunk      |                325 |      7273 |
+| Swinegate        |      | secondary  |                318 |       309 |
+| Crown Point Road | A653 | primary    |                316 |       652 |
+| Kirkstall Road   | A65  | primary    |                261 |      3774 |
+| Clay Pit Lane    | A58  | trunk      |                257 |      2163 |
+| The Headrow      |      | tertiary   |                250 |       440 |
+| Hunslet Road     | A639 | primary    |                221 |      1860 |
 
 # Liverpool
 
@@ -285,15 +292,15 @@ under the Government Target scenario in the PCT (dark blue).
 
 ![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
 
-| name                  | ref   | road\_type  | cycling\_potential | length\_m |
-| :-------------------- | :---- | :---------- | -----------------: | --------: |
-| Saint Andrew’s Street |       | residential |               2449 |       164 |
-| Hobson Street         |       | residential |               2393 |       216 |
-| Hills Road            | A1307 | primary     |               1662 |       147 |
-| Bridge Street         |       | residential |                878 |       194 |
-| Elizabeth Way         | A1134 | primary     |                860 |       812 |
-| Emmanuel Street       |       | residential |                586 |       151 |
-| Chesterton Road       | A1134 | primary     |                530 |       194 |
-| Milton Road           | A1309 | primary     |                364 |      1730 |
-| Victoria Road         | A1134 | primary     |                312 |       114 |
-| Milton Road           | A1134 | primary     |                192 |       441 |
+| name                  | ref   | road\_type   | cycling\_potential | length\_m |
+| :-------------------- | :---- | :----------- | -----------------: | --------: |
+| Saint Andrew’s Street |       | residential  |               2449 |       164 |
+| Hobson Street         |       | residential  |               2393 |       216 |
+| Bridge Street         |       | residential  |                878 |       194 |
+| Elizabeth Way         | A1134 | primary      |                860 |       812 |
+| Emmanuel Street       |       | residential  |                586 |       151 |
+| Chesterton Road       | A1134 | primary      |                530 |       194 |
+| Milton Road           | A1309 | primary      |                364 |      1730 |
+| Victoria Road         | A1134 | primary      |                312 |       114 |
+| Milton Road           | A1134 | primary      |                192 |       441 |
+| Station Place         |       | unclassified |                132 |       237 |
