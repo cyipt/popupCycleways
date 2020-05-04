@@ -99,13 +99,14 @@ The goal of this project is to flag roads on which there is
 - high cycling potential
 - road space that could be re-allocated
 
-in the context of increased for demand for cycling to keyworker workplaces.
+in the context of increased demand for cycling to keyworker workplaces.
 
-It is based on an analysis of data generated for the Department for Transport funded projects the Propensity to Cycle Tool (PCT) and the Cycling Infrastructure Prioritisation Toolkit (CyIPT).
+It is based on an analysis of data generated for Department for Transport funded projects the Propensity to Cycle Tool (PCT) and the Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
-To overcome issues associated with doing this at a national level and elicit feedback on the methods and preliminary results, we ran the analysis on a sample of cities.
-We chose the top 5 in terms of absolute long-term cycling potential (London, Birmingham, Manchester, Leeds, Liverpool) plus an additional 5 cities that have active advocacy groups (Newcastle, Sheffield, Cambridge, Bristol, Leicester).
-Estimates of current and potential numbers who could cycle to work in these cities is presented in the table below.
+As an initial analysis, to elicit feedback on the methods and preliminary results, we have focused on a sample of major cities. We hope this can be further developed and expanded in due course to provide nationwide coverage. 
+
+We chose the top 5 cities in terms of absolute long-term cycling potential (London, Birmingham, Manchester, Leeds, Liverpool) plus an additional 5 cities that have active advocacy groups (Newcastle, Sheffield, Cambridge, Bristol, Leicester).
+Estimates of current and potential numbers of commuters who could cycle to work in these cities are presented in the table below.
 <!-- We did this by analysing data from the PCT project and selecting the top 10 cities in terms of long term cycling potential, plus Sheffield and Cambridge, : -->
 
 ```{r cities}
@@ -122,7 +123,7 @@ tm_shape(las_top) +
   tm_polygons("blue")
 ```
 
-These cities represent around 1/4 of the population in England.
+These cities represent around 1/4 of the population of England.
 Welsh and Scottish cities with high cycling potential such as Cardiff and Edinbugh were not included in the analysis because the CyIPT does not currently have data outside of England, although we could extend the methods to cover all UK cities at some point.
 
 # Method
@@ -131,7 +132,9 @@ To identify streets that may be strong candidates for the provision of temporary
 
 - Number of lanes: roads with more than 1 lane in either direction were identified
 - Cycling potential: only roads with high cycling potential, of 100 or more in the long-term Government Target scenario, were selected
-- Length of road: only road sections at least 100m long were included in the analysis, in some cities this threshold was raised to identify the 'top 10' roads for new cycleways
+- Length of road: only road sections at least 100m long were included in the analysis
+
+From the resulting selections we then identified the 'top 10' routes in each city based on cycling potential. In most cities, only road sections longer than a threshold of 200-300m were considered for entry to this 'top 10' list.
 
 More criteria such as road width and proximity to key services such as hospitals could be added at a later date.
 A final stage involved manually removing road sections such as roads on which there is already good quality dedicated infrastructure and roundabouts. This final stage could be automated in future work.
@@ -141,9 +144,9 @@ London is close to meeting this target already.
 
 # Interpreting the results
 
-The results are not intended to be a definitive list of places where popup cycleways should be prioritised.
+The results are not intended to be a definitive list of places where pop-up cycleways should be prioritised.
 There may be 'false positives' where there are strong reasons for not converting a 'spare lane' into a cycleway or temporary pavement.
-There will be many road sections that would benefit from interventions not shown in the maps below: roads with only one lane in each direction could be made oneway temporarily, creating a spare lane for cycleways or extra pavement width.
+There will be many road sections that would benefit from interventions not shown in the maps below: for example roads with only one lane in each direction could be made oneway temporarily, creating a spare lane for cycleways or extra pavement width.
 
 
 <!-- We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction. -->
@@ -152,7 +155,7 @@ Providing evidence to identify such roads, e.g. where there is high demand but l
 
 ## What the maps show
 
-The results below show all roads with a 'spare lane' in the low average traffic conditions created by the partial lockdown (light blue) based on the three criteria listed above (lanes, potential and length) plus the top 10 roads of a minimum length in terms of estimated cycling potential under the Government Target scenario in the PCT (dark blue).  
+The results below show all roads with a 'spare lane' in the low average traffic conditions created by the partial lockdown (light blue) based on the three criteria listed above (lanes, potential and length) plus the top 10 roads of a minimum length in terms of estimated cycling potential under the Government Target scenario in the PCT (dark blue). 
 
 # London
 
