@@ -130,7 +130,7 @@ under the Government Target scenario in the PCT (dark blue).
 
 # London
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/london-1.png)<!-- -->
 
 | name                 | ref   | road\_type | cycling\_potential | length\_m |
 | :------------------- | :---- | :--------- | -----------------: | --------: |
@@ -145,9 +145,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Jamaica Road         | A200  | primary    |               1926 |      1361 |
 | Tower Bridge Road    | A100  | trunk      |               1899 |      1191 |
 
+See [london.html](london.html) for the interactive version of the map
+above.
+
 # Birmingham
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/birmingham-1.png)<!-- -->
 
 | name                     | ref   | road\_type | cycling\_potential | length\_m |
 | :----------------------- | :---- | :--------- | -----------------: | --------: |
@@ -162,9 +165,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Gravelly Hill North      | A5127 | primary    |                261 |       592 |
 | Aldridge Road            | A453  | primary    |                260 |      2674 |
 
+See [birmingham.html](birmingham.html) for the interactive version of
+the map above.
+
 # Manchester
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/manchester-1.png)<!-- -->
 
 | name                    | ref   | road\_type | cycling\_potential | length\_m |
 | :---------------------- | :---- | :--------- | -----------------: | --------: |
@@ -179,9 +185,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Regent Road             | A57   | trunk      |                451 |      2701 |
 | Princess Road           | A5103 | trunk      |                438 |     12230 |
 
+See [manchester.html](manchester.html) for the interactive version of
+the map above.
+
 # Leeds
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/leeds-1.png)<!-- -->
 
 | name              | ref  | road\_type | cycling\_potential | length\_m |
 | :---------------- | :--- | :--------- | -----------------: | --------: |
@@ -196,9 +205,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Clay Pit Lane     | A58  | trunk      |                257 |      2163 |
 | The Headrow       |      | tertiary   |                250 |       440 |
 
+See [leeds.html](leeds.html) for the interactive version of the map
+above.
+
 # Liverpool
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/liverpool-1.png)<!-- -->
 
 | name           | ref   | road\_type | cycling\_potential | length\_m |
 | :------------- | :---- | :--------- | -----------------: | --------: |
@@ -213,9 +225,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Brownlow Hill  |       | tertiary   |                262 |       790 |
 | Erskine Street | A580  | trunk      |                253 |       469 |
 
+See [liverpool.html](liverpool.html) for the interactive version of the
+map above.
+
 # Bristol
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/bristol-1.png)<!-- -->
 
 | name              | ref   | road\_type   | cycling\_potential | length\_m |
 | :---------------- | :---- | :----------- | -----------------: | --------: |
@@ -230,9 +245,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Hotwell Road      | A4    | primary      |                117 |       533 |
 | East Street       |       | unclassified |                111 |       392 |
 
+See [bristol.html](bristol.html) for the interactive version of the map
+above.
+
 # Leicester
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-gfm/leicester-1.png)<!-- -->
 
 | name            | ref   | road\_type   | cycling\_potential | length\_m |
 | :-------------- | :---- | :----------- | -----------------: | --------: |
@@ -247,9 +265,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Belgrave Gate   |       | tertiary     |                160 |       569 |
 | Belgrave Gate   | A607  | primary      |                156 |       822 |
 
+See [leicester.html](leicester.html) for the interactive version of the
+map above.
+
 # Sheffield
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/sheffield-1.png)<!-- -->
 
 | name              | ref   | road\_type | cycling\_potential | length\_m |
 | :---------------- | :---- | :--------- | -----------------: | --------: |
@@ -264,9 +285,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Park Square       | A61   | trunk      |                186 |       516 |
 | Abbeydale Road    | A621  | primary    |                185 |      2044 |
 
+See [sheffield.html](sheffield.html) for the interactive version of the
+map above.
+
 # Newcastle
 
-![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](README_files/figure-gfm/newcastle-1.png)<!-- -->
 
 | name                | ref   | road\_type | cycling\_potential | length\_m |
 | :------------------ | :---- | :--------- | -----------------: | --------: |
@@ -281,9 +305,12 @@ under the Government Target scenario in the PCT (dark blue).
 | Stamfordham Road    | A167  | primary    |                139 |      1984 |
 | Jedburgh Road       | A167  | trunk      |                130 |      5621 |
 
+See [newcastle.html](newcastle.html) for the interactive version of the
+map above.
+
 # Cambridge
 
-![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](README_files/figure-gfm/cambridge-1.png)<!-- -->
 
 | name                  | ref   | road\_type  | cycling\_potential | length\_m |
 | :-------------------- | :---- | :---------- | -----------------: | --------: |
@@ -297,3 +324,6 @@ under the Government Target scenario in the PCT (dark blue).
 | Milton Road           | A1309 | primary     |                364 |      1730 |
 | Victoria Road         | A1134 | primary     |                312 |       114 |
 | Milton Road           | A1134 | primary     |                192 |       441 |
+
+See [cambridge.html](cambridge.html) for the interactive version of the
+map above.
