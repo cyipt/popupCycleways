@@ -251,14 +251,17 @@ roads_top %>%
 # Leeds
 
 ```{r}
+leeds_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
+leeds_buff = stplanr::geo_buffer(leeds_centre, dist = 4000)
 roads = rsf %>% filter(region == "Leeds", pctgov > 100)
 region_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
 region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
 roads = st_intersection(roads, region_buff)
 
-roads_top = roads %>%
+roads_top = roads[leeds_buff, ] %>%
   filter(length > 300) %>%
   filter(name != "Broadway") %>%
+  filter(name != "Wellington Street") %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
@@ -432,6 +435,7 @@ roads = st_intersection(roads, region_buff)
 roads_top = roads %>%
   filter(length > 100) %>%
   filter(name != "") %>%
+  filter(!name == "Hills Road")  %>%
   arrange(desc(pctgov)) %>%
   slice(1:10)
 tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
