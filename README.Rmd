@@ -1,6 +1,7 @@
 ---
 title: Data analysis to support temporary cycleways
 output:
+  # html_document:
   github_document:
     toc: true
     toc_depth: 2
@@ -35,9 +36,19 @@ rsf = readRDS("rsf_grouped_long.Rds")
 piggyback::pb_download("Builtup_Areas_December_2011_Boundaries_V2.geojson")
 # could use in subsequent analysis - removes part of Liverpool tunnel?
 # builtup = sf::read_sf("Builtup_Areas_December_2011_Boundaries_V2.geojson") %>% sf::st_transform(27700)
+## Mask not required for London, so no need to slow down the code unnecessarily
+s = c(
+  "Esri.WorldGrayCanvas",
+  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+)
 ```
 
 ```{r, eval=FALSE}
+
+rmarkdown::render("london.Rmd") # check
+rmarkdown_files = paste0(tolower(las_top$name), ".Rmd")
+lapply(rmarkdown_files, rmarkdown::render)
 webshot::install_phantomjs()
 # general analysis of data
 # piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
@@ -160,300 +171,97 @@ The results below show all roads with a 'spare lane' in **light blue** based on 
 The top 10 roads in terms of cycling potential are shown in **dark blue**.
 Cycling potential refers to the number of commuters who would cycle along the road (either to or from work) under the Government Target based on data from the Department for Transport funded Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 
-# London
+```{r, child="london.Rmd"}
 
-```{r}
-## Mask not required for London, so no need to slow down the code unnecessarily
-# london_centroids = get_pct_centroids("london",geography = "lsoa") %>% sf::st_transform(27700)
-# london_lsoa_buff = st_buffer(x = london_centroids, dist = 1000)
-# london_res_buff = st_intersection(builtup,london_lsoa_buff) %>% st_union()
-s = c(
-  "Esri.WorldGrayCanvas",
-  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
-  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
-)
-region = las_top %>% filter(name == "London")
-roads = rsf %>% filter(region == "London", pctgov > 500)
-# roads = roads %>% st_transform(27700) %>% st_intersection(london_res_buff) %>% st_transform(4326)
-
-roads_top = roads %>%
-  filter(length > 500) %>%
-  filter(!name == "Talgarth Road", length > 500) %>%
-  filter(!name == "Whitechapel Road", length > 500) %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-# tm_shape(roads_top) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-#   tm_text("name") +
-#   tm_view(set.view = 12) + tm_scale_bar()
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) +
-  tm_scale_bar() +
-  tm_basemap(server = s)
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
-# Birmingham
+See [london.html](https://cyipt.github.io/tempCycleways/london.html) for the interactive version of the map above.
 
-```{r}
-# idea: use buffers of LSOA centroids to supplent built-up areas
-# birmingham_centroids = get_pct_centroids("west-midlands", geography = "lsoa")
-# birmingham_lsoa_buff = stplanr::geo_buffer(birmingham_centroids, dist = 1000)
-# mapview::mapview(birmingham_lsoa_buff)
-# birmingham_res_buff = st_intersection(builtup, birmingham_lsoa_buff) %>% st_union()
-# roads = roads %>%
-#   st_transform(27700) %>%
-#   st_intersection(birmingham_res_buff) %>%
-#   st_transform(4326)
-# idea: look for other basemaps
-region = las_top %>% filter(name == "Birmingham")
-roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
-roads = st_intersection(roads, region) # remove roads outside region
 
-roads_top = roads %>%
-  filter(length > 300) %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
-  tm_basemap(server = s)
+```{r, child="birmingham.Rmd"}
 
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
-# Manchester
+See [birmingham.html](https://cyipt.github.io/tempCycleways/birmingham.html) for the interactive version of the map above.
 
-```{r}
-roads = rsf %>% filter(region == "Manchester", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Manchester", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 7000)
-roads = st_intersection(roads, region_buff)
 
-roads_top = roads %>%
-  filter(length > 300) %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
-  tm_basemap(server = s)
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
+```{r, child="manchester.Rmd"}
+
 ```
 
+See [manchester.html](https://cyipt.github.io/tempCycleways/manchester.html) for the interactive version of the map above.
 
-# Leeds
 
-```{r}
-leeds_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
-leeds_buff = stplanr::geo_buffer(leeds_centre, dist = 4000)
-roads = rsf %>% filter(region == "Leeds", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Leeds", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-roads = st_intersection(roads, region_buff)
+```{r, child="leeds.Rmd"}
 
-roads_top = roads[leeds_buff, ] %>%
-  filter(length > 300) %>%
-  filter(name != "Broadway") %>%
-  filter(name != "Wellington Street") %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = c(-1.549, 53.805, 13)) + 
-  tm_scale_bar() +
-  tm_basemap(server = s)
-
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
-# Liverpool
+See [leeds.html](https://cyipt.github.io/tempCycleways/leeds.html) for the interactive version of the map above.
 
-```{r}
-roads = rsf %>% filter(region == "Liverpool", pctgov > 100)
-region = las_top %>% filter(name == "Liverpool")
-roads = st_intersection(roads, region)
-# region_centre = tmaptools::geocode_OSM("Liverpool", as.sf = TRUE)
-# region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-# tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
-#   tm_view(set.view = 10) + tm_scale_bar() +
-#   tm_shape(region) + tm_borders()
 
-roads_top = roads %>%
-  filter(length > 200) %>%
-  filter(name != "Queensway (Mersey Tunnel)") %>%
-  filter(name != "Queensway") %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = c(-2.95, 53.4084, 13)) + 
-  tm_scale_bar() +
-  tm_basemap(server = s)
+```{r, child="liverpool.Rmd"}
 
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
-# Bristol
-
-```{r}
-region = las_top %>% filter(name == "Bristol")
-region = sf::st_make_valid(region)
-roads = rsf %>% filter(region == "Bristol", pctgov > 100)
-roads = st_intersection(roads, region)
-
-bristol_centre = tmaptools::geocode_OSM("Bristol", as.sf = TRUE)
-bristol_buff = stplanr::geo_buffer(bristol_centre, dist = 1500)
-roads_top = roads[bristol_buff, ] %>%
-  filter(length > 300) %>%
-  filter(name != "Temple Way Underpass") %>%
-  filter(!name == "Newfoundland Street", !name == "") %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
+See [liverpool.html](https://cyipt.github.io/tempCycleways/liverpool.html) for the interactive version of the map above.
 
 
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = c(-2.5879, 51.454, 13)) + 
-  tm_scale_bar() +
-  tm_basemap(server = s)
+```{r, child="bristol.Rmd"}
 
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
+See [bristol.html](https://cyipt.github.io/tempCycleways/bristol.html) for the interactive version of the map above.
 
-# Leicester
 
-```{r}
-roads = rsf %>% filter(region == "Leicester", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Leicester", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-roads = st_intersection(roads, region_buff)
+```{r, child="leicester.Rmd"}
 
-roads_top = roads %>%
-  filter(length > 200) %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
-  tm_basemap(server = s)
-
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
-# Sheffield
+See [leicester.html](https://cyipt.github.io/tempCycleways/leicester.html) for the interactive version of the map above.
 
-```{r}
-roads = rsf %>% filter(region == "Sheffield", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Sheffield", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-roads = st_intersection(roads, region_buff)
 
-roads_top = roads %>%
-  filter(length > 200) %>% 
-  filter(!name == "Tinsley Roundabout")  %>%
-  filter(!name == "Meadowhead Roundabout")  %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
+```{r, child="sheffield.Rmd"}
 
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
-  tm_basemap(server = s)
-
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
-# Newcastle
+See [sheffield.html](https://cyipt.github.io/tempCycleways/sheffield.html) for the interactive version of the map above.
 
-```{r}
-roads = rsf %>% filter(region == "Newcastle", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Newcastle", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-region = las_top %>% filter(name == "Newcastle")
-region = st_intersection(region_buff, region)
-roads = st_intersection(roads, region)
 
-roads_top = roads %>%
-  filter(length > 250) %>%
-  filter(!name == "") %>%
-  filter(!name == "Redheugh Bridge")  %>%
-  filter(!name == "Derwenthaugh Road", !name == "") %>%
-  filter(!name == "East Denton Interchange", !name == "") %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
+```{r, child="newcastle.Rmd"}
 
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
-  tm_basemap(server = s)
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
 ```
 
+See [newcastle.html](https://cyipt.github.io/tempCycleways/newcastle.html) for the interactive version of the map above.
 
 
-# Cambridge
+```{r, child="cambridge.Rmd"}
 
-```{r}
-roads = rsf %>% filter(region == "Cambridge", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Cambridge", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 3000)
-roads = st_intersection(roads, region_buff)
+```
 
-roads_top = roads %>%
-  filter(length > 100) %>%
-  filter(name != "") %>%
-  filter(!name == "Hills Road")  %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 13) + tm_scale_bar() +
-  tm_basemap(server = s)
+See [cambridge.html](https://cyipt.github.io/tempCycleways/cambridge.html) for the interactive version of the map above.
 
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
+
+```{r, engine='zsh', eval=FALSE}
+# deploy
+git clone git@github.com:cyipt/tempCycleways
+cd tempCycleways
+git checkout --orphan gh-pages
+git rm -rf .
+git commit --allow-empty -m 'Initial gh-pages commit'
+# git push origin gh-pages
+# git checkout master
+# cp -Rv ../README* . # it's 100 MB!
+cp -Rv ../*.html . # it's 100 MB!
+git status
+ls -hal
+mv README.html index.html
+firefox index.html
+git status
+git push origin gh-pages
+cd ..
+echo '*.html' >> .gitignore
+echo 'tempCycleways/' >> .gitignore
+pandoc -o README.html README.md
 ```
 
 

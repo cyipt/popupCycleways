@@ -1,0 +1,27 @@
+
+# Sheffield
+
+```{r sheffield}
+roads = rsf %>% filter(region == "Sheffield", pctgov > 100)
+region_centre = tmaptools::geocode_OSM("Sheffield", as.sf = TRUE)
+region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
+roads = st_intersection(roads, region_buff)
+
+roads_top = roads %>%
+  filter(length > 200) %>% 
+  filter(!name == "Tinsley Roundabout")  %>%
+  filter(!name == "Meadowhead Roundabout")  %>%
+  arrange(desc(pctgov)) %>%
+  slice(1:10)
+
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
+  tm_text("name") +
+  tm_view(set.view = 12) + tm_scale_bar() +
+  tm_basemap(server = s)
+
+roads_top %>%
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
+```

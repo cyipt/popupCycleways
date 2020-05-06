@@ -1,0 +1,31 @@
+
+# Liverpool
+
+```{r liverpool}
+roads = rsf %>% filter(region == "Liverpool", pctgov > 100)
+region = las_top %>% filter(name == "Liverpool")
+roads = st_intersection(roads, region)
+# region_centre = tmaptools::geocode_OSM("Liverpool", as.sf = TRUE)
+# region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
+# tm_shape(roads) + tm_lines("pctgov", lwd = 3, palette = "viridis") +
+#   tm_view(set.view = 10) + tm_scale_bar() +
+#   tm_shape(region) + tm_borders()
+
+roads_top = roads %>%
+  filter(length > 200) %>%
+  filter(name != "Queensway (Mersey Tunnel)") %>%
+  filter(name != "Queensway") %>%
+  arrange(desc(pctgov)) %>%
+  slice(1:10)
+tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
+  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
+  tm_text("name") +
+  tm_view(set.view = c(-2.95, 53.4084, 13)) + 
+  tm_scale_bar() +
+  tm_basemap(server = s)
+
+roads_top %>%
+  st_drop_geometry() %>%
+  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
+  knitr::kable(digits = 0)
+```

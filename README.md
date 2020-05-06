@@ -143,7 +143,7 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 
 # London
 
-![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](README_files/figure-gfm/london-1.png)<!-- -->
 
 | name                 | ref   | road\_type | cycling\_potential | length\_m |
 | :------------------- | :---- | :--------- | -----------------: | --------: |
@@ -158,9 +158,12 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Jamaica Road         | A200  | primary    |               1926 |      1361 |
 | Tower Bridge Road    | A100  | trunk      |               1899 |      1191 |
 
+See [london.html](https://cyipt.github.io/tempCycleways/london.html) for
+the interactive version of the map above.
+
 # Birmingham
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/birmingham-1.png)<!-- -->
 
 | name                     | ref   | road\_type | cycling\_potential | length\_m |
 | :----------------------- | :---- | :--------- | -----------------: | --------: |
@@ -175,9 +178,13 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Gravelly Hill North      | A5127 | primary    |                261 |       592 |
 | Aldridge Road            | A453  | primary    |                260 |      2674 |
 
+See
+[birmingham.html](https://cyipt.github.io/tempCycleways/birmingham.html)
+for the interactive version of the map above.
+
 # Manchester
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/manchester-1.png)<!-- -->
 
 | name                    | ref   | road\_type | cycling\_potential | length\_m |
 | :---------------------- | :---- | :--------- | -----------------: | --------: |
@@ -192,9 +199,13 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Regent Road             | A57   | trunk      |                451 |      2701 |
 | Princess Road           | A5103 | trunk      |                438 |     12230 |
 
+See
+[manchester.html](https://cyipt.github.io/tempCycleways/manchester.html)
+for the interactive version of the map above.
+
 # Leeds
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+![](README_files/figure-gfm/leeds-1.png)<!-- -->
 
 | name             | ref  | road\_type | cycling\_potential | length\_m |
 | :--------------- | :--- | :--------- | -----------------: | --------: |
@@ -209,9 +220,12 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | The Headrow      |      | tertiary   |                250 |       440 |
 | Hunslet Road     | A639 | primary    |                221 |      1860 |
 
+See [leeds.html](https://cyipt.github.io/tempCycleways/leeds.html) for
+the interactive version of the map above.
+
 # Liverpool
 
-![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](README_files/figure-gfm/liverpool-1.png)<!-- -->
 
 | name           | ref   | road\_type | cycling\_potential | length\_m |
 | :------------- | :---- | :--------- | -----------------: | --------: |
@@ -226,9 +240,13 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Brownlow Hill  |       | tertiary   |                262 |       790 |
 | Erskine Street | A580  | trunk      |                253 |       469 |
 
+See
+[liverpool.html](https://cyipt.github.io/tempCycleways/liverpool.html)
+for the interactive version of the map above.
+
 # Bristol
 
-![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
+![](README_files/figure-gfm/bristol-1.png)<!-- -->
 
 | name              | ref   | road\_type   | cycling\_potential | length\_m |
 | :---------------- | :---- | :----------- | -----------------: | --------: |
@@ -243,9 +261,12 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Hotwell Road      | A4    | primary      |                117 |       533 |
 | East Street       |       | unclassified |                111 |       392 |
 
+See [bristol.html](https://cyipt.github.io/tempCycleways/bristol.html)
+for the interactive version of the map above.
+
 # Leicester
 
-![](README_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](README_files/figure-gfm/leicester-1.png)<!-- -->
 
 | name            | ref   | road\_type   | cycling\_potential | length\_m |
 | :-------------- | :---- | :----------- | -----------------: | --------: |
@@ -260,9 +281,13 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Belgrave Gate   |       | tertiary     |                160 |       569 |
 | Belgrave Gate   | A607  | primary      |                156 |       822 |
 
+See
+[leicester.html](https://cyipt.github.io/tempCycleways/leicester.html)
+for the interactive version of the map above.
+
 # Sheffield
 
-![](README_files/figure-gfm/unnamed-chunk-11-1.png)<!-- -->
+![](README_files/figure-gfm/sheffield-1.png)<!-- -->
 
 | name              | ref   | road\_type | cycling\_potential | length\_m |
 | :---------------- | :---- | :--------- | -----------------: | --------: |
@@ -277,9 +302,13 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Park Square       | A61   | trunk      |                186 |       516 |
 | Abbeydale Road    | A621  | primary    |                185 |      2044 |
 
+See
+[sheffield.html](https://cyipt.github.io/tempCycleways/sheffield.html)
+for the interactive version of the map above.
+
 # Newcastle
 
-![](README_files/figure-gfm/unnamed-chunk-12-1.png)<!-- -->
+![](README_files/figure-gfm/newcastle-1.png)<!-- -->
 
 | name                | ref   | road\_type | cycling\_potential | length\_m |
 | :------------------ | :---- | :--------- | -----------------: | --------: |
@@ -294,9 +323,13 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Stamfordham Road    | A167  | primary    |                139 |      1984 |
 | Jedburgh Road       | A167  | trunk      |                130 |      5621 |
 
+See
+[newcastle.html](https://cyipt.github.io/tempCycleways/newcastle.html)
+for the interactive version of the map above.
+
 # Cambridge
 
-![](README_files/figure-gfm/unnamed-chunk-13-1.png)<!-- -->
+![](README_files/figure-gfm/cambridge-1.png)<!-- -->
 
 | name                  | ref   | road\_type   | cycling\_potential | length\_m |
 | :-------------------- | :---- | :----------- | -----------------: | --------: |
@@ -310,3 +343,7 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 | Victoria Road         | A1134 | primary      |                312 |       114 |
 | Milton Road           | A1134 | primary      |                192 |       441 |
 | Station Place         |       | unclassified |                132 |       237 |
+
+See
+[cambridge.html](https://cyipt.github.io/tempCycleways/cambridge.html)
+for the interactive version of the map above.

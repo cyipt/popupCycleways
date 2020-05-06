@@ -4,3 +4,6 @@
 .Ruserdata
 *.Rds
 *.geojson
+*README.html
+tempCycleways/
+*.html
