@@ -108,32 +108,38 @@ already.
 
 # Interpreting the results
 
-The results are not intended to be a definitive list of places where
-pop-up cycleways should be prioritised. There may be ‘false positives’
-where there are strong reasons for not converting a ‘spare lane’ into a
-cycleway or temporary pavement. There will be many road sections that
-would benefit from interventions not shown in the maps below: for
-example roads with only one lane in each direction could be made oneway
-temporarily, creating a spare lane for cycleways or extra pavement
-width.
+The results are not a definitive list of places where pop-up cycleways
+should be prioritised but a ‘starter for 10’ highlighting roads that
+good candidates for ‘pop-up’ active transport infrastructure through
+reallocation of road space, as has happened in [Park Lane in
+London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e).
+The results highlight roads that have cycling potential and at least one
+spare lane, meaning a 2 lanes in one direction. There will be many road
+sections that would benefit from interventions not shown in the maps
+below: for example roads with only one lane in each direction could be
+made oneway temporarily, creating a spare lane for cycleways or extra
+pavement width. Prevent through-flow in residential areas, as is
+happening in
+[Lewisham](https://853.london/2020/05/05/lewisham-council-asks-which-streets-it-should-open-up-to-walkers-and-cyclists/)
+is another option that can complement road reallocation.
 
 <!-- We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction. -->
 
-Such roads and roads that could be converted into ‘liveable streets’ by
-preventing through traffic have not been considered at this stage.
-Providing evidence to identify such roads, e.g. where there is high
-demand but little road width, suggesting a strong argument for making
-them one-way during a period of vital physical distancing, in addition
-to the roads with ‘spare lanes’ identified below, could be an aim of
-future work.
+<!-- Such roads that could be converted into 'liveable streets' by preventing through traffic have not been considered at this stage. -->
+
+Evidence supporting other types of interventions, for example where
+there is high demand for access to key workplaces but little space for
+walking and cycling, could be an aim of future work.
 
 ## What the maps show
 
-The results below show all roads with a ‘spare lane’ in the low average
-traffic conditions created by the partial lockdown (light blue) based on
-the three criteria listed above (lanes, potential and length) plus the
-top 10 roads of a minimum length in terms of estimated cycling potential
-under the Government Target scenario in the PCT (dark blue).
+The results below show all roads with a ‘spare lane’ in **light blue**
+based on the three criteria listed above (lanes, potential and length).
+The top 10 roads in terms of cycling potential are shown in **dark
+blue**. Cycling potential refers to the number of commuters who would
+cycle along the road (either to or from work) under the Government
+Target based on data from the Department for Transport funded Propensity
+to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 
 # London
 
