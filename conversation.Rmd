@@ -1,0 +1,51 @@
+---
+title: "Pop-up cycleways and pedestrian spaces: a peak into post Covid-19 transport futures"
+---
+
+
+The Covid-19 pandemic has transformed all sectors of the economy, not least transport. Long distance travel has been dramatically altered, as [demand plummets](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies go bust](https://arxiv.org/abs/2004.08460). Yet short distance travel patterns have also changed greatly. Forced to stay close to home, many people have started walking and cycling more. From a health and well-being perspective, this may be a more important shift, especially in the long term as coronavirus measures are gradually eased.
+
+Local and national governments worldwide are still working out how best to respond to these changes to lif. Hundreds of kilometres of temporary infrastructure being put in place in dozens of cities worldwide, from [Park Lane in London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e "") to [Martin Luther King Jr Drive in Philadelphia](https://www.theguardian.com/world/2020/apr/11/world-cities-turn-their-streets-over-to-walkers-and-cyclists ""), [Auckland](https://www.roadtraffic-technology.com/news/nz-govt-extra-wide-footpaths/ "") to [Mexico City](https://bicitekas.org/sites/default/files/public/manuales/propuesta_ciclovias_temporales_cdmxvfinal.pdf ""), never has there been such a need for affordable, healthy and socially isolated transport that does not create the fumes that emerging evidence links to coronavirus susceptibility. With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed.
+
+<!-- # Where is pop-up infrastructure most needed? -->
+
+<!-- # Story  -->
+
+<!-- The Covid-19 pandemic has transformed all sectors of the economy. -->
+<!-- Transport patterns have been dramatically altered, with much discussion of plummeting demand for long distance travel. -->
+<!-- Yet short-distance travel patterns have also changed greatly and, from a health and well-being perspective, this may be a more important shift. -->
+<!-- With temporary infrastructure being put in place in dozens of cities worldwide, from [Park Lane in London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e) to [Martin Luther King Jr Drive in Philadelphia](https://www.theguardian.com/world/2020/apr/11/world-cities-turn-their-streets-over-to-walkers-and-cyclists), [Auckland](https://www.roadtraffic-technology.com/news/nz-govt-extra-wide-footpaths/) to [Mexico City](https://bicitekas.org/sites/default/files/public/manuales/propuesta_ciclovias_temporales_cdmxvfinal.pdf), never has there been such a need for affordable, healthy and socially isolated transport that does not create the fumes that emerging evidence links to coronavirus susceptibility. -->
+<!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. -->
+<!-- As with the medical science, research is needed now. -->
+<!-- Methods developed to identify locations of high walking and cycling potential can help ensure that the 'pop-up' infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
+
+
+<!-- (this would be two to three sentences summarizing the article’s focus) -->
+
+<!-- # Significance  -->
+
+<!-- <!-- (why is this story interesting/relevant? Particularly to general audience, why should they care?)  --> -->
+<!-- Politicians of all stripes recognise the importance of acting now to prevent a surge in car use and resulting air pollution when the lockdown is gradually released. -->
+<!-- Sadiq Kahn has advocated re-allocating road space for walking and cycling, and Boris Johnson has [talked](https://twitter.com/SomethingELLIS/status/1258031387334053888) of a post Covid-19 "new golden age for cycling". -->
+<!-- Without evidence there is a risk that these words are not supported by effective and long-term interventions. -->
+<!-- Our research into prioritising the right kind of cycling infrastructure where it is most needed can ensure that decisions made now are of maximum benefit for the coming months when physical distancing will need to continue. -->
+<!-- Polls showing people do not want to 'return to normal' also suggest that the Covid-19 crisis represents an historic opportunity to readjust transport cities in favour of health. -->
+<!-- If pop-up cycleways go where there is *long term need* there is a greater chance that people will demand they become permanent, as happened with the experimental cycleway in Torrington Place in London, where a 2 way road for motor vehicles has been converted into a thriving 2 way cycleway, enabling social distancing and zero emissions transport for keyworkers in central London. -->
+
+<!-- # Key points -->
+
+<!-- - Our analysis of data generated for the Department for Transport funded Propensity to Cycle Tool (PCT) and Cycling Infrastructure Prioritisation Toolkit (CyIPT) has already flagged dozens of roads in 10 major cities across England where a 'spare lane' could be replaced by low-cost bidirectional temporary infrastructure.  -->
+<!-- - A method highlights roads based on number of lanes, cycling potential and length. -->
+<!-- - Feedback from cycle campaigners coordinated by CyclingUK suggests the results for 10 cities (London, Birmingham, Manchester, Leeds, Liverpool, Newcastle, Sheffield, Cambridge, Bristol, Leicester) match intuition and can support local knowledge and community engagement in support of temporary infrastructure. -->
+<!-- - Further work, which we are discussing with the Department for Transport, will develop more sophisticated methods to provide evidence that is urgently needed to support pop-up spaces in the UK and beyond. -->
+
+<!-- CyclingUK are putting out a press release as an exclusive to national media organisations. -->
+<!-- This article will provide a more detailed view to go out the following day while interest in the topic is at a peak. -->
+
+<!-- Results for Manchester shown below, which highlights Priness Street, one of the roads where [space for active travel will be increased](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/part-deansgate-close-cars-city-18178175) as part of the post Covid-19 recovery package in Greater Manchester. -->
+
+<!-- ![](https://raw.githubusercontent.com/cyipt/tempCycleways/master/README_files/figure-gfm/manchester-1.png) -->
+
+
+
+<!-- Other key points(anything additional that you want to make sure they consider/know about) Highlighting the website further etc and we would also mention the BBC exclusive here. I’ve never had a problem with the Conversation agreeing to hold off on publishing an article until an embargo or exclusive deadline has been met. However it would be good to make clear how the Conversation article will differ from the BBC coverage.   -->

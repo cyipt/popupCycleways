@@ -245,7 +245,7 @@ See [cambridge.html](https://cyipt.github.io/tempCycleways/cambridge.html) for t
 # deploy
 git clone git@github.com:cyipt/tempCycleways
 cd tempCycleways
-git checkout --orphan gh-pages
+git checkout gh-pages
 git rm -rf .
 git commit --allow-empty -m 'Initial gh-pages commit'
 # git push origin gh-pages
@@ -257,11 +257,12 @@ ls -hal
 mv README.html index.html
 firefox index.html
 git status
+git commit -am 'Update interactive maps'
 git push origin gh-pages
 cd ..
 echo '*.html' >> .gitignore
 echo 'tempCycleways/' >> .gitignore
-pandoc -o README.html README.md
+pandoc -o README.html ../README.md
 ```
 
 
