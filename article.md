@@ -3,7 +3,17 @@ and findings from 10 UK cities
 ================
 Robin Lovelace
 
-# RESEARCH QUESTION\[S\] AND HYPOTHESIS\[ES\]
+# RESEARCH QUESTIONS AND HYPOTHESIS
+
+The Covid-19 pandemic has transformed all sectors of the economy, not
+least transport. [Demand for long distance trips has
+plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline
+companies have gone bust](https://arxiv.org/abs/2004.08460) (Iacus et
+al. 2020; Jittrapirom and Tanaksaranond 2020). Yet short distance travel
+patterns have also changed greatly. Forced to stay close to home, many
+people have started walking and cycling more. From a health and
+well-being perspective, this may be a more important shift, especially
+in the long term as coronavirus measures are gradually eased.
 
 # METHODS AND DATA
 
@@ -95,3 +105,25 @@ of transport networks is the level of analysis.
 <!-- Use subscripts liberally to differentiate things that, for instance, are of a class but measured differently, or computed with different assumptions. -->
 
 <!-- All equations shall have all of their variables defined. -->
+
+<div id="refs" class="references hanging-indent">
+
+<div id="ref-iacus_estimating_2020">
+
+Iacus, Stefano Maria, Fabrizio Natale, Carlos Satamaria, Spyridon
+Spyratos, and Michele Vespe. 2020. “Estimating and Projecting Air
+Passenger Traffic During the COVID-19 Coronavirus Outbreak and Its
+Socio-Economic Impact.” *arXiv:2004.08460 \[Physics, Stat\]*, April.
+<http://arxiv.org/abs/2004.08460>.
+
+</div>
+
+<div id="ref-jittrapirom_exploratory_2020">
+
+Jittrapirom, Peraphan, and Garavig Tanaksaranond. 2020. “An Exploratory
+Survey on the Perceived Risk of COVID-19 and Travelling.” Preprint.
+SocArXiv. <https://doi.org/10.31235/osf.io/v3g5d>.
+
+</div>
+
+</div>

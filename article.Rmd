@@ -2,15 +2,42 @@
 title: "Methods to prioritise pop-up active transport infrastructure: overview and findings from 10 UK cities"
 author: "Robin Lovelace"
 output: github_document
+bibliography: references.bib
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
 ```
 
+```{r, echo=FALSE, eval=FALSE}
+citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "references.bib")
+```
+
+
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
+The Covid-19 pandemic has transformed all sectors of the economy, not least transport.
+[Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020].
+Yet short distance travel patterns have also changed greatly and there has been an uptick in cycling in some places [@harrabin_boom_2020].
+There are two main explanations for increased active transport during pandemic-related physical distancing measures: 1) with fewer opportunities to exercise, more people are taking to walking, running and cycling in their local area for mental and physical health; and 2) public transport options have been greatly reduced due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals.
+The second reason is particularly important given that many 'key workers' are low paid and may have access to a working private automobile.
+From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020].
+From a physical distancing perspective, increased levels of walking and cycling,
+<!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
+the shift creates pressure on governments to ensure sufficient 'space for social distancing', while enabling increased active mobility for health and travel to key workplaces.
+
+Local and national governments worldwide are still working out how best to respond to these changes and many options are available to ensure that citizens can benefit from outdoor activity while minimizing health risks, ranging from the provision of hand sanitisers to opening-up spaces such as parking lots and golf courses [@freeman_covid19_2020].
+Many local governments have responded by implementing 'pop-up' active transport infrastructure, including:
+
+1. 'filtered permeability' interventions to prevent through traffic
+2. banning cars and to pedestrianise streets, greatly increasing the width of walkable space, New York's 'Open Streets' initiative being a prominent example [@litman_pandemicresilient_2020], and
+3. from the through-flow of motor vehicles
+
+The Scottish government, for example have provided emergency funding "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
+
+
+Hundreds of kilometres of temporary infrastructure being put in place in dozens of cities worldwide, from [Park Lane in London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e) to [Martin Luther King Jr Drive in Philadelphia](https://www.theguardian.com/world/2020/apr/11/world-cities-turn-their-streets-over-to-walkers-and-cyclists ""), [Auckland](https://www.roadtraffic-technology.com/news/nz-govt-extra-wide-footpaths/) to [Mexico City](https://bicitekas.org/sites/default/files/public/manuales/propuesta_ciclovias_temporales_cdmxvfinal.pdf), never has there been such a need for affordable, healthy and socially isolated transport that does not create the fumes that emerging evidence links to coronavirus susceptibility. With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed.
 
 
 # METHODS AND DATA
