@@ -1,8 +1,10 @@
 ---
-title: "Methods to prioritise pop-up active transport infrastructure: overview and findings from 10 UK cities"
+title: "Methods to prioritise pop-up active transport infrastructure"
+# : overview and findings from 10 UK cities"
 author: "Robin Lovelace"
-output: github_document
-bibliography: references.bib
+output: bookdown::github_document2
+# bibliography: references.bib
+bibliography: ref.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -10,7 +12,8 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TR
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
-citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "references.bib")
+citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "ref.bib")
+wordcountaddin::word_count("article.Rmd")
 ```
 
 
@@ -24,20 +27,34 @@ There are two main explanations for increased active transport during pandemic-r
 The second reason is particularly important given that many 'key workers' are low paid and may have access to a working private automobile.
 From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020].
 From a physical distancing perspective, increased levels of walking and cycling,
-<!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
 the shift creates pressure on governments to ensure sufficient 'space for social distancing', while enabling increased active mobility for health and travel to key workplaces.
+<!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
 
 Local and national governments worldwide are still working out how best to respond to these changes and many options are available to ensure that citizens can benefit from outdoor activity while minimizing health risks, ranging from the provision of hand sanitisers to opening-up spaces such as parking lots and golf courses [@freeman_covid19_2020].
-Many local governments have responded by implementing 'pop-up' active transport infrastructure, including:
+Many local governments have responded by implementing 'pop-up' active transport infrastructure.
+The Scottish government, for example has provided emergency funding "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
+A wide range of interventions is possible, ranging from simple signing to the construction of new paths, but the majority of pop-up activity can be classified into three broad categories:
 
-1. 'filtered permeability' interventions to prevent through traffic
+
+1. 'filtered permeability' interventions to prevent through traffic, with interventions as part of Salford's ['Liveable Streets' project](https://salfordliveablestreets.commonplace.is/) being a prominent example [@salfordcitycouncil_salford_2020]
+<!-- (see [here](https://twitter.com/CatrionaSwanson/status/1258322956595453952) for a photo illustrating this type of intervention) -->
 2. banning cars and to pedestrianise streets, greatly increasing the width of walkable space, New York's 'Open Streets' initiative being a prominent example [@litman_pandemicresilient_2020], and
-3. from the through-flow of motor vehicles
+3. the reallocation of one or more lanes of traffic to create pop-up cycleways, typically along arterial routes, with lanes reallocated using traffic cones in Auckland providing an early example @orsman_covid_2020. 
 
-The Scottish government, for example have provided emergency funding "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
+The focus of this article is on the third category.
+In it we aim to answer the following research question:
+
+> How can automated data analysis and interactive visualisation methods help prioritise the reallocation of road space for pop-up active transport infrastructure?
+
+Because of the recent, localised and often ad-hoc nature of pop-up infrastructure, it is difficult to make, let alone test, hypotheses related to the research question.
+Our broad hypothesis is that digital tools based on open data, such as the interactive map used to support community-level responses to Covid-19 in Salford [@salfordcitycouncil_salford_2020], illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
+
+```{r commonplace, fig.cap="Screenshot from the website [salfordliveablestreets.commonplace.is](https://salfordliveablestreets.commonplace.is/comments) to support community and local government level responses to the Covid-19 pandemic, including the prioritisation of pop-up active transport infrastructure." }
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
+```
 
 
-Hundreds of kilometres of temporary infrastructure being put in place in dozens of cities worldwide, from [Park Lane in London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e) to [Martin Luther King Jr Drive in Philadelphia](https://www.theguardian.com/world/2020/apr/11/world-cities-turn-their-streets-over-to-walkers-and-cyclists ""), [Auckland](https://www.roadtraffic-technology.com/news/nz-govt-extra-wide-footpaths/) to [Mexico City](https://bicitekas.org/sites/default/files/public/manuales/propuesta_ciclovias_temporales_cdmxvfinal.pdf), never has there been such a need for affordable, healthy and socially isolated transport that does not create the fumes that emerging evidence links to coronavirus susceptibility. With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed.
+ <!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
 
 
 # METHODS AND DATA
@@ -50,6 +67,16 @@ u = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rsf_leeds.Rds"
 r_original = readRDS(url(u))
 ur = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rtid.csv"
 rtid = readr::read_csv(ur)
+# uh = "http://media.nhschoices.nhs.uk/data/foi/Hospital.csv"
+# download.file(uh, "uh.csv")
+h = readr::read_delim("uh-edited.csv", delim = "|")
+# nrow(h) # 1221 hospitals
+h_clean = h %>% 
+  mutate(Longitude = as.numeric(Longitude)) %>% 
+  mutate(Latitude = as.numeric(Latitude)) %>% 
+  filter(!is.na(Longitude)) %>% 
+  filter(!is.na(Latitude))
+hsf = h_clean %>% st_as_sf(coords = c("Longitude", "Latitude"), crs = 4326)
 ```
 
 ```{r parameters}
@@ -59,19 +86,71 @@ min_grouped_length = 500
 city_centre_buffer_radis = 8000
 city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = 8000)
+h_leeds = hsf[city_centre_buffer, ]
 ```
 
 ```{r preprocess}
-rj = inner_join(r_original, rtid)
 # remove motorways
-r = rj %>% 
-  filter(!grepl(pattern = "motorway", x = highway))
-cy = r %>% filter(highway == "cycleway")
+r_original$highway2 = r_original$highway
+r_original$highway2 = gsub(pattern = "_link", replacement = "", r_original$highway)
+highway_table = table(r_original$highway)
+highway_rare = highway_table[highway_table < nrow(r_original) / 100]
+highway_remove = names(highway_rare)[!grepl(pattern = "motor|living|ped", x = names(highway_rare))]
+r_cleaned = r_original %>% 
+  filter(!grepl(pattern = "motorway", x = highway)) %>% 
+  mutate(highway2 = case_when(
+  highway2 %in% highway_remove ~ "other",
+  grepl(pattern = "path|track|trunk", highway2) ~ "other",
+  grepl(pattern = "ped|liv", highway2) ~ "pedestrian/living_street",
+  TRUE ~ highway2
+  )) %>% 
+  mutate(maxspeed = case_when(
+    maxspeed <= 20 ~ "20 mph or less",
+    maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
+    maxspeed > 40 & maxspeed <= 40 ~ "40 mph",
+    maxspeed > 50 ~ "50+ mph",
+  ))
+rj = inner_join(r_cleaned, rtid)
+cy = r_cleaned %>% filter(highway == "cycleway")
+r_central = rj[city_centre_buffer, ]
+r_main = r_central %>% 
+  filter(grepl(pattern = "cycleway|primary|second|tert", highway2))
 ```
 
+Three main datasets were used for the project:
 
+- Estimates of cycling potential to work at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017; @R-pct]
+- Data derived from OpenStreetMap, with a number of new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overivew)
+- A list hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
+<!-- - Data on the location of road traffic casualties from -->
 
-## Levels of analysis
+Datasets from the PCT and CyIPT project were combined into a single file, key variables from which are shown in Table 1.
+A map showing the spatial distribution of hospitals in the case study city of Leeds, which is used for demonstrating the methods in the next section, is shown in Figure \@ref(fig:hospitals).
+
+Table 1: Summary of the main road segment dataset for Leeds
+
+```{r t1, results='asis'}
+rj %>% 
+  st_drop_geometry() %>% 
+  select(name, highway2, maxspeed, pctgov, width) %>% 
+  table1::table1(~ highway2 + pctgov + width | maxspeed, data = ., )
+```
+
+```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
+m1 = tm_shape(r_main[1:1000, ] %>% mutate(`Highway type` = highway2)) +
+  tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey")) +
+  tm_shape(h_leeds) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
+  tm_layout(legend.outside = TRUE)
+# + tm_text("OrganisationName")
+m1
+```
+
+## Geographic subsetting
+
+The region of analysis may seem like a basic consideration and for some cities it is.
+However, there are various reasons why simply analysing and plotting all possible transport network segments within the city or regional boundaries may not be a good idea, as shown in Figure \@ref(fig:geographic-subsetting).
+
+## Levels of analysis and grouping
 
 An important distinction when developing methods for automated analysis of transport networks is the level of analysis.
 
@@ -109,6 +188,8 @@ ma = tmap_arrange(m1, m2)
 ma
 ```
 
+## Scenario development
+
 
 ```{r}
 ```
@@ -117,6 +198,7 @@ ma
 
 # FINDINGS
 
+We found that...
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 
@@ -177,3 +259,17 @@ ma
 <!-- Use subscripts liberally to differentiate things that, for instance, are of a class but measured differently, or computed with different assumptions. -->
 
 <!-- All equations shall have all of their variables defined. -->
+
+```{r, eval=FALSE}
+system("")
+# system("iconv -c -f utf-8 -t ascii uh.csv")
+system("iconv -f Latin-1 -t ascii uh.csv -o uh_new.csv")
+system("sd � , uh.csv")
+system("head uh.csv")
+h = readr::read_csv("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv")
+h = read.csv("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", , fileEncoding="latin1", sep = "¬", colClasses = c(NA, "NULL"))
+h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", encoding = "Latin-1")
+h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", encoding = "UTF-8")
+h$V1 = gsub(pattern = "")
+```
+
