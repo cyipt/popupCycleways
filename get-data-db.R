@@ -18,6 +18,11 @@ for(i in seq_along(f)) {
 r = data.table::fread("roads.csv")
 setwd(old)
 
+region_name = "Leeds"
+summary(sel_region <- r$region == region_name)
+r_region = r[sel_region, ]
+
+  
 # test read-in as geographic object ---------------------------------------
 
 names(r)
