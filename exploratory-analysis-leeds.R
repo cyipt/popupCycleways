@@ -98,5 +98,5 @@ m2 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_layout(title = "Group then filter (length > 500, cycling_potential > 100)")
 m2
 # to go into paper
-tmap_arrange(m1, m2)
-
+ma = tmap_arrange(m1, m2)
+tmap_save(.Last.value, "figures/grouping.png", width = 7, height = 4)

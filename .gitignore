@@ -7,3 +7,6 @@
 *README.html
 tempCycleways/
 *.html
+*.csv
+*._files/
+article_cache/

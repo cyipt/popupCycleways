@@ -55,6 +55,8 @@ webshot::install_phantomjs()
 rsf = readRDS("rsf.Rds")
 names(rsf)
 rtid = readr::read_csv("~/cyipt/cyipt-server-data/malcolm/roadtypes.csv")
+readr::write_csv(rtid, "rtid.csv")
+piggyback::pb_upload("rtid.csv")
 rsf = left_join(rsf, rtid)
 rsf_spare_lane = rsf %>% filter(
   (lanespsvforward + lanesforward) > 1 |

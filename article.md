@@ -1,112 +1,43 @@
----
-title: "Methods to prioritise pop-up active transport infrastructure: overview and findings from 10 UK cities"
-author: "Robin Lovelace"
-output: github_document
----
+Methods to prioritise pop-up active transport infrastructure: overview
+and findings from 10 UK cities
+================
+Robin Lovelace
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
-```
-
-
-# RESEARCH QUESTIONS AND HYPOTHESIS
-
-
+# RESEARCH QUESTION\[S\] AND HYPOTHESIS\[ES\]
 
 # METHODS AND DATA
 
-```{r load}
-library(sf)
-library(tidyverse)
-library(tmap)
-u = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rsf_leeds.Rds"
-r_original = readRDS(url(u))
-ur = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rtid.csv"
-rtid = readr::read_csv(ur)
-```
-
-```{r parameters}
-min_pctgov = 0
-min_grouped_pctgov = 100
-min_grouped_length = 500
-city_centre_buffer_radis = 8000
-city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
-city_centre_buffer = stplanr::geo_buffer(city_centre, dist = 8000)
-```
-
-```{r preprocess}
-rj = inner_join(r_original, rtid)
-# remove motorways
-r = rj %>% 
-  filter(!grepl(pattern = "motorway", x = highway))
-cy = r %>% filter(highway == "cycleway")
-```
-
-
-
 ## Levels of analysis
 
-An important distinction when developing methods for automated analysis of transport networks is the level of analysis.
+An important distinction when developing methods for automated analysis
+of transport networks is the level of analysis.
 
-```{r levels}
-r_pct_lanes = r %>% 
-  filter(pctgov > min_pctgov) %>% 
-  filter((lanespsvforward + lanesforward) > 1 |
-      (lanespsvbackward + lanesbackward) > 1
-  )
-touching_list = st_touches(r_pct_lanes)
-g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-r_pct_lanes$group = components$membership
-r_pct_lanes = r_pct_lanes %>% 
-  group_by(group) %>% 
-  mutate(group_length = sum(length)) %>% 
-  mutate(pctgov_mean = mean(pctgov, na.rm = TRUE)) %>% 
-  filter(pctgov_mean > min_grouped_pctgov)
-r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
-r_filter_before_grouping = r %>% 
-  filter(pctgov > min_pctgov) %>% 
-  filter((lanespsvforward + lanesforward) > 1 |
-           (lanespsvbackward + lanesbackward) > 1
-  ) %>% 
-  filter(pctgov > min_grouped_pctgov) %>% 
-  filter(length > 100)
-tmap_mode("plot")
-m1 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
-  tm_shape(r_filter_before_grouping) + tm_lines() +
-  tm_layout(title = "Filter then group (length > 100, cycling_potential > 100)")
-m2 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
-  tm_shape(r_pct_lanes) + tm_lines() +
-  tm_layout(title = "Group then filter (length > 500, cycling_potential > 100)")
-ma = tmap_arrange(m1, m2)
-ma
-```
-
-
-```{r}
-```
-
-
+![](article_files/figure-gfm/levels-1.png)<!-- -->
 
 # FINDINGS
-
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 
 <!-- Transport Findings welcomes research findings in the broad field of transport. Articles must either pose a New Question,  present a New Method, employ New Data (including New Contexts or Locations),  discover a New Finding (i.e. it can almost exactly replicate a previous study and find something different), or some combination of the above. -->
+
 <!-- Scope -->
 
 <!-- You may find yourself asking if your paper is within the scope of Transport Findings. -->
 
 <!--     Is there a hypothesis somehow related to transport? -->
+
 <!--     Is there a (scientifically valid, replicable) methodology? -->
+
 <!--     Is there a finding? -->
 
 <!-- If you can answer yes to these questions, it is within scope. -->
+
 <!-- Article Types -->
 
 <!--     Findings - where the object of study is nature -->
+
 <!--     Syntheses - where the object of study is the literature -->
+
 <!--     Cases - where the objects of study are particular sites or projects, and methods may be more qualitative -->
 
 <!-- Sections -->
@@ -114,29 +45,43 @@ ma
 <!-- All articles shall have 3 sections, and only 3 sections, titled as follows: -->
 
 <!--     RESEARCH QUESTION[S] AND HYPOTHESIS[ES] -->
+
 <!--     METHODS AND DATA -->
+
 <!--     FINDINGS -->
 
 <!-- There shall be no introduction, “road-map paragraph,” literature review, conclusions, speculations, or  policy implications beyond what is included above. Focus on what you found, not why you found it. -->
+
 <!-- Submissions -->
 
 <!-- The manuscript submission must include the following: -->
+
 <!-- TITLE -->
+
 <!-- AUTHORS (NAME, AFFILIATION, CONTACT) -->
+
 <!-- ABSTRACT -->
+
 <!-- KEYWORDS -->
+
 <!-- ARTICLE (Sections 1, 2, 3) -->
+
 <!-- ACKNOWLEDGMENTS -->
+
 <!-- REFERENCES -->
 
 <!-- Manuscript submissions may include SUPPLEMENTAL INFORMATION in separate files that do not count against article length. This information should not be essential for the general understanding of the manuscript. -->
+
 <!-- Style -->
+
 <!-- Focus and Parsimony -->
 
 <!-- Papers should be focused and to the point, and not begin with trite observations like “Congestion is a problem the world over.” Usually you can delete your opening paragraph if it begins like that, and the reader is no worse off. As Strunk and White say: “Omit Needless Words”. The Abstract should not say the same thing as the Introduction. -->
+
 <!-- Transparency and Replicability -->
 
 <!-- A minimum standard for a good paper is transparency and replicability: Can the reader understand what you did, and repeat it, and get the same answer? -->
+
 <!-- Mathematical Conventions -->
 
 <!-- Each variable shall have one, and only one, definition per document. -->
