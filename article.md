@@ -18,33 +18,31 @@ notable uptick in active travel, particularly cycling, in some areas
 increased need for exercise close to home during lockdowns for mental
 and physical health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020);
 and 2) reduced public transport options and use (e.g. Tian et al. 2020).
+The second reason is particularly important given that many ‘key
+workers’ are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
 
-The second reason is particularly important given that many ‘key
-workers’ are low paid, with limited access to private automobiles.
-From a physical activity perspective this change is welcome: obesity is
-a powerful predictor of all-cause mortality, including from Covid-19
-(Docherty et al. 2020). From a physical distancing perspective,
-increased levels of walking and cycling, the shift creates pressure on
-governments to ensure sufficient ‘space for social distancing’, while
-enabling increased active mobility for health and travel to key
-workplaces.
+<!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020]. -->
+
+<!-- From a physical distancing perspective, increased levels of walking and cycling, -->
+
+<!-- the shift creates pressure on governments to ensure sufficient 'space for social distancing', while enabling increased active mobility for health and travel to key workplaces. -->
+
 <!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
 
-Local and national governments worldwide are still working out how best
-to respond to these changes and many options are available to ensure
-that citizens can benefit from outdoor activity while minimizing health
-risks, ranging from the provision of hand sanitisers to opening-up
-spaces such as parking lots and golf courses (Freeman and Eykelbosh
-2020). Many local governments have responded by implementing ‘pop-up’
-active transport infrastructure. The Scottish government, for example
-has provided emergency funding “to keep key workers moving” by
-“reallocating road space to better enable this shift and make it safer
-for people who choose to walk, cycle or wheel for essential trips or for
-exercise” (Transport Scotland 2020). A wide range of interventions is
-possible, ranging from simple signing to the construction of new paths,
-but the majority of pop-up activity can be classified into three broad
+Local and national governments are working out how best to respond. Many
+options are available to ensure that citizens can benefit from outdoor
+activity while minimizing health risks, ranging from the hand sanitiser
+provision to the creation of extra active transport space (Freeman and
+Eykelbosh 2020). Installation of ‘pop-up’ active transport
+infrastructure has been endorsed and implemented in many places
+(<span class="citeproc-not-found" data-reference-id="laker_world_2020">**???**</span>).
+The Scottish government, for example, has provided £10m “to keep key
+workers moving” by “reallocating road space to better enable this shift
+and make it safer for people who choose to walk, cycle or wheel for
+essential trips or for exercise” (Transport Scotland 2020). Most pop-up
+active transport infrastructure can be classified into three broad
 categories:
 
 1.  ‘filtered permeability’, e.g. as
@@ -99,11 +97,11 @@ Three main datasets were used for the project:
     [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
     <!-- - Data on the location of road traffic casualties from -->
 
-Datasets from the PCT and CyIPT project were combined into a single
-file, key variables from which are shown in Table 1. A map showing the
-spatial distribution of hospitals in the case study city of Leeds, which
-is used for demonstrating the methods in the next section, is shown in
-Figure <a href="#fig:hospitals">1</a>.
+Datasets from the PCT and CyIPT project were merged, resulting key
+variables summarised in Table 1. A map showing the spatial distribution
+of hospitals in the case study city of Leeds, which is used for
+demonstrating the methods, is shown in Figure
+<a href="#fig:hospitals">1</a>.
 
 Table 1: Summary of the main road segment dataset for Leeds
 
@@ -224,16 +222,6 @@ We found that…
 <!-- All equations shall have all of their variables defined. -->
 
 <div id="refs" class="references hanging-indent">
-
-<div id="ref-docherty_features_2020">
-
-Docherty, Annemarie B., Ewen M. Harrison, Christopher A. Green, Hayley
-E. Hardwick, Riinu Pius, Lisa Norman, Karl A. Holden, et al. 2020.
-“Features of 16,749 Hospitalised UK Patients with COVID-19 Using the
-ISARIC WHO Clinical Characterisation Protocol.” *medRxiv*, April,
-2020.04.23.20076042. <https://doi.org/10.1101/2020.04.23.20076042>.
-
-</div>
 
 <div id="ref-freeman_covid19_2020">
 
