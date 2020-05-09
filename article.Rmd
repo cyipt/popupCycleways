@@ -16,8 +16,6 @@ citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "ref.bib")
 wordcountaddin::word_count("article.Rmd")
 ```
 
-
-
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
 <!-- Currently the intro is 350 words, just about OK! -->
@@ -30,7 +28,6 @@ The two main explanations for this are 1) the need increased need for exercise c
 The second reason is particularly important given that many 'key workers' are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
-
 <!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020]. -->
 <!-- From a physical distancing perspective, increased levels of walking and cycling, -->
 <!-- the shift creates pressure on governments to ensure sufficient 'space for social distancing', while enabling increased active mobility for health and travel to key workplaces. -->
@@ -39,7 +36,10 @@ The second reason is particularly important given that many 'key workers' are lo
 Local and national governments are working out how best to respond.
 Many options are available to ensure that citizens can benefit from outdoor activity while minimizing health risks, ranging from the hand sanitiser provision to the creation of extra active transport space [@freeman_covid19_2020].
 Installation of 'pop-up' active transport infrastructure has been endorsed and implemented in many places [@laker_world_2020].
-The Scottish government, for example, has provided £10m "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
+The Scottish government, for example, has provided £10 million "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
+On 9^th^ May 2020, the UK government announced a £250 million package for pop-up active transport infrastructure [@reid_government_2020].
+Evidence is needed to ensure that such investment is spent effectively and were it is most needed.
+
 Most pop-up active transport infrastructure can be classified into three broad categories:
 
 
@@ -62,9 +62,7 @@ Our broad hypothesis is that digital tools based on open data, such as the inter
 knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
 ```
 
-
  <!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
-
 
 # METHODS AND DATA
 
@@ -93,9 +91,13 @@ region = ukboundaries::leeds
 min_cycling_potential = 0
 min_grouped_cycling_potential = 100
 min_grouped_length = 500
+city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
+city_centre_buffer_radius_large = 10000
 city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
+city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
+city_centre_buffer_large = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_large)
 h_leeds = hsf[city_centre_buffer, ]
 ```
 
@@ -183,7 +185,7 @@ We set a modifiable parameter `city_centre_buffer_radius` to 8km (5 miles) as a 
 The results are shown 
 However, there are various reasons why simply analysing and plotting all possible transport network segments within the city or regional boundaries may not be a good idea, as shown in Figure \@ref(fig:gsub).
 
-```{r gsub, fig.cap="Illustration of geographic subsetting based on distance to the city centre rather than based on location within somewhat arbitrarily shaped city boundaries"}
+```{r gsub, fig.cap="Illustration of geographic subsetting based on distance to a central point (Leeds city city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)."}
 # nrow(r_central)
 # nrow(rj)
 square = stplanr::geo_bb(shp = city_centre_buffer)
@@ -198,13 +200,15 @@ m2 = tm_shape(r_main) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
   tm_shape(city_centre_buffer) + tm_borders() +
+  tm_shape(city_centre_buffer_small) + tm_borders() +
+  tm_shape(city_centre_buffer_large) + tm_borders() +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
 tmap_arrange(m1, m2, nrow = 1)
 ```
 
 
-## Levels of analysis and grouping
+## Attribute filtering and grouping
 
 
 An important distinction when developing methods for automated analysis of transport networks is the level of analysis.

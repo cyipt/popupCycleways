@@ -36,14 +36,18 @@ options are available to ensure that citizens can benefit from outdoor
 activity while minimizing health risks, ranging from the hand sanitiser
 provision to the creation of extra active transport space (Freeman and
 Eykelbosh 2020). Installation of ‘pop-up’ active transport
-infrastructure has been endorsed and implemented in many places
-(<span class="citeproc-not-found" data-reference-id="laker_world_2020">**???**</span>).
-The Scottish government, for example, has provided £10m “to keep key
-workers moving” by “reallocating road space to better enable this shift
-and make it safer for people who choose to walk, cycle or wheel for
-essential trips or for exercise” (Transport Scotland 2020). Most pop-up
-active transport infrastructure can be classified into three broad
-categories:
+infrastructure has been endorsed and implemented in many places (Laker
+2020). The Scottish government, for example, has provided £10 million
+“to keep key workers moving” by “reallocating road space to better
+enable this shift and make it safer for people who choose to walk, cycle
+or wheel for essential trips or for exercise” (Transport Scotland 2020).
+On 9<sup>th</sup> May 2020, the UK government announced a £250 million
+package for pop-up active transport infrastructure (Reid 2020). Evidence
+is needed to ensure that such investment is spent effectively and were
+it is most needed.
+
+Most pop-up active transport infrastructure can be classified into three
+broad categories:
 
 1.  ‘filtered permeability’, e.g. as
     [shown](https://twitter.com/CatrionaSwanson/status/1258322956595453952)
@@ -158,7 +162,7 @@ shaped city boundaries
 
 </div>
 
-## Levels of analysis and grouping
+## Attribute filtering and grouping
 
 An important distinction when developing methods for automated analysis
 of transport networks is the level of analysis.
@@ -307,6 +311,13 @@ SocArXiv. <https://doi.org/10.31235/osf.io/v3g5d>.
 
 </div>
 
+<div id="ref-laker_world_2020">
+
+Laker, Laura. 2020. “World Cities Turn Their Streets over to Walkers and
+Cyclists.” *The Guardian*, April.
+
+</div>
+
 <div id="ref-litman_pandemicresilient_2020">
 
 Litman, Todd. 2020. “Pandemic-Resilient Community Planning.” Victoria
@@ -333,6 +344,13 @@ Lovelace, Robin, and Layik Hama. 2019. *Pct: Propensity to Cycle Tool*.
 
 Orsman, B. 2020. “Covid 19 Coronavirus: Social Distancing Cones Rolled
 Out Across Auckland.” *NZ Herald*, April.
+
+</div>
+
+<div id="ref-reid_government_2020">
+
+Reid, Carlton. 2020. “U.K. Government Boosts Bicycling and Walking with
+Ambitious 2 Billion Post-Pandemic Plan.” *Forbes*.
 
 </div>
 
