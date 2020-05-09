@@ -20,6 +20,8 @@ wordcountaddin::word_count("article.Rmd")
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
+<!-- Currently the intro is 500 words, too long! -->
+
 The Covid-19 pandemic has transformed all sectors of the economy, not least transport.
 [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020].
 Yet short distance travel patterns have also changed greatly and there has been an uptick in cycling in some places [@harrabin_boom_2020].
@@ -130,10 +132,10 @@ A map showing the spatial distribution of hospitals in the case study city of Le
 Table 1: Summary of the main road segment dataset for Leeds
 
 ```{r t1, results='asis'}
-rj %>% 
-  st_drop_geometry() %>% 
-  select(name, highway2, maxspeed, pctgov, width) %>% 
-  table1::table1(~ highway2 + pctgov + width | maxspeed, data = ., )
+# rj %>% 
+#   st_drop_geometry() %>% 
+#   select(name, highway2, maxspeed, pctgov, width) %>% 
+#   table1::table1(~ highway2 + pctgov + width | maxspeed, data = ., )
 ```
 
 ```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
