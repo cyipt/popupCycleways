@@ -90,8 +90,8 @@ region = ukboundaries::leeds
 ```
 
 ```{r parameters}
-min_pctgov = 0
-min_grouped_pctgov = 100
+min_cycling_potential = 0
+min_grouped_cycling_potential = 100
 min_grouped_length = 500
 city_centre_buffer_radius = 8000
 city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
@@ -101,36 +101,42 @@ h_leeds = hsf[city_centre_buffer, ]
 
 ```{r preprocess}
 # remove motorways
-r_original$highway2 = r_original$highway
-r_original$highway2 = gsub(pattern = "_link", replacement = "", r_original$highway)
+r_original$highway_type = r_original$highway
+r_original$highway_type = gsub(pattern = "_link", replacement = "", r_original$highway)
 highway_table = table(r_original$highway)
 highway_rare = highway_table[highway_table < nrow(r_original) / 100]
 highway_remove = names(highway_rare)[!grepl(pattern = "motor|living|ped", x = names(highway_rare))]
 r_cleaned = r_original %>% 
   filter(!grepl(pattern = "motorway", x = highway)) %>% 
-  mutate(highway2 = case_when(
-  highway2 %in% highway_remove ~ "other",
-  grepl(pattern = "path|track|trunk", highway2) ~ "other",
-  grepl(pattern = "ped|liv", highway2) ~ "pedestrian/living_street",
-  TRUE ~ highway2
+  mutate(highway_type = case_when(
+  highway_type %in% highway_remove ~ "other",
+  grepl(pattern = "path|track|trunk", highway_type) ~ "other",
+  grepl(pattern = "ped|liv", highway_type) ~ "pedestrian/living_street",
+  TRUE ~ highway_type
   )) %>% 
   mutate(maxspeed = case_when(
     maxspeed <= 20 ~ "20 mph or less",
     maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
     maxspeed > 30 ~ "40+ mph",
   )) %>% 
-  mutate(pctgov = as.numeric(pctgov)) 
-table(r_cleaned$maxspeed)
+  mutate(cycling_potential = as.numeric(pctgov)) 
+# table(r_cleaned$maxspeed)
 rj = inner_join(r_cleaned, rtid) %>% 
-  mutate(lanes_f = lanespsvforward + lanesforward) %>% 
-  mutate(lanes_b = lanespsvbackward + lanesbackward) %>% 
-  mutate(`N. lanes` = lanes_f + lanes_b)
+  mutate(lanes_f = abs(lanespsvforward) + abs(lanesforward)) %>% 
+  mutate(lanes_b = abs(lanespsvbackward) + abs(lanesbackward)) %>% 
+  mutate(n_lanes_numeric = lanes_f + lanes_b) %>% 
+  mutate(n_lanes = as.character(n_lanes_numeric))
+rj$n_lanes_numeric[rj$n_lanes_numeric <= 0] = 1 
+rj$n_lanes[rj$n_lanes == "0"] = "1"
+rj$n_lanes[rj$n_lanes == "4"] = "4+"
+rj$n_lanes[rj$n_lanes == "5"] = "4+"
+rj$n_lanes[rj$n_lanes == "6"] = "4+"
 cy = r_cleaned %>% filter(highway == "cycleway")
 r_central = rj[city_centre_buffer, ]
 r_main = r_central %>% 
-  filter(grepl(pattern = "cycleway|primary|second|tert", highway2))
+  filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 r_main_region = rj %>% 
-  filter(grepl(pattern = "cycleway|primary|second|tert", highway2))
+  filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 ```
 
 Three main datasets were used for the project:
@@ -148,15 +154,15 @@ Table 1: Summary of the main road segment dataset for Leeds
 ```{r t1, results='asis'}
 # rj %>%
 #   st_drop_geometry() %>%
-#   select(name, highway2, maxspeed, pctgov, width) %>%
-#   table1::table1(~ highway2 + pctgov + width | maxspeed, data = ., )
-knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81476361-8c094480-9209-11ea-97d4-f4ad09e96d69.png")
+#   # select(name, highway_type, maxspeed, cycling_potential, width) %>%
+#   table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = ., )
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png")
 ```
 
 ```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
 m1 = r_main_region %>%
-  mutate(`Highway type` = highway2) %>% 
-  mutate(`Cycling potential` = case_when(pctgov < 100 ~ 100, TRUE ~ pctgov)) %>% 
+  mutate(`Highway type` = highway_type) %>% 
+  mutate(`Cycling potential` = case_when(cycling_potential < 100 ~ 100, TRUE ~ cycling_potential)) %>% 
   tm_shape(bbox = st_bbox(city_centre_buffer)) +
   tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
            lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
@@ -182,15 +188,15 @@ However, there are various reasons why simply analysing and plotting all possibl
 # nrow(rj)
 square = stplanr::geo_bb(shp = city_centre_buffer)
 m1 = tm_shape(r_main_region) +
-  tm_lines("maxspeed", palette = "-Set1", lwd = "N. lanes", scale = 5,
-           lwd.legend = c(1, 2, 3, 4, 5, 6)) +
+  tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
+           lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
   tm_shape(region) + tm_borders() +
   tm_shape(square) + tm_borders(lty = 3) +
   tm_scale_bar() 
 # m1
 m2 = tm_shape(r_main) +
-  tm_lines("maxspeed", palette = "-Set1", lwd = "N. lanes", scale = 5,
-           lwd.legend = c(1, 2, 3, 4, 5, 6)) +
+  tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
+           lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
   tm_shape(city_centre_buffer) + tm_borders() +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
@@ -200,11 +206,12 @@ tmap_arrange(m1, m2, nrow = 1)
 
 ## Levels of analysis and grouping
 
+
 An important distinction when developing methods for automated analysis of transport networks is the level of analysis.
 
 ```{r levels}
 r_pct_lanes = rj %>% 
-  filter(pctgov > min_pctgov) %>% 
+  filter(cycling_potential > min_cycling_potential) %>% 
   filter((lanespsvforward + lanesforward) > 1 |
       (lanespsvbackward + lanesbackward) > 1
   )
@@ -215,15 +222,15 @@ r_pct_lanes$group = components$membership
 r_pct_lanes = r_pct_lanes %>% 
   group_by(group) %>% 
   mutate(group_length = sum(length)) %>% 
-  mutate(pctgov_mean = mean(pctgov, na.rm = TRUE)) %>% 
-  filter(pctgov_mean > min_grouped_pctgov)
+  mutate(cycling_potential_mean = mean(cycling_potential, na.rm = TRUE)) %>% 
+  filter(cycling_potential_mean > min_grouped_cycling_potential)
 r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
 r_filter_before_grouping = rj %>% 
-  filter(pctgov > min_pctgov) %>% 
+  filter(cycling_potential > min_cycling_potential) %>% 
   filter((lanespsvforward + lanesforward) > 1 |
            (lanespsvbackward + lanesbackward) > 1
   ) %>% 
-  filter(pctgov > min_grouped_pctgov) %>% 
+  filter(cycling_potential > min_grouped_cycling_potential) %>% 
   filter(length > 100)
 tmap_mode("plot")
 m1 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +

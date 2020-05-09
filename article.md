@@ -91,10 +91,6 @@ transport infrastructure.
 
 # METHODS AND DATA
 
-    ## 
-    ## 20 mph or less         30 mph        40+ mph 
-    ##          39123          42474           3322
-
 Three main datasets were used for the project:
 
   - Estimates of cycling potential to work at the street segment level
@@ -116,7 +112,7 @@ of hospitals in the case study city of Leeds is shown in Figure
 
 Table 1: Summary of the main road segment dataset for Leeds
 
-![](https://user-images.githubusercontent.com/1825120/81476361-8c094480-9209-11ea-97d4-f4ad09e96d69.png)<!-- -->
+![](https://user-images.githubusercontent.com/1825120/81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png)<!-- -->
 
 <div class="figure">
 
