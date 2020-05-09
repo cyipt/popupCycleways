@@ -86,15 +86,16 @@ h_clean = h %>%
   filter(!is.na(Longitude)) %>% 
   filter(!is.na(Latitude))
 hsf = h_clean %>% st_as_sf(coords = c("Longitude", "Latitude"), crs = 4326)
+region = ukboundaries::leeds
 ```
 
 ```{r parameters}
 min_pctgov = 0
 min_grouped_pctgov = 100
 min_grouped_length = 500
-city_centre_buffer_radis = 8000
+city_centre_buffer_radius = 8000
 city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
-city_centre_buffer = stplanr::geo_buffer(city_centre, dist = 8000)
+city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
 h_leeds = hsf[city_centre_buffer, ]
 ```
 
@@ -116,11 +117,14 @@ r_cleaned = r_original %>%
   mutate(maxspeed = case_when(
     maxspeed <= 20 ~ "20 mph or less",
     maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
-    maxspeed > 40 & maxspeed <= 40 ~ "40 mph",
-    maxspeed > 50 ~ "50+ mph",
+    maxspeed > 30 ~ "40+ mph",
   )) %>% 
-  mutate(pctgov = as.numeric(pctgov))
-rj = inner_join(r_cleaned, rtid)
+  mutate(pctgov = as.numeric(pctgov)) 
+table(r_cleaned$maxspeed)
+rj = inner_join(r_cleaned, rtid) %>% 
+  mutate(lanes_f = lanespsvforward + lanesforward) %>% 
+  mutate(lanes_b = lanespsvbackward + lanesbackward) %>% 
+  mutate(`N. lanes` = lanes_f + lanes_b)
 cy = r_cleaned %>% filter(highway == "cycleway")
 r_central = rj[city_centre_buffer, ]
 r_main = r_central %>% 
@@ -146,7 +150,7 @@ Table 1: Summary of the main road segment dataset for Leeds
 #   st_drop_geometry() %>%
 #   select(name, highway2, maxspeed, pctgov, width) %>%
 #   table1::table1(~ highway2 + pctgov + width | maxspeed, data = ., )
-knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81471440-0aa1ba00-91e9-11ea-8e6e-dd9f7669bf98.png")
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81476361-8c094480-9209-11ea-97d4-f4ad09e96d69.png")
 ```
 
 ```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
@@ -163,17 +167,43 @@ m1 = r_main_region %>%
 m1
 ```
 
+<!-- Could say more about the case study city here if there is space -->
+
 ## Geographic subsetting
 
-The region of analysis may seem like a basic consideration and for some cities it is.
-However, there are various reasons why simply analysing and plotting all possible transport network segments within the city or regional boundaries may not be a good idea, as shown in Figure \@ref(fig:geographic-subsetting).
+The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones.
+In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people.
+We set a modifiable parameter `city_centre_buffer_radius` to 8km (5 miles) as a 'first pass' for the case study city of Leeds.
+The results are shown 
+However, there are various reasons why simply analysing and plotting all possible transport network segments within the city or regional boundaries may not be a good idea, as shown in Figure \@ref(fig:gsub).
+
+```{r gsub, fig.cap="Illustration of geographic subsetting based on distance to the city centre rather than based on location within somewhat arbitrarily shaped city boundaries"}
+# nrow(r_central)
+# nrow(rj)
+square = stplanr::geo_bb(shp = city_centre_buffer)
+m1 = tm_shape(r_main_region) +
+  tm_lines("maxspeed", palette = "-Set1", lwd = "N. lanes", scale = 5,
+           lwd.legend = c(1, 2, 3, 4, 5, 6)) +
+  tm_shape(region) + tm_borders() +
+  tm_shape(square) + tm_borders(lty = 3) +
+  tm_scale_bar() 
+# m1
+m2 = tm_shape(r_main) +
+  tm_lines("maxspeed", palette = "-Set1", lwd = "N. lanes", scale = 5,
+           lwd.legend = c(1, 2, 3, 4, 5, 6)) +
+  tm_shape(city_centre_buffer) + tm_borders() +
+  tm_scale_bar() +
+  tm_layout(legend.show = FALSE)
+tmap_arrange(m1, m2, nrow = 1)
+```
+
 
 ## Levels of analysis and grouping
 
 An important distinction when developing methods for automated analysis of transport networks is the level of analysis.
 
 ```{r levels}
-r_pct_lanes = r %>% 
+r_pct_lanes = rj %>% 
   filter(pctgov > min_pctgov) %>% 
   filter((lanespsvforward + lanesforward) > 1 |
       (lanespsvbackward + lanesbackward) > 1
@@ -188,7 +218,7 @@ r_pct_lanes = r_pct_lanes %>%
   mutate(pctgov_mean = mean(pctgov, na.rm = TRUE)) %>% 
   filter(pctgov_mean > min_grouped_pctgov)
 r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
-r_filter_before_grouping = r %>% 
+r_filter_before_grouping = rj %>% 
   filter(pctgov > min_pctgov) %>% 
   filter((lanespsvforward + lanesforward) > 1 |
            (lanespsvbackward + lanesbackward) > 1

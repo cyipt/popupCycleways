@@ -91,6 +91,10 @@ transport infrastructure.
 
 # METHODS AND DATA
 
+    ## 
+    ## 20 mph or less         30 mph        40+ mph 
+    ##          39123          42474           3322
+
 Three main datasets were used for the project:
 
   - Estimates of cycling potential to work at the street segment level
@@ -112,7 +116,7 @@ of hospitals in the case study city of Leeds is shown in Figure
 
 Table 1: Summary of the main road segment dataset for Leeds
 
-![](https://user-images.githubusercontent.com/1825120/81471440-0aa1ba00-91e9-11ea-8e6e-dd9f7669bf98.png)<!-- -->
+![](https://user-images.githubusercontent.com/1825120/81476361-8c094480-9209-11ea-97d4-f4ad09e96d69.png)<!-- -->
 
 <div class="figure">
 
@@ -127,13 +131,36 @@ location of hospitals in Leeds
 
 </div>
 
+<!-- Could say more about the case study city here if there is space -->
+
 ## Geographic subsetting
 
-The region of analysis may seem like a basic consideration and for some
-cities it is. However, there are various reasons why simply analysing
-and plotting all possible transport network segments within the city or
+The region of analysis may seem like a basic consideration: most cities
+have well-defined administrative zones. In Leeds and many other cities,
+it makes sense to focus on the region directly surrounding the city
+centre, in a kind of ‘geographical triage’ to omit from the analysis
+pop-up options in the outskirts and focus valuable attention on the
+routes that are most likely to serve the highest number of people. We
+set a modifiable parameter `city_centre_buffer_radius` to 8km (5 miles)
+as a ‘first pass’ for the case study city of Leeds. The results are
+shown However, there are various reasons why simply analysing and
+plotting all possible transport network segments within the city or
 regional boundaries may not be a good idea, as shown in Figure
-<a href="#fig:geographic-subsetting"><strong>??</strong></a>.
+<a href="#fig:gsub">3</a>.
+
+<div class="figure">
+
+<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to the city centre rather than based on location within somewhat arbitrarily shaped city boundaries"  />
+
+<p class="caption">
+
+Figure 3: Illustration of geographic subsetting based on distance to the
+city centre rather than based on location within somewhat arbitrarily
+shaped city boundaries
+
+</p>
+
+</div>
 
 ## Levels of analysis and grouping
 
