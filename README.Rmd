@@ -173,70 +173,70 @@ The results below show all roads with a 'spare lane' in **light blue** based on 
 The top 10 roads in terms of cycling potential are shown in **dark blue**.
 Cycling potential refers to the number of commuters who would cycle along the road (either to or from work) under the Government Target based on data from the Department for Transport funded Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 
-```{r, child="london.Rmd"}
+```{r, child="cities/london.Rmd"}
 
 ```
 
 See [london.html](https://cyipt.github.io/tempCycleways/london.html) for the interactive version of the map above.
 
 
-```{r, child="birmingham.Rmd"}
+```{r, child="cities/birmingham.Rmd"}
 
 ```
 
 See [birmingham.html](https://cyipt.github.io/tempCycleways/birmingham.html) for the interactive version of the map above.
 
 
-```{r, child="manchester.Rmd"}
+```{r, child="cities/manchester.Rmd"}
 
 ```
 
 See [manchester.html](https://cyipt.github.io/tempCycleways/manchester.html) for the interactive version of the map above.
 
 
-```{r, child="leeds.Rmd"}
+```{r, child="cities/leeds.Rmd"}
 
 ```
 
 See [leeds.html](https://cyipt.github.io/tempCycleways/leeds.html) for the interactive version of the map above.
 
 
-```{r, child="liverpool.Rmd"}
+```{r, child="cities/liverpool.Rmd"}
 
 ```
 
 See [liverpool.html](https://cyipt.github.io/tempCycleways/liverpool.html) for the interactive version of the map above.
 
 
-```{r, child="bristol.Rmd"}
+```{r, child="cities/bristol.Rmd"}
 
 ```
 
 See [bristol.html](https://cyipt.github.io/tempCycleways/bristol.html) for the interactive version of the map above.
 
 
-```{r, child="leicester.Rmd"}
+```{r, child="cities/leicester.Rmd"}
 
 ```
 
 See [leicester.html](https://cyipt.github.io/tempCycleways/leicester.html) for the interactive version of the map above.
 
 
-```{r, child="sheffield.Rmd"}
+```{r, child="cities/sheffield.Rmd"}
 
 ```
 
 See [sheffield.html](https://cyipt.github.io/tempCycleways/sheffield.html) for the interactive version of the map above.
 
 
-```{r, child="newcastle.Rmd"}
+```{r, child="cities/newcastle.Rmd"}
 
 ```
 
 See [newcastle.html](https://cyipt.github.io/tempCycleways/newcastle.html) for the interactive version of the map above.
 
 
-```{r, child="cambridge.Rmd"}
+```{r, child="cities/cambridge.Rmd"}
 
 ```
 
