@@ -22,10 +22,10 @@ wordcountaddin::word_count("article.Rmd")
 
 <!-- The Covid-19 pandemic has transformed all sectors of the economy, not least transport. -->
 <!-- [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020]. -->
-Much attention has focused on the impacts of Covid-19 on long distance travel patterns [e.g. @iacus_estimating_2020; @jittrapirom_exploratory_2020].
-Yet short distance travel patterns have also changed, with a notable uptick in active travel, particularly cycling, in some areas  [@harrabin_boom_2020].
-The two main explanations for this are 1) the need increased need for exercise close to home during lockdowns for mental and physical health [@jimenez-pavon_physical_2020]; and 2) reduced public transport options and use [e.g. @tian_investigation_2020].
-The second reason is particularly important given that many 'key workers' are low paid, with limited access to private automobiles.
+Much attention has focused on the impacts of Covid-19 on long-distance travel patterns [e.g. @iacus_estimating_2020; @jittrapirom_exploratory_2020].
+Yet short distance travel patterns have also changed, with a notable increase in active travel, particularly cycling, in some areas  [@harrabin_boom_2020].
+The two main explanations for this are 1) the need increased need for exercise close to home during lockdowns for mental and physical health [@jimenez-pavon_physical_2020], and 2) a reduction in both public transport options and use [e.g. @tian_investigation_2020].
+The second reason is particularly important given that many' key workers' are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
 <!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020]. -->
@@ -34,11 +34,11 @@ The second reason is particularly important given that many 'key workers' are lo
 <!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
 
 Local and national governments are working out how best to respond.
-Many options are available to ensure that citizens can benefit from outdoor activity while minimizing health risks, ranging from the hand sanitiser provision to the creation of extra active transport space [@freeman_covid19_2020].
+Many options are available to ensure that citizens can benefit from outdoor activity while minimising health risks, ranging from the hand sanitiser provision to the creation of extra active transport space [@freeman_covid19_2020].
 Installation of 'pop-up' active transport infrastructure has been endorsed and implemented in many places [@laker_world_2020].
 The Scottish government, for example, has provided £10 million "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
 On 9^th^ May 2020, the UK government announced a £250 million package for pop-up active transport infrastructure [@reid_government_2020].
-Evidence is needed to ensure that such investment is spent effectively and were it is most needed.
+Evidence is needed to ensure that such investment is spent effectively and where it is most needed.
 
 Most pop-up active transport infrastructure can be classified into three broad categories:
 
@@ -62,7 +62,7 @@ Our broad hypothesis is that digital tools based on open data, such as the inter
 knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
 ```
 
- <!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
+ <!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the 'pop-up' infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
 
 # METHODS AND DATA
 
@@ -144,17 +144,17 @@ r_main_region = rj %>%
   filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 ```
 
-Three main datasets were used for the project:
+Three key datasets were used for the project:
 
 - Estimates of cycling potential to work at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017; @R-pct]
-- Data derived from OpenStreetMap, with a number of new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overivew)
+- Data derived from OpenStreetMap, with several new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overview)
 - A list hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
 <!-- - Data on the location of road traffic casualties from -->
 
-Datasets from the PCT and CyIPT project were merged, resulting in key variables summarised in Table 1.
+Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Table 1.
 A map showing the spatial distribution of hospitals in the case study city of Leeds is shown in Figure \@ref(fig:hospitals).
 
-Table 1: Summary of the main road segment dataset for Leeds
+Table 1: Summary of the road segment dataset for Leeds
 
 ```{r t1, results='asis'}
 # rj %>%
@@ -185,7 +185,7 @@ m1
 <!-- The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones. -->
 <!-- In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people. -->
 We set a modifiable parameter `city_centre_buffer_radius` with an initial value of 8 km (5 miles) to geographically subset potential routes.
-Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance from the center vs plotting all possible transport network segments within the city boundaries.
+Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance from the centre vs plotting all possible transport network segments within the city boundaries.
 To ensure roads that could serve key destinations were included, the parameter `key_destination_buffer_radius` (initially set to 5 km) was used.
 <!-- could say more... -->
 
@@ -216,9 +216,9 @@ tmap_arrange(m1, m2, nrow = 1)
 
 ## Attribute filtering and grouping
 
-At a time of reduced travel, fewer lanes dedicated for motor traffic are needed.
+At a time of reduced travel, fewer lanes dedicated to motor traffic are needed.
 Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
-This definition assumes no reduction in mobility for motor vehicles (making twoway lanes oneway is another option not explored in this analysis).
+This definition assumes no reduction in mobility for motor vehicles (making two-way lanes one-way is another option not explored in this analysis).
 
 To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes)  if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
 All segments defined as having a spare lane using this method is shown in Figure \@ref(fig:levels) (left).
@@ -310,7 +310,7 @@ We found that...
 <!--     METHODS AND DATA -->
 <!--     FINDINGS -->
 
-<!-- There shall be no introduction, “road-map paragraph,” literature review, conclusions, speculations, or  policy implications beyond what is included above. Focus on what you found, not why you found it. -->
+<!-- There shall be no introduction, "road-map paragraph," literature review, conclusions, speculations, or  policy implications beyond what is included above. Focus on what you found, not why you found it. -->
 <!-- Submissions -->
 
 <!-- The manuscript submission must include the following: -->
@@ -326,7 +326,7 @@ We found that...
 <!-- Style -->
 <!-- Focus and Parsimony -->
 
-<!-- Papers should be focused and to the point, and not begin with trite observations like “Congestion is a problem the world over.” Usually you can delete your opening paragraph if it begins like that, and the reader is no worse off. As Strunk and White say: “Omit Needless Words”. The Abstract should not say the same thing as the Introduction. -->
+<!-- Papers should be focused and to the point, and not begin with trite observations like "Congestion is a problem the world over." Usually you can delete your opening paragraph if it begins like that, and the reader is no worse off. As Strunk and White say: "Omit Needless Words". The Abstract should not say the same thing as the Introduction. -->
 <!-- Transparency and Replicability -->
 
 <!-- A minimum standard for a good paper is transparency and replicability: Can the reader understand what you did, and repeat it, and get the same answer? -->
