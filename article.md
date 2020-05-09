@@ -47,21 +47,20 @@ possible, ranging from simple signing to the construction of new paths,
 but the majority of pop-up activity can be classified into three broad
 categories:
 
-1.  ‘filtered permeability’ interventions to prevent through traffic,
-    with interventions as part of Salford’s [‘Liveable Streets’
-    project](https://salfordliveablestreets.commonplace.is/) being a
-    prominent example (Salford City Council 2020)
-    <!-- (see [here](https://twitter.com/CatrionaSwanson/status/1258322956595453952) for a photo illustrating this type of intervention) -->
-2.  banning cars and to pedestrianise streets, greatly increasing the
-    width of walkable space, New York’s ‘Open Streets’ initiative being
-    a prominent example (Litman 2020), and
-3.  the reallocation of one or more lanes of traffic to create pop-up
-    cycleways, typically along arterial routes, with lanes reallocated
-    using traffic cones in Auckland providing an early example (Orsman
-    2020).
+1.  ‘filtered permeability’, e.g. as
+    [shown](https://twitter.com/CatrionaSwanson/status/1258322956595453952)
+    in (Salford City Council 2020)
 
-The focus of this article is on the third category. In it we aim to
-answer the following research question:
+2.  banning cars and to pedestrianise streets, as in New York’s ‘Open
+    Streets’ scheme (Litman 2020)
+
+3.  the reallocation of one or more lanes on wide roads to create pop-up
+    cycleways (Orsman 2020).
+    <!-- interventions to prevent through traffic, with interventions as part of Salford's ['Liveable Streets' project](https://salfordliveablestreets.commonplace.is/) being a prominent example  -->
+    <!-- (see [here](https://twitter.com/CatrionaSwanson/status/1258322956595453952) for a photo illustrating this type of intervention) -->
+
+The focus of this article is on the third category. The research
+question is:
 
 > How can automated data analysis and interactive visualisation methods
 > help prioritise the reallocation of road space for pop-up active
