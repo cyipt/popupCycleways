@@ -178,17 +178,34 @@ To identify road sections on which there is a spare lane we developed a
 simple algorithm that takes the OSM variable
 [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is
 present and, if not, derives the number from the highway type and
-presence/absence of bus lanes.
+presence/absence of bus lanes. All segments defined as having a spare
+lane using this method is shown in Figure <a href="#fig:levels">4</a>
+(left).
 
 <!-- Note this could be a function in an R packge.. -->
+
+<!-- see https://github.com/cyipt/cyipt/blob/82248b2f99e388fac314d34ec5aa49bb90a737a3/scripts/prep_data/clean_osm.R#L349 -->
 
 reallocated road space in particular An important distinction when
 developing methods for automated analysis of transport networks is the
 level of analysis.
 
-![](article_files/figure-gfm/levels-1.png)<!-- -->
+<div class="figure">
 
-## Scenario development
+<img src="article_files/figure-gfm/levels-1.png" alt="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"  />
+
+<p class="caption">
+
+Figure 4: Illustration of the ‘group then filter’ method to identify
+long sections with spare lanes *and* high cycling potential
+
+</p>
+
+</div>
+
+## Visualisation
+
+<!-- ## Scenario development -->
 
 # FINDINGS
 

@@ -90,7 +90,7 @@ region = ukboundaries::leeds
 ```{r parameters}
 min_cycling_potential = 0
 min_grouped_cycling_potential = 100
-min_grouped_length = 500
+min_grouped_length = 600
 city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
@@ -216,26 +216,27 @@ Based on this observation, we defined roads with a 'spare lane' as those on whic
 This definition assumes no reduction in mobility for motor vehicles (making twoway lanes oneway is another option not explored in this analysis).
 
 To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes)  if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
-
+All segments defined as having a spare lane using this method is shown in Figure \@ref(fig:levels) (left).
 
 
 <!-- Note this could be a function in an R packge.. -->
+<!-- see https://github.com/cyipt/cyipt/blob/82248b2f99e388fac314d34ec5aa49bb90a737a3/scripts/prep_data/clean_osm.R#L349 -->
 
 reallocated road space in particular
 An important distinction when developing methods for automated analysis of transport networks is the level of analysis.
 
 
-```{r levels}
-r_pct_lanes = rj %>% 
+```{r levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"}
+r_pct_lanes_all = rj %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
-  filter((lanespsvforward + lanesforward) > 1 |
-      (lanespsvbackward + lanesbackward) > 1
-  )
-touching_list = st_touches(r_pct_lanes)
+  filter(lanes_f > 1 | lanes_b > 1)
+# mapview::mapview(r_pct_lanes)
+
+touching_list = st_touches(r_pct_lanes_all)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
-r_pct_lanes$group = components$membership
-r_pct_lanes = r_pct_lanes %>% 
+r_pct_lanes_all$group = components$membership
+r_pct_lanes = r_pct_lanes_all %>% 
   group_by(group) %>% 
   mutate(group_length = sum(length)) %>% 
   mutate(cycling_potential_mean = mean(cycling_potential, na.rm = TRUE)) %>% 
@@ -243,23 +244,27 @@ r_pct_lanes = r_pct_lanes %>%
 r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
 r_filter_before_grouping = rj %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
-  filter((lanespsvforward + lanesforward) > 1 |
-           (lanespsvbackward + lanesbackward) > 1
-  ) %>% 
+  filter(lanes_f > 1 | lanes_b > 1) %>% 
   filter(cycling_potential > min_grouped_cycling_potential) %>% 
   filter(length > 100)
 tmap_mode("plot")
+m0 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
+  tm_shape(r_pct_lanes_all) + tm_lines() +
+  tm_layout(title = "Roads on which there are spare lanes.")
 m1 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_filter_before_grouping) + tm_lines() +
-  tm_layout(title = "Filter then group (length > 100, cycling_potential > 100)")
+  tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 100)")
 m2 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_pct_lanes) + tm_lines() +
-  tm_layout(title = "Group then filter (length > 500, cycling_potential > 100)")
-ma = tmap_arrange(m1, m2)
+  tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
+# todo show group membership with colours
+ma = tmap_arrange(m0, m1, m2, nrow = 1)
 ma
 ```
 
-## Scenario development
+## Visualisation
+
+<!-- ## Scenario development -->
 
 
 ```{r}
