@@ -24,7 +24,7 @@ The Covid-19 pandemic has transformed all sectors of the economy, not least tran
 [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020].
 Yet short distance travel patterns have also changed greatly and there has been an uptick in cycling in some places [@harrabin_boom_2020].
 There are two main explanations for increased active transport during pandemic-related physical distancing measures: 1) with fewer opportunities to exercise, more people are taking to walking, running and cycling in their local area for mental and physical health; and 2) public transport options have been greatly reduced due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals.
-The second reason is particularly important given that many 'key workers' are low paid and may have access to a working private automobile.
+The second reason is particularly important given that many 'key workers' are low paid, with limited access to private automobiles.
 From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020].
 From a physical distancing perspective, increased levels of walking and cycling,
 the shift creates pressure on governments to ensure sufficient 'space for social distancing', while enabling increased active mobility for health and travel to key workplaces.
