@@ -137,7 +137,7 @@ tm_shape(las_top) +
 ```
 
 These cities represent around 1/4 of the population of England.
-Welsh and Scottish cities with high cycling potential such as Cardiff and Edinbugh were not included in the analysis because the CyIPT does not currently have data outside of England, although we could extend the methods to cover all UK cities at some point.
+Welsh and Scottish cities with high cycling potential such as Cardiff and Edinburgh were not included in the analysis because the CyIPT does not currently have data outside of England, although we could extend the methods to cover all UK cities at some point.
 
 # Method
 
@@ -152,15 +152,19 @@ From the resulting selections we then identified the 'top 10' routes in each cit
 More criteria such as road width and proximity to key services such as hospitals could be added at a later date.
 A final stage involved manually removing road sections such as roads on which there is already good quality dedicated infrastructure and roundabouts. This final stage could be automated in future work.
 
-The cycling potential of the 'top 10' streets is presented in terms of the 'Government Target' scenario, which represents a doubling in cycling compared with 2011 levels.
+The cycling potential of the top 10 streets is calculated based on the 'Government Target' scenario in the Propensity to Cycle Tool, which represents a doubling in cycling compared with 2011 levels.
 London is close to meeting this target already.
 
 # Interpreting the results
 
-The results are not a definitive list of places where pop-up cycleways should be prioritised but a 'starter for 10' highlighting roads that good candidates for 'pop-up' active transport infrastructure through reallocation of road space, as has happened in [Park Lane in London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e).
+The results are not a definitive list of places where pop-up cycleways should be prioritised but a 'starter for 10' highlighting roads that may be good candidates for 'pop-up' active transport infrastructure.
+There are many types of pop-up infrastructure, but focus of this project is through reallocation lanes of traffic, as planned for [Park Lane and other wide roads in London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e).
+<!-- It seems this scheme is not in operation yet from https://www.tfljamcams.net/ -->
+
+
 The results highlight roads that have cycling potential and at least one spare lane, meaning a 2 lanes in one direction.
-There will be many road sections that would benefit from interventions not shown in the maps below: for example roads with only one lane in each direction could be made oneway temporarily, creating a spare lane for cycleways or extra pavement width.
-Prevent through-flow in residential areas, as is happening in [Lewisham](https://853.london/2020/05/05/lewisham-council-asks-which-streets-it-should-open-up-to-walkers-and-cyclists/) is another option that can complement road reallocation.
+There will be many road sections that would benefit from interventions not shown in the maps below: roads with only one lane in each direction could be made oneway temporarily, creating a spare lane for cycleways or extra pavement width.
+Preventing through-flow in residential areas, as is happening in [Lewisham](https://853.london/2020/05/05/lewisham-council-asks-which-streets-it-should-open-up-to-walkers-and-cyclists/) and [Salford City Council](https://salfordliveablestreets.commonplace.is/) is another option that can complement road reallocation.
 
 
 <!-- We filtered-out roads with low levels of cycling potential and focus only on roads that have at least one 'spare lane', defined as having more than 1 lane in either direction. -->
