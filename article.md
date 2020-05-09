@@ -150,13 +150,15 @@ regional boundaries may not be a good idea, as shown in Figure
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to the city centre rather than based on location within somewhat arbitrarily shaped city boundaries"  />
+<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to a central point (Leeds city city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)."  />
 
 <p class="caption">
 
-Figure 3: Illustration of geographic subsetting based on distance to the
-city centre rather than based on location within somewhat arbitrarily
-shaped city boundaries
+Figure 3: Illustration of geographic subsetting based on distance to a
+central point (Leeds city city centre in this case) rather than based on
+location within somewhat arbitrarily shaped city boundaries. Radii of 5
+km, 8 km and 10 km are shown for reference (note that some roads within
+10 km of the center are outside the regional boundary).
 
 </p>
 
@@ -164,8 +166,25 @@ shaped city boundaries
 
 ## Attribute filtering and grouping
 
-An important distinction when developing methods for automated analysis
-of transport networks is the level of analysis.
+Geographic analysis alone is insufficient to identify candidates for
+pop-up infrastructure. At a time of reduced motor traffic, fewer lanes
+dedicated for motor traffic are needed. Based on this observation, we
+defined roads with a ‘spare lane’ as those on which there is more than
+one lane in either direction. This definition assumes no reduction in
+mobility for motor vehicles (making twoway lanes oneway is another
+option not explored in this analysis).
+
+To identify road sections on which there is a spare lane we developed a
+simple algorithm that takes the OSM variable
+[`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is
+present and, if not, derives the number from the highway type and
+presence/absence of bus lanes.
+
+<!-- Note this could be a function in an R packge.. -->
+
+reallocated road space in particular An important distinction when
+developing methods for automated analysis of transport networks is the
+level of analysis.
 
 ![](article_files/figure-gfm/levels-1.png)<!-- -->
 
