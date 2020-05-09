@@ -144,7 +144,7 @@ knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81471
 ```
 
 ```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
-m1 = tm_shape(r_main[1:1000, ] %>% mutate(`Highway type` = highway2)) +
+m1 = tm_shape(r_main %>% mutate(`Highway type` = highway2)) +
   tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey")) +
   tm_shape(h_leeds) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
   tm_layout(legend.outside = TRUE)
