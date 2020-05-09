@@ -135,18 +135,18 @@ location of hospitals in Leeds
 
 ## Geographic subsetting
 
-The region of analysis may seem like a basic consideration: most cities
-have well-defined administrative zones. In Leeds and many other cities,
-it makes sense to focus on the region directly surrounding the city
-centre, in a kind of ‘geographical triage’ to omit from the analysis
-pop-up options in the outskirts and focus valuable attention on the
-routes that are most likely to serve the highest number of people. We
-set a modifiable parameter `city_centre_buffer_radius` to 8km (5 miles)
-as a ‘first pass’ for the case study city of Leeds. The results are
-shown However, there are various reasons why simply analysing and
-plotting all possible transport network segments within the city or
-regional boundaries may not be a good idea, as shown in Figure
-<a href="#fig:gsub">3</a>.
+<!-- The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones. -->
+
+<!-- In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people. -->
+
+We set a modifiable parameter `city_centre_buffer_radius` with an
+initial value of 8 km (5 miles) to geographically subset potential
+routes. Figure <a href="#fig:gsub">3</a> shows the result of subsetting
+based on physical distance from the center vs plotting all possible
+transport network segments within the city boundaries. To ensure roads
+that could serve key destinations were included, the parameter
+`key_destination_buffer_radius` (initially set to 5 km) was used.
+<!-- could say more... -->
 
 <div class="figure">
 
@@ -166,13 +166,11 @@ km, 8 km and 10 km are shown for reference (note that some roads within
 
 ## Attribute filtering and grouping
 
-Geographic analysis alone is insufficient to identify candidates for
-pop-up infrastructure. At a time of reduced motor traffic, fewer lanes
-dedicated for motor traffic are needed. Based on this observation, we
-defined roads with a ‘spare lane’ as those on which there is more than
-one lane in either direction. This definition assumes no reduction in
-mobility for motor vehicles (making twoway lanes oneway is another
-option not explored in this analysis).
+At a time of reduced travel, fewer lanes dedicated for motor traffic are
+needed. Based on this observation, we defined roads with a ‘spare lane’
+as those on which there is more than one lane in either direction. This
+definition assumes no reduction in mobility for motor vehicles (making
+twoway lanes oneway is another option not explored in this analysis).
 
 To identify road sections on which there is a spare lane we developed a
 simple algorithm that takes the OSM variable
@@ -180,15 +178,18 @@ simple algorithm that takes the OSM variable
 present and, if not, derives the number from the highway type and
 presence/absence of bus lanes. All segments defined as having a spare
 lane using this method is shown in Figure <a href="#fig:levels">4</a>
-(left).
+(left). The result of filtering by distance and cycling potential before
+and after grouping using graph membership of touching roads is shown in
+<a href="#fig:levels">4</a> (middle and right, respectively). Grouping
+linked roads before filtering results in a more cohesive network.
 
 <!-- Note this could be a function in an R packge.. -->
 
 <!-- see https://github.com/cyipt/cyipt/blob/82248b2f99e388fac314d34ec5aa49bb90a737a3/scripts/prep_data/clean_osm.R#L349 -->
 
-reallocated road space in particular An important distinction when
-developing methods for automated analysis of transport networks is the
-level of analysis.
+<!-- reallocated road space in particular -->
+
+<!-- An important distinction when developing methods for automated analysis of transport networks is the level of analysis. -->
 
 <div class="figure">
 
@@ -203,9 +204,9 @@ long sections with spare lanes *and* high cycling potential
 
 </div>
 
-## Visualisation
+## Scenarios and visualisation
 
-<!-- ## Scenario development -->
+To make the results more accessible and actionable…
 
 # FINDINGS
 

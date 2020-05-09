@@ -94,11 +94,14 @@ min_grouped_length = 600
 city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
+key_destination_buffer_radius = 5000
 city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
 city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
 city_centre_buffer_large = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_large)
 h_leeds = hsf[city_centre_buffer, ]
+h_leeds_buffer = stplanr::geo_buffer(h_leeds, dist = key_destination_buffer_radius)
+city_key_buffer = st_union(city_centre_buffer, st_union(h_leeds_buffer))
 ```
 
 ```{r preprocess}
@@ -134,7 +137,7 @@ rj$n_lanes[rj$n_lanes == "4"] = "4+"
 rj$n_lanes[rj$n_lanes == "5"] = "4+"
 rj$n_lanes[rj$n_lanes == "6"] = "4+"
 cy = r_cleaned %>% filter(highway == "cycleway")
-r_central = rj[city_centre_buffer, ]
+r_central = rj[city_key_buffer, ]
 r_main = r_central %>% 
   filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 r_main_region = rj %>% 
@@ -179,11 +182,12 @@ m1
 
 ## Geographic subsetting
 
-The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones.
-In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people.
-We set a modifiable parameter `city_centre_buffer_radius` to 8km (5 miles) as a 'first pass' for the case study city of Leeds.
-The results are shown 
-However, there are various reasons why simply analysing and plotting all possible transport network segments within the city or regional boundaries may not be a good idea, as shown in Figure \@ref(fig:gsub).
+<!-- The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones. -->
+<!-- In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people. -->
+We set a modifiable parameter `city_centre_buffer_radius` with an initial value of 8 km (5 miles) to geographically subset potential routes.
+Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance from the center vs plotting all possible transport network segments within the city boundaries.
+To ensure roads that could serve key destinations were included, the parameter `key_destination_buffer_radius` (initially set to 5 km) was used.
+<!-- could say more... -->
 
 ```{r gsub, fig.cap="Illustration of geographic subsetting based on distance to a central point (Leeds city city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)."}
 # nrow(r_central)
@@ -194,40 +198,43 @@ m1 = tm_shape(r_main_region) +
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
   tm_shape(region) + tm_borders() +
   tm_shape(square) + tm_borders(lty = 3) +
+  tm_shape(h_leeds) + tm_dots(size = 0.5) +
   tm_scale_bar() 
 # m1
 m2 = tm_shape(r_main) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
-  tm_shape(city_centre_buffer) + tm_borders() +
-  tm_shape(city_centre_buffer_small) + tm_borders() +
-  tm_shape(city_centre_buffer_large) + tm_borders() +
+  tm_shape(city_centre_buffer) + tm_borders(lty = 2) +
+  tm_shape(city_centre_buffer_small) + tm_borders(lty = 2) +
+  tm_shape(city_centre_buffer_large) + tm_borders(lty = 2) +
+  tm_shape(city_key_buffer) + tm_borders() +
+  tm_shape(h_leeds) + tm_dots(size = 0.5) +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
 tmap_arrange(m1, m2, nrow = 1)
 ```
 
-
 ## Attribute filtering and grouping
 
-Geographic analysis alone is insufficient to identify candidates for pop-up infrastructure.
-At a time of reduced motor traffic, fewer lanes dedicated for motor traffic are needed.
+At a time of reduced travel, fewer lanes dedicated for motor traffic are needed.
 Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
 This definition assumes no reduction in mobility for motor vehicles (making twoway lanes oneway is another option not explored in this analysis).
 
 To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes)  if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
 All segments defined as having a spare lane using this method is shown in Figure \@ref(fig:levels) (left).
+The result of filtering by distance and cycling potential before and after grouping using graph membership of touching roads is shown in \@ref(fig:levels) (middle and right, respectively).
+Grouping linked roads before filtering results in a more cohesive network. 
 
 
 <!-- Note this could be a function in an R packge.. -->
 <!-- see https://github.com/cyipt/cyipt/blob/82248b2f99e388fac314d34ec5aa49bb90a737a3/scripts/prep_data/clean_osm.R#L349 -->
 
-reallocated road space in particular
-An important distinction when developing methods for automated analysis of transport networks is the level of analysis.
+<!-- reallocated road space in particular -->
+<!-- An important distinction when developing methods for automated analysis of transport networks is the level of analysis. -->
 
 
 ```{r levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"}
-r_pct_lanes_all = rj %>% 
+r_pct_lanes_all = r_central %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
   filter(lanes_f > 1 | lanes_b > 1)
 # mapview::mapview(r_pct_lanes)
@@ -242,34 +249,35 @@ r_pct_lanes = r_pct_lanes_all %>%
   mutate(cycling_potential_mean = mean(cycling_potential, na.rm = TRUE)) %>% 
   filter(cycling_potential_mean > min_grouped_cycling_potential)
 r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
+
+r_pct_lanes$graph_group = r_pct_lanes$group
+group_table = table(r_pct_lanes$group)
+top_groups = tail(sort(group_table), 5)
+r_pct_lanes$graph_group[!r_pct_lanes$graph_group %in% names(top_groups)] = "other"
+
 r_filter_before_grouping = rj %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
   filter(lanes_f > 1 | lanes_b > 1) %>% 
   filter(cycling_potential > min_grouped_cycling_potential) %>% 
   filter(length > 100)
 tmap_mode("plot")
-m0 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
+m0 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
   tm_shape(r_pct_lanes_all) + tm_lines() +
   tm_layout(title = "Roads on which there are spare lanes.")
-m1 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
+m1 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
   tm_shape(r_filter_before_grouping) + tm_lines() +
   tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 100)")
-m2 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
-  tm_shape(r_pct_lanes) + tm_lines() +
+m2 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
+  tm_shape(r_pct_lanes) + tm_lines("graph_group", palette = "Dark2") +
   tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
 # todo show group membership with colours
 ma = tmap_arrange(m0, m1, m2, nrow = 1)
 ma
 ```
 
-## Visualisation
+## Scenarios and visualisation
 
-<!-- ## Scenario development -->
-
-
-```{r}
-```
-
+To make the results more accessible and actionable...
 
 
 # FINDINGS
