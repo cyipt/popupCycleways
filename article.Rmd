@@ -125,6 +125,8 @@ cy = r_cleaned %>% filter(highway == "cycleway")
 r_central = rj[city_centre_buffer, ]
 r_main = r_central %>% 
   filter(grepl(pattern = "cycleway|primary|second|tert", highway2))
+r_main_region = rj %>% 
+  filter(grepl(pattern = "cycleway|primary|second|tert", highway2))
 ```
 
 Three main datasets were used for the project:
@@ -148,10 +150,10 @@ knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81471
 ```
 
 ```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
-m1 = r_main %>%
+m1 = r_main_region %>%
   mutate(`Highway type` = highway2) %>% 
   mutate(`Cycling potential` = case_when(pctgov < 100 ~ 100, TRUE ~ pctgov)) %>% 
-  tm_shape() +
+  tm_shape(bbox = st_bbox(city_centre_buffer)) +
   tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
            lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
            lwd.legend.labels = c("0 - 100", "100 - 200", "200 - 500", "500+")) +
