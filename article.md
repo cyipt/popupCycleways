@@ -4,29 +4,32 @@ Robin Lovelace
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
-The Covid-19 pandemic has transformed all sectors of the economy, not
-least transport. [Demand for long distance trips has
-plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline
-companies have gone bust](https://arxiv.org/abs/2004.08460) (Iacus et
-al. 2020; Jittrapirom and Tanaksaranond 2020). Yet short distance travel
-patterns have also changed greatly and there has been an uptick in
-cycling in some places (Harrabin 2020). There are two main explanations
-for increased active transport during pandemic-related physical
-distancing measures: 1) with fewer opportunities to exercise, more
-people are taking to walking, running and cycling in their local area
-for mental and physical health; and 2) public transport options have
-been greatly reduced due to cuts in services and fear of being infected
-while in enclosed spaces, meaning that walking and particularly cycling
-may be the only way that workers can reach key destinations such as
-hospitals. The second reason is particularly important given that many
-‘key workers’ are low paid, with limited access to private
-automobiles. From a physical activity perspective this change is
-welcome: obesity is a powerful predictor of all-cause mortality,
-including from Covid-19 (Docherty et al. 2020). From a physical
-distancing perspective, increased levels of walking and cycling, the
-shift creates pressure on governments to ensure sufficient ‘space for
-social distancing’, while enabling increased active mobility for health
-and travel to key workplaces.
+<!-- Currently the intro is 500 words, too long! -->
+
+<!-- The Covid-19 pandemic has transformed all sectors of the economy, not least transport. -->
+
+<!-- [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020]. -->
+
+Much attention has focused on the impacts of Covid-19 on long distance
+travel patterns (e.g. Iacus et al. 2020; Jittrapirom and Tanaksaranond
+2020). Yet short distance travel patterns have also changed, with a
+notable uptick in active travel, particularly cycling, in some areas
+(Harrabin 2020). The two main explanations for this are 1) the need
+increased need for exercise close to home during lockdowns for mental
+and physical health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020);
+and 2) reduced public transport options and use (e.g. Tian et al. 2020).
+
+<!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
+
+The second reason is particularly important given that many ‘key
+workers’ are low paid, with limited access to private automobiles.
+From a physical activity perspective this change is welcome: obesity is
+a powerful predictor of all-cause mortality, including from Covid-19
+(Docherty et al. 2020). From a physical distancing perspective,
+increased levels of walking and cycling, the shift creates pressure on
+governments to ensure sufficient ‘space for social distancing’, while
+enabling increased active mobility for health and travel to key
+workplaces.
 <!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
 
 Local and national governments worldwide are still working out how best
@@ -54,8 +57,8 @@ categories:
     a prominent example (Litman 2020), and
 3.  the reallocation of one or more lanes of traffic to create pop-up
     cycleways, typically along arterial routes, with lanes reallocated
-    using traffic cones in Auckland providing an early example
-    (<span class="citeproc-not-found" data-reference-id="orsman_covid_2020">**???**</span>).
+    using traffic cones in Auckland providing an early example (Orsman
+    2020).
 
 The focus of this article is on the third category. In it we aim to
 answer the following research question:
@@ -104,6 +107,8 @@ is used for demonstrating the methods in the next section, is shown in
 Figure <a href="#fig:hospitals">1</a>.
 
 Table 1: Summary of the main road segment dataset for Leeds
+
+![](https://user-images.githubusercontent.com/1825120/81471440-0aa1ba00-91e9-11ea-8e6e-dd9f7669bf98.png)<!-- -->
 
 <div class="figure">
 
@@ -267,6 +272,16 @@ Socio-Economic Impact.” *arXiv:2004.08460 \[Physics, Stat\]*, April.
 
 </div>
 
+<div id="ref-jimenez-pavon_physical_2020">
+
+Jim’enez-Pav’on, David, Ana Carbonell-Baeza, and Carl J. Lavie. 2020.
+“Physical Exercise as Therapy to Fight Against the Mental and Physical
+Consequences of COVID-19 Quarantine: Special Focus in Older People.”
+*Progress in Cardiovascular Diseases*, March.
+<https://doi.org/10.1016/j.pcad.2020.03.009>.
+
+</div>
+
 <div id="ref-jittrapirom_exploratory_2020">
 
 Jittrapirom, Peraphan, and Garavig Tanaksaranond. 2020. “An Exploratory
@@ -297,10 +312,27 @@ Lovelace, Robin, and Layik Hama. 2019. *Pct: Propensity to Cycle Tool*.
 
 </div>
 
+<div id="ref-orsman_covid_2020">
+
+Orsman, B. 2020. “Covid 19 Coronavirus: Social Distancing Cones Rolled
+Out Across Auckland.” *NZ Herald*, April.
+
+</div>
+
 <div id="ref-salfordcitycouncil_salford_2020">
 
 Salford City Council. 2020. “Salford Liveable Streets.”
 https://salfordliveablestreets.commonplace.is.
+
+</div>
+
+<div id="ref-tian_investigation_2020">
+
+Tian, Huaiyu, Yonghong Liu, Yidan Li, Chieh-Hsi Wu, Bin Chen, Moritz U.
+G. Kraemer, Bingying Li, et al. 2020. “An Investigation of Transmission
+Control Measures During the First 50 Days of the COVID-19 Epidemic in
+China.” *Science* 368 (6491): 638–42.
+<https://doi.org/10.1126/science.abb6105>.
 
 </div>
 
