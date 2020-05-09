@@ -58,7 +58,7 @@ The research question is:
 Because of the recent, localised and often ad-hoc nature of pop-up infrastructure, it is difficult to make, let alone test, hypotheses related to the research question.
 Our broad hypothesis is that digital tools based on open data, such as the interactive map used to support community-level responses to Covid-19 in Salford [@salfordcitycouncil_salford_2020], illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
 
-```{r commonplace, fig.cap="Screenshot from the website [salfordliveablestreets.commonplace.is](https://salfordliveablestreets.commonplace.is/comments) to support community and local government level responses to the Covid-19 pandemic, including the prioritisation of pop-up active transport infrastructure." }
+```{r commonplace, fig.cap="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the Covid-19 pandemic, including the prioritisation of pop-up active transport infrastructure."}
 knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
 ```
 
@@ -118,7 +118,8 @@ r_cleaned = r_original %>%
     maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
     maxspeed > 40 & maxspeed <= 40 ~ "40 mph",
     maxspeed > 50 ~ "50+ mph",
-  ))
+  )) %>% 
+  mutate(pctgov = as.numeric(pctgov))
 rj = inner_join(r_cleaned, rtid)
 cy = r_cleaned %>% filter(highway == "cycleway")
 r_central = rj[city_centre_buffer, ]
@@ -133,8 +134,8 @@ Three main datasets were used for the project:
 - A list hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
 <!-- - Data on the location of road traffic casualties from -->
 
-Datasets from the PCT and CyIPT project were merged, resulting key variables summarised in Table 1.
-A map showing the spatial distribution of hospitals in the case study city of Leeds, which is used for demonstrating the methods, is shown in Figure \@ref(fig:hospitals).
+Datasets from the PCT and CyIPT project were merged, resulting in key variables summarised in Table 1.
+A map showing the spatial distribution of hospitals in the case study city of Leeds is shown in Figure \@ref(fig:hospitals).
 
 Table 1: Summary of the main road segment dataset for Leeds
 
@@ -147,8 +148,13 @@ knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81471
 ```
 
 ```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
-m1 = tm_shape(r_main %>% mutate(`Highway type` = highway2)) +
-  tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey")) +
+m1 = r_main %>%
+  mutate(`Highway type` = highway2) %>% 
+  mutate(`Cycling potential` = case_when(pctgov < 100 ~ 100, TRUE ~ pctgov)) %>% 
+  tm_shape() +
+  tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
+           lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
+           lwd.legend.labels = c("0 - 100", "100 - 200", "200 - 500", "500+")) +
   tm_shape(h_leeds) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
   tm_layout(legend.outside = TRUE)
 # + tm_text("OrganisationName")

@@ -4,7 +4,7 @@ Robin Lovelace
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
-<!-- Currently the intro is 500 words, too long! -->
+<!-- Currently the intro is 350 words, just about OK! -->
 
 <!-- The Covid-19 pandemic has transformed all sectors of the economy, not least transport. -->
 
@@ -72,12 +72,20 @@ community-level responses to Covid-19 in Salford (Salford City Council
 2020), illustrated in Figure 1, can lead to more effective use of
 resources allocated to pop-up interventions.
 
-![Screenshot from the website
-[salfordliveablestreets.commonplace.is](https://salfordliveablestreets.commonplace.is/comments)
-to support community and local government level responses to the
+<div class="figure">
+
+<img src="https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the Covid-19 pandemic, including the prioritisation of pop-up active transport infrastructure."  />
+
+<p class="caption">
+
+Figure 1: Screenshot from the website
+salfordliveablestreets.commonplace.is to support local responses to the
 Covid-19 pandemic, including the prioritisation of pop-up active
-transport
-infrastructure.](https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png)
+transport infrastructure.
+
+</p>
+
+</div>
 
 <!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
 
@@ -97,11 +105,10 @@ Three main datasets were used for the project:
     [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
     <!-- - Data on the location of road traffic casualties from -->
 
-Datasets from the PCT and CyIPT project were merged, resulting key
+Datasets from the PCT and CyIPT project were merged, resulting in key
 variables summarised in Table 1. A map showing the spatial distribution
-of hospitals in the case study city of Leeds, which is used for
-demonstrating the methods, is shown in Figure
-<a href="#fig:hospitals">1</a>.
+of hospitals in the case study city of Leeds is shown in Figure
+<a href="#fig:hospitals">2</a>.
 
 Table 1: Summary of the main road segment dataset for Leeds
 
@@ -113,7 +120,7 @@ Table 1: Summary of the main road segment dataset for Leeds
 
 <p class="caption">
 
-Figure 1: Overview map of input data, showing the main highway types and
+Figure 2: Overview map of input data, showing the main highway types and
 location of hospitals in Leeds
 
 </p>
