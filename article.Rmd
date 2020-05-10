@@ -234,6 +234,7 @@ This definition assumes no reduction in mobility for motor vehicles (making two-
 
 To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes)  if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
 All segments defined as having a spare lane using this method is shown in Figure \@ref(fig:levels) (left).
+In future, this methodology could be enhanced to take into account the effect of lane widths, which increase the effective available space, and the presence of vehicle parking bays, which reduce it.
 The result of filtering by distance and cycling potential before and after grouping using graph membership of touching roads is shown in \@ref(fig:levels) (middle and right, respectively).
 Grouping linked roads before filtering results in a more cohesive network. 
 
