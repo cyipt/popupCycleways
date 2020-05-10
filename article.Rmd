@@ -27,7 +27,7 @@ file.copy("article.R", "code/article-methods-1.R")
 Much attention has focused on the impacts of COVID-19 on long-distance travel patterns [e.g. @iacus_estimating_2020; @jittrapirom_exploratory_2020].
 Yet short distance travel patterns have also changed, with a notable increase in active travel, particularly cycling, in some areas  [@harrabin_boom_2020].
 The two main explanations for this are 1) the need increased need for exercise close to home during lockdowns for mental and physical health [@jimenez-pavon_physical_2020], and 2) a reduction in both public transport options and use [e.g. @tian_investigation_2020].
-The second reason is particularly important given that many' key workers' are low paid, with limited access to private automobiles.
+The second reason is particularly important given that many 'key workers' are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
 <!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from COVID-19 [@docherty_features_2020]. -->
@@ -160,7 +160,7 @@ Three key datasets were used for the project:
 
 - Estimates of cycling potential to work at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017; @R-pct]
 - Data derived from OpenStreetMap, with several new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overview)
-- A list hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
+- A list of hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
 <!-- - Data on the location of road traffic casualties from -->
 
 Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Table 1.
@@ -232,14 +232,14 @@ At a time of reduced travel, fewer lanes dedicated to motor traffic are needed.
 Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
 This definition assumes no reduction in mobility for motor vehicles (making two-way lanes one-way is another option not explored in this analysis).
 
-To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes)  if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
+To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
 All segments defined as having a spare lane using this method is shown in Figure \@ref(fig:levels) (left).
 In future, this methodology could be enhanced to take into account the effect of lane widths, which increase the effective available space, and the presence of vehicle parking bays, which reduce it.
 The result of filtering by distance and cycling potential before and after grouping using graph membership of touching roads is shown in \@ref(fig:levels) (middle and right, respectively).
 Grouping linked roads before filtering results in a more cohesive network. 
 
 
-<!-- Note this could be a function in an R packge.. -->
+<!-- Note this could be a function in an R package.. -->
 <!-- see https://github.com/cyipt/cyipt/blob/82248b2f99e388fac314d34ec5aa49bb90a737a3/scripts/prep_data/clean_osm.R#L349 -->
 
 <!-- reallocated road space in particular -->
@@ -334,7 +334,7 @@ r_pct_top_n = r_pct_top %>%
 
 The results of the method are summarised in Figure \@ref(fig:res) and Table 2.
 We have found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
-Reducing the 85,000 road segments for Leeds down to candidate segments with more than 1 lane near key destinations that can be visualised in an interactive map can has great potential to support policy-makers, especially when decisions need to be made fast.
+Reducing the 85,000 road segments for Leeds down to candidate segments with more than 1 lane near key destinations that can be visualised in an interactive map has great potential to support policy-makers, especially when decisions need to be made fast.
 
 ```{r res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."}
 tmap_mode("view")
