@@ -14,6 +14,8 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TR
 ```{r, echo=FALSE, eval=FALSE}
 citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "ref.bib")
 wordcountaddin::word_count("article.Rmd")
+knitr::purl("article.Rmd")
+file.copy("article.R", "code/article-methods-1.R")
 ```
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
