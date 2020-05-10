@@ -350,6 +350,8 @@ knitr::kable(res_table, caption = "The top 10 candidate roads for space realloca
 The approach is not without limitations.
 Its reliance on data rather than community engagement represents a rather top-down approach to transport planning.
 To overcome this issue future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure 1.
+Further work could also extend the method in various ways, for example by refining estimates of cycling potential based on new parameters such as proximity to key destinations.
+
 A major advantage of the approach is that it is scalable.
 It would be feasible to run the method for every city in the UK for which there is data, given sufficient computer and developer resource.
 Given the recent interest in and funding for pop-up cycleways, rolling-out the method quickly, while being agile to adapt the method and parameters for different cities, could help ensure that funding for pop-up infrastructure is spent in an evidence-based way.
