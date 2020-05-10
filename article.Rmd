@@ -22,15 +22,15 @@ file.copy("article.R", "code/article-methods-1.R")
 
 <!-- Currently the intro is 350 words, just about OK! -->
 
-<!-- The Covid-19 pandemic has transformed all sectors of the economy, not least transport. -->
+<!-- The COVID-19 pandemic has transformed all sectors of the economy, not least transport. -->
 <!-- [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020]. -->
-Much attention has focused on the impacts of Covid-19 on long-distance travel patterns [e.g. @iacus_estimating_2020; @jittrapirom_exploratory_2020].
+Much attention has focused on the impacts of COVID-19 on long-distance travel patterns [e.g. @iacus_estimating_2020; @jittrapirom_exploratory_2020].
 Yet short distance travel patterns have also changed, with a notable increase in active travel, particularly cycling, in some areas  [@harrabin_boom_2020].
 The two main explanations for this are 1) the need increased need for exercise close to home during lockdowns for mental and physical health [@jimenez-pavon_physical_2020], and 2) a reduction in both public transport options and use [e.g. @tian_investigation_2020].
 The second reason is particularly important given that many' key workers' are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
-<!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020]. -->
+<!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from COVID-19 [@docherty_features_2020]. -->
 <!-- From a physical distancing perspective, increased levels of walking and cycling, -->
 <!-- the shift creates pressure on governments to ensure sufficient 'space for social distancing', while enabling increased active mobility for health and travel to key workplaces. -->
 <!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
@@ -58,9 +58,9 @@ The research question is:
 > How can automated data analysis and interactive visualisation methods help prioritise the reallocation of road space for pop-up active transport infrastructure?
 
 Because of the recent, localised and often ad-hoc nature of pop-up infrastructure, it is difficult to make, let alone test, hypotheses related to the research question.
-Our broad hypothesis is that digital tools based on open data, such as the interactive map used to support community-level responses to Covid-19 in Salford [@salfordcitycouncil_salford_2020], illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
+Our broad hypothesis is that digital tools based on open data, such as the interactive map used to support community-level responses to COVID-19 in Salford [@salfordcitycouncil_salford_2020], illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
 
-```{r commonplace, fig.cap="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the Covid-19 pandemic, including the prioritisation of pop-up active transport infrastructure."}
+```{r commonplace, fig.cap="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure."}
 knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
 ```
 
