@@ -204,13 +204,14 @@ long sections with spare lanes *and* high cycling potential
 
 </div>
 
-    ## [1] 172  94 308 218 157 236
-
 <!-- ## Scenarios and visualisation -->
 
 <!-- To make the results more accessible and actionable we have made the results, discussed in the next section, publicly available at  -->
 
 # FINDINGS
+
+The results of the method are summarised in Figure
+<a href="#fig:res">5</a> and Table 2.
 
 <div class="figure">
 
@@ -225,6 +226,23 @@ blue). The top 10 road groups are labelled.
 </p>
 
 </div>
+
+| name                  | length | cycling\_potential | kkm\_cycled |
+| :-------------------- | -----: | -----------------: | ----------: |
+| Otley Road            |   1766 |                758 |        1339 |
+| Scott Hall Road       |   8723 |                123 |        1073 |
+| Ring Road Low Wortley |   5177 |                151 |         782 |
+| Dewsbury Road         |   4073 |                175 |         713 |
+| Woodhouse Lane        |   2206 |                295 |         651 |
+| Kirkstall Road        |   1557 |                341 |         531 |
+| Ring Road Moortown    |   4152 |                123 |         511 |
+| York Road             |   1883 |                242 |         456 |
+| Harrogate Road        |   3254 |                123 |         400 |
+| Ingram Distributor    |   2771 |                137 |         380 |
+
+Table 1: The top 10 candidate roads for space reallocation for pop-up
+active transport infrastructure according to methods presented in this
+paper.
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 

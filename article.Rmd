@@ -327,6 +327,8 @@ r_pct_top_n = r_pct_top %>%
 
 # FINDINGS
 
+The results of the method are summarised in Figure \@ref(fig:res) and Table 2.
+
 ```{r res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."}
 tmap_mode("view")
 tm_shape(r_pct_no_overlap) + tm_lines(col = "lightblue", lwd = 4, alpha = 0.6) +
@@ -335,7 +337,11 @@ tm_shape(r_pct_no_overlap) + tm_lines(col = "lightblue", lwd = 4, alpha = 0.6) +
 ```
 
 ```{r}
-
+res_table = r_pct_top_n %>% 
+  sf::st_drop_geometry() %>% 
+  select(name, length = group_length, cycling_potential, kkm_cycled) %>% 
+  arrange(desc(kkm_cycled))
+knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
 ```
 
 
