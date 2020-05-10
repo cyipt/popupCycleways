@@ -204,13 +204,27 @@ long sections with spare lanes *and* high cycling potential
 
 </div>
 
-## Scenarios and visualisation
+    ## [1] 172  94 308 218 157 236
 
-To make the results more accessible and actionable…
+<!-- ## Scenarios and visualisation -->
+
+<!-- To make the results more accessible and actionable we have made the results, discussed in the next section, publicly available at  -->
 
 # FINDINGS
 
-We found that…
+<div class="figure">
+
+<img src="article_files/figure-gfm/res-1.png" alt="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."  />
+
+<p class="caption">
+
+Figure 5: Results, showing road segments with a spare lane (light blue)
+and road groups with a minium threshold length, 1km in this case (dark
+blue). The top 10 road groups are labelled.
+
+</p>
+
+</div>
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 
@@ -291,6 +305,8 @@ We found that…
 <!-- Use subscripts liberally to differentiate things that, for instance, are of a class but measured differently, or computed with different assumptions. -->
 
 <!-- All equations shall have all of their variables defined. -->
+
+# References
 
 <div id="refs" class="references hanging-indent">
 

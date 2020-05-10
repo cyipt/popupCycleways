@@ -70,10 +70,16 @@ knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451
 library(sf)
 library(tidyverse)
 library(tmap)
-u = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rsf_leeds.Rds"
-r_original = readRDS(url(u))
-ur = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rtid.csv"
-rtid = readr::read_csv(ur)
+if(!file.exists("rsf_leeds.Rds")) {
+  u = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rsf_leeds.Rds"
+  download.file(u, "rsf_leeds.Rds")
+}
+r_original = readRDS("rsf_leeds.Rds")
+if(!file.exists("rtid.csv")) {
+  ur = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rtid.csv"
+  download.file(ur, "rtid.csv")
+}
+rtid = readr::read_csv("rtid.csv")
 # uh = "http://media.nhschoices.nhs.uk/data/foi/Hospital.csv"
 # download.file(uh, "uh.csv")
 h = readr::read_delim("uh-edited.csv", delim = "|")
@@ -85,12 +91,14 @@ h_clean = h %>%
   filter(!is.na(Latitude))
 hsf = h_clean %>% st_as_sf(coords = c("Longitude", "Latitude"), crs = 4326)
 region = ukboundaries::leeds
+tmap_mode("plot")
 ```
 
 ```{r parameters}
+regexclude = "welling"
 min_cycling_potential = 0
 min_grouped_cycling_potential = 100
-min_grouped_length = 600
+min_grouped_length = 500
 city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
@@ -246,7 +254,7 @@ r_pct_lanes_all$group = components$membership
 r_pct_lanes = r_pct_lanes_all %>% 
   group_by(group) %>% 
   mutate(group_length = sum(length)) %>% 
-  mutate(cycling_potential_mean = mean(cycling_potential, na.rm = TRUE)) %>% 
+  mutate(cycling_potential_mean = weighted.mean(cycling_potential, w = length, na.rm = TRUE)) %>% 
   filter(cycling_potential_mean > min_grouped_cycling_potential)
 r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
 
@@ -275,14 +283,61 @@ ma = tmap_arrange(m0, m1, m2, nrow = 1)
 ma
 ```
 
-## Scenarios and visualisation
+```{r joining}
+r_pct_grouped = r_pct_lanes %>%
+  group_by(name, group) %>%
+  summarise(
+    group_length = sum(length),
+    cycling_potential = round(weighted.mean(cycling_potential_mean, length))
+  )
+# summary(r_pct_grouped$group_length)
+r_pct_top = r_pct_grouped %>%
+  filter(group_length > min_grouped_length) %>% 
+  filter(cycling_potential > min_grouped_cycling_potential) %>% 
+  filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
+  mutate(kkm_cycled = round(cycling_potential * group_length / 1000))
+# head(r_pct_top$kkm_cycled)
 
-To make the results more accessible and actionable...
+r_pct_lanes_overlap = r_pct_lanes[r_pct_top, , op = sf::st_covered_by] # works
+# r_pct_no_overlap = st_difference(r_pct_lanes, r_pct_top) # slow
+r_pct_no_overlap = r_pct_lanes %>% 
+  filter(!idGlobal %in% r_pct_lanes_overlap$idGlobal)
+
+r_pct_top_n = r_pct_top %>% 
+  group_by(name) %>% 
+  slice(which.max(kkm_cycled)) %>% 
+  filter(name != "") %>% 
+  ungroup() %>% 
+  top_n(10, wt = kkm_cycled) 
+# aim: make the labels go on the longest sections
+# %>% 
+#   st_cast("LINESTRING") %>% 
+#   mutate(length_section = as.numeric(st_length(.))) %>% 
+#   group_by(name) %>% 
+#   slice(which.max(length_section))
+# r_pct_top_n$name
+# summary(r_pct_grouped$group_length)
+```
+
+
+<!-- ## Scenarios and visualisation -->
+
+<!-- To make the results more accessible and actionable we have made the results, discussed in the next section, publicly available at  -->
 
 
 # FINDINGS
 
-We found that...
+```{r res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."}
+tmap_mode("view")
+tm_shape(r_pct_no_overlap) + tm_lines(col = "lightblue", lwd = 4, alpha = 0.6) +
+  tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 4, alpha = 0.6) +
+  tm_shape(r_pct_top_n) + tm_text("name")
+```
+
+```{r}
+
+```
+
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 
@@ -356,4 +411,6 @@ h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", en
 h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", encoding = "UTF-8")
 h$V1 = gsub(pattern = "")
 ```
+
+# References
 
