@@ -49,7 +49,7 @@ Most pop-up active transport infrastructure can be classified into three broad c
 1. 'filtered permeability', e.g. as [shown](https://twitter.com/CatrionaSwanson/status/1258322956595453952) in [@salfordcitycouncil_salford_2020]
 
 2. banning cars and to pedestrianise streets, as in New York's 'Open Streets' scheme [@litman_pandemicresilient_2020]
-3. the reallocation of one or more lanes on wide roads to create pop-up cycleways [@orsman_covid_2020]. 
+3. the reallocation of one or more lanes on wide roads to create pop-up cycleways and pavements [@orsman_covid_2020].
 <!-- interventions to prevent through traffic, with interventions as part of Salford's ['Liveable Streets' project](https://salfordliveablestreets.commonplace.is/) being a prominent example  -->
 <!-- (see [here](https://twitter.com/CatrionaSwanson/status/1258322956595453952) for a photo illustrating this type of intervention) -->
 
