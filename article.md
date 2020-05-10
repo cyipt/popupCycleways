@@ -211,7 +211,13 @@ long sections with spare lanes *and* high cycling potential
 # FINDINGS
 
 The results of the method are summarised in Figure
-<a href="#fig:res">5</a> and Table 2.
+<a href="#fig:res">5</a> and Table 2. We have found that analysis of
+open transport network data, alongside careful selection of parameters,
+can generate plausible results for the prioritisation of pop-up cycle
+infrastructure. Reducing the 85,000 road segments for Leeds down to
+candidate segments with more than 1 lane near key destinations that can
+be visualised in an interactive map can has great potential to support
+policy-makers, especially when decisions need to be made fast.
 
 <div class="figure">
 
@@ -243,6 +249,19 @@ blue). The top 10 road groups are labelled.
 Table 1: The top 10 candidate roads for space reallocation for pop-up
 active transport infrastructure according to methods presented in this
 paper.
+
+The approach is not without limitations. Its reliance on data rather
+than community engagement represents a rather top-down approach to
+transport planning. To overcome this issue future work could seek to
+incorporate the results such as those presented above into a
+participatory map of the type shown in Figure 1. A major advantage of
+the approach is that it is scalable. It would be feasible to run the
+method for every city in the UK for which there is data, given
+sufficient computer and developer resource. Given the recent interest in
+and funding for pop-up cycleways, rolling-out the method quickly, while
+being agile to adapt the method and parameters for different cities,
+could help ensure that funding for pop-up infrastructure is spent in an
+evidence-based way.
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 
