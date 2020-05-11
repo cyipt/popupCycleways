@@ -25,8 +25,23 @@ In the UK, £2 billion investment in measures to promote walking and cycling has
 The UK package includes £250 million for "emergency interventions to make cycling and walking safer" as [Shapps put it](https://www.gov.uk/government/speeches/transport-secretarys-statement-on-coronavirus-covid-19-9-may-2020), including pop-up bike lanes, wider pavements and car-free streets.
 
 Many pop-up interventions have already been documented internationally and in the UK and there is much to learn much from these experiences already.
-There are three broad categories of pop-up interventions...
 Geographically, cities with pop-up infrastructure range from [Milan] to [Martin Luther King Jr Drive in Philadelphia](https://www.theguardian.com/world/2020/apr/11/world-cities-turn-their-streets-over-to-walkers-and-cyclists ""), [Auckland](https://www.roadtraffic-technology.com/news/nz-govt-extra-wide-footpaths/) to [Mexico City](https://bicitekas.org/sites/default/files/public/manuales/propuesta_ciclovias_temporales_cdmxvfinal.pdf). Never has there been such a need for affordable, healthy and socially distanced transport that does not create the fumes that [emerging evidence] links to coronavirus susceptibility. 
+
+These interventions can be classified into three broad groups, as outlined in a [paper](add link) that we have written outlining methods for prioritising pop-up active transport infrastructure.
+
+First...
+
+An example of the first type of intervention is illustrated in the image below, from Salford, Manchester
+
+[![](https://pbs.twimg.com/media/EXZ1t2EXgAELrdO?format=jpg&name=large)](https://twitter.com/CatrionaSwanson/status/1258322956595453952)
+
+<tweet url="https://twitter.com/CatrionaSwanson/status/1258322956595453952" />
+
+
+
+Second...
+Third...
+
 
 In terms of practical steps to encourage walking and cycling, a range of simple interventions can be undertaken, initially on a temporary basis. Roads can be closed to motor vehicles, or physical barriers can be used to enable [ filtered permeability ], in which access for residents is retained but modal filters enable routes for walking and cycling that are faster and more direct than the routes for motor vehicles. This is well established in [ the London Borough of Hackney ] where attractive barriers such as planters have been used to good effect. Another option involves keeping the roads open while reallocating excess road space to widen pavements or introduce pop-up cycleways. 
 
