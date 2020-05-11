@@ -1,5 +1,5 @@
 ---
-title: "Pop-up cycleways: a peak into post COVID-19 transport futures"
+title: "Pop-up cycleways provide a peak into post COVID-19 transport futures"
 ---
 
 Around the world, as nations prepare to emerge from months of COVID-19 induced lockdown, life cannot simply return to pre-pandemic normal. The pandemic has transformed all sectors of the economy, not least transport, with much attention on [plummeting levels of long distance travel](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies going bust](https://arxiv.org/abs/2004.08460). Yet short distance travel patterns have also changed greatly and, perhaps, forever.
