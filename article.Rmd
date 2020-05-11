@@ -1,14 +1,18 @@
 ---
 title: "Methods to prioritise pop-up active transport infrastructure"
 # : overview and findings from 10 UK cities"
-author: "Robin Lovelace"
-output: bookdown::github_document2
+# author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths"
+# output: bookdown::github_document2
+# output: bookdown::html_document2
+output:
+  bookdown::pdf_document2:
+    keep_tex: true
 # bibliography: references.bib
 bibliography: ref.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE, out.width = "100%")
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
@@ -16,8 +20,27 @@ citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "ref.bib")
 wordcountaddin::word_count("article.Rmd")
 knitr::purl("article.Rmd")
 file.copy("article.R", "code/article-methods-1.R")
+pagedown::chrome_print("article.html")
+browseURL("article.pdf")
+zf = list.files(pattern = "tex|png", full.names = TRUE)
+zfl = list.files("article_files/figure-latex/", full.names = TRUE)
+fz = c(zf, zfl)
+msgf = paste(fz, collapse = " ")
+msgf = gsub(pattern = "\\./", replacement = "", msgf)
+msg = paste("tar -cvf article.tar ", msgf)
+system(msg)
 ```
 
+# Abstract
+
+<!-- This paper reports on methods developed to support the identification of pop-up active transport infrastructure. -->
+In the context of reduced public transport capacity in the wake of the COVID-19 pandemic, governments are scrambling to enable walking and cycling.
+A range of pop-up options exist.
+The focus of this article is lane reallocation, which represents a 'quick win' for cities with roads that have a spare lane during reduced motor traffic conditions.
+We found that the methods could condense the complexity of cities down to the most promising roads, which match intuition.
+The evidence resulting from the methods, and future refinements, could support more evidence-based use of resources that have been made available to support implementation of pop-up schemes.
+
+<!-- A range of pop-up options exists, including re-allocating road space, preventing through motor traffic and complete pedestrianisation of roads. -->
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
 <!-- Currently the intro is 350 words, just about OK! -->
@@ -40,8 +63,7 @@ Many options are available to ensure that citizens can benefit from outdoor acti
 Installation of 'pop-up' active transport infrastructure has been endorsed and implemented in many places [@laker_world_2020].
 The Scottish government, for example, has provided £10 million "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
 On 9^th^ May 2020, the UK government announced a £250 million package for pop-up active transport infrastructure [@reid_government_2020].
-Significantly, alongside funding, this includes announcement of fast-tracking of long-awaited guidance, an updated Cycling and Walking Investment Strategy and legal changes to protect vulnerable road users [@govuk_transport-secretary_2020]. These are objectives that the cycling advocacy community has campaigned for over the last decade, with little progress.
-There is active discussion amongst cycling advocacy communities about where on-street improvements should be made.
+Significantly, alongside this funding comes updated [guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19) on pop-up infrastructure and safety [@govuk_transport-secretary_2020].
 Evidence is needed to ensure that such investment is spent effectively and where it is most needed.
 
 Most pop-up active transport infrastructure can be classified into three broad categories:
@@ -63,7 +85,9 @@ Because of the recent, localised and often ad-hoc nature of pop-up infrastructur
 Our broad hypothesis is that digital tools based on open data, and crowdsourcing such as the interactive map used to support community-level responses to COVID-19 in Salford [@salfordcitycouncil_salford_2020], illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
 
 ```{r commonplace, fig.cap="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure."}
-knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
+# knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
+# download.file("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png", "saferstreets.png")
+knitr::include_graphics("saferstreets.png")
 ```
 
  <!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the 'pop-up' infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
@@ -136,7 +160,8 @@ r_cleaned = r_original %>%
     maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
     maxspeed > 30 ~ "40+ mph",
   )) %>% 
-  mutate(cycling_potential = as.numeric(pctgov)) 
+  mutate(cycling_potential = as.numeric(pctgov)) %>% 
+  select(name, ref, highway, maxspeed, pctgov, width, Existing, length, highway_type, cycling_potential, rtid, idGlobal)
 # table(r_cleaned$maxspeed)
 rj = inner_join(r_cleaned, rtid) %>% 
   mutate(lanes_f = abs(lanespsvforward) + abs(lanesforward)) %>% 
@@ -173,7 +198,10 @@ Table 1: Summary of the road segment dataset for Leeds
 #   st_drop_geometry() %>%
 #   # select(name, highway_type, maxspeed, cycling_potential, width) %>%
 #   table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = ., )
-knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png")
+# ut = "https://user-images.githubusercontent.com/1825120/81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png"
+# knitr::include_graphics(ut)
+# system(paste("wget ", ut))
+knitr::include_graphics("81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png")
 ```
 
 ```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
@@ -300,8 +328,8 @@ r_pct_top = r_pct_grouped %>%
   filter(group_length > min_grouped_length) %>% 
   filter(cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
-  mutate(kkm_cycled = round(cycling_potential * group_length / 1000))
-# head(r_pct_top$kkm_cycled)
+  mutate(km_day = round(cycling_potential * group_length / 1000))
+# head(r_pct_top$km_day)
 
 r_pct_lanes_overlap = r_pct_lanes[r_pct_top, , op = sf::st_covered_by] # works
 # r_pct_no_overlap = st_difference(r_pct_lanes, r_pct_top) # slow
@@ -310,10 +338,10 @@ r_pct_no_overlap = r_pct_lanes %>%
 
 r_pct_top_n = r_pct_top %>% 
   group_by(name) %>% 
-  slice(which.max(kkm_cycled)) %>% 
+  slice(which.max(km_day)) %>% 
   filter(name != "") %>% 
   ungroup() %>% 
-  top_n(10, wt = kkm_cycled) 
+  top_n(10, wt = km_day) 
 # aim: make the labels go on the longest sections
 # %>% 
 #   st_cast("LINESTRING") %>% 
@@ -332,30 +360,32 @@ r_pct_top_n = r_pct_top %>%
 
 # FINDINGS
 
-The results of the method are summarised in Figure \@ref(fig:res) and Table 2.
-We have found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
-Reducing the 85,000 road segments for Leeds down to candidate segments with more than 1 lane near key destinations that can be visualised in an interactive map has great potential to support policy-makers, especially when decisions need to be made fast.
+The results of the method are summarised in Figure \@ref(fig:res) (see [here](https://rpubs.com/anon-user/612999) for interactive version) and Table 2.
+We found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
+Reducing the 85,000 road segments for Leeds down to a handful of candidate segments with more than 1 lane near key destinations has great potential to support policy-makers, especially when decisions need to be made fast.
 
 ```{r res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."}
 tmap_mode("view")
-tm_shape(r_pct_no_overlap) + tm_lines(col = "lightblue", lwd = 4, alpha = 0.6) +
-  tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 4, alpha = 0.6) +
-  tm_shape(r_pct_top_n) + tm_text("name") +
-  tm_shape(h_leeds) + tm_dots(size = 0.1)
+# tm_shape(r_pct_no_overlap) + tm_lines(col = "lightblue", lwd = 4, alpha = 0.6) +
+#   tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 4, alpha = 0.6) +
+#   tm_shape(r_pct_top_n) + tm_text("name") +
+#   tm_shape(h_leeds) + tm_dots(size = 0.1)
+knitr::include_graphics("figures/results-leeds.png")
 ```
 
 ```{r}
 res_table = r_pct_top_n %>% 
   sf::st_drop_geometry() %>% 
-  select(name, length = group_length, cycling_potential, kkm_cycled) %>% 
-  arrange(desc(kkm_cycled))
-knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
+  arrange(desc(km_day)) %>% 
+  select(Name = name, `Length (m)` = group_length, `Potential (Government Target)` = cycling_potential, `Km/day (length * potential)` = km_day) 
+knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up lane reallocation interventions. Roads with 'spare lanes' identified using methods presented in the paper are ranked by km cycled per day (length of section multiplied by potential) under the Government Target scenario, representing a doubling in commuter cycling levels compared with 2011 levels.", digits = 0)
 ```
 
 The approach is not without limitations.
 Its reliance on data rather than community engagement represents a rather top-down approach to transport planning.
 To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure 1.
-Further work could also extend the method in various ways, for example by refining estimates of cycling potential based on new parameters such as proximity to key destinations.
+Further work could also extend the method in various ways, for example by refining estimates of cycling potential based on new parameters such as proximity to key destinations and estimates of road width.
+We welcome feedback on the results and methods [link to code].
 
 A major advantage of the approach is that it is scalable.
 It would be feasible to run the method for every city in the UK (and indeed beyond) for which there is data, given sufficient computer and developer resource.

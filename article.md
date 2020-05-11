@@ -1,29 +1,30 @@
 Methods to prioritise pop-up active transport infrastructure
 ================
-Robin Lovelace
+Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
 <!-- Currently the intro is 350 words, just about OK! -->
 
-<!-- The Covid-19 pandemic has transformed all sectors of the economy, not least transport. -->
+<!-- The COVID-19 pandemic has transformed all sectors of the economy, not least transport. -->
 
 <!-- [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020]. -->
 
-Much attention has focused on the impacts of Covid-19 on long distance
+Much attention has focused on the impacts of COVID-19 on long-distance
 travel patterns (e.g. Iacus et al. 2020; Jittrapirom and Tanaksaranond
 2020). Yet short distance travel patterns have also changed, with a
-notable uptick in active travel, particularly cycling, in some areas
+notable increase in active travel, particularly cycling, in some areas
 (Harrabin 2020). The two main explanations for this are 1) the need
 increased need for exercise close to home during lockdowns for mental
-and physical health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020);
-and 2) reduced public transport options and use (e.g. Tian et al. 2020).
-The second reason is particularly important given that many ‘key
-workers’ are low paid, with limited access to private automobiles.
+and physical health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020),
+and 2) a reduction in both public transport options and use (e.g. Tian
+et al. 2020). The second reason is particularly important given that
+many ‘key workers’ are low paid, with limited access to private
+automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
 
-<!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from Covid-19 [@docherty_features_2020]. -->
+<!-- From a physical activity perspective this change is welcome: obesity is a powerful predictor of all-cause mortality, including from COVID-19 [@docherty_features_2020]. -->
 
 <!-- From a physical distancing perspective, increased levels of walking and cycling, -->
 
@@ -33,7 +34,7 @@ workers’ are low paid, with limited access to private automobiles.
 
 Local and national governments are working out how best to respond. Many
 options are available to ensure that citizens can benefit from outdoor
-activity while minimizing health risks, ranging from the hand sanitiser
+activity while minimising health risks, ranging from the hand sanitiser
 provision to the creation of extra active transport space (Freeman and
 Eykelbosh 2020). Installation of ‘pop-up’ active transport
 infrastructure has been endorsed and implemented in many places (Laker
@@ -42,9 +43,16 @@ infrastructure has been endorsed and implemented in many places (Laker
 enable this shift and make it safer for people who choose to walk, cycle
 or wheel for essential trips or for exercise” (Transport Scotland 2020).
 On 9<sup>th</sup> May 2020, the UK government announced a £250 million
-package for pop-up active transport infrastructure (Reid 2020). Evidence
-is needed to ensure that such investment is spent effectively and were
-it is most needed.
+package for pop-up active transport infrastructure (Reid 2020).
+Significantly, alongside funding, this includes announcement of
+fast-tracking of long-awaited guidance, an updated Cycling and Walking
+Investment Strategy and legal changes to protect vulnerable road users
+(Government 2020). These are objectives that the cycling advocacy
+community has campaigned for over the last decade, with little progress.
+There is active discussion amongst cycling advocacy communities about
+where on-street improvements should be made. Evidence is needed to
+ensure that such investment is spent effectively and where it is most
+needed.
 
 Most pop-up active transport infrastructure can be classified into three
 broad categories:
@@ -57,7 +65,7 @@ broad categories:
     Streets’ scheme (Litman 2020)
 
 3.  the reallocation of one or more lanes on wide roads to create pop-up
-    cycleways (Orsman 2020).
+    cycleways and pavements (Orsman 2020).
     <!-- interventions to prevent through traffic, with interventions as part of Salford's ['Liveable Streets' project](https://salfordliveablestreets.commonplace.is/) being a prominent example  -->
     <!-- (see [here](https://twitter.com/CatrionaSwanson/status/1258322956595453952) for a photo illustrating this type of intervention) -->
 
@@ -71,50 +79,50 @@ question is:
 Because of the recent, localised and often ad-hoc nature of pop-up
 infrastructure, it is difficult to make, let alone test, hypotheses
 related to the research question. Our broad hypothesis is that digital
-tools based on open data, such as the interactive map used to support
-community-level responses to Covid-19 in Salford (Salford City Council
-2020), illustrated in Figure 1, can lead to more effective use of
-resources allocated to pop-up interventions.
+tools based on open data, and crowdsourcing such as the interactive map
+used to support community-level responses to COVID-19 in Salford
+(Salford City Council 2020), illustrated in Figure 1, can lead to more
+effective use of resources allocated to pop-up interventions.
 
 <div class="figure">
 
-<img src="https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the Covid-19 pandemic, including the prioritisation of pop-up active transport infrastructure."  />
+<img src="https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure."  />
 
 <p class="caption">
 
 Figure 1: Screenshot from the website
 salfordliveablestreets.commonplace.is to support local responses to the
-Covid-19 pandemic, including the prioritisation of pop-up active
+COVID-19 pandemic, including the prioritisation of pop-up active
 transport infrastructure.
 
 </p>
 
 </div>
 
-<!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the ‘pop-up’ infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
+<!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the 'pop-up' infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
 
 # METHODS AND DATA
 
-Three main datasets were used for the project:
+Three key datasets were used for the project:
 
   - Estimates of cycling potential to work at the street segment level
     from the UK Department for Transport funded Propensity to Cycle Tool
     (PCT) project (Goodman et al. 2019; Lovelace et al. 2017; Lovelace
     and Hama 2019)
-  - Data derived from OpenStreetMap, with a number of new variables
-    added to support cycling infrastructure planning (see www.cyipt.bike
-    for an overivew)
-  - A list hospital locations from the UK’s National Health Service
+  - Data derived from OpenStreetMap, with several new variables added to
+    support cycling infrastructure planning (see www.cyipt.bike for an
+    overview)
+  - A list of hospital locations from the UK’s National Health Service
     website
     [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
     <!-- - Data on the location of road traffic casualties from -->
 
-Datasets from the PCT and CyIPT project were merged, resulting in key
-variables summarised in Table 1. A map showing the spatial distribution
-of hospitals in the case study city of Leeds is shown in Figure
-<a href="#fig:hospitals">2</a>.
+Datasets from the PCT and CyIPT project were merged, resulting in
+crucial variables summarised in Table 1. A map showing the spatial
+distribution of hospitals in the case study city of Leeds is shown in
+Figure <a href="#fig:hospitals">2</a>.
 
-Table 1: Summary of the main road segment dataset for Leeds
+Table 1: Summary of the road segment dataset for Leeds
 
 ![](https://user-images.githubusercontent.com/1825120/81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png)<!-- -->
 
@@ -141,12 +149,13 @@ location of hospitals in Leeds
 
 We set a modifiable parameter `city_centre_buffer_radius` with an
 initial value of 8 km (5 miles) to geographically subset potential
-routes. Figure <a href="#fig:gsub">3</a> shows the result of subsetting
-based on physical distance from the center vs plotting all possible
-transport network segments within the city boundaries. To ensure roads
-that could serve key destinations were included, the parameter
-`key_destination_buffer_radius` (initially set to 5 km) was used.
-<!-- could say more... -->
+routes. 5 miles represents a distance that most people have the physical
+ability to cycle. Figure <a href="#fig:gsub">3</a> shows the result of
+subsetting based on physical distance from the centre vs plotting all
+possible transport network segments within the city boundaries. To
+ensure roads that could serve key destinations were included, the
+parameter `key_destination_buffer_radius` (initially set to 5 km) was
+used. <!-- could say more... -->
 
 <div class="figure">
 
@@ -166,11 +175,11 @@ km, 8 km and 10 km are shown for reference (note that some roads within
 
 ## Attribute filtering and grouping
 
-At a time of reduced travel, fewer lanes dedicated for motor traffic are
+At a time of reduced travel, fewer lanes dedicated to motor traffic are
 needed. Based on this observation, we defined roads with a ‘spare lane’
 as those on which there is more than one lane in either direction. This
 definition assumes no reduction in mobility for motor vehicles (making
-twoway lanes oneway is another option not explored in this analysis).
+two-way lanes one-way is another option not explored in this analysis).
 
 To identify road sections on which there is a spare lane we developed a
 simple algorithm that takes the OSM variable
@@ -178,12 +187,15 @@ simple algorithm that takes the OSM variable
 present and, if not, derives the number from the highway type and
 presence/absence of bus lanes. All segments defined as having a spare
 lane using this method is shown in Figure <a href="#fig:levels">4</a>
-(left). The result of filtering by distance and cycling potential before
-and after grouping using graph membership of touching roads is shown in
+(left). In future, this methodology could be enhanced to take into
+account the effect of lane widths, which increase the effective
+available space, and the presence of vehicle parking bays, which reduce
+it. The result of filtering by distance and cycling potential before and
+after grouping using graph membership of touching roads is shown in
 <a href="#fig:levels">4</a> (middle and right, respectively). Grouping
 linked roads before filtering results in a more cohesive network.
 
-<!-- Note this could be a function in an R packge.. -->
+<!-- Note this could be a function in an R package.. -->
 
 <!-- see https://github.com/cyipt/cyipt/blob/82248b2f99e388fac314d34ec5aa49bb90a737a3/scripts/prep_data/clean_osm.R#L349 -->
 
@@ -211,13 +223,14 @@ long sections with spare lanes *and* high cycling potential
 # FINDINGS
 
 The results of the method are summarised in Figure
-<a href="#fig:res">5</a> and Table 2. We have found that analysis of
-open transport network data, alongside careful selection of parameters,
-can generate plausible results for the prioritisation of pop-up cycle
-infrastructure. Reducing the 85,000 road segments for Leeds down to
-candidate segments with more than 1 lane near key destinations that can
-be visualised in an interactive map can has great potential to support
-policy-makers, especially when decisions need to be made fast.
+<a href="#fig:res">5</a> (see [here](https://rpubs.com/anon-user/612999)
+for interactive version) and Table 2. We found that analysis of open
+transport network data, alongside careful selection of parameters, can
+generate plausible results for the prioritisation of pop-up cycle
+infrastructure. Reducing the 85,000 road segments for Leeds down to a
+handful of candidate segments with more than 1 lane near key
+destinations has great potential to support policy-makers, especially
+when decisions need to be made fast.
 
 <div class="figure">
 
@@ -233,39 +246,43 @@ blue). The top 10 road groups are labelled.
 
 </div>
 
-| name                  | length | cycling\_potential | kkm\_cycled |
-| :-------------------- | -----: | -----------------: | ----------: |
-| Otley Road            |   1766 |                758 |        1339 |
-| Scott Hall Road       |   8723 |                123 |        1073 |
-| Ring Road Low Wortley |   5177 |                151 |         782 |
-| Dewsbury Road         |   4073 |                175 |         713 |
-| Woodhouse Lane        |   2206 |                295 |         651 |
-| Kirkstall Road        |   1557 |                341 |         531 |
-| Ring Road Moortown    |   4152 |                123 |         511 |
-| York Road             |   1883 |                242 |         456 |
-| Harrogate Road        |   3254 |                123 |         400 |
-| Ingram Distributor    |   2771 |                137 |         380 |
+| Name                  | Length (m) | Potential (Government Target) | Km/day (length \* potential) |
+| :-------------------- | ---------: | ----------------------------: | ---------------------------: |
+| Otley Road            |       1766 |                           758 |                         1339 |
+| Scott Hall Road       |       8723 |                           123 |                         1073 |
+| Ring Road Low Wortley |       5177 |                           151 |                          782 |
+| Dewsbury Road         |       4073 |                           175 |                          713 |
+| Woodhouse Lane        |       2206 |                           295 |                          651 |
+| Kirkstall Road        |       1557 |                           341 |                          531 |
+| Ring Road Moortown    |       4152 |                           123 |                          511 |
+| York Road             |       1883 |                           242 |                          456 |
+| Harrogate Road        |       3254 |                           123 |                          400 |
+| Ingram Distributor    |       2771 |                           137 |                          380 |
 
 Table 1: The top 10 candidate roads for space reallocation for pop-up
-active transport infrastructure according to methods presented in this
-paper.
+lane reallocation interventions. Roads with ‘spare lanes’ identified
+using methods presented in the paper are ranked by km cycled per day
+(length of section multiplied by potential) under the Government Target
+scenario, representing a doubling in commuter cycling levels compared
+with 2011 levels.
 
 The approach is not without limitations. Its reliance on data rather
 than community engagement represents a rather top-down approach to
-transport planning. To overcome this issue future work could seek to
+transport planning. To overcome this issue, future work could seek to
 incorporate the results such as those presented above into a
 participatory map of the type shown in Figure 1. Further work could also
 extend the method in various ways, for example by refining estimates of
 cycling potential based on new parameters such as proximity to key
-destinations.
+destinations and estimates of road width. We welcome feedback on the
+results and methods \[link to code\].
 
 A major advantage of the approach is that it is scalable. It would be
-feasible to run the method for every city in the UK for which there is
-data, given sufficient computer and developer resource. Given the recent
-interest in and funding for pop-up cycleways, rolling-out the method
-quickly, while being agile to adapt the method and parameters for
-different cities, could help ensure that funding for pop-up
-infrastructure is spent in an evidence-based way.
+feasible to run the method for every city in the UK (and indeed beyond)
+for which there is data, given sufficient computer and developer
+resource. Given the recent interest in and funding for pop-up cycleways,
+rolling-out the method quickly, while being agile to adapt the method
+and parameters for different cities, could help ensure that funding for
+pop-up infrastructure is spent in an evidence-based way.
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 
@@ -301,7 +318,7 @@ infrastructure is spent in an evidence-based way.
 
 <!--     FINDINGS -->
 
-<!-- There shall be no introduction, “road-map paragraph,” literature review, conclusions, speculations, or  policy implications beyond what is included above. Focus on what you found, not why you found it. -->
+<!-- There shall be no introduction, "road-map paragraph," literature review, conclusions, speculations, or  policy implications beyond what is included above. Focus on what you found, not why you found it. -->
 
 <!-- Submissions -->
 
@@ -327,7 +344,7 @@ infrastructure is spent in an evidence-based way.
 
 <!-- Focus and Parsimony -->
 
-<!-- Papers should be focused and to the point, and not begin with trite observations like “Congestion is a problem the world over.” Usually you can delete your opening paragraph if it begins like that, and the reader is no worse off. As Strunk and White say: “Omit Needless Words”. The Abstract should not say the same thing as the Introduction. -->
+<!-- Papers should be focused and to the point, and not begin with trite observations like "Congestion is a problem the world over." Usually you can delete your opening paragraph if it begins like that, and the reader is no worse off. As Strunk and White say: "Omit Needless Words". The Abstract should not say the same thing as the Introduction. -->
 
 <!-- Transparency and Replicability -->
 
@@ -367,6 +384,14 @@ Nikolai Berkoff, Malcolm Morgan, Ali Abbas, and Robin Lovelace. 2019.
 Carbon Impacts: Application of the ‘Propensity to Cycle Tool’.” *Journal
 of Transport & Health* 12 (March): 263–78.
 <https://doi.org/10.1016/j.jth.2019.01.008>.
+
+</div>
+
+<div id="ref-govuk_transport-secretary_2020">
+
+Government, UK. 2020. “Transport Secretary’s Statement on Coronavirus
+(Covid-19): 9 May 2020.”
+https://www.gov.uk/government/speeches/transport-secretarys-statement-on-coronavirus-covid-19-9-may-2020.
 
 </div>
 
@@ -431,6 +456,7 @@ Transport and Land Use* 10 (1). <https://doi.org/10.5198/jtlu.2016.862>.
 <div id="ref-R-pct">
 
 Lovelace, Robin, and Layik Hama. 2019. *Pct: Propensity to Cycle Tool*.
+https://www.pct.bike/.
 
 </div>
 
