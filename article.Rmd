@@ -1,12 +1,12 @@
 ---
 title: "Methods to prioritise pop-up active transport infrastructure"
 # : overview and findings from 10 UK cities"
-# author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths"
-# output: bookdown::github_document2
+author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths"
+output: bookdown::github_document2
 # output: bookdown::html_document2
-output:
-  bookdown::pdf_document2:
-    keep_tex: true
+# output:
+#   bookdown::pdf_document2:
+#     keep_tex: true
 # bibliography: references.bib
 bibliography: ref.bib
 ---

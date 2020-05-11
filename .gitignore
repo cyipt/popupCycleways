@@ -10,3 +10,4 @@ tempCycleways/
 *.csv
 *._files/
 article_cache/
+*.tar

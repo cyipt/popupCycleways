@@ -2,6 +2,23 @@ Methods to prioritise pop-up active transport infrastructure
 ================
 Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths
 
+# Abstract
+
+<!-- This paper reports on methods developed to support the identification of pop-up active transport infrastructure. -->
+
+In the context of reduced public transport capacity in the wake of the
+COVID-19 pandemic, governments are scrambling to enable walking and
+cycling. A range of pop-up options exist. The focus of this article is
+lane reallocation, which represents a ‘quick win’ for cities with roads
+that have a spare lane during reduced motor traffic conditions. We found
+that the methods could condense the complexity of cities down to the
+most promising roads, which match intuition. The evidence resulting from
+the methods, and future refinements, could support more evidence-based
+use of resources that have been made available to support implementation
+of pop-up schemes.
+
+<!-- A range of pop-up options exists, including re-allocating road space, preventing through motor traffic and complete pedestrianisation of roads. -->
+
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
 <!-- Currently the intro is 350 words, just about OK! -->
@@ -44,15 +61,11 @@ enable this shift and make it safer for people who choose to walk, cycle
 or wheel for essential trips or for exercise” (Transport Scotland 2020).
 On 9<sup>th</sup> May 2020, the UK government announced a £250 million
 package for pop-up active transport infrastructure (Reid 2020).
-Significantly, alongside funding, this includes announcement of
-fast-tracking of long-awaited guidance, an updated Cycling and Walking
-Investment Strategy and legal changes to protect vulnerable road users
-(Government 2020). These are objectives that the cycling advocacy
-community has campaigned for over the last decade, with little progress.
-There is active discussion amongst cycling advocacy communities about
-where on-street improvements should be made. Evidence is needed to
-ensure that such investment is spent effectively and where it is most
-needed.
+Significantly, alongside this funding comes updated
+[guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19)
+on pop-up infrastructure and safety (Government 2020). Evidence is
+needed to ensure that such investment is spent effectively and where it
+is most needed.
 
 Most pop-up active transport infrastructure can be classified into three
 broad categories:
@@ -86,7 +99,7 @@ effective use of resources allocated to pop-up interventions.
 
 <div class="figure">
 
-<img src="https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure."  />
+<img src="saferstreets.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
 
 <p class="caption">
 
@@ -124,11 +137,11 @@ Figure <a href="#fig:hospitals">2</a>.
 
 Table 1: Summary of the road segment dataset for Leeds
 
-![](https://user-images.githubusercontent.com/1825120/81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png)<!-- -->
+<img src="81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png" width="100%" />
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/hospitals-1.png" alt="Overview map of input data, showing the main highway types and location of hospitals in Leeds"  />
+<img src="article_files/figure-gfm/hospitals-1.png" alt="Overview map of input data, showing the main highway types and location of hospitals in Leeds" width="100%" />
 
 <p class="caption">
 
@@ -159,7 +172,7 @@ used. <!-- could say more... -->
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to a central point (Leeds city city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)."  />
+<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to a central point (Leeds city city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)." width="100%" />
 
 <p class="caption">
 
@@ -205,7 +218,7 @@ linked roads before filtering results in a more cohesive network.
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/levels-1.png" alt="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"  />
+<img src="article_files/figure-gfm/levels-1.png" alt="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential" width="100%" />
 
 <p class="caption">
 
@@ -234,7 +247,7 @@ when decisions need to be made fast.
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/res-1.png" alt="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."  />
+<img src="figures/results-leeds.png" alt="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled." width="100%" />
 
 <p class="caption">
 
