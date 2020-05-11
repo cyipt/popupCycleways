@@ -1,14 +1,14 @@
 ---
-title: "Pop-up cycleways and pedestrian spaces: a peak into post Covid-19 transport futures"
+title: "Pop-up cycleways: a peak into post COVID-19 transport futures"
 ---
 
-Around the world, as nations prepare to emerge from months of Covid-19 induced lockdown, life cannot simply return to previous norms. The pandemic has transformed all sectors of the economy, not least transport. Long distance travel has been dramatically altered, as [demand plummets](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies go bust](https://arxiv.org/abs/2004.08460). Yet short distance travel patterns have also changed greatly. Forced to stay close to home, many people have started walking and cycling more. From a health and well-being perspective, this may be a more important shift, especially in the long term as lockdown measures are gradually eased.
+Around the world, as nations prepare to emerge from months of COVID-19 induced lockdown, life cannot simply return to previous norms. The pandemic has transformed all sectors of the economy, not least transport. Long distance travel has been dramatically altered, as [demand plummets](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies go bust](https://arxiv.org/abs/2004.08460). Yet short distance travel patterns have also changed greatly. Forced to stay close to home, many people have started walking and cycling more. From a health and well-being perspective, this may be a more important shift, especially in the long term as lockdown measures are gradually eased.
 
 Active travel is already [recommended by the World Health Organisation](https://who.canto.global/pdfviewer/viewer/viewer.html?share=share%2Calbum%2CU6GDM&column=document&id=q3v02qdsh114763ffe3apo4s2p&suffix=pdf) as a safe mode of transport, and in the coming weeks and months it will play a vital role in enabling the reopening of many countries. As travel increases, we must ensure that safe, socially distanced walking and cycling remains possible. Maintaining social distancing on public transport could severely reduce the capacity of rail and bus networks, and there is a risk that this may lead to a rapid rise in road traffic.  [ record bicycle sales ] suggest that many people have taken advantage of lockdown conditions to take up or return to cycling, but without careful management, increased traffic congestion could again deter many would-be cyclists from the streets. 
 
 Active travel has extensive [ social and environmental benefits ]. Physical activity is associated with XX health conditions….. mental health…..isolation...
 
-Evidence is beginning to emerge of [ potential links ] between air pollution and Covid-19 lethality, not least because many health conditions such as asthma and xxx are [ worsened by poor air quality ]. Indeed, it is estimated that global improvements in air quality in recent months have led to [ xx thousand fewer deaths ] from conditions such as these. This makes it all the more important to restrict any rise in road traffic and to encourage more beneficial means of travel.
+Evidence is beginning to emerge of [ potential links ] between air pollution and COVID-19 lethality, not least because many health conditions such as asthma and xxx are [ worsened by poor air quality ]. Indeed, it is estimated that global improvements in air quality in recent months have led to [ xx thousand fewer deaths ] from conditions such as these. This makes it all the more important to restrict any rise in road traffic and to encourage more beneficial means of travel.
 
 Local and national governments worldwide are still working out how best to respond to these challenges. On Saturday 9th May, British Transport Secretary Grant Shapps announced a £2 billion investment in measures to promote walking and cycling. This follows a £10 million commitment from the Scottish Government and action announced in Wales. Hundreds of kilometres of temporary infrastructure is being put in place in dozens of cities worldwide, from [Milan] to [Martin Luther King Jr Drive in Philadelphia](https://www.theguardian.com/world/2020/apr/11/world-cities-turn-their-streets-over-to-walkers-and-cyclists ""), [Auckland](https://www.roadtraffic-technology.com/news/nz-govt-extra-wide-footpaths/) to [Mexico City](https://bicitekas.org/sites/default/files/public/manuales/propuesta_ciclovias_temporales_cdmxvfinal.pdf). Never has there been such a need for affordable, healthy and socially distanced transport that does not create the fumes that [emerging evidence] links to coronavirus susceptibility. 
 
@@ -36,7 +36,7 @@ Maps (see below) show the recommendations for where to introduce pop-up cycleway
 
 <!-- # Story  -->
 
-<!-- The Covid-19 pandemic has transformed all sectors of the economy. -->
+<!-- The COVID-19 pandemic has transformed all sectors of the economy. -->
 <!-- Transport patterns have been dramatically altered, with much discussion of plummeting demand for long distance travel. -->
 <!-- Yet short-distance travel patterns have also changed greatly and, from a health and well-being perspective, this may be a more important shift. -->
 <!-- With temporary infrastructure being put in place in dozens of cities worldwide, from [Park Lane in London](https://www.forbes.com/sites/carltonreid/2020/05/06/pop-up-cycleway-for-park-lane-as-tenfold-increase-in-cycling-predicted-for-london/#48aad0705b1e) to [Martin Luther King Jr Drive in Philadelphia](https://www.theguardian.com/world/2020/apr/11/world-cities-turn-their-streets-over-to-walkers-and-cyclists), [Auckland](https://www.roadtraffic-technology.com/news/nz-govt-extra-wide-footpaths/) to [Mexico City](https://bicitekas.org/sites/default/files/public/manuales/propuesta_ciclovias_temporales_cdmxvfinal.pdf), never has there been such a need for affordable, healthy and socially isolated transport that does not create the fumes that emerging evidence links to coronavirus susceptibility. -->
@@ -51,10 +51,10 @@ Maps (see below) show the recommendations for where to introduce pop-up cycleway
 
 <!-- (why is this story interesting/relevant? Particularly to general audience, why should they care?)  --> 
 <!-- Politicians of all stripes recognise the importance of acting now to prevent a surge in car use and resulting air pollution when the lockdown is gradually released. -->
-<!-- Sadiq Kahn has advocated re-allocating road space for walking and cycling, and Boris Johnson has [talked](https://twitter.com/SomethingELLIS/status/1258031387334053888) of a post Covid-19 "new golden age for cycling". -->
+<!-- Sadiq Kahn has advocated re-allocating road space for walking and cycling, and Boris Johnson has [talked](https://twitter.com/SomethingELLIS/status/1258031387334053888) of a post COVID-19 "new golden age for cycling". -->
 <!-- Without evidence there is a risk that these words are not supported by effective and long-term interventions. -->
 <!-- Our research into prioritising the right kind of cycling infrastructure where it is most needed can ensure that decisions made now are of maximum benefit for the coming months when physical distancing will need to continue. -->
-<!-- Polls showing people do not want to 'return to normal' also suggest that the Covid-19 crisis represents an historic opportunity to readjust transport cities in favour of health. -->
+<!-- Polls showing people do not want to 'return to normal' also suggest that the COVID-19 crisis represents an historic opportunity to readjust transport cities in favour of health. -->
 <!-- If pop-up cycleways go where there is *long term need* there is a greater chance that people will demand they become permanent, as happened with the experimental cycleway in Torrington Place in London, where a 2 way road for motor vehicles has been converted into a thriving 2 way cycleway, enabling social distancing and zero emissions transport for keyworkers in central London. -->
 
 <!-- # Key points -->
@@ -67,7 +67,7 @@ Maps (see below) show the recommendations for where to introduce pop-up cycleway
 <!-- CyclingUK are putting out a press release as an exclusive to national media organisations. -->
 <!-- This article will provide a more detailed view to go out the following day while interest in the topic is at a peak. -->
 
-<!-- Results for Manchester shown below, which highlights Priness Street, one of the roads where [space for active travel will be increased](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/part-deansgate-close-cars-city-18178175) as part of the post Covid-19 recovery package in Greater Manchester. -->
+<!-- Results for Manchester shown below, which highlights Priness Street, one of the roads where [space for active travel will be increased](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/part-deansgate-close-cars-city-18178175) as part of the post COVID-19 recovery package in Greater Manchester. -->
 
 <!-- ![](https://raw.githubusercontent.com/cyipt/tempCycleways/master/README_files/figure-gfm/manchester-1.png) -->
 

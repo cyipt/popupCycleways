@@ -2,8 +2,13 @@
 library(sf)
 library(tidyverse)
 library(tmap)
-
-if(!exists("region_name")) region_name = "Cambridge"
+s = c(
+  "Esri.WorldGrayCanvas",
+  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+)
+if(!exists("region_name"))
+  region_name = "Leeds"
 
 r_all = readRDS("rsf.Rds")
 rtid = readr::read_csv("rtid.csv")
@@ -11,13 +16,13 @@ hsf = readRDS("hsf.Rds")
 regions = readRDS("~/cyipt/cyipt-bigdata/boundaries/local_authority/local_authority.Rds")
 region = regions %>% filter(lad16nmw == region_name)
 r_original = r_all %>% filter(region == region_name)
-r_original = r_original[st_transform(region, st_crs(r_original)), ]
+# r_original = r_original[st_transform(region, st_crs(r_original)), ]
 
 ## ----parameters------------------------------------------------------------------------------
 # regexclude = "welling"
 min_cycling_potential = 0
 min_grouped_cycling_potential = 100
-min_grouped_length = 100
+min_grouped_length = 500
 city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
@@ -174,10 +179,11 @@ r_pct_top_n = r_pct_top %>%
 
 ## ----res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."----
 tmap_mode("view")
-tm_shape(r_pct_no_overlap) + tm_lines(col = "lightblue", lwd = 4, alpha = 0.6) +
-  tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 4, alpha = 0.6) +
+tm_shape(r_pct_no_overlap) + tm_lines(col = "turquoise", lwd = 6, alpha = 0.6) +
+  tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 6, alpha = 0.6) +
   tm_shape(r_pct_top_n) + tm_text("name") +
-  tm_shape(h_leeds) + tm_dots(size = 0.1)
+  tm_shape(h_leeds) + tm_dots(size = 0.1) +
+  tm_basemap(server = s)
 
 
 ## --------------------------------------------------------------------------------------------
