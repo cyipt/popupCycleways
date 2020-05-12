@@ -229,7 +229,7 @@ Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance
 To ensure roads that could serve key destinations were included, the parameter `key_destination_buffer_radius` (initially set to 5 km) was used.
 <!-- could say more... -->
 
-```{r gsub, fig.cap="Illustration of geographic subsetting based on distance to a central point (Leeds city city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)."}
+```{r gsub, fig.cap="Illustration of geographic subsetting based on distance to a central point (Leeds city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)."}
 # nrow(r_central)
 # nrow(rj)
 square = stplanr::geo_bb(shp = city_centre_buffer)
