@@ -11,6 +11,7 @@ if(!exists("region_name"))
   region_name = "Leeds"
 
 r_all = readRDS("rsf.Rds")
+region_names = unique(rsf$region)
 rtid = readr::read_csv("rtid.csv")
 hsf = readRDS("hsf.Rds")
 regions = readRDS("~/cyipt/cyipt-bigdata/boundaries/local_authority/local_authority.Rds")
@@ -27,6 +28,20 @@ city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
 key_destination_buffer_radius = 5000
+
+parameters_df = data.frame(
+  name = region_name,
+  min_cycling_potential = 0,
+  min_grouped_cycling_potential = 500,
+  min_grouped_length = 500,
+  city_centre_buffer_radius = 8000,
+  key_destination_buffer_radius = 5000
+)
+
+parameters_df = parameters_df[rep(1, length(region_names)), ]
+parameters_df$name = region_names
+write_csv(parameters_df, "input-data/parameters.csv")
+
 city_centre = tmaptools::geocode_OSM(region_name, as.sf = TRUE)
 city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)

@@ -6,6 +6,7 @@
 *.geojson
 *README.html
 tempCycleways/
+popupCycleways/
 *.html
 *.csv
 *._files/
