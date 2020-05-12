@@ -1,12 +1,12 @@
 ---
 title: "Methods to prioritise pop-up active transport infrastructure"
 # : overview and findings from 10 UK cities"
-author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths"
-output: bookdown::github_document2
+author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith"
+# output: bookdown::github_document2
 # output: bookdown::html_document2
-# output:
-#   bookdown::pdf_document2:
-#     keep_tex: true
+output:
+  bookdown::pdf_document2:
+    keep_tex: true
 # bibliography: references.bib
 bibliography: ref.bib
 ---
@@ -183,7 +183,7 @@ r_main_region = rj %>%
 
 Three key datasets were used for the project:
 
-- Estimates of cycling potential to work at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017; @R-pct]
+- Estimates of cycling potential to work at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017]
 - Data derived from OpenStreetMap, with several new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overview)
 - A list of hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
 <!-- - Data on the location of road traffic casualties from -->
