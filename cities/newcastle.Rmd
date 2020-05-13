@@ -1,30 +1,10 @@
 
 # Newcastle
 
-```{r newcastle}
-roads = rsf %>% filter(region == "Newcastle", pctgov > 100)
-region_centre = tmaptools::geocode_OSM("Newcastle", as.sf = TRUE)
-region_buff = stplanr::geo_buffer(region_centre, dist = 9000)
-region = las_top %>% filter(name == "Newcastle")
-region = st_intersection(region_buff, region)
-roads = st_intersection(roads, region)
-
-roads_top = roads %>%
-  filter(length > 250) %>%
-  filter(!name == "") %>%
-  filter(!name == "Redheugh Bridge")  %>%
-  filter(!name == "Derwenthaugh Road", !name == "") %>%
-  filter(!name == "East Denton Interchange", !name == "") %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
-  tm_basemap(server = s)
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
+```{r Newcastle}
+setwd("..")
+region_name = "Newcastle"
+source("code/build.R")
+m
+knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods developed for the project.", digits = 0)
 ```

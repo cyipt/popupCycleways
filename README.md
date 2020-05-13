@@ -171,20 +171,23 @@ for the interactive version of the map above.
 
 # Birmingham
 
-![](README_files/figure-gfm/birmingham-1.png)<!-- -->
+![](README_files/figure-gfm/Birmingham-1.png)<!-- -->
 
-| name                     | ref   | road\_type | cycling\_potential | length\_m |
-| :----------------------- | :---- | :--------- | -----------------: | --------: |
-| Pershore Road            | A441  | primary    |                618 |      3672 |
-| Hagley Road              | A456  | trunk      |                504 |      4229 |
-| Bristol Street           | A38   | trunk      |                474 |      1185 |
-| Suffolk Street Queensway | A38   | trunk      |                410 |      1595 |
-| Queensway                | A38   | trunk      |                332 |      2138 |
-| Belgrave Middleway       | A4540 | trunk      |                306 |      2225 |
-| High Street              | A34   | trunk      |                301 |      1068 |
-| Chad Road                | B4124 | secondary  |                284 |       322 |
-| Gravelly Hill North      | A5127 | primary    |                261 |       592 |
-| Aldridge Road            | A453  | primary    |                260 |      2674 |
+| name                | length | cycling\_potential | km\_cycled |
+| :------------------ | -----: | -----------------: | ---------: |
+| Walsall Road        |   7338 |                135 |        991 |
+| Small Heath Highway |   6047 |                162 |        980 |
+| Stratford Road      |   7080 |                130 |        920 |
+| Pershore Road       |   1040 |                784 |        815 |
+| Hagley Road West    |   5013 |                162 |        812 |
+| Kingstanding Road   |   5894 |                135 |        796 |
+| Coventry Road       |   4753 |                162 |        770 |
+| Queslett Road       |   5429 |                135 |        733 |
+| Hagley Road         |   4225 |                162 |        684 |
+| Wolverhampton Road  |   3795 |                162 |        615 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See
 [birmingham.html](https://cyipt.github.io/popupCycleways/birmingham.html)
@@ -192,20 +195,23 @@ for the interactive version of the map above.
 
 # Manchester
 
-![](README_files/figure-gfm/manchester-1.png)<!-- -->
+![](README_files/figure-gfm/Manchester-1.png)<!-- -->
 
-| name                    | ref   | road\_type | cycling\_potential | length\_m |
-| :---------------------- | :---- | :--------- | -----------------: | --------: |
-| Anson Road              | A34   | trunk      |                773 |       729 |
-| Upper Brook Street      | A34   | trunk      |                637 |      1727 |
-| Birchfields Road        | A34   | trunk      |                631 |      1424 |
-| Princess Street         | A34   | primary    |                553 |       446 |
-| Stockport Road          | A6    | trunk      |                522 |      4991 |
-| Great Ducie Street      | A56   | trunk      |                516 |       824 |
-| Devonshire Street North | A665  | trunk      |                474 |       373 |
-| Edge Lane               | A5145 | trunk      |                471 |      1814 |
-| Regent Road             | A57   | trunk      |                451 |      2701 |
-| Princess Road           | A5103 | trunk      |                438 |     12230 |
+| name                  | length | cycling\_potential | km\_cycled |
+| :-------------------- | -----: | -----------------: | ---------: |
+| Kingsway              |  11095 |                256 |       2840 |
+| Princess Road         |   7319 |                370 |       2708 |
+| Chester Road          |   5405 |                374 |       2021 |
+| Oldham Road           |   6853 |                249 |       1706 |
+| Manchester Road       |   2768 |                510 |       1412 |
+| Wellington Road North |   3246 |                423 |       1373 |
+| Bury New Road         |   2592 |                510 |       1322 |
+| Broadway              |   5802 |                192 |       1114 |
+| Stockport Road        |   2048 |                496 |       1016 |
+| Trinity Way           |   4227 |                229 |        968 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See
 [manchester.html](https://cyipt.github.io/popupCycleways/manchester.html)
@@ -257,40 +263,43 @@ for the interactive version of the map above.
 
 # Bristol
 
-![](README_files/figure-gfm/bristol-1.png)<!-- -->
+![](README_files/figure-gfm/Bristol-1.png)<!-- -->
 
-| name              | ref   | road\_type   | cycling\_potential | length\_m |
-| :---------------- | :---- | :----------- | -----------------: | --------: |
-| Temple Way        | A4044 | trunk        |                432 |       708 |
-| Bond Street       | A4044 | trunk        |                268 |       442 |
-| Bond Street South | A4044 | trunk        |                246 |      1039 |
-| Bedminster Parade | A38   | trunk        |                234 |       401 |
-| Bath Road         | A4    | trunk        |                191 |      6227 |
-| Coronation Road   | A370  | trunk        |                179 |      2033 |
-| Clarence Road     | A370  | trunk        |                124 |       666 |
-| Malago Road       | A38   | trunk        |                123 |       478 |
-| Hotwell Road      | A4    | primary      |                117 |       533 |
-| East Street       |       | unclassified |                111 |       392 |
+| name                  | length | cycling\_potential | km\_cycled |
+| :-------------------- | -----: | -----------------: | ---------: |
+| Gloucester Road       |   2269 |                340 |        771 |
+| Fishponds Road        |   1020 |                745 |        760 |
+| Gloucester Road North |   1389 |                340 |        472 |
+| Keynsham By-Pass      |   2719 |                142 |        386 |
+| Wells Road            |   2019 |                163 |        329 |
+| Station Road          |   1724 |                164 |        283 |
+| Bath Road             |   1400 |                200 |        280 |
+| Bond Street South     |    722 |                359 |        259 |
+| Westbury Road         |    894 |                244 |        218 |
+| Temple Way            |    603 |                359 |        216 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See [bristol.html](https://cyipt.github.io/popupCycleways/bristol.html)
 for the interactive version of the map above.
 
 # Leicester
 
-![](README_files/figure-gfm/leicester-1.png)<!-- -->
+![](README_files/figure-gfm/Leicester-1.png)<!-- -->
 
-| name            | ref   | road\_type   | cycling\_potential | length\_m |
-| :-------------- | :---- | :----------- | -----------------: | --------: |
-| Infirmary Road  | A594  | primary      |                361 |       282 |
-| Charles Street  |       | unclassified |                326 |       527 |
-| London Road     | A6    | primary      |                321 |       437 |
-| Newarke Street  | A594  | primary      |                220 |       217 |
-| Hinckley Road   | A47   | primary      |                211 |      1506 |
-| Abbey Park Road |       | tertiary     |                184 |       645 |
-| St Johns        | B4114 | secondary    |                175 |      2403 |
-| Melton Road     | A607  | primary      |                168 |      1571 |
-| Belgrave Gate   |       | tertiary     |                160 |       569 |
-| Belgrave Gate   | A607  | primary      |                156 |       822 |
+| name            | length | cycling\_potential | km\_cycled |
+| :-------------- | -----: | -----------------: | ---------: |
+| Soar Valley Way |   3590 |                109 |        391 |
+| London Road     |   1392 |                195 |        271 |
+| St Johns        |   1393 |                109 |        152 |
+| Hinckley Road   |    509 |                295 |        150 |
+| Abbey Lane      |    769 |                149 |        115 |
+| Stoughton Road  |    508 |                195 |         99 |
+| Groby Road      |    542 |                124 |         67 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See
 [leicester.html](https://cyipt.github.io/popupCycleways/leicester.html)
@@ -298,20 +307,23 @@ for the interactive version of the map above.
 
 # Sheffield
 
-![](README_files/figure-gfm/sheffield-1.png)<!-- -->
+![](README_files/figure-gfm/Sheffield-1.png)<!-- -->
 
-| name              | ref   | road\_type | cycling\_potential | length\_m |
-| :---------------- | :---- | :--------- | -----------------: | --------: |
-| London Road       | A61   | trunk      |                466 |       530 |
-| Ecclesall Road    | A625  | primary    |                416 |      1495 |
-| Shoreham Street   | A61   | trunk      |                348 |       426 |
-| Moore Street      | A61   | trunk      |                280 |       208 |
-| Arundel Gate      |       | tertiary   |                262 |       693 |
-| Chesterfield Road | A61   | trunk      |                228 |      2705 |
-| Greenland Road    | A6102 | trunk      |                213 |      2301 |
-| Meadowhead        | A61   | trunk      |                191 |      1792 |
-| Park Square       | A61   | trunk      |                186 |       516 |
-| Abbeydale Road    | A621  | primary    |                185 |      2044 |
+| name                    | length | cycling\_potential | km\_cycled |
+| :---------------------- | -----: | -----------------: | ---------: |
+| Bochum Parkway          |   4466 |                161 |        719 |
+| Penistone Road          |   2903 |                230 |        668 |
+| Chesterfield Road       |   2564 |                232 |        595 |
+| Ecclesall Road          |   1494 |                379 |        566 |
+| Norton Avenue           |   2709 |                161 |        436 |
+| Prince of Wales Road    |   2409 |                178 |        429 |
+| Greenland Road          |   2231 |                178 |        397 |
+| Meadowhead              |   1565 |                232 |        363 |
+| Chesterfield Road South |   2179 |                161 |        351 |
+| Halifax Road            |   2426 |                137 |        332 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See
 [sheffield.html](https://cyipt.github.io/popupCycleways/sheffield.html)
@@ -319,20 +331,23 @@ for the interactive version of the map above.
 
 # Newcastle
 
-![](README_files/figure-gfm/newcastle-1.png)<!-- -->
+![](README_files/figure-gfm/Newcastle-1.png)<!-- -->
 
-| name                | ref   | road\_type | cycling\_potential | length\_m |
-| :------------------ | :---- | :--------- | -----------------: | --------: |
-| Coast Road          | A1058 | trunk      |                529 |     17203 |
-| Barrack Road        | A189  | primary    |                344 |      1063 |
-| Ponteland Road      | A189  | primary    |                314 |       530 |
-| Grandstand Road     | A189  | primary    |                234 |       253 |
-| Great North Road    | B1318 | secondary  |                214 |       781 |
-| Jesmond Road        | A1058 | trunk      |                211 |      1356 |
-| Scotswood Bridge    | A695  | primary    |                191 |       281 |
-| St James’ Boulevard | A189  | primary    |                169 |      1042 |
-| Stamfordham Road    | A167  | primary    |                139 |      1984 |
-| Jedburgh Road       | A167  | trunk      |                130 |      5621 |
+| name                | length | cycling\_potential | km\_cycled |
+| :------------------ | -----: | -----------------: | ---------: |
+| Coast Road          |   5691 |                691 |       3933 |
+| Felling Bypass      |   5111 |                314 |       1605 |
+| Newcastle Road      |   4489 |                296 |       1329 |
+| Park Road           |   1418 |                793 |       1124 |
+| Askew Road          |   2092 |                266 |        556 |
+| Jedburgh Road       |   2202 |                235 |        518 |
+| Jesmond Road        |    841 |                615 |        517 |
+| Beach Road          |   1000 |                460 |        460 |
+| Barrack Road        |   1062 |                349 |        371 |
+| St James’ Boulevard |    709 |                268 |        190 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See
 [newcastle.html](https://cyipt.github.io/popupCycleways/newcastle.html)
@@ -340,20 +355,23 @@ for the interactive version of the map above.
 
 # Cambridge
 
-![](README_files/figure-gfm/cambridge-1.png)<!-- -->
+![](README_files/figure-gfm/Cambridge-1.png)<!-- -->
 
-| name                  | ref   | road\_type   | cycling\_potential | length\_m |
-| :-------------------- | :---- | :----------- | -----------------: | --------: |
-| Saint Andrew’s Street |       | residential  |               2449 |       164 |
-| Hobson Street         |       | residential  |               2393 |       216 |
-| Bridge Street         |       | residential  |                878 |       194 |
-| Elizabeth Way         | A1134 | primary      |                860 |       812 |
-| Emmanuel Street       |       | residential  |                586 |       151 |
-| Chesterton Road       | A1134 | primary      |                530 |       194 |
-| Milton Road           | A1309 | primary      |                364 |      1730 |
-| Victoria Road         | A1134 | primary      |                312 |       114 |
-| Milton Road           | A1134 | primary      |                192 |       441 |
-| Station Place         |       | unclassified |                132 |       237 |
+| name                         | length | cycling\_potential | km\_cycled |
+| :--------------------------- | -----: | -----------------: | ---------: |
+| Elizabeth Way                |    435 |               1256 |        546 |
+| Milton Road                  |    578 |                736 |        426 |
+| Hobson Street                |    215 |               1763 |        380 |
+| Saint Andrew’s Street        |    164 |               1763 |        289 |
+| Emmanuel Street              |    150 |               1763 |        265 |
+| Bridge Street                |    194 |                889 |        173 |
+| Chesterton Road              |    233 |                623 |        145 |
+| Longstanton Road             |    491 |                135 |         66 |
+| Newmarket Road               |    239 |                195 |         47 |
+| Cambridgeshire Guided Busway |    273 |                155 |         42 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See
 [cambridge.html](https://cyipt.github.io/popupCycleways/cambridge.html)

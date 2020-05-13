@@ -1,32 +1,9 @@
 # Birmingham
 
-```{r birmingham}
-# idea: use buffers of LSOA centroids to supplent built-up areas
-# birmingham_centroids = get_pct_centroids("west-midlands", geography = "lsoa")
-# birmingham_lsoa_buff = stplanr::geo_buffer(birmingham_centroids, dist = 1000)
-# mapview::mapview(birmingham_lsoa_buff)
-# birmingham_res_buff = st_intersection(builtup, birmingham_lsoa_buff) %>% st_union()
-# roads = roads %>%
-#   st_transform(27700) %>%
-#   st_intersection(birmingham_res_buff) %>%
-#   st_transform(4326)
-# idea: look for other basemaps
-region = las_top %>% filter(name == "Birmingham")
-roads = rsf %>% filter(region == "Birmingham", pctgov > 100)
-roads = st_intersection(roads, region) # remove roads outside region
-
-roads_top = roads %>%
-  filter(length > 300) %>%
-  arrange(desc(pctgov)) %>%
-  slice(1:10)
-tm_shape(roads) + tm_lines("lightblue", lwd = 3, alpha = 0.7) +
-  tm_shape(roads_top) + tm_lines(col = "blue", lwd = 3) +
-  tm_text("name") +
-  tm_view(set.view = 12) + tm_scale_bar() +
-  tm_basemap(server = s)
-
-roads_top %>%
-  st_drop_geometry() %>%
-  select(name, ref, road_type = highway, cycling_potential = pctgov, length_m = length) %>%
-  knitr::kable(digits = 0)
+```{r Birmingham}
+setwd("..")
+region_name = "Birmingham"
+source("code/build.R")
+m
+knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods developed for the project.", digits = 0)
 ```

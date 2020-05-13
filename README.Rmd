@@ -45,10 +45,19 @@ s = c(
 ```
 
 ```{r, eval=FALSE}
+params = list(
+  message = FALSE,
+  warning = FALSE,
+  echo = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+  )
 
-rmarkdown::render("london.Rmd") # check
+old_wd = setwd("cities")
+rmarkdown::render("leeds.Rmd") # check
 rmarkdown_files = paste0(tolower(las_top$name), ".Rmd")
-lapply(rmarkdown_files, rmarkdown::render)
+lapply(rmarkdown_files, rmarkdown::render, params = params)
+setwd(old_wd)
 webshot::install_phantomjs()
 # general analysis of data
 # piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
@@ -252,23 +261,21 @@ See [cambridge.html](https://cyipt.github.io/popupCycleways/cambridge.html) for 
 git clone git@github.com:cyipt/popupCycleways
 cd popupCycleways
 git checkout gh-pages
-git rm -rf .
-git commit --allow-empty -m 'Initial gh-pages commit'
+# git rm -rf .
+# git commit --allow-empty -m 'Initial gh-pages commit'
 # git push origin gh-pages
 # git checkout master
 # cp -Rv ../README* . # it's 100 MB!
-cp -Rv ../*.html . # it's 100 MB!
+git status
+cp -Rv ../cities/*.html . # it's 100 MB!
 git status
 ls -hal
-mv README.html index.html
+pandoc -o index.html ../README.md
 firefox index.html
 git status
-git commit -am 'Update interactive maps'
+git commit -am 'Update results'
 git push origin gh-pages
 cd ..
-echo '*.html' >> .gitignore
-echo 'popupCycleways/' >> .gitignore
-pandoc -o README.html ../README.md
 ```
 
 
