@@ -29,7 +29,11 @@ The goal of this project is to flag roads on which there is
   - high cycling potential
   - road space that could be re-allocated
 
-in the context of increased demand for cycling to keyworker workplaces.
+in the context of increased demand for cycling to key worker workplaces.
+
+See this [pre-print paper](https://osf.io/7wjb6) for a generalised
+summary of the methods. This document describes the work in the context
+of UK planning priorities.
 
 It is based on an analysis of data generated for Department for
 Transport funded projects the Propensity to Cycle Tool (PCT) and the
@@ -242,20 +246,23 @@ the interactive version of the map above.
 
 # Liverpool
 
-![](README_files/figure-gfm/liverpool-1.png)<!-- -->
+![](README_files/figure-gfm/Liverpool-1.png)<!-- -->
 
-| name           | ref   | road\_type | cycling\_potential | length\_m |
-| :------------- | :---- | :--------- | -----------------: | --------: |
-| Dale Street    | A57   | trunk      |                828 |       474 |
-| Princes Road   | B5175 | secondary  |                399 |       797 |
-| Scotland Road  | A59   | trunk      |                342 |      2847 |
-| Low Hill       | A580  | trunk      |                306 |      1174 |
-| London Road    | A57   | primary    |                305 |       220 |
-| Byrom Street   | A59   | trunk      |                293 |       922 |
-| Longmoor Lane  | A506  | primary    |                284 |       369 |
-| Edge Lane      | A5047 | trunk      |                280 |      5270 |
-| Brownlow Hill  |       | tertiary   |                262 |       790 |
-| Erskine Street | A580  | trunk      |                253 |       469 |
+| name                 | length | cycling\_potential | km\_cycled |
+| :------------------- | -----: | -----------------: | ---------: |
+| Queens Drive         |  11755 |                149 |       1751 |
+| East Prescot Road    |   5519 |                237 |       1308 |
+| Liverpool Road       |   5306 |                237 |       1258 |
+| East Lancashire Road |   7887 |                140 |       1104 |
+| Menlove Avenue       |   6332 |                149 |        943 |
+| Mather Avenue        |   5425 |                149 |        808 |
+| Aigburth Road        |   5315 |                149 |        792 |
+| Edge Lane            |   5268 |                149 |        785 |
+| Dunnings Bridge Road |   4828 |                143 |        690 |
+| West Derby Road      |   4254 |                149 |        634 |
+
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
 
 See
 [liverpool.html](https://cyipt.github.io/popupCycleways/liverpool.html)

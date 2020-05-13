@@ -121,7 +121,9 @@ The goal of this project is to flag roads on which there is
 - high cycling potential
 - road space that could be re-allocated
 
-in the context of increased demand for cycling to keyworker workplaces.
+in the context of increased demand for cycling to key worker workplaces.
+
+See this [pre-print paper](https://osf.io/7wjb6) for a generalised summary of the methods. This document describes the work in the context of UK planning priorities.
 
 It is based on an analysis of data generated for Department for Transport funded projects the Propensity to Cycle Tool (PCT) and the Cycling Infrastructure Prioritisation Toolkit (CyIPT).
 
