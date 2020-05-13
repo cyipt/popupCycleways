@@ -24,8 +24,8 @@ regions = readRDS("~/cyipt/cyipt-bigdata/boundaries/local_authority/local_author
 
 # local parameters --------------------------------------------------------
 # i = 1
-if(!exists("region_name"))
-  region_name = "Leeds"
+# if(!exists("region_name"))
+#   region_name = "Leeds"
 r_original = r_all %>% filter(region == region_name) %>% 
   select(name, ref, highway, maxspeed, pctgov, width, Existing, length, rtid, idGlobal) 
 i = which(parameters$name %in% region_name)
@@ -38,9 +38,9 @@ list2env(p, envir = .GlobalEnv)
 region = regions %>% filter(lad16nmw == region_name)
 city_centre = tmaptools::geocode_OSM(region_name, as.sf = TRUE)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
-h_leeds = hsf[city_centre_buffer, ]
-h_leeds_buffer = stplanr::geo_buffer(h_leeds, dist = key_destination_buffer_radius)
-city_key_buffer = st_union(city_centre_buffer, st_union(h_leeds_buffer))
+h_city = hsf[city_centre_buffer, ]
+h_city_buffer = stplanr::geo_buffer(h_city, dist = key_destination_buffer_radius)
+city_key_buffer = st_union(city_centre_buffer, st_union(h_city_buffer))
 
 ## ----preprocess------------------------------------------------------------------------------
 # remove motorways
@@ -87,7 +87,7 @@ t1 = rj %>%
   # select(name, highway_type, maxspeed, cycling_potential, width) %>%
   table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = ., )
 
-## ----hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"----
+## ----hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in city"----
 m1 = r_main_region %>%
   sample_n(1000) %>% 
   mutate(`Highway type` = highway_type) %>% 
@@ -96,7 +96,7 @@ m1 = r_main_region %>%
   tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
            lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
            lwd.legend.labels = c("0 - 100", "100 - 200", "200 - 500", "500+")) +
-  tm_shape(h_leeds) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
+  tm_shape(h_city) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
   tm_layout(legend.outside = TRUE)
 # + tm_text("OrganisationName")
 # m1
@@ -176,7 +176,7 @@ tmap_mode("view")
 m = tm_shape(r_pct_no_overlap) + tm_lines(col = "turquoise", lwd = 6, alpha = 0.6) +
   tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 6, alpha = 0.6) +
   tm_shape(r_pct_top_n) + tm_text("name") +
-  tm_shape(h_leeds) + tm_dots(size = 0.1, col = "red", alpha = 0.4) +
+  tm_shape(h_city) + tm_dots(size = 0.1, col = "red", alpha = 0.4) +
   tm_basemap(server = s) +
   tm_scale_bar()
 # m

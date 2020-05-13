@@ -45,19 +45,18 @@ s = c(
 ```
 
 ```{r, eval=FALSE}
-params = list(
-  message = FALSE,
-  warning = FALSE,
-  echo = FALSE,
-  collapse = TRUE,
-  comment = "#>"
-  )
-
 old_wd = setwd("cities")
-rmarkdown::render("leeds.Rmd") # check
+rmarkdown::render("sheffield.Rmd") # check
 rmarkdown_files = paste0(tolower(las_top$name), ".Rmd")
-lapply(rmarkdown_files, rmarkdown::render, params = params)
+for(i in rmarkdown_files) {
+  rmarkdown::render(i)
+}
+# lapply(rmarkdown_files, rmarkdown::render)
+# parallel::mclapply(rmarkdown_files, rmarkdown::render, mc.cores = 5)
+getwd()
+browseURL("liverpool.html")
 setwd(old_wd)
+
 webshot::install_phantomjs()
 # general analysis of data
 # piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
@@ -272,8 +271,7 @@ git status
 cp -Rv ../cities/*.html . # it's 100 MB!
 git status
 ls -hal
-pandoc -o index.html ../README.md
-firefox index.html
+# firefox index.html
 git status
 git commit -am 'Update results'
 git push origin gh-pages

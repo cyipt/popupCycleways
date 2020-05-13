@@ -5,7 +5,7 @@
 ```{r Cambridge}
 setwd("..")
 region_name = "Cambridge"
-source("code/build.R")
+source("code/build.R", local = TRUE)
 m
 knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods developed for the project.", digits = 0)
 ```
