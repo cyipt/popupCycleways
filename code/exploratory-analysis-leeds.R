@@ -17,14 +17,14 @@ tmap_mode("view")
 # piggyback::pb_upload("rsf_leeds.Rds")
 # piggyback::pb_download_url("rsf_leeds.Rds")
 
-u = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rsf_leeds.Rds"
+u = "https://github.com/cyipt/popupCycleways/releases/download/0.1/rsf_leeds.Rds"
 r_original = readRDS(url(u))
 nrow(r_original)
 plot(r_original$geometry)
 head(r_original)
 names(r_original)
 
-ur = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rtid.csv"
+ur = "https://github.com/cyipt/popupCycleways/releases/download/0.1/rtid.csv"
 rtid = readr::read_csv(ur)
 
 # parameters --------------------------------------------------------------

@@ -29,13 +29,14 @@ city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
 key_destination_buffer_radius = 5000
 
-parameters_df = data.frame(
+parameters_df = data.frame(stringsAsFactors = FALSE,
   name = region_name,
   min_cycling_potential = 0,
-  min_grouped_cycling_potential = 500,
+  min_grouped_cycling_potential = 100,
   min_grouped_length = 500,
   city_centre_buffer_radius = 8000,
-  key_destination_buffer_radius = 5000
+  key_destination_buffer_radius = 5000,
+  regexclude = "roundabout"
 )
 
 parameters_df = parameters_df[rep(1, length(region_names)), ]

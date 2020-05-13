@@ -150,21 +150,24 @@ to Cycle Tool (see [www.pct.bike](https://www.pct.bike/)).
 
 ![](README_files/figure-gfm/london-1.png)<!-- -->
 
-| name                 | ref   | road\_type | cycling\_potential | length\_m |
-| :------------------- | :---- | :--------- | -----------------: | --------: |
-| Kennington Park Road | A3    | trunk      |               3255 |       925 |
-| Brixton Road         | A23   | trunk      |               2606 |      2849 |
-| Stoke Newington Road | A10   | trunk      |               2501 |       590 |
-| Camberwell New Road  | A202  | trunk      |               2420 |      1630 |
-| Waterloo Bridge      | A301  | primary    |               2398 |      1166 |
-| Theobalds Road       | A401  | primary    |               2267 |       565 |
-| Old Street           | A5201 | primary    |               2012 |       505 |
-| West Cromwell Road   | A4    | trunk      |               1971 |      1024 |
-| Jamaica Road         | A200  | primary    |               1926 |      1361 |
-| Tower Bridge Road    | A100  | trunk      |               1899 |      1191 |
+| name                | length | cycling\_potential | km\_cycled |
+| :------------------ | -----: | -----------------: | ---------: |
+| Brixton Road        |   2396 |               1619 |       3879 |
+| Camberwell New Road |   1190 |               2397 |       2854 |
+| Great West Road     |   4129 |                601 |       2481 |
+| Seven Sisters Road  |   3802 |                578 |       2198 |
+| Old Kent Road       |   1943 |               1119 |       2174 |
+| Aspen Way           |   3299 |                649 |       2141 |
+| Waterloo Bridge     |    661 |               3235 |       2139 |
+| Marylebone Road     |   3263 |                629 |       2052 |
+| York Road           |   1684 |               1136 |       1913 |
+| Battersea Park Road |   2468 |                750 |       1851 |
 
-See [london.html](https://cyipt.github.io/tempCycleways/london.html) for
-the interactive version of the map above.
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
+
+See [london.html](https://cyipt.github.io/popupCycleways/london.html)
+for the interactive version of the map above.
 
 # Birmingham
 
@@ -184,7 +187,7 @@ the interactive version of the map above.
 | Aldridge Road            | A453  | primary    |                260 |      2674 |
 
 See
-[birmingham.html](https://cyipt.github.io/tempCycleways/birmingham.html)
+[birmingham.html](https://cyipt.github.io/popupCycleways/birmingham.html)
 for the interactive version of the map above.
 
 # Manchester
@@ -205,27 +208,30 @@ for the interactive version of the map above.
 | Princess Road           | A5103 | trunk      |                438 |     12230 |
 
 See
-[manchester.html](https://cyipt.github.io/tempCycleways/manchester.html)
+[manchester.html](https://cyipt.github.io/popupCycleways/manchester.html)
 for the interactive version of the map above.
 
 # Leeds
 
 ![](README_files/figure-gfm/leeds-1.png)<!-- -->
 
-| name             | ref  | road\_type | cycling\_potential | length\_m |
-| :--------------- | :--- | :--------- | -----------------: | --------: |
-| Willow Road      |      | tertiary   |                466 |       316 |
-| Woodhouse Lane   | A660 | trunk      |                368 |      2373 |
-| Blenheim Walk    | A660 | trunk      |                340 |       347 |
-| Otley Road       | A660 | trunk      |                325 |      7273 |
-| Swinegate        |      | secondary  |                318 |       309 |
-| Crown Point Road | A653 | primary    |                316 |       652 |
-| Kirkstall Road   | A65  | primary    |                261 |      3774 |
-| Clay Pit Lane    | A58  | trunk      |                257 |      2163 |
-| The Headrow      |      | tertiary   |                250 |       440 |
-| Hunslet Road     | A639 | primary    |                221 |      1860 |
+| name                  | length | cycling\_potential | km\_cycled |
+| :-------------------- | -----: | -----------------: | ---------: |
+| Otley Road            |   1766 |                758 |       1339 |
+| Scott Hall Road       |   8723 |                123 |       1073 |
+| Ring Road Low Wortley |   5177 |                151 |        782 |
+| Dewsbury Road         |   4073 |                178 |        725 |
+| Woodhouse Lane        |   2206 |                295 |        651 |
+| Kirkstall Road        |   1557 |                341 |        531 |
+| Ring Road Moortown    |   4152 |                123 |        511 |
+| York Road             |   1883 |                242 |        456 |
+| Harrogate Road        |   3254 |                123 |        400 |
+| Ingram Distributor    |   2771 |                137 |        380 |
 
-See [leeds.html](https://cyipt.github.io/tempCycleways/leeds.html) for
+The top 10 candidate roads for space reallocation for pop-up active
+transport infrastructure according to methods developed for the project.
+
+See [leeds.html](https://cyipt.github.io/popupCycleways/leeds.html) for
 the interactive version of the map above.
 
 # Liverpool
@@ -246,7 +252,7 @@ the interactive version of the map above.
 | Erskine Street | A580  | trunk      |                253 |       469 |
 
 See
-[liverpool.html](https://cyipt.github.io/tempCycleways/liverpool.html)
+[liverpool.html](https://cyipt.github.io/popupCycleways/liverpool.html)
 for the interactive version of the map above.
 
 # Bristol
@@ -266,7 +272,7 @@ for the interactive version of the map above.
 | Hotwell Road      | A4    | primary      |                117 |       533 |
 | East Street       |       | unclassified |                111 |       392 |
 
-See [bristol.html](https://cyipt.github.io/tempCycleways/bristol.html)
+See [bristol.html](https://cyipt.github.io/popupCycleways/bristol.html)
 for the interactive version of the map above.
 
 # Leicester
@@ -287,7 +293,7 @@ for the interactive version of the map above.
 | Belgrave Gate   | A607  | primary      |                156 |       822 |
 
 See
-[leicester.html](https://cyipt.github.io/tempCycleways/leicester.html)
+[leicester.html](https://cyipt.github.io/popupCycleways/leicester.html)
 for the interactive version of the map above.
 
 # Sheffield
@@ -308,7 +314,7 @@ for the interactive version of the map above.
 | Abbeydale Road    | A621  | primary    |                185 |      2044 |
 
 See
-[sheffield.html](https://cyipt.github.io/tempCycleways/sheffield.html)
+[sheffield.html](https://cyipt.github.io/popupCycleways/sheffield.html)
 for the interactive version of the map above.
 
 # Newcastle
@@ -329,7 +335,7 @@ for the interactive version of the map above.
 | Jedburgh Road       | A167  | trunk      |                130 |      5621 |
 
 See
-[newcastle.html](https://cyipt.github.io/tempCycleways/newcastle.html)
+[newcastle.html](https://cyipt.github.io/popupCycleways/newcastle.html)
 for the interactive version of the map above.
 
 # Cambridge
@@ -350,5 +356,5 @@ for the interactive version of the map above.
 | Station Place         |       | unclassified |                132 |       237 |
 
 See
-[cambridge.html](https://cyipt.github.io/tempCycleways/cambridge.html)
+[cambridge.html](https://cyipt.github.io/popupCycleways/cambridge.html)
 for the interactive version of the map above.

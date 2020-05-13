@@ -25,8 +25,8 @@ library(tidyverse)
 library(tmap)
 tmap_mode("view")
 piggyback::pb_download("las_top.Rds")
-pct_las = sf::read_sf("https://github.com/cyipt/tempCycleways/releases/download/0.1/pct_la_summaries.geojson")
-las_top = sf::read_sf("https://github.com/cyipt/tempCycleways/releases/download/0.1/las_top.geojson")
+pct_las = sf::read_sf("https://github.com/cyipt/popupCycleways/releases/download/0.1/pct_la_summaries.geojson")
+las_top = sf::read_sf("https://github.com/cyipt/popupCycleways/releases/download/0.1/las_top.geojson")
 # las_top = readRDS("las_top.Rds")
 # las_top = st_make_valid(las_top)
 # sf::write_sf(las_top, "las_top.geojson")
@@ -181,76 +181,76 @@ Cycling potential refers to the number of commuters who would cycle along the ro
 
 ```
 
-See [london.html](https://cyipt.github.io/tempCycleways/london.html) for the interactive version of the map above.
+See [london.html](https://cyipt.github.io/popupCycleways/london.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/birmingham.Rmd"}
 
 ```
 
-See [birmingham.html](https://cyipt.github.io/tempCycleways/birmingham.html) for the interactive version of the map above.
+See [birmingham.html](https://cyipt.github.io/popupCycleways/birmingham.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/manchester.Rmd"}
 
 ```
 
-See [manchester.html](https://cyipt.github.io/tempCycleways/manchester.html) for the interactive version of the map above.
+See [manchester.html](https://cyipt.github.io/popupCycleways/manchester.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/leeds.Rmd"}
 
 ```
 
-See [leeds.html](https://cyipt.github.io/tempCycleways/leeds.html) for the interactive version of the map above.
+See [leeds.html](https://cyipt.github.io/popupCycleways/leeds.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/liverpool.Rmd"}
 
 ```
 
-See [liverpool.html](https://cyipt.github.io/tempCycleways/liverpool.html) for the interactive version of the map above.
+See [liverpool.html](https://cyipt.github.io/popupCycleways/liverpool.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/bristol.Rmd"}
 
 ```
 
-See [bristol.html](https://cyipt.github.io/tempCycleways/bristol.html) for the interactive version of the map above.
+See [bristol.html](https://cyipt.github.io/popupCycleways/bristol.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/leicester.Rmd"}
 
 ```
 
-See [leicester.html](https://cyipt.github.io/tempCycleways/leicester.html) for the interactive version of the map above.
+See [leicester.html](https://cyipt.github.io/popupCycleways/leicester.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/sheffield.Rmd"}
 
 ```
 
-See [sheffield.html](https://cyipt.github.io/tempCycleways/sheffield.html) for the interactive version of the map above.
+See [sheffield.html](https://cyipt.github.io/popupCycleways/sheffield.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/newcastle.Rmd"}
 
 ```
 
-See [newcastle.html](https://cyipt.github.io/tempCycleways/newcastle.html) for the interactive version of the map above.
+See [newcastle.html](https://cyipt.github.io/popupCycleways/newcastle.html) for the interactive version of the map above.
 
 
 ```{r, child="cities/cambridge.Rmd"}
 
 ```
 
-See [cambridge.html](https://cyipt.github.io/tempCycleways/cambridge.html) for the interactive version of the map above.
+See [cambridge.html](https://cyipt.github.io/popupCycleways/cambridge.html) for the interactive version of the map above.
 
 
 ```{r, engine='zsh', eval=FALSE}
 # deploy
-git clone git@github.com:cyipt/tempCycleways
-cd tempCycleways
+git clone git@github.com:cyipt/popupCycleways
+cd popupCycleways
 git checkout gh-pages
 git rm -rf .
 git commit --allow-empty -m 'Initial gh-pages commit'
@@ -267,7 +267,7 @@ git commit -am 'Update interactive maps'
 git push origin gh-pages
 cd ..
 echo '*.html' >> .gitignore
-echo 'tempCycleways/' >> .gitignore
+echo 'popupCycleways/' >> .gitignore
 pandoc -o README.html ../README.md
 ```
 

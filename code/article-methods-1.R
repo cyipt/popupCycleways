@@ -16,12 +16,12 @@ library(sf)
 library(tidyverse)
 library(tmap)
 if(!file.exists("rsf_leeds.Rds")) {
-  u = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rsf_leeds.Rds"
+  u = "https://github.com/cyipt/popupCycleways/releases/download/0.1/rsf_leeds.Rds"
   download.file(u, "rsf_leeds.Rds")
 }
 r_original = readRDS("rsf_leeds.Rds")
 if(!file.exists("rtid.csv")) {
-  ur = "https://github.com/cyipt/tempCycleways/releases/download/0.1/rtid.csv"
+  ur = "https://github.com/cyipt/popupCycleways/releases/download/0.1/rtid.csv"
   download.file(ur, "rtid.csv")
 }
 rtid = readr::read_csv("rtid.csv")

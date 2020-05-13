@@ -74,7 +74,7 @@ An important [finding](https://osf.io/7wjb6) is that many cities have excess roa
 
 <!-- Results for Manchester shown below, which highlights Priness Street, one of the roads where [space for active travel will be increased](https://www.manchestereveningnews.co.uk/news/greater-manchester-news/part-deansgate-close-cars-city-18178175) as part of the post COVID-19 recovery package in Greater Manchester. -->
 
-<!-- ![](https://raw.githubusercontent.com/cyipt/tempCycleways/master/README_files/figure-gfm/manchester-1.png) -->
+<!-- ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/README_files/figure-gfm/manchester-1.png) -->
 
 
 
