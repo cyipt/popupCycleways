@@ -59,6 +59,7 @@ setwd(old_wd)
 
 webshot::install_phantomjs()
 # general analysis of data
+# piggyback::pb_upload("rsf.Rds", "cyipt/cyipt-phase-1-data")
 # piggyback::pb_download("rsf.Rds", "cyipt/cyipt-phase-1-data")
 rsf = readRDS("rsf.Rds")
 names(rsf)
