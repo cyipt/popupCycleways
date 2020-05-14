@@ -19,6 +19,8 @@ region_names = unique(r_all$region)
 rtid = readr::read_csv("rtid.csv")
 hsf = readRDS("hsf.Rds")
 regions = readRDS("~/cyipt/cyipt-bigdata/boundaries/local_authority/local_authority.Rds")
+nrow(regions)
+mapview::mapview(regions)
 # r_original = r_original[st_transform(region, st_crs(r_original)), ]
 }
 
