@@ -15,3 +15,8 @@ nrow(uas_en)
 saveRDS(uas_en, "uas_en.Rds")
 piggyback::pb_upload("uas_en.Rds")
 mapview::mapview(uas_en)
+
+
+# todo: combine counties with UAs and CAs
+
+
