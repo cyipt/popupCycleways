@@ -58,6 +58,8 @@ regs_clean = regs %>%
     )) %>% 
   mutate(Name = gsub(pattern = " UA| UA2| CA| ITA| Region| City", replacement = " ", Name)) %>% 
   mutate(Name = gsub(pattern = "Kingston upon Hull,  of", replacement = "Kingston upon Hull, City of", Name)) %>% 
+  mutate(Name = gsub(pattern = "Liverpool", replacement = "Merseyside", Name)) %>% 
+  mutate(Name = gsub(pattern = "Cornwall", replacement = "Cornwall and Isles of Scilly", Name)) %>% 
   mutate(Name = gsub(pattern = " and Peterborough", replacement = "", Name)) %>% 
   mutate(Name = gsub(pattern = "Bournemouth, Christchurch snd Poole", replacement = "Bournemouth, Christchurch and Poole", Name)) %>% 
   mutate(Name = gsub(pattern = "tfl", replacement = "Greater London", Name)) %>% 
@@ -161,8 +163,28 @@ nrow(cas_and_uas) # 82 combined authorities and authorities
 # names missing from hardcoded regions
 summary(a_in_regs <- regs_clean$Name %in% cas_and_uas$Name)
 unmatched_names = regs_clean$Name[!a_in_regs]
+unmatched_names
+# [1] "Sheffield"                 "Bedford"                   "Cheshire East"            
+# [4] "Cheshire West and Chester" "Central Bedfordshire"
 summary(unmatched_names %in% lads$Name) # All of them are local authorities
+lads_missing = lads %>% filter(Name %in% unmatched_names)
 
+# names missing from combined geographic levels
+summary(r_in_c <- cas_and_uas$Name %in% regs_clean$Name) # 9 missing
+unmatched_regions = cas_and_uas$Name[!r_in_c]
+unmatched_regions
+# [1] "South Yorkshire" "Bedfordshire"    "Cheshire"        "North of Tyne"   "Halton"         
+# [6] "Peterborough"  
 
 cas_uas = left_join(cas_and_uas, regs_clean, by = "Name")
-cas_uas
+cas_uas$included = !is.na(cas_uas$Level_dft)
+mapview::mapview(cas_uas["included"]) +
+  mapview::mapview(lads_missing)
+
+# Suggested solutions, to check:
+# Replace geographic region Cheshire with d regions of Chesire East and west Cheshire
+# Replace geographic region Bedfordshire with d regions of Bedford and west Central Bedfordshire
+# Replace d region Sheffield with geographic region South Yorkshire
+# Replace  region Sheffield with geographic region South Yorkshire
+# Modify geographic region Cambridgeshire to inclue Peterborough
+# Add North of Tyne to d regs
