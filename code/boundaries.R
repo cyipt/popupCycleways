@@ -33,9 +33,9 @@ library(tidyverse)
 # uas_uk
 # head(uas_uk$ctyua17cd)
 # uas_en = uas_uk %>% filter(str_detect(string = ctyua17cd, pattern = "E"))
-# uas_en = uas_en %>% 
-#   transmute(Name = ctyua17nm, level = "County and Unitary Authority")
-# nrow(uas_en)
+# uas_en = uas_en %>%
+#   transmute(Name = ctyua17nm, Level = "County and Unitary Authority")
+# nrow(uas_en) 152
 # saveRDS(uas_en, "uas_en.Rds")
 # piggyback::pb_upload("uas_en.Rds")
 
@@ -45,38 +45,38 @@ lads = readRDS("lads.Rds")
 uas_en = readRDS("uas_en.Rds")
 counties = readRDS("counties.Rds")
 
-mapview::mapview(uas_en) + mapview::mapview(counties)
+# mapview::mapview(uas_en) + mapview::mapview(counties)
 
 # todo: combine counties with UAs and CAs
 regs = read_csv("regs.csv")
-names(regs) = "name"
+names(regs) = "Name"
 regs_clean = regs %>% 
-  mutate(level = case_when(
-    str_detect(name, "UA") ~ "unitary_authority",
-    str_detect(name, "CA|ITA|tfl") ~ "combined_authority",
+  mutate(Level_dft = case_when(
+    str_detect(Name, "UA") ~ "unitary_authority",
+    str_detect(Name, "CA|ITA|tfl") ~ "combined_authority",
     TRUE ~ "other"
     )) %>% 
-  mutate(name = gsub(pattern = " UA| UA2| CA| ITA| Region| City", replacement = " ", name)) %>% 
-  mutate(name = gsub(pattern = "Kingston upon Hull,  of", replacement = "Kingston upon Hull, City of", name)) %>% 
-  mutate(name = gsub(pattern = " and Peterborough", replacement = "", name)) %>% 
-  mutate(name = gsub(pattern = "Bournemouth, Christchurch snd Poole", replacement = "Bournemouth, Christchurch and Poole", name)) %>% 
-  mutate(name = gsub(pattern = "tfl", replacement = "Greater London", name)) %>% 
-  mutate(name = str_trim(name)) %>% 
-  filter(!str_detect(string = name, pattern = "1|2|Local"))
+  mutate(Name = gsub(pattern = " UA| UA2| CA| ITA| Region| City", replacement = " ", Name)) %>% 
+  mutate(Name = gsub(pattern = "Kingston upon Hull,  of", replacement = "Kingston upon Hull, City of", Name)) %>% 
+  mutate(Name = gsub(pattern = " and Peterborough", replacement = "", Name)) %>% 
+  mutate(Name = gsub(pattern = "Bournemouth, Christchurch snd Poole", replacement = "Bournemouth, Christchurch and Poole", Name)) %>% 
+  mutate(Name = gsub(pattern = "tfl", replacement = "Greater London", Name)) %>% 
+  mutate(Name = str_trim(Name)) %>% 
+  filter(!str_detect(string = Name, pattern = "1|2|Local"))
 
-summary(l_in_regs <- regs_clean$name %in% lads$Name) # 26 counties in there
-summary(c_in_regs <- regs_clean$name %in% counties$Name) # 26 counties in there
-summary(u_in_regs <- regs_clean$name %in% uas_en$ctyua17nm) # 26 counties in there
+summary(l_in_regs <- regs_clean$Name %in% lads$Name) # 46 las in there
+summary(c_in_regs <- regs_clean$Name %in% counties$Name) # 33 counties in there
+summary(u_in_regs <- regs_clean$Name %in% uas_en$Name) # 71 uas in there
 
 either_in_regs = c_in_regs | u_in_regs
 summary(either_in_regs)
-unmatched_names = regs_clean$name[!either_in_regs]
+unmatched_names = regs_clean$Name[!either_in_regs]
 unmatched_names
 
 # west of england: Bath & North East Somerset, Bristol and South Gloucestershire
 # Source: https://www.westofengland-ca.gov.uk/
 west_of_england = uas_en %>% 
-  filter(str_detect(ctyua17nm, "Bath|Bristol|South Glouc")) %>% 
+  filter(str_detect(Name, "Bath|Bristol|South Glouc")) %>% 
   # stplanr::geo_buffer(., dist = 20) %>% 
   sf::st_union()
 mapview::mapview(west_of_england)
@@ -85,13 +85,13 @@ mapview::mapview(west_of_england)
 # Darlington, Hartlepool, Middlesbrough, Redcar & Cleveland and Stockton-on-Tees
 # Source: https://teesvalley-ca.gov.uk/about/
 tees_valley = uas_en %>% 
-  filter(str_detect(ctyua17nm, "Darlington|Hartlepool|Middlesbrough|Redca|Stockton")) %>% 
+  filter(str_detect(Name, "Darlington|Hartlepool|Middlesbrough|Redca|Stockton")) %>% 
   # stplanr::geo_buffer(., dist = 20) %>% 
   sf::st_union()
 mapview::mapview(tees_valley)
 # North East: County Durham, Gateshead, South Tyneside and Sunderland.
 north_east = uas_en %>% 
-  filter(str_detect(ctyua17nm, "Durham|Gateshead|South Tyneside|Sunderland")) %>% 
+  filter(str_detect(Name, "Durham|Gateshead|South Tyneside|Sunderland")) %>% 
   sf::st_union()
 mapview::mapview(north_east)
 
@@ -115,21 +115,14 @@ mapview::mapview(counties_all)
 # source: https://www.northoftyne-ca.gov.uk/our-mission
 
 north_of_tyne = uas_en %>% 
-  filter(str_detect(ctyua17nm, "Newcastle|North Tyneside|Northumberland")) %>% 
-  sf::st_union()
-
-# observation: no CA matching BCP authority:
-# From April, the councils currently serving Bournemouth, Christchurch and Poole will be replaced by one new council, responsible for all local government
-# source: https://www.bcpcouncil.gov.uk/About-BCP-Council/About-BCP-Council.aspx
-
-north_of_tyne = uas_en %>% 
-  filter(str_detect(ctyua17nm, "Newcastle|North Tyneside|Northumberland")) %>% 
+  filter(str_detect(Name, "Newcastle|North Tyneside|Northumberland")) %>% 
   sf::st_union()
 
 new_cas = sf::st_as_sf(
   data.frame(
     stringsAsFactors = FALSE,
     Name = c("West of England", "Tees Valley", "North East", "North of Tyne"),
+    Level = "Combined Authority",
     geometry = c(west_of_england, tees_valley, north_east, north_of_tyne)
   )
 )
@@ -138,19 +131,38 @@ counties_and_cas = counties %>%
   filter(Name != "Durham") %>% # part of North East
   filter(Name != "Northumberland") %>% # part of North East
   filter(Name != "Tyne and Wear") %>% # part of North East
-  select(Name) %>% 
   rbind(., new_cas)
 mapview::mapview(counties_and_cas)
 
 uas_en_centroids = sf::st_centroid(uas_en)
 uas_en_centroids_in_cas = uas_en_centroids[counties_and_cas, ]
-uas_outside_cas = uas_en %>% filter(! ctyua17nm %in% uas_en_centroids_in_cas$ctyua17nm)
+uas_outside_cas = uas_en %>% filter(! Name %in% uas_en_centroids_in_cas$Name)
 uas_outside_cas2 = uas_outside_cas %>% 
-  filter(!ctyua17nm %in% counties_and_cas$Name) %>% 
-  select(Name = ctyua17nm)
+  filter(!Name %in% counties_and_cas$Name) %>% 
+  select(Name = Name, Level)
 mapview::mapview(uas_outside_cas2) + mapview::mapview(counties_and_cas)
 
-cas_and_uas = rbind(counties_and_cas, uas_outside_cas2)
-mapview::mapview(cas_and_uas)
-nrow(cas_and_uas) # 83 combined authorities and authorities
+# observation: no CA matching BCP authority:
+# From April, the councils currently serving Bournemouth, Christchurch and Poole will be replaced by one new council, responsible for all local government
+# source: https://www.bcpcouncil.gov.uk/About-BCP-Council/About-BCP-Council.aspx
+bcp = lads %>% filter(str_detect(string = Name, pattern = "Bourn"))
+mapview::mapview(bcp) + mapview::mapview(counties) # overlaps with Dorset
+bcp_buffer = bcp %>% stplanr::geo_buffer(., dist = 50)
+dorset_new = sf::st_difference(counties %>% filter(Name == "Dorset"), bcp_buffer)
+mapview::mapview(dorset_new)
+uas_outside_cas3 = uas_outside_cas2 %>% filter(!str_detect(string = Name, pattern = "Bourn|Poole"))
+# manually update dorset county geometry:
+counties_and_cas$geometry[counties_and_cas$Name == "Dorset"] = dorset_new$geometry
 
+cas_and_uas = rbind(counties_and_cas, uas_outside_cas3, bcp)
+mapview::mapview(cas_and_uas)
+nrow(cas_and_uas) # 82 combined authorities and authorities
+
+# names missing from hardcoded regions
+summary(a_in_regs <- regs_clean$Name %in% cas_and_uas$Name)
+unmatched_names = regs_clean$Name[!a_in_regs]
+summary(unmatched_names %in% lads$Name) # All of them are local authorities
+
+
+cas_uas = left_join(cas_and_uas, regs_clean, by = "Name")
+cas_uas
