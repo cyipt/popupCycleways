@@ -1,0 +1,117 @@
+---
+title: "Analysis of cycling potential around key corridors in Greater Manchester"
+author: "Robin Lovelace"
+date: "18/05/2020"
+# output: bookdown::html_document2
+output: bookdown::word_document2
+---
+
+```{r, echo=FALSE, eval=FALSE}
+
+```
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, cache = TRUE, message = FALSE, warning = FALSE)
+library(tidyverse)
+library(tmap)
+z = pct::get_pct_zones("greater-manchester")
+lads = z %>% 
+  sf::st_buffer(0.0001) %>% 
+  group_by(lad_name) %>% 
+  summarise(all = sum(all))
+# plot(lads)
+l = pct::get_pct_lines("greater-manchester")
+sum(z$bicycle) / sum(z$all)
+sum(z$dutch_slc) / sum(z$all)
+z$walk_2011 = z$foot / z$all * 100
+z$cycle_2011 = z$bicycle / z$all * 100
+z$pt_2011 = (z$bus + z$train_tube) / z$all * 100
+z$cycle_dutch = z$dutch_slc / z$all * 100
+```
+
+```{r}
+# od analysis
+od = pct::get_od()
+od$pt = od$train + od$light_rail + od$bus
+od_mcr = od %>% filter(geo_code1 %in% z$geo_code)
+# sum(od$pt) / sum(od$all)
+# 0.159002
+# sum(od_mcr$pt) / sum(od_mcr$all)
+# 0.1434537
+```
+
+```{r}
+z$active_2011 = (z$foot + z$bicycle) / z$all * 100
+z$active_dutch = (z$foot + z$dutch_slc) / z$all * 100
+b = 0:8 * 10
+```
+
+
+
+# Context
+
+## Public transport
+
+Greater Manchester has high cycling potential and high reliance on public transport (PT) .
+Across the region overall, 14.3% of commutes were made by public transport in 2011, although the reliance on public transport varies substantially across the region.
+Around a third of trips are made by PT in many parts of Manchester and Salford, as shown in Figure \@ref(fig:pt).
+These areas areas that are particularly vulnerable to reduced capacity by public transport also tend to be within cycling distance from the main employment centre in Manchester's city centre.
+
+```{r pt, fig.cap="The percentage of trips made by public transport. Source: 2011 Census"}
+tm_shape(z) + tm_fill("pt_2011", palette = "Blues", title = "% PT (2011)") +
+  tm_shape(lads) + tm_borders(col = "black") + tm_text("lad_name") +
+  tm_scale_bar()
+```
+
+## Active transport
+
+The geographic distribution of active transport (walking and cycling) for commuting is shown in Figure \@ref(fig:active).
+13% of single mode commutes were made by active modes in 2011.
+This has the potential to more than double to 33% for the region overall under the Go Dutch scenario, represented in Figure \@ref(fig:activedutch).
+
+```{r active, fig.cap="Percentage of commutes in Greater Manchester by active transport. Source: 2011 Census"}
+tm_shape(z) + tm_fill("active_2011", palette = "Greens", title = "% Active (2011)", breaks = b) +
+  tm_shape(lads) + tm_borders(col = "black") + tm_text("lad_name") +
+  tm_scale_bar()
+# (sum(z$foot) + sum(z$bicycle)) / sum(z$all)
+# (sum(z$foot) + sum(z$dutch_slc)) / sum(z$all)
+```
+
+The majority of potential growth in active transport comes from cycling due to the increased range of commutes by this mode, around 5 km for most people and further for many, due to high fitness and use of e-bikes.
+
+
+
+```{r activedutch, fig.cap="Percentage of commutes in Greater Manchester by active transport under the Go Dutch scenario. Source: Propensity to Cycle Tool"}
+tm_shape(z) + tm_fill("active_dutch", palette = "Greens", title = "% Active (Go Dutch)", breaks = b) +
+  tm_shape(lads) + tm_borders(col = "black") + tm_text("lad_name") +
+  tm_scale_bar()
+```
+
+Like surrounding regions, only 2% of single mode commutes in were made by bike according to data from the 2011 Census (this figure will be higher, perhaps doubling since the introduction of pro-cycling policies since 2011 and the uptake of cycling in response to PT capacity restrictions).
+
+Under the Go Dutch scenario, this rises to 22%, compared with 20% in Lancashire and Cheshire, with a geographic distribution shown in Figure \@ref(fig:cycling).
+The region has high cycling potential because of the high population density in the region and relatively short average trip distances.
+
+```{r cycling, fig.cap="Mode share of cycling from the 2011 Census and under the Go Dutch scenario in the Propensity to Cycle Tool", out.width="50%", fig.show='hold'}
+knitr::include_graphics(c(
+  "https://user-images.githubusercontent.com/1825120/82181124-d65d8600-98d9-11ea-8835-98647333ffe2.png",
+  "https://user-images.githubusercontent.com/1825120/82181210-fee58000-98d9-11ea-8d9c-cc716556f769.png"
+))
+```
+
+Data on walking, cycling and PT levels from the 2011 Census for MSOA zones in the region are summarised by local authority in the table below.
+
+
+```{r}
+table1::table1(~ walk_2011 + cycle_2011 + pt_2011 | lad_name, data = z, transpose = TRUE)
+```
+
+# Coridor analysis
+
+
+
+# Cycling potential on key corridors
+
+
+
