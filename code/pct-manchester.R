@@ -2,6 +2,8 @@ library(tidyverse)
 
 # shown input data
 source("code/build.R")
+saveRDS(r_pct_top, "mcr_r_pct_lanes_top.Rds")
+saveRDS(r_pct_lanes_all, "mcr_r_pct_lanes_all.Rds")
 mapview::mapview(r_pct_lanes_all)
 corridor_names = c(
   "Chester Road", # (Trafford)
@@ -22,6 +24,7 @@ mapview::mapview(princess_road)
 rsf = readRDS("rsf.Rds")
 unique(rsf$region)
 rsf_mcr = rsf %>% filter(region == "Manchester")
+saveRDS(rsf_mcr, "mcr_rsf.Rds")
 rsf_1k = rsf_mcr %>% sample_n(1000)
 mapview::mapview(rsf_1k) # ttwa
 
@@ -41,7 +44,7 @@ tm_shape(key_corridors_mcr) +
   tm_lines(lwd = "width", scale = 9)
 
 saveRDS(key_corridors_mcr, "key_corridors_mcr.Rds")
-piggyback::pb_upload("key_corridors_mcr.Rds")
+# piggyback::pb_upload("key_corridors_mcr.Rds")
 
 # potential analysis ------------------------------------------------------
 
@@ -56,9 +59,11 @@ mapview::mapview(rnet_pt)
 
 # high percentage of key workers - stats
 
-
+library(pct)
 l = pct::get_desire_lines("greater-manchester")
 r = pct::get_pct_routes_fast("greater-manchester")
+saveRDS(r, "mcr-r-pct.Rds")
+saveRDS(l, "mcr-l-pct.Rds")
 r_top_pt = r %>% filter(train_tube > 50)
 mapview::mapview(r_top_pt["train_tube"])
 rnet_top = stplanr::overline(r_top_pt, "train_tube")

@@ -4,6 +4,7 @@ author: "Robin Lovelace"
 date: "18/05/2020"
 # output: bookdown::html_document2
 output: bookdown::word_document2
+# output: bookdown::pdf_document2
 ---
 
 ```{r, echo=FALSE, eval=FALSE}
@@ -12,7 +13,9 @@ output: bookdown::word_document2
 
 
 ```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "..")
 knitr::opts_chunk$set(echo = FALSE, cache = TRUE, message = FALSE, warning = FALSE)
+region_name = "Manchester"
 library(tidyverse)
 library(tmap)
 z = pct::get_pct_zones("greater-manchester")
@@ -44,6 +47,7 @@ od_mcr = od %>% filter(geo_code1 %in% z$geo_code)
 ```{r}
 z$active_2011 = (z$foot + z$bicycle) / z$all * 100
 z$active_dutch = (z$foot + z$dutch_slc) / z$all * 100
+z$active_ebike = (z$foot + z$ebike_slc) / z$all * 100
 b = 0:8 * 10
 ```
 
@@ -68,7 +72,7 @@ tm_shape(z) + tm_fill("pt_2011", palette = "Blues", title = "% PT (2011)") +
 
 The geographic distribution of active transport (walking and cycling) for commuting is shown in Figure \@ref(fig:active).
 13% of single mode commutes were made by active modes in 2011.
-This has the potential to more than double to 33% for the region overall under the Go Dutch scenario, represented in Figure \@ref(fig:activedutch).
+This has the potential to more than double to 33% for the region overall under the Ebikes scenario, represented in Figure \@ref(fig:activedutch).
 
 ```{r active, fig.cap="Percentage of commutes in Greater Manchester by active transport. Source: 2011 Census"}
 tm_shape(z) + tm_fill("active_2011", palette = "Greens", title = "% Active (2011)", breaks = b) +
@@ -82,21 +86,21 @@ The majority of potential growth in active transport comes from cycling due to t
 
 
 
-```{r activedutch, fig.cap="Percentage of commutes in Greater Manchester by active transport under the Go Dutch scenario. Source: Propensity to Cycle Tool"}
-tm_shape(z) + tm_fill("active_dutch", palette = "Greens", title = "% Active (Go Dutch)", breaks = b) +
+```{r activedutch, fig.cap="Percentage of commutes in Greater Manchester by active transport under the Ebikes scenario. Source: Propensity to Cycle Tool"}
+tm_shape(z) + tm_fill("active_dutch", palette = "Greens", title = "% Active (Ebikes)", breaks = b) +
   tm_shape(lads) + tm_borders(col = "black") + tm_text("lad_name") +
   tm_scale_bar()
 ```
 
 Like surrounding regions, only 2% of single mode commutes in were made by bike according to data from the 2011 Census (this figure will be higher, perhaps doubling since the introduction of pro-cycling policies since 2011 and the uptake of cycling in response to PT capacity restrictions).
 
-Under the Go Dutch scenario, this rises to 22%, compared with 20% in Lancashire and Cheshire, with a geographic distribution shown in Figure \@ref(fig:cycling).
+Under the Ebikes scenario, this rises to 22%, compared with 20% in Lancashire and Cheshire, with a geographic distribution shown in Figure \@ref(fig:cycling).
 The region has high cycling potential because of the high population density in the region and relatively short average trip distances.
 
-```{r cycling, fig.cap="Mode share of cycling from the 2011 Census and under the Go Dutch scenario in the Propensity to Cycle Tool", out.width="50%", fig.show='hold'}
+```{r cycling, fig.cap="Mode share of cycling from the 2011 Census and under the Ebikes scenario in the Propensity to Cycle Tool", out.width="50%", fig.show='hold'}
 knitr::include_graphics(c(
   "https://user-images.githubusercontent.com/1825120/82181124-d65d8600-98d9-11ea-8835-98647333ffe2.png",
-  "https://user-images.githubusercontent.com/1825120/82181210-fee58000-98d9-11ea-8d9c-cc716556f769.png"
+  "https://user-images.githubusercontent.com/1825120/82255290-4e649400-994c-11ea-98c4-267fe936ccdd.png"
 ))
 ```
 
@@ -104,14 +108,228 @@ Data on walking, cycling and PT levels from the 2011 Census for MSOA zones in th
 
 
 ```{r}
-table1::table1(~ walk_2011 + cycle_2011 + pt_2011 | lad_name, data = z, transpose = TRUE)
+# table1::table1(~ walk_2011 + cycle_2011 + pt_2011 | lad_name, data = z, transpose = TRUE)
+# knitr::include_graphics("mcr-census-results.png")
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/82254618-10b33b80-994b-11ea-85ef-5edee3a53ac5.png")
 ```
 
-# Coridor analysis
+# Corridor analysis
+
+We constrained the analysis to 10 key corridors.
+These provide access to the main employment hub from the North, East, South and West, as illustrated in Figure \@ref(fig:corridors).
 
 
+```{r, fig.cap="Key corridors analysed for the project."}
+# Airport
+# Altrincham
+# Leigh
+# Oldham
+
+
+city_centre = tmaptools::geocode_OSM(region_name, as.sf = TRUE)
+city_centre_buffer = stplanr::geo_buffer(city_centre, dist = 2000)
+city_centre_buffer8 = stplanr::geo_buffer(city_centre, dist = 8000)
+city_centre_buffer_square = stplanr::geo_bb(scale_factor = 1.1, city_centre_buffer8)
+r_pct_lanes_all = readRDS("mcr_r_pct_lanes_all.Rds")
+# mapview::mapview(r_pct_lanes_all)
+corridor_names = c(
+  "Chester Road", # (Trafford)
+  "A6",
+  "A580", #A6/A580 – East Lancs to Chapel Street (Salford)
+  "A34", # – Anson road/Birchfield Road (Stockport)
+  "A57", # Hyde Road (Tameside)
+  "A62", # A62 – Oldham Road (Oldham)
+  "A56", # A56 – Bury New Road (Bury)
+  "Chorlton Road", # (all Manchester)
+  "A5103" # Princess road (all Manchester)
+)
+princess_road = r_pct_lanes_all %>% filter(name == "Princess Road")
+# table(princess_road$ref) # A5103
+bury = r_pct_lanes_all %>% filter(name == "Bury New Road")
+# mapview::mapview(princess_road)
+
+# load all roads using code in "code/get-data-db.R":
+rsf_mcr = readRDS("mcr_rsf.Rds")
+regexclude_corridors = "A537|A5149|A5102|A5034|A556|5014|5067"
+
+key_corridors_mcr = rsf_mcr %>% 
+  filter(name %in% corridor_names | ref %in% corridor_names) %>% 
+  filter(str_detect(string = ref, pattern = "A")) %>% 
+  filter(!str_detect(string = ref, pattern = regexclude_corridors)) %>% 
+  filter(!is.na(width)) %>% 
+  mutate(cycling_potential = as.numeric(pctebike)) %>% 
+  select(name, ref, cycling_potential, maxspeed, aadt, width, length, idGlobal)
+princess_road = key_corridors_mcr %>% filter(name == "Princess Road")
+
+# Split up A6 and A56
+# table(key_corridors_mcr$name[key_corridors_mcr$ref == "A6"])
+zbs = zonebuilder::zb_zone(x = city_centre, n_circles = 1, n_segments = 4, distance = 50, segment_center = TRUE)
+# plot(zbs$geometry)
+# plot(princess_road, add = T)
+# plot(key_corridors_mcr %>% filter(ref == "A6"), add = T)
+# plot(key_corridors_mcr %>% filter(ref == "A56"), add = T)
+zbs_north = zbs %>% filter(segment_id == 1)
+zbs_east = zbs %>% filter(segment_id == 4)
+# plot(zbs_east)
+a56_north = key_corridors_mcr %>% filter(ref == "A56") %>% .[zbs_north, ]
+a6_east = key_corridors_mcr %>% filter(ref == "A6") %>% .[zbs_east, ]
+a57_east = key_corridors_mcr %>% filter(ref == "A57") %>% .[zbs_east, ]
+
+key_corridors_mcr$ref[key_corridors_mcr$ref == "A56"] = "A56 (South)"
+key_corridors_mcr$ref[key_corridors_mcr$idGlobal %in% a56_north$idGlobal] = "A56 (North)"
+
+key_corridors_mcr$ref[key_corridors_mcr$ref == "A6"] = "A6 (West)"
+key_corridors_mcr$ref[key_corridors_mcr$idGlobal %in% a6_east$idGlobal] = "A6 (East)"#
+
+key_corridors_mcr$ref[key_corridors_mcr$ref == "A57"] = "A57 (West)"
+key_corridors_mcr$ref[key_corridors_mcr$idGlobal %in% a57_east$idGlobal] = "A57 (East)"
+
+key_corridors_mcr_grouped = key_corridors_mcr %>% 
+  # group_by(name, ref) %>%
+  group_by(ref) %>%
+  summarise(
+    name = first(name),
+    cycling_potential = round(mean(cycling_potential)),
+    width = round(mean(width)),
+    length = round(sum(length))
+    ) %>% 
+  ungroup()
+
+m = tm_shape(key_corridors_mcr_grouped) +
+  tm_lines(lwd = "width", scale = 9, alpha = 0.8, col = "ref") +
+  tm_shape(lads) + tm_borders() +
+  tm_scale_bar()
+# m
+```
+
+```{r corridors, fig.cap="Key corridors in Greater Manchester by road reference and direction relative to Manchester city centre."}
+knitr::include_graphics("https://user-images.githubusercontent.com/1825120/82258452-caada600-9951-11ea-8af0-520c8407928a.png")
+```
+
+To further focus the analysis, only the sections within 8 km of Manchester city centre were included.
+The results of clipping key corridors to an 8 km buffer surrounding the city centre are shown in the Figure \@ref(fig:buff8).
+
+```{r buff8, fig.cap="Illustration of the key corridors within an 8 km buffer of Manchester city centre, with the width of road line segments proportional to estimated carriageway width. Source: www.cyipt.bike."}
+key_corridors8 = key_corridors_mcr[city_centre_buffer8, ]
+lads8 = sf::st_intersection(lads, city_centre_buffer_square)
+
+m = tm_shape(key_corridors8) +
+  tm_lines(lwd = "width", scale = 9, alpha = 0.8, col = "ref") +
+  tm_shape(lads8) + tm_borders() + tm_text("lad_name") +
+  tm_shape(city_centre_buffer8) + tm_borders() +
+  tm_scale_bar() +
+  tm_layout(legend.outside = TRUE)
+m
+```
 
 # Cycling potential on key corridors
+
+The cycling potential under the E-bike scenario was assessed as follows:
+
+```{r}
+key_corridors_mcr_grouped2 = key_corridors8 %>% 
+  # group_by(name, ref) %>%
+  group_by(ref) %>%
+  summarise(
+    name = first(name),
+    cycling_potential = round(mean(cycling_potential)),
+    width = round(mean(width)),
+    length = round(sum(length))
+    ) %>% 
+  ungroup()
+
+key_corridors_mcr_grouped2 %>% 
+  sf::st_drop_geometry() %>% 
+  group_by(ref) %>% 
+  summarise(
+    `Length (m)` = round(sum(length)),
+    `Cycling potential` = mean(cycling_potential),
+    `Width (m)` = mean(width),
+    `Km/day` = round(`Length (m)` * `Cycling potential` / 1000) * 2
+    ) %>% 
+  arrange(desc(`Km/day`)) %>% 
+  filter(`Length (m)` > 2000) %>% 
+  knitr::kable(caption = "Average cycling potential, width and potential distance cycled per day for commuting (to and from work on a typical work day) for each corridor under the Ebikes scenario.")
+```
+
+Many of the key corridors have spare lanes during times of low traffic, as shown in Figure \@ref(fig:nlanes), which also shows the variability of cycling potential in segments along the different corridors.
+
+
+```{r nlanes, fig.cap="Illustration of spare lanes on key corridors"}
+# find the r_pct_lanes in the key roads
+key_corridors_buffer = stplanr::geo_buffer(key_corridors8, dist = 20)
+r_pct_lanes_in_corridors = r_pct_lanes_all[key_corridors_buffer, , op = sf::st_within]
+m = tm_shape(key_corridors8) +
+  tm_lines(lwd = "cycling_potential", scale = 9, alpha = 0.8, col = "ref") +
+  tm_shape(r_pct_lanes_in_corridors) + tm_lines() +
+  tm_scale_bar()
+m
+```
+
+
+
+
+```{r}
+l = readRDS("mcr-l-pct.Rds")
+r = readRDS("mcr-r-pct.Rds")
+
+
+# potential analysis ------------------------------------------------------
+
+r$pt_mode_shift = r$ebike_sip * -1
+# summary(r$pt_mode_shift)
+# nrow(r) # 16363
+# rnet_pt = stplanr::overline(r, "pt_mode_shift")
+# saveRDS(rnet_pt, "mcr-rnet_pt.Rds")
+# mapview::mapview(rnet_pt)
+rnet_pt = readRDS("mcr-rnet_pt.Rds")
+
+# since 2011 there has been a doubling
+
+
+# high percentage of key workers - stats
+
+
+```
+
+Cycling potential can also be estimated in terms of the number of new cycling trips that could result from a mode shift to cycling.
+Results of the shift from PT under the E-bikes scenario, which were calculated at the route segment level for the first time in this study, are shown for each key corridor in Figure \@ref(fig:shift):
+
+```{r shift, fig.cap="Cycling potential associated with a PT/cycling mode shift under the Ebikes scenario at the route network level within 500 m of each corridor, under the (unmet) assumption that every mode has equal chance of being replaced by cycling for a given origin-destination pair. In practice, the probability of a trip being replaced by cycling is mode and context-dependent, with physical distancing rules making a PT/cycling switch proportionally more likely."}
+key_corridors_buffer_100 = stplanr::geo_buffer(key_corridors8, dist = 500)
+# slow operation:
+rnet_pt_in_corridors = rnet_pt[key_corridors_buffer_100, , op = sf::st_within]
+# saveRDS(rnet_pt_in_corridors, "rnet_pt_in_corridors.Rds")
+# rnet_pt_in_corridors = readRDS("rnet_pt_in_corridors.Rds")
+plot(rnet_pt_in_corridors)
+# mapview::mapview(rnet_pt_in_corridors)
+```
+
+The results from this dataset will be used to assess cycling potential from a PT perspective, with results shown below.
+
+
+```{r}
+key_corridors_pt = st_join(rnet_pt_in_corridors, key_corridors_buffer["ref"])
+key_corridors_pt$km_day = key_corridors_pt$pt_mode_shift * as.numeric(sf::st_length(key_corridors_pt)) / 1000
+res_pt_corridors = key_corridors_pt %>% 
+  sf::st_drop_geometry() %>% 
+  group_by(ref) %>% 
+  summarise(
+    `Km/day` = sum(km_day)
+  )
+res_pt_corridors %>%
+  filter(!is.na(ref)) %>% 
+  arrange(desc(`Km/day`)) %>% 
+  knitr::kable(digits = 0, caption = "Ranking of corridors according to estimated distance of PT trips that switch to cycling within a 500m buffer of each corridor.")
+# key_corridors_pt = aggregate(rnet_pt_in_corridors, key_corridors_buffer, op = sf::st_within, FUN = mean)
+# key_corridors_pt %>% 
+#   sf::st_drop_geometry() %>% 
+#   arrange(desc(pt_mode_shift)) 
+```
+
+
+
+
 
 
 
