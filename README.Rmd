@@ -279,4 +279,11 @@ git push origin gh-pages
 cd ..
 ```
 
+<!-- # Reproducing the results -->
+
+<!-- To reproduce the results for a particular city you should -->
+
+<!-- ```{r} -->
+
+<!-- ``` -->
 
