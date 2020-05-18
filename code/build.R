@@ -158,11 +158,19 @@ library(DescTools)
 r_pct_lanes$rounded_cycle_potential = RoundTo(r_pct_lanes$cycling_potential, 50)
 
 ## Take segments (which are already grouped by the initial igraph list) and group by cycle potential rounded to the nearest 50
+
+agg_var = st_sfc(list(r_pct_lanes$group), list(r_pct_lanes$rounded_cycle_potential))
 r_pct_group1 = r_pct_lanes %>%
-  group_by(group, rounded_cycle_potential) 
+  group_by(group, rounded_cycle_potential) %>%
+  select(group, rounded_cycle_potential) %>%
+  st_drop_geometry() %>%
+  aggregate(by = list(r_pct_lanes$group, r_pct_lanes$rounded_cycle_potential), FUN = mean)
 
 
 # Now need to separate non-adjacent groups with the same cycle potential
+
+
+
 touching_list2 = st_touches(r_pct_group1)
 g2 = igraph::graph.adjlist(touching_list2)
 components2 = igraph::components(g2)
