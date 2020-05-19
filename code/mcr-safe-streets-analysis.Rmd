@@ -3,8 +3,8 @@ title: "Analysis of cycling potential around key corridors in Greater Manchester
 author: "Robin Lovelace"
 date: "18/05/2020"
 # output: bookdown::html_document2
-# output: bookdown::word_document2
-output: bookdown::github_document2
+output: bookdown::word_document2
+# output: bookdown::github_document2
 # output: bookdown::pdf_document2
 ---
 
@@ -267,7 +267,7 @@ m = tm_shape(key_corridors8) +
 m
 ```
 
-
+<!-- Summary route network results from Ebikes scenario, aggregated to the route network level, are shown for Greater Manchester below -->
 
 
 ```{r}
@@ -284,7 +284,9 @@ r$pt_mode_shift = r$ebike_sip * -1
 # saveRDS(rnet_pt, "mcr-rnet_pt.Rds")
 # mapview::mapview(rnet_pt)
 rnet_pt = readRDS("mcr-rnet_pt.Rds")
-
+# summary(rnet_pt$pt_mode_shift)
+rnet_pt_high = rnet_pt %>% filter(pt_mode_shift > 20)
+# mapview::mapview(rnet_pt_high)
 # since 2011 there has been a doubling
 
 
@@ -293,7 +295,6 @@ rnet_pt = readRDS("mcr-rnet_pt.Rds")
 
 ```
 
-Cycling potential can also be estimated in terms of the number of new cycling trips that could result from a mode shift to cycling.
 Results of the shift from PT under the E-bikes scenario, which were calculated at the route segment level for the first time in this study, are shown for each key corridor in Figure \@ref(fig:shift):
 
 ```{r shift, fig.cap="Cycling potential associated with a PT/cycling mode shift under the Ebikes scenario at the route network level within 500 m of each corridor, under the (unmet) assumption that every mode has equal chance of being replaced by cycling for a given origin-destination pair. In practice, the probability of a trip being replaced by cycling is mode and context-dependent, with physical distancing rules making a PT/cycling switch proportionally more likely."}
