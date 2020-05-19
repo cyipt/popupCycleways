@@ -1,6 +1,7 @@
 # aim: output results highlighting and ranking roads that have 'spare lanes'
 
 # global parameters ----------------------------------------------------------
+library(DescTools)
 library(sf)
 library(tidyverse)
 library(tmap)
@@ -19,10 +20,10 @@ parameters = read_csv("input-data/parameters.csv")
 
 # read-in national data ---------------------------------------------------
 regions = readRDS("regions.Rds")
-rj = readRDS("rj.Rds")
+rj_all = readRDS("rj.Rds")
 region_names = regions$Name
 # hospitals:
-# hsf = readRDS("hsf.Rds")
+hsf = readRDS("hsf.Rds")
 nrow(regions)
 # mapview::mapview(regions)
 # r_original = r_original[st_transform(region, st_crs(r_original)), ]
@@ -31,9 +32,16 @@ nrow(regions)
 # local parameters --------------------------------------------------------
 # i = 1
 if(!exists("region_name"))
-  region_name = "West Midlands"
-region = regions %>% filter(Name == region_name)
-r_original = rj[region_to_build, ]
+  region_name = "Nottingham"
+if(region_name == "Nottingham") {
+  region = regions %>% filter(str_detect(string = Name, pattern = "Nott")) %>% 
+    st_union()
+} else {
+  region = regions %>% filter(Name == region_name)
+}
+# time consuming: ~1 minute
+rj = rj_all[region, ]
+h_city = hsf[region, ]
 i = which(parameters$name %in% region_name)
 if(length(i) == 0) i = 1
 p = parameters[i, ]
@@ -48,70 +56,35 @@ if(is_city) {
   h_city = hsf[city_centre_buffer, ]
   h_city_buffer = stplanr::geo_buffer(h_city, dist = key_destination_buffer_radius)
   city_key_buffer = st_union(city_centre_buffer, st_union(h_city_buffer))
+  r_main_region = rj[city_key_buffer, ]
+} else {
+  city_key_buffer = sf::st_geometry(region)
+  r_main_region = rj
 }
-
-## ----preprocess------------------------------------------------------------------------------
-# remove motorways
-r_original$highway_type = r_original$highway
-r_original$highway_type = gsub(pattern = "_link", replacement = "", r_original$highway)
-highway_table = table(r_original$highway)
-highway_rare = highway_table[highway_table < nrow(r_original) / 100]
-highway_remove = names(highway_rare)[!grepl(pattern = "motor|living|ped", x = names(highway_rare))]
-r_cleaned = r_original %>% 
-  filter(!grepl(pattern = "motorway", x = highway)) %>% 
-  mutate(highway_type = case_when(
-    highway_type %in% highway_remove ~ "other",
-    grepl(pattern = "path|track|trunk", highway_type) ~ "other",
-    grepl(pattern = "ped|liv", highway_type) ~ "pedestrian/living_street",
-    TRUE ~ highway_type
-  )) %>% 
-  mutate(maxspeed = case_when(
-    maxspeed <= 20 ~ "20 mph or less",
-    maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
-    maxspeed > 30 ~ "40+ mph",
-  )) %>% 
-  mutate(cycling_potential = as.numeric(pctgov)) 
-# table(r_cleaned$maxspeed)
-rj = inner_join(r_cleaned, rtid) %>% 
-  mutate(lanes_f = abs(lanespsvforward) + abs(lanesforward)) %>% 
-  mutate(lanes_b = abs(lanespsvbackward) + abs(lanesbackward)) %>% 
-  mutate(n_lanes_numeric = lanes_f + lanes_b) %>% 
-  mutate(n_lanes = as.character(n_lanes_numeric))
-rj$n_lanes_numeric[rj$n_lanes_numeric <= 0] = 1 
-rj$n_lanes[rj$n_lanes == "0"] = "1"
-rj$n_lanes[rj$n_lanes == "4"] = "4+"
-rj$n_lanes[rj$n_lanes == "5"] = "4+"
-rj$n_lanes[rj$n_lanes == "6"] = "4+"
-cy = r_cleaned %>% filter(highway == "cycleway")
-r_central = rj[city_key_buffer, ]
-r_main = r_central %>% 
-  filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
-r_main_region = rj %>% 
-  filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 
 ## ----t1, results='asis'----------------------------------------------------------------------
 t1 = rj %>%
   st_drop_geometry() %>%
   # select(name, highway_type, maxspeed, cycling_potential, width) %>%
-  table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = ., )
+  table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = .)
 
 ## ----hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in city"----
 m1 = r_main_region %>%
   sample_n(1000) %>% 
   mutate(`Highway type` = highway_type) %>% 
   mutate(`Cycling potential` = case_when(cycling_potential < 100 ~ 100, TRUE ~ cycling_potential)) %>% 
-  tm_shape(bbox = st_bbox(city_centre_buffer)) +
+  tm_shape() +
   tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
            lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
            lwd.legend.labels = c("0 - 100", "100 - 200", "200 - 500", "500+")) +
-  tm_shape(h_city) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
+  tm_shape(h_city) + tm_dots(size = 0.2, col = "ParentName", palette = "Dark2", title = "Hospital group") +
   tm_layout(legend.outside = TRUE)
 # + tm_text("OrganisationName")
 # m1
 
 
 ## ----levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"----
-r_pct_lanes_all = r_central %>% 
+r_pct_lanes_all = r_main_region %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
   filter(lanes_f > 1 | lanes_b > 1)
 # mapview::mapview(r_pct_lanes)
@@ -147,37 +120,8 @@ m1 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
 m2 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
   tm_shape(r_pct_lanes) + tm_lines("graph_group", palette = "Dark2") +
   tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
-# todo show group membership with colours
-# ma = tmap_arrange(m0, m1, m2, nrow = 1)
-# ma
-
-# 
-# r_pct_lanes$graph_group = r_pct_lanes$group
-# group_table = table(r_pct_lanes$group)
-# top_groups = tail(sort(group_table), 5)
-# r_pct_lanes$graph_group[!r_pct_lanes$graph_group %in% names(top_groups)] = "other"
-# 
-# r_filter_before_grouping = rj %>% 
-#   filter(cycling_potential > min_cycling_potential) %>% 
-#   filter(lanes_f > 1 | lanes_b > 1) %>% 
-#   filter(cycling_potential > min_grouped_cycling_potential) %>% 
-#   filter(length > 100)
-# tmap_mode("plot")
-# m0 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
-#   tm_shape(r_pct_lanes_all) + tm_lines() +
-#   tm_layout(title = "Roads on which there are spare lanes.")
-# m1 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
-#   tm_shape(r_filter_before_grouping) + tm_lines() +
-#   tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 100)")
-# m2 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
-#   tm_shape(r_pct_lanes) + tm_lines("graph_group", palette = "Dark2") +
-#   tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
-# # todo show group membership with colours
-# # ma = tmap_arrange(m0, m1, m2, nrow = 1)
-# # ma
 
 ## ----Grouping - work in progress---------------------------------------------------------------------------------
-library(DescTools)
 r_pct_lanes$rounded_cycle_potential = RoundTo(r_pct_lanes$cycling_potential, 50)
 
 ## Take segments (which are already grouped by the initial igraph list) and group by cycle potential rounded to the nearest 50
@@ -189,10 +133,7 @@ r_pct_group1 = r_pct_lanes %>%
   st_drop_geometry() %>%
   aggregate(by = list(r_pct_lanes$group, r_pct_lanes$rounded_cycle_potential), FUN = mean)
 
-
 # Now need to separate non-adjacent groups with the same cycle potential
-
-
 
 touching_list2 = st_touches(r_pct_group1)
 g2 = igraph::graph.adjlist(touching_list2)
