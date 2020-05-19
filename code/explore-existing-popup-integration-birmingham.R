@@ -13,6 +13,7 @@ e = gfz %>%
 f = geofabrik::gf_filename(name = country_name)
 download.file(url = e$pbf_url, destfile = f)
 cycleways_en = geofabrik::read_pbf(dsn = f, key = "highway", value = "cycleway")
+saveRDS(cycleways_en, "cycleways_en.Rds") # 10 MB file 
 plot(sf::st_geometry(cycleways_en))
 
 uas_en = readRDS("uas_en.Rds")
