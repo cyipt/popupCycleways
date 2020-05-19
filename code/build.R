@@ -42,12 +42,13 @@ list2env(p, envir = .GlobalEnv)
 is_city = FALSE # Todo: add a new is_city parameter
 
 # buffers -----------------------------------------------------------------
-# for(i in seq(length(region_names))) {
-city_centre = tmaptools::geocode_OSM(region_name, as.sf = TRUE)
-city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
-h_city = hsf[city_centre_buffer, ]
-h_city_buffer = stplanr::geo_buffer(h_city, dist = key_destination_buffer_radius)
-city_key_buffer = st_union(city_centre_buffer, st_union(h_city_buffer))
+if(is_city) {
+  city_centre = tmaptools::geocode_OSM(region_name, as.sf = TRUE)
+  city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
+  h_city = hsf[city_centre_buffer, ]
+  h_city_buffer = stplanr::geo_buffer(h_city, dist = key_destination_buffer_radius)
+  city_key_buffer = st_union(city_centre_buffer, st_union(h_city_buffer))
+}
 
 ## ----preprocess------------------------------------------------------------------------------
 # remove motorways
