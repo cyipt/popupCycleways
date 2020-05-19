@@ -18,30 +18,31 @@ tm_shape(spData::lnd) + tm_borders() + tm_basemap(s, tms = c(FALSE, TRUE, FALSE,
 parameters = read_csv("input-data/parameters.csv")
 
 # read-in national data ---------------------------------------------------
-r_all = readRDS("rsf.Rds")
-region_names = unique(r_all$region)
-rtid = readr::read_csv("rtid.csv")
-hsf = readRDS("hsf.Rds")
-regions = readRDS("~/cyipt/cyipt-bigdata/boundaries/local_authority/local_authority.Rds")
+regions = readRDS("regions.Rds")
+rj = readRDS("rj.Rds")
+region_names = regions$Name
+# hospitals:
+# hsf = readRDS("hsf.Rds")
 nrow(regions)
-mapview::mapview(regions)
+# mapview::mapview(regions)
 # r_original = r_original[st_transform(region, st_crs(r_original)), ]
 }
 
 # local parameters --------------------------------------------------------
 # i = 1
-# if(!exists("region_name"))
-#   region_name = "Leeds"
-r_original = r_all %>% filter(region == region_name) %>% 
-  select(name, ref, highway, maxspeed, pctgov, width, Existing, length, rtid, idGlobal) 
+if(!exists("region_name"))
+  region_name = "West Midlands"
+region = regions %>% filter(Name == region_name)
+r_original = rj[region_to_build, ]
 i = which(parameters$name %in% region_name)
+if(length(i) == 0) i = 1
 p = parameters[i, ]
 list2env(p, envir = .GlobalEnv)
 
+is_city = FALSE # Todo: add a new is_city parameter
 
 # buffers -----------------------------------------------------------------
 # for(i in seq(length(region_names))) {
-region = regions %>% filter(lad16nmw == region_name)
 city_centre = tmaptools::geocode_OSM(region_name, as.sf = TRUE)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
 h_city = hsf[city_centre_buffer, ]

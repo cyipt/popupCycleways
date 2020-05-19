@@ -181,6 +181,9 @@ cas_uas$included = !is.na(cas_uas$Level_dft)
 mapview::mapview(cas_uas["included"]) +
   mapview::mapview(lads_missing)
 
+regions = cas_uas
+saveRDS(regions, "regions.Rds")
+
 # Suggested solutions, to check:
 # Replace geographic region Cheshire with d regions of Chesire East and west Cheshire
 # Replace geographic region Bedfordshire with d regions of Bedford and west Central Bedfordshire
