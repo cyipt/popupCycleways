@@ -7,10 +7,14 @@ library(tmap)
 if(!exists("parameters")) {
 message("Loading global parameters")  
 s = c(
-  "Esri.WorldGrayCanvas",
-  "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
-  "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+  `Grey` = "Esri.WorldGrayCanvas",
+  `PCT (Ebike)` = "https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png",
+  `Cycleways` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+  `Satellite` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
 )
+# test basemap:
+tmap_mode("view")
+tm_shape(spData::lnd) + tm_borders() + tm_basemap(s, tms = c(FALSE, TRUE, FALSE, FALSE))
 parameters = read_csv("input-data/parameters.csv")
 
 # read-in national data ---------------------------------------------------
