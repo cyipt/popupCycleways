@@ -186,16 +186,26 @@ r_pct_top_n = r_pct_top %>%
 # get existing infrastructure ---------------------------------------------
 cycleways = cycleways_en[region, ]
 
+# note: dist could be a parameter (RL)
+cycleway_buffer = stplanr::geo_buffer(cycleways, dist = 50) %>% sf::st_union()
+r_pct_top_no_cycleways = sf::st_difference(r_pct_top, cycleway_buffer)
+r_pct_top_no_cycleways = r_pct_top_no_cycleways %>% 
+  st_cast("LINESTRING") %>% 
+  mutate(group_length = round(as.numeric(st_length(.)))) %>% 
+  filter(group_length > 50)
 
 ## ----res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."----
 tmap_mode("view")
-m = tm_shape(r_pct_no_overlap) + tm_lines(col = "turquoise", lwd = 6, alpha = 0.6) +
-  tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 6, alpha = 0.6) +
+m =
+  tm_shape(r_pct_no_overlap) + tm_lines(col = "turquoise", lwd = 6, alpha = 0.6) +
+  tm_shape(r_pct_top_no_cycleways) + tm_lines(col = "blue", lwd = 6, alpha = 0.6) +
+  tm_shape(r_pct_top) + tm_lines(col = "red", lwd = 6, alpha = 0.6) +
+  tm_shape(cycleways) + tm_lines() +
   tm_shape(r_pct_top_n) + tm_text("name") +
   tm_shape(h_city) + tm_dots(size = 0.1, col = "red", alpha = 0.4) +
   tm_basemap(server = s) +
   tm_scale_bar()
-# m
+m
 
 ## --------------------------------------------------------------------------------------------
 res_table = r_pct_top_n %>% 
