@@ -3,12 +3,13 @@ title: "Analysis of cycling potential around key corridors in Greater Manchester
 author: "Robin Lovelace"
 date: "18/05/2020"
 # output: bookdown::html_document2
-output: bookdown::word_document2
+# output: bookdown::word_document2
+output: bookdown::github_document2
 # output: bookdown::pdf_document2
 ---
 
 ```{r, echo=FALSE, eval=FALSE}
-
+pagedown::chrome_print("mcr-safe-streets-analysis.html")
 ```
 
 
@@ -60,7 +61,7 @@ b = 0:8 * 10
 Greater Manchester has high cycling potential and high reliance on public transport (PT) .
 Across the region overall, 14.3% of commutes were made by public transport in 2011, although the reliance on public transport varies substantially across the region.
 Around a third of trips are made by PT in many parts of Manchester and Salford, as shown in Figure \@ref(fig:pt).
-These areas areas that are particularly vulnerable to reduced capacity by public transport also tend to be within cycling distance from the main employment centre in Manchester's city centre.
+These areas that are particularly vulnerable to reduced capacity by public transport also tend to be within cycling distance from the main employment hub in Manchester's city centre.
 
 ```{r pt, fig.cap="The percentage of trips made by public transport. Source: 2011 Census"}
 tm_shape(z) + tm_fill("pt_2011", palette = "Blues", title = "% PT (2011)") +
