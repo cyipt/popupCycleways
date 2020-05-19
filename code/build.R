@@ -150,13 +150,69 @@ m2 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
 # ma = tmap_arrange(m0, m1, m2, nrow = 1)
 # ma
 
-## ----joining---------------------------------------------------------------------------------
-r_pct_grouped = r_pct_lanes %>%
-  group_by(name, group) %>%
+# 
+# r_pct_lanes$graph_group = r_pct_lanes$group
+# group_table = table(r_pct_lanes$group)
+# top_groups = tail(sort(group_table), 5)
+# r_pct_lanes$graph_group[!r_pct_lanes$graph_group %in% names(top_groups)] = "other"
+# 
+# r_filter_before_grouping = rj %>% 
+#   filter(cycling_potential > min_cycling_potential) %>% 
+#   filter(lanes_f > 1 | lanes_b > 1) %>% 
+#   filter(cycling_potential > min_grouped_cycling_potential) %>% 
+#   filter(length > 100)
+# tmap_mode("plot")
+# m0 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
+#   tm_shape(r_pct_lanes_all) + tm_lines() +
+#   tm_layout(title = "Roads on which there are spare lanes.")
+# m1 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
+#   tm_shape(r_filter_before_grouping) + tm_lines() +
+#   tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 100)")
+# m2 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
+#   tm_shape(r_pct_lanes) + tm_lines("graph_group", palette = "Dark2") +
+#   tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
+# # todo show group membership with colours
+# # ma = tmap_arrange(m0, m1, m2, nrow = 1)
+# # ma
+
+## ----Grouping - work in progress---------------------------------------------------------------------------------
+library(DescTools)
+r_pct_lanes$rounded_cycle_potential = RoundTo(r_pct_lanes$cycling_potential, 50)
+
+## Take segments (which are already grouped by the initial igraph list) and group by cycle potential rounded to the nearest 50
+
+agg_var = st_sfc(list(r_pct_lanes$group), list(r_pct_lanes$rounded_cycle_potential))
+r_pct_group1 = r_pct_lanes %>%
+  group_by(group, rounded_cycle_potential) %>%
+  select(group, rounded_cycle_potential) %>%
+  st_drop_geometry() %>%
+  aggregate(by = list(r_pct_lanes$group, r_pct_lanes$rounded_cycle_potential), FUN = mean)
+
+
+# Now need to separate non-adjacent groups with the same cycle potential
+
+
+
+touching_list2 = st_touches(r_pct_group1)
+g2 = igraph::graph.adjlist(touching_list2)
+components2 = igraph::components(g2)
+r_pct_group1$group2 = components2$membership
+
+
+# This one should be shown on the map
+r_pct_grouped = r_pct_group1 %>%
+  group_by(group2) %>%
   summarise(
     group_length = sum(length),
-    cycling_potential = round(weighted.mean(cycling_potential_mean, length))
+    cycling_potential = round(weighted.mean(cycling_potential, length))
   )
+
+
+
+# Generate lists of top segments ------------------------------------------------------------
+
+
+
 # summary(r_pct_grouped$group_length)
 r_pct_top = r_pct_grouped %>%
   filter(group_length > min_grouped_length) %>% 
