@@ -37,7 +37,7 @@ r_cleaned = r_original %>%
     maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
     maxspeed > 30 ~ "40+ mph",
   )) %>% 
-  mutate(cycling_potential = as.numeric(pctgov)) 
+  mutate(cycling_potential = as.numeric(pctebike)) 
 # table(r_cleaned$maxspeed)
 rj = inner_join(r_cleaned, rtid) %>% 
   mutate(lanes_f = abs(lanespsvforward) + abs(lanesforward)) %>% 
@@ -50,8 +50,8 @@ rj$n_lanes[rj$n_lanes == "4"] = "4+"
 rj$n_lanes[rj$n_lanes == "5"] = "4+"
 rj$n_lanes[rj$n_lanes == "6"] = "4+"
 cy = r_cleaned %>% filter(highway == "cycleway")
-r_central = rj[city_key_buffer, ]
-r_main = r_central %>% 
-  filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
-r_main_region = rj %>% 
-  filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
+
+saveRDS(cy, "cy.Rds")
+saveRDS(rj, "rj.Rds") # 300 MB file
+rj_sample = rj %>% sample_n(1000)
+mapview::mapview(rj_sample) # national coverage
