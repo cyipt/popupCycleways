@@ -184,6 +184,8 @@ mapview::mapview(cas_uas["included"]) +
 regions = cas_uas
 saveRDS(regions, "regions.Rds")
 
+# piggyback::pb_upload("regions.Rds", "cyipt/cyipt-phase-1-data")
+
 # Suggested solutions, to check:
 # Replace geographic region Cheshire with d regions of Chesire East and west Cheshire
 # Replace geographic region Bedfordshire with d regions of Bedford and west Central Bedfordshire

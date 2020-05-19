@@ -35,7 +35,7 @@ cycleways_en = readRDS("cycleways_en.Rds")
 # local parameters --------------------------------------------------------
 # i = 1
 if(!exists("region_name"))
-  region_name = "Nottingham"
+  region_name = "West Yorkshire"
 if(region_name == "Nottingham") {
   region = regions %>% filter(str_detect(string = Name, pattern = "Nott")) %>% 
     st_union()
