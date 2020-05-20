@@ -7,16 +7,24 @@ library(sf)
 rnet = pct::get_pct_rnet(region = "avon") # LSOA route network
 # mapview(rnet["govtarget_slc"])
 
+##Combine with schools rnet
+rnet_school = get_pct_rnet(region = "avon", purpose = "school")
+rnet_reduce = rnet[,c(1,3)]
+rnet_school_reduce = rnet[,c(1,3)]
+combine = rbind(rnet_reduce, rnet_school_reduce)
+
+rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
+
 r_cyipt = readRDS("rsf.Rds")
 r_cyipt = r_cyipt[r_cyipt$region == "Bristol",]
 
 # st_crs(rnet)
 # st_crs(r_cyipt)
 
-dim(rnet) # 13829 this only has streets which are part of the LSOA route network
+dim(rnet_combined) # 13829 this only has streets which are part of the LSOA route network
 dim(r_cyipt) # 104805 this has every street
 
-rnet_buff = geo_buffer(shp = rnet, dist = 10)
+rnet_buff = geo_buffer(shp = rnet_combined, dist = 10)
 # mapview(rnet_buff["govtarget_slc"])
 
 r_cyipt_joined = st_join(r_cyipt, rnet_buff, join = st_within)
