@@ -11,13 +11,17 @@ if(!exists("parameters")) {
 message("Loading global parameters")  
 s = c(
   `Grey` = "Esri.WorldGrayCanvas",
-  `PCT (Ebike)` = "https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png",
+  `PCT commuting, Government Target` = "https://npttile.vs.mythic-beasts.com/commute/v2/govtarget/{z}/{x}/{y}.png",
+  `PCT schools, Government Target` = "https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png",
+  `PCT commuting, Ebikes, ` = "https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png",
+  `PCT schools, Go Dutch, ` = "https://npttile.vs.mythic-beasts.com/school/v2/dutch/{z}/{x}/{y}.png",
   `Cycleways` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
   `Satellite` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
 )
+tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
 # test basemap:
 tmap_mode("view")
-tm_shape(spData::lnd) + tm_borders() + tm_basemap(s, tms = c(FALSE, TRUE, FALSE, FALSE))
+tm_shape(spData::lnd) + tm_borders() + tm_basemap(s, tms = tms)
 parameters = read_csv("input-data/parameters.csv")
 
 # read-in national data ---------------------------------------------------
@@ -242,7 +246,7 @@ m =
   tm_shape(cycleways) + tm_lines() +
   tm_shape(r_pct_top_n) + tm_text("name") +
   tm_shape(h_city) + tm_dots(size = 0.1, col = "red", alpha = 0.4) +
-  tm_basemap(server = s) +
+  tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
 m
 
