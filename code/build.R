@@ -114,11 +114,10 @@ r_pct_lanes_all = r_positive %>%
 # mapview::mapview(r_pct_lanes_all)
 
 r_pct_lanes_all_buff = geo_buffer(shp = r_pct_lanes_all, dist = 200)
-touching_list_buffer = st_intersects(r_pct_lanes_all_buff)
-head(touching_list)
+touching_list = st_intersects(r_pct_lanes_all_buff)
+# head(touching_list)
 
-touching_list = st_touches(r_pct_lanes_all)
-head(touching_list)
+# touching_list = st_touches(r_pct_lanes_all)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_pct_lanes_all$group = components$membership
@@ -134,6 +133,8 @@ r_pct_lanes = r_pct_lanes_all %>%
   mutate(cycling_potential_mean = weighted.mean(cycling_potential, w = length, na.rm = TRUE)) %>% 
   filter(cycling_potential_mean > min_grouped_cycling_potential)
 r_pct_lanes$group_index = group_indices(r_pct_lanes, group, rounded_cycle_potential)
+# Warning message:
+#   group_indices_.grouped_df ignores extra arguments 
 # r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length) # don't filter by group length until we have sorted out how to deal with discontinuous routes 
 
 # this section needs changing since the group definitions have changed
