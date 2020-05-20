@@ -132,7 +132,10 @@ r_pct_lanes = r_pct_lanes_all %>%
   mutate(group_length = sum(length)) %>% 
   mutate(cycling_potential_mean = weighted.mean(cycling_potential, w = length, na.rm = TRUE)) %>% 
   filter(cycling_potential_mean > min_grouped_cycling_potential)
-r_pct_lanes$group_index = group_indices(r_pct_lanes, group, rounded_cycle_potential)
+r_pct_lanes$group_index = group_indices(r_pct_lanes)
+# dplyr::n_groups(r_pct_lanes)
+length(unique(r_pct_lanes$group_index))
+# head(r_pct_lanes$group_index)
 # Warning message:
 #   group_indices_.grouped_df ignores extra arguments 
 # r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length) # don't filter by group length until we have sorted out how to deal with discontinuous routes 
@@ -177,12 +180,6 @@ r_pct_top = r_pct_grouped %>%
 #   aggregate(by = list(r_pct_lanes$group, r_pct_lanes$rounded_cycle_potential), FUN = mean)
 # 
 # # Now need to separate non-adjacent groups with the same cycle potential
-# 
-# touching_list2 = st_touches(r_pct_group1)
-# g2 = igraph::graph.adjlist(touching_list2)
-# components2 = igraph::components(g2)
-# r_pct_group1$group2 = components2$membership
-# 
 # 
 # # This one should be shown on the map
 # r_pct_grouped = r_pct_group1 %>%
