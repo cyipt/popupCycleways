@@ -21,7 +21,6 @@ s = c(
 tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
 # test basemap:
 tmap_mode("view")
-tm_shape(spData::lnd) + tm_borders() + tm_basemap(s, tms = tms)
 parameters = read_csv("input-data/parameters.csv")
 
 # read-in national data ---------------------------------------------------
@@ -33,15 +32,19 @@ region_names = regions$Name
 hsf = readRDS("hsf.Rds")
 nrow(regions)
 cycleways_en = readRDS("cycleways_en.Rds")
+tm_shape(regions) + tm_polygons(alpha = 0.1) + tm_basemap(s, tms = tms) # check basemaps
 
-# mapview::mapview(regions)
-# r_original = r_original[st_transform(region, st_crs(r_original)), ]
-}
+# get pct data
+rnet_url = "https://github.com/npct/pct-outputs-national/raw/master/commute/lsoa/rnet_all.Rds"
+rnet_url_school = "https://github.com/npct/pct-outputs-national/raw/master/school/lsoa/rnet_all.Rds"
+rnet_all = sf::st_as_sf(readRDS(url(rnet_url)))
+rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
 
 # local parameters --------------------------------------------------------
 # i = 1
-if(!exists("region_name"))
-  region_name = "West Yorkshire"
+if(!exists("region_name")) {
+  region_name = "West of England"
+}
 if(region_name == "Nottingham") {
   region = regions %>% filter(str_detect(string = Name, pattern = "Nott")) %>% 
     st_union()
@@ -50,7 +53,7 @@ if(region_name == "Nottingham") {
 }
 # time consuming: ~1 minute
 rj = rj_all[region, ]
-h_city = hsf[region, ]
+# h_city = hsf[region, ]
 i = which(parameters$name %in% region_name)
 if(length(i) == 0) i = 1
 p = parameters[i, ]
@@ -77,21 +80,9 @@ t1 = rj %>%
   # select(name, highway_type, maxspeed, cycling_potential, width) %>%
   table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = .)
 
-## ----hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in city"----
-m1 = r_main_region %>%
-  sample_n(1000) %>% 
-  mutate(`Highway type` = highway_type) %>% 
-  mutate(`Cycling potential` = case_when(cycling_potential < 100 ~ 100, TRUE ~ cycling_potential)) %>% 
-  tm_shape() +
-  tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
-           lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
-           lwd.legend.labels = c("0 - 100", "100 - 200", "200 - 500", "500+")) +
-  tm_shape(h_city) + tm_dots(size = 0.2, col = "ParentName", palette = "Dark2", title = "Hospital group") +
-  tm_layout(legend.outside = TRUE)
-# + tm_text("OrganisationName")
-# m1
 
-##Update cycling potential with new PCT figures
+# Update cycling potential values -----------------------------------------
+
 rnet = pct::get_pct_rnet(region = "avon")
 rnet_school = get_pct_rnet(region = "avon", purpose = "school")
 rnet_reduce = rnet[,c(1,3)]
