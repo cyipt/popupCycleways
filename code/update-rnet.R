@@ -42,13 +42,11 @@ dim(dupes_max) # 3533
 ##Need to join dupes_max with the rnet. Take cycling potential from dupes_max where duplicates exist. Otherwise take it from the new pct dataset, unless there is no buffer segment that the cyipt segment fits inside. In that case take it from cyipt. 
 # Otherwise some segments will be missing. Eg Anchor Road, Cumberland Basin, Gloucester Road Horfields. These go outside the buffer. 
 r_joined = left_join(r_cyipt_joined, dupes_max, by = "idGlobal") %>%
-  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), pctgov, govtarget_slc), cycling_potential_max))
+  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), pctgov, govtarget_slc), cycling_potential_max),
+         cycling_potential_source = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), "cyipt", "updated"), "updated_duplicate"))
 dim(r_joined) # 111865 needs to be the same as dim(r_cyipt_joined). Be careful, this includes large numbers of streets that with 0 cycling potential
 
-r_joined = r_joined %>%
-  distinct()
-
-head(r_joined)
+# head(r_joined)
 
 r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
   select(idGlobal:widthstatus, Existing, length, cycling_potential) %>%

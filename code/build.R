@@ -5,6 +5,8 @@ library(DescTools)
 library(sf)
 library(tidyverse)
 library(tmap)
+library(pct)
+library(stplanr)
 if(!exists("parameters")) {
 message("Loading global parameters")  
 s = c(
@@ -85,9 +87,27 @@ m1 = r_main_region %>%
 # + tm_text("OrganisationName")
 # m1
 
+##Update cycling potential with new PCT figures
+rnet = pct::get_pct_rnet(region = "avon")
+rnet_buff = geo_buffer(shp = rnet, dist = 10)
+r_cyipt_joined = st_join(r_main_region, rnet_buff, join = st_within)
+
+dupes = r_cyipt_joined[which(duplicated(r_cyipt_joined$idGlobal) == TRUE | duplicated(r_cyipt_joined$idGlobal, fromLast = TRUE) == TRUE),]
+dupes_max = dupes %>% 
+  st_drop_geometry() %>% 
+  group_by(idGlobal) %>%
+  summarise(cycling_potential_max = max(govtarget_slc)) 
+
+r_joined = left_join(r_cyipt_joined, dupes_max, by = "idGlobal") %>%
+  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govnearmkt_slc), pctgov, govnearmkt_slc), cycling_potential_max),
+         cycling_potential_source = ifelse(is.na(cycling_potential_max), ifelse(is.na(govnearmkt_slc), "cyipt", "updated"), "updated_duplicate"))
+
+r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
+  select(name:n_lanes, cycling_potential_source) %>%
+  distinct(.keep_all = TRUE) # remove the duplicates
 
 ## ----levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"----
-r_pct_lanes_all = r_main_region %>% 
+r_pct_lanes_all = r_positive %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
   filter(lanes_f > 1 | lanes_b > 1)
 # mapview::mapview(r_pct_lanes)
