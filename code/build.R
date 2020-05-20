@@ -138,11 +138,12 @@ r_pct_lanes = r_pct_lanes_all %>%
   mutate(group_length = sum(length)) %>% 
   mutate(cycling_potential_mean = weighted.mean(cycling_potential, w = length, na.rm = TRUE)) %>% 
   filter(cycling_potential_mean > min_grouped_cycling_potential)
+r_pct_lanes$group_index = group_indices(r_pct_lanes, group, rounded_cycle_potential)
 # r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length) # don't filter by group length until we have sorted out how to deal with discontinuous routes 
 
 # this section needs changing since the group definitions have changed
-r_pct_lanes$graph_group = r_pct_lanes$group
-group_table = table(r_pct_lanes$group)
+r_pct_lanes$graph_group = r_pct_lanes$group_index
+group_table = table(r_pct_lanes$group_index)
 top_groups = tail(sort(group_table), 5)
 r_pct_lanes$graph_group[!r_pct_lanes$graph_group %in% names(top_groups)] = "other"
 
