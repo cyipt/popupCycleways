@@ -50,6 +50,7 @@ counties = readRDS("counties.Rds")
 # todo: combine counties with UAs and CAs
 regs = read_csv("regs.csv")
 names(regs) = "Name"
+regs$`Original names` = regs$Name
 regs_clean = regs %>% 
   mutate(Level_dft = case_when(
     str_detect(Name, "UA") ~ "unitary_authority",
@@ -59,12 +60,15 @@ regs_clean = regs %>%
   mutate(Name = gsub(pattern = " UA| UA2| CA| ITA| Region| City", replacement = " ", Name)) %>% 
   mutate(Name = gsub(pattern = "Kingston upon Hull,  of", replacement = "Kingston upon Hull, City of", Name)) %>% 
   mutate(Name = gsub(pattern = "Liverpool", replacement = "Merseyside", Name)) %>% 
+  mutate(Name = gsub(pattern = "Sheffield", replacement = "South Yorkshire", Name)) %>% 
   mutate(Name = gsub(pattern = "Cornwall", replacement = "Cornwall and Isles of Scilly", Name)) %>% 
   mutate(Name = gsub(pattern = " and Peterborough", replacement = "", Name)) %>% 
   mutate(Name = gsub(pattern = "Bournemouth, Christchurch snd Poole", replacement = "Bournemouth, Christchurch and Poole", Name)) %>% 
   mutate(Name = gsub(pattern = "tfl", replacement = "Greater London", Name)) %>% 
   mutate(Name = str_trim(Name)) %>% 
   filter(!str_detect(string = Name, pattern = "1|2|Local"))
+
+regs_clean
 
 summary(l_in_regs <- regs_clean$Name %in% lads$Name) # 46 las in there
 summary(c_in_regs <- regs_clean$Name %in% counties$Name) # 33 counties in there
@@ -178,18 +182,67 @@ unmatched_regions
 
 cas_uas = left_join(cas_and_uas, regs_clean, by = "Name")
 cas_uas$included = !is.na(cas_uas$Level_dft)
-mapview::mapview(cas_uas["included"]) +
+mapview::mapview(cas_uas[c("included", "Name")], zcol = "included") +
   mapview::mapview(lads_missing)
 
 regions = cas_uas
-saveRDS(regions, "regions.Rds")
+regions # note missing names
+regions$Name[is.na(regions$`Original names`)]
 
-# piggyback::pb_upload("regions.Rds", "cyipt/cyipt-phase-1-data")
 
 # Suggested solutions, to check:
-# Replace geographic region Cheshire with d regions of Chesire East and west Cheshire
 # Replace geographic region Bedfordshire with d regions of Bedford and west Central Bedfordshire
-# Replace d region Sheffield with geographic region South Yorkshire
-# Replace  region Sheffield with geographic region South Yorkshire
+# Replace geographic region Cheshire with d regions of Chesire East and west Cheshire
 # Modify geographic region Cambridgeshire to inclue Peterborough
 # Add North of Tyne to d regs
+
+# Update geometry of North East to include Newcastle
+north_east_updated = sf::st_union(
+  north_of_tyne,
+  regions$geometry[regions$Name == "North East"]
+)
+mapview::mapview(north_east_updated)
+regions$geometry[regions$Name == "North East"] = north_east_updated
+regions = regions %>% filter(Name != "North of Tyne")
+
+# Split Bedfordshire in two
+regions$Name[str_detect(string = regions$Name, pattern = "Bedford")] # only 1 region
+bedford_uas = lads_missing %>% filter(str_detect(string = Name, pattern = "Bedford"))
+mapview::mapview(bedford_uas)
+names(regions)
+names(bedford_uas)
+bedford_uas_joined = inner_join(bedford_uas, regs_clean)
+names(bedford_uas_joined)
+bedford_uas_joined$included = TRUE
+regions = regions %>% filter(!str_detect(string = regions$Name, pattern = "Bedford"))
+regions = rbind(regions, bedford_uas_joined)
+
+# Split Cheshire in two
+regions$Name[str_detect(string = regions$Name, pattern = "Cheshire")] # only 1 region
+cheshire_uas = lads_missing %>% filter(str_detect(string = Name, pattern = "Cheshire"))
+mapview::mapview(cheshire_uas)
+names(regions)
+names(cheshire_uas)
+cheshire_uas_joined = inner_join(cheshire_uas, regs_clean)
+names(cheshire_uas_joined)
+cheshire_uas_joined$included = TRUE
+regions = regions %>% filter(!str_detect(string = regions$Name, pattern = "Cheshire"))
+regions = rbind(regions, cheshire_uas_joined)
+
+# Include Peterborough in Cambridgeshire
+regions$Name[str_detect(string = regions$Name, pattern = "Cambridgeshire")] # only 1 region
+peterborough_uas = lads %>% filter(str_detect(string = Name, pattern = "Peterborough"))
+mapview::mapview(peterborough_uas) + mapview::mapview(regions)
+cambridgeshire_updated = sf::st_union(
+  peterborough_uas,
+  # %>% sf::st_transform(27700) %>% sf::st_buffer(500) %>% sf::st_transform(4326),
+  # fix gap:
+  regions %>% filter(Name == "Cambridgeshire") %>% sf::st_transform(27700) %>% sf::st_buffer(50) %>% sf::st_transform(4326)
+)
+mapview::mapview(cambridgeshire_updated)
+regions$geometry[str_detect(string = regions$Name, pattern = "Cambridgeshire")] = cambridgeshire_updated$geometry
+regions = regions %>% filter(!str_detect(string = Name, pattern = "Peter"))
+
+mapview::mapview(regions, zcol = "included")
+# saveRDS(regions, "regions.Rds")
+# piggyback::pb_upload("regions.Rds", "cyipt/cyipt-phase-1-data")
