@@ -39,6 +39,7 @@ rnet_url = "https://github.com/npct/pct-outputs-national/raw/master/commute/lsoa
 rnet_url_school = "https://github.com/npct/pct-outputs-national/raw/master/school/lsoa/rnet_all.Rds"
 rnet_all = sf::st_as_sf(readRDS(url(rnet_url)))
 rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
+}
 
 # local parameters --------------------------------------------------------
 # i = 1
@@ -59,7 +60,9 @@ if(length(i) == 0) i = 1
 p = parameters[i, ]
 list2env(p, envir = .GlobalEnv)
 
-is_city = FALSE # Todo: add a new is_city parameter
+# additional parameters
+is_city = FALSE 
+pct_dist_within = 50 
 
 # buffers -----------------------------------------------------------------
 if(is_city) {
@@ -83,18 +86,15 @@ t1 = rj %>%
 
 # Update cycling potential values -----------------------------------------
 
-rnet = pct::get_pct_rnet(region = "avon")
-rnet_school = get_pct_rnet(region = "avon", purpose = "school")
-rnet_reduce = rnet[,c(1,3)]
-rnet_school_reduce = rnet[,c(1,3)]
-combine = rbind(rnet_reduce, rnet_school_reduce)
+rnet = rnet_all[region, c(1, 3)]
+rnet_school = rnet_all_school[region, c(1, 3)]
+combine = rbind(rnet, rnet_school)
 rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
 
-
-rnet_buff = geo_buffer(shp = rnet_combined, dist = 10)
+rnet_buff = geo_buffer(shp = rnet_combined, dist = pct_dist_within)
 r_cyipt_joined = st_join(r_main_region, rnet_buff, join = st_within)
 
-dupes = r_cyipt_joined[which(duplicated(r_cyipt_joined$idGlobal) == TRUE | duplicated(r_cyipt_joined$idGlobal, fromLast = TRUE) == TRUE),]
+dupes = r_cyipt_joined[duplicated(r_cyipt_joined$idGlobal) | duplicated(r_cyipt_joined$idGlobal, fromLast = TRUE), ]
 dupes_max = dupes %>% 
   st_drop_geometry() %>% 
   group_by(idGlobal) %>%
@@ -108,17 +108,17 @@ r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
   select(name:n_lanes, cycling_potential_source) %>%
   distinct(.keep_all = TRUE) # remove the duplicates
 
-## ----levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"----
 r_pct_lanes_all = r_positive %>% 
   filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
   filter(lanes_f > 1 | lanes_b > 1)
-# mapview::mapview(r_pct_lanes)
+# mapview::mapview(r_pct_lanes_all)
 
-##this doesn't work. every segment gets put in its own group
-# r_pct_lanes_all_buff = geo_buffer(shp = r_pct_lanes_all, dist = 200) 
-# touching_list = st_touches(r_pct_lanes_all_buff)
+r_pct_lanes_all_buff = geo_buffer(shp = r_pct_lanes_all, dist = 200)
+touching_list_buffer = st_intersects(r_pct_lanes_all_buff)
+head(touching_list)
 
 touching_list = st_touches(r_pct_lanes_all)
+head(touching_list)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_pct_lanes_all$group = components$membership
@@ -220,15 +220,13 @@ r_pct_top_n = r_pct_top %>%
 # get existing infrastructure ---------------------------------------------
 cycleways = cycleways_en[region, ]
 
-# note: dist could be a parameter (RL)
-cycleway_buffer = stplanr::geo_buffer(cycleways, dist = 50) %>% sf::st_union()
+cycleway_buffer = stplanr::geo_buffer(cycleways, dist = pct_dist_within) %>% sf::st_union()
 r_pct_top_no_cycleways = sf::st_difference(r_pct_top, cycleway_buffer)
 r_pct_top_no_cycleways = r_pct_top_no_cycleways %>% 
   st_cast("LINESTRING") %>% 
   mutate(group_length = round(as.numeric(st_length(.)))) %>% 
   filter(group_length > 50)
 
-## ----res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."----
 tmap_mode("view")
 m =
   tm_shape(r_pct_no_overlap) + tm_lines(col = "turquoise", lwd = 6, alpha = 0.6) +
