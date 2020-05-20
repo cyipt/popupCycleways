@@ -218,16 +218,16 @@ regions = regions %>% filter(Name != "Befordshire")
 regions = rbind(regions, bedford_uas_joined)
 
 # Split Cheshire in two
-regions$Name[str_detect(string = regions$Name, pattern = "Bedford")] # only 1 region
-bedford_uas = lads_missing %>% filter(str_detect(string = Name, pattern = "Bedford"))
-mapview::mapview(bedford_uas)
+regions$Name[str_detect(string = regions$Name, pattern = "Cheshire")] # only 1 region
+cheshire_uas = lads_missing %>% filter(str_detect(string = Name, pattern = "Cheshire"))
+mapview::mapview(cheshire_uas)
 names(regions)
-names(bedford_uas)
-bedford_uas_joined = inner_join(bedford_uas, regs_clean)
-names(bedford_uas_joined)
-bedford_uas_joined$included = TRUE
-regions = regions %>% filter(Name != "Befordshire")
-regions = rbind(regions, bedford_uas_joined)
+names(cheshire_uas)
+cheshire_uas_joined = inner_join(cheshire_uas, regs_clean)
+names(cheshire_uas_joined)
+cheshire_uas_joined$included = TRUE
+regions = regions %>% filter(Name != "Chesire")
+regions = rbind(regions, cheshire_uas_joined)
 
 # saveRDS(regions, "regions.Rds")
 # piggyback::pb_upload("regions.Rds", "cyipt/cyipt-phase-1-data")
