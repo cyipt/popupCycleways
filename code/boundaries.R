@@ -214,7 +214,7 @@ names(bedford_uas)
 bedford_uas_joined = inner_join(bedford_uas, regs_clean)
 names(bedford_uas_joined)
 bedford_uas_joined$included = TRUE
-regions = regions %>% filter(Name != "Befordshire")
+regions = regions %>% filter(!str_detect(string = regions$Name, pattern = "Bedford"))
 regions = rbind(regions, bedford_uas_joined)
 
 # Split Cheshire in two
@@ -226,8 +226,23 @@ names(cheshire_uas)
 cheshire_uas_joined = inner_join(cheshire_uas, regs_clean)
 names(cheshire_uas_joined)
 cheshire_uas_joined$included = TRUE
-regions = regions %>% filter(Name != "Chesire")
+regions = regions %>% filter(!str_detect(string = regions$Name, pattern = "Cheshire"))
 regions = rbind(regions, cheshire_uas_joined)
 
+# Include Peterborough in Cambridgeshire
+regions$Name[str_detect(string = regions$Name, pattern = "Cambridgeshire")] # only 1 region
+peterborough_uas = lads %>% filter(str_detect(string = Name, pattern = "Peterborough"))
+mapview::mapview(peterborough_uas) + mapview::mapview(regions)
+cambridgeshire_updated = sf::st_union(
+  peterborough_uas,
+  # %>% sf::st_transform(27700) %>% sf::st_buffer(500) %>% sf::st_transform(4326),
+  # fix gap:
+  regions %>% filter(Name == "Cambridgeshire") %>% sf::st_transform(27700) %>% sf::st_buffer(50) %>% sf::st_transform(4326)
+)
+mapview::mapview(cambridgeshire_updated)
+regions$geometry[str_detect(string = regions$Name, pattern = "Cambridgeshire")] = cambridgeshire_updated$geometry
+regions = regions %>% filter(!str_detect(string = Name, pattern = "Peter"))
+
+mapview::mapview(regions, zcol = "included")
 # saveRDS(regions, "regions.Rds")
 # piggyback::pb_upload("regions.Rds", "cyipt/cyipt-phase-1-data")
