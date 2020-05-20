@@ -89,7 +89,14 @@ m1 = r_main_region %>%
 
 ##Update cycling potential with new PCT figures
 rnet = pct::get_pct_rnet(region = "avon")
-rnet_buff = geo_buffer(shp = rnet, dist = 10)
+rnet_school = get_pct_rnet(region = "avon", purpose = "school")
+rnet_reduce = rnet[,c(1,3)]
+rnet_school_reduce = rnet[,c(1,3)]
+combine = rbind(rnet_reduce, rnet_school_reduce)
+rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
+
+
+rnet_buff = geo_buffer(shp = rnet_combined, dist = 10)
 r_cyipt_joined = st_join(r_main_region, rnet_buff, join = st_within)
 
 dupes = r_cyipt_joined[which(duplicated(r_cyipt_joined$idGlobal) == TRUE | duplicated(r_cyipt_joined$idGlobal, fromLast = TRUE) == TRUE),]
@@ -99,8 +106,8 @@ dupes_max = dupes %>%
   summarise(cycling_potential_max = max(govtarget_slc)) 
 
 r_joined = left_join(r_cyipt_joined, dupes_max, by = "idGlobal") %>%
-  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govnearmkt_slc), pctgov, govnearmkt_slc), cycling_potential_max),
-         cycling_potential_source = ifelse(is.na(cycling_potential_max), ifelse(is.na(govnearmkt_slc), "cyipt", "updated"), "updated_duplicate"))
+  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), pctgov, govtarget_slc), cycling_potential_max),
+         cycling_potential_source = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), "cyipt", "updated"), "updated_duplicate"))
 
 r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
   select(name:n_lanes, cycling_potential_source) %>%
@@ -108,21 +115,32 @@ r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
 
 ## ----levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"----
 r_pct_lanes_all = r_positive %>% 
-  filter(cycling_potential > min_cycling_potential) %>% 
+  filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
   filter(lanes_f > 1 | lanes_b > 1)
 # mapview::mapview(r_pct_lanes)
+
+##this doesn't work. every segment gets put in its own group
+# r_pct_lanes_all_buff = geo_buffer(shp = r_pct_lanes_all, dist = 200) 
+# touching_list = st_touches(r_pct_lanes_all_buff)
 
 touching_list = st_touches(r_pct_lanes_all)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_pct_lanes_all$group = components$membership
+
+
+# Group by cycle potential to nearest 50 ----------------------------------
+r_pct_lanes_all$rounded_cycle_potential = RoundTo(r_pct_lanes_all$cycling_potential, 50)
+
+# These groups might be discontiguous
 r_pct_lanes = r_pct_lanes_all %>% 
-  group_by(group) %>% 
+  group_by(group, rounded_cycle_potential) %>% 
   mutate(group_length = sum(length)) %>% 
   mutate(cycling_potential_mean = weighted.mean(cycling_potential, w = length, na.rm = TRUE)) %>% 
   filter(cycling_potential_mean > min_grouped_cycling_potential)
-r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
+# r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length) # don't filter by group length until we have sorted out how to deal with discontinuous routes 
 
+# this section needs changing since the group definitions have changed
 r_pct_lanes$graph_group = r_pct_lanes$group
 group_table = table(r_pct_lanes$group)
 top_groups = tail(sort(group_table), 5)
