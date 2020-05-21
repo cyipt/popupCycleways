@@ -44,7 +44,7 @@ rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
 # local parameters --------------------------------------------------------
 # i = 1
 if(!exists("region_name")) {
-  region_name = "West of England"
+  region_name = "Herefordshire, County of"
 }
 if(region_name == "Nottingham") {
   region = regions %>% filter(str_detect(string = Name, pattern = "Nott")) %>% 
@@ -63,6 +63,8 @@ list2env(p, envir = .GlobalEnv)
 # additional parameters
 is_city = FALSE 
 pct_dist_within = 50 
+r_min_width_highlighted = 10
+min_cycling_potential = 5
 
 # buffers -----------------------------------------------------------------
 if(is_city) {
@@ -84,130 +86,143 @@ t1 = rj %>%
   table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = .)
 
 
-# Update cycling potential values -----------------------------------------
+# Identify key corridors --------------------------------------------------
+min_pct_99th_percentile = quantile(r_main_region$cycling_potential, probs = 0.99)
+min_pct_90th_percentile = quantile(r_main_region$cycling_potential, probs = 0.90)
 
-rnet = rnet_all[region, c(1, 3)]
-rnet_school = rnet_all_school[region, c(1, 3)]
-combine = rbind(rnet, rnet_school)
-rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
+r_high_pct_99th = r_main_region %>%
+  filter(cycling_potential > min_pct_99th_percentile)
+table(r_high_pct_99th$ref) # many unnamed
+mapview::mapview(r_high_pct_99th)
+r_high_pct_90th = r_main_region %>%
+  filter(cycling_potential > min_pct_90th_percentile)
 
-rnet_buff = geo_buffer(shp = rnet_combined, dist = pct_dist_within)
-r_cyipt_joined = st_join(r_main_region, rnet_buff, join = st_within)
+r_named_ref = r_high_pct_90th %>% 
+  filter(ref != "" & name != "") 
 
-dupes = r_cyipt_joined[duplicated(r_cyipt_joined$idGlobal) | duplicated(r_cyipt_joined$idGlobal, fromLast = TRUE), ]
-dupes_max = dupes %>% 
-  st_drop_geometry() %>% 
-  group_by(idGlobal) %>%
-  summarise(cycling_potential_max = max(govtarget_slc)) 
+r_key_corridors = r_named_ref %>% 
+  group_by(ref) %>% 
+  summarise(
+    length = sum(length),
+    km_cycled_potential = sum(cycling_potential * length) / 1000
+  ) %>% 
+  top_n(n = 20, wt = km_cycled_potential) %>%
+  sf::st_cast("LINESTRING") 
 
-r_joined = left_join(r_cyipt_joined, dupes_max, by = "idGlobal") %>%
-  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), pctgov, govtarget_slc), cycling_potential_max),
-         cycling_potential_source = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), "cyipt", "updated"), "updated_duplicate"))
+r_high_in_key_corridors = r_high_pct_99th[r_key_corridors, , op = sf::st_within]
+r_high_not_in_key_corridors = r_high_pct_99th %>%
+  filter(!idGlobal %in% r_high_in_key_corridors$idGlobal) %>% 
+  transmute(
+    ref = ref,
+    length = length,
+    km_cycled_potential = cycling_potential * length / 1000
+    )
 
-r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
-  select(name:n_lanes, cycling_potential_source) %>%
-  distinct(.keep_all = TRUE) # remove the duplicates
+r_key_network_all = rbind(r_high_not_in_key_corridors, r_key_corridors)
 
-r_pct_lanes_all = r_positive %>% 
-  filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
-  filter(lanes_f > 1 | lanes_b > 1)
-# mapview::mapview(r_pct_lanes_all)
+key_corridor_table = sort(table(r_key_network_all$ref),decreasing=TRUE)
+key_corridor_names = names(key_corridor_table[names(key_corridor_table) != ""])[1:10]
 
-r_pct_lanes_all_buff = geo_buffer(shp = r_pct_lanes_all, dist = 200)
-touching_list = st_intersects(r_pct_lanes_all_buff)
-# head(touching_list)
-
-# touching_list = st_touches(r_pct_lanes_all)
+r_key_buffer = stplanr::geo_buffer(r_key_network_all, dist = 10)
+touching_list = st_intersects(r_key_buffer)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
-r_pct_lanes_all$group = components$membership
+r_key_network_all$group = components$membership
+group_table = table(r_key_network_all$group)
+median(group_table)
 
-
-# Group by cycle potential to nearest 50 ----------------------------------
-r_pct_lanes_all$rounded_cycle_potential = RoundTo(r_pct_lanes_all$cycling_potential, 50)
-
-# These groups might be discontiguous
-r_pct_lanes = r_pct_lanes_all %>% 
-  group_by(group, rounded_cycle_potential) %>% 
-  mutate(group_length = sum(length)) %>% 
-  mutate(cycling_potential_mean = weighted.mean(cycling_potential, w = length, na.rm = TRUE)) %>% 
-  filter(cycling_potential_mean > min_grouped_cycling_potential)
-r_pct_lanes$group_index = group_indices(r_pct_lanes)
-# dplyr::n_groups(r_pct_lanes)
-length(unique(r_pct_lanes$group_index))
-# head(r_pct_lanes$group_index)
-# Warning message:
-#   group_indices_.grouped_df ignores extra arguments 
-# r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length) # don't filter by group length until we have sorted out how to deal with discontinuous routes 
-
-# this section needs changing since the group definitions have changed
-r_pct_lanes$graph_group = r_pct_lanes$group_index
-group_table = table(r_pct_lanes$group_index)
-top_groups = tail(sort(group_table), 5)
-r_pct_lanes$graph_group[!r_pct_lanes$graph_group %in% names(top_groups)] = "other"
-
-tmap_mode("plot")
-m2 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
-  tm_shape(r_pct_lanes) + tm_lines("graph_group", palette = "Dark2") +
-  tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
-# m2
-
-r_pct_grouped = r_pct_lanes %>%
-  group_by(name, group) %>%
+r_key_network_all$length = as.numeric(sf::st_length(r_key_network_all))
+r_key_network = r_key_network_all %>% 
+  group_by(group) %>% 
   summarise(
     group_length = sum(length),
-    cycling_potential = round(weighted.mean(cycling_potential_mean, length))
-  )
-# summary(r_pct_grouped$group_length)
-r_pct_top = r_pct_grouped %>%
+    km_cycled_potential = weighted.mean(km_cycled_potential, length)
+    ) %>% 
+  ungroup() %>% 
+  filter(group_length > min_grouped_length * 10)
+summary(r_key_network$group_length)
+
+r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
+r_key_network_buffer = stplanr::geo_buffer(r_key_network, dist = 1000)
+r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
+mapview::mapview(r_key_network, zcol = "km_cycled_potential")
+r_in_key_network = r_high_pct_90th[r_key_network, , op = st_within]
+mapview::mapview(r_in_key_network)
+r_key_roads = r_main_region %>%
+  filter(ref %in% key_corridor_names)
+mapview::mapview(r_key_roads)
+r_key_roads_near_key_network = r_key_roads[r_key_network_buffer, ]
+mapview::mapview(r_key_roads_near_key_network)
+# %>% 
+#   filter(!idGlobal %in% r_in_key_network$idGlobal)
+
+r_key_network_final = r_key_roads_near_key_network %>%
+  group_by(ref, name) %>% 
+  summarise(
+    group_length = round(sum(length)),
+    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+    mean_width = round(weighted.mean(width, length, na.rm = TRUE))
+    )
+# mapview::mapview(r_key_network_final, lwd = "mean_width")
+# tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
+tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
+
+
+# show lanes roads with spare space ---------------------------------------
+
+r_lanes_all_no_buffer = r_main_region %>% 
+  filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
+  mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
+  filter(spare_lane | width > 10)
+r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
+mapview::mapview(r_lanes_all_no_buffer) +
+  mapview::mapview(r_lanes_all)
+
+r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = 100)
+touching_list = st_intersects(r_lanes_all_buff)
+# head(touching_list)
+
+# touching_list = st_touches(r_lanes_all)
+g = igraph::graph.adjlist(touching_list)
+components = igraph::components(g)
+r_lanes_all$group = components$membership
+mapview::mapview(r_lanes_all["group"])
+
+r_lanes_grouped = r_lanes_all %>%
+  group_by(name, ref, group, spare_lane) %>%
+  summarise(
+    group_length = round(sum(length)),
+    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+    mean_width = round(weighted.mean(width, length, na.rm = TRUE))
+  ) %>% 
+  ungroup() %>% 
   filter(group_length > min_grouped_length) %>% 
-  filter(cycling_potential > min_grouped_cycling_potential) %>% 
-  filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
-  mutate(km_day = round(cycling_potential * group_length / 1000))
-
-## ----Grouping - work in progress---------------------------------------------------------------------------------
-
-# commented-out for now (RL)
-# r_pct_lanes$rounded_cycle_potential = RoundTo(r_pct_lanes$cycling_potential, 50)
-# 
-# ## Take segments (which are already grouped by the initial igraph list) and group by cycle potential rounded to the nearest 50
-# 
-# agg_var = st_sfc(list(r_pct_lanes$group), list(r_pct_lanes$rounded_cycle_potential))
-# r_pct_group1 = r_pct_lanes %>%
-#   group_by(group, rounded_cycle_potential) %>%
-#   select(group, rounded_cycle_potential) %>%
-#   st_drop_geometry() %>%
-#   aggregate(by = list(r_pct_lanes$group, r_pct_lanes$rounded_cycle_potential), FUN = mean)
-# 
-# # Now need to separate non-adjacent groups with the same cycle potential
-# 
-# # This one should be shown on the map
-# r_pct_grouped = r_pct_group1 %>%
-#   group_by(group2) %>%
-#   summarise(
-#     group_length = sum(length),
-#     cycling_potential = round(weighted.mean(cycling_potential, length))
-#   )
+  mutate(width_status = case_when(
+    mean_width > 10 ~ "Width > 10 m",
+    spare_lane ~ "Spare lane"
+    # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
+  ),
+  id = 1:length(spare_lane)) 
+mapview::mapview(r_lanes_grouped["width_status"])
 
 # Generate lists of top segments ------------------------------------------------------------
 
-
-
-# summary(r_pct_grouped$group_length)
-r_pct_top = r_pct_grouped %>%
+r_lanes_top = r_lanes_grouped %>%
   filter(group_length > min_grouped_length) %>% 
-  filter(cycling_potential > min_grouped_cycling_potential) %>% 
+  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
-  mutate(km_cycled = round(cycling_potential * group_length / 1000))
-# head(r_pct_top$kkm_cycled)
+  mutate(km_cycled = round(mean_cycling_potential * group_length / 1000))
+mapview::mapview(r_lanes_all)
+mapview::mapview(r_lanes_top)
+# head(r_lanes_top$kkm_cycled)
 
-r_pct_lanes_overlap = r_pct_lanes[r_pct_top, , op = sf::st_covered_by] # works
-# r_pct_no_overlap = st_difference(r_pct_lanes, r_pct_top) # slow
-r_pct_no_overlap = r_pct_lanes %>% 
-  filter(!idGlobal %in% r_pct_lanes_overlap$idGlobal)
+# r_lanes_overlap = r_lanes_all[r_lanes_top, , op = sf::st_covered_by] # works
+# r_lanes_no_overlap = st_difference(r_lanes, r_lanes_top) # slow
+# r_lanes_no_overlap = r_lanes_all %>% 
+#   filter(!idGlobal %in% r_lanes_overlap$idGlobal)
 
-r_pct_top_n = r_pct_top %>% 
-  group_by(name) %>% 
+r_lanes_top_n = r_lanes_top %>% 
+  group_by(name, ref) %>% 
   slice(which.max(km_cycled)) %>% 
   filter(name != "") %>% 
   ungroup() %>% 
@@ -219,28 +234,42 @@ r_pct_top_n = r_pct_top %>%
 cycleways = cycleways_en[region, ]
 
 cycleway_buffer = stplanr::geo_buffer(cycleways, dist = pct_dist_within) %>% sf::st_union()
-r_pct_top_no_cycleways = sf::st_difference(r_pct_top, cycleway_buffer)
-r_pct_top_no_cycleways = r_pct_top_no_cycleways %>% 
-  st_cast("LINESTRING") %>% 
-  mutate(group_length = round(as.numeric(st_length(.)))) %>% 
-  filter(group_length > 50)
+# r_lanes_top_no_cycleways = sf::st_difference(r_lanes_top, cycleway_buffer)
+# r_lanes_top_no_cycleways = r_lanes_top_no_cycleways %>%
+#   st_cast("LINESTRING") %>%
+#   mutate(group_length = round(as.numeric(st_length(.)))) %>%
+#   filter(group_length > 50)
+
+r_lanes_grouped_in_cycleway = st_intersection(r_lanes_grouped, cycleway_buffer) %>% 
+  transmute(id = id, length_in_cycleway = round(as.numeric(st_length(.)))) %>% 
+  st_drop_geometry()
+
+minp_exclude = 0.75
+r_lanes_joined = left_join(r_lanes_grouped, r_lanes_grouped_in_cycleway)
+# only roads in which a high proportion are not already cycleways should be selected:
+sel = (r_lanes_joined$group_length * minp_exclude) > r_lanes_joined$length_in_cycleway 
+sel[is.na(sel)] = TRUE
+sel_highlighted = sel & r_lanes_grouped$id %in% r_lanes_top_n$id
+
+r_lanes_grouped$width_status[sel_highlighted] = "Highlighted route"
+table(r_lanes_grouped$width_status)
+
+cols_status = c("blue", "turquoise", "green")
 
 tmap_mode("view")
 m =
-  tm_shape(r_pct_no_overlap) + tm_lines(col = "turquoise", lwd = 6, alpha = 0.6) +
-  tm_shape(r_pct_top_no_cycleways) + tm_lines(col = "blue", lwd = 6, alpha = 0.6) +
-  tm_shape(r_pct_top) + tm_lines(col = "red", lwd = 6, alpha = 0.6) +
+  tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 9, col = "lightsalmon2", palette = "Dark2") +
+  tm_shape(r_lanes_grouped) + tm_lines(col = "width_status", lwd = 3, alpha = 0.6, palette = cols_status) +
+  # tm_text("ref") +
+  # tm_shape(r_lanes_top_no_cycleways) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways) + tm_lines() +
-  tm_shape(r_pct_top_n) + tm_text("name") +
-  tm_shape(h_city) + tm_dots(size = 0.1, col = "red", alpha = 0.4) +
+  # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
 m
 
-## --------------------------------------------------------------------------------------------
-res_table = r_pct_top_n %>% 
+res_table = r_lanes_top_n %>% 
   sf::st_drop_geometry() %>% 
-  select(name, length = group_length, cycling_potential, km_cycled) 
+  select(name, length = group_length, mean_cycling_potential, km_cycled) 
 knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
 
-# }
