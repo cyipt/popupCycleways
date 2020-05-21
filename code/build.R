@@ -187,99 +187,129 @@ mapview::mapview(r_lanes_all["group"])
 
 r_lanes_grouped = r_lanes_all %>%
   filter(ref != "") %>% 
-  group_by(ref, name, group) %>%
+  group_by(ref, group) %>%
   summarise(
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
     spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
-    # road_name = names(table(name))[which.max(table(name))]
+    road_name = names(table(name))[which.max(table(name))]
   ) %>% 
   filter(group_length > min_grouped_length) %>% 
-  mutate(width_status = case_when(
-    mean_width >= 9 ~ "Width > 9 m",
-    spare_lane ~ "Spare lane"
-    # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
-  )) 
+  mutate(
+    width_status = case_when(
+      mean_width >= 9 ~ "Width > 9 m",
+      spare_lane ~ "Spare lane"
+      # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
+    )
+  ) 
+# r_lanes_grouped$group_id = paste0(r_lanes_grouped$group, r_lanes_grouped$ref)
 
 mapview::mapview(r_lanes_grouped, zcol = "group_length", lwd = 5)
 
 r_lanes_grouped_linestrings = st_cast(r_lanes_grouped, "LINESTRING")
-# mapview::mapview(r_lanes_grouped_linestrings, zcol = "group_length")
-touching_list = st_intersects((r_lanes_grouped_linestrings))
-g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-r_lanes_grouped_linestrings$igroup = components$membership
-r_lanes_grouped2 = r_lanes_grouped_linestrings %>% 
-  group_by(igroup) %>% 
-  mutate(n_in_group = n()) %>% 
-  filter(!(n_in_group < 5 & name == "")) %>% 
-  group_by(ref, group) 
+r_lanes_grouped_linestrings = r_lanes_all[r_lanes_grouped, , op = st_within]
+mapview::mapview(r_lanes_grouped_linestrings)
+gs = unique(r_lanes_grouped_linestrings$ref)
+# i = g[2]
+i = "A4174"
 
-summary(r_lanes_grouped2$n_in_group)
+rg_list = lapply(gs, FUN = function(i) {
+  rg = r_lanes_grouped_linestrings %>% filter(ref == i)
+  # mapview::mapview(rg)
+  r_lanes_all_buff = geo_buffer(shp = rg, dist = 100)
+  touching_list = st_intersects(r_lanes_all_buff)
+  g = igraph::graph.adjlist(touching_list)
+  components = igraph::components(g)
+  rg$ig = components$membership
+  rg
+})
+
+rg_new = do.call(rbind, rg_list)
+
+
+# touching_list = st_intersects(stplanr::geo_buffer(r_lanes_grouped_linestrings, dist = 50))
+# g = igraph::graph.adjlist(touching_list)
+# components = igraph::components(g)
+# r_lanes_grouped_linestrings$igroup = components$membership
+r_lanes_grouped2 = rg_new %>% 
+  group_by(ref, ig) %>% 
+  mutate(n_in_group = n()) %>% 
+  filter(!(n_in_group < 1 & name == "")) %>% 
+  group_by(ref, group, ig) %>% 
+  summarise(
+    group_length = round(sum(length)),
+    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+    mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
+    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
+    name = names(table(name))[which.max(table(name))]
+  ) %>% 
+  filter(group_length > min_grouped_length |
+           mean_cycling_potential > min_grouped_cycling_potential &
+           (group_length * 2 > min_grouped_length)) %>% 
+  ungroup() %>% 
+  mutate(group_id = 1:nrow(.))
+
 mapview::mapview(r_lanes_grouped2, zcol = "group", lwd = 3)
+mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
 
 # mapview::mapview(r_lanes_grouped["width_status"])
 # mapview::mapview(r_lanes_grouped["group"])
 
 # Generate lists of top segments ------------------------------------------------------------
 
-r_lanes_top = r_lanes_grouped %>%
-  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
-  filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
-  mutate(km_cycled = round(mean_cycling_potential * group_length / 1000))
-mapview::mapview(r_lanes_grouped)
-mapview::mapview(r_lanes_top)
-# head(r_lanes_top$kkm_cycled)
 
-# r_lanes_overlap = r_lanes_all[r_lanes_top, , op = sf::st_covered_by] # works
-# r_lanes_no_overlap = st_difference(r_lanes, r_lanes_top) # slow
-# r_lanes_no_overlap = r_lanes_all %>% 
-#   filter(!idGlobal %in% r_lanes_overlap$idGlobal)
-
-# r_lanes_top_n = r_lanes_top %>% 
-#   group_by(ref, group, name) %>% 
-#   slice(which.max(km_cycled)) %>% 
-#   filter(name != "") %>% 
-#   ungroup() %>% 
-#   arrange(desc(km_cycled)) %>% 
-#   slice(1:50)
-# 
-# mapview::mapview(r_lanes_top_n)
-
-# get existing infrastructure ---------------------------------------------
 cycleways = cycleways_en[region, ]
-
 cycleway_buffer = stplanr::geo_buffer(cycleways, dist = pct_dist_within) %>% sf::st_union()
-# r_lanes_top_no_cycleways = sf::st_difference(r_lanes_top, cycleway_buffer)
-# r_lanes_top_no_cycleways = r_lanes_top_no_cycleways %>%
-#   st_cast("LINESTRING") %>%
-#   mutate(group_length = round(as.numeric(st_length(.)))) %>%
-#   filter(group_length > 50)
 
-r_lanes_grouped_in_cycleway = st_intersection(r_lanes_grouped, cycleway_buffer) %>% 
-  transmute(id = id, length_in_cycleway = round(as.numeric(st_length(.)))) %>% 
-  st_drop_geometry()
+r_lanes_grouped_in_cycleway = st_intersection(r_lanes_grouped2, cycleway_buffer) %>% 
+  mutate(length_in_cycleway = round(as.numeric(st_length(.))))
+# mapview::mapview(r_lanes_grouped_in_cycleway["length_in_cycleway"]) +
+#   mapview::mapview(cycleways)
+r_lanes_grouped_in_cycleway = r_lanes_grouped_in_cycleway %>% 
+  st_drop_geometry() 
 
 minp_exclude = 0.75
-r_lanes_joined = left_join(r_lanes_grouped, r_lanes_grouped_in_cycleway)
-# only roads in which a high proportion are not already cycleways should be selected:
-sel = (r_lanes_joined$group_length * minp_exclude) > r_lanes_joined$length_in_cycleway 
-sel[is.na(sel)] = TRUE
-sel_highlighted = sel & r_lanes_grouped$id %in% r_lanes_top_n$id
-r_lanes_grouped$ref[sel_highlighted]
+r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %>% 
+  mutate(km_cycled = round(mean_cycling_potential * group_length / 1000)) 
+r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
+summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
+mapview::mapview(r_lanes_joined["proportion_on_cycleway"])
 
-r_lanes_grouped$width_status[sel_highlighted] = "Highlighted route"
-table(r_lanes_grouped$width_status)
+r_lanes_top = r_lanes_joined %>%
+  ungroup() %>% 
+  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
+  filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
+  filter(proportion_on_cycleway < minp_exclude) %>% 
+  arrange(desc(km_cycled)) %>% 
+  slice(1:20)
+nrow(r_lanes_top)
 
+# classify roads to visualise
+r_lanes_joined = r_lanes_joined %>% 
+  mutate(
+    Status = case_when(
+      group_id %in% r_lanes_top$group_id ~ "Top route",
+      spare_lane ~ "Spare lane(s)",
+      mean_width >= 9 ~ "Width > 10"
+    )
+  )
+
+table(r_lanes_joined$Status)
+summary(factor(r_lanes_joined$Status))
+
+
+popup.vars = c("")
 cols_status = c("blue", "turquoise", "green")
-
 tmap_mode("view")
 m =
-  tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 9, col = "lightsalmon2", palette = "Dark2") +
+  tm_shape(r_key_network_final) +
+  tm_lines(lwd = "mean_width", scale = 9, col = "darkgrey", palette = "Dark2") +
   # tm_shape(r_lanes_grouped) + tm_lines(col = "width_status", lwd = 3, alpha = 0.6, palette = cols_status) +
   # tm_text("ref") +
-  tm_shape(r_lanes_top) + tm_lines(col = "blue", lwd = 2, alpha = 0.6) +
+  tm_shape(r_lanes_joined) +
+  tm_lines(col = "Status", lwd = "mean_cycling_potential", alpha = 0.6, scale = 5,
+           popup.vars = c("mean_width"), palette = "Dark2") +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways) + tm_lines() +
   # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
