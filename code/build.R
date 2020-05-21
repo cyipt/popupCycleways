@@ -116,7 +116,7 @@ r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
 ## ----levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"----
 r_pct_lanes_all = r_positive %>% 
   filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
-  filter(lanes_f > 1 | lanes_b > 1)
+  filter(lanes_f > 1 | lanes_b > 1 | width >= 10)
 # mapview::mapview(r_pct_lanes)
 
 ##this doesn't work. every segment gets put in its own group
