@@ -79,6 +79,55 @@ if(is_city) {
   r_main_region = rj
 }
 
+
+
+
+# Combine commute and schools route networks ----------------------------------------
+
+rnet_all = rnet_all %>%
+  select(local_id, govtarget_slc)
+rnet_all_school = rnet_all_school %>%
+  select(local_id, govtarget_slc)
+
+# Filter by region
+rnet_reg = rnet_all %>% st_intersects(region)
+reg_logical = lengths(rnet_reg) > 0
+rnet_done = rnet_all[reg_logical, ]
+
+rnet_school_reg = rnet_all_school %>% st_intersects(region)
+reg_school_logical = lengths(rnet_school_reg) > 0
+rnet_school_done = rnet_all_school[reg_school_logical, ]
+
+# Combine the two
+combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
+rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
+##
+
+
+# Link the updated cycle potential to the road widths ---------------------
+
+# pct_dist_within was currently set at 50. This is probably too high. There will be a lot of duplicates.
+rnet_buff = geo_buffer(shp = rnet_combined, dist = pct_dist_within)
+
+r_cyipt_joined = st_join(r_main_region, rnet_buff, join = st_within)
+
+dupes = r_cyipt_joined[duplicated(r_cyipt_joined$idGlobal) | duplicated(r_cyipt_joined$idGlobal, fromLast = TRUE), ]
+dupes_max = dupes %>% 
+  st_drop_geometry() %>% 
+  group_by(idGlobal) %>%
+  summarise(cycling_potential_max = max(govtarget_slc)) 
+
+r_joined = left_join(r_cyipt_joined, dupes_max, by = "idGlobal") %>%
+  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), pctgov, govtarget_slc), cycling_potential_max),
+         cycling_potential_source = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), "cyipt", "updated"), "updated_duplicate"))
+
+r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
+  distinct(.keep_all = TRUE) # remove the duplicates
+
+r_main_region = r_positive
+
+
+
 # Identify key corridors --------------------------------------------------
 min_pct_99th_percentile = quantile(r_main_region$cycling_potential, probs = 0.99)
 min_pct_90th_percentile = quantile(r_main_region$cycling_potential, probs = 0.90)
