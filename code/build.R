@@ -8,37 +8,37 @@ library(tmap)
 library(pct)
 library(stplanr)
 if(!exists("parameters")) {
-message("Loading global parameters")  
-s = c(
-  `Grey` = "Esri.WorldGrayCanvas",
-  `PCT commuting, Government Target` = "https://npttile.vs.mythic-beasts.com/commute/v2/govtarget/{z}/{x}/{y}.png",
-  `PCT schools, Government Target` = "https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png",
-  `PCT commuting, Ebikes, ` = "https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png",
-  `PCT schools, Go Dutch, ` = "https://npttile.vs.mythic-beasts.com/school/v2/dutch/{z}/{x}/{y}.png",
-  `Cycleways` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
-  `Satellite` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
-)
-tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
-# test basemap:
-tmap_mode("view")
-parameters = read_csv("input-data/parameters.csv")
-
-# read-in national data ---------------------------------------------------
-# see preprocess.R for data origins
-regions = readRDS("regions.Rds")
-rj_all = readRDS("rj.Rds")
-region_names = regions$Name
-# hospitals:
-hsf = readRDS("hsf.Rds")
-nrow(regions)
-cycleways_en = readRDS("cycleways_en.Rds")
-tm_shape(regions) + tm_polygons(alpha = 0.1) + tm_basemap(s, tms = tms) # check basemaps
-
-# get pct data
-rnet_url = "https://github.com/npct/pct-outputs-national/raw/master/commute/lsoa/rnet_all.Rds"
-rnet_url_school = "https://github.com/npct/pct-outputs-national/raw/master/school/lsoa/rnet_all.Rds"
-rnet_all = sf::st_as_sf(readRDS(url(rnet_url)))
-rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
+  message("Loading global parameters")  
+  s = c(
+    `Grey` = "Esri.WorldGrayCanvas",
+    `PCT commuting, Government Target` = "https://npttile.vs.mythic-beasts.com/commute/v2/govtarget/{z}/{x}/{y}.png",
+    `PCT schools, Government Target` = "https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png",
+    `PCT commuting, Ebikes, ` = "https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png",
+    `PCT schools, Go Dutch, ` = "https://npttile.vs.mythic-beasts.com/school/v2/dutch/{z}/{x}/{y}.png",
+    `Cycleways` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+    `Satellite` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+  )
+  tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
+  # test basemap:
+  tmap_mode("view")
+  parameters = read_csv("input-data/parameters.csv")
+  
+  # read-in national data ---------------------------------------------------
+  # see preprocess.R for data origins
+  regions = readRDS("regions.Rds")
+  rj_all = readRDS("rj.Rds")
+  region_names = regions$Name
+  # hospitals:
+  hsf = readRDS("hsf.Rds")
+  nrow(regions)
+  cycleways_en = readRDS("cycleways_en.Rds")
+  tm_shape(regions) + tm_polygons(alpha = 0.1) + tm_basemap(s, tms = tms) # check basemaps
+  
+  # get pct data
+  rnet_url = "https://github.com/npct/pct-outputs-national/raw/master/commute/lsoa/rnet_all.Rds"
+  rnet_url_school = "https://github.com/npct/pct-outputs-national/raw/master/school/lsoa/rnet_all.Rds"
+  rnet_all = sf::st_as_sf(readRDS(url(rnet_url)))
+  rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
 }
 
 # local parameters --------------------------------------------------------
@@ -78,13 +78,6 @@ if(is_city) {
   city_key_buffer = sf::st_geometry(region)
   r_main_region = rj
 }
-
-## ----t1, results='asis'----------------------------------------------------------------------
-t1 = rj %>%
-  st_drop_geometry() %>%
-  # select(name, highway_type, maxspeed, cycling_potential, width) %>%
-  table1::table1(~ highway_type + cycling_potential + width + n_lanes | maxspeed, data = .)
-
 
 # Identify key corridors --------------------------------------------------
 min_pct_99th_percentile = quantile(r_main_region$cycling_potential, probs = 0.99)
@@ -167,7 +160,6 @@ mapview::mapview(r_key_network_final)
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
 tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
 
-
 # show lanes roads with spare space ---------------------------------------
 
 r_lanes_all_no_buffer = r_main_region %>% 
@@ -238,11 +230,11 @@ r_lanes_grouped2 = rg_new %>%
   filter(!(n_in_group < 1 & name == "")) %>% 
   group_by(ref, group, ig) %>% 
   summarise(
+    name = names(table(name))[which.max(table(name))],
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
-    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
-    name = names(table(name))[which.max(table(name))]
+    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
   ) %>% 
   filter(group_length > min_grouped_length |
            mean_cycling_potential > min_grouped_cycling_potential &
@@ -250,14 +242,13 @@ r_lanes_grouped2 = rg_new %>%
   ungroup() %>% 
   mutate(group_id = 1:nrow(.))
 
-mapview::mapview(r_lanes_grouped2, zcol = "group", lwd = 3)
-mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
+# mapview::mapview(r_lanes_grouped2, zcol = "group", lwd = 3)
+# mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
 
 # mapview::mapview(r_lanes_grouped["width_status"])
 # mapview::mapview(r_lanes_grouped["group"])
 
 # Generate lists of top segments ------------------------------------------------------------
-
 
 cycleways = cycleways_en[region, ]
 cycleway_buffer = stplanr::geo_buffer(cycleways, dist = pct_dist_within) %>% sf::st_union()
@@ -274,10 +265,11 @@ r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %>%
   mutate(km_cycled = round(mean_cycling_potential * group_length / 1000)) 
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
-mapview::mapview(r_lanes_joined["proportion_on_cycleway"])
+# mapview::mapview(r_lanes_joined["proportion_on_cycleway"])
 
 r_lanes_top = r_lanes_joined %>%
   ungroup() %>% 
+  filter(name != "") %>% 
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
@@ -293,13 +285,14 @@ r_lanes_joined = r_lanes_joined %>%
       spare_lane ~ "Spare lane(s)",
       mean_width >= 9 ~ "Width > 10"
     )
-  )
+  ) %>% 
+  select(name, ref, Status, mean_cycling_potential, spare_lane, mean_width, group_id)
 
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
 
 
-popup.vars = c("")
+popup.vars = c("name", "ref", "spare_lane", "mean_width", "mean_cycling_potential")
 cols_status = c("blue", "turquoise", "green")
 tmap_mode("view")
 m =
@@ -309,7 +302,7 @@ m =
   # tm_text("ref") +
   tm_shape(r_lanes_joined) +
   tm_lines(col = "Status", lwd = "mean_cycling_potential", alpha = 0.6, scale = 5,
-           popup.vars = c("mean_width"), palette = "Dark2") +
+           popup.vars = popup.vars, palette = "Dark2") +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways) + tm_lines() +
   # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
@@ -317,8 +310,8 @@ m =
   tm_scale_bar()
 m
 
-res_table = r_lanes_top_n %>% 
+res_table = r_lanes_top %>% 
   sf::st_drop_geometry() %>% 
-  select(name, length = group_length, mean_cycling_potential, km_cycled) 
+  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
 knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
 
