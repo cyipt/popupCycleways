@@ -176,9 +176,9 @@ r_lanes_all_no_buffer = r_main_region %>%
   filter(spare_lane | width >= 9)
 r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
 # mapview::mapview(r_lanes_all_no_buffer) +
-  mapview::mapview(r_lanes_all)
+mapview::mapview(r_lanes_all)
 
-r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = 100)
+r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = 50)
 touching_list = st_intersects(r_lanes_all_buff)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
@@ -186,39 +186,49 @@ r_lanes_all$group = components$membership
 mapview::mapview(r_lanes_all["group"])
 
 r_lanes_grouped = r_lanes_all %>%
-  group_by(ref, name, group, spare_lane) %>%
+  filter(ref != "") %>% 
+  group_by(ref, name, group) %>%
   summarise(
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
-    mean_width = round(weighted.mean(width, length, na.rm = TRUE))
+    mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
+    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
+    # road_name = names(table(name))[which.max(table(name))]
   ) %>% 
-  ungroup() %>% 
   filter(group_length > min_grouped_length) %>% 
   mutate(width_status = case_when(
     mean_width >= 9 ~ "Width > 9 m",
     spare_lane ~ "Spare lane"
     # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
-  ),
-  id = 1:length(spare_lane)) %>% 
-  st_cast("MULTILINESTRING") %>% 
-  st_cast("LINESTRING")
-mapview::mapview(r_lanes_grouped["width_status"])
+  )) 
 
-touching_list = st_intersects(r_lanes_grouped)
+mapview::mapview(r_lanes_grouped, zcol = "group_length", lwd = 5)
+
+r_lanes_grouped_linestrings = st_cast(r_lanes_grouped, "LINESTRING")
+# mapview::mapview(r_lanes_grouped_linestrings, zcol = "group_length")
+touching_list = st_intersects((r_lanes_grouped_linestrings))
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
-r_lanes_grouped$group = components$membership
-mapview::mapview(r_lanes_all["group"])
+r_lanes_grouped_linestrings$igroup = components$membership
+r_lanes_grouped2 = r_lanes_grouped_linestrings %>% 
+  group_by(igroup) %>% 
+  mutate(n_in_group = n()) %>% 
+  filter(!(n_in_group < 5 & name == "")) %>% 
+  group_by(ref, group) 
+
+summary(r_lanes_grouped2$n_in_group)
+mapview::mapview(r_lanes_grouped2, zcol = "group", lwd = 3)
+
+# mapview::mapview(r_lanes_grouped["width_status"])
+# mapview::mapview(r_lanes_grouped["group"])
 
 # Generate lists of top segments ------------------------------------------------------------
 
 r_lanes_top = r_lanes_grouped %>%
-  group_by(name)
-  filter(group_length > min_grouped_length) %>% 
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   mutate(km_cycled = round(mean_cycling_potential * group_length / 1000))
-mapview::mapview(r_lanes_all)
+mapview::mapview(r_lanes_grouped)
 mapview::mapview(r_lanes_top)
 # head(r_lanes_top$kkm_cycled)
 
@@ -227,13 +237,15 @@ mapview::mapview(r_lanes_top)
 # r_lanes_no_overlap = r_lanes_all %>% 
 #   filter(!idGlobal %in% r_lanes_overlap$idGlobal)
 
-r_lanes_top_n = r_lanes_top %>% 
-  group_by(ref, group) %>% 
-  slice(which.max(km_cycled)) %>% 
-  filter(name != "") %>% 
-  ungroup() %>% 
-  arrange(desc(km_cycled)) %>% 
-  slice(1:20)
+# r_lanes_top_n = r_lanes_top %>% 
+#   group_by(ref, group, name) %>% 
+#   slice(which.max(km_cycled)) %>% 
+#   filter(name != "") %>% 
+#   ungroup() %>% 
+#   arrange(desc(km_cycled)) %>% 
+#   slice(1:50)
+# 
+# mapview::mapview(r_lanes_top_n)
 
 # get existing infrastructure ---------------------------------------------
 cycleways = cycleways_en[region, ]
@@ -267,7 +279,8 @@ m =
   tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 9, col = "lightsalmon2", palette = "Dark2") +
   # tm_shape(r_lanes_grouped) + tm_lines(col = "width_status", lwd = 3, alpha = 0.6, palette = cols_status) +
   # tm_text("ref") +
-  tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
+  tm_shape(r_lanes_top) + tm_lines(col = "blue", lwd = 2, alpha = 0.6) +
+  # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways) + tm_lines() +
   # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
   tm_basemap(server = s, tms = tms) +
