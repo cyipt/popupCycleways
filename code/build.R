@@ -357,7 +357,7 @@ m =
   # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
-m
+# m
 
 res_table = r_lanes_top %>% 
   sf::st_drop_geometry() %>% 
