@@ -107,7 +107,8 @@ rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
 # Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within was currently set at 50. This is probably too high. There will be a lot of duplicates.
-rnet_buff = geo_buffer(shp = rnet_combined, dist = pct_dist_within)
+buff_dist = 10
+rnet_buff = geo_buffer(shp = rnet_combined, dist = buff_dist)
 
 r_cyipt_joined = st_join(r_main_region, rnet_buff, join = st_within)
 
@@ -131,6 +132,7 @@ r_main_region = r_positive
 # Identify key corridors --------------------------------------------------
 min_pct_99th_percentile = quantile(r_main_region$cycling_potential, probs = 0.99)
 min_pct_90th_percentile = quantile(r_main_region$cycling_potential, probs = 0.90)
+min_pct_85th_percentile = quantile(r_main_region$cycling_potential, probs = 0.85)
 
 r_high_pct_99th = r_main_region %>%
   filter(cycling_potential > min_pct_99th_percentile)
@@ -138,8 +140,12 @@ table(r_high_pct_99th$ref) # many unnamed
 mapview::mapview(r_high_pct_99th)
 r_high_pct_90th = r_main_region %>%
   filter(cycling_potential > min_pct_90th_percentile)
+mapview::mapview(r_high_pct_90th)
+r_high_pct_85th = r_main_region %>%
+  filter(cycling_potential > min_pct_85th_percentile)
+mapview::mapview(r_high_pct_85th)
 
-r_named_ref = r_high_pct_90th %>% 
+r_named_ref = r_high_pct_85th %>% 
   filter(ref != "" & name != "") 
 
 r_key_corridors = r_named_ref %>% 
@@ -151,7 +157,7 @@ r_key_corridors = r_named_ref %>%
   top_n(n = 20, wt = km_cycled_potential) %>%
   sf::st_cast("LINESTRING") 
 
-r_high_in_key_corridors = r_high_pct_99th[r_key_corridors, , op = sf::st_within]
+# r_high_in_key_corridors = r_high_pct_99th[r_key_corridors, , op = sf::st_within]
 r_high_not_in_key_corridors = r_high_pct_99th %>%
   filter(!idGlobal %in% r_high_in_key_corridors$idGlobal) %>% 
   transmute(
@@ -165,7 +171,7 @@ r_key_network_all = rbind(r_high_not_in_key_corridors, r_key_corridors)
 key_corridor_table = sort(table(r_key_network_all$ref),decreasing=TRUE)
 key_corridor_names = names(key_corridor_table[names(key_corridor_table) != ""])[1:10]
 
-r_key_buffer = stplanr::geo_buffer(r_key_network_all, dist = 10)
+r_key_buffer = stplanr::geo_buffer(r_key_network_all, dist = 200)
 touching_list = st_intersects(r_key_buffer)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
@@ -181,15 +187,15 @@ r_key_network = r_key_network_all %>%
     km_cycled_potential = weighted.mean(km_cycled_potential, length)
     ) %>% 
   ungroup() %>% 
-  filter(group_length > min_grouped_length * 10)
+  filter(group_length > min_grouped_length)
 summary(r_key_network$group_length)
 
-r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
+# r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
 r_key_network_buffer = stplanr::geo_buffer(r_key_network, dist = 1000)
 r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
-mapview::mapview(r_key_network, zcol = "km_cycled_potential")
-r_in_key_network = r_high_pct_90th[r_key_network, , op = st_within]
-mapview::mapview(r_in_key_network)
+# mapview::mapview(r_key_network, zcol = "km_cycled_potential")
+# r_in_key_network = r_high_pct_90th[r_key_network, , op = st_within]
+# mapview::mapview(r_in_key_network)
 r_key_roads = r_main_region %>%
   filter(ref %in% key_corridor_names)
 mapview::mapview(r_key_roads)
@@ -211,12 +217,11 @@ tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "r
 
 # show lanes roads with spare space ---------------------------------------
 
-r_lanes_all_no_buffer = r_main_region %>% 
+r_lanes_all = r_main_region %>% 
   filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
   filter(spare_lane | width >= 9)
-r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
-# mapview::mapview(r_lanes_all_no_buffer) +
+
 mapview::mapview(r_lanes_all)
 
 r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = 50)
@@ -350,7 +355,9 @@ m =
   # tm_shape(r_lanes_grouped) + tm_lines(col = "width_status", lwd = 3, alpha = 0.6, palette = cols_status) +
   # tm_text("ref") +
   tm_shape(r_lanes_joined) +
-  tm_lines(col = "Status", lwd = "mean_cycling_potential", alpha = 0.6, scale = 5,
+  tm_lines(col = "Status", 
+           lwd = "mean_cycling_potential",
+           alpha = 0.6, scale = 5,
            popup.vars = popup.vars, palette = "Dark2") +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways) + tm_lines() +
