@@ -101,8 +101,6 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
-##
-
 
 # Link the updated cycle potential to the road widths ---------------------
 
@@ -126,8 +124,6 @@ r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
 
 r_main_region = r_positive
 
-
-
 # Identify key corridors --------------------------------------------------
 min_pct_99th_percentile = quantile(r_main_region$cycling_potential, probs = 0.99)
 min_pct_90th_percentile = quantile(r_main_region$cycling_potential, probs = 0.90)
@@ -135,7 +131,7 @@ min_pct_90th_percentile = quantile(r_main_region$cycling_potential, probs = 0.90
 r_high_pct_99th = r_main_region %>%
   filter(cycling_potential > min_pct_99th_percentile)
 table(r_high_pct_99th$ref) # many unnamed
-mapview::mapview(r_high_pct_99th)
+# mapview::mapview(r_high_pct_99th)
 r_high_pct_90th = r_main_region %>%
   filter(cycling_potential > min_pct_90th_percentile)
 
@@ -187,14 +183,14 @@ summary(r_key_network$group_length)
 r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
 r_key_network_buffer = stplanr::geo_buffer(r_key_network, dist = 1000)
 r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
-mapview::mapview(r_key_network, zcol = "km_cycled_potential")
+# mapview::mapview(r_key_network, zcol = "km_cycled_potential")
 r_in_key_network = r_high_pct_90th[r_key_network, , op = st_within]
-mapview::mapview(r_in_key_network)
+# mapview::mapview(r_in_key_network)
 r_key_roads = r_main_region %>%
   filter(ref %in% key_corridor_names)
-mapview::mapview(r_key_roads)
+# mapview::mapview(r_key_roads)
 r_key_roads_near_key_network = r_key_roads[r_key_network_buffer, ]
-mapview::mapview(r_key_roads_near_key_network)
+# mapview::mapview(r_key_roads_near_key_network)
 # %>% 
 #   filter(!idGlobal %in% r_in_key_network$idGlobal)
 
@@ -205,9 +201,9 @@ r_key_network_final = r_key_roads_near_key_network %>%
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE))
     )
-mapview::mapview(r_key_network_final)
+# mapview::mapview(r_key_network_final)
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
-tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
+# tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
 
 # show lanes roads with spare space ---------------------------------------
 
@@ -217,14 +213,14 @@ r_lanes_all_no_buffer = r_main_region %>%
   filter(spare_lane | width >= 9)
 r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
 # mapview::mapview(r_lanes_all_no_buffer) +
-mapview::mapview(r_lanes_all)
+# mapview::mapview(r_lanes_all)
 
 r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = 50)
 touching_list = st_intersects(r_lanes_all_buff)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_lanes_all$group = components$membership
-mapview::mapview(r_lanes_all["group"])
+# mapview::mapview(r_lanes_all["group"])
 
 r_lanes_grouped = r_lanes_all %>%
   filter(ref != "") %>% 
@@ -246,11 +242,11 @@ r_lanes_grouped = r_lanes_all %>%
   ) 
 # r_lanes_grouped$group_id = paste0(r_lanes_grouped$group, r_lanes_grouped$ref)
 
-mapview::mapview(r_lanes_grouped, zcol = "group_length", lwd = 5)
+# mapview::mapview(r_lanes_grouped, zcol = "group_length", lwd = 5)
 
 r_lanes_grouped_linestrings = st_cast(r_lanes_grouped, "LINESTRING")
 r_lanes_grouped_linestrings = r_lanes_all[r_lanes_grouped, , op = st_within]
-mapview::mapview(r_lanes_grouped_linestrings)
+# mapview::mapview(r_lanes_grouped_linestrings)
 gs = unique(r_lanes_grouped_linestrings$ref)
 # i = g[2]
 i = "A4174"
@@ -362,5 +358,5 @@ m =
 res_table = r_lanes_top %>% 
   sf::st_drop_geometry() %>% 
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
-knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
+# knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
 
