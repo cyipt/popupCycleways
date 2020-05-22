@@ -60,7 +60,7 @@ regs_clean = regs %>%
   mutate(Name = gsub(pattern = " UA| UA2| CA| ITA| Region| City", replacement = " ", Name)) %>% 
   mutate(Name = gsub(pattern = "Kingston upon Hull,  of", replacement = "Kingston upon Hull, City of", Name)) %>% 
   mutate(Name = gsub(pattern = "Liverpool", replacement = "Merseyside", Name)) %>% 
-  mutate(Name = gsub(pattern = "Sheffield", replacement = "South Yorkshire", Name)) %>% 
+  mutate(Name = gsub(pattern = "Sheffield", replacement = "Sheffield City", Name)) %>% 
   mutate(Name = gsub(pattern = "Cornwall", replacement = "Cornwall and Isles of Scilly", Name)) %>% 
   mutate(Name = gsub(pattern = " and Peterborough", replacement = "", Name)) %>% 
   mutate(Name = gsub(pattern = "Bournemouth, Christchurch snd Poole", replacement = "Bournemouth, Christchurch and Poole", Name)) %>% 
@@ -243,6 +243,67 @@ mapview::mapview(cambridgeshire_updated)
 regions$geometry[str_detect(string = regions$Name, pattern = "Cambridgeshire")] = cambridgeshire_updated$geometry
 regions = regions %>% filter(!str_detect(string = Name, pattern = "Peter"))
 
+# Include Halton in Liverpool city region
+regions$Name[str_detect(string = regions$Name, pattern = "Merseyside")] # only 1 region
+halton_uas = lads %>% filter(str_detect(string = Name, pattern = "Halton"))
+mapview::mapview(halton_uas) + mapview::mapview(regions)
+merseyside_updated = sf::st_union(
+  halton_uas,
+  regions %>% filter(Name == "Merseyside") %>% sf::st_transform(27700) %>% sf::st_buffer(50) %>% sf::st_transform(4326)
+)
+mapview::mapview(merseyside_updated)
+regions$geometry[str_detect(string = regions$Name, pattern = "Merseyside")] = merseyside_updated$geometry
+regions = regions %>% filter(!str_detect(string = Name, pattern = "Halton"))
+
 mapview::mapview(regions, zcol = "included")
+regions$Name[! regions$Name %in% regs_clean$Name]
+regions$Name[duplicated(regions$Name)] 
+# [1] "Cornwall and Isles of Scilly" "Devon"                       
+cornwall_and_devon = regions %>% filter(str_detect(string = Name, pattern = "Corn|Dev"))
+mapview::mapview(cornwall_and_devon[1, ]) # isle of Scilly
+mapview::mapview(cornwall <- cornwall_and_devon[2, ]) 
+mapview::mapview(cornwall_and_devon[3, ]) # Another island
+mapview::mapview(devon <- cornwall_and_devon[4, ]) 
+no_cornwall_and_devon = regions %>% filter(!str_detect(string = Name, pattern = "Corn|Dev"))
+regions = rbind(no_cornwall_and_devon, cornwall, devon)
+
+# Update names (WIP)
+
+nrow(regions) == nrow(regs_clean)
+summary(regions$Name %in% regs_clean$Name)
+regions = regions[order(match(regions$Name, regs_clean$Name)), ]
+regions_centroids = sf::st_centroid(regions)
+readr::write_csv(sf::st_drop_geometry(regions), "regions.csv")
+library(tmap)
+tmap_mode("view")
+tm_shape(regions) + tm_borders() + tm_shape(regions_centroids) + tm_text("Name", size = 0.7)
+
+# Add on PT numbers and potential switch
+msoa_pct = sf::read_sf("https://github.com/npct/pct-outputs-national/raw/master/commute/msoa/z_all.geojson")
+msoa_centroids = sf::st_centroid(msoa_pct)
+msoas_joined = st_join(msoa_centroids, regions["Name"])
+plot(msoas_joined["Name"])
+summary(msoas_joined$train_tube)
+summary(jsoa)
+msoas_aggregated = msoas_joined %>% 
+  sf::st_drop_geometry() %>% 
+  group_by(Name) %>% 
+  summarise(
+    n_commuters = sum(all),
+    n_pt = sum(train_tube + bus),
+    pt_cycle_shift_govtarget = round(sum(- govtarget_sipt)),
+    pt_cycle_shift_ebike = round(sum(- ebike_sipt))
+  )
+
+msoas_aggregated
+regions_census = inner_join(regions, msoas_aggregated)
+sf::st_drop_geometry(regions_census)
+plot(regions_census["pt_cycle_shift_govtarget"])
+readr::write_csv(sf::st_drop_geometry(regions_census), "regions.csv")
+sf::write_sf(regions_census, "regions.gpkg")
+library(kableExtra)
+k = kableExtra::kable(sf::st_drop_geometry(regions_census[1:10, ]))
+writeLines(k, "k.html")
+browseURL("k.html")
 # saveRDS(regions, "regions.Rds")
 # piggyback::pb_upload("regions.Rds", "cyipt/cyipt-phase-1-data")
