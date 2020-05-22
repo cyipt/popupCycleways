@@ -220,7 +220,7 @@ tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "r
 r_lanes_all = r_main_region %>% 
   filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
-  filter(spare_lane | width >= 9)
+  filter(spare_lane | width >= 10)
 
 mapview::mapview(r_lanes_all)
 
@@ -232,7 +232,7 @@ r_lanes_all$group = components$membership
 mapview::mapview(r_lanes_all["group"])
 
 r_lanes_grouped = r_lanes_all %>%
-  filter(ref != "") %>% 
+  # filter(ref != "") %>%
   group_by(ref, group) %>%
   summarise(
     group_length = round(sum(length)),
@@ -251,14 +251,51 @@ r_lanes_grouped = r_lanes_all %>%
   ) 
 # r_lanes_grouped$group_id = paste0(r_lanes_grouped$group, r_lanes_grouped$ref)
 
-mapview::mapview(r_lanes_grouped, zcol = "group_length", lwd = 5)
+mapview::mapview(r_lanes_grouped, zcol = "group", lwd = 5)
 
-r_lanes_grouped_linestrings = st_cast(r_lanes_grouped, "LINESTRING")
+# r_lanes_grouped_linestrings = st_cast(r_lanes_grouped, "LINESTRING")
 r_lanes_grouped_linestrings = r_lanes_all[r_lanes_grouped, , op = st_within]
 mapview::mapview(r_lanes_grouped_linestrings)
+
+
+# Roads with no ref -------------------------------------------------------
+
+
+no_ref = r_lanes_grouped_linestrings[r_lanes_grouped_linestrings$ref == "",]
+no_ref_buff = geo_buffer(shp = no_ref, dist = 10)
+touching_list = st_intersects(no_ref_buff)
+g = igraph::graph.adjlist(touching_list)
+components = igraph::components(g)
+no_ref$nogroup = components$membership
+
+mapview(no_ref["nogroup"], lwd = 3)
+
+no_ref_grouped = no_ref %>%
+  group_by(nogroup) %>%
+  summarise(no_length = round(sum(length)),
+            mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE))
+  ) %>%
+  filter(no_length > min_grouped_length) %>%
+  filter(mean_cycling_potential > min_grouped_cycling_potential)
+
+mapview(no_ref_grouped["mean_cycling_potential"])
+
+###
+
+to_join = r_lanes_grouped_linestrings[r_lanes_grouped_linestrings$ref != "",]
+
+r_no_ref_linestrings = r_lanes_all[no_ref_grouped, , op = st_within]
+r_lanes_grouped_linestrings = rbind(to_join, r_no_ref_linestrings)
+
+mapview::mapview(r_lanes_grouped_linestrings)
+
+########
+
 gs = unique(r_lanes_grouped_linestrings$ref)
 # i = g[2]
 i = "A4174"
+
+
 
 rg_list = lapply(gs, FUN = function(i) {
   rg = r_lanes_grouped_linestrings %>% filter(ref == i)
@@ -290,13 +327,14 @@ r_lanes_grouped2 = rg_new %>%
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
     spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
   ) %>% 
-  filter(group_length > min_grouped_length |
-           mean_cycling_potential > min_grouped_cycling_potential &
-           (group_length * 2 > min_grouped_length)) %>% 
+  filter(mean_cycling_potential > min_grouped_cycling_potential & group_length > min_grouped_length) %>%
+  # filter(group_length > min_grouped_length |
+           #  mean_cycling_potential > min_grouped_cycling_potential &
+           # (group_length * 2 > min_grouped_length)) %>% 
   ungroup() %>% 
   mutate(group_id = 1:nrow(.))
 
-# mapview::mapview(r_lanes_grouped2, zcol = "group", lwd = 3)
+mapview::mapview(r_lanes_grouped2, zcol = "group_id", lwd = 3)
 # mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
 
 # mapview::mapview(r_lanes_grouped["width_status"])
@@ -324,6 +362,7 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 r_lanes_top = r_lanes_joined %>%
   ungroup() %>% 
   filter(name != "") %>% 
+  filter(ref != "") %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
@@ -357,7 +396,7 @@ m =
   tm_shape(r_lanes_joined) +
   tm_lines(col = "Status", 
            lwd = "mean_cycling_potential",
-           alpha = 0.6, scale = 5,
+           alpha = 0.6, scale = 10,
            popup.vars = popup.vars, palette = "Dark2") +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways) + tm_lines() +

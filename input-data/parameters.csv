@@ -1,6 +1,6 @@
 name,min_cycling_potential,min_grouped_cycling_potential,min_grouped_length,city_centre_buffer_radius,key_destination_buffer_radius,regexclude
 Birmingham,0,100,500,8000,5000,"qwerty"
-Bristol,0,100,500,8000,5000,"qwerty"
+Bristol,0,50,400,8000,5000,"qwerty"
 Cambridge,0,100,100,8000,5000,"hills"
 Leeds,0,100,500,8000,5000,"wellington"
 Leicester,0,100,500,8000,5000,"qwerty"
