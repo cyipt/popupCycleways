@@ -10,6 +10,7 @@ region_names_to_build = regions %>%
   pull(Name)
 
 dir.create("popupCycleways/v1")
+region_names_to_build = c("West Yorkshire", "Nottingham")
 
 i = "Greater Manchester"
 for(i in region_names_to_build) {
