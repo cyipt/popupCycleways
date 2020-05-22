@@ -79,7 +79,7 @@ if(is_city) {
   r_main_region = rj
 }
 
-
+r_main_region$cycling_potential = r_main_region$pctgov
 
 
 # Combine commute and schools route networks ----------------------------------------
