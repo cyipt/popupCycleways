@@ -145,48 +145,26 @@ r_high_pct_85th = r_main_region %>%
 r_named_ref = r_high_pct_85th %>% 
   filter(ref != "" & name != "") 
 
-# # alternative way of identifying key road references:
+# identify key road references:
 top_refs_table = sort(table(r_named_ref$ref), decreasing = TRUE)
-top_refs = names(head(top_refs_table, n = n_top_roads))
-r_key_corridors = r_named_ref %>% filter(ref %in% top_refs)
-
-# r_key_corridors = r_named_ref %>%
-#   group_by(ref) %>%
-#   summarise(
-#     length = sum(length),
-#     km_cycled_potential = sum(cycling_potential * length) / 1000
-#   ) %>%
-#   top_n(n = n_top_roads, wt = km_cycled_potential)
-# %>%
-#   sf::st_cast("LINESTRING") 
-# summary(r_key_corridors$ref %in% names(top_refs))
-
-# r_high_in_key_corridors = r_high_pct_99th[r_key_corridors, , op = sf::st_within]
-# r_high_not_in_key_corridors = r_high_pct_99th %>%
-#   filter(!idGlobal %in% r_high_in_key_corridors$idGlobal) %>% 
-#   transmute(
-#     ref = ref,
-#     length = length,
-#     km_cycled_potential = cycling_potential * length / 1000
-#     )
-r_high_not_in_key_corridors = r_high_pct_99th %>% filter(! ref %in% top_refs)
-
+key_corridor_names = names(head(top_refs_table, n = n_top_roads))
+r_key_corridors = r_named_ref %>% filter(ref %in% key_corridor_names)
+r_high_not_in_key_corridors = r_high_pct_99th %>% filter(! ref %in% key_corridor_names)
 r_key_network_all = rbind(r_high_not_in_key_corridors, r_key_corridors)
 
-key_corridor_table = sort(table(r_key_network_all$ref), decreasing = TRUE)
-key_corridor_names = names(key_corridor_table[names(key_corridor_table) != ""])[1:n_top_roads]
-
-r_key_buffer = stplanr::geo_buffer(r_key_network_all, dist = 200)
+r_key_buffer = stplanr::geo_buffer(r_key_network_all, dist = 50)
 touching_list = st_intersects(r_key_buffer)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_key_network_all$group = components$membership
 group_table = sort(table(r_key_network_all$group), decreasing = TRUE)
+# select groups to include with careful selection of n
+# see https://github.com/cyipt/popupCycleways/issues/38
 groups_to_include = names(head(group_table, n = (n_top_roads / 10) + 2))
+r_key_network_igroups = r_key_network_all %>% 
+  filter(group %in% groups_to_include)
 
-r_key_network_all$length = as.numeric(sf::st_length(r_key_network_all))
-r_key_network = r_key_network_all %>% 
-  filter(group %in% groups_to_include) %>% 
+r_key_network = r_key_network_igroups %>% 
   group_by(group) %>% 
   summarise(
     group_length = sum(length),
@@ -206,12 +184,26 @@ r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
 r_key_roads = r_main_region %>%
   filter(ref %in% key_corridor_names)
 # mapview::mapview(r_key_roads)
-r_key_roads_near_key_network = r_key_roads[r_key_network_buffer, ]
-# mapview::mapview(r_key_roads_near_key_network)
-# %>% 
-#   filter(!idGlobal %in% r_in_key_network$idGlobal)
+r_key_roads_near = r_key_roads[r_key_network_buffer_large, ]
+# mapview::mapview(r_key_roads_near)
+r_high_g_not_ref = r_key_network_igroups %>% filter(! ref %in% key_corridor_names)
+r_key_roads_plus_high_pct = rbind(r_key_roads_near, r_high_g_not_ref)
+# mapview::mapview(r_key_roads_plus_high_pct)
 
-r_key_network_final = r_key_roads_near_key_network %>%
+# tackle the issue of isolated segments
+r_key_buffer = stplanr::geo_buffer(r_key_roads_plus_high_pct, dist = 10)
+touching_list = st_intersects(r_key_buffer)
+g = igraph::graph.adjlist(touching_list)
+components = igraph::components(g)
+r_key_roads_plus_high_pct$group = components$membership
+group_table = sort(table(r_key_roads_plus_high_pct$group), decreasing = TRUE)
+# select groups to include with careful selection of n
+# see https://github.com/cyipt/popupCycleways/issues/38
+
+r_key_network_final = r_key_roads_plus_high_pct %>%
+  group_by(group) %>% 
+  mutate(group_length = sum(length)) %>% 
+  filter(group_length > 5 * min_grouped_length) %>% 
   group_by(ref, name) %>% 
   summarise(
     group_length = round(sum(length)),
