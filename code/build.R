@@ -265,7 +265,7 @@ g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 no_ref$nogroup = components$membership
 
-mapview(no_ref["nogroup"], lwd = 3)
+# mapview::mapview(no_ref["nogroup"], lwd = 3)
 
 no_ref_grouped = no_ref %>%
   group_by(nogroup) %>%
@@ -275,7 +275,7 @@ no_ref_grouped = no_ref %>%
   filter(no_length > min_grouped_length) %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential)
 
-mapview(no_ref_grouped["mean_cycling_potential"])
+# mapview::(no_ref_grouped["mean_cycling_potential"])
 
 ###
 
@@ -329,7 +329,7 @@ r_lanes_grouped2 = rg_new %>%
   ungroup() %>% 
   mutate(group_id = 1:nrow(.))
 
-mapview::mapview(r_lanes_grouped2, zcol = "group_id", lwd = 3)
+# mapview::mapview(r_lanes_grouped2, zcol = "group_id", lwd = 3)
 # mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
 
 # mapview::mapview(r_lanes_grouped["width_status"])
