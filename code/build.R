@@ -157,12 +157,15 @@ touching_list = st_intersects(r_key_buffer)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_key_network_all$group = components$membership
+mapview::mapview(r_key_network_all, zcol = "group")
 group_table = sort(table(r_key_network_all$group), decreasing = TRUE)
 # select groups to include with careful selection of n
 # see https://github.com/cyipt/popupCycleways/issues/38
-groups_to_include = names(head(group_table, n = (n_top_roads / 10) + 2))
+length(group_table)
+groups_to_include = names(group_table[group_table > n_top_roads])
 r_key_network_igroups = r_key_network_all %>% 
   filter(group %in% groups_to_include)
+mapview::mapview(r_key_network_igroups)
 
 r_key_network = r_key_network_igroups %>% 
   group_by(group) %>% 
