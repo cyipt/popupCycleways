@@ -218,7 +218,7 @@ r_key_network_final = r_key_roads_plus_high_pct %>%
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
 
-# show lanes roads with spare space ---------------------------------------
+# Identify roads with spare space ---------------------------------------
 
 r_lanes_all_no_buffer = r_main_region %>% 
   filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
@@ -239,30 +239,28 @@ r_lanes_all$group = components$membership
 r_lanes_grouped = r_lanes_all %>%
   # filter(ref != "") %>%
   group_by(ref, group) %>%
-  summarise(
+  mutate(
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
-    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
-    road_name = names(table(name))[which.max(table(name))]
-  ) %>% 
-  filter(group_length > min_grouped_length) %>% 
-  mutate(
+    majority_spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
+    main_road_name = names(table(name))[which.max(table(name))],
     width_status = case_when(
       mean_width >= 9 ~ "Width > 9 m",
       spare_lane ~ "Spare lane"
       # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
     )
-  ) 
+  ) %>% 
+  filter(group_length > min_grouped_length) 
 # r_lanes_grouped$group_id = paste0(r_lanes_grouped$group, r_lanes_grouped$ref)
 # mapview::mapview(r_lanes_grouped, zcol = "group_length", lwd = 5)
 
 # r_lanes_grouped_linestrings = st_cast(r_lanes_grouped, "LINESTRING")
-r_lanes_grouped_linestrings = r_lanes_all[r_lanes_grouped, , op = st_within]
+# r_lanes_grouped_linestrings = r_lanes_all[r_lanes_grouped, , op = st_within]
 
 # Roads with no ref -------------------------------------------------------
 
-no_ref = r_lanes_grouped_linestrings[r_lanes_grouped_linestrings$ref == "",]
+no_ref = r_lanes_grouped[r_lanes_grouped$ref == "", ]
 no_ref_buff = geo_buffer(shp = no_ref, dist = 10)
 touching_list = st_intersects(no_ref_buff)
 g = igraph::graph.adjlist(touching_list)
@@ -273,31 +271,37 @@ no_ref$nogroup = components$membership
 
 no_ref_grouped = no_ref %>%
   group_by(nogroup) %>%
-  summarise(no_length = round(sum(length)),
-            mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE))
-  ) %>%
-  filter(no_length > min_grouped_length) %>%
-  filter(mean_cycling_potential > min_grouped_cycling_potential)
-
+  mutate(
+    group_length = round(sum(length)),
+    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+    mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
+    majority_spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
+    main_road_name = names(table(name))[which.max(table(name))],
+    width_status = case_when(
+      mean_width >= 9 ~ "Width > 9 m",
+      spare_lane ~ "Spare lane"
+      # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
+    )
+  ) %>% 
+  ungroup() %>% 
+  select(-nogroup) %>%
+  filter(group_length > min_grouped_length) 
 # mapview::(no_ref_grouped["mean_cycling_potential"])
 
-to_join = r_lanes_grouped_linestrings[r_lanes_grouped_linestrings$ref != "",]
+to_join = r_lanes_grouped[r_lanes_grouped$ref != "",]
 
-r_no_ref_linestrings = r_lanes_all[no_ref_grouped, , op = st_within]
-r_lanes_grouped_linestrings = rbind(to_join, r_no_ref_linestrings)
+# r_no_ref_linestrings = r_lanes_all[no_ref_grouped, , op = st_within]
+r_lanes = rbind(to_join, no_ref_grouped)
+# mapview::mapview(r_lanes)
 
-# mapview::mapview(r_lanes_grouped_linestrings)
-
-gs = unique(r_lanes_grouped_linestrings$ref)
+gs = unique(r_lanes$ref)
 # i = g[2]
 i = "A4174"
 
-
-
 rg_list = lapply(gs, FUN = function(i) {
-  rg = r_lanes_grouped_linestrings %>% filter(ref == i)
+  rg = r_lanes %>% filter(ref == i)
   # mapview::mapview(rg)
-  r_lanes_all_buff = geo_buffer(shp = rg, dist = 100)
+  r_lanes_all_buff =   r_lanes_all_buff = rg %>% st_transform(27700) %>% st_buffer(100) %>% st_transform(4326)
   touching_list = st_intersects(r_lanes_all_buff)
   g = igraph::graph.adjlist(touching_list)
   components = igraph::components(g)
@@ -306,12 +310,12 @@ rg_list = lapply(gs, FUN = function(i) {
 })
 
 rg_new = do.call(rbind, rg_list)
+# mapview::mapview(rg_new)
 
-
-# touching_list = st_intersects(stplanr::geo_buffer(r_lanes_grouped_linestrings, dist = 50))
+# touching_list = st_intersects(stplanr::geo_buffer(r_lanes, dist = 50))
 # g = igraph::graph.adjlist(touching_list)
 # components = igraph::components(g)
-# r_lanes_grouped_linestrings$igroup = components$membership
+# r_lanes$igroup = components$membership
 r_lanes_grouped2 = rg_new %>% 
   group_by(ref, ig) %>% 
   mutate(n_in_group = n()) %>% 
