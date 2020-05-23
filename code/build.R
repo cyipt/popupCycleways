@@ -219,17 +219,16 @@ r_key_network_final = r_key_roads_plus_high_pct %>%
 
 # show lanes roads with spare space ---------------------------------------
 
-r_lanes_all = r_main_region %>% 
+r_lanes_all = r_key_network_final %>% 
   filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
   filter(spare_lane | width >= 10)
 
-r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
+# r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
 # mapview::mapview(r_lanes_all_no_buffer) +
 # mapview::mapview(r_lanes_all)
 
-r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = 50)
-touching_list = st_intersects(r_lanes_all_buff)
+touching_list = st_intersects(r_lanes_all)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_lanes_all$group = components$membership
@@ -268,7 +267,7 @@ g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 no_ref$nogroup = components$membership
 
-mapview(no_ref["nogroup"], lwd = 3)
+# mapview(no_ref["nogroup"], lwd = 3)
 
 no_ref_grouped = no_ref %>%
   group_by(nogroup) %>%
@@ -278,7 +277,7 @@ no_ref_grouped = no_ref %>%
   filter(no_length > min_grouped_length) %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential)
 
-mapview(no_ref_grouped["mean_cycling_potential"])
+# mapview(no_ref_grouped["mean_cycling_potential"])
 
 ###
 
@@ -298,7 +297,8 @@ i = "A4174"
 rg_list = lapply(gs, FUN = function(i) {
   rg = r_lanes_grouped_linestrings %>% filter(ref == i)
   # mapview::mapview(rg)
-  r_lanes_all_buff = geo_buffer(shp = rg, dist = 100)
+  # r_lanes_all_buff = geo_buffer(shp = rg, dist = 100) # if that fails do:
+  r_lanes_all_buff = rg %>% st_transform(27700) %>% st_buffer(100) %>% st_transform(4326)
   touching_list = st_intersects(r_lanes_all_buff)
   g = igraph::graph.adjlist(touching_list)
   components = igraph::components(g)
