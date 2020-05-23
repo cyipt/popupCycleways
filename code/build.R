@@ -66,6 +66,7 @@ is_city = FALSE
 pct_dist_within = 50 
 r_min_width_highlighted = 10
 min_cycling_potential = 5
+min_grouped_cycling_potential = 50
 n_top_roads = (1 + round(nrow(rj) / 100000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -328,7 +329,7 @@ r_lanes_grouped2 = rg_new %>%
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
     spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
   ) %>% 
-  filter(mean_cycling_potential > min_grouped_cycling_potential & group_length > min_grouped_length) %>%
+  filter(mean_cycling_potential > min_grouped_cycling_potential | group_length > min_grouped_length) %>%
   # filter(group_length > min_grouped_length |
            #  mean_cycling_potential > min_grouped_cycling_potential &
            # (group_length * 2 > min_grouped_length)) %>% 
@@ -344,6 +345,7 @@ r_lanes_grouped2 = rg_new %>%
 # Generate lists of top segments ------------------------------------------------------------
 
 cycleways = cycleways_en[region, ]
+cycleways = cycleways %>% select(surface, name, lit, osm_id)
 cycleway_buffer = stplanr::geo_buffer(cycleways, dist = pct_dist_within) %>% sf::st_union()
 
 r_lanes_grouped_in_cycleway = st_intersection(r_lanes_grouped2, cycleway_buffer) %>% 
@@ -403,7 +405,7 @@ m =
            alpha = 0.6, scale = 10,
            popup.vars = popup.vars, palette = "Dark2") +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
-  tm_shape(cycleways) + tm_lines() +
+  tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "navyblue", lwd = 1.3) +
   # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()

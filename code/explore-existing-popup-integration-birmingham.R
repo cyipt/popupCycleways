@@ -13,6 +13,8 @@ e = gfz %>%
 f = geofabrik::gf_filename(name = country_name)
 download.file(url = e$pbf_url, destfile = f)
 cycleways_en = geofabrik::read_pbf(dsn = f, key = "highway", value = "cycleway")
+names(cycleways_en)
+cycleways_en = cycleways_en %>% select(osm_id, name, surface, lit)
 saveRDS(cycleways_en, "cycleways_en.Rds") # 10 MB file
 piggyback::pb_upload("cycleways_en.Rds", "cyipt/cyipt-phase-1-data")
 plot(sf::st_geometry(cycleways_en))
