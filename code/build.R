@@ -60,11 +60,13 @@ if(length(i) == 0) i = 1
 p = parameters[i, ]
 list2env(p, envir = .GlobalEnv)
 
-# additional parameters
+# additional parameters ---------------------------------------------------
+
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
 min_cycling_potential = 5
+n_top_roads = (1 + round(nrow(rj) / 100000)) * 10
 
 # buffers -----------------------------------------------------------------
 if(is_city) {
@@ -80,7 +82,6 @@ if(is_city) {
 }
 
 r_main_region$cycling_potential = r_main_region$pctgov
-
 
 # Combine commute and schools route networks ----------------------------------------
 
@@ -101,12 +102,10 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
-##
-
 
 # Link the updated cycle potential to the road widths ---------------------
 
-# pct_dist_within was currently set at 50. This is probably too high. There will be a lot of duplicates.
+# pct_dist_within at 50 is probably too high
 buff_dist = 10
 rnet_buff = geo_buffer(shp = rnet_combined, dist = buff_dist)
 
@@ -136,62 +135,72 @@ r_high_pct_99th = r_main_region %>%
   filter(cycling_potential > min_pct_99th_percentile)
 table(r_high_pct_99th$ref) # many unnamed
 # mapview::mapview(r_high_pct_99th)
-r_high_pct_90th = r_main_region %>%
-  filter(cycling_potential > min_pct_90th_percentile)
-mapview::mapview(r_high_pct_90th)
+# r_high_pct_90th = r_main_region %>%
+#   filter(cycling_potential > min_pct_90th_percentile)
+# mapview::mapview(r_high_pct_90th)
 r_high_pct_85th = r_main_region %>%
   filter(cycling_potential > min_pct_85th_percentile)
-mapview::mapview(r_high_pct_85th)
+# mapview::mapview(r_high_pct_85th)
 
 r_named_ref = r_high_pct_85th %>% 
   filter(ref != "" & name != "") 
 
-r_key_corridors = r_named_ref %>% 
-  group_by(ref) %>% 
-  summarise(
-    length = sum(length),
-    km_cycled_potential = sum(cycling_potential * length) / 1000
-  ) %>% 
-  top_n(n = 20, wt = km_cycled_potential) %>%
-  sf::st_cast("LINESTRING") 
+# # alternative way of identifying key road references:
+top_refs_table = sort(table(r_named_ref$ref), decreasing = TRUE)
+top_refs = names(head(top_refs_table, n = n_top_roads))
+r_key_corridors = r_named_ref %>% filter(ref %in% top_refs)
+
+# r_key_corridors = r_named_ref %>%
+#   group_by(ref) %>%
+#   summarise(
+#     length = sum(length),
+#     km_cycled_potential = sum(cycling_potential * length) / 1000
+#   ) %>%
+#   top_n(n = n_top_roads, wt = km_cycled_potential)
+# %>%
+#   sf::st_cast("LINESTRING") 
+# summary(r_key_corridors$ref %in% names(top_refs))
 
 # r_high_in_key_corridors = r_high_pct_99th[r_key_corridors, , op = sf::st_within]
-r_high_not_in_key_corridors = r_high_pct_99th %>%
-  filter(!idGlobal %in% r_high_in_key_corridors$idGlobal) %>% 
-  transmute(
-    ref = ref,
-    length = length,
-    km_cycled_potential = cycling_potential * length / 1000
-    )
+# r_high_not_in_key_corridors = r_high_pct_99th %>%
+#   filter(!idGlobal %in% r_high_in_key_corridors$idGlobal) %>% 
+#   transmute(
+#     ref = ref,
+#     length = length,
+#     km_cycled_potential = cycling_potential * length / 1000
+#     )
+r_high_not_in_key_corridors = r_high_pct_99th %>% filter(! ref %in% top_refs)
 
 r_key_network_all = rbind(r_high_not_in_key_corridors, r_key_corridors)
 
-key_corridor_table = sort(table(r_key_network_all$ref),decreasing=TRUE)
-key_corridor_names = names(key_corridor_table[names(key_corridor_table) != ""])[1:10]
+key_corridor_table = sort(table(r_key_network_all$ref), decreasing = TRUE)
+key_corridor_names = names(key_corridor_table[names(key_corridor_table) != ""])[1:n_top_roads]
 
 r_key_buffer = stplanr::geo_buffer(r_key_network_all, dist = 200)
 touching_list = st_intersects(r_key_buffer)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_key_network_all$group = components$membership
-group_table = table(r_key_network_all$group)
-median(group_table)
+group_table = sort(table(r_key_network_all$group), decreasing = TRUE)
+groups_to_include = names(head(group_table, n = (n_top_roads / 10) + 2))
 
 r_key_network_all$length = as.numeric(sf::st_length(r_key_network_all))
 r_key_network = r_key_network_all %>% 
+  filter(group %in% groups_to_include) %>% 
   group_by(group) %>% 
   summarise(
     group_length = sum(length),
-    km_cycled_potential = weighted.mean(km_cycled_potential, length)
+    km_cycled_potential = weighted.mean(cycling_potential, length)
     ) %>% 
   ungroup() %>% 
-  filter(group_length > min_grouped_length)
+  filter(group_length > min_grouped_length) %>% 
+  st_cast("LINESTRING")
 summary(r_key_network$group_length)
+# mapview::mapview(r_key_network, zcol = "km_cycled_potential")
 
 # r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
 r_key_network_buffer = stplanr::geo_buffer(r_key_network, dist = 1000)
 r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
-# mapview::mapview(r_key_network, zcol = "km_cycled_potential")
 # r_in_key_network = r_high_pct_90th[r_key_network, , op = st_within]
 # mapview::mapview(r_in_key_network)
 r_key_roads = r_main_region %>%
