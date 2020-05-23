@@ -203,13 +203,16 @@ group_table = sort(table(r_key_roads_plus_high_pct$group), decreasing = TRUE)
 r_key_network_final = r_key_roads_plus_high_pct %>%
   group_by(group) %>% 
   mutate(group_length = sum(length)) %>% 
-  filter(group_length > 5 * min_grouped_length) %>% 
-  group_by(ref, name) %>% 
-  summarise(
-    group_length = round(sum(length)),
-    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
-    mean_width = round(weighted.mean(width, length, na.rm = TRUE))
-    )
+  filter(group_length > 5 * min_grouped_length)
+
+# for grouped result:
+# %>% 
+#   group_by(ref, name) %>% 
+#   summarise(
+#     group_length = round(sum(length)),
+#     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+#     mean_width = round(weighted.mean(width, length, na.rm = TRUE))
+#     )
 # mapview::mapview(r_key_network_final)
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
