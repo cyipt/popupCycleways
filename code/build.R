@@ -216,7 +216,7 @@ r_key_network_final = r_key_roads_plus_high_pct %>%
 
 # show lanes roads with spare space ---------------------------------------
 
-r_lanes_all = r_main_region %>% 
+r_lanes_all_no_buffer = r_main_region %>% 
   filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
   filter(spare_lane | width >= 10)
@@ -276,8 +276,6 @@ no_ref_grouped = no_ref %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential)
 
 # mapview::(no_ref_grouped["mean_cycling_potential"])
-
-###
 
 to_join = r_lanes_grouped_linestrings[r_lanes_grouped_linestrings$ref != "",]
 
