@@ -206,13 +206,14 @@ group_table = sort(table(r_key_roads_plus_high_pct$group), decreasing = TRUE)
 r_key_network_final = r_key_roads_plus_high_pct %>%
   group_by(group) %>% 
   mutate(group_length = sum(length)) %>% 
-  filter(group_length > 5 * min_grouped_length) %>% 
-  group_by(ref, name) %>% 
-  summarise(
-    group_length = round(sum(length)),
-    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
-    mean_width = round(weighted.mean(width, length, na.rm = TRUE))
-    )
+  filter(group_length > 5 * min_grouped_length)
+  # %>% 
+  # group_by(ref, name) %>% 
+  # summarise(
+  #   group_length = round(sum(length)),
+  #   mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+  #   mean_width = round(weighted.mean(width, length, na.rm = TRUE))
+  #   )
 # mapview::mapview(r_key_network_final)
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
@@ -380,13 +381,16 @@ r_lanes_joined = r_lanes_joined %>%
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
 
-
+pvars_key = c("ref", "name", "highway", "width",
+              "highway_type", "cycling_potential",
+              "n_lanes")
+r_key_network_final = r_key_network_final[pvars_key]
 popup.vars = c("name", "ref", "spare_lane", "mean_width", "mean_cycling_potential")
 cols_status = c("blue", "turquoise", "green")
 tmap_mode("view")
 m =
   tm_shape(r_key_network_final) +
-  tm_lines(lwd = "mean_width", scale = 9, col = "darkgrey", palette = "Dark2") +
+  tm_lines(lwd = "width", scale = 9, col = "darkgrey", popup.vars = pvars_key) +
   # tm_shape(r_lanes_grouped) + tm_lines(col = "width_status", lwd = 3, alpha = 0.6, palette = cols_status) +
   # tm_text("ref") +
   tm_shape(r_lanes_joined) +
