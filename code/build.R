@@ -187,7 +187,7 @@ r_key_roads = r_main_region %>%
 r_key_roads_near = r_key_roads[r_key_network_buffer_large, ]
 # mapview::mapview(r_key_roads_near)
 r_high_g_not_ref = r_key_network_igroups %>% filter(! ref %in% key_corridor_names)
-r_key_roads_plus_high_pct = rbind(r_key_roads_near, r_high_g_not_ref)
+r_key_roads_plus_high_pct = rbind(r_key_roads_near, r_high_g_not_ref[-ncol(r_high_g_not_ref)])
 # mapview::mapview(r_key_roads_plus_high_pct)
 
 # tackle the issue of isolated segments
