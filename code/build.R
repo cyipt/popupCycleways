@@ -137,13 +137,13 @@ min_pct_85th_percentile = quantile(r_main_region$cycling_potential, probs = 0.85
 r_high_pct_99th = r_main_region %>%
   filter(cycling_potential > min_pct_99th_percentile)
 table(r_high_pct_99th$ref) # many unnamed
-mapview::mapview(r_high_pct_99th)
+# mapview::mapview(r_high_pct_99th)
 r_high_pct_90th = r_main_region %>%
   filter(cycling_potential > min_pct_90th_percentile)
-mapview::mapview(r_high_pct_90th)
+# mapview::mapview(r_high_pct_90th)
 r_high_pct_85th = r_main_region %>%
   filter(cycling_potential > min_pct_85th_percentile)
-mapview::mapview(r_high_pct_85th)
+# mapview::mapview(r_high_pct_85th)
 
 r_named_ref = r_high_pct_85th %>% 
   filter(ref != "" & name != "") 
@@ -157,7 +157,7 @@ r_key_corridors = r_named_ref %>%
   top_n(n = 20, wt = km_cycled_potential) %>%
   sf::st_cast("LINESTRING") 
 
-# r_high_in_key_corridors = r_high_pct_99th[r_key_corridors, , op = sf::st_within]
+r_high_in_key_corridors = r_high_pct_99th[r_key_corridors, , op = sf::st_within]
 r_high_not_in_key_corridors = r_high_pct_99th %>%
   filter(!idGlobal %in% r_high_in_key_corridors$idGlobal) %>% 
   transmute(
@@ -192,15 +192,15 @@ summary(r_key_network$group_length)
 
 # r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
 r_key_network_buffer = stplanr::geo_buffer(r_key_network, dist = 1000)
-r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
+# r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
 # mapview::mapview(r_key_network, zcol = "km_cycled_potential")
 # r_in_key_network = r_high_pct_90th[r_key_network, , op = st_within]
 # mapview::mapview(r_in_key_network)
 r_key_roads = r_main_region %>%
   filter(ref %in% key_corridor_names)
-mapview::mapview(r_key_roads)
+# mapview::mapview(r_key_roads)
 r_key_roads_near_key_network = r_key_roads[r_key_network_buffer, ]
-mapview::mapview(r_key_roads_near_key_network)
+# mapview::mapview(r_key_roads_near_key_network)
 # %>% 
 #   filter(!idGlobal %in% r_in_key_network$idGlobal)
 
@@ -211,83 +211,85 @@ r_key_network_final = r_key_roads_near_key_network %>%
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE))
     )
-mapview::mapview(r_key_network_final)
+# mapview::mapview(r_key_network_final)
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
 tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
 
 # show lanes roads with spare space ---------------------------------------
 
 r_lanes_all = r_main_region %>% 
-  filter(cycling_potential > min_cycling_potential) %>% # min_cycling_potential = 0 so this simply selects multilane roads
+  filter(cycling_potential >= min_cycling_potential) %>% # min_cycling_potential = 5 so this essentially selects multilane/wide roads
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
   filter(spare_lane | width >= 10)
 
-mapview::mapview(r_lanes_all)
+# mapview::mapview(r_lanes_all)
 
 r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = 50)
 touching_list = st_intersects(r_lanes_all_buff)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_lanes_all$group = components$membership
-mapview::mapview(r_lanes_all["group"])
+# mapview::mapview(r_lanes_all["group"])
+
 
 r_lanes_grouped = r_lanes_all %>%
   # filter(ref != "") %>%
   group_by(ref, group) %>%
   summarise(
-    group_length = round(sum(length)),
+    groupref_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
     spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
     road_name = names(table(name))[which.max(table(name))]
   ) %>% 
-  filter(group_length > min_grouped_length) %>% 
+  # filter(group_length > min_grouped_length) %>% 
   mutate(
     width_status = case_when(
-      mean_width >= 9 ~ "Width > 9 m",
+      mean_width >= 10 ~ "Width >= 10 m",
       spare_lane ~ "Spare lane"
       # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
     )
   ) 
 # r_lanes_grouped$group_id = paste0(r_lanes_grouped$group, r_lanes_grouped$ref)
 
-mapview::mapview(r_lanes_grouped, zcol = "group", lwd = 5)
+# mapview::mapview(r_lanes_grouped, zcol = "group", lwd = 5)
 
-# r_lanes_grouped_linestrings = st_cast(r_lanes_grouped, "LINESTRING")
-r_lanes_grouped_linestrings = r_lanes_all[r_lanes_grouped, , op = st_within]
-mapview::mapview(r_lanes_grouped_linestrings)
+r_linestrings = r_lanes_all[r_lanes_grouped, , op = st_within]
+# mapview::mapview(r_linestrings)
 
 
 # Roads with no ref -------------------------------------------------------
 
-
-no_ref = r_lanes_grouped_linestrings[r_lanes_grouped_linestrings$ref == "",]
-no_ref_buff = geo_buffer(shp = no_ref, dist = 10)
+# Remove segments with cycling potential <50. (this is stricter than the rules for roads with refs, because otherwise rogue segments from nearby side streets are likely to be added into the groups)
+no_ref = r_linestrings[r_linestrings$ref == "",] %>% 
+  filter(cycling_potential >= 50)
+no_ref_buff = geo_buffer(shp = no_ref, dist = 20)
 touching_list = st_intersects(no_ref_buff)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 no_ref$nogroup = components$membership
 
-mapview(no_ref["nogroup"], lwd = 3)
+# mapview(no_ref["nogroup"], lwd = 3)
 
+# Remove groups with length <300m (20m buffer). (these are groups consisting purely of road segments with no ref) this is stricter than for roads with refs, because otherwise too many short segments are picked up. 
 no_ref_grouped = no_ref %>%
   group_by(nogroup) %>%
   summarise(no_length = round(sum(length)),
             mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE))
   ) %>%
-  filter(no_length > min_grouped_length) %>%
-  filter(mean_cycling_potential > min_grouped_cycling_potential)
+  filter(no_length >= 300) %>%
+  filter(mean_cycling_potential > min_grouped_cycling_potential) # this is currently 50
 
-mapview(no_ref_grouped["mean_cycling_potential"])
+# mapview(no_ref_grouped["nogroup"])
 
 ###
 
-to_join = r_lanes_grouped_linestrings[r_lanes_grouped_linestrings$ref != "",]
+to_join = r_linestrings[r_linestrings$ref != "",]
 
 r_no_ref_linestrings = r_lanes_all[no_ref_grouped, , op = st_within]
 r_lanes_grouped_linestrings = rbind(to_join, r_no_ref_linestrings)
 
-mapview::mapview(r_lanes_grouped_linestrings)
+# mapview::mapview(r_lanes_grouped_linestrings)
 
 ########
 
@@ -310,15 +312,34 @@ rg_list = lapply(gs, FUN = function(i) {
 
 rg_new = do.call(rbind, rg_list)
 
+# Only keep groups with mean cycling potential >50
+rg_keep = rg_new %>% 
+  group_by(ig, group, ref) %>%
+  summarise(mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE))) %>%
+  filter(mean_cycling_potential >= min_grouped_cycling_potential) %>%
+  ungroup() %>%
+  mutate(rgid = 1:nrow(.)) %>%
+  st_drop_geometry()
 
-# touching_list = st_intersects(stplanr::geo_buffer(r_lanes_grouped_linestrings, dist = 50))
-# g = igraph::graph.adjlist(touching_list)
-# components = igraph::components(g)
-# r_lanes_grouped_linestrings$igroup = components$membership
-r_lanes_grouped2 = rg_new %>% 
-  group_by(ref, ig) %>% 
-  mutate(n_in_group = n()) %>% 
-  filter(!(n_in_group < 1 & name == "")) %>% 
+rg_new2 = inner_join(rg_new, rg_keep, by = c("ref", "ig", "group"))
+  
+rg_buff = geo_buffer(shp = rg_new2, dist = 100)
+touching_list = st_intersects(rg_buff)
+g = igraph::graph.adjlist(touching_list)
+components = igraph::components(g)
+rg_new2$lastgroup = components$membership
+
+# Only keep segments which are part of a wider group (including roads with different refs/names) of >500m length (100m buffer)
+rg_long = rg_new2 %>% 
+  group_by(lastgroup) %>%
+  summarise(last_length = round(sum(length))) %>%
+  filter(last_length >= min_grouped_length)
+
+rg_new3 = rg_new2[rg_new2$lastgroup %in% rg_long$lastgroup,]
+
+# mapview(rg_new3)
+
+r_lanes_grouped2 = rg_new3 %>% 
   group_by(ref, group, ig) %>% 
   summarise(
     name = names(table(name))[which.max(table(name))],
@@ -327,14 +348,10 @@ r_lanes_grouped2 = rg_new %>%
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
     spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
   ) %>% 
-  filter(mean_cycling_potential > min_grouped_cycling_potential & group_length > min_grouped_length) %>%
-  # filter(group_length > min_grouped_length |
-           #  mean_cycling_potential > min_grouped_cycling_potential &
-           # (group_length * 2 > min_grouped_length)) %>% 
   ungroup() %>% 
   mutate(group_id = 1:nrow(.))
 
-mapview::mapview(r_lanes_grouped2, zcol = "group_id", lwd = 3)
+mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
 # mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
 
 # mapview::mapview(r_lanes_grouped["width_status"])
@@ -359,6 +376,7 @@ r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_la
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 # mapview::mapview(r_lanes_joined["proportion_on_cycleway"])
 
+# we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %>%
   ungroup() %>% 
   filter(name != "") %>% 
@@ -395,7 +413,7 @@ m =
   # tm_text("ref") +
   tm_shape(r_lanes_joined) +
   tm_lines(col = "Status", 
-           lwd = "mean_cycling_potential",
+           # lwd = "mean_cycling_potential",
            alpha = 0.6, scale = 10,
            popup.vars = popup.vars, palette = "Dark2") +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
