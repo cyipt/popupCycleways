@@ -394,7 +394,7 @@ r_lanes_joined = r_lanes_joined %>%
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
 
-pvars_key = c("ref", "name", "highway", "width",
+pvars_key = c("ref", "name", "width",
               "highway_type", "cycling_potential",
               "n_lanes")
 r_key_network_final = r_key_network_final[pvars_key]
