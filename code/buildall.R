@@ -10,7 +10,7 @@ region_names_to_build = regions %>%
   pull(Name)
 
 dir.create("popupCycleways/v0.1")
-region_names_to_build = c("West Yorkshire", "Nottingham")
+# region_names_to_build = c("West Yorkshire", "Nottingham")
 
 rn = "Greater Manchester"
 for(rn in region_names_to_build) {
@@ -21,7 +21,7 @@ for(rn in region_names_to_build) {
   region_name = rn
   # source("code/build.R")
   rmarkdown::render(input = "code/build.R", output_dir = d, knit_root_dir = ".")
-  htmlwidgets::saveWidget(m_leaflet, file.path(d, "m.html"))
+  htmlwidgets::saveWidget(m_leaflet, file.path("~/cyipt/tempCycleways/", d, "m.html"))
   time_to_run = Sys.time() - t
   message(round(time_to_run), " seconds to build ", rn)
 }
