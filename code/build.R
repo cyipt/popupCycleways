@@ -79,7 +79,7 @@ if(is_city) {
   r_main_region = rj
 }
 
-
+r_main_region$cycling_potential = r_main_region$pctgov
 
 
 # Combine commute and schools route networks ----------------------------------------
@@ -126,8 +126,6 @@ r_positive = r_joined[which(r_joined$cycling_potential > 0),] %>%
   distinct(.keep_all = TRUE) # remove the duplicates
 
 r_main_region = r_positive
-
-
 
 # Identify key corridors --------------------------------------------------
 min_pct_99th_percentile = quantile(r_main_region$cycling_potential, probs = 0.99)
@@ -213,7 +211,7 @@ r_key_network_final = r_key_roads_near_key_network %>%
     )
 # mapview::mapview(r_key_network_final)
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
-tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
+# tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
 
 # show lanes roads with spare space ---------------------------------------
 
@@ -251,6 +249,7 @@ r_lanes_grouped = r_lanes_all %>%
     )
   ) 
 # r_lanes_grouped$group_id = paste0(r_lanes_grouped$group, r_lanes_grouped$ref)
+
 
 # mapview::mapview(r_lanes_grouped, zcol = "group", lwd = 5)
 
@@ -292,6 +291,7 @@ r_lanes_grouped_linestrings = rbind(to_join, r_no_ref_linestrings)
 # mapview::mapview(r_lanes_grouped_linestrings)
 
 ########
+
 
 gs = unique(r_lanes_grouped_linestrings$ref)
 # i = g[2]
@@ -421,10 +421,10 @@ m =
   # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
-m
+# m
 
 res_table = r_lanes_top %>% 
   sf::st_drop_geometry() %>% 
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
-knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
+# knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
 
