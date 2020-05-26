@@ -7,7 +7,7 @@ library(tidyverse)
 library(tmap)
 library(pct)
 library(stplanr)
-if(!exists("parameters")) {
+if(!exists("s")) {
   message("Loading global parameters")  
   s = c(
     `Grey` = "Esri.WorldGrayCanvas",
@@ -21,7 +21,7 @@ if(!exists("parameters")) {
   tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
   # test basemap:
   tmap_mode("view")
-  parameters = read_csv("input-data/parameters.csv")
+  # parameters = read_csv("input-data/parameters.csv")
   
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
@@ -103,7 +103,7 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
-rnet_combined = stplanr::overline2(x = combine, attrib = "govtarget_slc")
+rnet_combined = stplanr::overline2(x = sf::st_cast(combine, "LINESTRING"), attrib = "govtarget_slc")
 
 # Link the updated cycle potential to the road widths ---------------------
 
@@ -386,12 +386,13 @@ r_lanes_joined = r_lanes_joined %>%
       mean_width >= 10 ~ "Width > 10"
     ) 
   ) %>% 
-  select(name, ref, Status, mean_cycling_potential, spare_lane, mean_width, group_id)
+  select(name, ref, Status, mean_cycling_potential, spare_lane, mean_width, `length (m)` = group_length, group_id)
 r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c("Top route", "Spare lane(s)", "Width > 10"))
 
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
 
+popup.vars = c("name", "ref", "spare_lane", "mean_width", "mean_cycling_potential", "length (m)")
 pvars_key = c("ref", "name", "width",
               "highway_type", "cycling_potential",
               "n_lanes")
@@ -410,12 +411,12 @@ m =
            # palette = "Dark2"
            ) +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
-  tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
+  # tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
 # m
 m_leaflet = tmap_leaflet(m)
-htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
+# htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
 # browseURL("/tmp/m.html")
 
