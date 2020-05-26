@@ -159,7 +159,7 @@ touching_list = st_intersects(r_key_buffer)
 g = igraph::graph.adjlist(touching_list)
 components = igraph::components(g)
 r_key_network_all$group = components$membership
-mapview::mapview(r_key_network_all, zcol = "group")
+# mapview::mapview(r_key_network_all, zcol = "group")
 group_table = sort(table(r_key_network_all$group), decreasing = TRUE)
 # select groups to include with careful selection of n
 # see https://github.com/cyipt/popupCycleways/issues/38
@@ -167,7 +167,7 @@ length(group_table)
 groups_to_include = names(group_table[group_table > n_top_roads])
 r_key_network_igroups = r_key_network_all %>% 
   filter(group %in% groups_to_include)
-mapview::mapview(r_key_network_igroups)
+# mapview::mapview(r_key_network_igroups)
 
 r_key_network = r_key_network_igroups %>% 
   group_by(group) %>% 
@@ -396,7 +396,6 @@ pvars_key = c("ref", "name", "width",
               "highway_type", "cycling_potential",
               "n_lanes")
 key_network = key_network[pvars_key]
-popup.vars = c("name", "ref", "spare_lane", "mean_width", "mean_cycling_potential")
 cols_status = c("blue", "turquoise", "purple")
 tmap_mode("view")
 m =
@@ -415,6 +414,10 @@ m =
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
 # m
+m_leaflet = tmap_leaflet(m)
+htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
+# system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
+# browseURL("/tmp/m.html")
 
 res_table = r_lanes_top %>% 
   sf::st_drop_geometry() %>% 

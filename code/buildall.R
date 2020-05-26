@@ -9,15 +9,19 @@ region_names_to_build = regions %>%
   filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>% 
   pull(Name)
 
-dir.create("popupCycleways/v1")
+dir.create("popupCycleways/v0.1")
 region_names_to_build = c("West Yorkshire", "Nottingham")
 
-i = "Greater Manchester"
-for(i in region_names_to_build) {
-  d = file.path("popupCycleways/v1", tolower(i))
+rn = "Greater Manchester"
+for(rn in region_names_to_build) {
+  t = Sys.time()
+  message("Building for ", rn)
+  d = file.path("popupCycleways/v0.1", tolower(rn))
   dir.create(d)
-  region_name = i
+  region_name = rn
   # source("code/build.R")
   rmarkdown::render(input = "code/build.R", output_dir = d, knit_root_dir = ".")
-  tmap_save(m, filename = file.path(d, "m.html"))
+  htmlwidgets::saveWidget(m_leaflet, file.path(d, "m.html"))
+  time_to_run = Sys.time() - t
+  message(round(time_to_run), " seconds to build ", rn)
 }
