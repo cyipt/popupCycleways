@@ -386,10 +386,11 @@ r_lanes_joined = r_lanes_joined %>%
     Status = case_when(
       group_id %in% r_lanes_top$group_id ~ "Top route",
       spare_lane ~ "Spare lane(s)",
-      mean_width >= 9 ~ "Width > 10"
-    )
+      mean_width >= 10 ~ "Width > 10"
+    ) 
   ) %>% 
   select(name, ref, Status, mean_cycling_potential, spare_lane, mean_width, group_id)
+r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c("Top route", "Spare lane(s)", "Width > 10"))
 
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
@@ -399,7 +400,7 @@ pvars_key = c("ref", "name", "width",
               "n_lanes")
 r_key_network_final = r_key_network_final[pvars_key]
 popup.vars = c("name", "ref", "spare_lane", "mean_width", "mean_cycling_potential")
-cols_status = c("blue", "turquoise", "green")
+cols_status = c("blue", "turquoise", "purple")
 tmap_mode("view")
 m =
   tm_shape(r_key_network_final) +
@@ -408,9 +409,12 @@ m =
   tm_lines(col = "Status", 
            lwd = "mean_cycling_potential",
            alpha = 0.6, scale = 10,
-           popup.vars = popup.vars, palette = "Dark2") +
+           popup.vars = popup.vars,
+           palette = cols_status
+           # palette = "Dark2"
+           ) +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
-  tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "navyblue", lwd = 1.3) +
+  tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
 # m
