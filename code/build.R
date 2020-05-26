@@ -220,9 +220,10 @@ r_lanes_all_no_buffer = r_main_region %>%
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
   filter(spare_lane | width >= 10)
 
-r_lanes_all = r_lanes_all_no_buffer
-# optionally remove areas outside key network
-# r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
+# in cases where there is no need to use the buffer:
+# r_lanes_all = r_lanes_all_no_buffer
+# remove areas outside key network
+r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
 # mapview::mapview(r_lanes_all_no_buffer) +
 # mapview::mapview(r_lanes_all)
 
