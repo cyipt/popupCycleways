@@ -210,16 +210,8 @@ r_key_network_final = r_key_roads_plus_high_pct %>%
   group_by(group) %>% 
   mutate(group_length = sum(length)) %>% 
   filter(group_length > 5 * min_grouped_length)
-  # %>% 
-  # group_by(ref, name) %>% 
-  # summarise(
-  #   group_length = round(sum(length)),
-  #   mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
-  #   mean_width = round(weighted.mean(width, length, na.rm = TRUE))
-  #   )
 # mapview::mapview(r_key_network_final)
 # tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
-# tm_shape(r_key_network_final) + tm_lines(lwd = "mean_width", scale = 7, col = "ref", palette = "Dark2")
 
 # Identify roads with spare space ---------------------------------------
 
@@ -228,7 +220,9 @@ r_lanes_all_no_buffer = r_main_region %>%
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>% 
   filter(spare_lane | width >= 10)
 
-r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
+r_lanes_all = r_lanes_all_no_buffer
+# optionally remove areas outside key network
+# r_lanes_all = r_lanes_all_no_buffer[r_key_network_buffer_large, ]
 # mapview::mapview(r_lanes_all_no_buffer) +
 # mapview::mapview(r_lanes_all)
 
@@ -257,9 +251,7 @@ r_linestrings_with_ref = r_lanes_all %>%
 #       # spare_lane & mean_width > 10 ~ "Spare lane & width > 10 m"
 #     )
 #   ) %>% 
-#   ungroup()
-
-# %>% 
+#   ungroup() %>% 
 # filter(group_length > min_grouped_length) 
 # mapview::mapview(r_linestrings, zcol = "group_length", lwd = 5)
 
@@ -354,11 +346,7 @@ r_lanes_grouped2 = rg_new3 %>%
   ungroup() %>% 
   mutate(group_id = 1:nrow(.))
 
-# mapview::mapview(r_lanes_grouped2, zcol = "group_id", lwd = 3)
 # mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
-
-# mapview::mapview(r_lanes_grouped["width_status"])
-# mapview::mapview(r_lanes_grouped["group"])
 
 # Generate lists of top segments ------------------------------------------------------------
 
@@ -383,8 +371,7 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %>%
   ungroup() %>% 
-  filter(name != "") %>% 
-  filter(ref != "") %>%
+  filter(name != "" & ref != "") %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
@@ -416,8 +403,6 @@ tmap_mode("view")
 m =
   tm_shape(r_key_network_final) +
   tm_lines(lwd = "width", scale = 9, col = "darkgrey", popup.vars = pvars_key) +
-  # tm_shape(r_lanes_grouped) + tm_lines(col = "width_status", lwd = 3, alpha = 0.6, palette = cols_status) +
-  # tm_text("ref") +
   tm_shape(r_lanes_joined) +
   tm_lines(col = "Status", 
            lwd = "mean_cycling_potential",
@@ -425,7 +410,6 @@ m =
            popup.vars = popup.vars, palette = "Dark2") +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "navyblue", lwd = 1.3) +
-  # tm_shape(r_lanes_top_n) + tm_text("name") + # clutters map, removed
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
 # m
