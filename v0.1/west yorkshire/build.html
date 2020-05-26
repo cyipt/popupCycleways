@@ -492,15 +492,15 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = combine, attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-26 16:02:16 constructing segments</code></pre>
-<pre><code>## 2020-05-26 16:02:18 building geometry</code></pre>
-<pre><code>## 2020-05-26 16:02:23 simplifying geometry</code></pre>
+<pre><code>## 2020-05-26 16:14:11 constructing segments</code></pre>
+<pre><code>## 2020-05-26 16:14:13 building geometry</code></pre>
+<pre><code>## 2020-05-26 16:14:19 simplifying geometry</code></pre>
 <pre><code>## large data detected, using regionalisation, nrow = 167380</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## 2020-05-26 16:02:32 regionalisation complete, aggregating flows</code></pre>
-<pre><code>## 2020-05-26 16:02:36 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-26 16:14:28 regionalisation complete, aggregating flows</code></pre>
+<pre><code>## 2020-05-26 16:14:32 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -954,6 +954,11 @@ tmap_mode(&quot;view&quot;)</code></pre>
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
 # m
+m_leaflet = tmap_leaflet(m)</code></pre>
+<pre><code>## Legend for line widths not available in view mode.</code></pre>
+<pre class="r"><code>htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
+# system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
+# browseURL(&quot;/tmp/m.html&quot;)
 
 res_table = r_lanes_top %&gt;% 
   sf::st_drop_geometry() %&gt;% 
