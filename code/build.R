@@ -21,7 +21,9 @@ if(!exists("s")) {
   tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
   # test basemap:
   tmap_mode("view")
-  # parameters = read_csv("input-data/parameters.csv")
+  if(!exists("parameters")) {
+    parameters = read_csv("input-data/parameters.csv")
+  }
   
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
@@ -383,11 +385,11 @@ r_lanes_joined = r_lanes_joined %>%
     Status = case_when(
       group_id %in% r_lanes_top$group_id ~ "Top route",
       spare_lane ~ "Spare lane(s)",
-      mean_width >= 10 ~ "Width > 10"
+      mean_width >= 10 ~ "Width > 10 m"
     ) 
   ) %>% 
   select(name, ref, Status, mean_cycling_potential, spare_lane, mean_width, `length (m)` = group_length, group_id)
-r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c("Top route", "Spare lane(s)", "Width > 10"))
+r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c("Top route", "Spare lane(s)", "Width > 10 m"))
 
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
@@ -398,24 +400,36 @@ pvars_key = c("ref", "name", "width",
               "n_lanes")
 key_network = key_network[pvars_key]
 cols_status = c("blue", "turquoise", "purple")
+summary(r_lanes_joined$Status)
+top_routes = r_lanes_joined %>% 
+  mutate(
+    lwd = case_when(
+      Status == "Top route" ~ 5,
+      Status == "Width > 10 m" ~ 3,
+      Status == "Spare lane(s)" ~ 3
+      )
+  )
+summary(top_routes$lwd)
 tmap_mode("view")
 m =
   tm_shape(key_network) +
   tm_lines(lwd = "width", scale = 9, col = "darkgrey", popup.vars = pvars_key) +
-  tm_shape(r_lanes_joined) +
-  tm_lines(col = "Status", 
-           lwd = 2,
+  tm_shape(top_routes) +
+  tm_lines(legend.col.show = FALSE,
+           col = "Status", 
+           lwd = "lwd",
            # lwd = "mean_cycling_potential",
-           # scale = 10,
+           scale = 5,
            alpha = 0.6,
            popup.vars = popup.vars,
            palette = cols_status
            # palette = "Dark2"
            ) +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
-  # tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
+  # tm_shape(cycleways, name = "Segregated cycleways (500 m+)") + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_basemap(server = s, tms = tms) +
-  tm_scale_bar()
+  tm_add_legend(type = "fill", labels = c("a", "b", "c", "d"), col = c(cols_status, "green")) +
+  tm_scale_bar() 
 # m
 m_leaflet = tmap_leaflet(m)
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
