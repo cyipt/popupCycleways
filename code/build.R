@@ -376,7 +376,7 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 r_lanes_top = r_lanes_joined %>%
   ungroup() %>% 
   filter(name != "" & ref != "") %>%
-  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
+  filter(mean_cycling_potential > 2*min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
   arrange(desc(km_cycled)) %>% 
