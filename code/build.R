@@ -400,7 +400,8 @@ pvars_key = c("ref", "name", "width",
               "n_lanes")
 key_network = key_network[pvars_key]
 
-cols_status = c("blue", "orange", "yellow")
+# cols_status = c("blue", "orange", tmaptools::get_brewer_pal("Accent", n = 3)[3])
+cols_status = c("blue", "#BF5B17", "#B91F48")
 summary(r_lanes_joined$Status)
 top_routes = r_lanes_joined %>% 
   mutate(
@@ -429,9 +430,9 @@ m =
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
   tm_shape(cycleways, name = "Segregated cycleways (500 m+)") + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = "fill", labels = c("0", "a", "b", "c", "d"), col = c("grey", cols_status, "green")) +
+  tm_add_legend(type = "fill", labels = c("0", "a", "b", "c", "d"), col = c("darkgrey", cols_status, "darkgreen")) +
   tm_scale_bar() 
-# m
+m
 m_leaflet = tmap_leaflet(m)
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
