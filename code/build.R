@@ -10,13 +10,13 @@ library(stplanr)
 if(!exists("s")) {
   message("Loading global parameters")  
   s = c(
-    `Grey` = "Esri.WorldGrayCanvas",
+    `Grey basemap` = "Esri.WorldGrayCanvas",
     `PCT commuting, Government Target` = "https://npttile.vs.mythic-beasts.com/commute/v2/govtarget/{z}/{x}/{y}.png",
     `PCT schools, Government Target` = "https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png",
     `PCT commuting, Ebikes, ` = "https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png",
     `PCT schools, Go Dutch, ` = "https://npttile.vs.mythic-beasts.com/school/v2/dutch/{z}/{x}/{y}.png",
-    `Cycleways` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
-    `Satellite` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+    `Existing cycleways (all)` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+    `Satellite image` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
   )
   tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
   # test basemap:
@@ -380,16 +380,19 @@ r_lanes_top = r_lanes_joined %>%
 nrow(r_lanes_top)
 
 # classify roads to visualise
+labels = c("Top route", "Spare lane(s)", "Width >= 10 m")
+cycleways_name = "Existing segregated cycleways (500 m+)"
+
 r_lanes_joined = r_lanes_joined %>% 
   mutate(
     Status = case_when(
-      group_id %in% r_lanes_top$group_id ~ "Top route",
-      spare_lane ~ "Spare lane(s)",
-      mean_width >= 10 ~ "Width > 10 m"
+      group_id %in% r_lanes_top$group_id ~ labels[1],
+      spare_lane ~ labels[2],
+      mean_width >= 10 ~ labels[3]
     ) 
   ) %>% 
   select(name, ref, Status, mean_cycling_potential, spare_lane, mean_width, `length (m)` = group_length, group_id)
-r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c("Top route", "Spare lane(s)", "Width > 10 m"))
+r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c(labels[1], labels[2], labels[3]))
 
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
@@ -400,38 +403,61 @@ pvars_key = c("ref", "name", "width",
               "n_lanes")
 key_network = key_network[pvars_key]
 
-cols_status = c("blue", "orange", "yellow")
+# cols_status = c("blue", "orange", tmaptools::get_brewer_pal("Accent", n = 3)[3])
+cols_status = c("blue", "#B91F48", "#FF7F00")
 summary(r_lanes_joined$Status)
-top_routes = r_lanes_joined %>% 
-  mutate(
-    lwd = case_when(
-      Status == "Top route" ~ 5,
-      Status == "Width > 10 m" ~ 3,
-      Status == "Spare lane(s)" ~ 3
-      )
-  )
-summary(top_routes$lwd)
+
+# top_routes = r_lanes_joined %>% 
+#   mutate(
+#     lwd = case_when(
+#       Status == labels[1] ~ 5,
+#       Status == labels[2] ~ 3,
+#       Status == labels[3] ~ 3
+#       )
+#   )
+# summary(top_routes$lwd)
+
+top_routes = r_lanes_joined %>%
+  filter(Status == labels[1])
+spare_lanes = r_lanes_joined %>%
+  filter(Status == labels[2])
+width_10m = r_lanes_joined %>%
+  filter(Status == labels[3])
+
 tmap_mode("view")
 m =
-  tm_shape(key_network) +
+  tm_shape(key_network, name = "Key network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
-  tm_shape(top_routes) +
+  tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
+  tm_shape(top_routes, name = "Top routes") +
   tm_lines(legend.col.show = FALSE,
-           col = "Status", 
-           lwd = "lwd",
-           # lwd = "mean_cycling_potential",
-           scale = 5,
+           col = cols_status[1], 
+           lwd = 5,
+           # scale = 5,
            alpha = 1,
-           popup.vars = popup.vars,
-           palette = cols_status
-           # palette = "Dark2"
+           popup.vars = popup.vars
            ) +
-  # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
-  tm_shape(cycleways, name = "Segregated cycleways (500 m+)") + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
+  tm_shape(spare_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[2], 
+           lwd = 3,
+           # scale = 5,
+           alpha = 1,
+           popup.vars = popup.vars
+           ) +
+  tm_shape(width_10m, name = labels[3]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[3], 
+           lwd = 3,
+           # scale = 5,
+           alpha = 1,
+           popup.vars = popup.vars
+  ) +
+
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = "fill", labels = c("0", "a", "b", "c", "d"), col = c("grey", cols_status, "green")) +
+  tm_add_legend(type = "fill", labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3]), col = c("darkgrey", "darkgreen", cols_status)) +
   tm_scale_bar() 
-# m
+m
 m_leaflet = tmap_leaflet(m)
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
