@@ -333,7 +333,9 @@ rg_new3 = rg_new2[rg_new2$lastgroup %in% rg_long$lastgroup,]
 r_lanes_grouped2 = rg_new3 %>% 
   group_by(ref, group, ig) %>% 
   summarise(
-    name = names(table(name))[which.max(table(name))],
+    name = ifelse(names(table(name))[which.max(table(name))] != "", 
+                  names(table(name))[which.max(table(name))], 
+                  names(desc(table(name)))[2]),
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
