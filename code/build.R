@@ -399,7 +399,8 @@ pvars_key = c("ref", "name", "width",
               "highway_type", "cycling_potential",
               "n_lanes")
 key_network = key_network[pvars_key]
-cols_status = c("blue", "turquoise", "purple")
+
+cols_status = c("blue", "orange", "yellow")
 summary(r_lanes_joined$Status)
 top_routes = r_lanes_joined %>% 
   mutate(
@@ -413,22 +414,22 @@ summary(top_routes$lwd)
 tmap_mode("view")
 m =
   tm_shape(key_network) +
-  tm_lines(lwd = "width", scale = 9, col = "darkgrey", popup.vars = pvars_key) +
+  tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(top_routes) +
   tm_lines(legend.col.show = FALSE,
            col = "Status", 
            lwd = "lwd",
            # lwd = "mean_cycling_potential",
            scale = 5,
-           alpha = 0.6,
+           alpha = 1,
            popup.vars = popup.vars,
            palette = cols_status
            # palette = "Dark2"
            ) +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
-  # tm_shape(cycleways, name = "Segregated cycleways (500 m+)") + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
+  tm_shape(cycleways, name = "Segregated cycleways (500 m+)") + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = "fill", labels = c("a", "b", "c", "d"), col = c(cols_status, "green")) +
+  tm_add_legend(type = "fill", labels = c("0", "a", "b", "c", "d"), col = c("grey", cols_status, "green")) +
   tm_scale_bar() 
 # m
 m_leaflet = tmap_leaflet(m)
