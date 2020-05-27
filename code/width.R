@@ -13,7 +13,7 @@ system("ls -hal ~/hd/data/os/Download_mastermap-roads-2020-04.Rds")
 
 names(mm_highway)
 table(mm_highway$cycleFacility)
-
+table(mm_highway$formOfWay)
 
 # Tests and out-takes -----------------------------------------------------
 
