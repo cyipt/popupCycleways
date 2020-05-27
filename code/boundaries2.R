@@ -13,6 +13,7 @@ summary(la_ca_list$lad_name_original %in% regions$Name) # 27 matches
 la_ca = la_ca_list %>% 
   mutate(
     Name = str_replace_all(string = ca_name_original, pattern = " CA| ITA", ""),
+    Name = str_replace_all(string = Name, pattern = "TfL", "London"),
     Name_la = str_replace_all(string = lad_name_original, pattern = " UA", ""),
     Name_la = str_replace_all(string = Name_la, pattern = "Bournemouth, Christchurch snd Poole", "Bournemouth, Christchurch and Poole"),
     Level = case_when(
@@ -76,6 +77,9 @@ cas = cas_all %>%
     LA_names = paste(Name_la, collapse = ",")
   ) %>% 
   mutate(Level = "Combined authority")
+cas$geometry[cas$Name == "London"] = cas_and_uas %>% 
+  filter(Name == "Greater London") %>% 
+  pull(geometry)
 mapview::mapview(cas)
 regions_dft = rbind(
   cas,
