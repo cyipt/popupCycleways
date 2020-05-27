@@ -404,8 +404,10 @@ m =
   tm_lines(lwd = "width", scale = 9, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(r_lanes_joined) +
   tm_lines(col = "Status", 
-           lwd = "mean_cycling_potential",
-           alpha = 0.6, scale = 10,
+           lwd = 2,
+           # lwd = "mean_cycling_potential",
+           # scale = 10,
+           alpha = 0.6,
            popup.vars = popup.vars,
            palette = cols_status
            # palette = "Dark2"
