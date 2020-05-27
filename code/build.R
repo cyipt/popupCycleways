@@ -397,24 +397,24 @@ pvars_key = c("ref", "name", "width",
               "highway_type", "cycling_potential",
               "n_lanes")
 key_network = key_network[pvars_key]
-cols_status = c("blue", "turquoise", "purple")
+cols_status = c("blue", "orange", "yellow")
 tmap_mode("view")
 m =
   tm_shape(key_network) +
-  tm_lines(lwd = "width", scale = 9, col = "darkgrey", popup.vars = pvars_key) +
+  tm_lines(lwd = 3, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(r_lanes_joined) +
   tm_lines(col = "Status", 
-           lwd = "mean_cycling_potential",
-           alpha = 0.6, scale = 10,
+           lwd = 3,
+           # alpha = 0.6, scale = 10,
            popup.vars = popup.vars,
            palette = cols_status
            # palette = "Dark2"
            ) +
   # tm_shape(r_lanes_top_n) + tm_lines(col = "width_status", lwd = 2, alpha = 0.6) +
-  # tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
+  tm_shape(cycleways) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_basemap(server = s, tms = tms) +
   tm_scale_bar()
-# m
+m
 m_leaflet = tmap_leaflet(m)
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
