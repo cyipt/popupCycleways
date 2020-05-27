@@ -334,8 +334,10 @@ r_lanes_grouped2 = rg_new3 %>%
   group_by(ref, group, ig) %>% 
   summarise(
     name = ifelse(names(table(name))[which.max(table(name))] != "", 
-                  names(table(name))[which.max(table(name))], 
-                  names(desc(table(name)))[2]),
+                  names(table(name))[which.max(table(name))],
+                  ifelse(names(table(ref))[which.max(table(ref))] != "",
+                  names(table(ref))[which.max(table(ref))],
+                  names(desc(table(name)))[2])),
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
