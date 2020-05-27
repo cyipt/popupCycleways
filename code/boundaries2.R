@@ -99,4 +99,4 @@ regions_dft %>% filter(Level == "County") %>% pull(Name)
 tm_shape(regions) + tm_polygons("Level") + tm_shape(regions_centroids) + tm_text("Name", size = 0.7)
 regions_dft_centroids = sf::st_point_on_surface(regions_dft)
 tm_shape(regions_dft) + tm_polygons("Level") + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
-
+saveRDS(regions_dft, "regions_dft.Rds")
