@@ -384,7 +384,7 @@ r_lanes_top = r_lanes_joined %>%
 nrow(r_lanes_top)
 
 # classify roads to visualise
-labels = c("Top route", "Spare lane(s)", "Width >= 10 m")
+labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
 cycleways_name = "Segregated cycleways (500 m+)"
 
 r_lanes_joined = r_lanes_joined %>% 
@@ -393,9 +393,14 @@ r_lanes_joined = r_lanes_joined %>%
       group_id %in% r_lanes_top$group_id ~ labels[1],
       spare_lane ~ labels[2],
       mean_width >= 10 ~ labels[3]
-    ) 
+    ),
+    `Estimated width` = case_when(
+      mean_width < 10 ~ "<10 m",
+      mean_width >= 10 & mean_width < 15 ~ "10-15 m",
+      mean_width >= 15 ~ ">15 m"
+    )
   ) %>% 
-  select(name, ref, Status, mean_cycling_potential, spare_lane, mean_width, `length (m)` = group_length, group_id)
+  select(name, ref, Status, mean_cycling_potential, spare_lane, `Estimated width`, `length (m)` = group_length, group_id)
 r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c(labels[1], labels[2], labels[3]))
 
 table(r_lanes_joined$Status)
@@ -403,14 +408,13 @@ summary(factor(r_lanes_joined$Status))
 
 # Post-processing and set-up for map --------------------------------------
 
-popup.vars = c("name", "ref", "spare_lane", "mean_width", "mean_cycling_potential", "length (m)")
+popup.vars = c("name", "ref", "spare_lane", "Estimated width", "mean_cycling_potential", "length (m)")
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
 
 # cols_status = c("blue", "orange", tmaptools::get_brewer_pal("Accent", n = 3)[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
 summary(r_lanes_joined$Status)
-
 
 top_routes = r_lanes_joined %>%
   filter(Status == labels[1])
