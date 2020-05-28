@@ -374,16 +374,20 @@ r_lanes_top = r_lanes_joined %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
-  arrange(desc(km_cycled)) %>% 
+  mutate(
+    length_up_to_1km = if_else(group_length > 1000, true = 1000, false = group_length),
+    km_cycled_1km = length_up_to_1km * mean_cycling_potential
+    ) %>% 
+  arrange(desc(km_cycled_1km)) %>% 
   slice(1:20)
 nrow(r_lanes_top)
-r_lanes_top
+r_lanes_top %>% sf::st_drop_geometry()
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
 cycleways_name = "Existing cycleways (500 m+)"
 
-r_lanes_joined = r_lanes_joined %>% 
+r_lanes_final = r_lanes_joined %>% 
   mutate(
     Status = case_when(
       group_id %in% r_lanes_top$group_id ~ labels[1],
@@ -397,10 +401,10 @@ r_lanes_joined = r_lanes_joined %>%
     )
   ) %>% 
   select(name, ref, Status, mean_cycling_potential, spare_lane, `Estimated width`, `length (m)` = group_length, group_id)
-r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c(labels[1], labels[2], labels[3]))
+r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels[2], labels[3]))
 
-table(r_lanes_joined$Status)
-summary(factor(r_lanes_joined$Status))
+table(r_lanes_final$Status)
+summary(factor(r_lanes_final$Status))
 
 # Post-processing and set-up for map --------------------------------------
 
@@ -410,13 +414,13 @@ key_network = key_network[pvars_key]
 
 # cols_status = c("blue", "orange", tmaptools::get_brewer_pal("Accent", n = 3)[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
-summary(r_lanes_joined$Status)
+summary(r_lanes_final$Status)
 
-top_routes = r_lanes_joined %>%
+top_routes = r_lanes_final %>%
   filter(Status == labels[1])
-spare_lanes = r_lanes_joined %>%
+spare_lanes = r_lanes_final %>%
   filter(Status == labels[2])
-width_10m = r_lanes_joined %>%
+width_10m = r_lanes_final %>%
   filter(Status == labels[3])
 
 tmap_mode("view")
