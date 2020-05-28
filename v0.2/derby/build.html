@@ -494,11 +494,11 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-28 13:14:11 constructing segments</code></pre>
-<pre><code>## 2020-05-28 13:14:12 building geometry</code></pre>
-<pre><code>## 2020-05-28 13:14:12 simplifying geometry</code></pre>
-<pre><code>## 2020-05-28 13:14:12 aggregating flows</code></pre>
-<pre><code>## 2020-05-28 13:14:13 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-28 13:13:00 constructing segments</code></pre>
+<pre><code>## 2020-05-28 13:13:00 building geometry</code></pre>
+<pre><code>## 2020-05-28 13:13:01 simplifying geometry</code></pre>
+<pre><code>## 2020-05-28 13:13:01 aggregating flows</code></pre>
+<pre><code>## 2020-05-28 13:13:02 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -531,8 +531,8 @@ r_high_pct_99th = r_main_region %&gt;%
   filter(cycling_potential &gt; min_pct_99th_percentile)
 table(r_high_pct_99th$ref) # many unnamed</code></pre>
 <pre><code>## 
-##        A426   A47  A594    A6 B5366 
-##    79     3     3     7     1     8</code></pre>
+##        A514 A5194    A6  A601 
+##    34    17    22    15    13</code></pre>
 <pre class="r"><code># mapview::mapview(r_high_pct_99th)
 # r_high_pct_90th = r_main_region %&gt;%
 #   filter(cycling_potential &gt; min_pct_90th_percentile)
@@ -562,7 +562,7 @@ group_table = sort(table(r_key_network_all$group), decreasing = TRUE)
 # select groups to include with careful selection of n
 # see https://github.com/cyipt/popupCycleways/issues/38
 length(group_table)</code></pre>
-<pre><code>## [1] 41</code></pre>
+<pre><code>## [1] 25</code></pre>
 <pre class="r"><code>groups_to_include = names(group_table[group_table &gt; n_top_roads])
 r_key_network_igroups = r_key_network_all %&gt;% 
   filter(group %in% groups_to_include)
@@ -580,7 +580,7 @@ r_key_network = r_key_network_igroups %&gt;%
 <pre><code>## Warning in st_cast.sf(., &quot;LINESTRING&quot;): repeating attributes for all sub-geometries for which they may not be constant</code></pre>
 <pre class="r"><code>summary(r_key_network$group_length)</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   591.9  1426.6  1805.8  2492.1  5306.8  5306.8</code></pre>
+##   597.5  2637.8  5003.0  3800.4  5003.0  5969.9</code></pre>
 <pre class="r"><code># mapview::mapview(r_key_network, zcol = &quot;km_cycled_potential&quot;)
 
 # r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
@@ -721,8 +721,6 @@ rg_list = lapply(gs, FUN = function(i) {
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
 <pre class="r"><code>rg_new = do.call(rbind, rg_list)
 # mapview::mapview(rg_new)
@@ -763,11 +761,11 @@ rg_new4 = rg_new3 %&gt;%
 
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-## Other 
-##  1129</code></pre>
+## Brian Clough Way            Other 
+##               39              664</code></pre>
 <pre class="r"><code>summary(as.factor(rg_new4$long_named_section))</code></pre>
-<pre><code>## Other 
-##  1129</code></pre>
+<pre><code>## Brian Clough Way            Other 
+##               39              664</code></pre>
 <pre class="r"><code># find group membership of top named roads
 
 r_lanes_grouped2 = rg_new4 %&gt;% 
@@ -835,7 +833,7 @@ r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %&gt;%
 <pre class="r"><code>r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
-## 0.03103 0.27435 0.66534 0.60334 0.97543 1.01724      16</code></pre>
+## 0.04426 0.32703 0.60332 0.61559 1.00000 1.00741       7</code></pre>
 <pre class="r"><code># mapview::mapview(r_lanes_joined[&quot;proportion_on_cycleway&quot;])
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
@@ -854,21 +852,21 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## Simple feature collection with 10 features and 13 fields
 ## geometry type:  MULTILINESTRING
 ## dimension:      XY
-## bbox:           xmin: -1.18742 ymin: 52.59497 xmax: -1.05369 ymax: 52.65761
+## bbox:           xmin: -1.52366 ymin: 52.88785 xmax: -1.38417 ymax: 52.92967
 ## geographic CRS: WGS 84
 ## # A tibble: 10 x 14
 ##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width spare_lane                  geometry group_id length_in_cycle…
 ##    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;          &lt;MULTILINESTRING [°]&gt;    &lt;int&gt;            &lt;dbl&gt;
-##  1 A5460    52     3 Other            Narb…         2707              140          9 TRUE       ((-1.16631 52.61287, -1.…       37               84
-##  2 A47      26     5 Other            Hinc…         2836              121         10 TRUE       ((-1.15825 52.63289, -1.…       27              731
-##  3 A5199    54     1 Other            Welf…         1580              197         13 FALSE      ((-1.11293 52.59702, -1.…       34              138
-##  4 A6030     7     2 Other            Vict…         6147               50          7 TRUE       ((-1.09572 52.64638, -1.…       53              648
-##  5 B5366    50     1 Other            Saff…         1557              181         10 FALSE      ((-1.13645 52.60979, -1.…       59               70
-##  6 A6       13     5 Other            Lond…         1669              155         10 TRUE       ((-1.09573 52.60751, -1.…       51              246
-##  7 A426      2     2 Other            Ayle…          900              267         13 FALSE      ((-1.13718 52.61983, -1.…       18              263
-##  8 A47       7     1 Other            Uppi…         3137               60          8 TRUE       ((-1.09174 52.64219, -1.…       24              353
-##  9 A6       10     2 Other            Abbe…         1998               62          9 TRUE       ((-1.13948 52.65027, -1.…       50              354
-## 10 A47      19     5 Other            Hinc…          640               81         11 TRUE       ((-1.18742 52.6311, -1.1…       26              209
+##  1 A52       2     1 Brian Clough Way Bria…        10886               54          8 TRUE       ((-1.4053 52.91705, -1.4…       14             2669
+##  2 A601      2     1 Other            Sain…         2924              154         10 TRUE       ((-1.48384 52.92479, -1.…       27             1064
+##  3 A516      1     2 Other            Utto…         1713              143          8 TRUE       ((-1.49966 52.9181, -1.5…        9              289
+##  4 A5194    27     1 Other            Lond…          553              404         11 FALSE      ((-1.46696 52.91488, -1.…       13              150
+##  5 A514      7     1 Other            Osma…         1517              142         11 FALSE      ((-1.45221 52.89086, -1.…        8              129
+##  6 A5111     1     1 Other            Mano…         4459               33          8 TRUE       ((-1.4878 52.90172, -1.4…        5              812
+##  7 A5111     7     1 Other            Osma…         3536               31         11 TRUE       ((-1.44297 52.89228, -1.…        7             1059
+##  8 A6        2     3 Other            Gard…          827               92          7 TRUE       ((-1.48305 52.92967, -1.…       19              409
+##  9 A6005     2     1 Other            A6005          723               92         12 FALSE      ((-1.42001 52.91811, -1.…       24               32
+## 10 B5020     4     4 Other            B5020          611               91         10 FALSE      ((-1.51602 52.91183, -1.…       34              249
 ## # … with 2 more variables: km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
@@ -893,10 +891,10 @@ r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c(labels[1], labe
 table(r_lanes_joined$Status)</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    14                    39</code></pre>
+##                    10                    11                    14</code></pre>
 <pre class="r"><code>summary(factor(r_lanes_joined$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    14                    39</code></pre>
+##                    10                    11                    14</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
 popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
@@ -907,7 +905,7 @@ key_network = key_network[pvars_key]
 cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_joined$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    14                    39</code></pre>
+##                    10                    11                    14</code></pre>
 <pre class="r"><code>top_routes = r_lanes_joined %&gt;%
   filter(Status == labels[1])
 spare_lanes = r_lanes_joined %&gt;%
@@ -950,8 +948,9 @@ tmap_mode(&quot;view&quot;)</code></pre>
   tm_add_legend(type = &quot;fill&quot;, labels = c(&quot;Key network&quot;, cycleways_name, labels[1], labels[2], labels[3]), col = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)
-# htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
+m_leaflet = tmap_leaflet(m)</code></pre>
+<pre><code>## Warning: The shape Key network is invalid. See sf::st_is_valid</code></pre>
+<pre class="r"><code># htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
 # system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
 # browseURL(&quot;/tmp/m.html&quot;)
 
@@ -960,18 +959,18 @@ res_table = r_lanes_top %&gt;%
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
 res_table</code></pre>
 <pre><code>## # A tibble: 10 x 5
-##    name               ref   length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;              &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Narborough Road    A5460   2707                    140       379
-##  2 Hinckley Road      A47     2836                    121       343
-##  3 Welford Road       A5199   1580                    197       311
-##  4 Victoria Road East A6030   6147                     50       307
-##  5 Saffron Lane       B5366   1557                    181       282
-##  6 London Road        A6      1669                    155       259
-##  7 Aylestone Road     A426     900                    267       240
-##  8 Uppingham Road     A47     3137                     60       188
-##  9 Abbey Lane         A6      1998                     62       124
-## 10 Hinckley Road      A47      640                     81        52</code></pre>
+##    name                ref   length mean_cycling_potential km_cycled
+##  * &lt;chr&gt;               &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Brian Clough Way    A52    10886                     54       588
+##  2 Saint Alkmund&#39;s Way A601    2924                    154       450
+##  3 Uttoxeter New Road  A516    1713                    143       245
+##  4 London Road         A5194    553                    404       223
+##  5 Osmaston Road       A514    1517                    142       215
+##  6 Manor Road          A5111   4459                     33       147
+##  7 Osmaston Park Road  A5111   3536                     31       110
+##  8 Garden Street       A6       827                     92        76
+##  9 A6005               A6005    723                     92        67
+## 10 B5020               B5020    611                     91        56</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
 
