@@ -294,9 +294,9 @@ rg_new2 = rg_new %>%
   mutate(
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
-    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
+    majority_spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
     ) %>%
-  filter(mean_width >= 10 | spare_lane) %>%
+  filter(mean_width >= 10 | majority_spare_lane) %>%
   filter(mean_cycling_potential >= min_grouped_cycling_potential) %>%
   ungroup()
 # mapview::mapview(rg_new2)
@@ -316,7 +316,7 @@ rg_new3 = rg_new2 %>%
 
 # mapview::mapview(rg_new3)
 # create a new group to capture long continuous sections with the same name
-min_length_named_road = 3000
+min_length_named_road = 1000
 rg_new4 = rg_new3 %>% 
   group_by(ref, group, ig, name) %>% 
   mutate(long_named_section = case_when(
@@ -328,24 +328,30 @@ rg_new4 = rg_new3 %>%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)
 
+
+
 # find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %>% 
   group_by(ref, group, ig, long_named_section) %>% 
   summarise(
-    name = ifelse(names(table(name))[which.max(table(name))] != "", 
-                  names(table(name))[which.max(table(name))],
-                  ifelse(names(table(ref))[which.max(table(ref))] != "",
-                  names(table(ref))[which.max(table(ref))],
-                  names(desc(table(name)))[2])),
+    name = case_when(
+      length(table(name)) > 4 ~ "Unnammed road",
+      names(table(name))[which.max(table(name))] != "" ~
+        names(table(name))[which.max(table(name))],
+      names(table(ref))[which.max(table(ref))] != "" ~
+        names(table(ref))[which.max(table(ref))],
+      TRUE ~ "Unnamed road"
+      ), 
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
-    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
+    majority_spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
   ) %>% 
   filter(mean_cycling_potential > min_grouped_cycling_potential | group_length > min_grouped_length) %>%
   ungroup() %>% 
   mutate(group_id = 1:nrow(.))
-mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential")
+# mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential")
+# mapview::mapview(r_lanes_grouped2, zcol = "name")
 
 # Generate lists of top segments ------------------------------------------------------------
 
@@ -382,7 +388,7 @@ r_lanes_top = r_lanes_joined %>%
   arrange(desc(km_cycled_1km)) %>% 
   slice(1:n_top_roads)
 nrow(r_lanes_top)
-# r_lanes_top %>% sf::st_drop_geometry() %>% View()
+r_lanes_top %>% sf::st_drop_geometry()
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
@@ -392,7 +398,7 @@ r_lanes_final = r_lanes_joined %>%
   mutate(
     Status = case_when(
       group_id %in% r_lanes_top$group_id ~ labels[1],
-      spare_lane ~ labels[2],
+      majority_spare_lane ~ labels[2],
       mean_width >= 10 ~ labels[3]
     ),
     `Estimated width` = case_when(
@@ -401,7 +407,7 @@ r_lanes_final = r_lanes_joined %>%
       mean_width >= 15 ~ ">15 m"
     )
   ) %>% 
-  select(name, ref, Status, mean_cycling_potential, spare_lane, `Estimated width`, `length (m)` = group_length, group_id)
+  select(name, ref, Status, mean_cycling_potential, spare_lane = majority_spare_lane, `Estimated width`, `length (m)` = group_length, group_id)
 r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels[2], labels[3]))
 
 table(r_lanes_final$Status)
@@ -417,12 +423,12 @@ key_network = key_network[pvars_key]
 cols_status = c("blue", "#B91F48", "#FF7F00")
 summary(r_lanes_final$Status)
 
-top_routes = r_lanes_final %>%
-  filter(Status == labels[1])
-spare_lanes = r_lanes_final %>%
-  filter(Status == labels[2])
-width_10m = r_lanes_final %>%
-  filter(Status == labels[3])
+top_routes = r_lanes_final %>% filter(Status == labels[1])
+# idea: show spare lane segments not groups:
+spare_lane_groups = r_lanes_final %>% filter(Status == labels[2])
+spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]
+spare_lanes = spare_lane_segments %>% filter(spare_lane)
+width_10m = r_lanes_final %>% filter(Status == labels[3])
 
 tmap_mode("view")
 m =
@@ -443,7 +449,7 @@ m =
            lwd = 3,
            # scale = 5,
            alpha = 1,
-           popup.vars = popup.vars
+           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes")
            ) +
   tm_shape(width_10m, name = labels[3]) +
   tm_lines(legend.col.show = FALSE,
