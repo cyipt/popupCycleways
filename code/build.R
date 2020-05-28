@@ -365,7 +365,7 @@ r_lanes_grouped_in_cycleway = st_intersection(r_lanes_grouped2, cycleway_buffer)
 r_lanes_grouped_in_cycleway = r_lanes_grouped_in_cycleway %>% 
   st_drop_geometry() 
 
-minp_exclude = 0.75
+minp_exclude = 0.5
 r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %>% 
   mutate(km_cycled = round(mean_cycling_potential * group_length / 1000)) 
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
