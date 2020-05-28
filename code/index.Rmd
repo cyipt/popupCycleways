@@ -16,26 +16,65 @@ library(tmap)
 tmap_mode("view")
 ```
 
+```{r, eval=FALSE}
+# test build works before running for all:
+source("code/build.R")
+```
+
+
+
 ```{r}
-regions_dft = readRDS("regions_dft.Rds")
-regions_dft_centroids = sf::st_point_on_surface(regions_dft)
-regions_dft$html_name = tolower(gsub(pattern = " |, ", replacement = "-", regions_dft$Name))
-regions_dft$url = paste0("<a href='", regions_dft$html_name ,"' target='_blank'>", regions_dft$html_name, "</a>")
+regions = readRDS("regions_dft.Rds")
+regions_centroids = sf::st_point_on_surface(regions)
+regions$html_name = tolower(gsub(pattern = " |, ", replacement = "-", regions$Name))
+regions$url = paste0("<a href='", regions$html_name ,"' target='_blank'>", regions$Name, "</a>")
 ```
 
 
 ```{r}
 pvars = c("Name", "Level")
-tm_shape(regions_dft) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
+tm_shape(regions) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_centroids) + tm_text("Name", size = 0.7)
 ```
 
 ```{r}
-regions_dft %>%
+regions %>%
   sf::st_drop_geometry() %>%
   select(Name, Level, url) %>% 
   arrange(Name) %>% 
   DT::datatable(escape = -4)
 ```
+
+```{r, eval=FALSE}
+
+sample_to_build_regex = "west of|west y|hereford|nott|leic|manc|liv|cam"
+region_names_to_build = regions %>% 
+  filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>% 
+  pull(Name)
+
+dn = dn # dirctory name
+dir.create(dn)
+# region_names_to_build = c("West Yorkshire", "Nottingham")
+rmarkdown::render("code/index.Rmd", output_dir = dn)
+# region_names_to_build = c("Greater London", "Cambridgeshire")
+
+rn = "West of England"
+for(rn in region_names_to_build) {
+  region = regions %>% filter(Name == rn)
+  t = Sys.time()
+  message("Building for ", rn)
+  d = file.path(dn, region$html_name)
+  dir.create(d)
+  region_name = region$Name
+  # source("code/build.R")
+  rmarkdown::render(input = "code/build.R", output_dir = d, knit_root_dir = ".")
+  plot(sf::st_geometry(r_lanes_top))
+  htmlwidgets::saveWidget(m_leaflet, file.path("~/cyipt/tempCycleways/", d, "m.html"))
+  time_to_run = Sys.time() - t
+  rmarkdown::render("code/region_index.Rmd", output_file = file.path("~/cyipt/tempCycleways/", d, "index.html"))
+  message(round(time_to_run), " minutes to build ", rn)
+}
+```
+
 
 
 

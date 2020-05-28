@@ -27,7 +27,7 @@ if(!exists("s")) {
   
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
-  regions = readRDS("regions.Rds")
+  regions = readRDS("regions_dft.Rds")
   rj_all = readRDS("rj.Rds")
   region_names = regions$Name
   # hospitals:
