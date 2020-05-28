@@ -69,7 +69,7 @@ pct_dist_within = 50
 r_min_width_highlighted = 10
 min_cycling_potential = 5
 min_grouped_cycling_potential = 30
-n_top_roads = (1 + round(nrow(rj) / 100000)) * 10
+n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
 if(is_city) {
@@ -354,7 +354,7 @@ cycleways = cycleways %>% select(surface, name, lit, osm_id)
 cycleway_buffer = stplanr::geo_buffer(cycleways, dist = pct_dist_within) %>% sf::st_union()
 
 r_lanes_grouped_in_cycleway = st_intersection(r_lanes_grouped2, cycleway_buffer) %>% 
-  mutate(length_in_cycleway = round(as.numeric(st_length(.))))
+  mutate(length_in_cycleway = round(as.numeric(st_length(.)))) 
 # mapview::mapview(r_lanes_grouped_in_cycleway["length_in_cycleway"]) +
 #   mapview::mapview(cycleways)
 r_lanes_grouped_in_cycleway = r_lanes_grouped_in_cycleway %>% 
@@ -363,6 +363,7 @@ r_lanes_grouped_in_cycleway = r_lanes_grouped_in_cycleway %>%
 minp_exclude = 0.8
 r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %>% 
   mutate(km_cycled = round(mean_cycling_potential * group_length / 1000)) 
+r_lanes_joined$length_in_cycleway[is.na(r_lanes_joined$length_in_cycleway)] = 0
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 # mapview::mapview(r_lanes_joined["proportion_on_cycleway"])
@@ -379,9 +380,9 @@ r_lanes_top = r_lanes_joined %>%
     km_cycled_1km = length_up_to_1km * mean_cycling_potential
     ) %>% 
   arrange(desc(km_cycled_1km)) %>% 
-  slice(1:20)
+  slice(1:n_top_roads)
 nrow(r_lanes_top)
-r_lanes_top %>% sf::st_drop_geometry()
+# r_lanes_top %>% sf::st_drop_geometry() %>% View()
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
