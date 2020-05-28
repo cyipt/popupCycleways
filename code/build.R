@@ -408,12 +408,14 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 r_lanes_top = r_lanes_joined %>%
   ungroup() %>% 
   filter(name != "" & ref != "") %>%
-  filter(mean_cycling_potential > 2*min_grouped_cycling_potential) %>% 
+  filter(group_length > min_grouped_length) %>%
+  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
   arrange(desc(km_cycled)) %>% 
   slice(1:20)
 nrow(r_lanes_top)
+r_lanes_top
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
@@ -497,5 +499,6 @@ m_leaflet = tmap_leaflet(m)
 res_table = r_lanes_top %>% 
   sf::st_drop_geometry() %>% 
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
+res_table
 # knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
 
