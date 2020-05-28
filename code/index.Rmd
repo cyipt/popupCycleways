@@ -1,0 +1,41 @@
+---
+title: "Rapid cycleway prioritisation tool"
+author: "University of Leeds"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_knit$set(root.dir = "..")
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{r pkg, include=FALSE}
+library(sf)
+library(tidyverse)
+library(tmap)
+tmap_mode("view")
+```
+
+```{r}
+regions_dft = readRDS("regions_dft.Rds")
+regions_dft_centroids = sf::st_point_on_surface(regions_dft)
+regions_dft$html_name = tolower(gsub(pattern = " |, ", replacement = "-", regions_dft$Name))
+regions_dft$url = paste0("<a href='", regions_dft$html_name ,"' target='_blank'>", regions_dft$html_name, "</a>")
+```
+
+
+```{r}
+pvars = c("Name", "Level")
+tm_shape(regions_dft) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
+```
+
+```{r}
+regions_dft %>%
+  sf::st_drop_geometry() %>%
+  select(Name, Level, url) %>% 
+  arrange(Name) %>% 
+  DT::datatable(escape = -4)
+```
+
+
+

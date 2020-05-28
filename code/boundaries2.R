@@ -107,6 +107,8 @@ regions_within = nmatches == 2
 regions_dft$Name[regions_within]
 # manually:
 regions_within_names = c("Leicester", "Nottingham", "Derby", "Stoke-on-Trent")
-
+regions_dft$url = paste0("<a href='test'>test</a>")
+pvars = c("url", "Name")
+tm_shape(regions_dft) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
 
 saveRDS(regions_dft, "regions_dft.Rds")
