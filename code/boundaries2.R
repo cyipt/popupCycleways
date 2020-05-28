@@ -13,7 +13,7 @@ summary(la_ca_list$lad_name_original %in% regions$Name) # 27 matches
 la_ca = la_ca_list %>% 
   mutate(
     Name = str_replace_all(string = ca_name_original, pattern = " CA| ITA", ""),
-    Name = str_replace_all(string = Name, pattern = "TfL", "London"),
+    Name = str_replace_all(string = Name, pattern = "TfL", "Greater London"),
     Name_la = str_replace_all(string = lad_name_original, pattern = " UA", ""),
     Name_la = str_replace_all(string = Name_la, pattern = "Bournemouth, Christchurch snd Poole", "Bournemouth, Christchurch and Poole"),
     Level = case_when(
@@ -99,4 +99,14 @@ regions_dft %>% filter(Level == "County") %>% pull(Name)
 tm_shape(regions) + tm_polygons("Level") + tm_shape(regions_centroids) + tm_text("Name", size = 0.7)
 regions_dft_centroids = sf::st_point_on_surface(regions_dft)
 tm_shape(regions_dft) + tm_polygons("Level") + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
+
+# identify regions completely within other regions
+region_matches = sf::st_intersects(regions_dft)
+summary({nmatches = lengths(region_matches)})
+regions_within = nmatches == 2
+regions_dft$Name[regions_within]
+# manually:
+regions_within_names = c("Leicester", "Nottingham", "Derby", "Stoke-on-Trent")
+
+
 saveRDS(regions_dft, "regions_dft.Rds")

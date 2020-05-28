@@ -46,7 +46,7 @@ if(!exists("s")) {
 # local parameters --------------------------------------------------------
 # i = 1
 if(!exists("region_name")) {
-  region_name = "West of England"
+  region_name = "West Yorkshire"
 }
 if(region_name == "Nottingham") {
   region = regions %>% filter(str_detect(string = Name, pattern = "Nott")) %>% 
@@ -381,7 +381,7 @@ nrow(r_lanes_top)
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Width >= 10 m")
-cycleways_name = "Existing segregated cycleways (500 m+)"
+cycleways_name = "Segregated cycleways (500 m+)"
 
 r_lanes_joined = r_lanes_joined %>% 
   mutate(
@@ -397,25 +397,16 @@ r_lanes_joined$Status = factor(r_lanes_joined$Status, levels = c(labels[1], labe
 table(r_lanes_joined$Status)
 summary(factor(r_lanes_joined$Status))
 
+# Post-processing and set-up for map --------------------------------------
+
 popup.vars = c("name", "ref", "spare_lane", "mean_width", "mean_cycling_potential", "length (m)")
-pvars_key = c("ref", "name", "width",
-              "highway_type", "cycling_potential",
-              "n_lanes")
+pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
 
 # cols_status = c("blue", "orange", tmaptools::get_brewer_pal("Accent", n = 3)[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
 summary(r_lanes_joined$Status)
 
-# top_routes = r_lanes_joined %>% 
-#   mutate(
-#     lwd = case_when(
-#       Status == labels[1] ~ 5,
-#       Status == labels[2] ~ 3,
-#       Status == labels[3] ~ 3
-#       )
-#   )
-# summary(top_routes$lwd)
 
 top_routes = r_lanes_joined %>%
   filter(Status == labels[1])
