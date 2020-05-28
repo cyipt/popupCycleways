@@ -289,13 +289,14 @@ rg_new = do.call(rbind, rg_list)
 # mapview::mapview(rg_new)
 
 # Only keep groups of sufficient width and cycling potential
-rg_new2= rg_new %>% 
+rg_new2 = rg_new %>% 
   group_by(ig, group, ref) %>%
   mutate(
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
-    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE))
+    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+    spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
     ) %>%
-  filter(mean_width >= 10) %>%
+  filter(mean_width >= 10 | spare_lane) %>%
   filter(mean_cycling_potential >= min_grouped_cycling_potential) %>%
   ungroup()
 # mapview::mapview(rg_new2)
