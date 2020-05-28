@@ -333,7 +333,11 @@ rg_new3 = rg_new2[rg_new2$lastgroup %in% rg_long$lastgroup,]
 r_lanes_grouped2 = rg_new3 %>% 
   group_by(ref, group, ig) %>% 
   summarise(
-    name = names(table(name))[which.max(table(name))],
+    name = ifelse(names(table(name))[which.max(table(name))] != "", 
+                  names(table(name))[which.max(table(name))],
+                  ifelse(names(table(ref))[which.max(table(ref))] != "",
+                  names(table(ref))[which.max(table(ref))],
+                  names(desc(table(name)))[2])),
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
@@ -372,7 +376,7 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 r_lanes_top = r_lanes_joined %>%
   ungroup() %>% 
   filter(name != "" & ref != "") %>%
-  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
+  filter(mean_cycling_potential > 2*min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
   arrange(desc(km_cycled)) %>% 
