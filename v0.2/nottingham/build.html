@@ -494,15 +494,15 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-28 12:37:12 constructing segments</code></pre>
-<pre><code>## 2020-05-28 12:37:14 building geometry</code></pre>
-<pre><code>## 2020-05-28 12:37:17 simplifying geometry</code></pre>
+<pre><code>## 2020-05-28 13:15:34 constructing segments</code></pre>
+<pre><code>## 2020-05-28 13:15:36 building geometry</code></pre>
+<pre><code>## 2020-05-28 13:15:39 simplifying geometry</code></pre>
 <pre><code>## large data detected, using regionalisation, nrow = 110107</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## 2020-05-28 12:37:23 regionalisation complete, aggregating flows</code></pre>
-<pre><code>## 2020-05-28 12:37:26 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-28 13:15:45 regionalisation complete, aggregating flows</code></pre>
+<pre><code>## 2020-05-28 13:15:49 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
