@@ -329,9 +329,21 @@ rg_long = rg_new2 %>%
 rg_new3 = rg_new2[rg_new2$lastgroup %in% rg_long$lastgroup,]
 
 # mapview::mapview(rg_new3)
+rg_new4 = rg_new3 %>% 
+  group_by(ref, group, ig, name) %>% 
+  mutate(long_named_section = case_when(
+    sum(length) > 5000 & name != "" ~ name,
+    TRUE ~ "Other"
+  )
+  ) %>% 
+  ungroup()
 
-r_lanes_grouped2 = rg_new3 %>% 
-  group_by(ref, group, ig) %>% 
+table(rg_new4$long_named_section)
+summary(as.factor(rg_new4$long_named_section))
+# find group membership of top named roads
+
+r_lanes_grouped2 = rg_new4 %>% 
+  group_by(ref, group, ig, long_named_section) %>% 
   summarise(
     name = ifelse(names(table(name))[which.max(table(name))] != "", 
                   names(table(name))[which.max(table(name))],
@@ -344,13 +356,33 @@ r_lanes_grouped2 = rg_new3 %>%
     spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
   ) %>% 
   filter(mean_cycling_potential > min_grouped_cycling_potential | group_length > min_grouped_length) %>%
-  # filter(group_length > min_grouped_length |
-           #  mean_cycling_potential > min_grouped_cycling_potential &
-           # (group_length * 2 > min_grouped_length)) %>% 
   ungroup() %>% 
   mutate(group_id = 1:nrow(.))
 
-# mapview::mapview(r_lanes_grouped2, zcol = "mean_cycling_potential", lwd = 3)
+# max_length = 10000
+# r_lanes_grouped_long = r_lanes_grouped2 %>% 
+#   filter(group_length > max_length) %>% 
+#   filter(ref != "")
+# # rg_new3_long = rg_new3 %>% filter(ref %in% r_lanes_grouped_long$ref)
+# r_lanes_long_segments = rg_new3[r_lanes_grouped_long, , op = st_within]
+# 
+# r_lanes_grouped3 = r_lanes_long_segments %>% 
+#   group_by(ref, name) %>%
+#   summarise(
+#     group_length = round(sum(length)),
+#     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
+#     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
+#     spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
+#   ) %>% 
+#   filter(mean_cycling_potential > min_grouped_cycling_potential | group_length > min_grouped_length) %>%
+#   ungroup() %>% 
+#   arrange(filter(group_length > 5000)) %>% 
+#   mutate(group_id = 1001:(nrow(.) + 1000))
+# 
+# r_lanes_grouped4 = r_lanes_long_segments %>% 
+  
+
+# mapview::mapview(r_lanes_grouped4, zcol = "mean_cycling_potential", lwd = 3)
 
 # Generate lists of top segments ------------------------------------------------------------
 
@@ -456,7 +488,7 @@ m =
   tm_basemap(server = s, tms = tms) +
   tm_add_legend(type = "fill", labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3]), col = c("darkgrey", "darkgreen", cols_status)) +
   tm_scale_bar() 
-m
+# m
 m_leaflet = tmap_leaflet(m)
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
