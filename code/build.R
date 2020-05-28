@@ -15,7 +15,7 @@ if(!exists("s")) {
     `PCT schools, Government Target` = "https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png",
     `PCT commuting, Ebikes, ` = "https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png",
     `PCT schools, Go Dutch, ` = "https://npttile.vs.mythic-beasts.com/school/v2/dutch/{z}/{x}/{y}.png",
-    `Existing cycleways (all)` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+    `Existing cycleways and cycle lanes` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
     `Satellite image` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
   )
   tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
@@ -419,7 +419,7 @@ r_lanes_top
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
-cycleways_name = "Segregated cycleways (500 m+)"
+cycleways_name = "Existing cycleways (500 m+)"
 
 r_lanes_joined = r_lanes_joined %>% 
   mutate(
