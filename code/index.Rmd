@@ -21,8 +21,6 @@ tmap_mode("view")
 source("code/build.R")
 ```
 
-
-
 ```{r}
 regions = readRDS("regions_dft.Rds")
 regions_centroids = sf::st_point_on_surface(regions)
@@ -30,15 +28,17 @@ regions$html_name = tolower(gsub(pattern = " |, ", replacement = "-", regions$Na
 regions$url = paste0("<a href='", regions$html_name ,"' target='_blank'>", regions$Name, "</a>")
 ```
 
-
 ```{r}
 pvars = c("Name", "Level")
 tm_shape(regions) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_centroids) + tm_text("Name", size = 0.7)
 ```
 
 ```{r}
+dn = "popupCycleways/v0.2" # dirctory name
+built_regions = list.files(dn)
 regions %>%
   sf::st_drop_geometry() %>%
+  filter(html_name %in% built_regions) %>% 
   select(Name, Level, url) %>% 
   arrange(Name) %>% 
   DT::datatable(escape = -4)
@@ -46,20 +46,28 @@ regions %>%
 
 ```{r, eval=FALSE}
 
-sample_to_build_regex = "west of|west y|hereford|nott|leic|manc|liv|cam"
+sample_to_build_regex = "west of|west y|west mid|hereford|nott|leic|manc|liv|cam"
 region_names_to_build = regions %>% 
   filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>% 
   pull(Name)
-
-dn = dn # dirctory name
 dir.create(dn)
 # region_names_to_build = c("West Yorkshire", "Nottingham")
 rmarkdown::render("code/index.Rmd", output_dir = dn)
 # region_names_to_build = c("Greater London", "Cambridgeshire")
+regions_within_names = c("Leicester", "Nottingham", "Derby", "Stoke-on-Trent")
+names(regions_within_names) = c(paste0(regions_within_names[1:3], "shire"), "Staffordshire")
+regions_containing_names = names(regions_within_names)
+names(regions_containing_names) = regions_within_names
 
 rn = "West of England"
 for(rn in region_names_to_build) {
   region = regions %>% filter(Name == rn)
+  if(rn %in% c(regions_within_names)) {
+    region$geometry = sf::st_union(
+      region,
+      regions %>% filter(Name == regions_containing_names[rn])
+      ) %>% sf::st_geometry()
+  }
   t = Sys.time()
   message("Building for ", rn)
   d = file.path(dn, region$html_name)
