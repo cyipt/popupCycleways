@@ -21,6 +21,14 @@ tmap_mode("view")
 source("code/build.R")
 ```
 
+## PRELIMINARY RESULTS
+
+Not quality assured.
+
+Please provide feedback on these preliminary results on this [web form (estimated time to complete: 5 minites)](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=).
+
+## Introduction
+
 The aim of this tool is to help reveal the locations that have the best potential for pop-up cycleways. It should be used together with local knowledge, to prioritise where to install rapid measures to support safe travel as part of the COVID-19 response. We anticipate that this may be used in the development of a range of temporary, experimental and longer term measures to make the streets safer for us all, as new travel patterns and behaviours emerge in the coming weeks and months.
 
 Maps are available for regions covering the whole of England. 
