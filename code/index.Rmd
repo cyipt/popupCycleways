@@ -101,6 +101,7 @@ regions %>%
 ```{r, eval=FALSE}
 dir.create(dn)
 region_names_to_build = regions$Name
+region_names_to_build = regions$Name[!regions$html_name %in% built_regions]
 # sample_to_build_regex = "west of|west y|west mid|hereford|nott|leic|manc|liv|cam"
 # region_names_to_build = regions %>% 
 #   filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>% 
@@ -113,7 +114,7 @@ regions_containing_names = names(regions_within_names)
 names(regions_containing_names) = regions_within_names
 
 rn = "West of England"
-for(rn in region_names_to_build[3:length(region_names_to_build)]) {
+for(rn in region_names_to_build) {
   region = regions %>% filter(Name == rn)
   if(rn %in% c(regions_within_names)) {
     region$geometry = sf::st_union(
@@ -135,6 +136,7 @@ for(rn in region_names_to_build[3:length(region_names_to_build)]) {
   message(round(time_to_run), " minutes to build ", rn)
 }
 rmarkdown::render("code/index.Rmd", output_dir = dn)
+browseURL(file.path(dn, "index.html"))
 ```
 
 

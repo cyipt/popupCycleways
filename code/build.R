@@ -441,7 +441,10 @@ if(nrow(spare_lanes) == 0) {
   spare_lanes = rg_new4 %>% top_n(n = 1, wt = width)
 }
 width_10m = r_lanes_final %>% filter(Status == labels[3])
-
+# edge case: there are no wide roads
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %>% filter(width > 10)
+}
 tmap_mode("view")
 m =
   tm_shape(key_network, name = "Key network") +
