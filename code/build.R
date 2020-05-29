@@ -450,9 +450,9 @@ popup.vars = c(
 )
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
-legend_labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3])
-legend_colours = c(cols_status, "darkgrey", "darkgreen")
-cols_status = c("#B91F48", "#FF7F00", "blue")
+legend_labels = c("Key network", cycleways_name, labels[3], labels[1], labels[2])
+cols_status = c("blue", "#B91F48", "#FF7F00")
+legend_colours = c("darkgrey", "darkgreen", cols_status)
 
 m =
   tm_shape(key_network, name = "Key network") +
@@ -460,7 +460,7 @@ m =
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_shape(spare_lanes, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
-           col = cols_status[1], 
+           col = cols_status[3], 
            lwd = 3,
            alpha = 1,
            popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes"),
@@ -476,7 +476,7 @@ m =
            ) +
   tm_shape(top_routes, name = "Top routes") +
   tm_lines(legend.col.show = FALSE,
-           col = cols_status[3], 
+           col = cols_status[1], 
            lwd = 5,
            alpha = 1,
            popup.vars = popup.vars
@@ -485,7 +485,8 @@ m =
   tm_add_legend(type = "fill", labels = legend_labels, col = legend_colours) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m) %>% leaflet::hideGroup(c("layers"))
+m_leaflet = tmap_leaflet(m)
+# %>% leaflet::hideGroup(c("layers"))
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
 # browseURL("/tmp/m.html")
