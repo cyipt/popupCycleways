@@ -28,6 +28,8 @@ if(!exists("s")) {
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
   if(!exists("regions")) regions = readRDS("regions_dft.Rds")
+  lads_all = readRDS("lads.Rds")
+  lads_all_centroids = sf::st_centroid(lads_all)
   rj_all = readRDS("rj.Rds")
   region_names = regions$Name
   # hospitals:
@@ -54,6 +56,8 @@ if(region_name == "Nottingham") {
 } else {
   region = regions %>% filter(Name == region_name)
 }
+lads_centroids = lads_all_centroids[region, ]
+lads = lads_all %>% filter(Name %in% lads_centroids$Name)
 # time consuming: ~1 minute
 rj = rj_all[region, ]
 # h_city = hsf[region, ]
@@ -459,12 +463,13 @@ popup.vars = c(
 )
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
-legend_labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3])
+legend_labels = c("Key cycle routes", cycleways_name, labels[1], labels[2], labels[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
 legend_colours = c("darkgrey", "darkgreen", cols_status)
 
 m =
-  tm_shape(key_network, name = "Key network") +
+  tm_shape(lads) + tm_borders() +
+  tm_shape(key_network, name = "Key cycle routes") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(spare_lanes, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
