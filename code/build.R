@@ -399,7 +399,7 @@ nrow(r_lanes_top)
 r_lanes_top %>% sf::st_drop_geometry()
 
 # classify roads to visualise
-labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
+labels = c("Spare lane(s)", "Estimated width > 10m", "Top route")
 cycleways_name = "Existing cycleways (500 m+)"
 
 r_lanes_final = r_lanes_joined %>% 
@@ -428,7 +428,7 @@ pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
 
 # cols_status = c("blue", "orange", tmaptools::get_brewer_pal("Accent", n = 3)[3])
-cols_status = c("blue", "#B91F48", "#FF7F00")
+cols_status = c("#B91F48", "#FF7F00", "blue")
 summary(r_lanes_final$Status)
 
 top_routes = r_lanes_final %>% filter(Status == labels[1])
@@ -447,31 +447,29 @@ m =
   tm_shape(key_network, name = "Key network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
-  tm_shape(top_routes, name = "Top routes") +
+  tm_shape(spare_lanes, name = labels[1]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
-           lwd = 5,
+           lwd = 3,
            # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
            ) +
-  tm_shape(spare_lanes, name = labels[2]) +
+  tm_shape(width_10m, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[2], 
            lwd = 3,
            # scale = 5,
            alpha = 1,
-           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes")
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
+           popup.vars = popup.vars) +
+  tm_shape(top_routes, name = "Top routes") +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[3], 
-           lwd = 3,
+           lwd = 5,
            # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
   ) +
-
   tm_basemap(server = s, tms = tms) +
   tm_add_legend(type = "fill", labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3]), col = c("darkgrey", "darkgreen", cols_status)) +
   tm_scale_bar() 
