@@ -400,7 +400,7 @@ r_lanes_top %>% sf::st_drop_geometry()
 
 # classify roads to visualise
 labels = c("Spare lane(s)", "Estimated width > 10m", "Top route")
-cycleways_name = "Existing cycleways (500 m+)"
+cycleways_name = "Existing off road cycleways"
 
 r_lanes_final = r_lanes_joined %>% 
   mutate(

@@ -31,15 +31,17 @@ Please provide feedback on these preliminary results on this [web form (estimate
 
 # Introduction
 
-The aim of this tool is to help reveal the locations that have the best potential for pop-up cycleways. It should be used together with local knowledge, to prioritise where to install rapid measures to support safe travel as part of the COVID-19 response. We anticipate that this may be used in the development of a range of temporary, experimental and longer term measures to make the streets safer for us all, as new travel patterns and behaviours emerge in the coming weeks and months.
+The aim of this tool is to help reveal the locations that have the greatest potential for new cycleways. It should be used together with local knowledge, to prioritise where to install rapid measures to support safe travel as part of the COVID-19 response. We anticipate that this may be used in the development of a range of temporary, experimental and longer term measures to make the streets safer for us all, as new travel patterns and behaviours emerge in the coming weeks and months.
 
 Maps are available for regions covering the whole of England. 
 
-We have focused on roads which are sufficiently wide that part of the roadspace could potentially be reallocated to pop-up cycleways without preventing traffic movement. In identifying these locations, we have not taken average traffic volumes into account. The pandemic has had a severe impact on movement and traffic flows are currently below normal levels. Instead, we simply identify streets that have multiple vehicle lanes or a carriageway width of greater than 10m. 
+We have focused on roads which are sufficiently wide that part of the road space could potentially be reallocated to provide additional space for active transport without preventing traffic movement. In identifying these locations, we have not taken average traffic volumes into account. The pandemic has had a severe impact on movement and traffic flows are currently below normal levels. Instead, we simply identify streets that have multiple vehicle lanes or a carriageway width of greater than 10m. 
 
 Reallocating roadspace is just one of the measures available for transport authorities. Other approaches include modal filters, road closures, and the creation of bus, walking and cycling only streets, as well as speed limits and traffic calming measures. Used strategically, a combination of these measures can promote active travel through the creation of filtered permeability networks and Low Traffic Neighbourhoods. For certain types of area, such as residential zones, this may be the most suitable approach. However, roadspace reallocation is naturally suited to larger arterial-type roads and that is the focus of this tool.
 
-We have used several types of data. The cycling potential of each road is estimated according the Propensity to Cycle Tool's Government Target scenario, which represents the government target to double cycling levels by 2025. Our figures include both travel to work and travel to school, and are based on 2011 Census data. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
+The cycling potential of each road is based on data from the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/) for further details) and represents the number of one way cycle trips to work and school that could be expected when the [Government's aim of doubling cycling is met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
+The scenario assumes cycling grows evenly nationwide accounting for distance and hilliness.
+Our figures include data on travel to work from 2011 Census data and travel to school. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
 
 # Map layers
 
@@ -79,6 +81,12 @@ Click on any of these layers to see a pop-up box containing more information abo
 There are also seven basemaps to choose from. The default basemap is grey and provides an uncluttered view. We then have basemap options showing four different scenarios from the Propensity to Cycle Tool. This allows our results to be compared with cycling potentials across the road network. The scenarios available show cycling potential for Commuting (government target), Schools (government targets), Commuting (e-bikes), and schools (Go Dutch).
 
 A further basemap option shows all existing cycleways, including on-road cycle lanes. Finally, a satellite image is also available as a basemap.
+
+
+# Known issues and limitations
+
+Road names ...
+
 
 
 ```{r}
