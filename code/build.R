@@ -423,14 +423,7 @@ summary(factor(r_lanes_final$Status))
 
 # Post-processing and set-up for map --------------------------------------
 
-popup.vars = c("name", "ref", "spare_lane", "Estimated width", "mean_cycling_potential", "length (m)")
-pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
-key_network = key_network[pvars_key]
-
-# cols_status = c("blue", "orange", tmaptools::get_brewer_pal("Accent", n = 3)[3])
-cols_status = c("#B91F48", "#FF7F00", "blue")
 summary(r_lanes_final$Status)
-
 top_routes = r_lanes_final %>% filter(Status == labels[1])
 # idea: show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %>% filter(Status == labels[2])
@@ -446,6 +439,21 @@ if(nrow(spare_lanes) == 0) {
   spare_lanes = rg_new4 %>% filter(width > 10)
 }
 tmap_mode("view")
+
+popup.vars = c(
+  "name",
+  "ref",
+  "spare_lane",
+  "Estimated width",
+  "mean_cycling_potential",
+  "length (m)"
+)
+pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
+key_network = key_network[pvars_key]
+legend_labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3])
+legend_colours = c("darkgrey", "darkgreen", cols_status)
+cols_status = c("#B91F48", "#FF7F00", "blue")
+
 m =
   tm_shape(key_network, name = "Key network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
@@ -454,9 +462,9 @@ m =
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
            lwd = 3,
-           # scale = 5,
            alpha = 1,
-           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes")
+           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes"),
+           group = "layers"
            ) +
   tm_shape(width_10m, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
@@ -464,7 +472,9 @@ m =
            lwd = 3,
            # scale = 5,
            alpha = 1,
-           popup.vars = popup.vars) +
+           popup.vars = popup.vars,
+           group = "layers"
+           ) +
   tm_shape(top_routes, name = "Top routes") +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[3], 
@@ -474,10 +484,10 @@ m =
            popup.vars = popup.vars
   ) +
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = "fill", labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3]), col = c("darkgrey", "darkgreen", cols_status)) +
+  tm_add_legend(type = "fill", labels = legend_labels, col = legend_colours) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)
+m_leaflet = tmap_leaflet(m) %>% leaflet::hideGroup(c("layers"))
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
 # browseURL("/tmp/m.html")
