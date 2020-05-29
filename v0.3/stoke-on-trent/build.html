@@ -453,8 +453,15 @@ list2env(p, envir = .GlobalEnv)</code></pre>
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
-min_cycling_potential = 5
-min_grouped_cycling_potential = 30
+# min_cycling_potential = 5
+# min_grouped_cycling_potential = 30
+# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
+# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
+# Select cycling potential thresholds based on max potential
+# 1000 for West Yorkshire, 200 for Rutland
+max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
+min_cycling_potential = round(max_cycling_potential_99th / 250)
+min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
 n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -494,11 +501,11 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 07:38:02 constructing segments</code></pre>
-<pre><code>## 2020-05-29 07:38:03 building geometry</code></pre>
-<pre><code>## 2020-05-29 07:38:03 simplifying geometry</code></pre>
-<pre><code>## 2020-05-29 07:38:03 aggregating flows</code></pre>
-<pre><code>## 2020-05-29 07:38:04 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-29 10:49:47 constructing segments</code></pre>
+<pre><code>## 2020-05-29 10:49:47 building geometry</code></pre>
+<pre><code>## 2020-05-29 10:49:48 simplifying geometry</code></pre>
+<pre><code>## 2020-05-29 10:49:48 aggregating flows</code></pre>
+<pre><code>## 2020-05-29 10:49:48 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -758,16 +765,16 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##   Cobridge Road    Etruria Road  Hartshill Road     King Street   Leek New Road       Leek Road  Newcastle Road           Other   Potteries Way 
-##              23              32              31              24              56              63              31             431              15 
-##     Sandon Road      Stone Road   Trentham Road   Waterloo Road Werrington Road     Weston Road 
-##              21              44              15              28              27              30</code></pre>
+##   Cobridge Road    Etruria Road     King Street   Leek New Road       Leek Road  Newcastle Road           Other   Potteries Way      Stone Road 
+##              23              32              24              56              63              31             178              15              44 
+##   Trentham Road   Waterloo Road Werrington Road 
+##              15              28              27</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
   summarise(
     name = case_when(
-      length(table(name)) &gt; 4 ~ &quot;Unnammed road&quot;,
+      length(table(name)) &gt; 4 ~ &quot;Unnamed road&quot;,
       names(table(name))[which.max(table(name))] != &quot;&quot; ~
         names(table(name))[which.max(table(name))],
       names(table(ref))[which.max(table(ref))] != &quot;&quot; ~
@@ -809,12 +816,13 @@ r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %&gt;%
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.07261 0.08280 1.00000</code></pre>
+## 0.00000 0.00000 0.00000 0.05461 0.08384 0.45335</code></pre>
 <pre class="r"><code># mapview::mapview(r_lanes_joined[&quot;proportion_on_cycleway&quot;])
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %&gt;%
-  filter(name != &quot;&quot; &amp; ref != &quot;&quot;) %&gt;%
+  # filter(name != &quot;Unnamed road&quot; &amp; ref != &quot;&quot;) %&gt;%
+  filter(name != &quot;Unnamed road&quot;) %&gt;%
   filter(group_length &gt; min_grouped_length) %&gt;%
   filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %&gt;% 
@@ -831,16 +839,16 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## # A tibble: 10 x 15
 ##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
 ##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 B5045     6     1 Other            Shel…          993              129         10 FALSE                  42               82       128           0.0826
-##  2 A5007     6     2 King Street      King…         1112              128         10 FALSE                  20                0       142           0     
-##  3 A5009    75     3 Leek Road        Leek…         1191              119         10 FALSE                  23              107       142           0.0898
-##  4 A52       6     1 Leek Road        Leek…         3242              118         10 TRUE                   26                0       383           0     
-##  5 B5041    22     2 Other            Lond…          577              204         10 FALSE                  41                0       118           0     
-##  6 A50       6     3 Waterloo Road    Wate…         1554               98         10 FALSE                  13              211       152           0.136 
-##  7 A53       6     1 Cobridge Road    Cobr…         1464               87         10 TRUE                   36                0       127           0     
-##  8 A53       6     1 Other            Elde…         1582               65          8 TRUE                   39               18       103           0.0114
-##  9 A52       6     1 Werrington Road  Werr…         1965               61          8 TRUE                   28                0       120           0     
-## 10 A34       6     1 Newcastle Road   Newc…         3110               60          8 TRUE                    7              172       187           0.0553
+##  1 B5045     6     1 Other            Shel…          993              129         10 FALSE                  26               82       128           0.0826
+##  2 A5007     6     2 King Street      King…         1112              128         10 FALSE                  13                0       142           0     
+##  3 A5009    75     3 Leek Road        Leek…         1191              119         10 FALSE                  16              107       142           0.0898
+##  4 A52       6     1 Leek Road        Leek…         3242              118         10 TRUE                   18                0       383           0     
+##  5 B5041    22     2 Other            Lond…          577              204         10 FALSE                  25                0       118           0     
+##  6 A50       6     3 Waterloo Road    Wate…         1554               98         10 FALSE                  11              211       152           0.136 
+##  7 A53       6     1 Cobridge Road    Cobr…         1464               87         10 TRUE                   21                0       127           0     
+##  8 A53       6     1 Other            Elde…         1582               65          8 TRUE                   24               18       103           0.0114
+##  9 A52       6     1 Werrington Road  Werr…         1965               61          8 TRUE                   20                0       120           0     
+## 10 A34       6     1 Newcastle Road   Newc…         3110               60          8 TRUE                    6              172       187           0.0553
 ## # … with 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
@@ -865,10 +873,10 @@ r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels
 table(r_lanes_final$Status)</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    15                    20</code></pre>
+##                    10                     9                     9</code></pre>
 <pre class="r"><code>summary(factor(r_lanes_final$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    15                    20</code></pre>
+##                    10                     9                     9</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
 popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
@@ -879,13 +887,17 @@ key_network = key_network[pvars_key]
 cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    15                    20</code></pre>
+##                    10                     9                     9</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
 # idea: show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
 <pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+# edge case: there are no spare lanes
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
+}
 width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
 
 tmap_mode(&quot;view&quot;)</code></pre>
