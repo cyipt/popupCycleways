@@ -453,8 +453,15 @@ list2env(p, envir = .GlobalEnv)</code></pre>
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
-min_cycling_potential = 5
-min_grouped_cycling_potential = 30
+# min_cycling_potential = 5
+# min_grouped_cycling_potential = 30
+# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
+# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
+# Select cycling potential thresholds based on max potential
+# 1000 for West Yorkshire, 200 for Rutland
+max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
+min_cycling_potential = round(max_cycling_potential_99th / 250)
+min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
 n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -494,11 +501,11 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 01:03:20 constructing segments</code></pre>
-<pre><code>## 2020-05-29 01:03:20 building geometry</code></pre>
-<pre><code>## 2020-05-29 01:03:20 simplifying geometry</code></pre>
-<pre><code>## 2020-05-29 01:03:20 aggregating flows</code></pre>
-<pre><code>## 2020-05-29 01:03:20 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-29 10:35:33 constructing segments</code></pre>
+<pre><code>## 2020-05-29 10:35:34 building geometry</code></pre>
+<pre><code>## 2020-05-29 10:35:34 simplifying geometry</code></pre>
+<pre><code>## 2020-05-29 10:35:34 aggregating flows</code></pre>
+<pre><code>## 2020-05-29 10:35:34 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -749,16 +756,14 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##     Bispham Road    Central Drive Common Edge Road      Lytham Road     Newton Drive            Other Preston New Road        Promenade      Talbot Road 
-##               24               15               17               64               19              193               43               29               24 
-##  Whitegate Drive 
-##               29</code></pre>
+##     Bispham Road    Central Drive Common Edge Road     Newton Drive            Other Preston New Road        Promenade      Talbot Road  Whitegate Drive 
+##               24               15               17               19              193               43               29               24               29</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
   summarise(
     name = case_when(
-      length(table(name)) &gt; 4 ~ &quot;Unnammed road&quot;,
+      length(table(name)) &gt; 4 ~ &quot;Unnamed road&quot;,
       names(table(name))[which.max(table(name))] != &quot;&quot; ~
         names(table(name))[which.max(table(name))],
       names(table(ref))[which.max(table(ref))] != &quot;&quot; ~
@@ -800,12 +805,13 @@ r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %&gt;%
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.03828 0.00000 0.26312</code></pre>
+##  0.0000  0.0000  0.0000  0.0376  0.0000  0.2631</code></pre>
 <pre class="r"><code># mapview::mapview(r_lanes_joined[&quot;proportion_on_cycleway&quot;])
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %&gt;%
-  filter(name != &quot;&quot; &amp; ref != &quot;&quot;) %&gt;%
+  # filter(name != &quot;Unnamed road&quot; &amp; ref != &quot;&quot;) %&gt;%
+  filter(name != &quot;Unnamed road&quot;) %&gt;%
   filter(group_length &gt; min_grouped_length) %&gt;%
   filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %&gt;% 
@@ -822,16 +828,16 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## # A tibble: 10 x 15
 ##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
 ##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 A583      1     1 Whitegate Drive  Whit…         1586              229         11 FALSE                   9                0       363            0    
-##  2 A587      1     2 Other            East…         1174              229         11 FALSE                  16              276       269            0.235
-##  3 A587      1     1 Bispham Road     Bisp…         1429              160          9 FALSE                  14              376       229            0.263
-##  4 A5099     1     1 Central Drive    Cent…         1197              152         11 FALSE                   6                0       182            0    
-##  5 A587      1     1 Other            Unna…         1361              105         10 FALSE                  15              304       143            0.223
-##  6 A586      1     1 Other            West…          864              108         10 FALSE                  12               95        93            0.110
-##  7 B5390     1     1 Other            Park…          654              137         10 FALSE                  24                0        90            0    
-##  8 B5261    18     4 Common Edge Road Comm…         1121               89         10 FALSE                  19                0       100            0    
-##  9 B5266     1     1 Newton Drive     Newt…         1110               69         10 FALSE                  23                0        77            0    
-## 10 B5261     1     1 Other            Ansd…          514              129         10 FALSE                  18                0        66            0    
+##  1 &quot;A58…     1     1 Whitegate Drive  Whit…         1586              229         11 FALSE                   9                0       363            0    
+##  2 &quot;A58…     1     2 Other            East…         1174              229         11 FALSE                  16              276       269            0.235
+##  3 &quot;A58…     1     1 Bispham Road     Bisp…         1429              160          9 FALSE                  14              376       229            0.263
+##  4 &quot;A50…     1     1 Central Drive    Cent…         1197              152         11 FALSE                   6                0       182            0    
+##  5 &quot;&quot;        1     2 Other            Vica…         1233              107         10 FALSE                   1                0       132            0    
+##  6 &quot;A58…     1     1 Other            West…          864              108         10 FALSE                  12               95        93            0.110
+##  7 &quot;B53…     1     1 Other            Park…          654              137         10 FALSE                  23                0        90            0    
+##  8 &quot;B52…    18     4 Common Edge Road Comm…         1121               89         10 FALSE                  19                0       100            0    
+##  9 &quot;&quot;        1     5 Other            Wats…          757               97         10 FALSE                   2                0        73            0    
+## 10 &quot;B52…     1     1 Newton Drive     Newt…         1110               69         10 FALSE                  22                0        77            0    
 ## # … with 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
@@ -856,10 +862,10 @@ r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels
 table(r_lanes_final$Status)</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     1                    14</code></pre>
+##                    10                     1                    13</code></pre>
 <pre class="r"><code>summary(factor(r_lanes_final$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     1                    14</code></pre>
+##                    10                     1                    13</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
 popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
@@ -870,13 +876,17 @@ key_network = key_network[pvars_key]
 cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     1                    14</code></pre>
+##                    10                     1                    13</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
 # idea: show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
 <pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+# edge case: there are no spare lanes
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
+}
 width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
 
 tmap_mode(&quot;view&quot;)</code></pre>
@@ -924,18 +934,18 @@ res_table = r_lanes_top %&gt;%
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
 res_table</code></pre>
 <pre><code>## # A tibble: 10 x 5
-##    name             ref   length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;            &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Whitegate Drive  A583    1586                    229       363
-##  2 East Park Drive  A587    1174                    229       269
-##  3 Bispham Road     A587    1429                    160       229
-##  4 Central Drive    A5099   1197                    152       182
-##  5 Unnammed road    A587    1361                    105       143
-##  6 Westcliffe Drive A586     864                    108        93
-##  7 Park Road        B5390    654                    137        90
-##  8 Common Edge Road B5261   1121                     89       100
-##  9 Newton Drive     B5266   1110                     69        77
-## 10 Ansdell Road     B5261    514                    129        66</code></pre>
+##    name             ref     length mean_cycling_potential km_cycled
+##  * &lt;chr&gt;            &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Whitegate Drive  &quot;A583&quot;    1586                    229       363
+##  2 East Park Drive  &quot;A587&quot;    1174                    229       269
+##  3 Bispham Road     &quot;A587&quot;    1429                    160       229
+##  4 Central Drive    &quot;A5099&quot;   1197                    152       182
+##  5 Vicarage Lane    &quot;&quot;        1233                    107       132
+##  6 Westcliffe Drive &quot;A586&quot;     864                    108        93
+##  7 Park Road        &quot;B5390&quot;    654                    137        90
+##  8 Common Edge Road &quot;B5261&quot;   1121                     89       100
+##  9 Watson Road      &quot;&quot;         757                     97        73
+## 10 Newton Drive     &quot;B5266&quot;   1110                     69        77</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
 

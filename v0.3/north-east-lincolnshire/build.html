@@ -453,8 +453,15 @@ list2env(p, envir = .GlobalEnv)</code></pre>
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
-min_cycling_potential = 5
-min_grouped_cycling_potential = 30
+# min_cycling_potential = 5
+# min_grouped_cycling_potential = 30
+# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
+# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
+# Select cycling potential thresholds based on max potential
+# 1000 for West Yorkshire, 200 for Rutland
+max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
+min_cycling_potential = round(max_cycling_potential_99th / 250)
+min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
 n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -494,11 +501,11 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 07:30:18 constructing segments</code></pre>
-<pre><code>## 2020-05-29 07:30:18 building geometry</code></pre>
-<pre><code>## 2020-05-29 07:30:18 simplifying geometry</code></pre>
-<pre><code>## 2020-05-29 07:30:18 aggregating flows</code></pre>
-<pre><code>## 2020-05-29 07:30:18 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-29 10:38:52 constructing segments</code></pre>
+<pre><code>## 2020-05-29 10:38:52 building geometry</code></pre>
+<pre><code>## 2020-05-29 10:38:53 simplifying geometry</code></pre>
+<pre><code>## 2020-05-29 10:38:53 aggregating flows</code></pre>
+<pre><code>## 2020-05-29 10:38:53 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -749,18 +756,16 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##            Clee Road      Cleethorpe Road         Grimsby Road      Humberston Road          Laceby Road           Louth Road           Manby Road 
-##                   16                   11                   50                    5                   37                   18                    3 
-##      Mathew Ford Way                Other        Peaks Parkway            Riby Road Stallingborough Road         Weelsby Road             Westgate 
-##                    6                  218                   16                    6                   13                   32                    8 
-##      Yarborough Road 
-##                   14</code></pre>
+##            Clee Road      Cleethorpe Road         Grimsby Road      Humberston Road          Laceby Road           Louth Road      Mathew Ford Way 
+##                   15                   11                   48                    5                   36                   18                    6 
+##                Other        Peaks Parkway Stallingborough Road         Weelsby Road      Yarborough Road 
+##                  171                   16                   13                   32                   14</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
   summarise(
     name = case_when(
-      length(table(name)) &gt; 4 ~ &quot;Unnammed road&quot;,
+      length(table(name)) &gt; 4 ~ &quot;Unnamed road&quot;,
       names(table(name))[which.max(table(name))] != &quot;&quot; ~
         names(table(name))[which.max(table(name))],
       names(table(ref))[which.max(table(ref))] != &quot;&quot; ~
@@ -802,12 +807,13 @@ r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %&gt;%
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.04513 0.27930 0.47986 1.00187</code></pre>
+##  0.0000  0.0000  0.1661  0.3444  0.7531  1.0019</code></pre>
 <pre class="r"><code># mapview::mapview(r_lanes_joined[&quot;proportion_on_cycleway&quot;])
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %&gt;%
-  filter(name != &quot;&quot; &amp; ref != &quot;&quot;) %&gt;%
+  # filter(name != &quot;Unnamed road&quot; &amp; ref != &quot;&quot;) %&gt;%
+  filter(name != &quot;Unnamed road&quot;) %&gt;%
   filter(group_length &gt; min_grouped_length) %&gt;%
   filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %&gt;% 
@@ -824,16 +830,16 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## # A tibble: 10 x 15
 ##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
 ##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 A1243     1     4 Other            Scar…          789              556         11 TRUE                   21              187       439           0.237 
-##  2 A1136    11     2 Other            Crom…         1279              405         10 FALSE                  14               92       518           0.0719
-##  3 A1136    11     2 Yarborough Road  Yarb…         1221              323          9 FALSE                  15              788       394           0.645 
-##  4 A1136     1     1 Other            Elli…          635              469         14 FALSE                  13              501       298           0.789 
-##  5 A46       1     1 Weelsby Road     Weel…         2481              211         11 FALSE                  35              248       523           0.100 
-##  6 A1243     1     1 Other            Barg…          591              293         10 FALSE                  20                0       173           0     
-##  7 A180      1     3 Cleethorpe Road  Clee…         1067              168         16 FALSE                  30                0       179           0     
-##  8 A1173     1     2 Stallingborough… Stal…         1738              134          7 TRUE                   18                0       233           0     
-##  9 A46       1     1 Clee Road        Clee…         1546              130         11 FALSE                  31              567       201           0.367 
-## 10 A180      1     2 Grimsby Road     Grim…         1810              122         12 FALSE                  28                0       221           0     
+##  1 &quot;A12…     1     4 Other            Scar…          789              556         11 TRUE                   17              187       439           0.237 
+##  2 &quot;A11…    11     2 Other            Crom…         1279              405         10 FALSE                  12               92       518           0.0719
+##  3 &quot;A11…    11     2 Yarborough Road  Yarb…         1221              323          9 FALSE                  13              788       394           0.645 
+##  4 &quot;A11…     1     1 Other            Elli…          635              469         14 FALSE                  11              501       298           0.789 
+##  5 &quot;A46&quot;     1     1 Weelsby Road     Weel…         2481              211         11 FALSE                  28              248       523           0.100 
+##  6 &quot;A12…     1     1 Other            Barg…          591              293         10 FALSE                  16                0       173           0     
+##  7 &quot;A18…     1     3 Cleethorpe Road  Clee…         1067              168         16 FALSE                  23                0       179           0     
+##  8 &quot;&quot;        1     2 Other            Albi…          892              186         10 FALSE                   1                0       166           0     
+##  9 &quot;&quot;        1     4 Other            Esta…          812              201         10 FALSE                   2                0       163           0     
+## 10 &quot;A11…     1     2 Stallingborough… Stal…         1738              134          7 TRUE                   15                0       233           0     
 ## # … with 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
@@ -858,10 +864,10 @@ r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels
 table(r_lanes_final$Status)</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    11                    16</code></pre>
+##                    10                     7                    13</code></pre>
 <pre class="r"><code>summary(factor(r_lanes_final$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    11                    16</code></pre>
+##                    10                     7                    13</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
 popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
@@ -872,13 +878,17 @@ key_network = key_network[pvars_key]
 cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                    11                    16</code></pre>
+##                    10                     7                    13</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
 # idea: show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
 <pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+# edge case: there are no spare lanes
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
+}
 width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
 
 tmap_mode(&quot;view&quot;)</code></pre>
@@ -926,18 +936,18 @@ res_table = r_lanes_top %&gt;%
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
 res_table</code></pre>
 <pre><code>## # A tibble: 10 x 5
-##    name                 ref   length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;                &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Scartho Road         A1243    789                    556       439
-##  2 Cromwell Road        A1136   1279                    405       518
-##  3 Yarborough Road      A1136   1221                    323       394
-##  4 Ellis Way            A1136    635                    469       298
-##  5 Weelsby Road         A46     2481                    211       523
-##  6 Bargate              A1243    591                    293       173
-##  7 Cleethorpe Road      A180    1067                    168       179
-##  8 Stallingborough Road A1173   1738                    134       233
-##  9 Clee Road            A46     1546                    130       201
-## 10 Grimsby Road         A180    1810                    122       221</code></pre>
+##    name                 ref     length mean_cycling_potential km_cycled
+##  * &lt;chr&gt;                &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Scartho Road         &quot;A1243&quot;    789                    556       439
+##  2 Cromwell Road        &quot;A1136&quot;   1279                    405       518
+##  3 Yarborough Road      &quot;A1136&quot;   1221                    323       394
+##  4 Ellis Way            &quot;A1136&quot;    635                    469       298
+##  5 Weelsby Road         &quot;A46&quot;     2481                    211       523
+##  6 Bargate              &quot;A1243&quot;    591                    293       173
+##  7 Cleethorpe Road      &quot;A180&quot;    1067                    168       179
+##  8 Albion Street        &quot;&quot;         892                    186       166
+##  9 Estate Road No 5     &quot;&quot;         812                    201       163
+## 10 Stallingborough Road &quot;A1173&quot;   1738                    134       233</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
 

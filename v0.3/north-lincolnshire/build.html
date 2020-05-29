@@ -453,8 +453,15 @@ list2env(p, envir = .GlobalEnv)</code></pre>
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
-min_cycling_potential = 5
-min_grouped_cycling_potential = 30
+# min_cycling_potential = 5
+# min_grouped_cycling_potential = 30
+# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
+# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
+# Select cycling potential thresholds based on max potential
+# 1000 for West Yorkshire, 200 for Rutland
+max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
+min_cycling_potential = round(max_cycling_potential_99th / 250)
+min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
 n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -494,11 +501,11 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 07:31:18 constructing segments</code></pre>
-<pre><code>## 2020-05-29 07:31:18 building geometry</code></pre>
-<pre><code>## 2020-05-29 07:31:18 simplifying geometry</code></pre>
-<pre><code>## 2020-05-29 07:31:18 aggregating flows</code></pre>
-<pre><code>## 2020-05-29 07:31:19 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-29 10:39:52 constructing segments</code></pre>
+<pre><code>## 2020-05-29 10:39:52 building geometry</code></pre>
+<pre><code>## 2020-05-29 10:39:53 simplifying geometry</code></pre>
+<pre><code>## 2020-05-29 10:39:53 aggregating flows</code></pre>
+<pre><code>## 2020-05-29 10:39:53 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -710,6 +717,8 @@ rg_list = lapply(gs, FUN = function(i) {
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
 <pre class="r"><code>rg_new = do.call(rbind, rg_list)
 # mapview::mapview(rg_new)
@@ -756,13 +765,13 @@ rg_new4 = rg_new3 %&gt;%
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
 ##      Ashby Road  Doncaster Road        Kingsway      Manby Road Messingham Road           Other 
-##              14              26              23               1              15             176</code></pre>
+##              14              26              23               1              15             177</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
   summarise(
     name = case_when(
-      length(table(name)) &gt; 4 ~ &quot;Unnammed road&quot;,
+      length(table(name)) &gt; 4 ~ &quot;Unnamed road&quot;,
       names(table(name))[which.max(table(name))] != &quot;&quot; ~
         names(table(name))[which.max(table(name))],
       names(table(ref))[which.max(table(ref))] != &quot;&quot; ~
@@ -809,7 +818,8 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %&gt;%
-  filter(name != &quot;&quot; &amp; ref != &quot;&quot;) %&gt;%
+  # filter(name != &quot;Unnamed road&quot; &amp; ref != &quot;&quot;) %&gt;%
+  filter(name != &quot;Unnamed road&quot;) %&gt;%
   filter(group_length &gt; min_grouped_length) %&gt;%
   filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %&gt;% 
@@ -826,16 +836,16 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## # A tibble: 10 x 15
 ##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
 ##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 A159      8     1 Ashby Road       Ashb…         1364              441         11 TRUE                    5                0       602          0      
-##  2 A159      8     1 Messingham Road  Mess…         2108              231          9 TRUE                    6                0       487          0      
-##  3 A18       8     1 Kingsway         King…         2469              131          9 TRUE                   11             1057       323          0.428  
-##  4 B1501     8     1 Other            Gran…         1161               99         10 FALSE                  17                0       115          0      
-##  5 A18       8     1 Doncaster Road   Donc…         3402               92         11 FALSE                  10              805       313          0.237  
-##  6 A18       8     1 Other            A18           1164               90         11 FALSE                  12                9       105          0.00773
-##  7 B1450     8     2 Other            Ashb…          532              134         10 FALSE                  16                0        71          0      
-##  8 A18      64    11 Other            Unna…         1927               65         10 FALSE                  14              776       125          0.403  
-##  9 B1501    14     2 Other            Gran…         1290               51         10 FALSE                  18                0        66          0      
-## 10 A159     78     4 Other            Begg…          983               35          6 TRUE                    8                0        34          0      
+##  1 &quot;A15…    10     1 Ashby Road       Ashb…         1364              441         11 TRUE                    5                0       602          0      
+##  2 &quot;A15…    10     1 Messingham Road  Mess…         2108              231          9 TRUE                    6                0       487          0      
+##  3 &quot;A18&quot;    10     1 Kingsway         King…         2469              131          9 TRUE                   11             1057       323          0.428  
+##  4 &quot;B15…    10     1 Other            Gran…         1161               99         10 FALSE                  17                0       115          0      
+##  5 &quot;A18&quot;    10     1 Doncaster Road   Donc…         3402               92         11 FALSE                  10              805       313          0.237  
+##  6 &quot;A18&quot;    10     1 Other            A18           1164               90         11 FALSE                  12                9       105          0.00773
+##  7 &quot;B14…    10     2 Other            Ashb…          532              134         10 FALSE                  16                0        71          0      
+##  8 &quot;&quot;       17     4 Other            West…         1121               65         10 FALSE                   3              223        73          0.199  
+##  9 &quot;B15…    16     2 Other            Gran…         1383               48         10 FALSE                  18                0        66          0      
+## 10 &quot;A15…    83     4 Other            Begg…          983               35          6 TRUE                    8                0        34          0      
 ## # … with 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
@@ -860,10 +870,10 @@ r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels
 table(r_lanes_final$Status)</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     3                     5</code></pre>
+##                    10                     2                     6</code></pre>
 <pre class="r"><code>summary(factor(r_lanes_final$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     3                     5</code></pre>
+##                    10                     2                     6</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
 popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
@@ -874,13 +884,17 @@ key_network = key_network[pvars_key]
 cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     3                     5</code></pre>
+##                    10                     2                     6</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
 # idea: show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
 <pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+# edge case: there are no spare lanes
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
+}
 width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
 
 tmap_mode(&quot;view&quot;)</code></pre>
@@ -928,18 +942,18 @@ res_table = r_lanes_top %&gt;%
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
 res_table</code></pre>
 <pre><code>## # A tibble: 10 x 5
-##    name              ref   length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;             &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Ashby Road        A159    1364                    441       602
-##  2 Messingham Road   A159    2108                    231       487
-##  3 Kingsway          A18     2469                    131       323
-##  4 Grange Lane South B1501   1161                     99       115
-##  5 Doncaster Road    A18     3402                     92       313
-##  6 A18               A18     1164                     90       105
-##  7 Ashby High Street B1450    532                    134        71
-##  8 Unnammed road     A18     1927                     65       125
-##  9 Grange Lane South B1501   1290                     51        66
-## 10 Beggar Hill       A159     983                     35        34</code></pre>
+##    name              ref     length mean_cycling_potential km_cycled
+##  * &lt;chr&gt;             &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Ashby Road        &quot;A159&quot;    1364                    441       602
+##  2 Messingham Road   &quot;A159&quot;    2108                    231       487
+##  3 Kingsway          &quot;A18&quot;     2469                    131       323
+##  4 Grange Lane South &quot;B1501&quot;   1161                     99       115
+##  5 Doncaster Road    &quot;A18&quot;     3402                     92       313
+##  6 A18               &quot;A18&quot;     1164                     90       105
+##  7 Ashby High Street &quot;B1450&quot;    532                    134        71
+##  8 West Common Lane  &quot;&quot;        1121                     65        73
+##  9 Grange Lane South &quot;B1501&quot;   1383                     48        66
+## 10 Beggar Hill       &quot;A159&quot;     983                     35        34</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
 
