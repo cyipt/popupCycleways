@@ -43,6 +43,12 @@ The cycling potential of each road is based on data from the Propensity to Cycle
 The scenario assumes cycling grows evenly nationwide accounting for distance and hilliness.
 Our figures include data on travel to work from 2011 Census data and travel to school. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
 
+To use the evidence generated for this project:
+
+- Type in the name of the local authority of interest into the search bar above the table below and click on the associated URL.
+- Explore the results in the map (you will find a link to a full screen map) and the table of 'top roads' which can be ranked in various ways with reference to descriptions of the map layers described below.
+- Interpret the results with care based on other sources of information and an understanding of the limitations of the analysis (see 'Known issues and limitations' below).
+
 # Map layers
 
 The maps contain five layers of data that overlay the basemaps. 
@@ -95,8 +101,15 @@ A further basemap option shows all existing cycleways, including on-road cycle l
 
 # Known issues and limitations
 
-Road names ...
+<!-- We have developed this evidence base rapidly and -->
 
+- The 'top routes' highlighted in the map-based results were produced automatically based on a simple score of continuous candidate road length multiplied by cycling potential. For roads with a length of more than 1 km, the cycling potential alone is used to rank roads. **The results should be interpreted based on local knowledge and an understanding of the limitations of the data. The results are designed to complement not replace other factors such as feedback from the local community and long-term strategic cycle network plans.**
+- The estimates of cycling potential only include school and work travel. Accounting for increases in cycling for other trip purposes such as for shopping and leisure would increase cycling potential substantially.
+- The results rely on grouping roads by proximity, name and other variables. Currently some roads that are strong candidates for new cycleways may be missing from the results because of how the algorithm works (we are working on this issue).
+- The road network data was taken from the Cycling Infrastructure Prioritisation Toolkit (CyIPT) project which was completed in 2017, so may be out of date (we are looking at ways to update the data).
+- The results are based on the existing road network and does not flag potential routes that could be constructed.
+
+<!-- Like many projects that have been initiated in response to COVID-19 we have developed the analy -->
 
 
 ```{r}
