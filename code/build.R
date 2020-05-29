@@ -67,8 +67,15 @@ list2env(p, envir = .GlobalEnv)
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
-min_cycling_potential = 5
-min_grouped_cycling_potential = 30
+# min_cycling_potential = 5
+# min_grouped_cycling_potential = 30
+# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
+# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
+# Select cycling potential thresholds based on max potential
+# 1000 for West Yorkshire, 200 for Rutland
+max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
+min_cycling_potential = round(max_cycling_potential_99th / 250)
+min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
 n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -335,7 +342,7 @@ r_lanes_grouped2 = rg_new4 %>%
   group_by(ref, group, ig, long_named_section) %>% 
   summarise(
     name = case_when(
-      length(table(name)) > 4 ~ "Unnammed road",
+      length(table(name)) > 4 ~ "Unnamed road",
       names(table(name))[which.max(table(name))] != "" ~
         names(table(name))[which.max(table(name))],
       names(table(ref))[which.max(table(ref))] != "" ~
@@ -376,7 +383,8 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %>%
-  filter(name != "" & ref != "") %>%
+  # filter(name != "Unnamed road" & ref != "") %>%
+  filter(name != "Unnamed road") %>%
   filter(group_length > min_grouped_length) %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
@@ -428,6 +436,10 @@ top_routes = r_lanes_final %>% filter(Status == labels[1])
 spare_lane_groups = r_lanes_final %>% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]
 spare_lanes = spare_lane_segments %>% filter(spare_lane)
+# edge case: there are no spare lanes
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %>% top_n(n = 1, wt = width)
+}
 width_10m = r_lanes_final %>% filter(Status == labels[3])
 
 tmap_mode("view")
