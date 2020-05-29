@@ -53,17 +53,17 @@ The maps show five layers.
 
 The following three layers are the central results of our analysis, representing the most promising locations for pop-up cycleways.
 
-3) Top routes
-
-- these are the top routes for pop-up cycleways. These are classified by "km cycled", calculated as the length of the route multiplied by the mean cycling potential. All of these road segments will either have more than one vehicle lane in either direction, or be at least 10m in width. The routes are listed in the table below the map, so you can see more information on them. The number of top routes selected is normally 20, with some variation by region.
-
-4) Spare lane(s)
+3) Spare lane(s)
 
 - these are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
 
-5) Width >= 10m  
+4) Width >= 10m  
 
 - these routes are at least 10m in width and have a cycling potential above the minimum threshold. 
+
+5) Top routes
+
+- these are the top routes for pop-up cycleways according to our analysis. These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the cycling potential multiplied by the length of the route. We used certain eligibility criteria for the top routes, for example, a road which already has an existing cycleway alongside the majority of its length cannot be a top route. Top routes are listed in the table below the map, so you can see more information on them. The number of top routes selected is normally 20, with some variation by region.
 
 Click on any of these layers to see a pop-up box containing more information about the road in question.
 
