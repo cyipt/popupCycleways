@@ -457,7 +457,6 @@ legend_colours = c("darkgrey", "darkgreen", cols_status)
 m =
   tm_shape(key_network, name = "Key network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
-  tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_shape(spare_lanes, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[3], 
@@ -474,6 +473,7 @@ m =
            popup.vars = popup.vars,
            group = "layers"
            ) +
+  tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_shape(top_routes, name = "Top routes") +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
