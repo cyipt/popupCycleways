@@ -39,8 +39,8 @@ if(!exists("s")) {
   # get pct data
   rnet_url = "https://github.com/npct/pct-outputs-national/raw/master/commute/lsoa/rnet_all.Rds"
   rnet_url_school = "https://github.com/npct/pct-outputs-national/raw/master/school/lsoa/rnet_all.Rds"
-  rnet_all = sf::st_as_sf(readRDS(url(rnet_url)))
-  rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
+  rnet_all = sf::st_as_sf(read_rds(url(rnet_url)))
+  rnet_all_school = sf::st_as_sf(read_rds(url(rnet_url_school)))
 }
 
 # local parameters --------------------------------------------------------
@@ -453,7 +453,7 @@ m =
            lwd = 3,
            # scale = 5,
            alpha = 1,
-           popup.vars = popup.vars
+           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes")
            ) +
   tm_shape(width_10m, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
@@ -461,7 +461,8 @@ m =
            lwd = 3,
            # scale = 5,
            alpha = 1,
-           popup.vars = popup.vars) +
+           popup.vars = popup.vars
+           ) +
   tm_shape(top_routes, name = "Top routes") +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[3], 
