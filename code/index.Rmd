@@ -1,7 +1,9 @@
 ---
 title: "Rapid cycleway prioritisation tool"
-author: "University of Leeds"
-output: html_document
+author: "Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds"
+output: 
+  html_document: 
+    toc: yes
 ---
 
 ```{r setup, include=FALSE}
@@ -21,13 +23,13 @@ tmap_mode("view")
 source("code/build.R")
 ```
 
-## PRELIMINARY RESULTS
+# NOTE: PRELIMINARY RESULTS
 
 Not quality assured.
 
 Please provide feedback on these preliminary results on this [web form (estimated time to complete: 5 minites)](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=).
 
-## Introduction
+# Introduction
 
 The aim of this tool is to help reveal the locations that have the best potential for pop-up cycleways. It should be used together with local knowledge, to prioritise where to install rapid measures to support safe travel as part of the COVID-19 response. We anticipate that this may be used in the development of a range of temporary, experimental and longer term measures to make the streets safer for us all, as new travel patterns and behaviours emerge in the coming weeks and months.
 
@@ -39,38 +41,50 @@ Reallocating roadspace is just one of the measures available for transport autho
 
 We have used several types of data. The cycling potential of each road is estimated according the Propensity to Cycle Tool's Government Target scenario, which represents the government target to double cycling levels by 2025. Our figures include both travel to work and travel to school, and are based on 2011 Census data. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
 
-### Map layers
+# Map layers
 
-The maps show five layers. Click on any of these layers to see a pop-up box containing more information about the road in question.
+The maps contain five layers of data that overlay the basemaps. 
 
-1) Key network:
+Click on any of these layers to see a pop-up box containing more information about the road in question.
 
-- we have created this to represent the most important cycle corridors. For this layer, we do not take into account the width of the roads, but simply represent them as continuous corridors. This underscores the importance of ensuring that cycle routes are continuous and do not 'give up' at awkward junctions. To derive this layer, we have selected all road segments with cycle potential in the 85th percentile and above, which also belong to classified trunk roads, A roads or B roads. These segments are then joined together to form a continuous network.
+## 1. Key network:
 
-2) Existing cycleways (500m +)
+This layer is designed to represent a cohesive network of direct routes.
+It shows what a joined-up cycle network could look like if there were no constraints on road space, along some of the most important corridors.
+The layer takes no account spare space and is designed to support consideratioin of alternative options, e.g. one way streets, where there may be insufficient space for road space reallocation without changing the navigable network for motor traffic.
+The layer was developed based on evidence on the importance of active transport network that are continuous and do not 'give up' at awkward junctions.
+The layer was created by selecting all road segments with cycle potential in the 85th percentile and above, which also belong to classified trunk roads, A roads or B roads.
+These segments are then joined together to form a continuous network.
 
-- this layer shows existing cycleways. This may be helpful to view in connection with the other layers, because it can reveal where gaps in the existing cycle network could be filled by new infrastructure. This layer does not include some on-road cycle lanes or cycleways less than 500m in length, but these can be viewed in one of the basemap options (see below for more information about the basemaps).
+## 2. Existing cycleways
+
+This layer shows existing cycleways. This may be helpful to view in connection with the other layers, because it can reveal where gaps in the existing cycle network could be filled by new infrastructure. This layer does not include some on-road cycle lanes or cycleways less than 500m in length, but these can be viewed in one of the basemap options (see below for more information about the basemaps).
 
 The following three layers are the central results of our analysis, representing the most promising locations for pop-up cycleways.
 
-3) Spare lane(s)
+## 3. Spare lane(s)
 
-- these are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
+These are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
 
-4) Width >= 10m  
+## Width >= 10m  
 
-- these routes are at least 10m in width and have a cycling potential above the minimum threshold. 
+These routes are at least 10m in width and have a cycling potential above the minimum threshold. 
 
-5) Top routes
+## Top routes
 
-- these are the top routes for pop-up cycleways according to our analysis. These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the mean cycling potential multiplied by the length of the route. Top routes are listed in the table below the map, so you can see more information on them. The number of top routes selected is normally 20, with some variation by region. We used certain eligibility criteria for the top routes: 
+These are the top routes for pop-up cycleways according to our analysis. 
+These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. 
+For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the mean cycling potential multiplied by the length of the route. 
+Top routes are listed in the table below the map, so you can see more information on them. 
+The number of top routes selected is normally 20, with some variation by region.
+
+We used certain eligibility criteria for the top routes: 
 
 - a road which already has an existing cycleway alongside the majority of its length cannot be a top route. 
 - unnamed roads cannot be a top route 
 - routes less than 500m in length cannot be a top route
 
-
-### Basemaps
+# Basemaps
 
 There are also seven basemaps to choose from. The default basemap is grey and provides an uncluttered view. We then have basemap options showing four different scenarios from the Propensity to Cycle Tool. This allows our results to be compared with cycling potentials across the road network. The scenarios available show cycling potential for Commuting (government target), Schools (government targets), Commuting (e-bikes), and schools (Go Dutch).
 
