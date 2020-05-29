@@ -45,6 +45,8 @@ We have used several types of data. The cycling potential of each road is estima
 
 The maps contain five layers of data that overlay the basemaps. 
 
+Click on any of these layers to see a pop-up box containing more information about the road in question.
+
 ## 1. Key network:
 
 This layer is designed to represent a cohesive network of direct routes.
@@ -70,9 +72,17 @@ These routes are at least 10m in width and have a cycling potential above the mi
 
 ## Top routes
 
-These are the top routes for pop-up cycleways according to our analysis. These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the cycling potential multiplied by the length of the route. We used certain eligibility criteria for the top routes, for example, a road which already has an existing cycleway alongside the majority of its length cannot be a top route. Top routes are listed in the table below the map, so you can see more information on them. The number of top routes selected is normally 20, with some variation by region.
+These are the top routes for pop-up cycleways according to our analysis. 
+These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. 
+For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the mean cycling potential multiplied by the length of the route. 
+Top routes are listed in the table below the map, so you can see more information on them. 
+The number of top routes selected is normally 20, with some variation by region.
 
-Click on any of these layers to see a pop-up box containing more information about the road in question.
+We used certain eligibility criteria for the top routes: 
+
+- a road which already has an existing cycleway alongside the majority of its length cannot be a top route. 
+- unnamed roads cannot be a top route 
+- routes less than 500m in length cannot be a top route
 
 # Basemaps
 
