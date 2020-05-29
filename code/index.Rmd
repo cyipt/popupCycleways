@@ -55,7 +55,7 @@ The maps contain five layers of data that overlay the basemaps.
 
 Click on any of these layers to see a pop-up box containing more information about the road in question.
 
-## 1. Key network:
+## 1. Key cycle routes
 
 This layer is designed to represent a cohesive network of direct routes.
 It shows what a joined-up cycle network could look like if there were no constraints on road space, along some of the most important corridors.
@@ -70,15 +70,7 @@ This layer shows existing cycleways. This may be helpful to view in connection w
 
 The following three layers are the central results of our analysis, representing the most promising locations for pop-up cycleways.
 
-## 3. Spare lane(s)
-
-These are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
-
-## Width >= 10m  
-
-These routes are at least 10m in width and have a cycling potential above the minimum threshold. 
-
-## Top routes
+## 3. Top routes
 
 These are the top routes for pop-up cycleways according to our analysis. 
 These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. 
@@ -91,6 +83,14 @@ We used certain eligibility criteria for the top routes:
 - a road which already has an existing cycleway alongside the majority of its length cannot be a top route. 
 - unnamed roads cannot be a top route 
 - routes less than 500m in length cannot be a top route
+
+## 3. Spare lane(s)
+
+These are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
+
+## 4. Width >= 10m  
+
+These routes are at least 10m in width and have a cycling potential above the minimum threshold. 
 
 # Basemaps
 
@@ -110,6 +110,9 @@ A further basemap option shows all existing cycleways, including on-road cycle l
 - The results are based on the existing road network and does not flag potential routes that could be constructed.
 
 <!-- Like many projects that have been initiated in response to COVID-19 we have developed the analy -->
+
+If you find any other issues with the results or have suggestions of ways to improve the results, please provide feedback on the [web form](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=).
+If you are interested in the code underlying the project and would like to support the project with technical input, please provide feedback via the [GitHub issue tracker (requires a GitHub account)](https://github.com/cyipt/popupCycleways/issues).
 
 
 ```{r}
