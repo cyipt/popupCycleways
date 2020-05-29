@@ -453,8 +453,15 @@ list2env(p, envir = .GlobalEnv)</code></pre>
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
-min_cycling_potential = 5
-min_grouped_cycling_potential = 30
+# min_cycling_potential = 5
+# min_grouped_cycling_potential = 30
+# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
+# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
+# Select cycling potential thresholds based on max potential
+# 1000 for West Yorkshire, 200 for Rutland
+max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
+min_cycling_potential = round(max_cycling_potential_99th / 250)
+min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
 n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -494,15 +501,15 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 00:49:03 constructing segments</code></pre>
-<pre><code>## 2020-05-29 00:49:04 building geometry</code></pre>
-<pre><code>## 2020-05-29 00:49:07 simplifying geometry</code></pre>
+<pre><code>## 2020-05-29 10:20:24 constructing segments</code></pre>
+<pre><code>## 2020-05-29 10:20:26 building geometry</code></pre>
+<pre><code>## 2020-05-29 10:20:30 simplifying geometry</code></pre>
 <pre><code>## large data detected, using regionalisation, nrow = 112893</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## 2020-05-29 00:49:13 regionalisation complete, aggregating flows</code></pre>
-<pre><code>## 2020-05-29 00:49:16 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-29 10:20:36 regionalisation complete, aggregating flows</code></pre>
+<pre><code>## 2020-05-29 10:20:40 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -828,30 +835,30 @@ table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
 ##          Abbeydale Road    Abbeydale Road South             Askern Road      Attercliffe Common        Attercliffe Road              Balby Road 
 ##                      55                      35                      45                      27                      26                      35 
-##           Barnsley Road             Bawtry Road        Birley Moor Road          Bochum Parkway                Broadway              Broom Lane 
-##                      30                     103                      32                      14                      17                      14 
-##         Carr House Road           Centenary Way       Chesterfield Road Chesterfield Road South              Church Way        Cleveland Street 
-##                      32                       4                      60                      12                      19                      10 
-##          Doncaster Lane          Doncaster Road          Ecclesall Road    Ecclesall Road South        Fitzwilliam Road        Great North Road 
-##                      13                      92                      44                      35                      24                      41 
-##          Greenland Road            Halifax Road               Leger Way         Meadowhall Road          Meadowhall Way              Meadowhead 
-##                      37                      30                      37                      23                      16                      25 
-##         Middlewood Road       Netherthorpe Road           Norton Avenue                   Other               Park Road          Penistone Road 
-##                      22                       7                      23                    1432                      39                      83 
-##    Penistone Road North           Pleasley Road         Pontefract Road    Prince of Wales Road             Queens Road            Retford Road 
-##                      23                      10                      44                      70                      24                      21 
-##           Ridgeway Road          Rotherham Road       Saint Mary&#39;s Road           Sandford Road            Sheaf Street          Sheffield Road 
-##                      38                      15                      15                      24                       8                      40 
-##           Shepcote Lane             Thorne Road         Tinsley Viaduct            Trafford Way          Wakefield Road         Warmsworth Road 
-##                      23                      55                       2                      33                      19                      14 
-##          West Moor Link      Wheatley Hall Road         Wickersley Road               York Road 
-##                       5                      48                      11                      16</code></pre>
+##           Barnsley Road             Bawtry Road        Birley Moor Road          Bochum Parkway                Broadway         Carr House Road 
+##                      14                     103                      32                      14                      17                      32 
+##           Centenary Way       Chesterfield Road Chesterfield Road South              Church Way        Cleveland Street          Doncaster Lane 
+##                       4                      60                      12                      19                      10                      13 
+##          Doncaster Road          Ecclesall Road    Ecclesall Road South        Fitzwilliam Road        Great North Road          Greenland Road 
+##                      36                      44                      35                      24                      42                      40 
+##            Halifax Road               Leger Way          Meadowhall Way              Meadowhead         Middlewood Road       Netherthorpe Road 
+##                      31                      37                      16                      25                      22                       7 
+##           Norton Avenue                   Other               Park Road          Penistone Road    Penistone Road North           Pleasley Road 
+##                      23                    1270                      39                      83                      23                      10 
+##    Prince of Wales Road             Queens Road            Retford Road           Ridgeway Road          Rotherham Road       Saint Mary&#39;s Road 
+##                      70                      24                      21                      38                      15                      15 
+##           Sandford Road            Sheaf Street          Sheffield Road           Shepcote Lane             Thorne Road         Tinsley Viaduct 
+##                      24                       8                      40                      23                      55                       2 
+##            Trafford Way          Wakefield Road         Warmsworth Road          West Moor Link      Wheatley Hall Road         Wickersley Road 
+##                      33                      19                      14                       5                      48                      11 
+##               York Road 
+##                      16</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
   summarise(
     name = case_when(
-      length(table(name)) &gt; 4 ~ &quot;Unnammed road&quot;,
+      length(table(name)) &gt; 4 ~ &quot;Unnamed road&quot;,
       names(table(name))[which.max(table(name))] != &quot;&quot; ~
         names(table(name))[which.max(table(name))],
       names(table(ref))[which.max(table(ref))] != &quot;&quot; ~
@@ -893,12 +900,13 @@ r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %&gt;%
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.08984 0.07133 1.00116</code></pre>
+## 0.00000 0.00000 0.00000 0.09402 0.08100 1.00116</code></pre>
 <pre class="r"><code># mapview::mapview(r_lanes_joined[&quot;proportion_on_cycleway&quot;])
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %&gt;%
-  filter(name != &quot;&quot; &amp; ref != &quot;&quot;) %&gt;%
+  # filter(name != &quot;Unnamed road&quot; &amp; ref != &quot;&quot;) %&gt;%
+  filter(name != &quot;Unnamed road&quot;) %&gt;%
   filter(group_length &gt; min_grouped_length) %&gt;%
   filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %&gt;% 
@@ -915,16 +923,16 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## # A tibble: 30 x 15
 ##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
 ##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 A630    149     2 Balby Road       Balb…         1545              307          7 TRUE                  101                0       474          0      
-##  2 A630    149     2 Trafford Way     Traf…         1028              272         10 TRUE                  105              679       280          0.661  
-##  3 A630    149     2 Other            Balb…          947              267         10 TRUE                  104               11       253          0.0116 
-##  4 A18     149     1 Carr House Road  Carr…         4106              212          8 TRUE                   26               16       870          0.00390
-##  5 A625      7     1 Ecclesall Road   Eccl…         2377              198         10 TRUE                   90               71       471          0.0299 
-##  6 A19     149     2 Other            Bent…         2663              190          9 TRUE                   32              266       506          0.0999 
-##  7 A6178     7     1 Attercliffe Road Atte…         1467              144         11 FALSE                  80              111       211          0.0757 
-##  8 A18     149     1 Thorne Road      Thor…         3306              143         10 FALSE                  29              449       473          0.136  
-##  9 A638    149     1 York Road        York…         1698              142          8 TRUE                  127              968       241          0.570  
-## 10 A18     149     1 Other            A18            625              224          9 TRUE                   28               76       140          0.122  
+##  1 &quot;A63…   158     2 Balby Road       Balb…         1545              307          7 TRUE                   89                0       474          0      
+##  2 &quot;A63…   158     2 Trafford Way     Traf…         1028              272         10 TRUE                   93              679       280          0.661  
+##  3 &quot;&quot;      158     6 Thorne Road      Thor…         2053              256         11 FALSE                  13                0       526          0      
+##  4 &quot;A63…   158     2 Other            Balb…          947              267         10 TRUE                   92               11       253          0.0116 
+##  5 &quot;A18&quot;   158     1 Carr House Road  Carr…         4106              212          8 TRUE                   23               16       870          0.00390
+##  6 &quot;A62…     7     1 Ecclesall Road   Eccl…         2377              198         10 TRUE                   79               71       471          0.0299 
+##  7 &quot;A19&quot;   158     2 Other            Bent…         2663              190          9 TRUE                   29              266       506          0.0999 
+##  8 &quot;A61…     7     1 Attercliffe Road Atte…         1467              144         11 FALSE                  71              111       211          0.0757 
+##  9 &quot;A18&quot;   158     1 Thorne Road      Thor…         3306              143         10 FALSE                  26              449       473          0.136  
+## 10 &quot;A63…   158     1 York Road        York…         1698              142          8 TRUE                  112              968       241          0.570  
 ## # … with 20 more rows, and 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
@@ -949,10 +957,10 @@ r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels
 table(r_lanes_final$Status)</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    30                    53                    70</code></pre>
+##                    30                    48                    52</code></pre>
 <pre class="r"><code>summary(factor(r_lanes_final$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    30                    53                    70                     1</code></pre>
+##                    30                    48                    52                     1</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
 popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
@@ -963,13 +971,17 @@ key_network = key_network[pvars_key]
 cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    30                    53                    70                     1</code></pre>
+##                    30                    48                    52                     1</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
 # idea: show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
 <pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+# edge case: there are no spare lanes
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
+}
 width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
 
 tmap_mode(&quot;view&quot;)</code></pre>
@@ -1017,18 +1029,18 @@ res_table = r_lanes_top %&gt;%
   select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
 res_table</code></pre>
 <pre><code>## # A tibble: 30 x 5
-##    name             ref   length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;            &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Balby Road       A630    1545                    307       474
-##  2 Trafford Way     A630    1028                    272       280
-##  3 Balby Flyover    A630     947                    267       253
-##  4 Carr House Road  A18     4106                    212       870
-##  5 Ecclesall Road   A625    2377                    198       471
-##  6 Bentley Road     A19     2663                    190       506
-##  7 Attercliffe Road A6178   1467                    144       211
-##  8 Thorne Road      A18     3306                    143       473
-##  9 York Road        A638    1698                    142       241
-## 10 A18              A18      625                    224       140
+##    name             ref     length mean_cycling_potential km_cycled
+##  * &lt;chr&gt;            &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
+##  1 Balby Road       &quot;A630&quot;    1545                    307       474
+##  2 Trafford Way     &quot;A630&quot;    1028                    272       280
+##  3 Thorne Road      &quot;&quot;        2053                    256       526
+##  4 Balby Flyover    &quot;A630&quot;     947                    267       253
+##  5 Carr House Road  &quot;A18&quot;     4106                    212       870
+##  6 Ecclesall Road   &quot;A625&quot;    2377                    198       471
+##  7 Bentley Road     &quot;A19&quot;     2663                    190       506
+##  8 Attercliffe Road &quot;A6178&quot;   1467                    144       211
+##  9 Thorne Road      &quot;A18&quot;     3306                    143       473
+## 10 York Road        &quot;A638&quot;    1698                    142       241
 ## # … with 20 more rows</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
