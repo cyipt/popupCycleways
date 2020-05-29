@@ -399,7 +399,7 @@ nrow(r_lanes_top)
 r_lanes_top %>% sf::st_drop_geometry()
 
 # classify roads to visualise
-labels = c("Spare lane(s)", "Estimated width > 10m", "Top route")
+labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
 cycleways_name = "Existing off road cycleways"
 
 r_lanes_final = r_lanes_joined %>% 
@@ -428,15 +428,24 @@ top_routes = r_lanes_final %>% filter(Status == labels[1])
 # show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %>% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]
-spare_lanes = spare_lane_segments %>% filter(spare_lane)
+spare_lanes = spare_lane_segments %>%
+  filter(spare_lane) %>% 
+  mutate(Status = labels[2])
 # edge case: there are no spare lanes
 if(nrow(spare_lanes) == 0) {
   spare_lanes = rg_new4 %>% top_n(n = 1, wt = width)
 }
-width_10m = r_lanes_final %>% filter(Status == labels[3])
+# show wide segments not groups:
+# width_10m = r_lanes_final %>% filter(Status == labels[1])
+wide_lane_groups = r_lanes_final %>% filter(Status == labels[3])
+wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]
+wide_lanes = wide_lane_segments %>%
+  filter(width >= 10 & !idGlobal %in% spare_lanes$idGlobal) %>% 
+  mutate(Status = labels[3])
+spare_wide_lanes = rbind(wide_lanes, spare_lanes)
 # edge case: there are no wide roads
 if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %>% filter(width > 10)
+  spare_lanes = rg_new4 %>% filter(width > 10 )
 }
 tmap_mode("view")
 
@@ -450,7 +459,7 @@ popup.vars = c(
 )
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
-legend_labels = c("Key network", cycleways_name, labels[3], labels[1], labels[2])
+legend_labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
 legend_colours = c("darkgrey", "darkgreen", cols_status)
 
@@ -459,20 +468,20 @@ m =
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(spare_lanes, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
+           col = cols_status[2], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes"),
+           group = labels[2]
+           ) +
+  tm_shape(wide_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
            col = cols_status[3], 
            lwd = 3,
            alpha = 1,
            popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes"),
-           group = "layers"
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[2], 
-           lwd = 3,
-           alpha = 1,
-           popup.vars = popup.vars,
-           group = "layers"
-           ) +
+           group = labels[3]
+  ) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
   tm_shape(top_routes, name = "Top routes") +
   tm_lines(legend.col.show = FALSE,
@@ -482,11 +491,12 @@ m =
            popup.vars = popup.vars
   ) +
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = "fill", labels = legend_labels, col = legend_colours) +
+  tm_add_legend(type = "fill", labels = legend_labels[1:3], col = legend_colours[1:3]) +
+  tm_add_legend(type = "fill", labels = labels[2], col = legend_colours[4], group = labels[2]) +
+  tm_add_legend(type = "fill", labels = labels[3], col = legend_colours[5], group = labels[3]) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)
-# %>% leaflet::hideGroup(c("layers"))
+m_leaflet = tmap_leaflet(m) %>% leaflet::hideGroup(labels[2:3])
 # htmlwidgets::saveWidget(m_leaflet, "/tmp/m.html")
 # system("ls -hal /tmp/m.html") # 15 MB for West Yorkshire
 # browseURL("/tmp/m.html")
