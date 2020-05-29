@@ -425,7 +425,7 @@ summary(factor(r_lanes_final$Status))
 
 summary(r_lanes_final$Status)
 top_routes = r_lanes_final %>% filter(Status == labels[1])
-# idea: show spare lane segments not groups:
+# show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %>% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]
 spare_lanes = spare_lane_segments %>% filter(spare_lane)
@@ -470,7 +470,6 @@ m =
   tm_lines(legend.col.show = FALSE,
            col = cols_status[2], 
            lwd = 3,
-           # scale = 5,
            alpha = 1,
            popup.vars = popup.vars,
            group = "layers"
@@ -479,7 +478,6 @@ m =
   tm_lines(legend.col.show = FALSE,
            col = cols_status[3], 
            lwd = 5,
-           # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
   ) +
