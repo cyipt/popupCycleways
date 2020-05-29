@@ -451,14 +451,14 @@ popup.vars = c(
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
 legend_labels = c("Key network", cycleways_name, labels[1], labels[2], labels[3])
-legend_colours = c("darkgrey", "darkgreen", cols_status)
+legend_colours = c(cols_status, "darkgrey", "darkgreen")
 cols_status = c("#B91F48", "#FF7F00", "blue")
 
 m =
   tm_shape(key_network, name = "Key network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
-  tm_shape(spare_lanes, name = labels[1]) +
+  tm_shape(spare_lanes, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
            lwd = 3,
@@ -466,7 +466,7 @@ m =
            popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes"),
            group = "layers"
            ) +
-  tm_shape(width_10m, name = labels[2]) +
+  tm_shape(width_10m, name = labels[3]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[2], 
            lwd = 3,
