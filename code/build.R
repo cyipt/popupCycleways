@@ -468,7 +468,7 @@ cols_status = c("blue", "#B91F48", "#FF7F00")
 legend_colours = c("darkgrey", "darkgreen", cols_status)
 
 m =
-  tm_shape(lads) + tm_borders() +
+  tm_shape(lads, name = "Local authority district boundaries") + tm_borders() +
   tm_shape(key_network, name = "Key cycle routes") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(spare_lanes, name = labels[2]) +
@@ -508,7 +508,13 @@ m_leaflet = tmap_leaflet(m) %>% leaflet::hideGroup(labels[2:3])
 
 res_table = r_lanes_top %>% 
   sf::st_drop_geometry() %>% 
-  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
+  select(
+    Name = name,
+    Reference = ref,
+    `Continuous length (m)` = group_length,
+    `Cycling potential` = mean_cycling_potential,
+    `Length * potential (km)` = km_cycled
+    ) 
 res_table
 # knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
 

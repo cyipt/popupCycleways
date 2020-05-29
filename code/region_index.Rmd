@@ -15,12 +15,19 @@ library(tmap)
 tmap_mode("view")
 ```
 
-```{r}
+The map shows a network of key roads with high cycling potential (grey), existing off road cycleways (and shared space paths) according to OpenStreetMap data (green) and top road sections with high cycling potential and spare lanes or estimated width above 10m (blue).
+To see additional layers showing road sections with 'spare lanes' and width greater than 10 m, click on the layers icon in the top left, just below the +/- buttons on the map.
+
+```{r, out.width="100%"}
 knitr::include_url("m.html")
 ```
 
 See full map [here](m.html).
 
+The table below shows the top `r nrow(res_table)` roads, in terms of cycling potential and spare space criteria outlined on the landing page.
+The length refers to the continuous length of road.
+Cycling potential represents the average *combined number of commute and school* cycle trips that would use the road each morning under the Government Target scenario in the PCT.
+'Length * potential' is the length of the road multiplied by its average cycling potential.
 
 ```{r}
 DT::datatable(res_table)
