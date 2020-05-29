@@ -456,7 +456,7 @@ m =
            lwd = 3,
            # scale = 5,
            alpha = 1,
-           popup.vars = popup.vars
+           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes")
            ) +
   tm_shape(width_10m, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
