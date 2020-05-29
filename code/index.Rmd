@@ -74,9 +74,6 @@ There are also seven basemaps to choose from. The default basemap is grey and pr
 A further basemap option shows all existing cycleways, including on-road cycle lanes. Finally, a satellite image is also available as a basemap.
 
 
-
-
-
 ```{r}
 regions = readRDS("regions_dft.Rds")
 regions_centroids = sf::st_point_on_surface(regions)
@@ -90,7 +87,7 @@ tm_shape(regions) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_
 ```
 
 ```{r}
-dn = "popupCycleways/v0.2" # dirctory name
+dn = "popupCycleways/v0.3" # dirctory name
 built_regions = list.files(dn)
 regions %>%
   sf::st_drop_geometry() %>%
@@ -101,14 +98,13 @@ regions %>%
 ```
 
 ```{r, eval=FALSE}
-
-sample_to_build_regex = "west of|west y|west mid|hereford|nott|leic|manc|liv|cam"
-region_names_to_build = regions %>% 
-  filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>% 
-  pull(Name)
 dir.create(dn)
+region_names_to_build = regions$Name
+# sample_to_build_regex = "west of|west y|west mid|hereford|nott|leic|manc|liv|cam"
+# region_names_to_build = regions %>% 
+#   filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>% 
+#   pull(Name)
 # region_names_to_build = c("West Yorkshire", "Nottingham")
-rmarkdown::render("code/index.Rmd", output_dir = dn)
 # region_names_to_build = c("Greater London", "Cambridgeshire")
 regions_within_names = c("Leicester", "Nottingham", "Derby", "Stoke-on-Trent")
 names(regions_within_names) = c(paste0(regions_within_names[1:3], "shire"), "Staffordshire")
@@ -116,7 +112,7 @@ regions_containing_names = names(regions_within_names)
 names(regions_containing_names) = regions_within_names
 
 rn = "West of England"
-for(rn in region_names_to_build) {
+for(rn in region_names_to_build[22:length(region_names_to_build)]) {
   region = regions %>% filter(Name == rn)
   if(rn %in% c(regions_within_names)) {
     region$geometry = sf::st_union(
@@ -137,6 +133,7 @@ for(rn in region_names_to_build) {
   rmarkdown::render("code/region_index.Rmd", output_file = file.path("~/cyipt/tempCycleways/", d, "index.html"))
   message(round(time_to_run), " minutes to build ", rn)
 }
+rmarkdown::render("code/index.Rmd", output_dir = dn)
 ```
 
 
