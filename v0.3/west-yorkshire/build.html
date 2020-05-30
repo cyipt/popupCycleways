@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-05-29" />
+<meta name="date" content="2020-05-30" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-05-29</h4>
+<h4 class="date">2020-05-30</h4>
 
 </div>
 
@@ -413,6 +413,8 @@ if(!exists(&quot;s&quot;)) {
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
   if(!exists(&quot;regions&quot;)) regions = readRDS(&quot;regions_dft.Rds&quot;)
+  lads_all = readRDS(&quot;lads.Rds&quot;)
+  lads_all_centroids = sf::st_centroid(lads_all)
   rj_all = readRDS(&quot;rj.Rds&quot;)
   region_names = regions$Name
   # hospitals:
@@ -439,6 +441,10 @@ if(region_name == &quot;Nottingham&quot;) {
 } else {
   region = regions %&gt;% filter(Name == region_name)
 }
+lads_centroids = lads_all_centroids[region, ]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<pre class="r"><code>lads = lads_all %&gt;% filter(Name %in% lads_centroids$Name)
 # time consuming: ~1 minute
 rj = rj_all[region, ]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
@@ -501,15 +507,15 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 10:30:11 constructing segments</code></pre>
-<pre><code>## 2020-05-29 10:30:13 building geometry</code></pre>
-<pre><code>## 2020-05-29 10:30:18 simplifying geometry</code></pre>
+<pre><code>## 2020-05-30 00:10:18 constructing segments</code></pre>
+<pre><code>## 2020-05-30 00:10:20 building geometry</code></pre>
+<pre><code>## 2020-05-30 00:10:25 simplifying geometry</code></pre>
 <pre><code>## large data detected, using regionalisation, nrow = 167295</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## 2020-05-29 10:30:27 regionalisation complete, aggregating flows</code></pre>
-<pre><code>## 2020-05-29 10:30:32 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-30 00:10:32 regionalisation complete, aggregating flows</code></pre>
+<pre><code>## 2020-05-30 00:10:36 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -542,8 +548,10 @@ r_high_pct_99th = r_main_region %&gt;%
   filter(cycling_potential &gt; min_pct_99th_percentile)
 table(r_high_pct_99th$ref) # many unnamed</code></pre>
 <pre><code>## 
-##         A58   A61 A6110 A6120   A62  A638  A639   A64  A641  A643  A647   A65  A650  A651  A653  A655  A657  A660 B6157 B6432 B6481 
-##   390    29    14     2    11     2     1     7     3     3     1    10    60     3     1    15     9     1   104     1    20     1</code></pre>
+##         A58   A61 A6110 A6120   A62  A638  A639   A64  A641  A643  A647   A65  A650  A651  A653  A655  A657  A660 B6157 
+##   390    29    14     2    11     2     1     7     3     3     1    10    60     3     1    15     9     1   104     1 
+## B6432 B6481 
+##    20     1</code></pre>
 <pre class="r"><code># mapview::mapview(r_high_pct_99th)
 # r_high_pct_90th = r_main_region %&gt;%
 #   filter(cycling_potential &gt; min_pct_90th_percentile)
@@ -873,26 +881,30 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##              Abbey Road        Aire Valley Road            Beeston Road            Bingley Road           Bradford Road          Britannia Road 
-##                      27                      23                      39                      35                     233                      32 
-##                Broadway            Burnley Road              Canal Road         Chapeltown Road           Clay Pit Lane         Denby Dale Road 
-##                      38                      30                      20                      35                      39                      69 
-##           Dewsbury Road          Doncaster Road           Easterly Road             Elland Road            Gelderd Road          Harrogate Road 
-##                     231                     119                      49                      37                      28                      22 
-##            Horbury Road       Huddersfield Road            Hunslet Road      Ingram Distributor               Ings Road           Keighley Road 
-##                      21                      60                      49                      11                      35                      13 
-##        Killinghall Road          Kirkstall Road Leeds and Bradford Road              Leeds Road            Legrams Lane         Manchester Road 
-##                      29                      89                      18                     244                      13                      52 
-##         Manningham Lane           Meanwood Road            North Street                   Other              Otley Road          Penistone Road 
-##                      33                      57                      32                    2629                      91                      47 
-##           Regent Street       Ring Road Farsley      Ring Road Meanwood      Ring Road Moortown      Ring Road Weetwood     Ring Road West Park 
-##                      21                      15                      12                      52                      11                      26 
-##             Rooley Lane           Roundhay Road             Savile Road         Scott Hall Road              Selby Road   Shipley Airedale Road 
-##                      46                      35                      16                      90                      36                      26 
-##      Sir Fred Hoyle Way        Stanningley Road            Sticker Lane           Thornton Road               Tong Road             Tong Street 
-##                      14                      24                      25                      35                      32                      44 
-##          Wakefield Road    Westgate Hill Street           Wetherby Road          Woodhouse Lane               York Road 
-##                     167                      15                       5                      57                     105</code></pre>
+##              Abbey Road        Aire Valley Road            Beeston Road            Bingley Road           Bradford Road 
+##                      27                      23                      39                      35                     233 
+##          Britannia Road                Broadway            Burnley Road              Canal Road         Chapeltown Road 
+##                      32                      38                      30                      20                      35 
+##           Clay Pit Lane         Denby Dale Road           Dewsbury Road          Doncaster Road           Easterly Road 
+##                      39                      69                     231                     119                      49 
+##             Elland Road            Gelderd Road          Harrogate Road            Horbury Road       Huddersfield Road 
+##                      37                      28                      22                      21                      60 
+##            Hunslet Road      Ingram Distributor               Ings Road           Keighley Road        Killinghall Road 
+##                      49                      11                      35                      13                      29 
+##          Kirkstall Road Leeds and Bradford Road              Leeds Road            Legrams Lane         Manchester Road 
+##                      89                      18                     244                      13                      52 
+##         Manningham Lane           Meanwood Road            North Street                   Other              Otley Road 
+##                      33                      57                      32                    2629                      91 
+##          Penistone Road           Regent Street       Ring Road Farsley      Ring Road Meanwood      Ring Road Moortown 
+##                      47                      21                      15                      12                      52 
+##      Ring Road Weetwood     Ring Road West Park             Rooley Lane           Roundhay Road             Savile Road 
+##                      11                      26                      46                      35                      16 
+##         Scott Hall Road              Selby Road   Shipley Airedale Road      Sir Fred Hoyle Way        Stanningley Road 
+##                      90                      36                      26                      14                      24 
+##            Sticker Lane           Thornton Road               Tong Road             Tong Street          Wakefield Road 
+##                      25                      35                      32                      44                     167 
+##    Westgate Hill Street           Wetherby Road          Woodhouse Lane               York Road 
+##                      15                       5                      57                     105</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
@@ -961,22 +973,23 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## [1] 40</code></pre>
 <pre class="r"><code>r_lanes_top %&gt;% sf::st_drop_geometry()</code></pre>
 <pre><code>## # A tibble: 40 x 15
-##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;A66…     3     1 Other            Head…         2045              412          9 FALSE                 155               54       843           0.0264
-##  2 &quot;A66…     3     1 Woodhouse Lane   Wood…         2438              372          9 TRUE                  157              488       907           0.200 
-##  3 &quot;A65&quot;     3     8 Kirkstall Road   Kirk…         4407              237         10 TRUE                  121              755      1044           0.171 
-##  4 &quot;A58&quot;     3    12 Clay Pit Lane    Clay…         2235              231         11 TRUE                   44              982       516           0.439 
-##  5 &quot;A65…   753     4 Other            A655          1989              169         11 FALSE                 148              837       336           0.421 
-##  6 &quot;&quot;        3    26 Chapeltown Road  Chap…         1744              163         11 FALSE                  17              125       284           0.0717
-##  7 &quot;&quot;        3    36 Beeston Road     Bees…         1478              150         11 FALSE                  29              197       222           0.133 
-##  8 &quot;A66…     3     1 Otley Road       Otle…         7360              141         10 TRUE                  156              700      1038           0.0951
-##  9 &quot;A61…     3     2 Broadway         Broa…         2620              138          9 FALSE                  67              826       362           0.315 
-## 10 &quot;&quot;        3    26 Meanwood Road    Mean…         2959              134         10 FALSE                  18              756       397           0.255 
-## # … with 30 more rows, and 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;
+##  1 &quot;A66…     3     1 Other            Head…         2045              412          9 FALSE                 155
+##  2 &quot;A66…     3     1 Woodhouse Lane   Wood…         2438              372          9 TRUE                  157
+##  3 &quot;A65&quot;     3     8 Kirkstall Road   Kirk…         4407              237         10 TRUE                  121
+##  4 &quot;A58&quot;     3    12 Clay Pit Lane    Clay…         2235              231         11 TRUE                   44
+##  5 &quot;A65…   753     4 Other            A655          1989              169         11 FALSE                 148
+##  6 &quot;&quot;        3    26 Chapeltown Road  Chap…         1744              163         11 FALSE                  17
+##  7 &quot;&quot;        3    36 Beeston Road     Bees…         1478              150         11 FALSE                  29
+##  8 &quot;A66…     3     1 Otley Road       Otle…         7360              141         10 TRUE                  156
+##  9 &quot;A61…     3     2 Broadway         Broa…         2620              138          9 FALSE                  67
+## 10 &quot;&quot;        3    26 Meanwood Road    Mean…         2959              134         10 FALSE                  18
+## # … with 30 more rows, and 5 more variables: length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
+## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
-cycleways_name = &quot;Existing cycleways (500 m+)&quot;
+cycleways_name = &quot;Existing off road cycleways&quot;
 
 r_lanes_final = r_lanes_joined %&gt;% 
   mutate(
@@ -1003,84 +1016,112 @@ table(r_lanes_final$Status)</code></pre>
 ##                    40                    53                    94                     4</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
-popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
-pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-key_network = key_network[pvars_key]
-
-# cols_status = c(&quot;blue&quot;, &quot;orange&quot;, tmaptools::get_brewer_pal(&quot;Accent&quot;, n = 3)[3])
-cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
 ##                    40                    53                    94                     4</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
-# idea: show spare lane segments not groups:
+# show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
-<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;%
+  filter(spare_lane) %&gt;% 
+  mutate(Status = labels[2])
 # edge case: there are no spare lanes
 if(nrow(spare_lanes) == 0) {
   spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
 }
-width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
-
+# show wide segments not groups:
+# width_10m = r_lanes_final %&gt;% filter(Status == labels[1])
+wide_lane_groups = r_lanes_final %&gt;% filter(Status == labels[3])
+wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
+<pre class="r"><code>wide_lanes = wide_lane_segments %&gt;%
+  filter(width &gt;= 10 &amp; !idGlobal %in% spare_lanes$idGlobal) %&gt;% 
+  mutate(Status = labels[3])
+spare_wide_lanes = rbind(wide_lanes, spare_lanes)
+# edge case: there are no wide roads
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% filter(width &gt; 10 )
+}
 tmap_mode(&quot;view&quot;)</code></pre>
 <pre><code>## tmap mode set to interactive viewing</code></pre>
-<pre class="r"><code>m =
-  tm_shape(key_network, name = &quot;Key network&quot;) +
+<pre class="r"><code>popup.vars = c(
+  &quot;name&quot;,
+  &quot;ref&quot;,
+  &quot;spare_lane&quot;,
+  &quot;Estimated width&quot;,
+  &quot;mean_cycling_potential&quot;,
+  &quot;length (m)&quot;
+)
+pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
+key_network = key_network[pvars_key]
+legend_labels = c(&quot;Key cycle routes&quot;, cycleways_name, labels[1], labels[2], labels[3])
+cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
+legend_colours = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)
+
+m =
+  tm_shape(lads, name = &quot;Local authority district boundaries&quot;) + tm_borders() +
+  tm_shape(key_network, name = &quot;Key cycle routes&quot;) +
   tm_lines(lwd = 5, col = &quot;darkgrey&quot;, popup.vars = pvars_key) +
+  tm_shape(spare_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[2], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[2]
+           ) +
+  tm_shape(wide_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[3], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[3]
+  ) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c(&quot;surface&quot;, &quot;name&quot;, &quot;osm_id&quot;), col = &quot;darkgreen&quot;, lwd = 1.3) +
   tm_shape(top_routes, name = &quot;Top routes&quot;) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
            lwd = 5,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = popup.vars
-           ) +
-  tm_shape(spare_lanes, name = labels[2]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[2], 
-           lwd = 3,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[3], 
-           lwd = 3,
-           # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
   ) +
-
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = &quot;fill&quot;, labels = c(&quot;Key network&quot;, cycleways_name, labels[1], labels[2], labels[3]), col = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)) +
+  tm_add_legend(type = &quot;fill&quot;, labels = legend_labels[1:3], col = legend_colours[1:3]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[2], col = legend_colours[4], group = labels[2]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[3], col = legend_colours[5], group = labels[3]) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)
+m_leaflet = tmap_leaflet(m) %&gt;% leaflet::hideGroup(labels[2:3])
 # htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
 # system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
 # browseURL(&quot;/tmp/m.html&quot;)
 
 res_table = r_lanes_top %&gt;% 
   sf::st_drop_geometry() %&gt;% 
-  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
+  select(
+    Name = name,
+    Reference = ref,
+    `Continuous length (m)` = group_length,
+    `Cycling potential` = mean_cycling_potential,
+    `Length * potential (km)` = km_cycled
+    ) 
 res_table</code></pre>
 <pre><code>## # A tibble: 40 x 5
-##    name            ref     length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;           &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Headingley Lane &quot;A660&quot;    2045                    412       843
-##  2 Woodhouse Lane  &quot;A660&quot;    2438                    372       907
-##  3 Kirkstall Road  &quot;A65&quot;     4407                    237      1044
-##  4 Clay Pit Lane   &quot;A58&quot;     2235                    231       516
-##  5 A655            &quot;A655&quot;    1989                    169       336
-##  6 Chapeltown Road &quot;&quot;        1744                    163       284
-##  7 Beeston Road    &quot;&quot;        1478                    150       222
-##  8 Otley Road      &quot;A660&quot;    7360                    141      1038
-##  9 Broadway        &quot;A6120&quot;   2620                    138       362
-## 10 Meanwood Road   &quot;&quot;        2959                    134       397
+##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Headingley Lane &quot;A660&quot;                       2045                 412                       843
+##  2 Woodhouse Lane  &quot;A660&quot;                       2438                 372                       907
+##  3 Kirkstall Road  &quot;A65&quot;                        4407                 237                      1044
+##  4 Clay Pit Lane   &quot;A58&quot;                        2235                 231                       516
+##  5 A655            &quot;A655&quot;                       1989                 169                       336
+##  6 Chapeltown Road &quot;&quot;                           1744                 163                       284
+##  7 Beeston Road    &quot;&quot;                           1478                 150                       222
+##  8 Otley Road      &quot;A660&quot;                       7360                 141                      1038
+##  9 Broadway        &quot;A6120&quot;                      2620                 138                       362
+## 10 Meanwood Road   &quot;&quot;                           2959                 134                       397
 ## # … with 30 more rows</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 

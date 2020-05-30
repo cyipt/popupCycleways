@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-05-29" />
+<meta name="date" content="2020-05-30" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-05-29</h4>
+<h4 class="date">2020-05-30</h4>
 
 </div>
 
@@ -413,6 +413,8 @@ if(!exists(&quot;s&quot;)) {
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
   if(!exists(&quot;regions&quot;)) regions = readRDS(&quot;regions_dft.Rds&quot;)
+  lads_all = readRDS(&quot;lads.Rds&quot;)
+  lads_all_centroids = sf::st_centroid(lads_all)
   rj_all = readRDS(&quot;rj.Rds&quot;)
   region_names = regions$Name
   # hospitals:
@@ -439,6 +441,10 @@ if(region_name == &quot;Nottingham&quot;) {
 } else {
   region = regions %&gt;% filter(Name == region_name)
 }
+lads_centroids = lads_all_centroids[region, ]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<pre class="r"><code>lads = lads_all %&gt;% filter(Name %in% lads_centroids$Name)
 # time consuming: ~1 minute
 rj = rj_all[region, ]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
@@ -501,11 +507,11 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 10:42:09 constructing segments</code></pre>
-<pre><code>## 2020-05-29 10:42:09 building geometry</code></pre>
-<pre><code>## 2020-05-29 10:42:11 simplifying geometry</code></pre>
-<pre><code>## 2020-05-29 10:42:11 aggregating flows</code></pre>
-<pre><code>## 2020-05-29 10:42:11 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-30 00:21:36 constructing segments</code></pre>
+<pre><code>## 2020-05-30 00:21:37 building geometry</code></pre>
+<pre><code>## 2020-05-30 00:21:37 simplifying geometry</code></pre>
+<pre><code>## 2020-05-30 00:21:37 aggregating flows</code></pre>
+<pre><code>## 2020-05-30 00:21:38 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -757,10 +763,10 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##    Brian Clough Way            Eastgate     Nottingham Road       Osmaston Road               Other Saint Alkmund&#39;s Way         Sinfin Lane 
-##                  39                  15                  29                  48                 404                  48                  23 
-##  Uttoxeter New Road 
-##                  25</code></pre>
+##    Brian Clough Way            Eastgate     Nottingham Road       Osmaston Road               Other Saint Alkmund&#39;s Way 
+##                  39                  15                  29                  48                 404                  48 
+##         Sinfin Lane  Uttoxeter New Road 
+##                  23                  25</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
@@ -829,22 +835,23 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre class="r"><code>r_lanes_top %&gt;% sf::st_drop_geometry()</code></pre>
 <pre><code>## # A tibble: 10 x 15
-##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;A51…     2     1 Other            Lond…          640              392         11 FALSE                  17              202       251           0.316 
-##  2 &quot;&quot;        1     2 Sinfin Lane      Sinf…         1134              247         11 FALSE                   2                0       280           0     
-##  3 &quot;A60…     2     1 Saint Alkmund&#39;s… Sain…         2113              162         10 TRUE                   26              654       342           0.310 
-##  4 &quot;A51…     1     1 Osmaston Road    Osma…         1747              156         11 FALSE                  10              129       273           0.0738
-##  5 &quot;&quot;        2     5 Nottingham Road  Nott…         1524              146         10 FALSE                   7                0       223           0     
-##  6 &quot;A51…     1     2 Uttoxeter New R… Utto…         1731              143          8 TRUE                   13              289       248           0.167 
-##  7 &quot;A6&quot;      2     6 Other            Lond…          541              245         10 FALSE                  23                0       133           0     
-##  8 &quot;B50…     2     1 Other            Utto…         1189              130         10 FALSE                  27              515       155           0.433 
-##  9 &quot;A52&quot;     2     1 Eastgate         East…         1080              121         12 TRUE                   19              857       131           0.794 
-## 10 &quot;A60…     2     1 Other            A6005         1290              111         11 FALSE                  24              214       143           0.166 
-## # … with 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;
+##  1 &quot;A51…     2     1 Other            Lond…          640              392         11 FALSE                  17
+##  2 &quot;&quot;        1     2 Sinfin Lane      Sinf…         1134              247         11 FALSE                   2
+##  3 &quot;A60…     2     1 Saint Alkmund&#39;s… Sain…         2113              162         10 TRUE                   26
+##  4 &quot;A51…     1     1 Osmaston Road    Osma…         1747              156         11 FALSE                  10
+##  5 &quot;&quot;        2     5 Nottingham Road  Nott…         1524              146         10 FALSE                   7
+##  6 &quot;A51…     1     2 Uttoxeter New R… Utto…         1731              143          8 TRUE                   13
+##  7 &quot;A6&quot;      2     6 Other            Lond…          541              245         10 FALSE                  23
+##  8 &quot;B50…     2     1 Other            Utto…         1189              130         10 FALSE                  27
+##  9 &quot;A52&quot;     2     1 Eastgate         East…         1080              121         12 TRUE                   19
+## 10 &quot;A60…     2     1 Other            A6005         1290              111         11 FALSE                  24
+## # … with 5 more variables: length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
+## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
-cycleways_name = &quot;Existing cycleways (500 m+)&quot;
+cycleways_name = &quot;Existing off road cycleways&quot;
 
 r_lanes_final = r_lanes_joined %&gt;% 
   mutate(
@@ -871,85 +878,113 @@ table(r_lanes_final$Status)</code></pre>
 ##                    10                     7                    11</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
-popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
-pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-key_network = key_network[pvars_key]
-
-# cols_status = c(&quot;blue&quot;, &quot;orange&quot;, tmaptools::get_brewer_pal(&quot;Accent&quot;, n = 3)[3])
-cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
 ##                    10                     7                    11</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
-# idea: show spare lane segments not groups:
+# show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
-<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;%
+  filter(spare_lane) %&gt;% 
+  mutate(Status = labels[2])
 # edge case: there are no spare lanes
 if(nrow(spare_lanes) == 0) {
   spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
 }
-width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
-
+# show wide segments not groups:
+# width_10m = r_lanes_final %&gt;% filter(Status == labels[1])
+wide_lane_groups = r_lanes_final %&gt;% filter(Status == labels[3])
+wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
+<pre class="r"><code>wide_lanes = wide_lane_segments %&gt;%
+  filter(width &gt;= 10 &amp; !idGlobal %in% spare_lanes$idGlobal) %&gt;% 
+  mutate(Status = labels[3])
+spare_wide_lanes = rbind(wide_lanes, spare_lanes)
+# edge case: there are no wide roads
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% filter(width &gt; 10 )
+}
 tmap_mode(&quot;view&quot;)</code></pre>
 <pre><code>## tmap mode set to interactive viewing</code></pre>
-<pre class="r"><code>m =
-  tm_shape(key_network, name = &quot;Key network&quot;) +
+<pre class="r"><code>popup.vars = c(
+  &quot;name&quot;,
+  &quot;ref&quot;,
+  &quot;spare_lane&quot;,
+  &quot;Estimated width&quot;,
+  &quot;mean_cycling_potential&quot;,
+  &quot;length (m)&quot;
+)
+pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
+key_network = key_network[pvars_key]
+legend_labels = c(&quot;Key cycle routes&quot;, cycleways_name, labels[1], labels[2], labels[3])
+cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
+legend_colours = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)
+
+m =
+  tm_shape(lads, name = &quot;Local authority district boundaries&quot;) + tm_borders() +
+  tm_shape(key_network, name = &quot;Key cycle routes&quot;) +
   tm_lines(lwd = 5, col = &quot;darkgrey&quot;, popup.vars = pvars_key) +
+  tm_shape(spare_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[2], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[2]
+           ) +
+  tm_shape(wide_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[3], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[3]
+  ) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c(&quot;surface&quot;, &quot;name&quot;, &quot;osm_id&quot;), col = &quot;darkgreen&quot;, lwd = 1.3) +
   tm_shape(top_routes, name = &quot;Top routes&quot;) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
            lwd = 5,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = popup.vars
-           ) +
-  tm_shape(spare_lanes, name = labels[2]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[2], 
-           lwd = 3,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[3], 
-           lwd = 3,
-           # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
   ) +
-
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = &quot;fill&quot;, labels = c(&quot;Key network&quot;, cycleways_name, labels[1], labels[2], labels[3]), col = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)) +
+  tm_add_legend(type = &quot;fill&quot;, labels = legend_labels[1:3], col = legend_colours[1:3]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[2], col = legend_colours[4], group = labels[2]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[3], col = legend_colours[5], group = labels[3]) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)</code></pre>
-<pre><code>## Warning: The shape Key network is invalid. See sf::st_is_valid</code></pre>
+m_leaflet = tmap_leaflet(m) %&gt;% leaflet::hideGroup(labels[2:3])</code></pre>
+<pre><code>## Warning: The shape Key cycle routes is invalid. See sf::st_is_valid</code></pre>
 <pre class="r"><code># htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
 # system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
 # browseURL(&quot;/tmp/m.html&quot;)
 
 res_table = r_lanes_top %&gt;% 
   sf::st_drop_geometry() %&gt;% 
-  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
+  select(
+    Name = name,
+    Reference = ref,
+    `Continuous length (m)` = group_length,
+    `Cycling potential` = mean_cycling_potential,
+    `Length * potential (km)` = km_cycled
+    ) 
 res_table</code></pre>
 <pre><code>## # A tibble: 10 x 5
-##    name                ref     length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;               &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 London Road         &quot;A5194&quot;    640                    392       251
-##  2 Sinfin Lane         &quot;&quot;        1134                    247       280
-##  3 Saint Alkmund&#39;s Way &quot;A601&quot;    2113                    162       342
-##  4 Osmaston Road       &quot;A514&quot;    1747                    156       273
-##  5 Nottingham Road     &quot;&quot;        1524                    146       223
-##  6 Uttoxeter New Road  &quot;A516&quot;    1731                    143       248
-##  7 London Road         &quot;A6&quot;       541                    245       133
-##  8 Uttoxeter Road      &quot;B5020&quot;   1189                    130       155
-##  9 Eastgate            &quot;A52&quot;     1080                    121       131
-## 10 A6005               &quot;A6005&quot;   1290                    111       143</code></pre>
+##    Name                Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;               &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 London Road         &quot;A5194&quot;                       640                 392                       251
+##  2 Sinfin Lane         &quot;&quot;                           1134                 247                       280
+##  3 Saint Alkmund&#39;s Way &quot;A601&quot;                       2113                 162                       342
+##  4 Osmaston Road       &quot;A514&quot;                       1747                 156                       273
+##  5 Nottingham Road     &quot;&quot;                           1524                 146                       223
+##  6 Uttoxeter New Road  &quot;A516&quot;                       1731                 143                       248
+##  7 London Road         &quot;A6&quot;                          541                 245                       133
+##  8 Uttoxeter Road      &quot;B5020&quot;                      1189                 130                       155
+##  9 Eastgate            &quot;A52&quot;                        1080                 121                       131
+## 10 A6005               &quot;A6005&quot;                      1290                 111                       143</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
 

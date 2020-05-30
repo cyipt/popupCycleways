@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-05-29" />
+<meta name="date" content="2020-05-30" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-05-29</h4>
+<h4 class="date">2020-05-30</h4>
 
 </div>
 
@@ -413,6 +413,8 @@ if(!exists(&quot;s&quot;)) {
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
   if(!exists(&quot;regions&quot;)) regions = readRDS(&quot;regions_dft.Rds&quot;)
+  lads_all = readRDS(&quot;lads.Rds&quot;)
+  lads_all_centroids = sf::st_centroid(lads_all)
   rj_all = readRDS(&quot;rj.Rds&quot;)
   region_names = regions$Name
   # hospitals:
@@ -439,6 +441,10 @@ if(region_name == &quot;Nottingham&quot;) {
 } else {
   region = regions %&gt;% filter(Name == region_name)
 }
+lads_centroids = lads_all_centroids[region, ]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<pre class="r"><code>lads = lads_all %&gt;% filter(Name %in% lads_centroids$Name)
 # time consuming: ~1 minute
 rj = rj_all[region, ]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
@@ -501,15 +507,15 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 10:24:27 constructing segments</code></pre>
-<pre><code>## 2020-05-29 10:24:29 building geometry</code></pre>
-<pre><code>## 2020-05-29 10:24:37 simplifying geometry</code></pre>
+<pre><code>## 2020-05-30 00:04:54 constructing segments</code></pre>
+<pre><code>## 2020-05-30 00:04:57 building geometry</code></pre>
+<pre><code>## 2020-05-30 00:05:03 simplifying geometry</code></pre>
 <pre><code>## large data detected, using regionalisation, nrow = 200091</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## 2020-05-29 10:24:47 regionalisation complete, aggregating flows</code></pre>
-<pre><code>## 2020-05-29 10:24:54 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-30 00:05:12 regionalisation complete, aggregating flows</code></pre>
+<pre><code>## 2020-05-30 00:05:18 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -542,10 +548,10 @@ r_high_pct_99th = r_main_region %&gt;%
   filter(cycling_potential &gt; min_pct_99th_percentile)
 table(r_high_pct_99th$ref) # many unnamed</code></pre>
 <pre><code>## 
-##         A34   A38 A4040 A4053   A41 A4100 A4124 A4150 A4168  A429  A441   A45  A452  A453 A4540  A456  A460 A4600  A462 A5127 B4100 B4101 B4107 B4113 B4114 
-##   500     6     8     1     1     7     2     6     1     5    50    44     1     1     2     1    33     5    17     1     3     2     5     4    14     5 
-## B4124 B4125 B4157 B4166 B4169 B4210 B4217  B425 B4544 
-##     2     1     1     1     1     1     1    15     2</code></pre>
+##         A34   A38 A4040 A4053   A41 A4100 A4124 A4150 A4168  A429  A441   A45  A452  A453 A4540  A456  A460 A4600  A462 
+##   500     6     8     1     1     7     2     6     1     5    50    44     1     1     2     1    33     5    17     1 
+## A5127 B4100 B4101 B4107 B4113 B4114 B4124 B4125 B4157 B4166 B4169 B4210 B4217  B425 B4544 
+##     3     2     5     4    14     5     2     1     1     1     1     1     1    15     2</code></pre>
 <pre class="r"><code># mapview::mapview(r_high_pct_99th)
 # r_high_pct_90th = r_main_region %&gt;%
 #   filter(cycling_potential &gt; min_pct_90th_percentile)
@@ -902,34 +908,44 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##                   Alcester Road             Alcester Road South                   Aldridge Road                      Ansty Road 
-##                              37                              21                              40                              37 
-##                    Bilston Road                     Binley Road                 Birmingham Road          Black Country New Road 
-##                              40                              27                              18                              43 
-##               Blossomfield Road                    Brandon Road                    Bristol Road              Bristol Road South 
-##                              11                              21                             106                              49 
-##                  Bristol Street Cheylesmore &amp; Stivichall Bypass                    College Road                   Coventry Road 
-##                              13                              11                              64                              85 
-##                     Dudley Port                     Dudley Road         Dudley Southern By-pass              Duncan Edwards Way 
-##                              21                              46                               8                               4 
-##                  Edgbaston Road                  Foleshill Road              Four Pounds Avenue                   Gravelly Hill 
-##                              22                              30                              19                              16 
-##                     Hagley Road                Hagley Road West              Harborne Park Road                     High Street 
-##                              60                              64                              27                              42 
-##                   Hinckley Road                 Hockley Flyover                   Holyhead Road                  Lichfield Road 
-##                              18                              16                              20                              50 
-##                       Lode Lane                     London Road                       Manor Way                  Moseley Avenue 
-##                              68                              68                              19                              14 
-##            Newhampton Road West                           Other                   Pershore Road                      Pleck Road 
-##                              15                            2008                              68                              29 
-##                     Priory Road                       Queensway              Quinton Expressway             Ringway Whitefriars 
-##                              18                              10                               5                              14 
-##             Small Heath Highway             Stoney Stanton Road        Suffolk Street Queensway                 Sutton New Road 
-##                              20                              42                               9                              18 
-##                 Tettenhall Road                  The Expressway                     Trinity Way                  Walsgrave Road 
-##                              33                              16                              13                              25 
-##                    Warwick Road                 Wednesfield Way                 Wellington Road 
-##                              31                              26                              18</code></pre>
+##                   Alcester Road             Alcester Road South                   Aldridge Road 
+##                              37                              21                              40 
+##                      Ansty Road                    Bilston Road                     Binley Road 
+##                              37                              40                              27 
+##                 Birmingham Road          Black Country New Road               Blossomfield Road 
+##                              18                              43                              11 
+##                    Brandon Road                    Bristol Road              Bristol Road South 
+##                              21                             106                              49 
+##                  Bristol Street Cheylesmore &amp; Stivichall Bypass                    College Road 
+##                              13                              11                              64 
+##                   Coventry Road                     Dudley Port                     Dudley Road 
+##                              85                              21                              46 
+##         Dudley Southern By-pass              Duncan Edwards Way                  Edgbaston Road 
+##                               8                               4                              22 
+##                  Foleshill Road              Four Pounds Avenue                   Gravelly Hill 
+##                              30                              19                              16 
+##                     Hagley Road                Hagley Road West              Harborne Park Road 
+##                              60                              64                              27 
+##                     High Street                   Hinckley Road                 Hockley Flyover 
+##                              42                              18                              16 
+##                   Holyhead Road                  Lichfield Road                       Lode Lane 
+##                              20                              50                              68 
+##                     London Road                       Manor Way                  Moseley Avenue 
+##                              68                              19                              14 
+##            Newhampton Road West                           Other                   Pershore Road 
+##                              15                            2008                              68 
+##                      Pleck Road                     Priory Road                       Queensway 
+##                              29                              18                              10 
+##              Quinton Expressway             Ringway Whitefriars             Small Heath Highway 
+##                               5                              14                              20 
+##             Stoney Stanton Road        Suffolk Street Queensway                 Sutton New Road 
+##                              42                               9                              18 
+##                 Tettenhall Road                  The Expressway                     Trinity Way 
+##                              33                              16                              13 
+##                  Walsgrave Road                    Warwick Road                 Wednesfield Way 
+##                              25                              31                              26 
+##                 Wellington Road 
+##                              18</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
@@ -998,22 +1014,23 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## [1] 40</code></pre>
 <pre class="r"><code>r_lanes_top %&gt;% sf::st_drop_geometry()</code></pre>
 <pre><code>## # A tibble: 40 x 15
-##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;A38&quot;     6     4 Bristol Street   Bris…         1183              353         11 TRUE                   40              916       418           0.774 
-##  2 &quot;A45…     6     1 Hagley Road      Hagl…         4225              262         10 TRUE                   99              376      1107           0.0890
-##  3 &quot;A44…     6     1 Pershore Road    Pers…         3808              240         10 TRUE                   92              209       914           0.0549
-##  4 &quot;&quot;      489    47 Other            Bark…          898              227         12 FALSE                  30               87       204           0.0969
-##  5 &quot;B41…   489     1 Moseley Avenue   Mose…         1027              195         12 FALSE                 134                0       200           0     
-##  6 &quot;B41…   489     1 Other            Earl…         1991              176         10 FALSE                 135              301       350           0.151 
-##  7 &quot;A41…     6     1 Priory Road      Prio…         1348              174         12 FALSE                  82                0       235           0     
-##  8 &quot;A46…   489     1 Ansty Road       Anst…         4257              171          6 TRUE                  105                0       728           0     
-##  9 &quot;B41…     6     2 Blossomfield Ro… Blos…         1151              155         10 TRUE                  130              228       178           0.198 
-## 10 &quot;B41…     6     2 Other            Harb…          984              157         10 FALSE                 148                0       154           0     
-## # … with 30 more rows, and 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;
+##  1 &quot;A38&quot;     6     4 Bristol Street   Bris…         1183              353         11 TRUE                   40
+##  2 &quot;A45…     6     1 Hagley Road      Hagl…         4225              262         10 TRUE                   99
+##  3 &quot;A44…     6     1 Pershore Road    Pers…         3808              240         10 TRUE                   92
+##  4 &quot;&quot;      489    47 Other            Bark…          898              227         12 FALSE                  30
+##  5 &quot;B41…   489     1 Moseley Avenue   Mose…         1027              195         12 FALSE                 134
+##  6 &quot;B41…   489     1 Other            Earl…         1991              176         10 FALSE                 135
+##  7 &quot;A41…     6     1 Priory Road      Prio…         1348              174         12 FALSE                  82
+##  8 &quot;A46…   489     1 Ansty Road       Anst…         4257              171          6 TRUE                  105
+##  9 &quot;B41…     6     2 Blossomfield Ro… Blos…         1151              155         10 TRUE                  130
+## 10 &quot;B41…     6     2 Other            Harb…          984              157         10 FALSE                 148
+## # … with 30 more rows, and 5 more variables: length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
+## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
-cycleways_name = &quot;Existing cycleways (500 m+)&quot;
+cycleways_name = &quot;Existing off road cycleways&quot;
 
 r_lanes_final = r_lanes_joined %&gt;% 
   mutate(
@@ -1040,84 +1057,112 @@ table(r_lanes_final$Status)</code></pre>
 ##                    40                    72                    47                     2</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
-popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
-pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-key_network = key_network[pvars_key]
-
-# cols_status = c(&quot;blue&quot;, &quot;orange&quot;, tmaptools::get_brewer_pal(&quot;Accent&quot;, n = 3)[3])
-cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
 ##                    40                    72                    47                     2</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
-# idea: show spare lane segments not groups:
+# show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
-<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;%
+  filter(spare_lane) %&gt;% 
+  mutate(Status = labels[2])
 # edge case: there are no spare lanes
 if(nrow(spare_lanes) == 0) {
   spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
 }
-width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
-
+# show wide segments not groups:
+# width_10m = r_lanes_final %&gt;% filter(Status == labels[1])
+wide_lane_groups = r_lanes_final %&gt;% filter(Status == labels[3])
+wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
+<pre class="r"><code>wide_lanes = wide_lane_segments %&gt;%
+  filter(width &gt;= 10 &amp; !idGlobal %in% spare_lanes$idGlobal) %&gt;% 
+  mutate(Status = labels[3])
+spare_wide_lanes = rbind(wide_lanes, spare_lanes)
+# edge case: there are no wide roads
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% filter(width &gt; 10 )
+}
 tmap_mode(&quot;view&quot;)</code></pre>
 <pre><code>## tmap mode set to interactive viewing</code></pre>
-<pre class="r"><code>m =
-  tm_shape(key_network, name = &quot;Key network&quot;) +
+<pre class="r"><code>popup.vars = c(
+  &quot;name&quot;,
+  &quot;ref&quot;,
+  &quot;spare_lane&quot;,
+  &quot;Estimated width&quot;,
+  &quot;mean_cycling_potential&quot;,
+  &quot;length (m)&quot;
+)
+pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
+key_network = key_network[pvars_key]
+legend_labels = c(&quot;Key cycle routes&quot;, cycleways_name, labels[1], labels[2], labels[3])
+cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
+legend_colours = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)
+
+m =
+  tm_shape(lads, name = &quot;Local authority district boundaries&quot;) + tm_borders() +
+  tm_shape(key_network, name = &quot;Key cycle routes&quot;) +
   tm_lines(lwd = 5, col = &quot;darkgrey&quot;, popup.vars = pvars_key) +
+  tm_shape(spare_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[2], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[2]
+           ) +
+  tm_shape(wide_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[3], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[3]
+  ) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c(&quot;surface&quot;, &quot;name&quot;, &quot;osm_id&quot;), col = &quot;darkgreen&quot;, lwd = 1.3) +
   tm_shape(top_routes, name = &quot;Top routes&quot;) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
            lwd = 5,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = popup.vars
-           ) +
-  tm_shape(spare_lanes, name = labels[2]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[2], 
-           lwd = 3,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[3], 
-           lwd = 3,
-           # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
   ) +
-
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = &quot;fill&quot;, labels = c(&quot;Key network&quot;, cycleways_name, labels[1], labels[2], labels[3]), col = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)) +
+  tm_add_legend(type = &quot;fill&quot;, labels = legend_labels[1:3], col = legend_colours[1:3]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[2], col = legend_colours[4], group = labels[2]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[3], col = legend_colours[5], group = labels[3]) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)
+m_leaflet = tmap_leaflet(m) %&gt;% leaflet::hideGroup(labels[2:3])
 # htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
 # system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
 # browseURL(&quot;/tmp/m.html&quot;)
 
 res_table = r_lanes_top %&gt;% 
   sf::st_drop_geometry() %&gt;% 
-  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
+  select(
+    Name = name,
+    Reference = ref,
+    `Continuous length (m)` = group_length,
+    `Cycling potential` = mean_cycling_potential,
+    `Length * potential (km)` = km_cycled
+    ) 
 res_table</code></pre>
 <pre><code>## # A tibble: 40 x 5
-##    name                  ref     length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;                 &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Bristol Street        &quot;A38&quot;     1183                    353       418
-##  2 Hagley Road           &quot;A456&quot;    4225                    262      1107
-##  3 Pershore Road         &quot;A441&quot;    3808                    240       914
-##  4 Barkers Butts Lane    &quot;&quot;         898                    227       204
-##  5 Moseley Avenue        &quot;B4107&quot;   1027                    195       200
-##  6 Earlsdon Avenue North &quot;B4107&quot;   1991                    176       350
-##  7 Priory Road           &quot;A4168&quot;   1348                    174       235
-##  8 Ansty Road            &quot;A4600&quot;   4257                    171       728
-##  9 Blossomfield Road     &quot;B4102&quot;   1151                    155       178
-## 10 Harborne Road         &quot;B4124&quot;    984                    157       154
+##    Name                  Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;                 &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Bristol Street        &quot;A38&quot;                        1183                 353                       418
+##  2 Hagley Road           &quot;A456&quot;                       4225                 262                      1107
+##  3 Pershore Road         &quot;A441&quot;                       3808                 240                       914
+##  4 Barkers Butts Lane    &quot;&quot;                            898                 227                       204
+##  5 Moseley Avenue        &quot;B4107&quot;                      1027                 195                       200
+##  6 Earlsdon Avenue North &quot;B4107&quot;                      1991                 176                       350
+##  7 Priory Road           &quot;A4168&quot;                      1348                 174                       235
+##  8 Ansty Road            &quot;A4600&quot;                      4257                 171                       728
+##  9 Blossomfield Road     &quot;B4102&quot;                      1151                 155                       178
+## 10 Harborne Road         &quot;B4124&quot;                       984                 157                       154
 ## # … with 30 more rows</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 

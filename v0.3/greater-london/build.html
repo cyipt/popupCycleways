@@ -413,6 +413,8 @@ if(!exists(&quot;s&quot;)) {
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
   if(!exists(&quot;regions&quot;)) regions = readRDS(&quot;regions_dft.Rds&quot;)
+  lads_all = readRDS(&quot;lads.Rds&quot;)
+  lads_all_centroids = sf::st_centroid(lads_all)
   rj_all = readRDS(&quot;rj.Rds&quot;)
   region_names = regions$Name
   # hospitals:
@@ -439,6 +441,10 @@ if(region_name == &quot;Nottingham&quot;) {
 } else {
   region = regions %&gt;% filter(Name == region_name)
 }
+lads_centroids = lads_all_centroids[region, ]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<pre class="r"><code>lads = lads_all %&gt;% filter(Name %in% lads_centroids$Name)
 # time consuming: ~1 minute
 rj = rj_all[region, ]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
@@ -453,8 +459,15 @@ list2env(p, envir = .GlobalEnv)</code></pre>
 is_city = FALSE 
 pct_dist_within = 50 
 r_min_width_highlighted = 10
-min_cycling_potential = 5
-min_grouped_cycling_potential = 30
+# min_cycling_potential = 5
+# min_grouped_cycling_potential = 30
+# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
+# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
+# Select cycling potential thresholds based on max potential
+# 1000 for West Yorkshire, 200 for Rutland
+max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
+min_cycling_potential = round(max_cycling_potential_99th / 250)
+min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
 n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -494,15 +507,15 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 00:26:40 constructing segments</code></pre>
-<pre><code>## 2020-05-29 00:26:44 building geometry</code></pre>
-<pre><code>## 2020-05-29 00:26:55 simplifying geometry</code></pre>
+<pre><code>## 2020-05-29 23:43:37 constructing segments</code></pre>
+<pre><code>## 2020-05-29 23:43:41 building geometry</code></pre>
+<pre><code>## 2020-05-29 23:43:53 simplifying geometry</code></pre>
 <pre><code>## large data detected, using regionalisation, nrow = 359163</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## 2020-05-29 00:27:11 regionalisation complete, aggregating flows</code></pre>
-<pre><code>## 2020-05-29 00:27:23 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-29 23:44:11 regionalisation complete, aggregating flows</code></pre>
+<pre><code>## 2020-05-29 23:44:24 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -535,20 +548,24 @@ r_high_pct_99th = r_main_region %&gt;%
   filter(cycling_potential &gt; min_pct_99th_percentile)
 table(r_high_pct_99th$ref) # many unnamed</code></pre>
 <pre><code>## 
-##                            A1            A10           A100           A104           A105          A1200          A1202          A1206          A1208 
-##           1024              2              2             10              2              1              2              3              7              1 
-##          A1209           A200           A201           A202           A205           A214           A215           A219          A2207            A23 
-##              5              7             30             37              1              1              1              1              3             37 
-##             A3         A3;A23           A300           A301           A302          A3036          A3127           A315          A3200          A3203 
-##             17              1             26             23             15             36              1              2              1              6 
-##          A3204          A3205          A3211          A3212          A3214          A3216          A3217          A3220             A4            A40 
-##              2             19             11              2              8             25             24              2             55              2 
-##           A400           A401           A402           A404          A4200          A4202           A501          A5200          A5201          A5202 
-##             40             18              2              1              8              6              6              2              4              1 
-##          A5203           B100           B101           B102           B108           B126           B144           B221           B237           B300 
-##              7              1             10              7              1             45              9             14              1              4 
-##           B319           B323           B325           B326           B401           B402           B406           B502           B506 Riverside Walk 
-##              1             14              1              2              1             10              1             22              7              1</code></pre>
+##                            A1            A10           A100           A104           A105          A1200          A1202 
+##           1024              2              2             10              2              1              2              3 
+##          A1206          A1208          A1209           A200           A201           A202           A205           A214 
+##              7              1              5              7             30             37              1              1 
+##           A215           A219          A2207            A23             A3         A3;A23           A300           A301 
+##              1              1              3             37             17              1             26             23 
+##           A302          A3036          A3127           A315          A3200          A3203          A3204          A3205 
+##             15             36              1              2              1              6              2             19 
+##          A3211          A3212          A3214          A3216          A3217          A3220             A4            A40 
+##             11              2              8             25             24              2             55              2 
+##           A400           A401           A402           A404          A4200          A4202           A501          A5200 
+##             40             18              2              1              8              6              6              2 
+##          A5201          A5202          A5203           B100           B101           B102           B108           B126 
+##              4              1              7              1             10              7              1             45 
+##           B144           B221           B237           B300           B319           B323           B325           B326 
+##              9             14              1              4              1             14              1              2 
+##           B401           B402           B406           B502           B506 Riverside Walk 
+##              1             10              1             22              7              1</code></pre>
 <pre class="r"><code># mapview::mapview(r_high_pct_99th)
 # r_high_pct_90th = r_main_region %&gt;%
 #   filter(cycling_potential &gt; min_pct_90th_percentile)
@@ -1171,23 +1188,6 @@ rg_list = lapply(gs, FUN = function(i) {
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
 ## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
 <pre class="r"><code>rg_new = do.call(rbind, rg_list)
 # mapview::mapview(rg_new)
@@ -1233,166 +1233,66 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##                      Adelaide Road                       Alfred&#39;s Way                       Anerley Road                       Archway Road 
-##                                 24                                 29                                 29                                 56 
-##                        Argyle Road                          Aspen Way                        Aylmer Road                   Balham High Road 
-##                                 12                                 28                                 15                                 28 
-##                      Ballards Lane                       Barking Road                        Barley Lane                         Barnet Way 
-##                                 39                                 83                                 20                                 14 
-##                         Barry Road                          Bath Road                Battersea Park Road                     Bayswater Road 
-##                                 12                                138                                 85                                 30 
-##                    Bellegrove Road                 Bethnal Green Road                  Bickley Park Road                      Birdcage Walk 
-##                                 20                                 35                                  9                                 12 
-##                   Bishopsford Road                   Blackfriars Road                     Blackshaw Road Blackwall Tunnel Northern Approach 
-##                                 37                                 25                                 14                                 25 
-##                  Boston Manor Road                  Bounds Green Road                           Bow Road                         Bowes Road 
-##                                 22                                 47                                 40                                 43 
-##                     Brecknock Road                   Bridgewater Road                      Brighton Road                       Brixton Hill 
-##                                 18                                 15                                 72                                 51 
-##                       Brixton Road                      Brockley Road                       Bromley Road                      Brompton Road 
-##                                 65                                 29                                 44                                 28 
-##                     Brownhill Road                     Bullsmoor Lane                    Burlington Road                     Burntwood Lane 
-##                                  9                                 30                                 23                                 11 
-##                        Bushey Road                    Caledonian Road                Camberwell New Road               Cambridge Heath Road 
-##                                 43                                 56                                 24                                 37 
-##                        Camden Road                    Carshalton Road                   Carterhatch Lane                          Castelnau 
-##                                 60                                 44                                 36                                 20 
-##                       Central Road                         Cheam Road                      Chertsey Road                     Chingford Road 
-##                                 29                                 31                                 33                                 30 
-##                 Chiswick High Road                  Christchurch Road                        Church Road                      Church Street 
-##                                 28                                 18                                 30                                 21 
-##                          City Road          Clapham Common South Side                       Clapham Road                    Colchester Road 
-##                                 58                                 33                                 54                                 41 
-##                   Coldharbour Lane                  Colnbrook By-Pass                    Commercial Road                  Commercial Street 
-##                                 46                                 35                                108                                 34 
-##                        Country Way                     Cranbrook Road               Cricklewood Broadway                       Crofton Road 
-##                                 15                                 61                                 21                                 14 
-##                      Cromwell Road                       Croydon Road           Crystal Palace Park Road                       Denmark Hill 
-##                                 48                                 96                                 11                                 31 
-##                     Dulwich Common               East India Dock Road                     Eastern Avenue                Eastern Avenue East 
-##                                 19                                 63                                 90                                 23 
-##                Eastern Avenue West                       Edgware Road                     Ellesmere Road                 Eltham High Street 
-##                                 40                                 88                                  6                                 26 
-##                        Eltham Road                         Epsom Road                       Esher Bypass                        Euston Road 
-##                                 16                                 15                                  3                                 72 
-##                      Evelyn Street                        Fagg&#39;s Road                       Falloden Way                       Farthing Way 
-##                                 34                                 15                                 20                                 20 
-##                    Fencepiece Road                     Field End Road                      Finchley Road                        Fore Street 
-##                                 15                                 38                                105                                 25 
-##                        Forest Road                 Friern Barnet Road                 Fulham Palace Road                        Fulham Road 
-##                                 10                                 31                                 49                                 39 
-##                       Garratt Lane                 Golders Green Road                      Goldhawk Road                       Goswell Road 
-##                                 63                                 31                                 39                                 25 
-##                    Gray&#39;s Inn Road               Great Cambridge Road                Great Chertsey Road                    Great North Way 
-##                                 36                                175                                 20                                 33 
-##                    Great West Road                         Green Lane                        Green Lanes                     Greenford Road 
-##                                154                                 63                                175                                 61 
-##                 Gunnersbury Avenue                       Hackney Road                   Hamilton Terrace                   Hammersmith Road 
-##                                 31                                 38                                 12                                 20 
-##                     Hampstead Road                 Hampton Court Road                        Hanger Lane                        Harrow Road 
-##                                 37                                 19                                 26                                138 
-##                    Haverstock Hill                       Haydons Road                           Heathway                         Hendon Way 
-##                                 19                                 18                                 20                                 40 
-##                      Hertford Road                          High Road                   High Road Leyton              High Road Leytonstone 
-##                                 93                                310                                 21                                 24 
-##           High Road Woodford Green                        High Street                  High Street South                    Hillingdon Road 
-##                                 18                                187                                 33                                 15 
-##                       Holland Road                      Holloway Road                          Hook Road                          Horn Lane 
-##                                  8                                107                                 11                                 27 
-##                       Hornsey Road               Hospital Bridge Road                        Ilford Lane                       Jamaica Road 
-##                                 28                                 19                                 35                                 23 
-##                        Joel Street                    Kennington Lane                    Kennington Road             Kensington High Street 
-##                                 17                                 43                                 39                                 40 
-##                        Kentish Way                        Kenton Road                           Kew Road                Kidbrooke Park Road 
-##                                 18                                 45                                 27                                 24 
-##                  Kilburn High Road                        King&#39;s Road                       Kings Avenue                     Kingsbury Road 
-##                                 39                                 39                                 17                                 20 
-##                     Kingsland Road                      Kingston Hill                      Kingston Road                      Knightsbridge 
-##                                 60                                 19                                 61                                 18 
-##                     Ladbroke Grove                 Lady Margaret Road                      Lavender Hill                    Lea Bridge Road 
-##                                 45                                 14                                 35                                106 
-##                      Lee High Road               Lewisham High Street                       Lewisham Way                     Liverpool Road 
-##                                 36                                 25                                 19                                 50 
-##                        London Road                          Long Lane                    Longbridge Road                      Lordship Lane 
-##                                262                                 33                                 43                                 79 
-##              Lower Addiscombe Road                Lower Richmond Road                         Lower Road                     Lyttelton Road 
-##                                 23                                 25                                 22                                 19 
-##                          Main Road                        Malden Road                         Malden Way                    Manchester Road 
-##                                  9                                 21                                 11                                 33 
-##                    Mandeville Road                    Marylebone Road                        Merton Road                      Mile End Road 
-##                                 29                                 65                                 22                                 63 
-##                       Mitcham Lane                       Mitcham Road                    Mollison Avenue                        Morden Road 
-##                                 24                                 53                                 32                                 35 
-##                      Mortlake Road                         Nathan Way                  Neasden Underpass                     New Cross Road 
-##                                 27                                  9                                  8                                 47 
-##                      New Kent Road                           New Road                         Newham Way                     Nine Elms Lane 
-##                                 27                                 16                                 37                                 30 
-##                North Circular Road                       Norwood Road                  Old Brompton Road                      Old Kent Road 
-##                                158                                 34                                 30                                 86 
-##                              Other                       Outer Circle                          Park Lane                          Park Road 
-##                              12240                                 48                                 39                                 26 
-##                       Peckham Road                         Piccadilly                        Pinkham Way                     Plumstead Road 
-##                                 27                                 36                                  9                                 28 
-##                 Prince Albert Road              Prince of Wales Drive                 Prince Regent Lane                         Purley Way 
-##                                 29                                 13                                 48                                 95 
-##                 Putney Bridge Road                        Putney Hill                       Queen&#39;s Road                  Queensbridge Road 
-##                                 25                                 25                                 26                                 32 
-##                    Queenstown Road                    Randolph Avenue                 Regent&#39;s Park Road                        Ripple Road 
-##                                 30                                 13                                 38                                 16 
-##                     Robin Hood Way                      Rochester Way                    Roehampton Lane                    Roehampton Vale 
-##                                 10                                 30                                 33                                 12 
-##                          Roman Way                       Romford Road                    Rosebery Avenue                     Rosendale Road 
-##                                 10                                 80                                 28                                 17 
-##                   Royal Docks Road                      Ruckholt Road                    Rush Green Road                 Seven Sisters Road 
-##                                 13                                 38                                 22                                 64 
-##                Shepherds Bush Road                 Shooters Hill Road                     Sidcup By-pass                        Sidcup Road 
-##                                 35                                 52                                  6                                 38 
-##               South Carriage Drive                 South Lambeth Road                      Southall Lane                     Southbury Road 
-##                                 21                                 24                                 10                                 64 
-##             Southend Arterial Road                      Southend Road            Southern Perimeter Road              Southwark Bridge Road 
-##                                 31                                 14                                 15                                 22 
-##                  St. Helier Avenue                      Stafford Road                      Stamford Hill                       Stanley Road 
-##                                 32                                 28                                 33                                 19 
-##                     Stanstead Road                 Stanwell Moor Road                      Stanwell Road                       Station Road 
-##                                 16                                 13                                  5                                 21 
-##                       Sterling Way                      Straight Road                             Strand                Streatham High Road 
-##                                  5                                 12                                 46                                 75 
-##                     Streatham Hill                     Streatham Road                  Sutherland Avenue                      Sydenham Road 
-##                                 42                                 13                                 11                                 20 
-##                      Talgarth Road                       Telford Road                        Thames Road                         The Avenue 
-##                                 14                                 10                                 12                                 14 
-##                       The Broadway                The Croydon Flyover                        The Highway                           The Hyde 
-##                                 31                                 14                                 33                                 27 
-##                           The Mall                        The Parkway                           The Vale                      Thornton Road 
-##                                 19                                 54                                 17                                 21 
-##                  Thurlow Park Road                      Tooley Street                   Tooting Bec Road               Tottenham Court Road 
-##                                 26                                 27                                 37                                 33 
-##                  Tower Bridge Road                       Trinity Road                        Tweedy Road                    Twickenham Road 
-##                                 36                                 49                                 18                                 45 
-##                Upper Richmond Road           Upper Richmond Road West                       Upper Street                 Upper Tooting Road 
-##                                 78                                 39                                 53                                 25 
-##                      Uxbridge Road               Vauxhall Bridge Road                      Victoria Road                      Walworth Road 
-##                                172                                 29                                 16                                 20 
-##                    Wandsworth Road                       Warwick Road                    Waterloo Bridge                       Watford Road 
-##                                 52                                 30                                 13                                 18 
-##                        Watford Way                     Well Hall Road                West Carriage Drive                 West Cromwell Road 
-##                                 68                                 40                                 30                                 12 
-##                     Western Avenue                        Western Way                   Westhorne Avenue                            Westway 
-##                                136                                  6                                 61                                  9 
-##               Whalebone Lane North                  Whipps Cross Road                   Whitechapel Road                Whitton Avenue West 
-##                                 36                                 10                                 28                                 24 
-##                       Wickham Lane                       Wickham Road                          Wood Lane                    Woodford Avenue 
-##                                 13                                 16                                 93                                 32 
-##                  Woodford New Road                     Woodhouse Road               Woolwich High Street                 Woolwich Manor Way 
-##                                 20                                 32                                 23                                 36 
-##                      Woolwich Road                       Yeading Lane                          York Road 
-##                                 61                                 19                                 55</code></pre>
+##           Archway Road              Aspen Way            Aylmer Road       Balham High Road             Barnet Way 
+##                     56                     28                     13                     28                      8 
+##              Bath Road    Battersea Park Road         Bayswater Road     Bethnal Green Road          Birdcage Walk 
+##                     92                     84                     29                     35                     12 
+##       Blackfriars Road         Blackshaw Road               Bow Road           Brixton Hill           Brixton Road 
+##                     25                     14                     40                     51                     65 
+##           Bromley Road          Brompton Road         Burntwood Lane        Caledonian Road    Camberwell New Road 
+##                     39                     28                     11                     56                     24 
+##   Cambridge Heath Road            Camden Road          Chertsey Road     Chiswick High Road      Christchurch Road 
+##                     37                     52                     33                     26                     13 
+##              City Road           Clapham Road       Coldharbour Lane      Colnbrook By-Pass        Commercial Road 
+##                     56                     54                     25                     35                    105 
+##      Commercial Street            Country Way          Cromwell Road           Denmark Hill   East India Dock Road 
+##                     34                     13                     47                     31                     60 
+##           Edgware Road            Euston Road          Evelyn Street           Falloden Way            Fulham Road 
+##                     56                     63                     34                     12                     39 
+##           Garratt Lane          Goldhawk Road           Goswell Road        Gray&#39;s Inn Road    Great Chertsey Road 
+##                     63                     39                     25                     36                     20 
+##        Great West Road            Green Lanes           Hackney Road       Hamilton Terrace       Hammersmith Road 
+##                     57                     75                     38                     12                     20 
+##         Hampstead Road     Hampton Court Road            Harrow Road        Haverstock Hill              High Road 
+##                     37                     19                     84                     19                     43 
+##            High Street           Holland Road          Holloway Road           Hornsey Road           Jamaica Road 
+##                     98                      8                    107                     28                     23 
+##        Kennington Lane        Kennington Road Kensington High Street               Kew Road            King&#39;s Road 
+##                     41                     39                     38                     26                     39 
+##           Kings Avenue         Kingsland Road          Knightsbridge         Ladbroke Grove          Lavender Hill 
+##                     17                     52                     18                     31                     34 
+##        Lea Bridge Road         Liverpool Road            London Road    Lower Richmond Road              Main Road 
+##                     43                     50                     51                     17                      9 
+##        Manchester Road        Marylebone Road            Merton Road          Mile End Road           Mitcham Road 
+##                     33                     50                     22                     63                     30 
+##         New Cross Road          New Kent Road             Newham Way         Nine Elms Lane    North Circular Road 
+##                     46                     27                     33                     30                      8 
+##           Norwood Road      Old Brompton Road          Old Kent Road                  Other           Outer Circle 
+##                     27                     30                     86                   5435                     48 
+##              Park Lane           Peckham Road             Piccadilly     Prince Albert Road  Prince of Wales Drive 
+##                     38                     27                     36                     29                     13 
+##           Queen&#39;s Road      Queensbridge Road        Queenstown Road        Randolph Avenue              Roman Way 
+##                     25                     32                     30                     13                     10 
+##           Romford Road        Rosebery Avenue       Royal Docks Road     Seven Sisters Road     Shooters Hill Road 
+##                     80                     28                     10                     58                     35 
+##   South Carriage Drive     South Lambeth Road  Southwark Bridge Road          Stamford Hill     Stanwell Moor Road 
+##                     21                     23                     22                     33                     13 
+##                 Strand    Streatham High Road         Streatham Hill          Talgarth Road             The Avenue 
+##                     46                     22                     42                     14                     14 
+##               The Mall          Tooley Street   Tottenham Court Road      Tower Bridge Road        Twickenham Road 
+##                     19                     27                     33                     36                     44 
+##           Upper Street     Upper Tooting Road   Vauxhall Bridge Road          Walworth Road        Wandsworth Road 
+##                     52                     25                     25                     20                     52 
+##           Warwick Road        Waterloo Bridge    West Carriage Drive     West Cromwell Road       Whitechapel Road 
+##                     30                     13                     30                     12                     28 
+##              York Road 
+##                     55</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
   summarise(
     name = case_when(
-      length(table(name)) &gt; 4 ~ &quot;Unnammed road&quot;,
+      length(table(name)) &gt; 4 ~ &quot;Unnamed road&quot;,
       names(table(name))[which.max(table(name))] != &quot;&quot; ~
         names(table(name))[which.max(table(name))],
       names(table(ref))[which.max(table(ref))] != &quot;&quot; ~
@@ -1434,12 +1334,13 @@ r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %&gt;%
 r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
 summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.1600  0.3007  0.4748  1.0909</code></pre>
+## 0.00000 0.03702 0.18990 0.32509 0.48875 1.09091</code></pre>
 <pre class="r"><code># mapview::mapview(r_lanes_joined[&quot;proportion_on_cycleway&quot;])
 
 # we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
 r_lanes_top = r_lanes_joined %&gt;%
-  filter(name != &quot;&quot; &amp; ref != &quot;&quot;) %&gt;%
+  # filter(name != &quot;Unnamed road&quot; &amp; ref != &quot;&quot;) %&gt;%
+  filter(name != &quot;Unnamed road&quot;) %&gt;%
   filter(group_length &gt; min_grouped_length) %&gt;%
   filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %&gt;% 
@@ -1454,22 +1355,23 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## [1] 60</code></pre>
 <pre class="r"><code>r_lanes_top %&gt;% sf::st_drop_geometry()</code></pre>
 <pre><code>## # A tibble: 60 x 15
-##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 A300      1     1 Southwark Bridg… Sout…         1146             3371         11 FALSE                 561              181      3863           0.158 
-##  2 A3217     1     1 Other            Unna…          949             2013         13 FALSE                 670                0      1910           0     
-##  3 A301      1     1 Waterloo Bridge  Wate…         1121             1812          8 TRUE                  572              451      2031           0.402 
-##  4 A200      1     1 Jamaica Road     Jama…         1395             1758          7 TRUE                  347              991      2452           0.710 
-##  5 A4        1     1 Brompton Road    Brom…         1011             1465         15 TRUE                  679                0      1481           0     
-##  6 A23       1     1 Brixton Road     Brix…         2823             1460         11 TRUE                  488              647      4122           0.229 
-##  7 A3216     1     1 Queenstown Road  Quee…         1802             1350         10 FALSE                 667              868      2433           0.482 
-##  8 A3036     1     2 Wandsworth Road  Wand…         2726             1344         11 FALSE                 582              385      3664           0.141 
-##  9 A4        1     1 Cromwell Road    Crom…         1573             1343         12 TRUE                  680              137      2113           0.0871
-## 10 A3        1     1 Other            Unna…         4061             1295         12 TRUE                  547             1895      5259           0.467 
-## # … with 50 more rows, and 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;
+##  1 A300      1     1 Southwark Bridg… Sout…         1146             3371         11 FALSE                 180
+##  2 A301      1     1 Waterloo Bridge  Wate…         1121             1812          8 TRUE                  182
+##  3 A200      1     1 Jamaica Road     Jama…         1395             1758          7 TRUE                  119
+##  4 A4        1     1 Brompton Road    Brom…         1011             1465         15 TRUE                  252
+##  5 A23       1     3 Brixton Road     Brix…         2823             1460         11 TRUE                  161
+##  6 A3216     1     1 Queenstown Road  Quee…         1802             1350         10 FALSE                 239
+##  7 A3036     1     2 Wandsworth Road  Wand…         2726             1344         11 FALSE                 191
+##  8 A4        1     1 Cromwell Road    Crom…         1573             1343         12 TRUE                  253
+##  9 A200      1     2 Evelyn Street    Evel…         1903             1207         10 FALSE                 121
+## 10 B102      1     1 Other            Sout…         1096             1193         10 FALSE                 323
+## # … with 50 more rows, and 5 more variables: length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
+## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
-cycleways_name = &quot;Existing cycleways (500 m+)&quot;
+cycleways_name = &quot;Existing off road cycleways&quot;
 
 r_lanes_final = r_lanes_joined %&gt;% 
   mutate(
@@ -1490,86 +1392,118 @@ r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels
 table(r_lanes_final$Status)</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    60                   264                   668</code></pre>
+##                    60                   120                   193</code></pre>
 <pre class="r"><code>summary(factor(r_lanes_final$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    60                   264                   668                    16</code></pre>
+##                    60                   120                   193                     2</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
-popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
-pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-key_network = key_network[pvars_key]
-
-# cols_status = c(&quot;blue&quot;, &quot;orange&quot;, tmaptools::get_brewer_pal(&quot;Accent&quot;, n = 3)[3])
-cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    60                   264                   668                    16</code></pre>
+##                    60                   120                   193                     2</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
-# idea: show spare lane segments not groups:
+# show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
-<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
-width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
-
+<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;%
+  filter(spare_lane) %&gt;% 
+  mutate(Status = labels[2])
+# edge case: there are no spare lanes
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
+}
+# show wide segments not groups:
+# width_10m = r_lanes_final %&gt;% filter(Status == labels[1])
+wide_lane_groups = r_lanes_final %&gt;% filter(Status == labels[3])
+wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
+<pre class="r"><code>wide_lanes = wide_lane_segments %&gt;%
+  filter(width &gt;= 10 &amp; !idGlobal %in% spare_lanes$idGlobal) %&gt;% 
+  mutate(Status = labels[3])
+spare_wide_lanes = rbind(wide_lanes, spare_lanes)
+# edge case: there are no wide roads
+if(nrow(spare_lanes) == 0) {
+  spare_lanes = rg_new4 %&gt;% filter(width &gt; 10 )
+}
 tmap_mode(&quot;view&quot;)</code></pre>
 <pre><code>## tmap mode set to interactive viewing</code></pre>
-<pre class="r"><code>m =
-  tm_shape(key_network, name = &quot;Key network&quot;) +
+<pre class="r"><code>popup.vars = c(
+  &quot;name&quot;,
+  &quot;ref&quot;,
+  &quot;spare_lane&quot;,
+  &quot;Estimated width&quot;,
+  &quot;mean_cycling_potential&quot;,
+  &quot;length (m)&quot;
+)
+pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
+key_network = key_network[pvars_key]
+legend_labels = c(&quot;Key cycle routes&quot;, cycleways_name, labels[1], labels[2], labels[3])
+cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
+legend_colours = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)
+
+m =
+  tm_shape(lads, name = &quot;Local authority district boundaries&quot;) + tm_borders() +
+  tm_shape(key_network, name = &quot;Key cycle routes&quot;) +
   tm_lines(lwd = 5, col = &quot;darkgrey&quot;, popup.vars = pvars_key) +
+  tm_shape(spare_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[2], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[2]
+           ) +
+  tm_shape(wide_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[3], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[3]
+  ) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c(&quot;surface&quot;, &quot;name&quot;, &quot;osm_id&quot;), col = &quot;darkgreen&quot;, lwd = 1.3) +
   tm_shape(top_routes, name = &quot;Top routes&quot;) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
            lwd = 5,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = popup.vars
-           ) +
-  tm_shape(spare_lanes, name = labels[2]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[2], 
-           lwd = 3,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[3], 
-           lwd = 3,
-           # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
   ) +
-
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = &quot;fill&quot;, labels = c(&quot;Key network&quot;, cycleways_name, labels[1], labels[2], labels[3]), col = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)) +
+  tm_add_legend(type = &quot;fill&quot;, labels = legend_labels[1:3], col = legend_colours[1:3]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[2], col = legend_colours[4], group = labels[2]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[3], col = legend_colours[5], group = labels[3]) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)
+m_leaflet = tmap_leaflet(m) %&gt;% leaflet::hideGroup(labels[2:3])
 # htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
 # system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
 # browseURL(&quot;/tmp/m.html&quot;)
 
 res_table = r_lanes_top %&gt;% 
   sf::st_drop_geometry() %&gt;% 
-  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
+  select(
+    Name = name,
+    Reference = ref,
+    `Continuous length (m)` = group_length,
+    `Cycling potential` = mean_cycling_potential,
+    `Length * potential (km)` = km_cycled
+    ) 
 res_table</code></pre>
 <pre><code>## # A tibble: 60 x 5
-##    name                  ref   length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;                 &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Southwark Bridge Road A300    1146                   3371      3863
-##  2 Unnammed road         A3217    949                   2013      1910
-##  3 Waterloo Bridge       A301    1121                   1812      2031
-##  4 Jamaica Road          A200    1395                   1758      2452
-##  5 Brompton Road         A4      1011                   1465      1481
-##  6 Brixton Road          A23     2823                   1460      4122
-##  7 Queenstown Road       A3216   1802                   1350      2433
-##  8 Wandsworth Road       A3036   2726                   1344      3664
-##  9 Cromwell Road         A4      1573                   1343      2113
-## 10 Unnammed road         A3      4061                   1295      5259
+##    Name                  Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;                 &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Southwark Bridge Road A300                         1146                3371                      3863
+##  2 Waterloo Bridge       A301                         1121                1812                      2031
+##  3 Jamaica Road          A200                         1395                1758                      2452
+##  4 Brompton Road         A4                           1011                1465                      1481
+##  5 Brixton Road          A23                          2823                1460                      4122
+##  6 Queenstown Road       A3216                        1802                1350                      2433
+##  7 Wandsworth Road       A3036                        2726                1344                      3664
+##  8 Cromwell Road         A4                           1573                1343                      2113
+##  9 Evelyn Street         A200                         1903                1207                      2297
+## 10 Southgate Road        B102                         1096                1193                      1308
 ## # … with 50 more rows</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
