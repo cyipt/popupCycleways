@@ -131,9 +131,11 @@ tm_shape(regions) + tm_polygons("Level", popup.vars = pvars)
 ```{r}
 dn = "popupCycleways/v0.3" # dirctory name
 built_regions = list.files(dn)
+regions = regions %>% 
+  filter(stringr::str_detect(string = Name, "Scilly", negate = TRUE))
 regions %>%
   sf::st_drop_geometry() %>%
-  filter(html_name %in% built_regions) %>% 
+  filter(html_name %in% built_regions) 
   select(Name, Level, url) %>% 
   arrange(Name) %>% 
   DT::datatable(escape = -4)
@@ -155,7 +157,7 @@ regions_containing_names = names(regions_within_names)
 names(regions_containing_names) = regions_within_names
 
 rn = "West of England"
-for(rn in region_names_to_build[38:nrow(regions)]) {
+for(rn in region_names_to_build[50:nrow(regions)]) {
   region = regions %>% filter(Name == rn)
   if(rn %in% c(regions_within_names)) {
     region$geometry = sf::st_union(
