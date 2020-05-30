@@ -155,7 +155,7 @@ regions_containing_names = names(regions_within_names)
 names(regions_containing_names) = regions_within_names
 
 rn = "West of England"
-for(rn in region_names_to_build[50:nrow(regions)]) {
+for(rn in region_names_to_build) {
   region = regions %>% filter(Name == rn)
   if(rn %in% c(regions_within_names)) {
     region$geometry = sf::st_union(

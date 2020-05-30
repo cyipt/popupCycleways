@@ -58,6 +58,9 @@ if(region_name == "Nottingham") {
 }
 lads_centroids = lads_all_centroids[region, ]
 lads = lads_all %>% filter(Name %in% lads_centroids$Name)
+if(nrow(lads) == 0) {
+  lads = region
+}
 # time consuming: ~1 minute
 rj = rj_all[region, ]
 # h_city = hsf[region, ]
