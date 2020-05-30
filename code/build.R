@@ -440,7 +440,9 @@ spare_lanes = spare_lane_segments %>%
   mutate(Status = labels[2])
 # edge case: there are no spare lanes
 if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %>% top_n(n = 1, wt = width)
+  spare_lanes = rg_new4 %>%
+    top_n(n = 1, wt = width) %>% 
+    mutate(Status = labels[2]) 
 }
 # show wide segments not groups:
 # width_10m = r_lanes_final %>% filter(Status == labels[1])
@@ -449,11 +451,14 @@ wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]
 wide_lanes = wide_lane_segments %>%
   filter(width >= 10 & !idGlobal %in% spare_lanes$idGlobal) %>% 
   mutate(Status = labels[3])
-spare_wide_lanes = rbind(wide_lanes, spare_lanes)
-# edge case: there are no wide roads
-if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %>% filter(width > 10 )
+# edge case: there are no wide lanes
+if(nrow(wide_lanes) == 0) {
+  wide_lanes = rg_new4 %>%
+    top_n(n = 1, wt = width) %>% 
+    mutate(Status = labels[3]) 
 }
+spare_wide_lanes = rbind(wide_lanes, spare_lanes)
+
 tmap_mode("view")
 
 popup.vars = c(
