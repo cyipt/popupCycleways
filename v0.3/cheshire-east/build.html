@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-05-29" />
+<meta name="date" content="2020-05-30" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-05-29</h4>
+<h4 class="date">2020-05-30</h4>
 
 </div>
 
@@ -413,6 +413,8 @@ if(!exists(&quot;s&quot;)) {
   # read-in national data ---------------------------------------------------
   # see preprocess.R for data origins
   if(!exists(&quot;regions&quot;)) regions = readRDS(&quot;regions_dft.Rds&quot;)
+  lads_all = readRDS(&quot;lads.Rds&quot;)
+  lads_all_centroids = sf::st_centroid(lads_all)
   rj_all = readRDS(&quot;rj.Rds&quot;)
   region_names = regions$Name
   # hospitals:
@@ -438,6 +440,13 @@ if(region_name == &quot;Nottingham&quot;) {
     st_union()
 } else {
   region = regions %&gt;% filter(Name == region_name)
+}
+lads_centroids = lads_all_centroids[region, ]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
+## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
+<pre class="r"><code>lads = lads_all %&gt;% filter(Name %in% lads_centroids$Name)
+if(nrow(lads) == 0) {
+  lads = region
 }
 # time consuming: ~1 minute
 rj = rj_all[region, ]</code></pre>
@@ -501,11 +510,11 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
 rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 11:17:21 constructing segments</code></pre>
-<pre><code>## 2020-05-29 11:17:22 building geometry</code></pre>
-<pre><code>## 2020-05-29 11:17:24 simplifying geometry</code></pre>
-<pre><code>## 2020-05-29 11:17:24 aggregating flows</code></pre>
-<pre><code>## 2020-05-29 11:17:25 rejoining segments into linestrings</code></pre>
+<pre><code>## 2020-05-30 12:54:29 constructing segments</code></pre>
+<pre><code>## 2020-05-30 12:54:30 building geometry</code></pre>
+<pre><code>## 2020-05-30 12:54:32 simplifying geometry</code></pre>
+<pre><code>## 2020-05-30 12:54:32 aggregating flows</code></pre>
+<pre><code>## 2020-05-30 12:54:33 rejoining segments into linestrings</code></pre>
 <pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
 
 # pct_dist_within at 50 is probably too high
@@ -797,18 +806,22 @@ rg_new4 = rg_new3 %&gt;%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##                          Ainslie Way                        Chelford Road                         Chester Road                       Congleton Road 
-##                                    2                                   40                                   25                                  108 
-##                           Crewe Road                   Haslington By-pass                          London Road                    London Road North 
-##                                   27                                   21                                   65                                   15 
-##                    London Road South                    Macclesfield Road                          MacLean Way Manchester Airport Eastern Link Road 
-##                                   21                                    5                                    6                                    4 
-##                      Manchester Road                        Nantwich Road                        Old Mill Road                                Other 
-##                                   13                                   36                                    5                                  409 
-##                            Park Lane                        Pendleton Way                        Sandbach Road                           Spark Lane 
-##                                   24                                    2                                   18                                    4 
-##                          Storeys Way                        The Silk Road                        Wilmslow Road 
-##                                    9                                   34                                   23</code></pre>
+##                          Ainslie Way                        Chelford Road                         Chester Road 
+##                                    2                                   40                                   25 
+##                       Congleton Road                           Crewe Road                   Haslington By-pass 
+##                                  108                                   27                                   21 
+##                          London Road                    London Road North                    London Road South 
+##                                   65                                   15                                   21 
+##                    Macclesfield Road                          MacLean Way Manchester Airport Eastern Link Road 
+##                                    5                                    6                                    4 
+##                      Manchester Road                        Nantwich Road                        Old Mill Road 
+##                                   13                                   36                                    5 
+##                                Other                            Park Lane                        Pendleton Way 
+##                                  409                                   24                                    2 
+##                        Sandbach Road                           Spark Lane                          Storeys Way 
+##                                   18                                    4                                    9 
+##                        The Silk Road                        Wilmslow Road 
+##                                   34                                   23</code></pre>
 <pre class="r"><code># find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %&gt;% 
   group_by(ref, group, ig, long_named_section) %&gt;% 
@@ -877,32 +890,33 @@ nrow(r_lanes_top)</code></pre>
 <pre><code>## [1] 20</code></pre>
 <pre class="r"><code>r_lanes_top %&gt;% sf::st_drop_geometry()</code></pre>
 <pre><code>## # A tibble: 20 x 15
-##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled proportion_on_c…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;A53…     8     2 Nantwich Road    Nant…         1931              165          9 TRUE                   39              145       319           0.0751
-##  2 &quot;B53…   175     4 Wilmslow Road    Wilm…         1204              163         10 FALSE                  59              174       196           0.145 
-##  3 &quot;A52…     5     1 London Road Sou… Lond…         1429              157         10 TRUE                   24                0       224           0     
-##  4 &quot;A53…     8     2 Crewe Road       Crew…         3195              150          9 TRUE                   38              381       479           0.119 
-##  5 &quot;A53…    42     3 Other            West…          508              294         10 FALSE                  30              230       149           0.453 
-##  6 &quot;A53…     5     1 Haslington By-p… Hasl…         3849              103          8 TRUE                   32              239       396           0.0621
-##  7 &quot;A53…    28     1 Other            West…          830              121         13 FALSE                  29              110       100           0.133 
-##  8 &quot;A52…     5     1 London Road      Lond…         6967               81          9 TRUE                   22                0       564           0     
-##  9 &quot;A53…     5     3 Chester Road     Ches…         1376               79          7 TRUE                   46              230       109           0.167 
-## 10 &quot;&quot;      175     8 Other            Manc…         1033               78         10 FALSE                   6                0        81           0     
-## 11 &quot;A52…     5     1 London Road Nor… Lond…         1387               78         10 TRUE                   23                0       108           0     
-## 12 &quot;B53…   120     1 Other            Crew…          647              120         10 FALSE                  58                0        78           0     
-## 13 &quot;A53…     5     3 Other            Cumb…         2015               62          7 TRUE                   47                0       125           0     
-## 14 &quot;A53…     5     1 Park Lane        Park…         1205               57          7 TRUE                   44                0        69           0     
-## 15 &quot;A53…     5     3 Chelford Road    Chel…         7470               52          8 TRUE                   45                0       388           0     
-## 16 &quot;A54&quot;   100     3 Other            Ches…          970               51          7 TRUE                   53                0        49           0     
-## 17 &quot;A52…     5     1 Other            A523          1101               49          9 TRUE                   25                0        54           0     
-## 18 &quot;A34&quot;   170     3 Pendleton Way    Pend…         2341               45          9 TRUE                   13              173       105           0.0739
-## 19 &quot;A53…     5     1 Sandbach Road    Sand…         1585               44          8 TRUE                   35                0        70           0     
-## 20 &quot;B53…   256     5 Other            Chel…          735               53         10 FALSE                  60                0        39           0     
-## # … with 2 more variables: length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;
+##  1 &quot;A53…     8     2 Nantwich Road    Nant…         1931              165          9 TRUE                   39
+##  2 &quot;B53…   175     4 Wilmslow Road    Wilm…         1204              163         10 FALSE                  59
+##  3 &quot;A52…     5     1 London Road Sou… Lond…         1429              157         10 TRUE                   24
+##  4 &quot;A53…     8     2 Crewe Road       Crew…         3195              150          9 TRUE                   38
+##  5 &quot;A53…    42     3 Other            West…          508              294         10 FALSE                  30
+##  6 &quot;A53…     5     1 Haslington By-p… Hasl…         3849              103          8 TRUE                   32
+##  7 &quot;A53…    28     1 Other            West…          830              121         13 FALSE                  29
+##  8 &quot;A52…     5     1 London Road      Lond…         6967               81          9 TRUE                   22
+##  9 &quot;A53…     5     3 Chester Road     Ches…         1376               79          7 TRUE                   46
+## 10 &quot;&quot;      175     8 Other            Manc…         1033               78         10 FALSE                   6
+## 11 &quot;A52…     5     1 London Road Nor… Lond…         1387               78         10 TRUE                   23
+## 12 &quot;B53…   120     1 Other            Crew…          647              120         10 FALSE                  58
+## 13 &quot;A53…     5     3 Other            Cumb…         2015               62          7 TRUE                   47
+## 14 &quot;A53…     5     1 Park Lane        Park…         1205               57          7 TRUE                   44
+## 15 &quot;A53…     5     3 Chelford Road    Chel…         7470               52          8 TRUE                   45
+## 16 &quot;A54&quot;   100     3 Other            Ches…          970               51          7 TRUE                   53
+## 17 &quot;A52…     5     1 Other            A523          1101               49          9 TRUE                   25
+## 18 &quot;A34&quot;   170     3 Pendleton Way    Pend…         2341               45          9 TRUE                   13
+## 19 &quot;A53…     5     1 Sandbach Road    Sand…         1585               44          8 TRUE                   35
+## 20 &quot;B53…   256     5 Other            Chel…          735               53         10 FALSE                  60
+## # … with 5 more variables: length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
+## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre class="r"><code># classify roads to visualise
 labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
-cycleways_name = &quot;Existing cycleways (500 m+)&quot;
+cycleways_name = &quot;Existing off road cycleways&quot;
 
 r_lanes_final = r_lanes_joined %&gt;% 
   mutate(
@@ -929,97 +943,127 @@ table(r_lanes_final$Status)</code></pre>
 ##                    20                    24                    17</code></pre>
 <pre class="r"><code># Post-processing and set-up for map --------------------------------------
 
-popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
-pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-key_network = key_network[pvars_key]
-
-# cols_status = c(&quot;blue&quot;, &quot;orange&quot;, tmaptools::get_brewer_pal(&quot;Accent&quot;, n = 3)[3])
-cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
 summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
 ##                    20                    24                    17</code></pre>
 <pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
-# idea: show spare lane segments not groups:
+# show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
 spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
 <pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
-<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
+<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;%
+  filter(spare_lane) %&gt;% 
+  mutate(Status = labels[2])
 # edge case: there are no spare lanes
 if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
+  spare_lanes = rg_new4 %&gt;%
+    top_n(n = 1, wt = width) %&gt;% 
+    mutate(Status = labels[2]) 
 }
-width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
-# edge case: there are no wide roads
-if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %&gt;% filter(width &gt; 10)
+# show wide segments not groups:
+# width_10m = r_lanes_final %&gt;% filter(Status == labels[1])
+wide_lane_groups = r_lanes_final %&gt;% filter(Status == labels[3])
+wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]</code></pre>
+<pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
+<pre class="r"><code>wide_lanes = wide_lane_segments %&gt;%
+  filter(width &gt;= 10 &amp; !idGlobal %in% spare_lanes$idGlobal) %&gt;% 
+  mutate(Status = labels[3])
+# edge case: there are no wide lanes
+if(nrow(wide_lanes) == 0) {
+  wide_lanes = rg_new4 %&gt;%
+    top_n(n = 1, wt = width) %&gt;% 
+    mutate(Status = labels[3]) 
 }
+spare_wide_lanes = rbind(wide_lanes, spare_lanes)
+
 tmap_mode(&quot;view&quot;)</code></pre>
 <pre><code>## tmap mode set to interactive viewing</code></pre>
-<pre class="r"><code>m =
-  tm_shape(key_network, name = &quot;Key network&quot;) +
+<pre class="r"><code>popup.vars = c(
+  &quot;name&quot;,
+  &quot;ref&quot;,
+  &quot;spare_lane&quot;,
+  &quot;Estimated width&quot;,
+  &quot;mean_cycling_potential&quot;,
+  &quot;length (m)&quot;
+)
+pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
+key_network = key_network[pvars_key]
+legend_labels = c(&quot;Key cycle routes&quot;, cycleways_name, labels[1], labels[2], labels[3])
+cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
+legend_colours = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)
+
+m =
+  tm_shape(lads, name = &quot;Local authority district boundaries&quot;) + tm_borders() +
+  tm_shape(key_network, name = &quot;Key cycle routes&quot;) +
   tm_lines(lwd = 5, col = &quot;darkgrey&quot;, popup.vars = pvars_key) +
+  tm_shape(spare_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[2], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[2]
+           ) +
+  tm_shape(wide_lanes, name = labels[2]) +
+  tm_lines(legend.col.show = FALSE,
+           col = cols_status[3], 
+           lwd = 3,
+           alpha = 1,
+           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;),
+           group = labels[3]
+  ) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c(&quot;surface&quot;, &quot;name&quot;, &quot;osm_id&quot;), col = &quot;darkgreen&quot;, lwd = 1.3) +
   tm_shape(top_routes, name = &quot;Top routes&quot;) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[1], 
            lwd = 5,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = popup.vars
-           ) +
-  tm_shape(spare_lanes, name = labels[2]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[2], 
-           lwd = 3,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[3], 
-           lwd = 3,
-           # scale = 5,
            alpha = 1,
            popup.vars = popup.vars
   ) +
-
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = &quot;fill&quot;, labels = c(&quot;Key network&quot;, cycleways_name, labels[1], labels[2], labels[3]), col = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)) +
+  tm_add_legend(type = &quot;fill&quot;, labels = legend_labels[1:3], col = legend_colours[1:3]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[2], col = legend_colours[4], group = labels[2]) +
+  tm_add_legend(type = &quot;fill&quot;, labels = labels[3], col = legend_colours[5], group = labels[3]) +
   tm_scale_bar() 
 # m
-m_leaflet = tmap_leaflet(m)
+m_leaflet = tmap_leaflet(m) %&gt;% leaflet::hideGroup(labels[2:3])
 # htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
 # system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
 # browseURL(&quot;/tmp/m.html&quot;)
 
 res_table = r_lanes_top %&gt;% 
   sf::st_drop_geometry() %&gt;% 
-  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
+  select(
+    Name = name,
+    Reference = ref,
+    `Continuous length (m)` = group_length,
+    `Cycling potential` = mean_cycling_potential,
+    `Length * potential (km)` = km_cycled
+    ) 
 res_table</code></pre>
 <pre><code>## # A tibble: 20 x 5
-##    name               ref     length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;              &lt;chr&gt;    &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Nantwich Road      &quot;A534&quot;    1931                    165       319
-##  2 Wilmslow Road      &quot;B5358&quot;   1204                    163       196
-##  3 London Road South  &quot;A523&quot;    1429                    157       224
-##  4 Crewe Road         &quot;A534&quot;    3195                    150       479
-##  5 West Street        &quot;A532&quot;     508                    294       149
-##  6 Haslington By-pass &quot;A534&quot;    3849                    103       396
-##  7 West Street        &quot;A532&quot;     830                    121       100
-##  8 London Road        &quot;A523&quot;    6967                     81       564
-##  9 Chester Road       &quot;A537&quot;    1376                     79       109
-## 10 Manchester Road    &quot;&quot;        1033                     78        81
-## 11 London Road North  &quot;A523&quot;    1387                     78       108
-## 12 Crewe Road         &quot;B5338&quot;    647                    120        78
-## 13 Cumberland Street  &quot;A537&quot;    2015                     62       125
-## 14 Park Lane          &quot;A536&quot;    1205                     57        69
-## 15 Chelford Road      &quot;A537&quot;    7470                     52       388
-## 16 Chester Road       &quot;A54&quot;      970                     51        49
-## 17 A523               &quot;A523&quot;    1101                     49        54
-## 18 Pendleton Way      &quot;A34&quot;     2341                     45       105
-## 19 Sandbach Road      &quot;A534&quot;    1585                     44        70
-## 20 Chelford Road      &quot;B5359&quot;    735                     53        39</code></pre>
+##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Nantwich Road      &quot;A534&quot;                       1931                 165                       319
+##  2 Wilmslow Road      &quot;B5358&quot;                      1204                 163                       196
+##  3 London Road South  &quot;A523&quot;                       1429                 157                       224
+##  4 Crewe Road         &quot;A534&quot;                       3195                 150                       479
+##  5 West Street        &quot;A532&quot;                        508                 294                       149
+##  6 Haslington By-pass &quot;A534&quot;                       3849                 103                       396
+##  7 West Street        &quot;A532&quot;                        830                 121                       100
+##  8 London Road        &quot;A523&quot;                       6967                  81                       564
+##  9 Chester Road       &quot;A537&quot;                       1376                  79                       109
+## 10 Manchester Road    &quot;&quot;                           1033                  78                        81
+## 11 London Road North  &quot;A523&quot;                       1387                  78                       108
+## 12 Crewe Road         &quot;B5338&quot;                       647                 120                        78
+## 13 Cumberland Street  &quot;A537&quot;                       2015                  62                       125
+## 14 Park Lane          &quot;A536&quot;                       1205                  57                        69
+## 15 Chelford Road      &quot;A537&quot;                       7470                  52                       388
+## 16 Chester Road       &quot;A54&quot;                         970                  51                        49
+## 17 A523               &quot;A523&quot;                       1101                  49                        54
+## 18 Pendleton Way      &quot;A34&quot;                        2341                  45                       105
+## 19 Sandbach Road      &quot;A534&quot;                       1585                  44                        70
+## 20 Chelford Road      &quot;B5359&quot;                       735                  53                        39</code></pre>
 <pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
 

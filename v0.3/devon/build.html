@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-05-29" />
+<meta name="date" content="2020-05-30" />
 
 <title>build.R</title>
 
@@ -378,646 +378,64 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-05-29</h4>
+<h4 class="date">2020-05-30</h4>
 
 </div>
 
 
-<pre class="r"><code># aim: output results highlighting and ranking roads that have &#39;spare lanes&#39;
-
-# global parameters ----------------------------------------------------------
-library(DescTools)
-library(sf)
-library(tidyverse)
-library(tmap)
-library(pct)
-library(stplanr)
-if(!exists(&quot;s&quot;)) {
-  message(&quot;Loading global parameters&quot;)  
-  s = c(
-    `Grey basemap` = &quot;Esri.WorldGrayCanvas&quot;,
-    `PCT commuting, Government Target` = &quot;https://npttile.vs.mythic-beasts.com/commute/v2/govtarget/{z}/{x}/{y}.png&quot;,
-    `PCT schools, Government Target` = &quot;https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png&quot;,
-    `PCT commuting, Ebikes, ` = &quot;https://npttile.vs.mythic-beasts.com/commute/v2/ebike/{z}/{x}/{y}.png&quot;,
-    `PCT schools, Go Dutch, ` = &quot;https://npttile.vs.mythic-beasts.com/school/v2/dutch/{z}/{x}/{y}.png&quot;,
-    `Existing cycleways and cycle lanes` = &quot;https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png&quot;,
-    `Satellite image` = &quot;https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}&#39;&quot;
-  )
-  tms = c(FALSE, TRUE, TRUE, TRUE, TRUE, FALSE, FALSE)
-  # test basemap:
-  tmap_mode(&quot;view&quot;)
-  if(!exists(&quot;parameters&quot;)) {
-    parameters = read_csv(&quot;input-data/parameters.csv&quot;)
-  }
-  
-  # read-in national data ---------------------------------------------------
-  # see preprocess.R for data origins
-  if(!exists(&quot;regions&quot;)) regions = readRDS(&quot;regions_dft.Rds&quot;)
-  rj_all = readRDS(&quot;rj.Rds&quot;)
-  region_names = regions$Name
-  # hospitals:
-  hsf = readRDS(&quot;hsf.Rds&quot;)
-  nrow(regions)
-  cycleways_en = readRDS(&quot;cycleways_en.Rds&quot;)
-  tm_shape(regions) + tm_polygons(alpha = 0.1) + tm_basemap(s, tms = tms) # check basemaps
-  
-  # get pct data
-  rnet_url = &quot;https://github.com/npct/pct-outputs-national/raw/master/commute/lsoa/rnet_all.Rds&quot;
-  rnet_url_school = &quot;https://github.com/npct/pct-outputs-national/raw/master/school/lsoa/rnet_all.Rds&quot;
-  rnet_all = sf::st_as_sf(readRDS(url(rnet_url)))
-  rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
-}
-
-# local parameters --------------------------------------------------------
-# i = 1
-if(!exists(&quot;region_name&quot;)) {
-  region_name = &quot;West Yorkshire&quot;
-}
-if(region_name == &quot;Nottingham&quot;) {
-  region = regions %&gt;% filter(str_detect(string = Name, pattern = &quot;Nott&quot;)) %&gt;% 
-    st_union()
-} else {
-  region = regions %&gt;% filter(Name == region_name)
-}
-# time consuming: ~1 minute
-rj = rj_all[region, ]</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code># h_city = hsf[region, ]
-i = which(parameters$name %in% region_name)
-if(length(i) == 0) i = 1
-p = parameters[i, ]
-list2env(p, envir = .GlobalEnv)</code></pre>
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
-<pre class="r"><code># additional parameters ---------------------------------------------------
-
-is_city = FALSE 
-pct_dist_within = 50 
-r_min_width_highlighted = 10
-# min_cycling_potential = 5
-# min_grouped_cycling_potential = 30
-# min_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.5)
-# min_grouped_cycling_potential = quantile(x = rj$cycling_potential, probs = 0.8)
-# Select cycling potential thresholds based on max potential
-# 1000 for West Yorkshire, 200 for Rutland
-max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
-min_cycling_potential = round(max_cycling_potential_99th / 250)
-min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
-n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
-
-# buffers -----------------------------------------------------------------
-if(is_city) {
-  city_centre = tmaptools::geocode_OSM(region_name, as.sf = TRUE)
-  city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
-  h_city = hsf[city_centre_buffer, ]
-  h_city_buffer = stplanr::geo_buffer(h_city, dist = key_destination_buffer_radius)
-  city_key_buffer = st_union(city_centre_buffer, st_union(h_city_buffer))
-  r_main_region = rj[city_key_buffer, ]
-} else {
-  city_key_buffer = sf::st_geometry(region)
-  r_main_region = rj
-}
-
-r_main_region$cycling_potential = r_main_region$pctgov
-
-
-# Combine commute and schools route networks ----------------------------------------
-
-rnet_all = rnet_all %&gt;%
-  select(local_id, govtarget_slc)
-rnet_all_school = rnet_all_school %&gt;%
-  select(local_id, govtarget_slc)
-
-# Filter by region
-rnet_reg = rnet_all %&gt;% st_intersects(region)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>reg_logical = lengths(rnet_reg) &gt; 0
-rnet_done = rnet_all[reg_logical, ]
-
-rnet_school_reg = rnet_all_school %&gt;% st_intersects(region)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>reg_school_logical = lengths(rnet_school_reg) &gt; 0
-rnet_school_done = rnet_all_school[reg_school_logical, ]
-
-# Combine the two
-combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
-rnet_combined = stplanr::overline2(x = sf::st_cast(combine, &quot;LINESTRING&quot;), attrib = &quot;govtarget_slc&quot;)</code></pre>
-<pre><code>## 2020-05-29 11:30:01 constructing segments</code></pre>
-<pre><code>## 2020-05-29 11:30:02 building geometry</code></pre>
-<pre><code>## 2020-05-29 11:30:07 simplifying geometry</code></pre>
-<pre><code>## large data detected, using regionalisation, nrow = 155948</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## 2020-05-29 11:30:14 regionalisation complete, aggregating flows</code></pre>
-<pre><code>## 2020-05-29 11:30:17 rejoining segments into linestrings</code></pre>
-<pre class="r"><code># Link the updated cycle potential to the road widths ---------------------
-
-# pct_dist_within at 50 is probably too high
-buff_dist = 10
-rnet_buff = geo_buffer(shp = rnet_combined, dist = buff_dist)
-
-r_cyipt_joined = st_join(r_main_region, rnet_buff, join = st_within)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
-<pre class="r"><code>dupes = r_cyipt_joined[duplicated(r_cyipt_joined$idGlobal) | duplicated(r_cyipt_joined$idGlobal, fromLast = TRUE), ]
-dupes_max = dupes %&gt;% 
-  st_drop_geometry() %&gt;% 
-  group_by(idGlobal) %&gt;%
-  summarise(cycling_potential_max = max(govtarget_slc)) 
-
-r_joined = left_join(r_cyipt_joined, dupes_max, by = &quot;idGlobal&quot;) %&gt;%
-  mutate(cycling_potential = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), pctgov, govtarget_slc), cycling_potential_max),
-         cycling_potential_source = ifelse(is.na(cycling_potential_max), ifelse(is.na(govtarget_slc), &quot;cyipt&quot;, &quot;updated&quot;), &quot;updated_duplicate&quot;))
-
-r_positive = r_joined[which(r_joined$cycling_potential &gt; 0),] %&gt;%
-  distinct(.keep_all = TRUE) # remove the duplicates
-
-r_main_region = r_positive
-
-# Identify key corridors --------------------------------------------------
-min_pct_99th_percentile = quantile(r_main_region$cycling_potential, probs = 0.99)
-min_pct_90th_percentile = quantile(r_main_region$cycling_potential, probs = 0.90)
-min_pct_85th_percentile = quantile(r_main_region$cycling_potential, probs = 0.85)
-
-r_high_pct_99th = r_main_region %&gt;%
-  filter(cycling_potential &gt; min_pct_99th_percentile)
-table(r_high_pct_99th$ref) # many unnamed</code></pre>
 <pre><code>## 
 ##       A3015 A3125  A377  A379 B3123 
 ##   282     2     5    20     6     3</code></pre>
-<pre class="r"><code># mapview::mapview(r_high_pct_99th)
-# r_high_pct_90th = r_main_region %&gt;%
-#   filter(cycling_potential &gt; min_pct_90th_percentile)
-# mapview::mapview(r_high_pct_90th)
-r_high_pct_85th = r_main_region %&gt;%
-  filter(cycling_potential &gt; min_pct_85th_percentile)
-# mapview::mapview(r_high_pct_85th)
-
-r_named_ref = r_high_pct_85th %&gt;% 
-  filter(ref != &quot;&quot; &amp; name != &quot;&quot;) 
-
-# identify key road references:
-top_refs_table = sort(table(r_named_ref$ref), decreasing = TRUE)
-key_corridor_names = names(head(top_refs_table, n = n_top_roads))
-r_key_corridors = r_named_ref %&gt;% filter(ref %in% key_corridor_names)
-r_high_not_in_key_corridors = r_high_pct_99th %&gt;% filter(! ref %in% key_corridor_names)
-r_key_network_all = rbind(r_high_not_in_key_corridors, r_key_corridors)
-
-r_key_buffer = stplanr::geo_buffer(r_key_network_all, dist = 50)
-touching_list = st_intersects(r_key_buffer)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-r_key_network_all$group = components$membership
-# mapview::mapview(r_key_network_all, zcol = &quot;group&quot;)
-group_table = sort(table(r_key_network_all$group), decreasing = TRUE)
-# select groups to include with careful selection of n
-# see https://github.com/cyipt/popupCycleways/issues/38
-length(group_table)</code></pre>
 <pre><code>## [1] 81</code></pre>
-<pre class="r"><code>groups_to_include = names(group_table[group_table &gt; n_top_roads])
-r_key_network_igroups = r_key_network_all %&gt;% 
-  filter(group %in% groups_to_include)
-# mapview::mapview(r_key_network_igroups)
-
-r_key_network = r_key_network_igroups %&gt;% 
-  group_by(group) %&gt;% 
-  summarise(
-    group_length = sum(length),
-    km_cycled_potential = weighted.mean(cycling_potential, length)
-    ) %&gt;% 
-  ungroup() %&gt;% 
-  filter(group_length &gt; min_grouped_length) %&gt;% 
-  st_cast(&quot;LINESTRING&quot;)</code></pre>
-<pre><code>## Warning in st_cast.sf(., &quot;LINESTRING&quot;): repeating attributes for all sub-geometries for which they may not be constant</code></pre>
-<pre class="r"><code>summary(r_key_network$group_length)</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     579    1943    4857    4635    8335    8335</code></pre>
-<pre class="r"><code># mapview::mapview(r_key_network, zcol = &quot;km_cycled_potential&quot;)
-
-# r_key_network_buffer_small = stplanr::geo_buffer(r_key_network, dist = 10)
-r_key_network_buffer = stplanr::geo_buffer(r_key_network, dist = 1000)
-r_key_network_buffer_large = stplanr::geo_buffer(r_key_network, dist = 2000)
-# mapview::mapview(r_key_network, zcol = &quot;km_cycled_potential&quot;)
-# r_in_key_network = r_high_pct_90th[r_key_network, , op = st_within]
-# mapview::mapview(r_in_key_network)
-r_key_roads = r_main_region %&gt;%
-  filter(ref %in% key_corridor_names)
-# mapview::mapview(r_key_roads)
-r_key_roads_near = r_key_roads[r_key_network_buffer_large, ]</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code># mapview::mapview(r_key_roads_near)
-r_high_g_not_ref = r_key_network_igroups %&gt;% filter(! ref %in% key_corridor_names)
-r_key_roads_plus_high_pct = rbind(r_key_roads_near, r_high_g_not_ref[-ncol(r_high_g_not_ref)])
-# mapview::mapview(r_key_roads_plus_high_pct)
-
-# tackle the issue of isolated segments
-r_key_buffer = stplanr::geo_buffer(r_key_roads_plus_high_pct, dist = 10)
-touching_list = st_intersects(r_key_buffer)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-r_key_roads_plus_high_pct$group = components$membership
-group_table = sort(table(r_key_roads_plus_high_pct$group), decreasing = TRUE)
-# select groups to include with careful selection of n
-# see https://github.com/cyipt/popupCycleways/issues/38
-
-key_network = r_key_roads_plus_high_pct %&gt;%
-  group_by(group) %&gt;% 
-  mutate(group_length = sum(length)) %&gt;% 
-  filter(group_length &gt; 5 * min_grouped_length)
-# mapview::mapview(key_network)
-# tm_shape(key_network) + tm_lines(lwd = &quot;mean_width&quot;, scale = 7, col = &quot;lightsalmon2&quot;)
-
-# Identify roads with spare space ---------------------------------------
-
-r_lanes_all = r_main_region %&gt;% 
-  filter(cycling_potential &gt; min_cycling_potential) %&gt;% # min_cycling_potential = 0 so this simply selects multilane roads
-  mutate(spare_lane = lanes_f &gt; 1 | lanes_b &gt; 1) %&gt;% 
-  filter(spare_lane | width &gt;= 9)
-
-# Optionally remove areas outside key network:
-# r_lanes_all = r_lanes_all[r_key_network_buffer_large, ]
-# mapview::mapview(r_lanes_all)
-buff_dist_large = 100
-r_lanes_all_buff = geo_buffer(shp = r_lanes_all, dist = buff_dist_large)
-touching_list = st_intersects(r_lanes_all_buff)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-r_lanes_all$group = components$membership
-# mapview::mapview(r_lanes_all[&quot;group&quot;])
-
-r_linestrings_with_ref = r_lanes_all %&gt;%
-  filter(ref != &quot;&quot;)
-
-# Roads with no ref -------------------------------------------------------
-
-min_cycling_potential_without_ref = 30
-r_linestrings_without_ref =  r_lanes_all %&gt;%
-  filter(ref == &quot;&quot;) %&gt;% 
-  filter(cycling_potential &gt;= min_cycling_potential_without_ref)
-r_linestrings_without_ref_buff = geo_buffer(shp = r_linestrings_without_ref, dist = 20)
-touching_list = st_intersects(r_linestrings_without_ref_buff)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-r_linestrings_without_ref$nogroup = components$membership
-
-# mapview::mapview(r_linestrings_without_ref[&quot;nogroup&quot;], lwd = 3)
-
-# Remove groups with length &lt;300m (20m buffer). (these are groups consisting purely of road segments with no ref) this is stricter than for roads with refs, because otherwise too many short segments are picked up. 
-r_linestrings_without_ref2 = r_linestrings_without_ref %&gt;%
-  group_by(nogroup) %&gt;%
-  mutate(
-    group_length = round(sum(length)),
-    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE))
-    ) %&gt;% 
-  filter(group_length &gt;= 300) %&gt;%
-  filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;%  # this is currently 50
-  ungroup() %&gt;% 
-  select(-nogroup, -group_length, -mean_cycling_potential)
-# mapview::(no_ref_grouped[&quot;mean_cycling_potential&quot;])
-
-r_lanes = rbind(r_linestrings_with_ref, r_linestrings_without_ref2)
-# mapview::mapview(r_lanes)
-
-gs = unique(r_lanes$ref)
-# i = g[2]
-i = &quot;A4174&quot;
-
-# create per ref groups
-rg_list = lapply(gs, FUN = function(i) {
-  rg = r_lanes %&gt;% filter(ref == i)
-  # mapview::mapview(rg)
-  r_lanes_all_buff = rg %&gt;%
-    st_transform(27700) %&gt;%
-    st_buffer(buff_dist_large) %&gt;%
-    st_transform(4326)
-  touching_list = st_intersects(r_lanes_all_buff)
-  g = igraph::graph.adjlist(touching_list)
-  components = igraph::components(g)
-  rg$ig = components$membership
-  rg
-})</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar
-## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>rg_new = do.call(rbind, rg_list)
-# mapview::mapview(rg_new)
-
-# Only keep groups of sufficient width and cycling potential
-rg_new2 = rg_new %&gt;% 
-  group_by(ig, group, ref) %&gt;%
-  mutate(
-    mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
-    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
-    majority_spare_lane = sum(length[spare_lane]) &gt; sum(length[!spare_lane])
-    ) %&gt;%
-  filter(mean_width &gt;= 10 | majority_spare_lane) %&gt;%
-  filter(mean_cycling_potential &gt;= min_grouped_cycling_potential) %&gt;%
-  ungroup()
-# mapview::mapview(rg_new2)
-
-rg_buff = geo_buffer(shp = rg_new2, dist = buff_dist_large)
-touching_list = st_intersects(rg_buff)</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-rg_new2$lastgroup = components$membership
-
-# Only keep segments which are part of a wider group (including roads with different refs/names) of &gt;500m length (100m buffer)
-rg_new3 = rg_new2 %&gt;% 
-  group_by(lastgroup) %&gt;%
-  mutate(last_length = round(sum(length))) %&gt;%
-  filter(last_length &gt;= min_grouped_length) %&gt;% 
-  ungroup()
-
-# mapview::mapview(rg_new3)
-# create a new group to capture long continuous sections with the same name
-min_length_named_road = 1000
-rg_new4 = rg_new3 %&gt;% 
-  group_by(ref, group, ig, name) %&gt;% 
-  mutate(long_named_section = case_when(
-    sum(length) &gt; min_length_named_road &amp; name != &quot;&quot; ~ name,
-    TRUE ~ &quot;Other&quot;
-  )
-  ) %&gt;% 
-  ungroup()
-# Only one group (meaning no impact on results) in many regions:
-table(rg_new4$long_named_section)</code></pre>
 <pre><code>## 
-##     Alphington Road    Atlantic Highway    Devon Expressway        Exmouth Road  Hellevoetsluis Way    Hill Barton Road         Marldon Way 
-##                  38                  21                  20                  19                   7                  21                   5 
-##          New Street          North Road               Other         Pinhoe Road          Rydon Lane South Devon Highway      Tavistock Road 
-##                  19                   6                 833                  24                  27                   5                   5 
-##        Torquay Road 
-##                  28</code></pre>
-<pre class="r"><code># find group membership of top named roads
-r_lanes_grouped2 = rg_new4 %&gt;% 
-  group_by(ref, group, ig, long_named_section) %&gt;% 
-  summarise(
-    name = case_when(
-      length(table(name)) &gt; 4 ~ &quot;Unnamed road&quot;,
-      names(table(name))[which.max(table(name))] != &quot;&quot; ~
-        names(table(name))[which.max(table(name))],
-      names(table(ref))[which.max(table(ref))] != &quot;&quot; ~
-        names(table(ref))[which.max(table(ref))],
-      TRUE ~ &quot;Unnamed road&quot;
-      ), 
-    group_length = round(sum(length)),
-    mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
-    mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
-    majority_spare_lane = sum(length[spare_lane]) &gt; sum(length[!spare_lane])
-  ) %&gt;% 
-  filter(mean_cycling_potential &gt; min_grouped_cycling_potential | group_length &gt; min_grouped_length) %&gt;%
-  ungroup() %&gt;% 
-  mutate(group_id = 1:nrow(.))
-# mapview::mapview(r_lanes_grouped2, zcol = &quot;mean_cycling_potential&quot;)
-# mapview::mapview(r_lanes_grouped2, zcol = &quot;name&quot;)
-
-# Generate lists of top segments ------------------------------------------------------------
-
-cycleways = cycleways_en[region, ]</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersects assumes that they are planar</code></pre>
-<pre class="r"><code>cycleways = cycleways %&gt;% select(surface, name, lit, osm_id)
-cycleway_buffer = stplanr::geo_buffer(cycleways, dist = pct_dist_within) %&gt;% sf::st_union()
-
-r_lanes_grouped_in_cycleway = st_intersection(r_lanes_grouped2, cycleway_buffer) %&gt;% 
-  mutate(length_in_cycleway = round(as.numeric(st_length(.)))) </code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_intersection assumes that they are planar</code></pre>
-<pre><code>## Warning: attribute variables are assumed to be spatially constant throughout all geometries</code></pre>
-<pre class="r"><code># mapview::mapview(r_lanes_grouped_in_cycleway[&quot;length_in_cycleway&quot;]) +
-#   mapview::mapview(cycleways)
-r_lanes_grouped_in_cycleway = r_lanes_grouped_in_cycleway %&gt;% 
-  st_drop_geometry() 
-
-minp_exclude = 0.8
-r_lanes_joined = left_join(r_lanes_grouped2, r_lanes_grouped_in_cycleway) %&gt;% 
-  mutate(km_cycled = round(mean_cycling_potential * group_length / 1000)) </code></pre>
-<pre><code>## Joining, by = c(&quot;ref&quot;, &quot;group&quot;, &quot;ig&quot;, &quot;long_named_section&quot;, &quot;name&quot;, &quot;group_length&quot;, &quot;mean_cycling_potential&quot;, &quot;mean_width&quot;, &quot;majority_spare_lane&quot;, &quot;group_id&quot;)</code></pre>
-<pre class="r"><code>r_lanes_joined$length_in_cycleway[is.na(r_lanes_joined$length_in_cycleway)] = 0
-r_lanes_joined$proportion_on_cycleway = r_lanes_joined$length_in_cycleway / r_lanes_joined$group_length
-summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1</code></pre>
+##     Alphington Road    Atlantic Highway    Devon Expressway        Exmouth Road  Hellevoetsluis Way    Hill Barton Road 
+##                  38                  21                  20                  19                   7                  21 
+##         Marldon Way          New Street          North Road               Other         Pinhoe Road          Rydon Lane 
+##                   5                  19                   6                 833                  24                  27 
+## South Devon Highway      Tavistock Road        Torquay Road 
+##                   5                   5                  28</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ## 0.00000 0.00000 0.04403 0.24645 0.46811 1.00388</code></pre>
-<pre class="r"><code># mapview::mapview(r_lanes_joined[&quot;proportion_on_cycleway&quot;])
-
-# we need to add in all segments within the grey key roads, and usethe combined dataset to pick the top routes 
-r_lanes_top = r_lanes_joined %&gt;%
-  # filter(name != &quot;Unnamed road&quot; &amp; ref != &quot;&quot;) %&gt;%
-  filter(name != &quot;Unnamed road&quot;) %&gt;%
-  filter(group_length &gt; min_grouped_length) %&gt;%
-  filter(mean_cycling_potential &gt; min_grouped_cycling_potential) %&gt;% 
-  filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %&gt;% 
-  filter(proportion_on_cycleway &lt; minp_exclude) %&gt;% 
-  mutate(
-    length_up_to_1km = if_else(group_length &gt; 1000, true = 1000, false = group_length),
-    km_cycled_1km = length_up_to_1km * mean_cycling_potential
-    ) %&gt;% 
-  arrange(desc(km_cycled_1km)) %&gt;% 
-  slice(1:n_top_roads)
-nrow(r_lanes_top)</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre class="r"><code>r_lanes_top %&gt;% sf::st_drop_geometry()</code></pre>
 <pre><code>## # A tibble: 30 x 15
-##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id length_in_cycle… km_cycled
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-##  1 A3125     4     2 Other            Bick…          710              224         10 FALSE                  19               62       159
-##  2 A377    150     3 Alphington Road  Alph…         1312              150          9 TRUE                   30              574       197
-##  3 B3212   147     2 Pinhoe Road      Pinh…         1333               88         12 FALSE                  73              699       117
-##  4 A386    595    17 Tavistock Road   Tavi…         1315               73          8 TRUE                   54              168        96
-##  5 B3174   153     5 Other            B3174         1842               67          9 TRUE                   64             1437       123
-##  6 A386    595    17 Other            A386          1337               59          9 FALSE                  53                0        79
-##  7 B3123   150     1 Other            Alph…         1683               59         10 FALSE                  62              733        99
-##  8 A376    162     2 Other            A376          1178               53          8 TRUE                   27              564        62
-##  9 A39      14     2 Atlantic Highway Atla…         2557               53          9 TRUE                   58              160       136
-## 10 A377    150     4 Other            Cowl…          611               86         10 FALSE                  32               20        53
-## # … with 20 more rows, and 3 more variables: proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
-<pre class="r"><code># classify roads to visualise
-labels = c(&quot;Top route&quot;, &quot;Spare lane(s)&quot;, &quot;Estimated width &gt; 10m&quot;)
-cycleways_name = &quot;Existing cycleways (500 m+)&quot;
-
-r_lanes_final = r_lanes_joined %&gt;% 
-  mutate(
-    Status = case_when(
-      group_id %in% r_lanes_top$group_id ~ labels[1],
-      majority_spare_lane ~ labels[2],
-      mean_width &gt;= 10 ~ labels[3]
-    ),
-    `Estimated width` = case_when(
-      mean_width &lt; 10 ~ &quot;&lt;10 m&quot;,
-      mean_width &gt;= 10 &amp; mean_width &lt; 15 ~ &quot;10-15 m&quot;,
-      mean_width &gt;= 15 ~ &quot;&gt;15 m&quot;
-    )
-  ) %&gt;% 
-  select(name, ref, Status, mean_cycling_potential, spare_lane = majority_spare_lane, `Estimated width`, `length (m)` = group_length, group_id)
-r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels[2], labels[3]))
-
-table(r_lanes_final$Status)</code></pre>
+##    ref   group    ig long_named_sect… name  group_length mean_cycling_po… mean_width majority_spare_… group_id
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt; &lt;lgl&gt;               &lt;int&gt;
+##  1 A3125     4     2 Other            Bick…          710              224         10 FALSE                  19
+##  2 A377    150     3 Alphington Road  Alph…         1312              150          9 TRUE                   30
+##  3 B3212   147     2 Pinhoe Road      Pinh…         1333               88         12 FALSE                  73
+##  4 A386    595    17 Tavistock Road   Tavi…         1315               73          8 TRUE                   54
+##  5 B3174   153     5 Other            B3174         1842               67          9 TRUE                   64
+##  6 A386    595    17 Other            A386          1337               59          9 FALSE                  53
+##  7 B3123   150     1 Other            Alph…         1683               59         10 FALSE                  62
+##  8 A376    162     2 Other            A376          1178               53          8 TRUE                   27
+##  9 A39      14     2 Atlantic Highway Atla…         2557               53          9 TRUE                   58
+## 10 A377    150     4 Other            Cowl…          611               86         10 FALSE                  32
+## # … with 20 more rows, and 5 more variables: length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
+## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
 ##             Top route         Spare lane(s) Estimated width &gt; 10m 
 ##                    30                    12                    34</code></pre>
-<pre class="r"><code>summary(factor(r_lanes_final$Status))</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
 ##                    30                    12                    34</code></pre>
-<pre class="r"><code># Post-processing and set-up for map --------------------------------------
-
-popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;spare_lane&quot;, &quot;Estimated width&quot;, &quot;mean_cycling_potential&quot;, &quot;length (m)&quot;)
-pvars_key = c(&quot;ref&quot;, &quot;name&quot;, &quot;highway_type&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-key_network = key_network[pvars_key]
-
-# cols_status = c(&quot;blue&quot;, &quot;orange&quot;, tmaptools::get_brewer_pal(&quot;Accent&quot;, n = 3)[3])
-cols_status = c(&quot;blue&quot;, &quot;#B91F48&quot;, &quot;#FF7F00&quot;)
-summary(r_lanes_final$Status)</code></pre>
 <pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
 ##                    30                    12                    34</code></pre>
-<pre class="r"><code>top_routes = r_lanes_final %&gt;% filter(Status == labels[1])
-# idea: show spare lane segments not groups:
-spare_lane_groups = r_lanes_final %&gt;% filter(Status == labels[2])
-spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]</code></pre>
-<pre><code>## although coordinates are longitude/latitude, st_within assumes that they are planar</code></pre>
-<pre class="r"><code>spare_lanes = spare_lane_segments %&gt;% filter(spare_lane)
-# edge case: there are no spare lanes
-if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %&gt;% top_n(n = 1, wt = width)
-}
-width_10m = r_lanes_final %&gt;% filter(Status == labels[3])
-# edge case: there are no wide roads
-if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %&gt;% filter(width &gt; 10)
-}
-tmap_mode(&quot;view&quot;)</code></pre>
-<pre><code>## tmap mode set to interactive viewing</code></pre>
-<pre class="r"><code>m =
-  tm_shape(key_network, name = &quot;Key network&quot;) +
-  tm_lines(lwd = 5, col = &quot;darkgrey&quot;, popup.vars = pvars_key) +
-  tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c(&quot;surface&quot;, &quot;name&quot;, &quot;osm_id&quot;), col = &quot;darkgreen&quot;, lwd = 1.3) +
-  tm_shape(top_routes, name = &quot;Top routes&quot;) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[1], 
-           lwd = 5,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = popup.vars
-           ) +
-  tm_shape(spare_lanes, name = labels[2]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[2], 
-           lwd = 3,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = c(&quot;name&quot;, &quot;ref&quot;, &quot;maxspeed&quot;, &quot;cycling_potential&quot;, &quot;n_lanes&quot;)
-           ) +
-  tm_shape(width_10m, name = labels[3]) +
-  tm_lines(legend.col.show = FALSE,
-           col = cols_status[3], 
-           lwd = 3,
-           # scale = 5,
-           alpha = 1,
-           popup.vars = popup.vars
-  ) +
-
-  tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = &quot;fill&quot;, labels = c(&quot;Key network&quot;, cycleways_name, labels[1], labels[2], labels[3]), col = c(&quot;darkgrey&quot;, &quot;darkgreen&quot;, cols_status)) +
-  tm_scale_bar() 
-# m
-m_leaflet = tmap_leaflet(m)
-# htmlwidgets::saveWidget(m_leaflet, &quot;/tmp/m.html&quot;)
-# system(&quot;ls -hal /tmp/m.html&quot;) # 15 MB for West Yorkshire
-# browseURL(&quot;/tmp/m.html&quot;)
-
-res_table = r_lanes_top %&gt;% 
-  sf::st_drop_geometry() %&gt;% 
-  select(name, ref, length = group_length, mean_cycling_potential, km_cycled) 
-res_table</code></pre>
 <pre><code>## # A tibble: 30 x 5
-##    name               ref   length mean_cycling_potential km_cycled
-##  * &lt;chr&gt;              &lt;chr&gt;  &lt;dbl&gt;                  &lt;dbl&gt;     &lt;dbl&gt;
-##  1 Bickington Road    A3125    710                    224       159
-##  2 Alphington Road    A377    1312                    150       197
-##  3 Pinhoe Road        B3212   1333                     88       117
-##  4 Tavistock Road     A386    1315                     73        96
-##  5 B3174              B3174   1842                     67       123
-##  6 A386               A386    1337                     59        79
-##  7 Alphin Brook Road  B3123   1683                     59        99
-##  8 A376               A376    1178                     53        62
-##  9 Atlantic Highway   A39     2557                     53       136
-## 10 Cowley Bridge Road A377     611                     86        53
+##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Bickington Road    A3125                         710                 224                       159
+##  2 Alphington Road    A377                         1312                 150                       197
+##  3 Pinhoe Road        B3212                        1333                  88                       117
+##  4 Tavistock Road     A386                         1315                  73                        96
+##  5 B3174              B3174                        1842                  67                       123
+##  6 A386               A386                         1337                  59                        79
+##  7 Alphin Brook Road  B3123                        1683                  59                        99
+##  8 A376               A376                         1178                  53                        62
+##  9 Atlantic Highway   A39                          2557                  53                       136
+## 10 Cowley Bridge Road A377                          611                  86                        53
 ## # … with 20 more rows</code></pre>
-<pre class="r"><code># knitr::kable(res_table, caption = &quot;The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.&quot;, digits = 0)</code></pre>
 
 
 
