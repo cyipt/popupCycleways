@@ -69,7 +69,7 @@ The maps contain five layers of data that overlay the basemaps.
 
 Click on any of these layers to see a pop-up box containing more information about the road in question.
 
-## 1. Cohesive network
+## 1. Key cycle routes
 
 This layer is designed to represent a cohesive network of direct routes.
 It shows what a joined-up cycle network could look like if there were no constraints on road space, along some of the most important corridors.
