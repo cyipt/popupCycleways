@@ -471,13 +471,13 @@ popup.vars = c(
 )
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
 key_network = key_network[pvars_key]
-legend_labels = c("Key cycle routes", cycleways_name, labels[1], labels[2], labels[3])
+legend_labels = c("Cohesive network", cycleways_name, labels[1], labels[2], labels[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
 legend_colours = c("darkgrey", "darkgreen", cols_status)
 
 m =
   tm_shape(lads, name = "Local authority district boundaries") + tm_borders() +
-  tm_shape(key_network, name = "Key cycle routes") +
+  tm_shape(key_network, name = "Cohesive network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(spare_lanes, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
