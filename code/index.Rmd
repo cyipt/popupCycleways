@@ -27,7 +27,7 @@ source("code/build.R")
 
 Not quality assured.
 
-Please provide feedback on these preliminary results on this [web form (estimated time to complete: 5 minites)](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=).
+Please provide feedback on these preliminary results on this [web form (estimated time to complete: 5 minutes)](https://forms.office.com/Pages/ResponsePage.aspx?id=qO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u).
 
 # Introduction
 
@@ -37,9 +37,9 @@ The evidence may be used to support a range of temporary, experimental and perma
 
 Maps are available for regions covering the whole of England. 
 
-The focus is on roads the either have a spare lane or that have an estimated width of above 10 m, *and* high cycling potential.
-The 10 m width is an indicator of road conditions and larger widths, of 15+ m, may be required for road space reallocation without other changes such as making roads one way for motor traffic or removing central markings as described in , depending on factors such as on street parking levels.
-The work is based evidence that road space can be reallocated without causing congestion at a time when traffic levels, particularly during the rush hours, are greatly reduced.
+The focus is on roads that have 'spare space' (defined as those with a spare lane or that have an estimated width of above 10 m) and high cycling potential.
+The 10 m width is an indicator of road conditions and larger widths, of 15+ m, may be required for road space reallocation without other changes such as making roads one way for motor traffic or removing central markings as described in a paper by Stella Shackel and John Parkin ([2014](https://doi.org/10.1016/j.aap.2014.08.015)).
+Which roads to prioritise and the most effective interventions will also depend on factors such as on street parking levels not present in the analysis.
 
 Reallocating roadspace is just one of the measures available for transport authorities.
 Other approaches include modal filters, road closures, and the creation of bus, walking and cycling only streets, as well as speed limits and traffic calming measures. Used strategically, a combination of these measures can promote active travel through the creation of filtered permeability networks and Low Traffic Neighbourhoods.
@@ -49,6 +49,9 @@ However, roadspace reallocation is naturally suited to larger arterial-type road
 The cycling potential of each road is based on data from the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/) for further details) and represents the number of one way cycle trips to work and school that could be expected when the [Government's aim of doubling cycling is met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
 The scenario assumes cycling grows evenly nationwide accounting for distance and hilliness.
 Our figures include data on travel to work from 2011 Census data and travel to school. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
+
+Overall the evidence presented in the tool is designed to encourage bold interventions where more space for active modes is most needed.
+The work is based evidence that road space can be reallocated without causing congestion at a time when traffic levels, particularly during the rush hours, are greatly reduced.
 
 # How to use the tool
 
@@ -95,11 +98,11 @@ We used certain eligibility criteria for the top routes:
 - unnamed roads cannot be a top route 
 - routes less than 500m in length cannot be a top route
 
-## 3. Spare lane(s) (not shown be default)
+## 3. Spare lane(s) (not shown by default)
 
 These are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
 
-## 4. Width >= 10m  
+## 4. Width >= 10m (not shown by default)
 
 These routes are at least 10m in width and have a cycling potential above the minimum threshold. 
 
@@ -122,7 +125,7 @@ A further basemap option shows all existing cycleways, including on-road cycle l
 
 <!-- Like many projects that have been initiated in response to COVID-19 we have developed the analy -->
 
-If you find any other issues with the results or have suggestions of ways to improve the results, please provide feedback on the [web form](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=).
+If you find any other issues with the results or have suggestions of ways to improve the results, please provide feedback on the [web form](https://forms.office.com/Pages/ResponsePage.aspx?id=qO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u).
 If you are interested in the code underlying the project and would like to support the project with technical input, please provide feedback via the [GitHub issue tracker (requires a GitHub account)](https://github.com/cyipt/popupCycleways/issues).
 
 
