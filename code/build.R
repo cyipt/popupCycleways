@@ -441,7 +441,7 @@ r_lanes_final = r_lanes_joined %>%
     Status = case_when(
       group_id %in% r_lanes_top$group_id ~ labels[1],
       majority_spare_lane ~ labels[2],
-      mean_width >= 10 ~ labels[3]
+      mean_width >= 10 & ! majority_spare_lane ~ labels[3]
     ),
     `Estimated width` = case_when(
       mean_width < 10 ~ "<10 m",
@@ -476,7 +476,8 @@ if(nrow(spare_lanes) == 0) {
 wide_lane_groups = r_lanes_final %>% filter(Status == labels[3])
 wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]
 wide_lanes = wide_lane_segments %>%
-  filter(width >= 10 & !idGlobal %in% spare_lanes$idGlobal) %>% 
+  # filter(width >= 10 & !idGlobal %in% spare_lanes$idGlobal) %>% 
+  filter(width >= 10) %>% 
   mutate(Status = labels[3])
 # edge case: there are no wide lanes
 if(nrow(wide_lanes) == 0) {
