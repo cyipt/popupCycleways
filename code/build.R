@@ -473,10 +473,12 @@ if(nrow(spare_lanes) == 0) {
 }
 # show wide segments not groups:
 # width_10m = r_lanes_final %>% filter(Status == labels[1])
-wide_lane_groups = r_lanes_final %>% filter(Status == labels[3])
+wide_lane_groups = r_lanes_final %>% 
+  filter(`Estimated width` != "<10 m") %>%
+  filter(Status != labels[1])
 wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]
 wide_lanes = wide_lane_segments %>%
-  # filter(width >= 10 & !idGlobal %in% spare_lanes$idGlobal) %>% 
+  filter(!idGlobal %in% spare_lanes$idGlobal) %>% 
   filter(width >= 10) %>% 
   mutate(Status = labels[3])
 # edge case: there are no wide lanes
