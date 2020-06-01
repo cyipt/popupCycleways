@@ -479,7 +479,7 @@ wide_lane_groups = r_lanes_final %>%
 wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]
 wide_lanes = wide_lane_segments %>%
   filter(!idGlobal %in% spare_lanes$idGlobal) %>% 
-  filter(width >= 10) %>% 
+  filter(width >= 10 | spare_lane == TRUE) %>% 
   mutate(Status = labels[3])
 # edge case: there are no wide lanes
 if(nrow(wide_lanes) == 0) {
