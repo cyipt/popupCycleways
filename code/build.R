@@ -379,7 +379,9 @@ r_lanes_grouped2 = rg_new4 %>%
       TRUE ~ case_when(
         names(table(ref))[which.max(table(ref))] != "" ~
           names(table(ref))[which.max(table(ref))],
-        TRUE ~ "Unnamed road")
+        TRUE ~ case_when(
+          names(desc(table(ref)))[2] != "NA" ~ paste("(",names(desc(table(ref)))[2],")"),
+          TRUE ~ "Unnamed road"))
       ), 
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
