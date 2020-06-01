@@ -27,7 +27,7 @@ source("code/build.R")
 
 Not quality assured.
 
-Please provide feedback on these preliminary results on this [web form (estimated time to complete: 5 minites)](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=).
+Please provide feedback on these preliminary results on this [web form (estimated time to complete: 5 minutes)](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=).
 
 # Introduction
 
@@ -95,11 +95,11 @@ We used certain eligibility criteria for the top routes:
 - unnamed roads cannot be a top route 
 - routes less than 500m in length cannot be a top route
 
-## 3. Spare lane(s) (not shown be default)
+## 3. Spare lane(s) (not shown by default)
 
 These are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
 
-## 4. Width >= 10m  
+## 4. Width >= 10m (not shown by default)
 
 These routes are at least 10m in width and have a cycling potential above the minimum threshold. 
 
