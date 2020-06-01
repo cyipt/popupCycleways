@@ -112,3 +112,5 @@ pvars = c("url", "Name")
 tm_shape(regions_dft) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
 
 saveRDS(regions_dft, "regions_dft.Rds")
+piggyback::pb_upload("regions_dft.Rds", "cyipt/cyipt-phase-1-data")
+piggyback::pb_upload("lads.Rds", "cyipt/cyipt-phase-1-data")

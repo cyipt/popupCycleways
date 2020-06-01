@@ -31,23 +31,34 @@ Please provide feedback on these preliminary results on this [web form (estimate
 
 # Introduction
 
-The aim of this tool is to help reveal the locations that have the greatest potential for new cycleways. It should be used together with local knowledge, to prioritise where to install rapid measures to support safe travel as part of the COVID-19 response. We anticipate that this may be used in the development of a range of temporary, experimental and longer term measures to make the streets safer for us all, as new travel patterns and behaviours emerge in the coming weeks and months.
+This tool helps identify road sections for road space reallocation and other interventions to create new cycleways.
+Used with local knowledge, it provides a strong evidence base to support planning of rapid measures to support safe travel as part of the COVID-19 response.
+The evidence may be used to support a range of temporary, experimental and permanent treatments that will enable shift to walking and cycling in the coming weeks and months, to help overcome capacity constraints on public transport modes and prevent gridlock as the lockdown eases.
 
 Maps are available for regions covering the whole of England. 
 
-We have focused on roads which are sufficiently wide that part of the road space could potentially be reallocated to provide additional space for active transport without preventing traffic movement. In identifying these locations, we have not taken average traffic volumes into account. The pandemic has had a severe impact on movement and traffic flows are currently below normal levels. Instead, we simply identify streets that have multiple vehicle lanes or a carriageway width of greater than 10m. 
+The focus is on roads the either have a spare lane or that have an estimated width of above 10 m, *and* high cycling potential.
+The 10 m width is an indicator of road conditions and larger widths, of 15+ m, may be required for road space reallocation without other changes such as making roads one way for motor traffic or removing central markings as described in , depending on factors such as on street parking levels.
+The work is based evidence that road space can be reallocated without causing congestion at a time when traffic levels, particularly during the rush hours, are greatly reduced.
 
-Reallocating roadspace is just one of the measures available for transport authorities. Other approaches include modal filters, road closures, and the creation of bus, walking and cycling only streets, as well as speed limits and traffic calming measures. Used strategically, a combination of these measures can promote active travel through the creation of filtered permeability networks and Low Traffic Neighbourhoods. For certain types of area, such as residential zones, this may be the most suitable approach. However, roadspace reallocation is naturally suited to larger arterial-type roads and that is the focus of this tool.
+Reallocating roadspace is just one of the measures available for transport authorities.
+Other approaches include modal filters, road closures, and the creation of bus, walking and cycling only streets, as well as speed limits and traffic calming measures. Used strategically, a combination of these measures can promote active travel through the creation of filtered permeability networks and Low Traffic Neighbourhoods.
+For certain types of area, such as residential zones, this may be the most suitable approach.
+However, roadspace reallocation is naturally suited to larger arterial-type roads and that is the focus of this tool.
 
 The cycling potential of each road is based on data from the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/) for further details) and represents the number of one way cycle trips to work and school that could be expected when the [Government's aim of doubling cycling is met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
 The scenario assumes cycling grows evenly nationwide accounting for distance and hilliness.
 Our figures include data on travel to work from 2011 Census data and travel to school. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
 
+# How to use the tool
+
 To use the evidence generated for this project:
 
 - Type in the name of the local authority of interest into the search bar above the table below and click on the associated URL.
-- Explore the results in the map (you will find a link to a full screen map) and the table of 'top roads' which can be ranked in various ways with reference to descriptions of the map layers described below.
+- Explore the results in the map (you will find a link to a full screen map) by panning, zooming and clicking on the layers. See additional layers by clicking on the layers icon in the top left of the map.
+- Rank the 'top roads' in various ways (including by length and cycling potential) to support prioritisation of road space reallocation schemes.
 - Interpret the results with care based on other sources of information and an understanding of the limitations of the analysis (see 'Known issues and limitations' below).
+- Refer to the description of the map layers below when exploring the results and complete the [web form](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=) with any feedback.
 
 # Map layers
 
@@ -84,7 +95,7 @@ We used certain eligibility criteria for the top routes:
 - unnamed roads cannot be a top route 
 - routes less than 500m in length cannot be a top route
 
-## 3. Spare lane(s)
+## 3. Spare lane(s) (not shown be default)
 
 These are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
 
@@ -135,7 +146,7 @@ regions = regions %>%
   filter(stringr::str_detect(string = Name, "Scilly", negate = TRUE))
 regions %>%
   sf::st_drop_geometry() %>%
-  filter(html_name %in% built_regions) 
+  filter(html_name %in% built_regions) %>% 
   select(Name, Level, url) %>% 
   arrange(Name) %>% 
   DT::datatable(escape = -4)
