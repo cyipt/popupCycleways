@@ -55,4 +55,5 @@ saveRDS(cy, "cy.Rds")
 saveRDS(rj, "rj.Rds") # 300 MB file
 rj_sample = rj %>% sample_n(1000)
 mapview::mapview(rj_sample) # national coverage
+system("ls -hal *.Rds")
 piggyback::pb_upload("rj.Rds", "cyipt/cyipt-phase-1-data")

@@ -32,13 +32,13 @@ city_buffer = city_centre %>%
 osm_spare_city = sf::st_intersection(osm_spare_lanes, city_buffer)
 osm_cycleways_city = sf::st_intersection(osm_cycleways, city_buffer) %>%
   mutate(n_lanes = 1) %>%
-  select(name, highway, n_lanes, maxspeed)
+  select(name, highway, n_lanes, maxspeed, oneway)
 osm_spare_clean = osm_spare_city %>%
   select(name, highway, n_lanes, maxspeed, oneway) %>%
   filter((n_lanes >= 2 & oneway == "yes") | (n_lanes >= 3)) %>% 
   filter(highway != "residential") %>% 
   filter(highway != "unclassified") %>% 
-  filter(highway != "motorway") %>% 
+  filter(highway != "motorway") 
   
 
 names(osm_cycleways_city)
@@ -53,3 +53,4 @@ tm_shape(osm_popup) +
   tm_lines(col = "highway", lwd = "n_lanes", scale = 5) +
   tm_scale_bar() +
   tm_basemap(server = s)
+

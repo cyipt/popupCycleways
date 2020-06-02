@@ -4,15 +4,15 @@ title: "Methods to prioritise pop-up active transport infrastructure"
 author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith"
 # output: bookdown::github_document2
 # output: bookdown::html_document2
-output:
-  bookdown::pdf_document2:
-    keep_tex: true
+# output:
+#   bookdown::pdf_document2:
+#     keep_tex: true
 # bibliography: references.bib
 bibliography: ref.bib
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE, out.width = "100%")
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = FALSE, out.width = "100%")
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
@@ -98,6 +98,8 @@ knitr::include_graphics("saferstreets.png")
 library(sf)
 library(tidyverse)
 library(tmap)
+region_name = "West Yorkshire"
+source("code/build.R")
 if(!file.exists("rsf_leeds.Rds")) {
   u = "https://github.com/cyipt/popupCycleways/releases/download/0.1/rsf_leeds.Rds"
   download.file(u, "rsf_leeds.Rds")
