@@ -332,6 +332,8 @@ r_lanes = rbind(rg_new2, r_linestrings_without_ref2)
 # mapview::mapview(r_lanes)
 
 
+# Remove segments not part of a wider group (500m+) -----------------------
+
 rg_buff = geo_buffer(shp = r_lanes, dist = buff_dist_large)
 touching_list = st_intersects(rg_buff)
 g = igraph::graph.adjlist(touching_list)
@@ -346,6 +348,19 @@ rg_new3 = r_lanes %>%
   ungroup()
 
 # mapview::mapview(rg_new3)
+
+
+# Split long roads (with or without ref) into suitable sections -----------
+
+# Select roads with group2_length > 2km
+
+# Incrementally split into named sections (longest first) if each named section is > min_grouped_length (500m) and/or contiguous using buff_dist_large (100m). Identify which named sections touch one another (20m buffer) and use this to arrange the groups.
+
+# If that's not possible, split using 50m buffer, if each section is > min_grouped_length (500m). Or identify the longest gap within the group
+
+# If that's not possible, split at midpoint(s), or use cycling potential
+
+
 # create a new group to capture long continuous sections with the same name
 min_length_named_road = 1000
 rg_new4 = rg_new3 %>% 
@@ -359,6 +374,8 @@ rg_new4 = rg_new3 %>%
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)
 
+
+# Name the groups and calculate stats -------------------------------------
 
 
 # find group membership of top named roads
