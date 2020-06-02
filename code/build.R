@@ -359,7 +359,10 @@ rg_new3 = r_lanes %>%
 # If that's not possible, split using 50m buffer, if each section is > min_grouped_length (500m). Or identify the longest gap within the group
 
 # If that's not possible, split at midpoint(s), or use cycling potential
+short_roads = rg_new3 %>%
+  filter(group2_length <= 2000)
 
+rg_new4 = rbind()
 
 # create a new group to capture long continuous sections with the same name
 min_length_named_road = 1000

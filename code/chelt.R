@@ -54,7 +54,7 @@ lg_new2 = lg_new %>%
     ) %>%
   st_transform(27700)
 
-groups(lg_new2)
+# groups(lg_new2)
 
 # Find the centroid of each section
 lg_c = sf::st_centroid(lg_new2)
@@ -64,7 +64,7 @@ lg_c = sf::st_centroid(lg_new2)
 
 # If the shortest section is < min_grouped_length (500m), join it together with the section with the closest centroid. Recalculate the length and centroid of this new section. 
 # Keep going until all sections are >500m (since this is the minimum length required for top routes) 
-summary(lg_new2$group3_length)
+# summary(lg_new2$group3_length)
 while (min(lg_c$group3_length) < min_grouped_length) {
   shortest = NULL
   nearest = NULL
@@ -99,22 +99,28 @@ while (min(lg_c$group3_length) < min_grouped_length) {
   if(length(mindist) > 1) mindist = mindist[1]
   
   lg_new2$group3_length[lg_new2$group3 == near$group3[mindist]] =
-    sum(shortest_segment$group3_length, nearest_l$group3_length)
-  nearest_l$geometry = sf::st_union(
-    shortest_segment$geometry,
-    sf::st_cast(nearest_l$geometry, "LINESTRING")
+    sum(shortest_segment$group3_length, lg_new2$group3_length[lg_new2$group3 == near$group3[mindist]])
+  # lg_new2$geometry[lg_new2$group3 == near$group3[mindist]] =
+  #   sf::st_union(
+  #   shortest_segment$geometry,
+  #   sf::st_cast(lg_new2$geometry[lg_new2$group3 == near$group3[mindist]], "LINESTRING")
+  #   )
+  lg_new2$geometry[lg_new2$group3 == near$group3[mindist]] =
+    sf::st_union(
+    shortest_segment$geometry, lg_new2$geometry[lg_new2$group3 == near$group3[mindist]]
     )
   
+  lg_c[lg_c$group3 == near$group3[mindist],] =
+    sf::st_centroid(lg_new2[lg_new2$group3 == near$group3[mindist],])
+  
   lg_new2 = lg_new2 %>%
-    filter(group3 != shortest_segment$group3, group3 != nearest_l$group3) %>%
-    rbind(new_joined)
+    filter(group3 != shortest_segment$group3) 
   lg_c = lg_c %>%
-    filter(group3 != shortest$group3, group3 != nearest$group3) %>%
-    rbind(new_c)
+    filter(group3 != shortest_centroid$group3)
 }
 
-lg_new2
-lg_c
+# mapview(lg_new2)
+# mapview(lg_c)
 
 lg_new2 = lg_new2 %>%
   st_transform(4326)
