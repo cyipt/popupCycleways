@@ -57,7 +57,7 @@ if(region_name == "Nottingham") {
 } else {
   region = regions %>% filter(Name == region_name)
 }
-if(as.numeric(sf::st_area(region)) < 5000000000) {
+if(as.numeric(sf::st_area(region)) < 3000000000) {
   region = stplanr::geo_buffer(region, dist = 1000)
 }
 
@@ -293,7 +293,7 @@ r_linestrings_without_ref2 = r_linestrings_without_ref %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>%  # this varies by region
   filter(mean_width >= 10 | majority_spare_lane) %>%
   ungroup() 
-# mapview::(no_ref_grouped["mean_cycling_potential"])
+# mapview::mapview(r_linestrings_without_ref2, zcol = "mean_cycling_potential")
 
 # Roads with a ref --------------------------------------------------------
 
@@ -339,7 +339,7 @@ rg_new2 = rg_new %>%
 
 # Now rejoin the roads with no ref together with the roads with a ref
 r_lanes = rbind(rg_new2, r_linestrings_without_ref2)
-# mapview::mapview(r_lanes)
+# mapview::mapview(r_lanes, zcol = "group2")
 
 gs = unique(r_lanes$ref)
 # i = g[2]
@@ -389,7 +389,7 @@ rg_new3 = rg_new2 %>%
   filter(last_length >= min_grouped_length) %>% 
   ungroup()
 
-# mapview::mapview(rg_new3)
+# mapview::mapview(rg_new3, zcol = "lastgroup")
 # create a new group to capture long continuous sections with the same name
 min_length_named_road = min_grouped_length
 rg_new4 = rg_new3 %>%
@@ -400,6 +400,7 @@ rg_new4 = rg_new3 %>%
   )
   ) %>%
   ungroup()
+# mapview::mapview(rg_new4, zcol = "long_named_section")
 table(rg_new4$long_named_section)
 # new approach
 
@@ -425,13 +426,12 @@ long_list = lapply(lgs, FUN = function(i) {
 
 lg_new = do.call(rbind, long_list)
 
-other_roads = rg_new4[rg_new4$long_named_section == "Other", ]
-other_roads$long_named_group = NA
-rejoined = rbind(lg_new, other_roads)
-
+# other_roads = rg_new4[rg_new4$long_named_section == "Other", ]
+# other_roads$long_named_group = NA
+# rejoined = rbind(lg_new, other_roads)
 
 # find group membership of top named roads
-r_lanes_grouped2 = rejoined %>%
+r_lanes_grouped2 = lg_new %>%
   group_by(ref, group, ig, long_named_section, long_named_group) %>% 
   summarise(
     name = case_when(
