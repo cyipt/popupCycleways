@@ -252,7 +252,7 @@ r_linestrings_with_ref = r_lanes_all %>%
 
 # Roads with no ref -------------------------------------------------------
 
-min_cycling_potential_without_ref = 30
+min_cycling_potential_without_ref = min_cycling_potential * 5
 r_linestrings_without_ref =  r_lanes_all %>%
   filter(ref == "") %>% 
   filter(cycling_potential >= min_cycling_potential_without_ref)
@@ -275,7 +275,9 @@ r_linestrings_without_ref2 = r_linestrings_without_ref %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>%  # this is currently 50
   ungroup() %>% 
   select(-nogroup, -group_length, -mean_cycling_potential)
-# mapview::(no_ref_grouped["mean_cycling_potential"])
+# mapview::mapview(no_ref_grouped["mean_cycling_potential"])
+
+
 
 r_lanes = rbind(r_linestrings_with_ref, r_linestrings_without_ref2)
 # mapview::mapview(r_lanes)
@@ -313,7 +315,7 @@ rg_new2 = rg_new %>%
   filter(mean_width >= 10 | majority_spare_lane) %>%
   filter(mean_cycling_potential >= min_grouped_cycling_potential) %>%
   ungroup()
-# mapview::mapview(rg_new2)
+# mapview::mapview(rg_new2, zcol = "mean_cycling_potential")
 
 rg_buff = geo_buffer(shp = rg_new2, dist = buff_dist_large)
 touching_list = st_intersects(rg_buff)
@@ -330,7 +332,7 @@ rg_new3 = rg_new2 %>%
 
 # mapview::mapview(rg_new3)
 # create a new group to capture long continuous sections with the same name
-min_length_named_road = 1000
+min_length_named_road = 800
 rg_new4 = rg_new3 %>% 
   group_by(ref, group, ig, name) %>% 
   mutate(long_named_section = case_when(
@@ -341,7 +343,6 @@ rg_new4 = rg_new3 %>%
   ungroup()
 # Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)
-
 
 
 # find group membership of top named roads
@@ -392,6 +393,7 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 r_lanes_top = r_lanes_joined %>%
   # filter(name != "Unnamed road" & ref != "") %>%
   filter(name != "Unnamed road") %>%
+  filter(!str_detect(string = name, pattern = "^A[1-9]")) %>%
   filter(group_length > min_grouped_length) %>%
   filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
@@ -425,6 +427,7 @@ r_lanes_final = r_lanes_joined %>%
   select(name, ref, Status, mean_cycling_potential, spare_lane = majority_spare_lane, `Estimated width`, `length (m)` = group_length, group_id)
 r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels[2], labels[3]))
 
+table(r_lanes_final$name)
 table(r_lanes_final$Status)
 summary(factor(r_lanes_final$Status))
 
