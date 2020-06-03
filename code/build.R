@@ -375,8 +375,13 @@ long_list = lapply(lgs, FUN = function(i) {
 
 lg_new = do.call(rbind, long_list)
 
+other_roads = rg_new4[rg_new4$long_named_section == "Other", ]
+other_roads$long_named_group = NA
+rejoined = rbind(lg_new, other_roads)
+
+
 # find group membership of top named roads
-r_lanes_grouped2 = lg_new %>% 
+r_lanes_grouped2 = rejoined %>%
   group_by(ref, group, ig, long_named_section, long_named_group) %>% 
   summarise(
     name = case_when(
@@ -438,18 +443,18 @@ nrow(r_lanes_top)
 r_lanes_top %>% sf::st_drop_geometry()
 
 # remove any disconnected bits
-rg_buff = geo_buffer(shp = r_lanes_top, dist = buff_dist_large)
-touching_list = st_intersects(rg_buff)
-g = igraph::graph.adjlist(touching_list)
-components = igraph::components(g)
-rg_new2$lastgroup = components$membership
-
-# Only keep segments which are part of a wider group (including roads with different refs/names) of >500m length (100m buffer)
-rg_new3 = rg_new2 %>% 
-  group_by(lastgroup) %>%
-  mutate(last_length = round(sum(length))) %>%
-  filter(last_length >= min_grouped_length) %>% 
-  ungroup()
+# rg_buff = geo_buffer(shp = r_lanes_top, dist = buff_dist_large)
+# touching_list = st_intersects(rg_buff)
+# g = igraph::graph.adjlist(touching_list)
+# components = igraph::components(g)
+# rg_new2$lastgroup = components$membership
+# 
+# # Only keep segments which are part of a wider group (including roads with different refs/names) of >500m length (100m buffer)
+# rg_new3 = rg_new2 %>% 
+#   group_by(lastgroup) %>%
+#   mutate(last_length = round(sum(length))) %>%
+#   filter(last_length >= min_grouped_length) %>% 
+#   ungroup()
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
