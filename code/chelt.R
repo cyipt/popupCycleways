@@ -46,27 +46,34 @@ lg_new$il = NULL
 lg_new2 = lg_new %>% 
   group_by(group3) %>%
   mutate(
-    group3_length = sum(length)
+    group3_length = sum(length),
+    new_group3 = group3
   ) %>%
-  summarise(
-    group2 = first(group2),
-    group3_length = mean(group3_length)
-    ) %>%
+  # summarise(
+  #   group2 = first(group2),
+  #   group3_length = mean(group3_length),
+  #   new_group3 = first(new_group3)
+  #   ) %>%
   st_transform(27700)
 
 # groups(lg_new2)
 
 # Find the centroid of each section
-lg_c = sf::st_centroid(lg_new2)
+lg_c = lg_new2 %>%
+  group_by(new_group3) %>%
+  summarise(group2 = first(group2),
+            group3_length = mean(group3_length)) %>%
+  select(group2, group3_length, new_group3) %>%
+  sf::st_centroid() 
 
 
-# why are West Street group2 vanishing? "4 120 A38" all joined groups seem to be disappearing see mapview(lg_new2)
 
 # If the shortest section is < min_grouped_length (500m), join it together with the section with the closest centroid. Recalculate the length and centroid of this new section. 
 # Keep going until all sections are >500m (since this is the minimum length required for top routes) 
 # summary(lg_new2$group3_length)
 while (min(lg_c$group3_length) < min_grouped_length) {
-  shortest = NULL
+  shortest_segment = NULL
+  shortest_centroid = NULL
   nearest = NULL
   near = NULL
   mindist = NULL
@@ -82,7 +89,7 @@ while (min(lg_c$group3_length) < min_grouped_length) {
   if(dim(shortest_centroid)[1] > 1) shortest = shortest[1,]
   near = lg_c %>% 
     filter(group2 == shortest_centroid$group2) %>% 
-    filter(group3 != shortest_centroid$group3) # must remove the point itself from this group
+    filter(new_group3 != shortest_centroid$new_group3) # must remove the point itself from this group
   
   distances = NULL
   
@@ -98,25 +105,33 @@ while (min(lg_c$group3_length) < min_grouped_length) {
   mindist = which(distances == min(distances))
   if(length(mindist) > 1) mindist = mindist[1]
   
-  lg_new2$group3_length[lg_new2$group3 == near$group3[mindist]] =
-    sum(shortest_segment$group3_length, lg_new2$group3_length[lg_new2$group3 == near$group3[mindist]])
-  # lg_new2$geometry[lg_new2$group3 == near$group3[mindist]] =
-  #   sf::st_union(
-  #   shortest_segment$geometry,
-  #   sf::st_cast(lg_new2$geometry[lg_new2$group3 == near$group3[mindist]], "LINESTRING")
-  #   )
-  lg_new2$geometry[lg_new2$group3 == near$group3[mindist]] =
+  lg_new2$group3_length[(lg_new2$new_group3 == near$new_group3[mindist]) | lg_new2$new_group3 == shortest_segment$new_group3] =
+    sum(mean(shortest_segment$group3_length), mean(lg_new2$group3_length[lg_new2$new_group3 == near$new_group3[mindist]]))
+
+  lg_new2$geometry[(lg_new2$new_group3 == near$new_group3[mindist]) | lg_new2$new_group3 == shortest_segment$new_group3] =
     sf::st_union(
-    shortest_segment$geometry, lg_new2$geometry[lg_new2$group3 == near$group3[mindist]]
+    shortest_segment$geometry, lg_new2$geometry[lg_new2$new_group3 == near$new_group3[mindist]]
     )
+
+  lg_new2$new_group3[lg_new2$new_group3 == shortest_segment$new_group3] = 
+    lg_new2$new_group3[lg_new2$new_group3 == near$new_group3[mindist]]
   
-  lg_c[lg_c$group3 == near$group3[mindist],] =
-    sf::st_centroid(lg_new2[lg_new2$group3 == near$group3[mindist],])
+  lg_c[(lg_c$new_group3 == near$new_group3[mindist]),] =
+    lg_new2 %>% filter(new_group3 == near$new_group3[mindist]) %>%
+    group_by(group2, group3_length, new_group3) %>%
+    summarise() %>%
+    sf::st_centroid()
   
-  lg_new2 = lg_new2 %>%
-    filter(group3 != shortest_segment$group3) 
+  # lg_c[lg_c$new_group3 == shortest_centroid$new_group3, ] =
+  #   lg_new2 %>% filter(new_group3 == near$new_group3[mindist]) %>%
+  #   group_by(group2, group3_length, new_group3) %>%
+  #   summarise() %>%
+  #   sf::st_centroid(lg_new2[lg_new2$new_group3 == near$new_group3[mindist],])
+  
+  # lg_new2 = lg_new2 %>%
+  #   filter(new_group3 != shortest_segment$new_group3) 
   lg_c = lg_c %>%
-    filter(group3 != shortest_centroid$group3)
+    filter(new_group3 != shortest_centroid$new_group3)
 }
 
 # mapview(lg_new2)
@@ -125,5 +140,11 @@ while (min(lg_c$group3_length) < min_grouped_length) {
 lg_new2 = lg_new2 %>%
   st_transform(4326)
 
+lg_segments = st_join(lg_new, lg_new2, op = st_covered_by)
+
+# lg_new2 = lg_new2 %>%
+#   st_drop_geometry()
+
+# lg_segments = inner_join(lg_new, lg_new2, by = c("group2", "group3"))
 
 
