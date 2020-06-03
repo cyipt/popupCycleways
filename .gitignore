@@ -12,3 +12,6 @@ popupCycleways/
 *._files/
 article_cache/
 *.tar
+*.pdf
+*.tex
+*.gpkg
