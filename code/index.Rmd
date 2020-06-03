@@ -23,12 +23,6 @@ tmap_mode("view")
 source("code/build.R")
 ```
 
-# NOTE: PRELIMINARY RESULTS
-
-Not quality assured.
-
-Please provide feedback on these preliminary results on this [web form (estimated time to complete: 5 minutes)](https://forms.office.com/Pages/ResponsePage.aspx?id=qO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u).
-
 # Introduction
 
 This tool helps identify road sections for road space reallocation and other interventions to create new cycleways.
@@ -143,13 +137,13 @@ tm_shape(regions) + tm_polygons("Level", popup.vars = pvars)
 ```
 
 ```{r}
-dn = "popupCycleways/v0.3" # dirctory name
+dn = "popupCycleways/v1" # dirctory name
 built_regions = list.files(dn)
 regions = regions %>% 
   filter(stringr::str_detect(string = Name, "Scilly", negate = TRUE))
 regions %>%
   sf::st_drop_geometry() %>%
-  filter(html_name %in% built_regions) %>% 
+  # filter(html_name %in% built_regions) %>% 
   select(Name, Level, url) %>% 
   arrange(Name) %>% 
   DT::datatable(escape = -4)
@@ -171,7 +165,7 @@ regions_containing_names = names(regions_within_names)
 names(regions_containing_names) = regions_within_names
 
 rn = "West of England"
-for(rn in region_names_to_build[50:nrow(regions)]) {
+for(rn in region_names_to_build) {
   region = regions %>% filter(Name == rn)
   if(rn %in% c(regions_within_names)) {
     region$geometry = sf::st_union(

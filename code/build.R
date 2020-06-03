@@ -52,11 +52,12 @@ if(!exists("region_name")) {
 }
 if(region_name == "Nottingham") {
   region = regions %>% filter(str_detect(string = Name, pattern = "Nott")) %>% 
+    st_geometry() %>% 
     st_union()
 } else {
   region = regions %>% filter(Name == region_name)
 }
-lads_centroids = lads_all_centroids[region, ]
+lads_centroids = lads_all_centroids[region$geometry, ]
 lads = lads_all %>% filter(Name %in% lads_centroids$Name)
 if(nrow(lads) == 0) {
   lads = region
@@ -83,6 +84,7 @@ r_min_width_highlighted = 10
 max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
 min_cycling_potential = round(max_cycling_potential_99th / 250)
 min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
+min_top_cycling_potential = min_grouped_cycling_potential + 10
 n_top_roads = (1 + round(nrow(rj) / 60000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -119,7 +121,7 @@ rnet_school_done = rnet_all_school[reg_school_logical, ]
 
 # Combine the two
 combine = rbind(rnet_done, rnet_school_done) # change to rbindlist
-rnet_combined = stplanr::overline2(x = sf::st_cast(combine, "LINESTRING"), attrib = "govtarget_slc")
+rnet_combined = stplanr::overline2(sf::st_cast(combine, "LINESTRING"), attrib = "govtarget_slc")
 
 # Link the updated cycle potential to the road widths ---------------------
 
@@ -225,7 +227,14 @@ group_table = sort(table(r_key_roads_plus_high_pct$group), decreasing = TRUE)
 key_network = r_key_roads_plus_high_pct %>%
   group_by(group) %>% 
   mutate(group_length = sum(length)) %>% 
-  filter(group_length > 5 * min_grouped_length)
+  filter(group_length > 5 * min_grouped_length) %>% 
+  mutate(
+    `Estimated width` = case_when(
+      width < 10 ~ "<10 m",
+      width >= 10 & width < 15 ~ "10-15 m",
+      width >= 15 ~ ">15 m"
+    )
+  ) 
 # mapview::mapview(key_network)
 # tm_shape(key_network) + tm_lines(lwd = "mean_width", scale = 7, col = "lightsalmon2")
 
@@ -395,7 +404,7 @@ r_lanes_top = r_lanes_joined %>%
   filter(name != "Unnamed road") %>%
   filter(!str_detect(string = name, pattern = "^A[1-9]")) %>%
   filter(group_length > min_grouped_length) %>%
-  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
+  filter(mean_cycling_potential > min_top_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
   mutate(
@@ -472,15 +481,15 @@ popup.vars = c(
   "mean_cycling_potential",
   "length (m)"
 )
-pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes")
-key_network = key_network[pvars_key]
+pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes", "Estimated width")
+key_network_final = key_network[pvars_key]
 legend_labels = c("Cohesive network", cycleways_name, labels[1], labels[2], labels[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
 legend_colours = c("darkgrey", "darkgreen", cols_status)
 
 m =
   tm_shape(lads, name = "Local authority district boundaries") + tm_borders() +
-  tm_shape(key_network, name = "Cohesive network") +
+  tm_shape(key_network_final, name = "Cohesive network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
   tm_shape(spare_lanes, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,

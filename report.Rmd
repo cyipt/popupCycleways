@@ -38,7 +38,7 @@ Light segregation infrastructure such as flexible plastic wands (illustrated in 
 knitr::include_graphics("figures/cycleway-image.jpg")
 ```
 
-The £250m released by the Emergency Active Travel Fund will be spent in three broad ways:
+The £250m released by the Emergency Active Travel Fund will be spent in three broad [ways](https://www.transportxtra.com/publications/local-transport-today/news/65661/dft-releases-first-45m-of-250m-fund/):
 
 - The first tranche: £45m released on 1^st^ June, is for swift interventions that must be implemented by the end of June
 - The second tranche: £180m will be released later in the summer for more permanent measures
