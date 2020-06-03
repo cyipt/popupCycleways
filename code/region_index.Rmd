@@ -15,14 +15,19 @@ library(tmap)
 tmap_mode("view")
 ```
 
-The map shows a network of key roads with high cycling potential (grey), existing off road cycleways (and shared space paths) according to OpenStreetMap data (green) and top road sections with high cycling potential and spare lanes or estimated width above 10m (blue).
+The map shows three key layers:
+
+1. The **Existing cycleways** layer provides an approximation of where cycling infrastructure exists **in the recent past** and is intended to help identify gaps in the network that could be filled with new interventions.
+2. The **Top ranked new cycleways** layer is the central result of the analysis, providing a list of roads that have high cycling potential, a minimum threshold length, and spare space according to our definition. These may be strong candidates for reallocation of road space **immediately or in the near future** to create new cycleways on strategic corridors under the first and second tranches of funding.
+3. The **Cohesive network** layer is intended to show what a joined-up cycle network could look like, if road space was not a constraint on creating new infrastructure. Composed of roads that have high cycling potential on some or all of their length, the layer is designed to guide **long term planning** towards a continuous and coherent network.
+
 To see additional layers showing road sections with 'spare lanes' and width greater than 10 m, click on the layers icon in the top left, just below the +/- buttons on the map.
 
 ```{r, out.width="100%"}
 knitr::include_url("m.html")
 ```
 
-See full map [here](m.html).
+See full map [here](m.html), and a more description of the layers and the methodology at [cyipt.bike/rapid](https://www.cyipt.bike/rapid/)
 
 The table below shows the top `r nrow(res_table)` roads, in terms of cycling potential and spare space criteria outlined on the landing page.
 The length refers to the continuous length of road.
