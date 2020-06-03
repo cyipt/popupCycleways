@@ -57,6 +57,10 @@ if(region_name == "Nottingham") {
 } else {
   region = regions %>% filter(Name == region_name)
 }
+if(as.numeric(sf::st_area(region)) < 5000000000) {
+  region = stplanr::geo_buffer(region, dist = 1000)
+}
+
 lads_centroids = lads_all_centroids[region$geometry, ]
 lads = lads_all %>% filter(Name %in% lads_centroids$Name)
 if(nrow(lads) == 0) {
