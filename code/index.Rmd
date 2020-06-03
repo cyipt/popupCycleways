@@ -153,10 +153,10 @@ regions %>%
 dir.create(dn)
 region_names_to_build = regions$Name
 # region_names_to_build = regions$Name[!regions$html_name %in% built_regions]
-# sample_to_build_regex = "west of|west y|west mid|hereford|nott|leic|manc|liv|cam"
-# region_names_to_build = regions %>% 
-#   filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>% 
-#   pull(Name)
+sample_to_build_regex = "west of|west y|west mid|hereford|nott|leic|manc|liv|cam|bright|suff"
+region_names_to_build = regions %>%
+  filter(grepl(pattern = sample_to_build_regex, x = Name, ignore.case = TRUE)) %>%
+  pull(Name)
 # region_names_to_build = c("West Yorkshire", "Nottingham")
 # region_names_to_build = c("Greater London", "Cambridgeshire")
 regions_within_names = c("Leicester", "Nottingham", "Derby", "Stoke-on-Trent")

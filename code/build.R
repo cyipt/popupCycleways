@@ -421,8 +421,13 @@ long_list = lapply(lgs, FUN = function(i) {
 
 lg_new = do.call(rbind, long_list)
 
+other_roads = rg_new4[rg_new4$long_named_section == "Other", ]
+other_roads$long_named_group = NA
+rejoined = rbind(lg_new, other_roads)
+
+
 # find group membership of top named roads
-r_lanes_grouped2 = lg_new %>% 
+r_lanes_grouped2 = rejoined %>%
   group_by(ref, group, ig, long_named_section, long_named_group) %>% 
   summarise(
     name = case_when(
