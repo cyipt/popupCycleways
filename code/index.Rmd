@@ -216,6 +216,11 @@ for(rn in region_names_to_build) {
   htmlwidgets::saveWidget(m_leaflet, file.path("~/cyipt/tempCycleways/", d, "m.html"))
   time_to_run = Sys.time() - t
   rmarkdown::render("code/region_index.Rmd", output_file = file.path("~/cyipt/tempCycleways/", d, "index.html"))
+  sf::write_sf(cycleways, file.path(d, "cycleways.geojson"))
+  sf::write_sf(top_routes, file.path(d, "top_routes.geojson"))
+  sf::write_sf(key_network_final, file.path(d, "cohesive_network.geojson"))
+  sf::write_sf(spare_lanes_final, file.path(d, "spare_lanes.geojson"))
+  sf::write_sf(wide_lanes_final, file.path(d, "wide_lanes.geojson"))
   message(round(time_to_run), " minutes to build ", rn)
 }
 rmarkdown::render("code/index.Rmd", output_dir = dn)

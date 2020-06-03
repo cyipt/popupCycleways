@@ -557,8 +557,11 @@ popup.vars = c(
   "mean_cycling_potential",
   "length (m)"
 )
-pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes", "Estimated width")
+pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes", "Estimated width", "maxspeed")
 key_network_final = key_network[pvars_key]
+pvars_spare = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes")
+spare_lanes_final = spare_lanes[pvars_spare]
+wide_lanes_final = wide_lanes[pvars_spare]
 legend_labels = c(cycleways_name, labels[1], "Cohesive network", labels[2], labels[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
 legend_colours = c("darkgreen", cols_status[1], "darkgrey", cols_status[2:3])
@@ -567,20 +570,20 @@ m =
   tm_shape(lads, name = "Local authority district boundaries") + tm_borders() +
   tm_shape(key_network_final, name = "Cohesive network") +
   tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
-  tm_shape(spare_lanes, name = labels[2]) +
+  tm_shape(spare_lanes_final, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[2], 
            lwd = 3,
            alpha = 1,
-           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes"),
+           popup.vars = pvars_spare,
            group = labels[2]
            ) +
-  tm_shape(wide_lanes, name = labels[2]) +
+  tm_shape(wide_lanes_final, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[3], 
            lwd = 3,
            alpha = 1,
-           popup.vars = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes"),
+           popup.vars = pvars_spare,
            group = labels[3]
   ) +
   tm_shape(cycleways, name = cycleways_name) + tm_lines(popup.vars = c("surface", "name", "osm_id"), col = "darkgreen", lwd = 1.3) +
