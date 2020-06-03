@@ -83,7 +83,7 @@ r_min_width_highlighted = 10
 max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
 min_cycling_potential = round(max_cycling_potential_99th / 250)
 min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
-n_top_roads = (1 + round(nrow(rj) / 80000)) * 10
+n_top_roads = (1 + round(nrow(rj) / 60000)) * 10
 
 # buffers -----------------------------------------------------------------
 if(is_city) {
