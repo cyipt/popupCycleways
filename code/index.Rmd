@@ -59,7 +59,7 @@ To use the evidence generated for this project:
 
 # Map layers
 
-The maps contain five layers of data that overlay the basemaps. 
+The maps contain five layers (two of which are hidden by default) that provide the results of our analysis, overlaying the basemaps. 
 
 Click on any of these layers to see a pop-up box containing more information about the road in question.
 
@@ -76,11 +76,12 @@ These segments are then joined together to form a continuous network.
 
 This layer shows existing cycleways. This may be helpful to view in connection with the other layers, because it can reveal where gaps in the existing cycle network could be filled by new infrastructure. This layer does not include some on-road cycle lanes or cycleways less than 500m in length, but these can be viewed in one of the basemap options (see below for more information about the basemaps).
 
-The following three layers are the central results of our analysis, representing the most promising locations for pop-up cycleways.
+The following three layers are the central results of our analysis, representing the most promising locations for new cycleways.
 
 ## 3. Top routes
 
-These are the top routes for pop-up cycleways according to our analysis. 
+These are the 'top n' road sections in terms of cycling potential with 'spare space' defined above.
+They may be suitable candidates for road space reallocation to create new cycleways. 
 These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. 
 For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the mean cycling potential multiplied by the length of the route. 
 Top routes are listed in the table below the map, so you can see more information on them. 
