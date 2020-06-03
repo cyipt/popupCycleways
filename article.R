@@ -3,7 +3,7 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TR
 
 
 ## ---- echo=FALSE, eval=FALSE-----------------------------------------------------------------
-## citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "ref.bib")
+## citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "refs.bib")
 ## wordcountaddin::word_count("article.Rmd")
 
 

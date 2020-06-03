@@ -2,12 +2,13 @@
 title: "Data analysis to prioritise new cycleways in response to COVID-19"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
 output: bookdown::pdf_document2
-bibliography: report-refs.bib
+bibliography: refs.bib
 ---
 
 ```{r, eval=FALSE, echo=FALSE}
-citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "report.Rmd", file = "report-refs.bib")
-citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "ref.bib")
+citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "report.Rmd", file = "refs.bib")
+citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "code/index.Rmd", file = "refs.bib")
+citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "refs.bib")
 browseURL("report.pdf")
 ```
 
