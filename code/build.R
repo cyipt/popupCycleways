@@ -489,8 +489,8 @@ nrow(r_lanes_top)
 r_lanes_top %>% sf::st_drop_geometry()
 
 # classify roads to visualise
-labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
-cycleways_name = "Existing off road cycleways"
+labels = c("Top ranked new cycleways", "Spare lane(s)", "Estimated width > 10m")
+cycleways_name = "Existing cycleways"
 
 r_lanes_final = r_lanes_joined %>% 
   mutate(
@@ -555,9 +555,9 @@ popup.vars = c(
 )
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes", "Estimated width")
 key_network_final = key_network[pvars_key]
-legend_labels = c("Cohesive network", cycleways_name, labels[1], labels[2], labels[3])
+legend_labels = c(cycleways_name, labels[1], "Cohesive network", labels[2], labels[3])
 cols_status = c("blue", "#B91F48", "#FF7F00")
-legend_colours = c("darkgrey", "darkgreen", cols_status)
+legend_colours = c("darkgreen", cols_status[1], "darkgrey", cols_status[2:3])
 
 m =
   tm_shape(lads, name = "Local authority district boundaries") + tm_borders() +
