@@ -84,7 +84,7 @@ r_min_width_highlighted = 10
 max_cycling_potential_99th = quantile(x = rj$cycling_potential, probs = 0.99)
 min_cycling_potential = round(max_cycling_potential_99th / 250)
 min_grouped_cycling_potential = round(max_cycling_potential_99th / 25)
-min_top_cycling_potential = min_grouped_cycling_potential + 10
+# min_top_cycling_potential = min_grouped_cycling_potential + 10
 n_top_roads = (1 + round(nrow(rj) / 60000)) * 10
 
 # buffers -----------------------------------------------------------------
@@ -341,22 +341,43 @@ rg_new3 = rg_new2 %>%
 
 # mapview::mapview(rg_new3)
 # create a new group to capture long continuous sections with the same name
-min_length_named_road = 800
-rg_new4 = rg_new3 %>% 
-  group_by(ref, group, ig, name) %>% 
+min_length_named_road = min_grouped_length
+rg_new4 = rg_new3 %>%
+  group_by(ref, group, ig, name) %>%
   mutate(long_named_section = case_when(
     sum(length) > min_length_named_road & name != "" ~ name,
     TRUE ~ "Other"
   )
-  ) %>% 
+  ) %>%
   ungroup()
-# Only one group (meaning no impact on results) in many regions:
 table(rg_new4$long_named_section)
+# new approach
 
+# Split into sections by road name, and split these into contiguous sections using buff_dist_large (100m).
+lgs = unique(rg_new4$long_named_section)
+
+i = "Melbourn bypass"
+
+# create per name groups
+long_list = lapply(lgs, FUN = function(i) {
+  lg = rg_new4 %>% filter(long_named_section == i)
+  # mapview::mapview(lg)
+  l_buff = lg %>%
+    st_transform(27700) %>%
+    st_buffer(buff_dist_large) %>%
+    st_transform(4326)
+  touching_list = st_intersects(l_buff)
+  g = igraph::graph.adjlist(touching_list)
+  components = igraph::components(g)
+  lg$long_named_group = components$membership
+  lg
+})
+
+lg_new = do.call(rbind, long_list)
 
 # find group membership of top named roads
-r_lanes_grouped2 = rg_new4 %>% 
-  group_by(ref, group, ig, long_named_section) %>% 
+r_lanes_grouped2 = lg_new %>% 
+  group_by(ref, group, ig, long_named_section, long_named_group) %>% 
   summarise(
     name = case_when(
       length(table(name)) > 4 ~ "Unnamed road",
@@ -402,9 +423,9 @@ summary(r_lanes_joined$proportion_on_cycleway) # all between 0 and 1
 r_lanes_top = r_lanes_joined %>%
   # filter(name != "Unnamed road" & ref != "") %>%
   filter(name != "Unnamed road") %>%
-  filter(!str_detect(string = name, pattern = "^A[1-9]")) %>%
+  # filter(!str_detect(string = name, pattern = "^A[1-9]")) %>%
   filter(group_length > min_grouped_length) %>%
-  filter(mean_cycling_potential > min_top_cycling_potential) %>% 
+  filter(mean_cycling_potential > min_grouped_cycling_potential) %>% 
   filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
   filter(proportion_on_cycleway < minp_exclude) %>% 
   mutate(
@@ -415,6 +436,20 @@ r_lanes_top = r_lanes_joined %>%
   slice(1:n_top_roads)
 nrow(r_lanes_top)
 r_lanes_top %>% sf::st_drop_geometry()
+
+# remove any disconnected bits
+rg_buff = geo_buffer(shp = r_lanes_top, dist = buff_dist_large)
+touching_list = st_intersects(rg_buff)
+g = igraph::graph.adjlist(touching_list)
+components = igraph::components(g)
+rg_new2$lastgroup = components$membership
+
+# Only keep segments which are part of a wider group (including roads with different refs/names) of >500m length (100m buffer)
+rg_new3 = rg_new2 %>% 
+  group_by(lastgroup) %>%
+  mutate(last_length = round(sum(length))) %>%
+  filter(last_length >= min_grouped_length) %>% 
+  ungroup()
 
 # classify roads to visualise
 labels = c("Top route", "Spare lane(s)", "Estimated width > 10m")
