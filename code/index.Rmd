@@ -44,26 +44,28 @@ Used with local knowledge, it provides a strong evidence base to support plannin
 In the context of COVID-19, big decisions need to be made **rapidly**.
 
 The rapid cycleway prioritisation tool aims to help produce evidence-based answers the question: **where to reallocate road space on arterial routes away from motor traffic and towards active transport?**
-The evidence can be used to support a range of temporary, experimental and permanent treatments that will enable shift to walking and cycling in the coming weeks and months.
 The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock as the lockdown eases.
 
-Maps are currently available for regions covering the whole of England. 
+Reallocating road space on strategic corridors is just one of the measures available for transport authorities.
+Evidence provided by the tool can also support a range of temporary, experimental and permanent treatments that will enable shift to walking and cycling in the coming weeks and months.
+New [statutory guidance on network management in response to COVID-19](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19) outlines a range of measures, including the creation of new cycleways, reducing speed limits, widening of footways and closing roads to motor traffic via 'modal filters'.
+Road space reallocation is suited to larger arterial roads and can have a large impact quickly, especially when moving large numbers of people away from public transport and capacity is a priority.
+Furthermore, low but gradually increasing levels of peak hour motor traffic mean that there is a window of opportunity to reallocate lanes without causing congestion. 
+
+
+<!-- # Input data -->
 
 The focus is on roads that have 'spare space' (defined as those with a spare lane or that have an estimated width of above 10 m) and high cycling potential based on the [Propensity to Cycle Tool](https://www.pct.bike/) [@lovelace_propensity_2017].
 The 10 m width is an indicator of road conditions and larger widths, of 15+ m, may be required for road space reallocation without other changes such as making roads one way for motor traffic or removing [central markings](https://doi.org/10.1016/j.aap.2014.08.015) [@shackel_influence_2014].
 Which roads to prioritise and the most effective interventions will also depend on factors such as on street parking levels not present in the analysis.
-
-Reallocating roadspace is just one of the measures available for transport authorities.
-Other approaches include modal filters, road closures, and the creation of bus, walking and cycling only streets, as well as speed limits and traffic calming measures. Used strategically, a combination of these measures can promote active travel through the creation of filtered permeability networks and Low Traffic Neighbourhoods.
-For certain types of area, such as residential zones, this may be the most suitable approach.
-However, roadspace reallocation is naturally suited to larger arterial-type roads and that is the focus of this tool.
 
 The cycling potential of each road is based on data from the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/) for further details) and represents the number of one way cycle trips to work and school that could be expected when the [Government's aim of doubling cycling is met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
 The scenario assumes cycling grows evenly nationwide accounting for distance and hilliness.
 Our figures include data on travel to work from 2011 Census data and travel to school. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
 
 Overall the evidence presented in the tool is designed to encourage bold interventions where more space for active modes is most needed.
-The work is based evidence that road space can be reallocated without causing congestion at a time when traffic levels, particularly during the rush hours, are greatly reduced.
+Currently the results are only available for England.
+<!-- The work is based evidence that road space can be reallocated without causing congestion at a time when traffic levels, particularly during the rush hours, are greatly reduced. -->
 
 # How to use the tool
 
