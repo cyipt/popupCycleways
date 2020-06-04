@@ -26,7 +26,7 @@ https://www.gov.uk/government/publications/reallocating-road-space-in-response-t
 The statutory guidance on network management in response to COVID-19 outlines a range of measures that can support a safe and healthy restart, including the creation of new cycleways, reducing speed limits, widening of footways and closing roads to motor traffic via 'modal filters'.
 **This report describes the rapid cycleway prioritisation tool project, which provides aims to ensure evidence-based and effective investment in first of these measures: the creation of new cycleways in existing carriageway space reclaimed from motor traffic.**
 Light segregation infrastructure such as flexible plastic wands (illustrated in Figure 1) and bollards can deliver a step change in provision for cycling, when implemented in combination with other measures such reduced speed limits on key corridors (as has happened on the A33 in Southampton and the A56 in Manchester) and when placed where they are most needed.
-**The purpose of the tool is to help identify such key corridors, ensuring that funds from the Emergency Active Travel Fund change the status quo of city transport systems in favour of active travel.**
+**The purpose of the tool is to help identify such key corridors, ensuring that funds from the Emergency Active Travel Fund change the status quo of urban and rural transport systems in favour of active travel.**
 
 <!-- 17:29:01	 From Gill M (Manchester cyclist) : Trafford is planning to reduce speeds on Bridgewater Way element of A56 when the pop up lane goes in there “OneTrafford tweeted that work is continuing to add pop up cycle lanes along Cornbrook Road and Warwick Road in Stretford too, with temporary 30mph speed limit imposed along Bridgewater Way.” Source (https://www.messengernewspapers.co.uk/news/18489349.cyclists-praise-pop-up-cycle-lanes-along-a56-trafford/) -->
 
@@ -56,10 +56,11 @@ The rapid cycleway prioritisation tool can also support authorities to make bold
 
 The approach was designed to identify roads and road segments where investment in new cycleways should be prioritised using a transparent methodology and nationally consistent datasets, alongside local authority expertise and local knowledge.
 Strong and actionable datasets already exist to support strategic cycle network planning, notably the Propensity to Cycle Tool (PCT), a national planning support system [@lovelace_propensity_2017].
-The PCT is already used by local authorities and contains key data showing not only current levels of cycling but also scenarios of growth, notably the Government Target scenario of doubling the number of cycling stages made by 2025 [@departmentfortransport_cycling_2017], at area, route and route network levels, for commuting and school travel (as of May 2020) [@goodman_scenarios_2019].
+The PCT is already used by local authorities and contains key data showing not only current levels of cycling but also scenarios of growth, notably the Government Target scenario of doubling the number of cycling stages made by 2025 [@departmentfortransport_cycling_2017].
+The PCT maps cycle uptake at area, route and route network levels, for commuting and school travel (as of May 2020) [@goodman_scenarios_2019].
 
 A limitation of the PCT is that it takes little account of existing infrastructure: variables such as road width and even the presence/absence of cycle infrastructure currently are not included in the results.
-The rapid cycleway prioritisation tool overcomes this issu by using road network data which includes geographic attributes and cycle infrastructure from OpenStreetMap.
+The rapid cycleway prioritisation tool overcomes this issue by using road network data which includes geographic attributes and cycle infrastructure from OpenStreetMap.
 Carriageway width data were taken from the Cycling Infrastructure Prioritisation Tool (CyIPT) project, funded as a prototype project by a DfT Transport-technology research innovation grants (T-TRIG).
 
 The rapid cycleway prioritisation tool is based on levels of cycling potential *and* road attribute data, with an emphasis on road space reallocation.
@@ -85,6 +86,8 @@ knitr::include_graphics("figures/filter-then-group.png")
 ```
 
 
+## Selection of top routes
+
 ## Feedback from stakeholders
 
 We elicited feedback from stakeholders via the Basecamp forum for local authority transport planners.
@@ -94,13 +97,51 @@ As a result of the feedback we made a few adjustments to the results:
 - We simplified the legend of the basemap, so that the layers were presented in time order: Existing cycleway (now); Top ranked new cycleways (near term); Cohesive network (long term).
 - We requested data from Highways England to flag the recommendations on the Strategic Road Network (SRN)
 
+# Outputs
+
+The results of this research are publically accessible at www.cyipt.bike/rapid. 
+Maps are available for regions covering the whole of England, at the level of Combined Authorities, Unitary Authorities, or Upper Tier Authorities. 
+Using the methods outlined above, we have derived a set of outputs which are represented as layers in these maps. 
+
+## Output 1: Cohesive network
+
+This represents a cohesive network of cycle routes along the most important road corridors in each region.
+It allows visualisation of what a joined-up cycle network would look like, without considering road capacity constraints.
+
+To identify this network, we select road segments on the trunk road, A road and B road network that have cycling potential in the 85th percentile or above, for their region. 
+We then join together these segments using a 1000m buffer, to form a coherent network.
+This is thus based on the cycling potential of roads, without reference to the road width or number of lanes.
+
+This provides the ability to identify roads that may be key priorities for cycle infrastructure, but which are missing from the other results, either because of limitations with our road width or number of lanes input data, or because the roads are simply too narrow to show up in the other results. 
+Interventions may still be possible on narrow roads, for example the removal of central line markings has been shown to reduce average vehicle speeds (ref). 
+As an example of cycle infrastructure on a narrow road, South Road in Lancaster is recorded on OSM as having road width <10m, yet protected cycleways are currently being constructed there (image). 
+In other cases, it may be possible to convert a two-way road to one-way working and re-allocate the space previously occupied by one of the traffic lanes to bi-directional cycleways. (Torrington Place image)
+
+Finally the cohesive network can help identify gaps in existing and/or proposed cycle infrastructure. Gappy networks are off-putting to many cyclists, and busy or complex road junctions in particular can create barriers to cycle movement (ref).
+
+## Output 2: Existing cycleways
+
+## Output 3: Top routes
+
+## Output 4: Roads with spare lanes and/or estimated width of at least 10m
+
 
 # Limitations and known issues
 
-
 The approach is not without limitations.
 Its reliance on data rather than community engagement represents a rather top-down approach to transport planning.
-To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure 1.
+To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure x (add widenmypath fig).
+
+As stated above, road space reallocation is the only form of intervention we have explored. 
+This should be investigated in combination with other interventions. 
+Strategic use of modal filters, road closures, traffic calming, and conversions to one-way working can be used to prevent 'rat-running', enhance filtered permeability, and create Low Traffic Neighoubourhoods (image).
+
+We have used crowd-sourced open data for road width and number of lanes, which does not give comprehensive coverage of these road attributes in all parts of the country. 
+The 'cohesive network' layer mitigates the impact of any inaccuracies here.
+
+Our current methodology only selects roads that have the same name for a continuous stretch of at least 500m, as candidates for top routes. Roads that don't meet this criteria can still appear in the 'spare lane' and 'estimated width > 10m' layers. 
+
+Vehicular traffic volumes may restrict the potential for road space reallocation, and the presence of on-road car parking may prevent the use of particular alignments. While we do not account for these limitations, the reduction in traffic due to COVID-19 has brought about both a unique opportunity and an urgent necessity to change travel patterns and behaviours in profound ways.
 
 # Next steps
 
