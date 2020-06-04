@@ -43,6 +43,7 @@ if(!exists("s")) {
   rnet_url_school = "https://github.com/npct/pct-outputs-national/raw/master/school/lsoa/rnet_all.Rds"
   rnet_all = sf::st_as_sf(readRDS(url(rnet_url)))
   rnet_all_school = sf::st_as_sf(readRDS(url(rnet_url_school)))
+  srn_names_df = readr::read_csv("input-data/srn_names_df.csv")
 }
 
 # local parameters --------------------------------------------------------
@@ -445,7 +446,8 @@ r_lanes_grouped2 = lg_new %>%
     group_length = round(sum(length)),
     mean_cycling_potential = round(weighted.mean(cycling_potential, length, na.rm = TRUE)),
     mean_width = round(weighted.mean(width, length, na.rm = TRUE)),
-    majority_spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane])
+    majority_spare_lane = sum(length[spare_lane]) > sum(length[!spare_lane]),
+    speed_limit = names(which.max(table(maxspeed)))
   ) %>% 
   filter(mean_cycling_potential > min_grouped_cycling_potential | group_length > min_grouped_length) %>%
   ungroup() %>% 
@@ -485,12 +487,12 @@ r_lanes_top = r_lanes_joined %>%
   filter(proportion_on_cycleway < minp_exclude) %>% 
   mutate(
     length_up_to_1km = if_else(group_length > 1000, true = 1000, false = group_length),
-    km_cycled_1km = length_up_to_1km * mean_cycling_potential
+    km_cycled_1km = length_up_to_1km * mean_cycling_potential,
+    srn = name %in% srn_names_df$roa_number
     ) %>% 
   arrange(desc(km_cycled_1km)) %>% 
-  slice(1:n_top_roads)
+  slice(1:n_top_roads) 
 nrow(r_lanes_top)
-r_lanes_top %>% sf::st_drop_geometry()
 
 # classify roads to visualise
 labels = c("Top ranked new cycleways", "Spare lane(s)", "Estimated width > 10m")
@@ -503,13 +505,13 @@ r_lanes_final = r_lanes_joined %>%
       majority_spare_lane ~ labels[2],
       mean_width >= 10 ~ labels[3]
     ),
-    `Estimated width` = case_when(
+    `Estimated width (m)` = case_when(
       mean_width < 10 ~ "<10 m",
       mean_width >= 10 & mean_width < 15 ~ "10-15 m",
       mean_width >= 15 ~ ">15 m"
     )
   ) %>% 
-  select(name, ref, Status, mean_cycling_potential, spare_lane = majority_spare_lane, `Estimated width`, `length (m)` = group_length, group_id)
+  select(name, ref, Status, mean_cycling_potential, spare_lane = majority_spare_lane, `Estimated width (m)`, `length (m)` = group_length, group_id, speed_limit)
 r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels[2], labels[3]))
 
 table(r_lanes_final$name)
@@ -522,26 +524,34 @@ summary(r_lanes_final$Status)
 top_routes = r_lanes_final %>% filter(Status == labels[1])
 # show spare lane segments not groups:
 spare_lane_groups = r_lanes_final %>% filter(Status == labels[2])
-spare_lane_segments = rg_new4[spare_lane_groups, , op = sf::st_within]
+route_segments_final = rg_new4 %>% 
+  mutate(
+    `Estimated width (m)` = case_when(
+      mean_width < 10 ~ "<10 m",
+      mean_width >= 10 & mean_width < 15 ~ "10-15 m",
+      mean_width >= 15 ~ ">15 m"
+    )
+  )
+spare_lane_segments = route_segments_final[spare_lane_groups, , op = sf::st_within]
 spare_lanes = spare_lane_segments %>%
   filter(spare_lane) %>% 
   mutate(Status = labels[2])
 # edge case: there are no spare lanes
 if(nrow(spare_lanes) == 0) {
-  spare_lanes = rg_new4 %>%
+  spare_lanes = route_segments_final %>%
     top_n(n = 1, wt = width) %>% 
     mutate(Status = labels[2]) 
 }
 # show wide segments not groups:
 # width_10m = r_lanes_final %>% filter(Status == labels[1])
 wide_lane_groups = r_lanes_final %>% filter(Status == labels[3])
-wide_lane_segments = rg_new4[wide_lane_groups, , op = sf::st_within]
+wide_lane_segments = route_segments_final[wide_lane_groups, , op = sf::st_within]
 wide_lanes = wide_lane_segments %>%
   filter(width >= 10 & !idGlobal %in% spare_lanes$idGlobal) %>% 
   mutate(Status = labels[3])
 # edge case: there are no wide lanes
 if(nrow(wide_lanes) == 0) {
-  wide_lanes = rg_new4 %>%
+  wide_lanes = route_segments_final %>%
     top_n(n = 1, wt = width) %>% 
     mutate(Status = labels[3]) 
 }
@@ -549,12 +559,13 @@ spare_wide_lanes = rbind(wide_lanes, spare_lanes)
 
 tmap_mode("view")
 
-popup.vars = c(
+pvars_top = c(
   "name",
   "ref",
   "spare_lane",
-  "Estimated width",
+  "Estimated width (m)",
   "mean_cycling_potential",
+  "speed_limit",
   "length (m)"
 )
 pvars_key = c("ref", "name", "highway_type", "cycling_potential", "n_lanes", "Estimated width", "maxspeed")
@@ -592,7 +603,7 @@ m =
            col = cols_status[1], 
            lwd = 5,
            alpha = 1,
-           popup.vars = popup.vars
+           popup.vars = pvars_top
   ) +
   tm_basemap(server = s, tms = tms) +
   tm_add_legend(type = "fill", labels = legend_labels[1:3], col = legend_colours[1:3]) +
@@ -610,9 +621,11 @@ res_table = r_lanes_top %>%
   select(
     Name = name,
     Reference = ref,
-    `Continuous length (m)` = group_length,
+    `Length (m)` = group_length,
     `Cycling potential` = mean_cycling_potential,
-    `Length * potential (km)` = km_cycled
+    `Length * potential (km)` = km_cycled,
+    # `SRN` = srn,
+    `Speed limit` = speed_limit
     ) 
 res_table
 # knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
