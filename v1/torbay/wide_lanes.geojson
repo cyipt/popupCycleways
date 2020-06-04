@@ -1,0 +1,17 @@
+{
+"type": "FeatureCollection",
+"name": "wide_lanes",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Rathmore Road", "ref": "A3022", "maxspeed": "30 mph", "cycling_potential": 94.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.5415, 50.46037 ], [ -3.54166, 50.46046 ] ] } },
+{ "type": "Feature", "properties": { "name": "Rathmore Road", "ref": "A3022", "maxspeed": "30 mph", "cycling_potential": 94.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.54166, 50.46046 ], [ -3.54172, 50.46049 ] ] } },
+{ "type": "Feature", "properties": { "name": "Rathmore Road", "ref": "A3022", "maxspeed": "30 mph", "cycling_potential": 88.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.54172, 50.46049 ], [ -3.54187, 50.46057 ] ] } },
+{ "type": "Feature", "properties": { "name": "Marldon Road", "ref": "B3060", "maxspeed": "40+ mph", "cycling_potential": 27.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.59092, 50.45146 ], [ -3.59076, 50.45133 ], [ -3.59045, 50.45113 ] ] } },
+{ "type": "Feature", "properties": { "name": "Marldon Road", "ref": "B3060", "maxspeed": "40+ mph", "cycling_potential": 22.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.59045, 50.45113 ], [ -3.59084, 50.45119 ], [ -3.59113, 50.45119 ] ] } },
+{ "type": "Feature", "properties": { "name": "Torquay Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 117.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.56612, 50.4412 ], [ -3.56575, 50.44142 ], [ -3.56536, 50.44177 ] ] } },
+{ "type": "Feature", "properties": { "name": "Torquay Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 117.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.56536, 50.44177 ], [ -3.5653, 50.44185 ] ] } },
+{ "type": "Feature", "properties": { "name": "Torquay Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 117.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.5653, 50.44185 ], [ -3.56521, 50.44197 ], [ -3.56505, 50.44222 ], [ -3.56498, 50.44233 ], [ -3.56497, 50.44235 ], [ -3.56486, 50.44249 ], [ -3.56472, 50.4427 ] ] } },
+{ "type": "Feature", "properties": { "name": "Torquay Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 118.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.56385, 50.44378 ], [ -3.56359, 50.44404 ] ] } },
+{ "type": "Feature", "properties": { "name": "Torquay Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 118.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -3.56359, 50.44404 ], [ -3.56355, 50.44408 ], [ -3.56348, 50.44414 ] ] } }
+]
+}

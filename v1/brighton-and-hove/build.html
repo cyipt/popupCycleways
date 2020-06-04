@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-03" />
+<meta name="date" content="2020-06-04" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-03</h4>
+<h4 class="date">2020-06-04</h4>
 
 </div>
 
@@ -386,21 +386,25 @@ summary {
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
 ##       A2010   A23  A259  A270 
-##    27    10     1     6     4</code></pre>
-<pre><code>## [1] 30</code></pre>
+##    31    10     1     6     4</code></pre>
+<pre><code>## [1] 28</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   577.9  2025.0  2937.5  3270.5  5443.7  5443.7</code></pre>
+##   577.9   977.4  2579.6  2910.6  5634.9  5634.9</code></pre>
 <pre><code>## 
+##                                                      Beaconsfield Villas 
+##                                                                        2 
 ##                                                              Church Road 
 ##                                                                       22 
 ##                                                            Cromwell Road 
 ##                                                                       10 
 ##                                                            Davigdor Road 
 ##                                                                        7 
+##                                                           Ditchling Road 
+##                                                                       14 
 ##                                                               Eaton Road 
 ##                                                                        9 
 ##                                                              Falmer Hill 
-##                                                                        2 
+##                                                                        3 
 ##                                                              King&#39;s Road 
 ##                                                                       19 
 ##                                                                 Kingsway 
@@ -422,17 +426,25 @@ summary {
 ##                                                          New Church Road 
 ##                                                                       31 
 ##                                                        Old Shoreham Road 
-##                                                                       60 
+##                                                                       76 
 ##                                                               Old Steine 
 ##                                                                       10 
 ##                                                                    Other 
-##                                                                      231 
+##                                                                      243 
 ##                                                            Portland Road 
 ##                                                                       33 
+##                                                            Preston Drove 
+##                                                                       13 
+##                                                      Preston Park Avenue 
+##                                                                        1 
 ##                                                             Preston Road 
 ##                                                                       17 
 ##                                                           Sackville Road 
 ##                                                                       19 
+##                                                         South Coast Road 
+##                                                                        6 
+##                                                          Stanford Avenue 
+##                                                                        9 
 ##                                                             Station Road 
 ##                                                                       19 
 ##                                                           Wilbury Avenue 
@@ -440,34 +452,37 @@ summary {
 ##                                                             Wilbury Road 
 ##                                                                        3</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.1096  0.3000  0.5769  1.0028</code></pre>
+## 0.00000 0.00000 0.08017 0.26320 0.50179 1.00279</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;B20…     1     1 New Church Road                 1 New …         2047              338
-##  2 &quot;&quot;        1     1 Portland Road                   1 Port…         1890              297
-##  3 &quot;B20…     1     1 Church Road                     1 Chur…          981              267
-##  4 &quot;A27…     1     3 Lewes Road                      1 Lewe…         2424              228
-##  5 &quot;A25…     1     2 Kingsway                        2 King…         1198              203
-##  6 &quot;A23&quot;     1     1 Preston Road                    1 Pres…         1406              186
-##  7 &quot;A27…     1     1 Old Shoreham Ro…                1 Old …         2790              184
-##  8 &quot;&quot;        1     1 Eaton Road                      1 Eato…          558              319
-##  9 &quot;A20…     1     1 Other                           2 West…          544              327
-## 10 &quot;A23&quot;     1     1 London Road                     2 Lond…         1455              147
-## # … with 8 more variables: mean_width &lt;dbl&gt;, majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
-## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+##  1 &quot;B20…     1     1 New Church Road                 1 New …         2047              338         12
+##  2 &quot;&quot;        1     1 Portland Road                   1 Port…         1890              297         12
+##  3 &quot;B20…     1     1 Church Road                     1 Chur…          981              267         13
+##  4 &quot;A27…     1     3 Lewes Road                      1 Lewe…         2424              228         10
+##  5 &quot;A25…     1     2 Kingsway                        2 King…         1198              203         11
+##  6 &quot;A23&quot;     1     1 Preston Road                    1 Pres…         1406              186         11
+##  7 &quot;A27…     1     1 Old Shoreham Ro…                1 Old …         2790              184         11
+##  8 &quot;&quot;        1     1 Eaton Road                      1 Eato…          558              319         12
+##  9 &quot;A20…     1     1 Other                           2 West…          544              327         10
+## 10 &quot;A23&quot;     1     1 London Road                     2 Lond…         1455              147         12
+## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
+## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
 ##                                                                      A27 
-##                                                                        1 
+##                                                                        2 
 ##                                                             Arundel Road 
+##                                                                        1 
+##                                                      Beaconsfield Villas 
 ##                                                                        1 
 ##                                                              Church Road 
 ##                                                                        1 
 ##                                                            Cromwell Road 
 ##                                                                        1 
 ##                                                            Davigdor Road 
+##                                                                        1 
+##                                                           Ditchling Road 
 ##                                                                        1 
 ##                                                             Duke&#39;s Mound 
 ##                                                                        1 
@@ -484,6 +499,8 @@ summary {
 ##                                                            Goldsmid Road 
 ##                                                                        1 
 ##                                                      Grand Junction Road 
+##                                                                        1 
+##                                                         Hollingbury Road 
 ##                                                                        1 
 ##                                                              King&#39;s Road 
 ##                                                                        1 
@@ -511,7 +528,13 @@ summary {
 ##                                                                        2 
 ##                                                               Old Steine 
 ##                                                                        1 
+##                                                               Olive Road 
+##                                                                        1 
 ##                                                            Portland Road 
+##                                                                        1 
+##                                                            Preston Drove 
+##                                                                        1 
+##                                                      Preston Park Avenue 
 ##                                                                        1 
 ##                                                             Preston Road 
 ##                                                                        1 
@@ -523,7 +546,11 @@ summary {
 ##                                                                        1 
 ##                                                         South Coast Road 
 ##                                                                        1 
+##                                                          Stanford Avenue 
+##                                                                        1 
 ##                                                             Station Road 
+##                                                                        1 
+##                                                           Surrenden Road 
 ##                                                                        1 
 ##                                                             Unnamed road 
 ##                                                                        6 
@@ -540,25 +567,25 @@ summary {
 ##                                                             Wilbury Road 
 ##                                                                        1</code></pre>
 <pre><code>## 
-##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     4                    34</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    10                     4                    34                     4</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    10                     4                    34                     4</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        5                       41</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                        5                       41                        5</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                        5                       41                        5</code></pre>
 <pre><code>## # A tibble: 10 x 5
-##    Name            Reference `Continuous length (m… `Cycling potentia… `Length * potential (k…
-##  * &lt;chr&gt;           &lt;chr&gt;                      &lt;dbl&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
-##  1 New Church Road &quot;B2066&quot;                     2047                338                     692
-##  2 Portland Road   &quot;&quot;                          1890                297                     561
-##  3 Church Road     &quot;B2066&quot;                      981                267                     262
-##  4 Lewes Road      &quot;A270&quot;                      2424                228                     553
-##  5 Kingsway        &quot;A259&quot;                      1198                203                     243
-##  6 Preston Road    &quot;A23&quot;                       1406                186                     262
-##  7 Old Shoreham R… &quot;A270&quot;                      2790                184                     513
-##  8 Eaton Road      &quot;&quot;                           558                319                     178
-##  9 West Street     &quot;A2010&quot;                      544                327                     178
-## 10 London Road     &quot;A23&quot;                       1455                147                     214</code></pre>
+##    Name              Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;             &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 New Church Road   &quot;B2066&quot;                      2047                 338                       692
+##  2 Portland Road     &quot;&quot;                           1890                 297                       561
+##  3 Church Road       &quot;B2066&quot;                       981                 267                       262
+##  4 Lewes Road        &quot;A270&quot;                       2424                 228                       553
+##  5 Kingsway          &quot;A259&quot;                       1198                 203                       243
+##  6 Preston Road      &quot;A23&quot;                        1406                 186                       262
+##  7 Old Shoreham Road &quot;A270&quot;                       2790                 184                       513
+##  8 Eaton Road        &quot;&quot;                            558                 319                       178
+##  9 West Street       &quot;A2010&quot;                       544                 327                       178
+## 10 London Road       &quot;A23&quot;                        1455                 147                       214</code></pre>
 
 
 

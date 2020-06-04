@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-03" />
+<meta name="date" content="2020-06-04" />
 
 <title>build.R</title>
 
@@ -378,113 +378,117 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-03</h4>
+<h4 class="date">2020-06-04</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##        A426  A512    A6 A6004 B4114 B4666 B5418  B582  B589 
-##   147     6     6    23    34     2     6     5    11     2</code></pre>
-<pre><code>## [1] 62</code></pre>
+##        A426  A512 A5199    A6 A6004  A607 B4114 B4666 B5418  B582  B589 
+##   181     6     6     2    23    34     1     2     6     5    12     2</code></pre>
+<pre><code>## [1] 77</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2647    4195   14102   12747   20268   20268</code></pre>
+##    1565    3263    4697   10719   24880   24880</code></pre>
 <pre><code>## 
-##            Ashby Road           Belton Road      Bull Head Street         Coventry Road 
-##                    46                    16                    10                    27 
-##            Epinal Way             Glen Road       Harborough Road        Leicester Road 
-##                    11                    23                    16                    65 
-##           London Road     Loughborough Road      Lubbesthorpe Way           Melton Road 
-##                    14                    64                    38                    30 
+##            Ashby Road        Aylestone Road           Belton Road          Bennion Road 
+##                    46                    11                    16                     5 
+##  Braunstone Lane East      Bull Head Street         Coventry Road            Epinal Way 
+##                    16                    10                    27                    11 
+##             Glen Road         Glenfrith Way         Glenhills Way       Harborough Road 
+##                    23                    26                    13                    18 
+##           Krefeld Way        Leicester Road           London Road     Loughborough Road 
+##                    14                    65                    48                    64 
+##      Lubbesthorpe Way      Lutterworth Road           Melton Road       Narborough Road 
+##                    38                    10                    65                    27 
 ## Narborough Road South           Newark Road            Norman Way      Northampton Road 
-##                    29                    10                    23                    21 
-##       Nottingham Road            Oadby Road                 Other       Soar Valley Way 
-##                    57                     6                   452                    14 
-##    Springfield Street              St Johns         Tamworth Road           Thorpe Road 
-##                     9                    23                     8                    24 
-##        Watling Street           Wilton Road         Woodbrook Way 
-##                    10                    21                     2</code></pre>
+##                    33                    10                    23                    21 
+##       Nottingham Road            Oadby Road                 Other          Red Hill Way 
+##                    57                     6                   592                    19 
+##       Soar Valley Way    Springfield Street              St Johns         Tamworth Road 
+##                    25                     9                    23                     8 
+##           Thorpe Road       Thurmaston Lane             Troon Way         Watermead Way 
+##                    24                    10                     7                    16 
+##          Welford Road           Wilton Road         Woodbrook Way 
+##                    27                    21                     2</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.3157  0.7423  1.0667</code></pre>
+##  0.0000  0.0000  0.1162  0.3558  0.8415  1.0667</code></pre>
 <pre><code>## [1] 30</code></pre>
 <pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;A60…    87     3 Belton Road                     1 Belt…         1092              258
-##  2 &quot;B41…   118     3 St Johns                        1 St J…         2402              186
-##  3 &quot;&quot;       87     1 Loughborough Ro…                2 Loug…          667              264
-##  4 &quot;A60…    83     2 Other                          20 Alan…          632              250
-##  5 &quot;A6&quot;     87     1 Leicester Road                  4 Leic…         1327              157
-##  6 &quot;B41…   118     3 Narborough Road…                1 Narb…         1496              135
-##  7 &quot;A54…   118     1 Narborough Road…                1 Narb…         2186              122
-##  8 &quot;A60…    78     1 Wilton Road                     1 Wilt…          577              144
-##  9 &quot;B58…   150     4 Oadby Road                      1 Oadb…          772              105
-## 10 &quot;A51…    85     1 Ashby Road                      1 Ashb…         4453               74
-## # … with 20 more rows, and 8 more variables: mean_width &lt;dbl&gt;, majority_spare_lane &lt;lgl&gt;,
-## #   group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
-## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+##  1 &quot;A60…   110     3 Belton Road                     1 Belt…         1092              258         10
+##  2 &quot;B41…   140     2 St Johns                        1 St J…         2402              186          9
+##  3 &quot;A51…   210     2 Welford Road                    1 Welf…         1370              183         13
+##  4 &quot;&quot;      110     2 Loughborough Ro…                2 Loug…          667              264         10
+##  5 &quot;A60…   106     2 Other                          20 Alan…          632              250          9
+##  6 &quot;A6&quot;    110     1 Leicester Road                  5 Leic…         1327              157         10
+##  7 &quot;A6&quot;    143     5 London Road                     2 Lond…         2123              150         10
+##  8 &quot;B41…   140     2 Narborough Road…                1 Narb…         1496              135         12
+##  9 &quot;A54…   140     1 Narborough Road                 1 Narb…         1591              122         11
+## 10 &quot;A56…   110     3 Watermead Way                   1 Wate…         1473              121         12
+## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
+## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
+## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                       A46                      A563                        A6 
-##                         1                         2                         1 
-##                     A6004                      A607            Alan Moss Road 
-##                         1                         4                         1 
-## Alan Moss Road Roundabout             Asfordby Road                Ashby Road 
-##                         1                         1                         2 
-##     Ashby Road Roundabout                     B4114                     B6047 
-##                         1                         1                         1 
-##                     B6540               Belton Road             Bridge Street 
-##                         2                         1                         1 
-##          Bull Head Street             Coventry Road                Epinal Way 
-##                         1                         3                         2 
-##                Farley Way                 Glen Road            Guthlaxton Gap 
-##                         1                         1                         1 
-##           Harborough Road               High Street            Kettering Road 
-##                         1                         1                         1 
-##        King Edward Avenue               King Street            Langham Bridge 
-##                         1                         1                         1 
-##            Leicester Road               London Road         Loughborough Road 
-##                         7                         3                         2 
-##          Lubbesthorpe Way                 Main Road               Meadow Lane 
-##                         1                         1                         1 
-##               Melton Road               Moat Street          Mountsorrel Lane 
-##                         2                         1                         1 
-##     Narborough Road South                New Street               Newark Road 
-##                         2                         1                         1 
-##                Norman Way          Northampton Road           Nottingham Road 
-##                         1                         1                         1 
-##                Oadby Road        One Ash Roundabout             Regent Street 
-##                         1                         1                         1 
-##                Rugby Road                Saxby Road      Shepshed Interchange 
-##                         1                         1                         1 
-##           Soar Valley Way        Springfield Street                  St Johns 
-##                         1                         1                         1 
-##             Tamworth Road                The Rushes               Thorpe Road 
-##                         1                         1                         1 
-##              Unnamed road                Wakes Road            Watling Street 
-##                         5                         1                         1 
+##                       A46                      A511                      A563                        A6 
+##                         1                         1                         3                         1 
+##                     A6004                      A607             Aikman Avenue            Alan Moss Road 
+##                         1                         4                         1                         1 
+## Alan Moss Road Roundabout               Anstey Lane                Ashby Road     Ashby Road Roundabout 
+##                         1                         1                         2                         1 
+##            Aylestone Road                     B4114                     B6047                     B6540 
+##                         1                         1                         1                         2 
+##               Belton Road              Bennion Road      Braunstone Lane East             Bridge Street 
+##                         1                         1                         1                         1 
+##          Bull Head Street             Coventry Road                Epinal Way                Farley Way 
+##                         1                         3                         2                         1 
+##                 Glen Road             Glenfrith Way             Glenhills Way            Guthlaxton Gap 
+##                         1                         1                         1                         1 
+##           Harborough Road               High Street            Kettering Road        King Edward Avenue 
+##                         2                         1                         1                         1 
+##               King Street               Krefeld Way            Langham Bridge            Leicester Road 
+##                         1                         1                         1                         8 
+##               London Road         Loughborough Road          Lubbesthorpe Way          Lutterworth Road 
+##                         3                         2                         1                         1 
+##               Meadow Lane               Melton Road               Moat Street          Mountsorrel Lane 
+##                         1                         2                         1                         1 
+##           Narborough Road     Narborough Road South             New Parks Way               Newark Road 
+##                         1                         2                         2                         1 
+##                Norman Way          Northampton Road           Nottingham Road                Oadby Road 
+##                         1                         1                         1                         1 
+##        One Ash Roundabout       Pork Pie Roundabout              Red Hill Way             Regent Street 
+##                         1                         1                         1                         1 
+##                Rugby Road              Saffron Lane                Saxby Road      Shepshed Interchange 
+##                         1                         1                         1                         1 
+##           Soar Valley Way        Springfield Street                  St Johns           Stonesby Avenue 
+##                         1                         1                         1                         1 
+##             Tamworth Road                The Rushes               Thorpe Road           Thurmaston Lane 
+##                         1                         1                         1                         1 
+##                 Troon Way              Unnamed road                Wakes Road             Watermead Way 
+##                         2                        10                         1                         1 
 ##              Welford Road               Wilton Road             Woodbrook Way 
-##                         1                         1                         1</code></pre>
+##                         2                         1                         1</code></pre>
 <pre><code>## 
-##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    30                    21                    28</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    30                    21                    28                     5</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    30                    21                    28                     5</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       30                       39                       35</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       39                       35                        6</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       39                       35                        6</code></pre>
 <pre><code>## # A tibble: 30 x 5
-##    Name               Reference `Continuous length (… `Cycling potentia… `Length * potential …
-##  * &lt;chr&gt;              &lt;chr&gt;                     &lt;dbl&gt;              &lt;dbl&gt;                 &lt;dbl&gt;
-##  1 Belton Road        &quot;A6004&quot;                    1092                258                   282
-##  2 St Johns           &quot;B4114&quot;                    2402                186                   447
-##  3 Loughborough Road  &quot;&quot;                          667                264                   176
-##  4 Alan Moss Road Ro… &quot;A6004&quot;                     632                250                   158
-##  5 Leicester Road     &quot;A6&quot;                       1327                157                   208
-##  6 Narborough Road S… &quot;B4114&quot;                    1496                135                   202
-##  7 Narborough Road S… &quot;A5460&quot;                    2186                122                   267
-##  8 Wilton Road        &quot;A607&quot;                      577                144                    83
-##  9 Oadby Road         &quot;B582&quot;                      772                105                    81
-## 10 Ashby Road         &quot;A512&quot;                     4453                 74                   330
+##    Name                      Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;                     &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Belton Road               &quot;A6004&quot;                      1092                 258                       282
+##  2 St Johns                  &quot;B4114&quot;                      2402                 186                       447
+##  3 Welford Road              &quot;A5199&quot;                      1370                 183                       251
+##  4 Loughborough Road         &quot;&quot;                            667                 264                       176
+##  5 Alan Moss Road Roundabout &quot;A6004&quot;                       632                 250                       158
+##  6 Leicester Road            &quot;A6&quot;                         1327                 157                       208
+##  7 London Road               &quot;A6&quot;                         2123                 150                       318
+##  8 Narborough Road South     &quot;B4114&quot;                      1496                 135                       202
+##  9 Narborough Road           &quot;A5460&quot;                      1591                 122                       194
+## 10 Watermead Way             &quot;A563&quot;                       1473                 121                       178
 ## # … with 20 more rows</code></pre>
 
 

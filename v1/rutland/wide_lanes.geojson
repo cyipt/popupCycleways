@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "wide_lanes",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "North Street West", "ref": "B664", "maxspeed": "30 mph", "cycling_potential": 28.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.72679, 52.58879 ], [ -0.72566, 52.58884 ], [ -0.72549, 52.58886 ] ] } }
+]
+}

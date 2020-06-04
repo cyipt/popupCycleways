@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-03" />
+<meta name="date" content="2020-06-04" />
 
 <title>build.R</title>
 
@@ -378,343 +378,259 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-03</h4>
+<h4 class="date">2020-06-04</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A34   A38 A4040 A4053   A41 A4100 A4124 A4150 A4168  A429  A441   A45  A452  A453 
-##   500     6     8     1     1     7     2     6     1     5    50    44     1     1     2 
-## A4540  A456  A460 A4600  A462 A5127 B4100 B4101 B4107 B4113 B4114 B4124 B4125 B4157 B4166 
-##     1    33     5    17     1     3     2     5     4    14     5     2     1     1     1 
-## B4169 B4210 B4217  B425 B4544 
-##     1     1     1    15     2</code></pre>
-<pre><code>## [1] 314</code></pre>
+##         A34   A38 A4040 A4053   A41 A4100 A4124 A4150 A4168  A428  A429  A441   A45  A453 A4540  A456  A457 
+##   514     5     9     1     1     7     2     6     1     4     1    50    47     1     2     4    33     1 
+##  A459  A460 A4600  A461 A5127 B4100 B4101 B4107 B4113 B4114 B4124 B4125 B4166 B4169 B4210 B4217  B425 B4544 
+##     1     5    18     1     3     2     7     5    22     4     2     1     1     1     1     1    15     2</code></pre>
+<pre><code>## [1] 317</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2434    4360   11181   14984   31953   31953</code></pre>
+##    2434    4257   11181   15204   31966   31966</code></pre>
 <pre><code>## 
-##                     Albert Road                   Alcester Road 
-##                               4                              37 
-##             Alcester Road South                   Aldridge Road 
-##                              21                              44 
-##                      Allard Way                      Ansty Road 
-##                              12                              37 
-##              Barkers Butts Lane                       Bath Road 
-##                               6                               9 
-##                        Bath Row                    Bilston Road 
-##                              14                              40 
-##                     Binley Road                 Birmingham Road 
-##                              38                              30 
-##          Black Country New Road               Blossomfield Road 
-##                              43                              11 
-##                  Blue Lane West                    Brandon Road 
-##                              13                              21 
-##                    Bristol Road              Bristol Road South 
-##                             106                              58 
-##                  Bristol Street                    Broad Street 
-##                              13                              16 
-##                    Bunbury Road                      Burnt Tree 
-##                              10                              10 
-## Cheylesmore &amp; Stivichall Bypass            Clifford Bridge Road 
-##                              13                              14 
-##                    College Road                   Coventry Road 
-##                              64                              85 
-##                  Darlaston Road                      Drews Lane 
-##                               6                               6 
-##                     Dudley Port                     Dudley Road 
-##                              21                              46 
-##         Dudley Southern By-pass              Duncan Edwards Way 
-##                               8                               4 
-##           Earlsdon Avenue North           Earlsdon Avenue South 
-##                              17                               9 
-##                  Edgbaston Road                  Foleshill Road 
-##                              22                              30 
-##              Four Pounds Avenue                   Gravelly Hill 
-##                              19                              16 
-##             Gravelly Hill North  Great Charles Street Queensway 
-##                              16                              12 
-##                     Hagley Road                Hagley Road West 
-##                              60                              64 
-##                   Harborne Lane              Harborne Park Road 
-##                              31                              27 
-##                   Harborne Road                     High Street 
-##                              10                              77 
-##                   Hinckley Road                  Hobs Moat Road 
-##                              18                               9 
-##                 Hockley Flyover                   Holyhead Road 
-##                              16                              20 
-##                  Horseley Heath            James Watt Queensway 
-##                              19                              13 
-##                 Leamington Road                  Lichfield Road 
-##                              10                              76 
-##           Littleton Street East           Littleton Street West 
-##                               8                              13 
-##                       Lode Lane                     London Road 
-##                              68                              68 
-##                       Manor Way              Marshall Lake Road 
-##                              19                              14 
-##                  Moseley Avenue               New Coventry Road 
-##                              14                               6 
-##                    New Town Row            Newhampton Road West 
-##                              36                              15 
-##                           Other                   Oxbarn Avenue 
-##                            1184                               8 
-##                   Oxford Street                   Pershore Road 
-##                              12                              68 
-##                      Pleck Road                     Priory Road 
-##                              29                              39 
-##                       Queensway              Quinton Expressway 
-##                              10                               5 
-##                    Radford Road           Ring Road St Patricks 
-##                               8                              13 
-##           Ring Road St. Andrews            Ring Road St. Davids 
-##                               6                              10 
-##              Ringway Hill Cross                  Ringway Queens 
-##                              10                              12 
-##                   Ringway Rudge                Ringway St Johns 
-##                               6                               5 
-##             Ringway St Nicholas             Ringway St Patricks 
-##                               9                              12 
-##               Ringway Swanswell             Ringway Whitefriars 
-##                               9                              14 
-##          Sir Herbert Austin Way                    Sky Blue Way 
-##                              14                              13 
-##             Small Heath Highway            Smallbrook Queensway 
-##                              20                              13 
-##                 Somerfield Road                  St John&#39;s Road 
-##                              10                              12 
-##                   Stafford Road             Stoney Stanton Road 
-##                               5                              42 
-##                Stourbridge Road        Suffolk Street Queensway 
-##                               5                               9 
-##                     Summer Lane                 Sutton New Road 
-##                              11                              18 
-##                 Tettenhall Road                  The Expressway 
-##                              33                              16 
-##                   Toll End Road                     Trinity Way 
-##                              10                              13 
-##                    Walsall Road                  Walsgrave Road 
-##                               9                              25 
-##                    Warwick Road                Wednesfield Road 
-##                              69                              39 
-##                 Wednesfield Way                 Wellington Road 
-##                              26                              18 
-##                   Wobaston Road              Wolverhampton Road 
-##                               6                              21 
-##              Yardley Green Road 
-##                               7</code></pre>
+##                     Albert Road                   Alcester Road             Alcester Road South 
+##                               4                              37                              21 
+##                   Aldridge Road                      Allard Way                      Ansty Road 
+##                              44                              12                              37 
+##              Barkers Butts Lane                       Bath Road                        Bath Row 
+##                               6                               9                              14 
+##                    Bilston Road                     Binley Road                 Birmingham Road 
+##                              40                              38                              35 
+##          Black Country New Road               Blossomfield Road             Blower&#39;s Green Road 
+##                              41                              11                              12 
+##                  Blue Lane West                    Brandon Road                    Bristol Road 
+##                              13                              21                             128 
+##              Bristol Road South                  Bristol Street                    Broad Street 
+##                              49                              13                              16 
+##                    Bunbury Road                      Burnt Tree Cheylesmore &amp; Stivichall Bypass 
+##                              10                              10                              12 
+##            Clifford Bridge Road                    College Road                   Coventry Road 
+##                              14                              64                              85 
+##                  Darlaston Road                      Drews Lane                     Dudley Port 
+##                               6                               6                              21 
+##                     Dudley Road         Dudley Southern By-pass              Duncan Edwards Way 
+##                              46                               8                               4 
+##           Earlsdon Avenue North           Earlsdon Avenue South                  Edgbaston Road 
+##                              17                               9                              22 
+##                  Foleshill Road              Four Pounds Avenue                   Gravelly Hill 
+##                              55                              19                              16 
+##             Gravelly Hill North  Great Charles Street Queensway                     Hagley Road 
+##                              16                              12                              60 
+##                Hagley Road West                   Harborne Lane              Harborne Park Road 
+##                              64                              31                              26 
+##                   Harborne Road                     High Street            High Street Deritend 
+##                              10                              77                              14 
+##                   Hinckley Road                  Hobs Moat Road                 Hockley Flyover 
+##                              19                               9                              16 
+##                   Holyhead Road                  Horseley Heath            James Watt Queensway 
+##                              20                              19                              13 
+##                      Jarvis Way                 Leamington Road                  Lichfield Road 
+##                               1                              10                              76 
+##           Littleton Street East           Littleton Street West                       Lode Lane 
+##                               8                              13                              68 
+##                     London Road                       Manor Way              Marshall Lake Road 
+##                              68                              19                              14 
+##                  Moseley Avenue               New Coventry Road                    New Town Row 
+##                              14                               6                              36 
+##            Newhampton Road West                           Other                   Oxbarn Avenue 
+##                              15                            1220                               8 
+##                   Oxford Street                       Park Lane                   Pershore Road 
+##                              12                               8                              68 
+##                      Pleck Road                     Priory Road                       Queensway 
+##                              29                              39                              10 
+##              Quinton Expressway                    Radford Road                   Redditch Road 
+##                               5                               8                              23 
+##           Ring Road St Patricks           Ring Road St. Andrews            Ring Road St. Davids 
+##                              13                               6                              10 
+##              Ringway Hill Cross                  Ringway Queens                   Ringway Rudge 
+##                              10                              12                               6 
+##                Ringway St Johns             Ringway St Nicholas             Ringway St Patricks 
+##                               5                               9                              12 
+##               Ringway Swanswell             Ringway Whitefriars          Sir Herbert Austin Way 
+##                               9                              14                              13 
+##                    Sky Blue Way             Small Heath Highway            Smallbrook Queensway 
+##                              13                              20                              13 
+##                 Somerfield Road                  St John&#39;s Road             Stoney Stanton Road 
+##                              10                              12                              42 
+##                Stourbridge Road        Suffolk Street Queensway                 Sutton New Road 
+##                               5                               9                              18 
+##                 Tettenhall Road                  The Expressway                   Toll End Road 
+##                              33                              16                              10 
+##                     Trinity Way                    Walsall Road                  Walsgrave Road 
+##                              13                               9                              25 
+##                    Warwick Road             Washwood Heath Road                Wednesfield Road 
+##                              69                              26                              39 
+##                 Wednesfield Way                 Wellington Road                   Wobaston Road 
+##                              26                              18                               6 
+##              Wolverhampton Road              Yardley Green Road 
+##                              21                               7</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.1870  0.2486  1.1250</code></pre>
+##  0.0000  0.0000  0.0000  0.1813  0.2399  1.1250</code></pre>
 <pre><code>## [1] 50</code></pre>
 <pre><code>## # A tibble: 50 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;
-##  1 A38       6     1 Bristol Street                  1 Bris…         1183              353
-##  2 A456      6     1 Hagley Road                     1 Hagl…         4225              262
-##  3 A441      6     1 Pershore Road                   1 Pers…         3808              240
-##  4 A4150     6     1 Other                          83 Ring…          911              256
-##  5 B4107   489     1 Moseley Avenue                  1 Mose…         1027              195
-##  6 A4168     6     1 Priory Road                     2 Prio…         1348              174
-##  7 A4600   489     1 Ansty Road                      1 Anst…         4257              171
-##  8 B4102     6     1 Blossomfield Ro…                1 Blos…         1151              155
-##  9 B425     35     1 Lode Lane                       1 Lode…         3919              154
-## 10 B4124     6     2 Harborne Road                   1 Harb…          857              177
-## # … with 40 more rows, and 8 more variables: mean_width &lt;dbl&gt;, majority_spare_lane &lt;lgl&gt;,
-## #   group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
-## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+##  1 A38       7     1 Bristol Street                  1 Bris…         1183              353         11
+##  2 A456      7     1 Hagley Road                     1 Hagl…         4225              276         10
+##  3 A441      7     1 Pershore Road                   1 Pers…         3808              255         10
+##  4 A4150     7     1 Other                          90 Ring…          911              256          9
+##  5 B4107   507     1 Moseley Avenue                  1 Mose…         1027              215         12
+##  6 A4600   507     1 Ansty Road                      1 Anst…         4257              171          6
+##  7 A4168     7     1 Priory Road                     2 Prio…         1348              156         12
+##  8 B4102     7     1 Blossomfield Ro…                1 Blos…         1151              155         10
+##  9 B425     42     1 Lode Lane                       1 Lode…         3919              155          9
+## 10 A461      7     1 Stourbridge Road                1 Stou…          866              165          7
+## # … with 40 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
+## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
+## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                             A34                             A38 
-##                               3                               4 
-##                           A4053                           A4124 
-##                               1                               1 
-##                           A4126                           A4148 
-##                               1                               1 
-##                            A428                            A435 
-##                               2                               1 
-##                             A45                            A456 
-##                               1                               1 
-##                           A4600                            A461 
-##                               3                               2 
-##                     Albert Road                   Alcester Road 
-##                               1                               1 
-##             Alcester Road South                   Aldridge Road 
-##                               1                               2 
-##                      Allard Way               Allesley Old Road 
-##                               2                               1 
-##                      Ansty Road            Aston Webb Boulevard 
-##                               1                               1 
-##                           B4082                           B4109 
-##                               1                               1 
-##                           B4113                           B4114 
-##                               1                               1 
-##                           B4217              Barkers Butts Lane 
-##                               1                               1 
-##                       Bath Road                        Bath Row 
-##                               1                               1 
-##                   Bearwood Road                 Bell Green Road 
-##                               1                               1 
-##                    Bilston Road                     Binley Road 
-##                               1                               2 
-##                 Birmingham Road          Black Country New Road 
-##                               2                               1 
-##               Blossomfield Road                  Blue Lane West 
-##                               1                               1 
-##                    Brandon Road              Brassington Avenue 
-##                               1                               1 
-##                   Brinklow Road                    Bristol Road 
-##                               2                               2 
-##              Bristol Road South                  Bristol Street 
-##                               2                               1 
-##                    Broad Street                    Bunbury Road 
-##                               2                               1 
-##                      Burnt Tree                       Chad Road 
-##                               1                               1 
-##                    Chester Road Cheylesmore &amp; Stivichall Bypass 
-##                               1                               2 
-##              Cinder Bank Island            Clifford Bridge Road 
-##                               1                               1 
-##                    College Road                    Coundon Road 
-##                               1                               1 
-##                   Coventry Road                  Darlaston Road 
-##                               1                               1 
-##                      Drews Lane                     Dudley Port 
-##                               1                               1 
-##                     Dudley Road         Dudley Southern By-pass 
-##                               3                               1 
-##              Duncan Edwards Way           Earlsdon Avenue North 
-##                               1                               1 
-##           Earlsdon Avenue South                  Edgbaston Road 
-##                               1                               1 
-##                Elston Hall Lane                   Engleton Road 
-##                               1                               1 
-##                  Foleshill Road                      Forge Lane 
-##                               1                               1 
-##              Four Pounds Avenue                   Gravelly Hill 
-##                               1                               1 
-##             Gravelly Hill North                    Great Bridge 
-##                               1                               1 
-##  Great Charles Street Queensway                      Green Lane 
-##                               1                               1 
-##                     Hagley Road                Hagley Road West 
-##                               1                               1 
-##                   Harborne Lane              Harborne Park Road 
-##                               2                               1 
-##                   Harborne Road                Henrietta Street 
-##                               1                               1 
-##                     High Street                  Highfield Road 
-##                               6                               1 
-##                   Hinckley Road                  Hobs Moat Road 
-##                               1                               2 
-##                 Hockley Flyover                    Hockley Hill 
-##                               1                               1 
-##                   Holloway Head                   Holyhead Road 
-##                               1                               2 
-##                  Horseley Heath                   Hunter Street 
-##                               1                               1 
-##            James Watt Queensway                 Kenilworth Road 
-##                               1                               1 
-##                 Leamington Road                  Lichfield Road 
-##                               2                               3 
-##           Littleton Street East           Littleton Street West 
-##                               1                               1 
-##                       Lode Lane                     London Road 
-##                               1                               3 
-##                   Longford Road                   Longmore Road 
-##                               2                               1 
-##                  Lordswood Road            Lower Rushall Street 
-##                               1                               1 
-##                       Manor Way              Marshall Lake Road 
-##                               1                               1 
-##           Moor Street Queensway                  Moseley Avenue 
-##                               1                               1 
-##                    Moseley Road               New Coventry Road 
-##                               1                               1 
-##                        New Road                    New Town Row 
-##                               2                               2 
-##            Newhampton Road West                   Oak Tree Lane 
-##                               1                               1 
-##                   Oxbarn Avenue                   Oxford Street 
-##                               1                               1 
-##                  Park Road West                     Park Street 
-##                               1                               1 
-##                   Pershore Road                      Pleck Road 
-##                               1                               1 
-##                     Priory Road               Queensland Avenue 
-##                               2                               1 
-##                       Queensway              Quinton Expressway 
-##                               1                               1 
-##                    Radford Road          Ring Road Saint Peters 
-##                               1                               1 
-##           Ring Road St Patricks           Ring Road St. Andrews 
-##                               1                               1 
-##            Ring Road St. Davids              Ringway Hill Cross 
-##                               1                               1 
-##                  Ringway Queens                   Ringway Rudge 
-##                               1                               1 
-##                Ringway St Johns             Ringway St Nicholas 
-##                               1                               1 
-##             Ringway St Patricks               Ringway Swanswell 
-##                               1                               1 
-##             Ringway Whitefriars                  Salford Circus 
-##                               1                               1 
-##                     Sandon Road          Sir Herbert Austin Way 
-##                               1                               1 
-##                    Sky Blue Way             Small Heath Highway 
-##                               1                               1 
-##            Smallbrook Queensway                 Somerfield Road 
-##                               1                               1 
-##                 Spon Lane South                  St John&#39;s Road 
-##                               1                               1 
-##                 St Martins Road                   Stafford Road 
-##                               1                               1 
-##             Stoney Stanton Road                Stourbridge Road 
-##                               1                               1 
-##        Suffolk Street Queensway                     Summer Lane 
-##                               1                               1 
-##                     Summer Road                 Sutton New Road 
-##                               1                               1 
-##                 Tettenhall Road                  The Expressway 
-##                               1                               1 
-##               Thimble Mill Lane                   Toll End Road 
-##                               1                               1 
-##                     Trinity Way                    Unnamed road 
-##                               1                              18 
-##                    walsall Road                    Walsall Road 
-##                               1                               1 
-##                  Walsgrave Road                  Warstones Road 
-##                               1                               1 
-##                    Warwick Road                Wednesfield Road 
-##                               3                               2 
-##                 Wednesfield Way                 Wellington Road 
-##                               1                               1 
-##                 Westbourne Road                    White Street 
-##                               1                               2 
-##                  Whitley Island                   Wobaston Road 
-##                               1                               1 
-##              Wolverhampton Road              Yardley Green Road 
-##                               3                               1</code></pre>
+##                             A34                             A38                           A4053 
+##                               3                               4                               1 
+##                           A4124                           A4126                           A4148 
+##                               1                               1                               1 
+##                            A428                            A435                            A444 
+##                               2                               1                               1 
+##                             A45                            A456                             A46 
+##                               1                               1                               1 
+##                           A4600                            A461                     Albert Road 
+##                               3                               2                               1 
+##                   Alcester Road             Alcester Road South                   Aldridge Road 
+##                               1                               1                               2 
+##                      Allard Way               Allesley Old Road                      Ansty Road 
+##                               2                               1                               1 
+##            Aston Webb Boulevard                           B4065                           B4082 
+##                               1                               1                               1 
+##                           B4109                           B4113                           B4114 
+##                               1                               1                               1 
+##                           B4217              Barkers Butts Lane                       Bath Road 
+##                               1                               1                               1 
+##                        Bath Row                   Bearwood Road                 Bell Green Road 
+##                               1                               1                               1 
+##                    Bilston Road                     Binley Road                 Birmingham Road 
+##                               1                               2                               4 
+##          Black Country New Road               Blossomfield Road             Blower&#39;s Green Road 
+##                               1                               1                               1 
+##                  Blue Lane West                    Brandon Road              Brassington Avenue 
+##                               1                               1                               1 
+##                   Brinklow Road                    Bristol Road              Bristol Road South 
+##                               2                               3                               1 
+##                  Bristol Street                    Broad Street                    Bunbury Road 
+##                               1                               2                               1 
+##                      Burnt Tree                       Chad Road                    Chester Road 
+##                               1                               1                               1 
+## Cheylesmore &amp; Stivichall Bypass              Cinder Bank Island            Clifford Bridge Road 
+##                               2                               1                               1 
+##                    College Road                    Coundon Road                   Coventry Road 
+##                               1                               1                               1 
+##                  Darlaston Road                      Drews Lane                     Dudley Port 
+##                               1                               1                               1 
+##                     Dudley Road         Dudley Southern By-pass              Duncan Edwards Way 
+##                               3                               1                               1 
+##           Earlsdon Avenue North           Earlsdon Avenue South                  Edgbaston Road 
+##                               1                               1                               1 
+##                Elston Hall Lane                   Engleton Road                  Foleshill Road 
+##                               1                               1                               2 
+##                      Forge Lane              Four Pounds Avenue                   Gravelly Hill 
+##                               1                               1                               1 
+##             Gravelly Hill North                    Great Bridge  Great Charles Street Queensway 
+##                               1                               1                               1 
+##                      Green Lane                     Hagley Road                Hagley Road West 
+##                               1                               1                               1 
+##                   Harborne Lane              Harborne Park Road                   Harborne Road 
+##                               2                               1                               1 
+##                     High Street           High Street Bordesley            High Street Deritend 
+##                               6                               1                               1 
+##                  Highfield Road                   Hinckley Road                  Hobs Moat Road 
+##                               1                               1                               2 
+##                 Hockley Flyover                    Hockley Hill                   Holloway Head 
+##                               1                               1                               1 
+##                   Holyhead Road                  Horseley Heath                   Hunter Street 
+##                               2                               1                               1 
+##            James Watt Queensway                      Jarvis Way                 Kenilworth Road 
+##                               1                               1                               1 
+##                 Leamington Road                  Lichfield Road           Littleton Street East 
+##                               2                               3                               1 
+##           Littleton Street West                  Lockhurst Lane                       Lode Lane 
+##                               1                               1                               1 
+##                     London Road                   Longford Road                   Longmore Road 
+##                               3                               1                               1 
+##                  Lordswood Road            Lower Rushall Street                       Manor Way 
+##                               1                               1                               1 
+##              Marshall Lake Road           Moor Street Queensway                  Moseley Avenue 
+##                               1                               1                               1 
+##                    Moseley Road               New Coventry Road                        New Road 
+##                               1                               1                               2 
+##                    New Town Row            Newhampton Road West                   Oak Tree Lane 
+##                               2                               1                               1 
+##                   Oxbarn Avenue                   Oxford Street                       Park Lane 
+##                               1                               1                               1 
+##                  Park Road West                     Park Street         Patent Shaft Roundabout 
+##                               1                               1                               1 
+##                 Patshull Avenue                   Pershore Road                      Pleck Road 
+##                               1                               1                               1 
+##                     Priory Road               Queensland Avenue                       Queensway 
+##                               2                               1                               1 
+##              Quinton Expressway                    Radford Road                   Redditch Road 
+##                               1                               1                               1 
+##          Ring Road Saint Peters           Ring Road St Patricks           Ring Road St. Andrews 
+##                               1                               1                               1 
+##            Ring Road St. Davids              Ringway Hill Cross                  Ringway Queens 
+##                               1                               1                               1 
+##                   Ringway Rudge                Ringway St Johns             Ringway St Nicholas 
+##                               1                               1                               1 
+##             Ringway St Patricks               Ringway Swanswell             Ringway Whitefriars 
+##                               1                               1                               1 
+##                  Salford Circus                 Saltley Viaduct                     Sandon Road 
+##                               1                               1                               1 
+##          Sir Herbert Austin Way                    Sky Blue Way             Small Heath Highway 
+##                               1                               1                               1 
+##            Smallbrook Queensway                 Somerfield Road                 Spon Lane South 
+##                               1                               1                               1 
+##                  St John&#39;s Road                 St Martins Road             Stoney Stanton Road 
+##                               1                               1                               1 
+##                Stourbridge Road        Suffolk Street Queensway                     Summer Road 
+##                               1                               1                               1 
+##                 Sutton New Road                 Tettenhall Road                  The Expressway 
+##                               1                               1                               1 
+##               Thimble Mill Lane                   Toll End Road                     Trinity Way 
+##                               1                               1                               1 
+##                    Unnamed road                    walsall Road                    Walsall Road 
+##                              18                               1                               1 
+##                  Walsgrave Road                  Warstones Road                    Warwick Road 
+##                               1                               1                               3 
+##             Washwood Heath Road                Wednesfield Road                 Wednesfield Way 
+##                               1                               2                               1 
+##                 Wellington Road                 Westbourne Road                    White Street 
+##                               1                               1                               2 
+##                  Whitley Island                   Wobaston Road              Wolverhampton Road 
+##                               1                               1                               3 
+##                  Worcester Road              Yardley Green Road 
+##                               1                               1</code></pre>
 <pre><code>## 
-##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    50                   111                    60</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    50                   111                    60                     9</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    50                   111                    60                     9</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       50                      122                       63</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       50                      122                       63                        9</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       50                      122                       63                        9</code></pre>
 <pre><code>## # A tibble: 50 x 5
-##    Name              Reference `Continuous length (… `Cycling potentia… `Length * potential (…
-##  * &lt;chr&gt;             &lt;chr&gt;                     &lt;dbl&gt;              &lt;dbl&gt;                  &lt;dbl&gt;
-##  1 Bristol Street    A38                        1183                353                    418
-##  2 Hagley Road       A456                       4225                262                   1107
-##  3 Pershore Road     A441                       3808                240                    914
-##  4 Ring Road Saint … A4150                       911                256                    233
-##  5 Moseley Avenue    B4107                      1027                195                    200
-##  6 Priory Road       A4168                      1348                174                    235
-##  7 Ansty Road        A4600                      4257                171                    728
-##  8 Blossomfield Road B4102                      1151                155                    178
-##  9 Lode Lane         B425                       3919                154                    604
-## 10 Harborne Road     B4124                       857                177                    152
+##    Name                   Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;                  &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Bristol Street         A38                          1183                 353                       418
+##  2 Hagley Road            A456                         4225                 276                      1166
+##  3 Pershore Road          A441                         3808                 255                       971
+##  4 Ring Road Saint Peters A4150                         911                 256                       233
+##  5 Moseley Avenue         B4107                        1027                 215                       221
+##  6 Ansty Road             A4600                        4257                 171                       728
+##  7 Priory Road            A4168                        1348                 156                       210
+##  8 Blossomfield Road      B4102                        1151                 155                       178
+##  9 Lode Lane              B425                         3919                 155                       607
+## 10 Stourbridge Road       A461                          866                 165                       143
 ## # … with 40 more rows</code></pre>
 
 

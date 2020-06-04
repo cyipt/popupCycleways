@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-03" />
+<meta name="date" content="2020-06-04" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-03</h4>
+<h4 class="date">2020-06-04</h4>
 
 </div>
 
@@ -386,81 +386,120 @@ summary {
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
 ##        A426   A47  A594    A6 B5366 
-##    79     3     3     7     1     8</code></pre>
-<pre><code>## [1] 41</code></pre>
+##   100     4     3    11     1    10</code></pre>
+<pre><code>## [1] 56</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   591.9  1426.6  1805.8  2492.1  5306.8  5306.8</code></pre>
+##   801.8  1609.3  2387.7  3485.6  6559.9  6559.9</code></pre>
 <pre><code>## 
-##           Abbey Lane       Aylestone Road        Belgrave Gate         Bennion Road 
-##                    9                   37                   33                    5 
-## Braunstone Lane East       Charles Street        Glenhills Way          Henley Road 
-##                   16                   19                   13                    8 
-##        Hinckley Road     Humberstone Road   King Richards Road   Knighton Lane East 
-##                   43                   26                   23                   14 
-##          London Road    Loughborough Road     Lutterworth Road          Melton Road 
-##                   84                   16                   10                   69 
-##                Other         Saffron Lane      Soar Valley Way    St Augustine Road 
-##                  363                   25                   13                   18 
-##    St Margaret&#39;s Way       Uppingham Road         Welford Road 
-##                   12                   63                   83</code></pre>
+##            Abbey Lane        Aylestone Road         Belgrave Gate          Bennion Road 
+##                     9                    37                    33                     5 
+##  Braunstone Lane East      Carisbrooke Road        Charles Street       Colchester Road 
+##                    16                     7                    19                    18 
+##         Glenfrith Way         Glenhills Way          Hamilton Way           Henley Road 
+##                    26                    13                     6                     8 
+##         Hinckley Road      Humberstone Road   Hungarton Boulevard    King Richards Road 
+##                    59                    26                    12                    23 
+##    Knighton Lane East           Krefeld Way        Leicester Road           London Road 
+##                    14                    15                    13                    90 
+##     Loughborough Road      Lutterworth Road           Melton Road       Narborough Road 
+##                    16                    10                    76                    52 
+## Narborough Road South           Newark Road            Oadby Road                 Other 
+##                    31                     8                     6                   441 
+##          Red Hill Way          Saffron Lane       Soar Valley Way     St Augustine Road 
+##                    25                    25                    24                    18 
+##        St Georges Way              St Johns     St Margaret&#39;s Way       Thurmaston Lane 
+##                    11                    15                    12                    15 
+##          Thurnby Hill             Troon Way        Uppingham Road         Watermead Way 
+##                    15                     7                    63                    16 
+##          Welford Road 
+##                    83</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.1043  0.3913  0.4339  0.7129  1.0061</code></pre>
-<pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;B53…     2     1 Saffron Lane                    1 Saff…         2465              271
-##  2 &quot;A59…     2     1 Welford Road                    1 Welf…         1050              217
-##  3 &quot;A42…     2     1 Aylestone Road                  1 Ayle…         2453              216
-##  4 &quot;A51…     2     1 Welford Road                    2 Welf…         1921              201
-##  5 &quot;&quot;        2     5 Charles Street                  1 Char…          625              258
-##  6 &quot;A6&quot;      2     1 London Road                     1 Lond…         3519              150
-##  7 &quot;&quot;        2     5 Belgrave Gate                   1 Belg…          708              207
-##  8 &quot;A47&quot;     2     2 Hinckley Road                   1 Hinc…         2900              124
-##  9 &quot;&quot;        2    17 Henley Road                     1 Henl…          550              210
-## 10 &quot;A42…     2     1 Lutterworth Road                1 Lutt…          923              106
-## # … with 8 more variables: mean_width &lt;dbl&gt;, majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
-## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+## 0.00000 0.04418 0.29934 0.39567 0.70601 1.00614</code></pre>
+<pre><code>## [1] 20</code></pre>
+<pre><code>## # A tibble: 20 x 16
+##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+##  1 &quot;B53…     2     2 Saffron Lane                    1 Saff…         2465              271         10
+##  2 &quot;A59…     2     1 Welford Road                    1 Welf…         1050              217         13
+##  3 &quot;A42…     2     1 Aylestone Road                  1 Ayle…         2453              216         11
+##  4 &quot;A51…     2     1 Welford Road                    2 Welf…         1921              201         12
+##  5 &quot;B41…     2     1 St Johns                        1 St J…         1028              192         10
+##  6 &quot;&quot;        2     6 Charles Street                  1 Char…          625              258          9
+##  7 &quot;A54…     2     1 Narborough Road…                1 Narb…         1866              149          7
+##  8 &quot;&quot;        2     6 Belgrave Gate                   1 Belg…          708              207          8
+##  9 &quot;A6&quot;      2     1 London Road                     1 Lond…         3731              145         11
+## 10 &quot;A47&quot;     2     2 Hinckley Road                   1 Hinc…         3974              135         10
+## 11 &quot;B41…     2     1 Narborough Road…                1 Narb…         1496              135         12
+## 12 &quot;A56…     2     1 Watermead Way                   1 Wate…         1473              121         12
+## 13 &quot;A56…     2     1 Troon Way                       1 Troo…         1306              120          9
+## 14 &quot;&quot;        2    20 Henley Road                     1 Henl…          550              210         10
+## 15 &quot;A54…     2     1 Narborough Road                 1 Narb…         2496              107         11
+## 16 &quot;A42…     2     1 Lutterworth Road                1 Lutt…          923              106         11
+## 17 &quot;A60…     2     1 Belgrave Gate                   1 Belg…          822              116          8
+## 18 &quot;A51…     2     2 Welford Road                    1 Welf…          611              149         11
+## 19 &quot;&quot;        2     5 Loughborough Ro…                1 Loug…          766              116         10
+## 20 &quot;A60…     2     2 Melton Road                     1 Melt…         4201               87          8
+## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
+## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##           Abbey Lane         Abbey Street          Anstey Lane       Aylestone Road 
-##                    1                    1                    2                    1 
-##        Belgrave Gate         Bennion Road Braunstone Lane East       Charles Street 
-##                    2                    1                    1                    1 
-##  Counting House Road           Dysart Way     Fosse Road North        Glenhills Way 
-##                    1                    1                    1                    1 
-##          Henley Road     Highcross Street        Hinckley Road     Humberstone Gate 
-##                    1                    1                    2                    1 
-##     Humberstone Road   King Richards Road   Knighton Lane East       Leicester Road 
-##                    1                    1                    1                    1 
-##          London Road    Loughborough Road     Lutterworth Road          Melton Road 
-##                    1                    1                    1                    1 
-##         Saffron Lane      Soar Valley Way    St Augustine Road    St Margaret&#39;s Way 
-##                    1                    1                    1                    1 
-##      Stonesby Avenue            Troon Way         Unnamed road       Uppingham Road 
-##                    1                    1                   12                    1 
-##         Welford Road 
-##                    3</code></pre>
+##            Abbey Lane          Abbey Street           Anstey Lane        Aylestone Road 
+##                     1                     1                     1                     1 
+##                 B4114         Belgrave Gate          Bennion Road  Braunstone Lane East 
+##                     1                     2                     1                     1 
+##      Carisbrooke Road        Charles Street       Colchester Road   Counting House Road 
+##                     1                     1                     1                     1 
+##            Dysart Way      Fosse Road North         Glenfrith Way         Glenhills Way 
+##                     1                     1                     1                     1 
+##          Hamilton Way           Henley Road      Highcross Street         Hinckley Road 
+##                     1                     1                     1                     2 
+##      Humberstone Gate      Humberstone Road   Hungarton Boulevard    King Richards Road 
+##                     1                     1                     1                     1 
+##    Knighton Lane East           Krefeld Way        Leicester Road           London Road 
+##                     1                     1                     2                     1 
+##     Loughborough Road      Lutterworth Road           Melton Road       Narborough Road 
+##                     1                     1                     1                     1 
+## Narborough Road South           Newark Road            Oadby Road          Red Hill Way 
+##                     2                     1                     1                     1 
+##          Saffron Lane        Scraptoft Lane       Soar Valley Way     St Augustine Road 
+##                     1                     1                     1                     1 
+##        St Georges Way              St Johns     St Margaret&#39;s Way       Stonesby Avenue 
+##                     1                     1                     1                     1 
+##       Thurmaston Lane          Thurnby Hill             Troon Way          Unnamed road 
+##                     1                     1                     2                    15 
+##         Upperton Road        Uppingham Road         Watermead Way          Welford Road 
+##                     1                     1                     1                     3 
+##        Woodville Road 
+##                     1</code></pre>
 <pre><code>## 
-##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     9                    30</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     9                    30</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    10                     9                    30</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name            Reference `Continuous length (m… `Cycling potentia… `Length * potential (k…
-##  * &lt;chr&gt;           &lt;chr&gt;                      &lt;dbl&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
-##  1 Saffron Lane    &quot;B5366&quot;                     2465                271                     668
-##  2 Welford Road    &quot;A594&quot;                      1050                217                     228
-##  3 Aylestone Road  &quot;A426&quot;                      2453                216                     530
-##  4 Welford Road    &quot;A5199&quot;                     1921                201                     386
-##  5 Charles Street  &quot;&quot;                           625                258                     161
-##  6 London Road     &quot;A6&quot;                        3519                150                     528
-##  7 Belgrave Gate   &quot;&quot;                           708                207                     147
-##  8 Hinckley Road   &quot;A47&quot;                       2900                124                     360
-##  9 Henley Road     &quot;&quot;                           550                210                     116
-## 10 Lutterworth Ro… &quot;A426&quot;                       923                106                      98</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                       18                       36</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                       18                       36</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                       18                       36</code></pre>
+<pre><code>## # A tibble: 20 x 5
+##    Name                  Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;                 &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Saffron Lane          &quot;B5366&quot;                      2465                 271                       668
+##  2 Welford Road          &quot;A594&quot;                       1050                 217                       228
+##  3 Aylestone Road        &quot;A426&quot;                       2453                 216                       530
+##  4 Welford Road          &quot;A5199&quot;                      1921                 201                       386
+##  5 St Johns              &quot;B4114&quot;                      1028                 192                       197
+##  6 Charles Street        &quot;&quot;                            625                 258                       161
+##  7 Narborough Road South &quot;A5460&quot;                      1866                 149                       278
+##  8 Belgrave Gate         &quot;&quot;                            708                 207                       147
+##  9 London Road           &quot;A6&quot;                         3731                 145                       541
+## 10 Hinckley Road         &quot;A47&quot;                        3974                 135                       536
+## 11 Narborough Road South &quot;B4114&quot;                      1496                 135                       202
+## 12 Watermead Way         &quot;A563&quot;                       1473                 121                       178
+## 13 Troon Way             &quot;A563&quot;                       1306                 120                       157
+## 14 Henley Road           &quot;&quot;                            550                 210                       116
+## 15 Narborough Road       &quot;A5460&quot;                      2496                 107                       267
+## 16 Lutterworth Road      &quot;A426&quot;                        923                 106                        98
+## 17 Belgrave Gate         &quot;A607&quot;                        822                 116                        95
+## 18 Welford Road          &quot;A5199&quot;                       611                 149                        91
+## 19 Loughborough Road     &quot;&quot;                            766                 116                        89
+## 20 Melton Road           &quot;A607&quot;                       4201                  87                       365</code></pre>
 
 
 

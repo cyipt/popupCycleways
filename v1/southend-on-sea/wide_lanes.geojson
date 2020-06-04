@@ -1,0 +1,20 @@
+{
+"type": "FeatureCollection",
+"name": "wide_lanes",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Queensway", "ref": "A1160", "maxspeed": "40+ mph", "cycling_potential": 123.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71765, 51.53869 ], [ 0.71763, 51.53875 ] ] } },
+{ "type": "Feature", "properties": { "name": "Queensway", "ref": "A13", "maxspeed": "30 mph", "cycling_potential": 125.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.70613, 51.54073 ], [ 0.70618, 51.54081 ] ] } },
+{ "type": "Feature", "properties": { "name": "Sutton Road", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 205.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71825, 51.54378 ], [ 0.71831, 51.54365 ], [ 0.71838, 51.54346 ], [ 0.71845, 51.54326 ] ] } },
+{ "type": "Feature", "properties": { "name": "Sutton Road", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 113.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71869, 51.54131 ], [ 0.71867, 51.54125 ], [ 0.71864, 51.54118 ], [ 0.71857, 51.5411 ] ] } },
+{ "type": "Feature", "properties": { "name": "Sutton Road", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 102.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71845, 51.54096 ], [ 0.71839, 51.54091 ], [ 0.7183, 51.54085 ], [ 0.71821, 51.54079 ], [ 0.71812, 51.54075 ] ] } },
+{ "type": "Feature", "properties": { "name": "East Street", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 205.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71189, 51.55041 ], [ 0.7126, 51.55066 ] ] } },
+{ "type": "Feature", "properties": { "name": "East Street", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 205.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.7126, 51.55066 ], [ 0.71279, 51.55069 ], [ 0.71315, 51.55078 ], [ 0.71327, 51.5508 ], [ 0.71357, 51.55082 ] ] } },
+{ "type": "Feature", "properties": { "name": "East Street", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 205.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71357, 51.55082 ], [ 0.71367, 51.55082 ] ] } },
+{ "type": "Feature", "properties": { "name": "East Street", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 53.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71367, 51.55082 ], [ 0.71382, 51.5508 ], [ 0.714, 51.55077 ], [ 0.71413, 51.55077 ] ] } },
+{ "type": "Feature", "properties": { "name": "East Street", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 206.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.70496, 51.54841 ], [ 0.7051, 51.54846 ], [ 0.70532, 51.54853 ], [ 0.70542, 51.54856 ] ] } },
+{ "type": "Feature", "properties": { "name": "Sutton Road", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 81.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.71752, 51.54071 ], [ 0.71764, 51.54071 ], [ 0.71771, 51.5407 ], [ 0.71784, 51.54071 ], [ 0.71794, 51.54072 ] ] } },
+{ "type": "Feature", "properties": { "name": "West Road", "ref": "B1015", "maxspeed": "30 mph", "cycling_potential": 149.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.6924, 51.54388 ], [ 0.69252, 51.54395 ], [ 0.69258, 51.54398 ], [ 0.69265, 51.54401 ], [ 0.69278, 51.54402 ], [ 0.693, 51.54404 ], [ 0.69319, 51.54405 ] ] } },
+{ "type": "Feature", "properties": { "name": "Prince Avenue", "ref": "A1158", "maxspeed": "30 mph", "cycling_potential": 103.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ 0.68563, 51.55962 ], [ 0.68507, 51.55953 ] ] } }
+]
+}

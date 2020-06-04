@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-03" />
+<meta name="date" content="2020-06-04" />
 
 <title>build.R</title>
 
@@ -378,140 +378,132 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-03</h4>
+<h4 class="date">2020-06-04</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A1134  A1307  A1309   A603 NCN 11 
-##    336     13     29     12      1      1</code></pre>
+##         A1134  A1307  A1309 NCN 11 
+##    321     13     22     12      1</code></pre>
 <pre><code>## [1] 64</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1860   10293   20784   15233   20784   20784</code></pre>
+##    1860    4898   20269   13338   20269   20269</code></pre>
 <pre><code>## 
 ##                Babraham Road                Barnwell Road            Bourges Boulevard 
 ##                           12                           16                           40 
 ##                  Bretton Way                  Bridge Road               Cambridge Road 
 ##                           15                           11                           18 
-## Cambridgeshire Guided Busway               Churchill Road          Dunsbridge Turnpike 
-##                           27                           39                            4 
-##               Eastfield Road                Elizabeth Way               Fletton Avenue 
-##                           10                           17                           11 
-##        Frank Perkins Parkway                  Gresley Way                  High Street 
-##                           12                            2                           29 
-##                   Hills Road              Huntingdon Road              Isle of Ely Way 
-##                           33                           34                            8 
-##                 Lincoln Road                  London Road                    Long Road 
-##                           45                           20                            6 
-##           Longthorpe Parkway                    Lynn Road              Melbourn bypass 
-##                            1                           25                           12 
-##              Melbourn Bypass                Melbourn Road                  Milton Road 
-##                            8                           14                           37 
-##               Newmarket Road                Orton Parkway                        Other 
-##                           23                            2                          791 
-##                  Oundle Road               Paston Parkway                   Perne Road 
-##                           16                            8                           13 
-##                 Royston Road                  Thorpe Road             Trumpington Road 
-##                           28                           23                           18 
-##           Werrington Parkway 
-##                           35</code></pre>
+## Cambridgeshire Guided Busway          Dunsbridge Turnpike               Eastfield Road 
+##                           34                            4                           10 
+##                Elizabeth Way               Fletton Avenue        Frank Perkins Parkway 
+##                           17                           11                           12 
+##                  Gresley Way                  High Street                   Hills Road 
+##                            2                           29                           33 
+##              Huntingdon Road              Isle of Ely Way                 Lincoln Road 
+##                           34                            8                           45 
+##                  London Road                    Long Road           Longthorpe Parkway 
+##                           20                            6                            1 
+##                    Lynn Road              Melbourn bypass              Melbourn Bypass 
+##                           24                           12                            8 
+##                  Milton Road               Newmarket Road                Orton Parkway 
+##                           37                           23                            2 
+##                        Other                  Oundle Road               Paston Parkway 
+##                          711                           16                            8 
+##                   Perne Road                 Royston Road                  Thorpe Road 
+##                           13                           28                           23 
+##             Trumpington Road           Werrington Parkway 
+##                           18                           35</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.07962 0.61318 0.54901 1.00000 1.05000</code></pre>
-<pre><code>## [1] 40</code></pre>
-<pre><code>## # A tibble: 40 x 16
+##  0.0000  0.1129  0.8095  0.5898  1.0000  1.0500</code></pre>
+<pre><code>## [1] 30</code></pre>
+<pre><code>## # A tibble: 30 x 16
 ##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
 ##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A1307    11     4 Hills Road                      1 Hill…          649             1423         10
-##  2 A1134    11     1 Perne Road                      1 Pern…          944              729          9
-##  3 A1307    11     3 Huntingdon Road                 1 Hunt…         1934              458         10
-##  4 A1134    11     1 Other                          NA A1134          700              472          9
-##  5 A1134    11     1 Other                          20 A1134          664              494          9
-##  6 A603     11     2 Other                          15 Gonv…          737              391         10
-##  7 A603     11     2 Other                          NA Gonv…          737              391         10
-##  8 A1134    11     1 Newmarket Road                  1 Newm…          804              329         10
-##  9 A1303    11     2 Other                          23 Ches…          540              466         11
-## 10 A1303    11     2 Other                          NA Ches…          540              466         11
-## # … with 30 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
+##  1 &quot;A13…     5     4 Hills Road                      1 Hill…          649             1423         10
+##  2 &quot;A11…     5     1 Perne Road                      1 Pern…          944              729          9
+##  3 &quot;A13…     5     3 Huntingdon Road                 1 Hunt…         1934              458         10
+##  4 &quot;A11…     5     1 Other                          16 A1134          664              494          9
+##  5 &quot;A60…     5     2 Other                          12 Gonv…          737              391         10
+##  6 &quot;A11…     5     1 Newmarket Road                  1 Newm…          804              326         10
+##  7 &quot;A13…     5     2 Other                          19 Ches…          540              466         11
+##  8 &quot;&quot;      518    27 Lincoln Road                    2 Linc…         2273              245         10
+##  9 &quot;&quot;      518    32 Eastfield Road                  1 East…         1074              181         10
+## 10 &quot;A13…     2     3 Other                           1 A1303          628              279         10
+## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
 ## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
 ## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
 ##                          A10                        A1134                        A1139 
-##                            8                            2                            2 
+##                            5                            1                            1 
 ##                        A1303                        A1307                          A14 
-##                            2                            5                            2 
-##                         A141                         A142                          A15 
-##                            2                            4                            6 
-##                         A428                         A505                         A603 
-##                            4                            4                            2 
-##                         A605                        B1049                        B1514 
-##                            2                            1                            2 
-##                Babraham Road                Barnwell Road            Bourges Boulevard 
-##                            1                            1                            1 
-##                Brampton Road                  Bretton Way                  Bridge Road 
-##                            2                            2                            1 
-##               Cambridge Road Cambridgeshire Guided Busway     Caxton Gibbet Roundabout 
-##                            3                            4                            2 
-##              Chesterton Road               Churchill Road                  Ditton Lane 
-##                            6                            1                            2 
-##              Doddington Road          Dunsbridge Turnpike                    East Road 
-##                            2                            1                            2 
-##               Eastfield Road                Elizabeth Way                Elm High Road 
-##                            1                            1                            1 
-##               Fletton Avenue                 Fordham Road        Frank Perkins Parkway 
-##                            1                            2                            2 
-##              Fred Archer Way               Freedom Bridge               Gonville Place 
-##                            2                            1                            2 
-##                  Gresley Way      Guided Busway bridleway                 Hartwell Way 
-##                            1                            1                            1 
-##                  High Street              Highfields Road                   Hills Road 
-##                            3                            2                            4 
-##                  Histon Road                Hoffer Bridge              Huntingdon Road 
+##                            1                            3                            1 
+##                         A142                          A15                         A428 
+##                            2                            4                            1 
+##                         A505                         A603                         A605 
 ##                            2                            1                            1 
-##              Isle of Ely Way                 Lincoln Road                  London Road 
-##                            2                            4                            3 
-##                    Long Road             Longstanton Road           Longthorpe Parkway 
-##                            1                            2                            1 
-##                    Lynn Road              Melbourn bypass              Melbourn Bypass 
+##                        B1049                        B1514                Babraham Road 
 ##                            1                            1                            1 
-##                Melbourn Road                  Milton Road                 Mowbray Road 
+##                Barnwell Road            Bourges Boulevard                Brampton Road 
+##                            1                            1                            1 
+##                  Bretton Way                  Bridge Road               Cambridge Road 
+##                            2                            1                            3 
+## Cambridgeshire Guided Busway              Chesterton Road                  Ditton Lane 
+##                            4                            3                            1 
+##          Dunsbridge Turnpike                    East Road               Eastfield Road 
+##                            1                            1                            1 
+##                Elizabeth Way               Fletton Avenue        Frank Perkins Parkway 
+##                            1                            1                            2 
+##               Gonville Place                  Gresley Way      Guided Busway bridleway 
+##                            1                            1                            1 
+##                 Hartwell Way                  High Street              Highfields Road 
+##                            1                            2                            1 
+##                   Hills Road                  Histon Road                Hoffer Bridge 
+##                            3                            1                            1 
+##              Huntingdon Road              Isle of Ely Way                 Lincoln Road 
+##                            1                            2                            3 
+##                  London Road                    Long Road             Longstanton Road 
+##                            3                            1                            1 
+##           Longthorpe Parkway                    Lynn Road              Melbourn bypass 
+##                            1                            1                            1 
+##              Melbourn Bypass                  Milton Road                 Mowbray Road 
 ##                            1                            3                            1 
 ##                       NCN 11            Needingworth Road                Newark Avenue 
-##                            2                            2                            1 
+##                            1                            1                            1 
 ##               Newmarket Road                Orton Parkway                  Oundle Road 
-##                            7                            1                            1 
+##                            4                            1                            1 
 ##               Paston Parkway                   Perne Road                        Risby 
-##                            2                            1                            2 
+##                            2                            1                            1 
 ##                    Rivergate                 Royston Road                Shelford Road 
-##                            1                            2                            2 
+##                            1                            2                            1 
 ##                  Thorpe Road             Trumpington Road                 Unnamed road 
-##                            1                            3                           45 
+##                            1                            2                           25 
 ##                Victoria Road                   Water Lane           Werrington Parkway 
-##                            2                            2                            1 
+##                            1                            1                            1 
 ##              Whittlesey Road 
-##                            2</code></pre>
+##                            1</code></pre>
 <pre><code>## 
 ## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       40                       69                       93</code></pre>
+##                       30                       43                       51</code></pre>
 <pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       69                       93                        7</code></pre>
+##                       30                       43                       51                        6</code></pre>
 <pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       69                       93                        7</code></pre>
-<pre><code>## # A tibble: 40 x 5
+##                       30                       43                       51                        6</code></pre>
+<pre><code>## # A tibble: 30 x 5
 ##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
 ##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Hills Road      A1307                         649                1423                       924
-##  2 Perne Road      A1134                         944                 729                       688
-##  3 Huntingdon Road A1307                        1934                 458                       886
-##  4 A1134           A1134                         700                 472                       330
-##  5 A1134           A1134                         664                 494                       328
-##  6 Gonville Place  A603                          737                 391                       288
-##  7 Gonville Place  A603                          737                 391                       288
-##  8 Newmarket Road  A1134                         804                 329                       265
-##  9 Chesterton Road A1303                         540                 466                       252
-## 10 Chesterton Road A1303                         540                 466                       252
-## # … with 30 more rows</code></pre>
+##  1 Hills Road      &quot;A1307&quot;                       649                1423                       924
+##  2 Perne Road      &quot;A1134&quot;                       944                 729                       688
+##  3 Huntingdon Road &quot;A1307&quot;                      1934                 458                       886
+##  4 A1134           &quot;A1134&quot;                       664                 494                       328
+##  5 Gonville Place  &quot;A603&quot;                        737                 391                       288
+##  6 Newmarket Road  &quot;A1134&quot;                       804                 326                       262
+##  7 Chesterton Road &quot;A1303&quot;                       540                 466                       252
+##  8 Lincoln Road    &quot;&quot;                           2273                 245                       557
+##  9 Eastfield Road  &quot;&quot;                           1074                 181                       194
+## 10 A1303           &quot;A1303&quot;                       628                 279                       175
+## # … with 20 more rows</code></pre>
 
 
 

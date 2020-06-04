@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-03" />
+<meta name="date" content="2020-06-04" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-03</h4>
+<h4 class="date">2020-06-04</h4>
 
 </div>
 
@@ -391,78 +391,72 @@ summary {
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    1535    2218    3331    3681    5678    5941</code></pre>
 <pre><code>## 
-##    Bramford Road     Brandon Road      Bridge Road        Bury Road      Civic Drive 
-##               11                2               21                3                8 
-##     Crown Street  Felixstowe Road   Foxburrow Hill      Gipping Way   Girling Street 
-##                9               37                3               23                9 
-##      High Street      Jubilee Way      London Road   Millennium Way      Nacton Road 
-##               22                9               63                8                9 
-##   Newmarket Road Normanston Drive     Norwich Road            Other    Tom Crisp Way 
-##                7               12               14              396                7 
-## Westerfield Road    Yarmouth Road 
-##                7               16</code></pre>
+##    Bramford Road     Brandon Road      Bridge Road        Bury Road      Civic Drive     Crown Street 
+##               11                2               21                3                8                9 
+##  Felixstowe Road   Foxburrow Hill      Gipping Way   Girling Street      High Street      Jubilee Way 
+##               37                3               23                9               22                9 
+##      London Road   Millennium Way      Nacton Road   Newmarket Road Normanston Drive     Norwich Road 
+##               63                8                9                7               12               14 
+##            Other    Tom Crisp Way Westerfield Road    Yarmouth Road 
+##              396                7                7               16</code></pre>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##  0.0000  0.0000  0.1924  0.3481  0.7110  1.0018</code></pre>
 <pre><code>## [1] 27</code></pre>
 <pre><code>## # A tibble: 27 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po…
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;
-##  1 &quot;A12…   281     3 Other                          10 Main…          898              447
-##  2 &quot;&quot;      213     8 Nacton Road                     1 Nact…          664              414
-##  3 &quot;&quot;      213    10 High Street                     2 High…          802              300
-##  4 &quot;A47&quot;   505     1 Yarmouth Road                   2 Yarm…          982              212
-##  5 &quot;&quot;      222     3 Crown Street                    1 Crow…          511              255
-##  6 &quot;A11…   212     1 Felixstowe Road                 1 Feli…         1452              124
-##  7 &quot;&quot;      222     9 Norwich Road                    1 Norw…          821              147
-##  8 &quot;A12&quot;   511     3 Tom Crisp Way                   1 Tom …          545              186
-##  9 &quot;A11…   532     1 Normanston Drive                1 Norm…          885              112
-## 10 &quot;A47&quot;   512     2 Jubilee Way                     1 Jubi…          599              147
-## # … with 17 more rows, and 8 more variables: mean_width &lt;dbl&gt;, majority_spare_lane &lt;lgl&gt;,
-## #   group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;,
-## #   length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
+##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
+##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+##  1 &quot;A12…   281     3 Other                          10 Main…          898              447         10
+##  2 &quot;&quot;      213     8 Nacton Road                     1 Nact…          664              414          9
+##  3 &quot;&quot;      213    10 High Street                     2 High…          802              300         10
+##  4 &quot;A47&quot;   505     1 Yarmouth Road                   2 Yarm…          982              212          6
+##  5 &quot;&quot;      222     3 Crown Street                    1 Crow…          511              255         11
+##  6 &quot;A11…   212     1 Felixstowe Road                 1 Feli…         1452              124         10
+##  7 &quot;&quot;      222     9 Norwich Road                    1 Norw…          821              147          9
+##  8 &quot;A12&quot;   511     3 Tom Crisp Way                   1 Tom …          545              186          3
+##  9 &quot;A11…   532     1 Normanston Drive                1 Norm…          885              112          8
+## 10 &quot;A47&quot;   512     2 Jubilee Way                     1 Jubi…          599              147          7
+## # … with 17 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
+## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
+## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##               A1117               A1144                 A12                A146 
-##                   1                   1                   2                   1 
-##                 A47         Boston Road       Bramford Road        Brandon Road 
-##                   4                   1                   2                   1 
-##         Bridge Road           Bury Road         Civic Drive       Clapgate Lane 
-##                   1                   1                   1                   1 
-##        Cornard Road        Crown Street     Felixstowe Road        Fordham Road 
-##                   1                   1                   2                   1 
-##      Foxburrow Hill        Gipping Road         Gipping Way      Girling Street 
-##                   1                   1                   1                   1 
-##         Hall Street           High Road         High Street         Jubilee Way 
-##                   1                   1                   2                   1 
-##         London Road           Main Road      Millennium Way         Nacton Road 
-##                   4                   1                   1                   1 
-##        Needham Road      Newmarket Road    Normanston Drive        Norwich Road 
-##                   1                   1                   1                   1 
-##         Queen&#39;s Way        Ransomes Way       Saltwater Way     Scrivener Drive 
-##                   1                   2                   1                   1 
-## St Margaret&#39;s Green      Station Square       Tom Crisp Way        Unnamed road 
-##                   1                   1                   1                  13 
+##               A1117               A1144                 A12                A146                 A47 
+##                   1                   1                   2                   1                   4 
+##         Boston Road       Bramford Road        Brandon Road         Bridge Road           Bury Road 
+##                   1                   2                   1                   1                   1 
+##         Civic Drive       Clapgate Lane        Cornard Road        Crown Street     Felixstowe Road 
+##                   1                   1                   1                   1                   2 
+##        Fordham Road      Foxburrow Hill        Gipping Road         Gipping Way      Girling Street 
+##                   1                   1                   1                   1                   1 
+##         Hall Street           High Road         High Street         Jubilee Way         London Road 
+##                   1                   1                   2                   1                   4 
+##           Main Road      Millennium Way         Nacton Road        Needham Road      Newmarket Road 
+##                   1                   1                   1                   1                   1 
+##    Normanston Drive        Norwich Road         Queen&#39;s Way        Ransomes Way       Saltwater Way 
+##                   1                   1                   1                   2                   1 
+##     Scrivener Drive St Margaret&#39;s Green      Station Square       Tom Crisp Way        Unnamed road 
+##                   1                   1                   1                   1                  13 
 ##         Valley Road       Waveney Drive    Westerfield Road       Yarmouth Road 
 ##                   1                   1                   1                   3</code></pre>
 <pre><code>## 
-##             Top route         Spare lane(s) Estimated width &gt; 10m 
-##                    27                    20                    18</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    27                    20                    18                     4</code></pre>
-<pre><code>##             Top route         Spare lane(s) Estimated width &gt; 10m                  NA&#39;s 
-##                    27                    20                    18                     4</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       27                       20                       18</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       27                       20                       18                        4</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       27                       20                       18                        4</code></pre>
 <pre><code>## # A tibble: 27 x 5
-##    Name            Reference `Continuous length (m… `Cycling potentia… `Length * potential (k…
-##  * &lt;chr&gt;           &lt;chr&gt;                      &lt;dbl&gt;              &lt;dbl&gt;                   &lt;dbl&gt;
-##  1 Main Road       &quot;A1214&quot;                      898                447                     401
-##  2 Nacton Road     &quot;&quot;                           664                414                     275
-##  3 High Street     &quot;&quot;                           802                300                     241
-##  4 Yarmouth Road   &quot;A47&quot;                        982                212                     208
-##  5 Crown Street    &quot;&quot;                           511                255                     130
-##  6 Felixstowe Road &quot;A1156&quot;                     1452                124                     180
-##  7 Norwich Road    &quot;&quot;                           821                147                     121
-##  8 Tom Crisp Way   &quot;A12&quot;                        545                186                     101
-##  9 Normanston Dri… &quot;A1117&quot;                      885                112                      99
-## 10 Jubilee Way     &quot;A47&quot;                        599                147                      88
+##    Name             Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
+##  * &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
+##  1 Main Road        &quot;A1214&quot;                       898                 447                       401
+##  2 Nacton Road      &quot;&quot;                            664                 414                       275
+##  3 High Street      &quot;&quot;                            802                 300                       241
+##  4 Yarmouth Road    &quot;A47&quot;                         982                 212                       208
+##  5 Crown Street     &quot;&quot;                            511                 255                       130
+##  6 Felixstowe Road  &quot;A1156&quot;                      1452                 124                       180
+##  7 Norwich Road     &quot;&quot;                            821                 147                       121
+##  8 Tom Crisp Way    &quot;A12&quot;                         545                 186                       101
+##  9 Normanston Drive &quot;A1117&quot;                       885                 112                        99
+## 10 Jubilee Way      &quot;A47&quot;                         599                 147                        88
 ## # … with 17 more rows</code></pre>
 
 
