@@ -624,7 +624,7 @@ res_table = r_lanes_top %>%
     `Length (m)` = group_length,
     `Cycling potential` = mean_cycling_potential,
     `Length * potential (km)` = km_cycled,
-    `SRN` = srn,
+    # `SRN` = srn,
     `Speed limit` = speed_limit
     ) 
 res_table
