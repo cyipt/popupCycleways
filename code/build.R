@@ -505,13 +505,13 @@ r_lanes_final = r_lanes_joined %>%
       majority_spare_lane ~ labels[2],
       mean_width >= 10 ~ labels[3]
     ),
-    `Estimated width (m)` = case_when(
+    `Estimated width` = case_when(
       mean_width < 10 ~ "<10 m",
       mean_width >= 10 & mean_width < 15 ~ "10-15 m",
       mean_width >= 15 ~ ">15 m"
     )
   ) %>% 
-  select(name, ref, Status, mean_cycling_potential, spare_lane = majority_spare_lane, `Estimated width (m)`, `length (m)` = group_length, group_id, speed_limit)
+  select(name, ref, Status, mean_cycling_potential, spare_lane = majority_spare_lane, `Estimated width`, `length (m)` = group_length, group_id, speed_limit)
 r_lanes_final$Status = factor(r_lanes_final$Status, levels = c(labels[1], labels[2], labels[3]))
 
 table(r_lanes_final$name)
@@ -526,7 +526,7 @@ top_routes = r_lanes_final %>% filter(Status == labels[1])
 spare_lane_groups = r_lanes_final %>% filter(Status == labels[2])
 route_segments_final = rg_new4 %>% 
   mutate(
-    `Estimated width (m)` = case_when(
+    `Estimated width` = case_when(
       mean_width < 10 ~ "<10 m",
       mean_width >= 10 & mean_width < 15 ~ "10-15 m",
       mean_width >= 15 ~ ">15 m"
@@ -563,7 +563,7 @@ pvars_top = c(
   "name",
   "ref",
   "spare_lane",
-  "Estimated width (m)",
+  "Estimated width",
   "mean_cycling_potential",
   "speed_limit",
   "length (m)"
