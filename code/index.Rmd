@@ -44,7 +44,7 @@ Used with local knowledge, it provides a strong evidence base to support plannin
 The rational for the tool is that, in the context of COVID-19, big decisions need to be made quickly.
 The tool aims to support fast yet informed decision making a 'first pass' to help focus planning attention on road sections that are most likely to be suitable for new schemes.
 
-The rapid cycleway prioritisation tool aims to help produce evidence-based answers the question: **where to reallocate road space on strategic corridors away from motor traffic to enable uptake of cycling?**
+The rapid cycleway prioritisation tool aims to help produce evidence-based answers the question: **where to reallocate road space on strategic corridors to enable uptake of cycling?**
 The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock as the lockdown eases.
 
 Reallocating road space on strategic corridors is just one of the measures available for transport authorities.
