@@ -15,7 +15,7 @@ library(tmap)
 tmap_mode("view")
 ```
 
-The map shows three key layers:
+The map shows three key layers (see [www.cyipt.bike/rapid](https://www.cyipt.bike/rapid/#map-layers) for a detailed description of these layers):
 
 1. The **Existing cycleways** layer provides an approximation of where cycling infrastructure exists **currently** (based on OpenStreetMap data downloaded in May 2020) and is intended to help identify gaps in the network that could be filled with new interventions.
 2. The **Top ranked new cycleways** layer is the central result of the analysis, providing a list of roads that have high cycling potential, a minimum threshold length, and spare space according to our definition. These may be strong candidates for reallocation of road space **immediately or in the near future** to create new cycleways on strategic corridors under the Emergency Active Travel Fund.

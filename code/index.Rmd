@@ -99,6 +99,9 @@ On the basis that plans should build on and extend existing provision, this laye
 This may be helpful to view in connection with the other layers, because it can reveal where gaps in the existing cycle network could be filled by new infrastructure.
 <!-- This layer does not include some on-road cycle lanes or cycleways less than 500m in length, but these can be viewed in one of the basemap options (see below for more information about the basemaps). -->
 The definition of ‘cycleway’ for the purpose of this layer includes shared use paths but excludes cycle lanes painted on roads.
+The quality of the cycle paths is not reported in the data and the presence of a cycleway cannot guarantee that there is adequate provision, because some cycleways included in this dataset are of poor quality and/or are on paths shared by pedestrians that have limited capacity for high cycle traffic while observing physical distancing guidelines.
+Also, because of the variable time lag between new cycleways being built and their appearance on OSM, not all existing cycleways are included in this layer (although most established cycleways in most areas are).
+The data was accessed from OpenStreetMap in May 2020 so is up-to-date in many areas.
 
 ## 2. Top ranked new cycleways
 

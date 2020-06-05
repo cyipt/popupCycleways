@@ -132,18 +132,26 @@ As a result of the feedback we made a few adjustments to the results:
 
 - We refined the road identification method, to highlight more central road sections and fewer long sections far from high density areas, in response to feedback suggesting that some of the road sections went too far into the countryside.
 - We simplified the legend of the basemap, so that the layers were presented in time order: Existing cycleway (now); Top ranked new cycleways (near term); Cohesive network (long term).
-- We requested data from Highways England to flag the recommendations on the Strategic Road Network (SRN) and trialed adding a column to the results. Having tested the results we decided to add a column showing current speed limits on road sections instead, highlighting safety issues around potential routes and encouraging consideration speed limit reductions along strategic corridors with high cycling potential.
+- We requested data from Highways England to flag the recommendations on the Strategic Road Network (SRN) and trialed adding a column to the results. Having tested the results the great majority of regions did not contain routes on the SRN. We decided to add a column showing current speed limits on road sections instead, highlighting safety issues around potential routes and encouraging consideration of speed limit reductions along strategic corridors with high cycling potential.
+- We updated the description and framing of the tool to clarify the limitations of the data and its intended use.
 
 # Outputs
 
 The results of this research are publicly accessible at www.cyipt.bike/rapid. 
 Maps are available for regions covering the whole of England, at the level of Combined Authorities, Unitary Authorities, or Upper Tier Authorities. 
-Using the methods outlined above, we have derived a set of outputs which are represented as layers in these maps. 
+Using the methods outlined above, we have derived a set of outputs which are represented as layers in these maps.
+The layers are presented in chronological order to make reading the maps more intuitive, indicating that the data should be used to identify ways to fill key gaps in the existing network in the short term but also plan for a cohesive network in the long term, providing a long-term 'direction of travel' in line with Local Cycling and Walking Plans (LCWIPs), which provide a strategic vision of joined-up networks.
 
 ## Existing cycleways
 
-The first layer shows existing off-carriageway cycleways.
-It is important to plan new infrastructure in reference to that which already exists.
+The first layer shows existing off-carriageway cycleways are segregated from motor traffic (it does not include painted cycle lanes).
+The quality of the cycle paths is not reported in the data and the presence of a cycleway cannot guarantee that there is adequate provision, because some cycleways included in this dataset are of poor quality and/or are on paths shared by pedestrians that have limited capacity for high cycle traffic while observing physical distancing guidelines.
+Also, because of the variable time lag between new cycleways being built and their appearance on OSM, not all existing cycleways are included in this layer (although most established cycleways in most areas are).
+The data was accessed from OpenStreetMap in May 2020 so is up-to-date in many areas.
+
+The layer highlights the importance of planning new infrastructure in reference to existing networks or routes, which have not yet been joined up to form a cohesive network in most cities.
+New interventions, including new cycleways created by reallocating space on strategic corridors with sufficient space, identified in the next layer, should be prioritised based on their ability to improve cycle network cohesion.
+
 
 ## Near term: Top priorities for road space reallocation
 
