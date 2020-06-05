@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,100 +378,246 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A5087  A590  A595    A6   A65   A69    A7 B5299 
-##   122    12     6    10    28     5    13    16     1</code></pre>
+##       A5087  A590  A595    A6   A65 
+##   122    12     6    10    28     5 
+##   A69    A7 B5299 
+##    13    16     1</code></pre>
 <pre><code>## [1] 63</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1304    4775    5509    8502   15442   15442</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1304    4775    5509    8502 
+## 3rd Qu.    Max. 
+##   15442   15442</code></pre>
 <pre><code>## 
-##       Abbey Road   Ainslie Street       Aynam Road    Brampton Road      Bridge Road      Burton Road 
-##               42               12               10                3                5               22 
-##       Castle Way    Central Drive      Clints Brow    Curzon Street  Egremont Bypass     Georgian Way 
-##               11                5                2               13                6                2 
-##      Hollow Lane   Kingstown Road        Main Road  Michaelson Road  Milnthorpe Road   Moorhouse Road 
-##                6               24               10                7               40                1 
-##     Newtown Road       North Road            Other        Park Road    Rampside Road       Roose Road 
-##               13                5              589               16                9               17 
-##    Scotland Road      Solway Road Stainburn Bypass     Station Road   Ullswater Road   Victoria Place 
-##               26                8                4                6               14                5 
-##      Walney Road     Warwick Road      Wigton Road  Windermere Road     Yeorton Brow 
-##               12                8               18               12                4</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.1633  0.1433  1.0006</code></pre>
+##       Abbey Road   Ainslie Street 
+##               42               12 
+##       Aynam Road    Brampton Road 
+##               10                3 
+##      Bridge Road      Burton Road 
+##                5               22 
+##       Castle Way    Central Drive 
+##               11                5 
+##      Clints Brow    Curzon Street 
+##                2               13 
+##  Egremont Bypass     Georgian Way 
+##                6                2 
+##      Hollow Lane   Kingstown Road 
+##                6               24 
+##        Main Road  Michaelson Road 
+##               10                7 
+##  Milnthorpe Road   Moorhouse Road 
+##               40                1 
+##     Newtown Road       North Road 
+##               13                5 
+##            Other        Park Road 
+##              589               16 
+##    Rampside Road       Roose Road 
+##                9               17 
+##    Scotland Road      Solway Road 
+##               26                8 
+## Stainburn Bypass     Station Road 
+##                4                6 
+##   Ullswater Road   Victoria Place 
+##               14                5 
+##      Walney Road     Warwick Road 
+##               12                8 
+##      Wigton Road  Windermere Road 
+##               18               12 
+##     Yeorton Brow 
+##                4</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.1633 
+## 3rd Qu.    Max. 
+##  0.1433  1.0006</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A7&quot;     59     1 Scotland Road                   1 Scot…         1025              317         11
-##  2 &quot;&quot;        1     2 Michaelson Road                 1 Mich…          690              446         13
-##  3 &quot;A59…   357     7 Other                           9 A595          1607              273         10
-##  4 &quot;A50…     1     1 Roose Road                      1 Roos…         1204              269         12
-##  5 &quot;&quot;        1     2 Bridge Road                     1 Brid…          622              371         11
-##  6 &quot;A59…   357     6 Egremont Bypass                 1 Egre…         1171              226         13
-##  7 &quot;&quot;        1     3 Abbey Road                      3 Abbe…         2212              217         11
-##  8 &quot;A69&quot;    58     1 Warwick Road                    1 Warw…          882              196         10
-##  9 &quot;&quot;        1     1 Ainslie Street                  1 Ains…          732              231         10
-## 10 &quot;B62…   102     2 Brampton Road                   1 Bram…          593              249         10
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                 A590                 A591                 A592                 A595                 A596 
-##                    1                    1                    1                    3                    2 
-##                 A597                   A6                  A66                 A689                  A69 
-##                    2                    1                    1                    2                    1 
-##           Abbey Road       Ainslie Street         Appleby Road           Aynam Road                B5289 
-##                    3                    1                    1                    1                    1 
-##          Barrow Road Blackbeck Roundabout        Brampton Road          Bridge Road        Bridge Street 
-##                    1                    1                    2                    1                    1 
-##          Burton Road        Carlisle Road        Castle Street           Castle Way        Central Drive 
-##                    1                    1                    1                    1                    1 
-##          Clints Brow    Clintz Roundabout        Curzon Street East Road Roundabout      Egremont Bypass 
-##                    1                    1                    1                    1                    1 
-##    Ellenborough Road         Georgian Way         Hawcoat Lane          Hollow Lane       Kingstown Road 
-##                    1                    1                    1                    1                    1 
-##          London Road           Lound Road            Main Road      Michaelson Road      Milnthorpe Road 
-##                    1                    1                    3                    1                    1 
-##       Moorhouse Road          Morass Road         Newtown Road         Norfolk Road           North Road 
-##                    1                    1                    1                    1                    1 
-##       Oxenholme Road        Oxford Street            Park Road            Promenade        Rampside Road 
-##                    1                    1                    2                    1                    1 
-##           Roose Road       Salthouse Road     Schneider Square        Scotland Road          Shaddongate 
-##                    1                    1                    1                    2                    1 
-##          Solway Road   St Nicholas Street     Stainburn Bypass       Stainburn Road         Stanwix Bank 
-##                    1                    1                    1                    1                    1 
-##         Station Road       Ullswater Road       Ulverston Road         Unnamed road       Victoria Place 
-##                    1                    1                    2                    9                    1 
-##          Walney Road         Warwick Road          Wigton Road      Windermere Road         Yeorton Brow 
-##                    2                    2                    1                    1                    1</code></pre>
+##                 A590 
+##                    1 
+##                 A591 
+##                    1 
+##                 A592 
+##                    1 
+##                 A595 
+##                    3 
+##                 A596 
+##                    2 
+##                 A597 
+##                    2 
+##                   A6 
+##                    1 
+##                  A66 
+##                    1 
+##                 A689 
+##                    2 
+##                  A69 
+##                    1 
+##           Abbey Road 
+##                    3 
+##       Ainslie Street 
+##                    1 
+##         Appleby Road 
+##                    1 
+##           Aynam Road 
+##                    1 
+##                B5289 
+##                    1 
+##          Barrow Road 
+##                    1 
+## Blackbeck Roundabout 
+##                    1 
+##        Brampton Road 
+##                    2 
+##          Bridge Road 
+##                    1 
+##        Bridge Street 
+##                    1 
+##          Burton Road 
+##                    1 
+##        Carlisle Road 
+##                    1 
+##        Castle Street 
+##                    1 
+##           Castle Way 
+##                    1 
+##        Central Drive 
+##                    1 
+##          Clints Brow 
+##                    1 
+##    Clintz Roundabout 
+##                    1 
+##        Curzon Street 
+##                    1 
+## East Road Roundabout 
+##                    1 
+##      Egremont Bypass 
+##                    1 
+##    Ellenborough Road 
+##                    1 
+##         Georgian Way 
+##                    1 
+##         Hawcoat Lane 
+##                    1 
+##          Hollow Lane 
+##                    1 
+##       Kingstown Road 
+##                    1 
+##          London Road 
+##                    1 
+##           Lound Road 
+##                    1 
+##            Main Road 
+##                    3 
+##      Michaelson Road 
+##                    1 
+##      Milnthorpe Road 
+##                    1 
+##       Moorhouse Road 
+##                    1 
+##          Morass Road 
+##                    1 
+##         Newtown Road 
+##                    1 
+##         Norfolk Road 
+##                    1 
+##           North Road 
+##                    1 
+##       Oxenholme Road 
+##                    1 
+##        Oxford Street 
+##                    1 
+##            Park Road 
+##                    2 
+##            Promenade 
+##                    1 
+##        Rampside Road 
+##                    1 
+##           Roose Road 
+##                    1 
+##       Salthouse Road 
+##                    1 
+##     Schneider Square 
+##                    1 
+##        Scotland Road 
+##                    2 
+##          Shaddongate 
+##                    1 
+##          Solway Road 
+##                    1 
+##   St Nicholas Street 
+##                    1 
+##     Stainburn Bypass 
+##                    1 
+##       Stainburn Road 
+##                    1 
+##         Stanwix Bank 
+##                    1 
+##         Station Road 
+##                    1 
+##       Ullswater Road 
+##                    1 
+##       Ulverston Road 
+##                    2 
+##         Unnamed road 
+##                    9 
+##       Victoria Place 
+##                    1 
+##          Walney Road 
+##                    2 
+##         Warwick Road 
+##                    2 
+##          Wigton Road 
+##                    1 
+##      Windermere Road 
+##                    1 
+##         Yeorton Brow 
+##                    1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       19                       35</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       19                       35                        9</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       19                       35                        9</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Scotland Road   &quot;A7&quot;                         1025                 317                       325
-##  2 Michaelson Road &quot;&quot;                            690                 446                       308
-##  3 A595            &quot;A595&quot;                       1607                 273                       439
-##  4 Roose Road      &quot;A5087&quot;                      1204                 269                       324
-##  5 Bridge Road     &quot;&quot;                            622                 371                       231
-##  6 Egremont Bypass &quot;A595&quot;                       1171                 226                       265
-##  7 Abbey Road      &quot;&quot;                           2212                 217                       480
-##  8 Warwick Road    &quot;A69&quot;                         882                 196                       173
-##  9 Ainslie Street  &quot;&quot;                            732                 231                       169
-## 10 Brampton Road   &quot;B6264&quot;                       593                 249                       148
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       19 
+##    Estimated width &gt; 10m 
+##                       35</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       19 
+##    Estimated width &gt; 10m 
+##                       35 
+##                     NA&#39;s 
+##                        9</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       19 
+##    Estimated width &gt; 10m 
+##                       35 
+##                     NA&#39;s 
+##                        9</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Mich… &quot;&quot;                 690
+##  2 Brid… &quot;&quot;                 622
+##  3 Scot… &quot;A7&quot;              1025
+##  4 A595  &quot;A595&quot;            1607
+##  5 Roos… &quot;A5087&quot;           1204
+##  6 Bram… &quot;B6264&quot;            593
+##  7 Ains… &quot;&quot;                 732
+##  8 St N… &quot;&quot;                 514
+##  9 Egre… &quot;A595&quot;            1171
+## 10 Abbe… &quot;&quot;                2212
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

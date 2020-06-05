@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,182 +378,466 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A23   A24  A243  A244  A245   A25 A3044 A3050  A307  A308  A309  A318  A320  A322  A325 B2430  B284 
-##   257     2     8     1     2     1     6    10    10     2    26     5     3    14     1    14     4     1 
+##         A23   A24  A243  A244  A245 
+##   257     2     8     1     2     1 
+##   A25 A3044 A3050  A307  A308  A309 
+##     6    10    10     2    26     5 
+##  A318  A320  A322  A325 B2430  B284 
+##     3    14     1    14     4     1 
 ## B3376 B3411  B374  B376  B378 
 ##     4     2     8     5     4</code></pre>
 <pre><code>## [1] 188</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1025    3989    6936    7208   13663   13663</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1025    3989    6936    7208 
+## 3rd Qu.    Max. 
+##   13663   13663</code></pre>
 <pre><code>## 
-##                Ash Road    Banstead High Street             Bell Street          Bonehurst Road 
-##                      14                      13                      11                      22 
-##          Bracknell Road           Brighton Road            Central Road           Chertsey Lane 
-##                      10                     140                      14                      24 
-##           Copthorne Way             Country Way             East Street           Egham By-Pass 
-##                       1                      18                      14                       3 
-##              Egham Hill              Esher Road           Ewell By-Pass        Farnborough Road 
-##                      13                      16                      16                      36 
-##            Frimley Road           Glaziers Lane           Godstone Hill          Guildford Road 
-##                      22                       1                       4                      35 
-##      Hampton Court Road       Hampton Court Way            Hersham Road             High Street 
-##                      19                      33                      21                      19 
-##               Hook Road             Horley Road         Kingston Bypass           Kingston Road 
-##                      11                      13                      44                      52 
-##                Ladymead     Leatherhead By-Pass        Leatherhead Road      Lightwater By-pass 
-##                      24                       3                      10                       2 
-##             London Road       London Road North       London Road South               Main Road 
-##                     247                      10                       1                      11 
-##             Malden Road         Marketfield Way               Millbrook           Onslow Street 
-##                      13                       4                      12                      15 
-##                   Other                 Parkway         Portsmouth Road         Queensway South 
-##                    1143                      10                      94                       3 
-##            Reigate Hill            Reigate Road            South Street Southern Perimeter Road 
-##                      18                      26                      12                      15 
-##         Staines By-Pass            Staines Road Staines Road cycle path       Staines Road East 
-##                      33                      18                       1                      35 
-##       Staines Road West      Stanwell Moor Road           Stanwell Road               Town Lane 
-##                      19                      10                       2                       8 
-##            Victoria Way             West Street          Weybridge Road           Windmill Road 
-##                      35                      11                       7                      12 
-##             Woking Road         Woodbridge Road         Woodthorpe Road          Wraysbury Road 
-##                      25                      15                      10                      11</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.02342 0.30033 0.63276 1.05000</code></pre>
+##                Ash Road 
+##                      14 
+##    Banstead High Street 
+##                      13 
+##             Bell Street 
+##                      11 
+##          Bonehurst Road 
+##                      22 
+##          Bracknell Road 
+##                      10 
+##           Brighton Road 
+##                     140 
+##            Central Road 
+##                      14 
+##           Chertsey Lane 
+##                      24 
+##           Copthorne Way 
+##                       1 
+##             Country Way 
+##                      18 
+##             East Street 
+##                      14 
+##           Egham By-Pass 
+##                       3 
+##              Egham Hill 
+##                      13 
+##              Esher Road 
+##                      16 
+##           Ewell By-Pass 
+##                      16 
+##        Farnborough Road 
+##                      36 
+##            Frimley Road 
+##                      22 
+##           Glaziers Lane 
+##                       1 
+##           Godstone Hill 
+##                       4 
+##          Guildford Road 
+##                      35 
+##      Hampton Court Road 
+##                      19 
+##       Hampton Court Way 
+##                      33 
+##            Hersham Road 
+##                      21 
+##             High Street 
+##                      19 
+##               Hook Road 
+##                      11 
+##             Horley Road 
+##                      13 
+##         Kingston Bypass 
+##                      44 
+##           Kingston Road 
+##                      52 
+##                Ladymead 
+##                      24 
+##     Leatherhead By-Pass 
+##                       3 
+##        Leatherhead Road 
+##                      10 
+##      Lightwater By-pass 
+##                       2 
+##             London Road 
+##                     247 
+##       London Road North 
+##                      10 
+##       London Road South 
+##                       1 
+##               Main Road 
+##                      11 
+##             Malden Road 
+##                      13 
+##         Marketfield Way 
+##                       4 
+##               Millbrook 
+##                      12 
+##           Onslow Street 
+##                      15 
+##                   Other 
+##                    1143 
+##                 Parkway 
+##                      10 
+##         Portsmouth Road 
+##                      94 
+##         Queensway South 
+##                       3 
+##            Reigate Hill 
+##                      18 
+##            Reigate Road 
+##                      26 
+##            South Street 
+##                      12 
+## Southern Perimeter Road 
+##                      15 
+##         Staines By-Pass 
+##                      33 
+##            Staines Road 
+##                      18 
+## Staines Road cycle path 
+##                       1 
+##       Staines Road East 
+##                      35 
+##       Staines Road West 
+##                      19 
+##      Stanwell Moor Road 
+##                      10 
+##           Stanwell Road 
+##                       2 
+##               Town Lane 
+##                       8 
+##            Victoria Way 
+##                      35 
+##             West Street 
+##                      11 
+##          Weybridge Road 
+##                       7 
+##           Windmill Road 
+##                      12 
+##             Woking Road 
+##                      25 
+##         Woodbridge Road 
+##                      15 
+##         Woodthorpe Road 
+##                      10 
+##          Wraysbury Road 
+##                      11</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.02342 0.30033 
+## 3rd Qu.    Max. 
+## 0.63276 1.05000</code></pre>
 <pre><code>## [1] 40</code></pre>
-<pre><code>## # A tibble: 40 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A308    197     3 Hampton Court R…                1 Hamp…         1422              502          9
-##  2 A3044   792     2 Stanwell Moor R…                1 Stan…         4710              263          7
-##  3 A325    199     3 Other                          42 Frim…          840              239          9
-##  4 A24     656     2 Other                          25 Epso…          675              296         10
-##  5 A308    791     1 Staines Road We…                1 Stai…         1298              196          8
-##  6 A23      12     3 Bonehurst Road                  1 Bone…         1796              159         10
-##  7 A24     656     2 East Street                     1 East…          804              190          9
-##  8 A23      24     4 Brighton Road                   3 Brig…         1927              132          9
-##  9 A316    808     1 Country Way                     1 Coun…         3171              130         12
-## 10 A23       7     2 London Road Sou…                1 Lond…          604              212         10
-## # … with 30 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                               A22                               A23                               A24 
-##                                 1                                 2                                 1 
-##                              A240                              A243                              A244 
-##                                 2                                 2                                 1 
-##                               A30                             A3044                              A307 
-##                                 4                                 1                                 1 
-##                              A308                              A309                              A316 
-##                                 4                                 1                                 1 
-##                              A317                              A320                              A322 
-##                                 1                                 2                                 4 
-##                              A331                          Ash Road                     Ashley Avenue 
-##                                 2                                 1                                 1 
-##                     Balcombe Road              Banstead High Street                       Bell Street 
-##                                 1                                 1                                 1 
-##                      Belmont Rise                      Bolters Lane                    Bonehurst Road 
-##                                 1                                 1                                 1 
-##                    Bracknell Road                     Bridge Street                     Brighton Road 
-##                                 1                                 2                                 6 
-##            Brook House Roundabout                     Buckland Road                     Castle Street 
-##                                 1                                 1                                 1 
-##                      Central Road                        Chart Lane                 Cheam Common Road 
-##                                 1                                 1                                 1 
-##                        Cheam Road                     Chertsey Lane                     Chertsey Road 
-##                                 2                                 1                                 1 
-##                Chilsey Green Road                      Chobham Road                     Church Street 
-##                                 1                                 1                                 1 
-##                     Cockshot Hill                     Copthorne Way                       Country Way 
-##                                 1                                 1                                 1 
-##         Crooked Billet Roundabout                      Croydon Road                       East Street 
-##                                 1                                 1                                 1 
-##                     Egham By-Pass                        Egham Hill                   Embercourt Road 
-##                                 1                                 1                                 1 
-##                        Epsom Road                        Esher Road                     Ewell By-Pass 
-##                                 2                                 1                                 2 
-##                  Farnborough Road        Farnborough Road cyclepath                     Fir Tree Road 
-##                                 1                                 1                                 1 
-##                    Frimley Bypass                      Frimley Road                     Glaziers Lane 
-##                                 1                                 1                                 1 
-##                     Godstone Hill                     Godstone Road                    Guildford Road 
-##                                 1                                 1                                 2 
-##                  Hallgrove Bottom                Hampton Court Road                 Hampton Court Way 
-##                                 1                                 2                                 2 
-##                       Hawley Lane                      Hersham Road                       High Street 
-##                                 1                                 1                                 8 
-##                     Hook Junction                   Hook Rise South                         Hook Road 
-##                                 1                                 1                                 3 
-##                       Horley Road                   Kingston Bypass                     Kingston Road 
-##                                 2                                 1                                 4 
-##                          Ladymead                      Laundry Lane               Leatherhead By-Pass 
-##                                 2                                 1                                 1 
-##                  Leatherhead Road                Lightwater By-pass                   Lockfield Drive 
-##                                 2                                 1                                 2 
-##                       London Road                 London Road North                 London Road South 
-##                                10                                 1                                 1 
-##                         Main Road                       Malden Road                   Marketfield Way 
-##                                 1                                 1                                 1 
-##                         Millbrook                     Onslow Street                       Park Street 
-##                                 1                                 1                                 1 
-##                           Parkway                   Portsmouth Road                   Queensway South 
-##                                 1                                 8                                 1 
-##                      Reading Road                     Redstone Hill                      Reigate Hill 
-##                                 1                                 1                                 1 
-##                      Reigate Road                         Riverbank                     Riverside Way 
-##                                 3                                 1                                 1 
-##                         Robinsway                       Ruxley Lane                       School Road 
-##                                 1                                 1                                 1 
-##                         Send Road                      South Street           Southern Perimeter Road 
-##                                 1                                 1                                 1 
-##                   Staines By-Pass                      Staines Road           Staines Road cycle path 
-##                                 2                                 3                                 1 
-##                 Staines Road East                 Staines Road West                Stanwell Moor Road 
-##                                 1                                 2                                 1 
-##                     Stanwell Road                  Station Approach                      Station Road 
-##                                 3                                 1                                 1 
-##                        Stony Hill                     Sunbury Cross                     Thames Street 
-##                                 1                                 1                                 1 
-##                        The Avenue             The Beacon Roundabout                       Thorpe Road 
-##                                 1                                 1                                 1 
-##                         Town Lane                      Unnamed road              Upper Halliford Road 
-##                                 1                                19                                 1 
-##                 Upper High Street                      Victoria Way                       West Street 
-##                                 1                                 1                                 1 
-## Western Perimeter Road Roundabout                    Weybridge Road                     Windmill Road 
-##                                 1                                 1                                 1 
-##                       Woburn Hill                       Woking Road                   Woodbridge Road 
-##                                 1                                 2                                 3 
-##                   Woodthorpe Road                    Wraysbury Road                         York Road 
-##                                 1                                 1                                 1</code></pre>
+##                               A22 
+##                                 1 
+##                               A23 
+##                                 2 
+##                               A24 
+##                                 1 
+##                              A240 
+##                                 2 
+##                              A243 
+##                                 2 
+##                              A244 
+##                                 1 
+##                               A30 
+##                                 4 
+##                             A3044 
+##                                 1 
+##                              A307 
+##                                 1 
+##                              A308 
+##                                 4 
+##                              A309 
+##                                 1 
+##                              A316 
+##                                 1 
+##                              A317 
+##                                 1 
+##                              A320 
+##                                 2 
+##                              A322 
+##                                 4 
+##                              A331 
+##                                 2 
+##                          Ash Road 
+##                                 1 
+##                     Ashley Avenue 
+##                                 1 
+##                     Balcombe Road 
+##                                 1 
+##              Banstead High Street 
+##                                 1 
+##                       Bell Street 
+##                                 1 
+##                      Belmont Rise 
+##                                 1 
+##                      Bolters Lane 
+##                                 1 
+##                    Bonehurst Road 
+##                                 1 
+##                    Bracknell Road 
+##                                 1 
+##                     Bridge Street 
+##                                 2 
+##                     Brighton Road 
+##                                 6 
+##            Brook House Roundabout 
+##                                 1 
+##                     Buckland Road 
+##                                 1 
+##                     Castle Street 
+##                                 1 
+##                      Central Road 
+##                                 1 
+##                        Chart Lane 
+##                                 1 
+##                 Cheam Common Road 
+##                                 1 
+##                        Cheam Road 
+##                                 2 
+##                     Chertsey Lane 
+##                                 1 
+##                     Chertsey Road 
+##                                 1 
+##                Chilsey Green Road 
+##                                 1 
+##                      Chobham Road 
+##                                 1 
+##                     Church Street 
+##                                 1 
+##                     Cockshot Hill 
+##                                 1 
+##                     Copthorne Way 
+##                                 1 
+##                       Country Way 
+##                                 1 
+##         Crooked Billet Roundabout 
+##                                 1 
+##                      Croydon Road 
+##                                 1 
+##                       East Street 
+##                                 1 
+##                     Egham By-Pass 
+##                                 1 
+##                        Egham Hill 
+##                                 1 
+##                   Embercourt Road 
+##                                 1 
+##                        Epsom Road 
+##                                 2 
+##                        Esher Road 
+##                                 1 
+##                     Ewell By-Pass 
+##                                 2 
+##                  Farnborough Road 
+##                                 1 
+##        Farnborough Road cyclepath 
+##                                 1 
+##                     Fir Tree Road 
+##                                 1 
+##                    Frimley Bypass 
+##                                 1 
+##                      Frimley Road 
+##                                 1 
+##                     Glaziers Lane 
+##                                 1 
+##                     Godstone Hill 
+##                                 1 
+##                     Godstone Road 
+##                                 1 
+##                    Guildford Road 
+##                                 2 
+##                  Hallgrove Bottom 
+##                                 1 
+##                Hampton Court Road 
+##                                 2 
+##                 Hampton Court Way 
+##                                 2 
+##                       Hawley Lane 
+##                                 1 
+##                      Hersham Road 
+##                                 1 
+##                       High Street 
+##                                 8 
+##                     Hook Junction 
+##                                 1 
+##                   Hook Rise South 
+##                                 1 
+##                         Hook Road 
+##                                 3 
+##                       Horley Road 
+##                                 2 
+##                   Kingston Bypass 
+##                                 1 
+##                     Kingston Road 
+##                                 4 
+##                          Ladymead 
+##                                 2 
+##                      Laundry Lane 
+##                                 1 
+##               Leatherhead By-Pass 
+##                                 1 
+##                  Leatherhead Road 
+##                                 2 
+##                Lightwater By-pass 
+##                                 1 
+##                   Lockfield Drive 
+##                                 2 
+##                       London Road 
+##                                10 
+##                 London Road North 
+##                                 1 
+##                 London Road South 
+##                                 1 
+##                         Main Road 
+##                                 1 
+##                       Malden Road 
+##                                 1 
+##                   Marketfield Way 
+##                                 1 
+##                         Millbrook 
+##                                 1 
+##                     Onslow Street 
+##                                 1 
+##                       Park Street 
+##                                 1 
+##                           Parkway 
+##                                 1 
+##                   Portsmouth Road 
+##                                 8 
+##                   Queensway South 
+##                                 1 
+##                      Reading Road 
+##                                 1 
+##                     Redstone Hill 
+##                                 1 
+##                      Reigate Hill 
+##                                 1 
+##                      Reigate Road 
+##                                 3 
+##                         Riverbank 
+##                                 1 
+##                     Riverside Way 
+##                                 1 
+##                         Robinsway 
+##                                 1 
+##                       Ruxley Lane 
+##                                 1 
+##                       School Road 
+##                                 1 
+##                         Send Road 
+##                                 1 
+##                      South Street 
+##                                 1 
+##           Southern Perimeter Road 
+##                                 1 
+##                   Staines By-Pass 
+##                                 2 
+##                      Staines Road 
+##                                 3 
+##           Staines Road cycle path 
+##                                 1 
+##                 Staines Road East 
+##                                 1 
+##                 Staines Road West 
+##                                 2 
+##                Stanwell Moor Road 
+##                                 1 
+##                     Stanwell Road 
+##                                 3 
+##                  Station Approach 
+##                                 1 
+##                      Station Road 
+##                                 1 
+##                        Stony Hill 
+##                                 1 
+##                     Sunbury Cross 
+##                                 1 
+##                     Thames Street 
+##                                 1 
+##                        The Avenue 
+##                                 1 
+##             The Beacon Roundabout 
+##                                 1 
+##                       Thorpe Road 
+##                                 1 
+##                         Town Lane 
+##                                 1 
+##                      Unnamed road 
+##                                19 
+##              Upper Halliford Road 
+##                                 1 
+##                 Upper High Street 
+##                                 1 
+##                      Victoria Way 
+##                                 1 
+##                       West Street 
+##                                 1 
+## Western Perimeter Road Roundabout 
+##                                 1 
+##                    Weybridge Road 
+##                                 1 
+##                     Windmill Road 
+##                                 1 
+##                       Woburn Hill 
+##                                 1 
+##                       Woking Road 
+##                                 2 
+##                   Woodbridge Road 
+##                                 3 
+##                   Woodthorpe Road 
+##                                 1 
+##                    Wraysbury Road 
+##                                 1 
+##                         York Road 
+##                                 1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       40                       75                       91</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       75                       91                       13</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       75                       91                       13</code></pre>
-<pre><code>## # A tibble: 40 x 5
-##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Hampton Court Road A308                         1422                 502                       714
-##  2 Stanwell Moor Road A3044                        4710                 263                      1239
-##  3 Frimley Bypass     A325                          840                 239                       201
-##  4 Epsom Road         A24                           675                 296                       200
-##  5 Staines Road West  A308                         1298                 196                       254
-##  6 Bonehurst Road     A23                          1796                 159                       286
-##  7 East Street        A24                           804                 190                       153
-##  8 Brighton Road      A23                          1927                 132                       254
-##  9 Country Way        A316                         3171                 130                       412
-## 10 London Road South  A23                           604                 212                       128
-## # … with 30 more rows</code></pre>
+## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       78 
+##    Estimated width &gt; 10m 
+##                       88</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       78 
+##    Estimated width &gt; 10m 
+##                       88 
+##                     NA&#39;s 
+##                       13</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       78 
+##    Estimated width &gt; 10m 
+##                       88 
+##                     NA&#39;s 
+##                       13</code></pre>
+<pre><code>## # A tibble: 40 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Hamp… A308              1422
+##  2 Epso… A24                675
+##  3 Stan… A3044             4710
+##  4 Frim… A325               840
+##  5 Rive… A3050              517
+##  6 Ashl… A24                515
+##  7 Lond… A23                604
+##  8 Stai… A308              1298
+##  9 High… A244               587
+## 10 East… A24                804
+## # … with 30 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

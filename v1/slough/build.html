@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,62 +388,87 @@ summary {
 ##       A3044    A4 
 ##    29     1     2</code></pre>
 <pre><code>## [1] 21</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   923.3  1367.8  3715.1  2637.0  3715.1  3942.6</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   923.3  1367.8  3715.1  2637.0 
+## 3rd Qu.    Max. 
+##  3715.1  3942.6</code></pre>
 <pre><code>## 
-##          Bath Road  Buckingham Avenue  Colnbrook By-pass  Colnbrook By-Pass       Fairlie Road 
-##                 53                 13                 10                 21                  3 
-##       Farnham Road Langley Roundabout        London Road              Other  Royal Windsor Way 
-##                 19                  8                 37                 70                 10 
-## Stanwell Moor Road          Tuns Lane  Wellington Street 
-##                  9                  6                 15</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.1426  0.3306  0.5717  1.0208</code></pre>
+##          Bath Road  Buckingham Avenue 
+##                 53                 13 
+##  Colnbrook By-pass  Colnbrook By-Pass 
+##                 10                 21 
+##       Fairlie Road       Farnham Road 
+##                  3                 19 
+## Langley Roundabout        London Road 
+##                  8                 37 
+##              Other  Royal Windsor Way 
+##                 70                 10 
+## Stanwell Moor Road          Tuns Lane 
+##                  9                  6 
+##  Wellington Street 
+##                 15</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.1426  0.3306 
+## 3rd Qu.    Max. 
+##  0.5717  1.0208</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A30…     1     1 Stanwell Moor R…                1 Stan…         3457              368          9
-##  2 &quot;&quot;        4     5 Fairlie Road                    1 Fair…          505              490          9
-##  3 &quot;A4&quot;      1     1 London Road                     1 Lond…         2182              233         10
-##  4 &quot;A4&quot;      1     1 Colnbrook By-pa…                1 Coln…         1852              187         11
-##  5 &quot;A4&quot;      4     2 Bath Road                       1 Bath…         5076              149         11
-##  6 &quot;A33…     3     1 Royal Windsor W…                1 Roya…         1389              104          7
-##  7 &quot;A35…     3     1 Royal Windsor W…                1 Roya…          652              142          8
-##  8 &quot;A35…     3     1 Tuns Lane                       1 Tuns…          589              139          7
-##  9 &quot;&quot;        4     5 Buckingham Aven…                1 Buck…         1315               75         10
-## 10 &quot;A35…     8     2 Farnham Road                    1 Farn…          546              125         11
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##               A355                 A4          Bath Road  Buckingham Avenue          Chatfield 
-##                  2                  1                  2                  1                  1 
-##  Colnbrook By-pass  Colnbrook By-Pass       Fairlie Road       Farnham Road        High Street 
-##                  1                  1                  1                  2                  1 
-## Langley Roundabout        London Road  Royal Windsor Way Stanwell Moor Road        Sutton Lane 
-##                  1                  2                  3                  1                  1 
-##          Tuns Lane       Unnamed road  Wellington Street        Wexham Road     William Street 
-##                  1                  3                  1                  1                  1</code></pre>
+##               A355                 A4 
+##                  2                  1 
+##          Bath Road  Buckingham Avenue 
+##                  2                  1 
+##          Chatfield  Colnbrook By-pass 
+##                  1                  1 
+##  Colnbrook By-Pass       Fairlie Road 
+##                  1                  1 
+##       Farnham Road        High Street 
+##                  2                  1 
+## Langley Roundabout        London Road 
+##                  1                  2 
+##  Royal Windsor Way Stanwell Moor Road 
+##                  3                  1 
+##        Sutton Lane          Tuns Lane 
+##                  1                  1 
+##       Unnamed road  Wellington Street 
+##                  3                  1 
+##        Wexham Road     William Street 
+##                  1                  1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        6                       12</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        6                       12</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        6                       12</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Stanwell Moor Road &quot;A3044&quot;                      3457                 368                      1272
-##  2 Fairlie Road       &quot;&quot;                            505                 490                       247
-##  3 London Road        &quot;A4&quot;                         2182                 233                       508
-##  4 Colnbrook By-pass  &quot;A4&quot;                         1852                 187                       346
-##  5 Bath Road          &quot;A4&quot;                         5076                 149                       756
-##  6 Royal Windsor Way  &quot;A332&quot;                       1389                 104                       144
-##  7 Royal Windsor Way  &quot;A355&quot;                        652                 142                        93
-##  8 Tuns Lane          &quot;A355&quot;                        589                 139                        82
-##  9 Buckingham Avenue  &quot;&quot;                           1315                  75                        99
-## 10 Farnham Road       &quot;A355&quot;                        546                 125                        68</code></pre>
+## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        5 
+##    Estimated width &gt; 10m 
+##                       13</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        5 
+##    Estimated width &gt; 10m 
+##                       13</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        5 
+##    Estimated width &gt; 10m 
+##                       13</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Fair… &quot;&quot;                 505
+##  2 Stan… &quot;A3044&quot;           3457
+##  3 Lond… &quot;A4&quot;              2182
+##  4 Coln… &quot;A4&quot;              1852
+##  5 Bath… &quot;A4&quot;              5076
+##  6 Roya… &quot;A355&quot;             652
+##  7 Tuns… &quot;A355&quot;             589
+##  8 Farn… &quot;A355&quot;             546
+##  9 Lang… &quot;A4&quot;               509
+## 10 Roya… &quot;A332&quot;            1389
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

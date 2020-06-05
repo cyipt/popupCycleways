@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,104 +378,205 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A1079 A1105  A164 B1230 B1231 B1233 
-##    95     1     4     1     1     4    27</code></pre>
+##       A1079 A1105  A164 B1230 B1231 
+##    95     1     4     1     1     4 
+## B1233 
+##    27</code></pre>
 <pre><code>## [1] 55</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2403    3610    3699    3927    4997    4997</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    2403    3610    3699    3927 
+## 3rd Qu.    Max. 
+##    4997    4997</code></pre>
 <pre><code>## 
-##       Bessingby Hill        Beverley Road Bridlington Bay Road    Constitution Hill      Cottingham Road 
-##                    6                   16                   11                    3                   13 
-##        Ganstead Lane           Grange Way     Greenwood Avenue           Hedon Road      Holderness Road 
-##                    7                    8                   11                    1                    7 
-##     Hull Bridge Road            Hull Road            Long Lane            Main Road          Main Street 
-##                   13                   18                    1                   18                   19 
-##      Northfield Road              Norwood                Other        Oubrough Lane            Quay Road 
-##                    2                   11                  350                    3                   13 
-##     Raich Carter Way  Thomas Clarkson Way     White Cross Road 
-##                    8                    1                    5</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.2893  0.6508  1.0056</code></pre>
+##       Bessingby Hill 
+##                    6 
+##        Beverley Road 
+##                   16 
+## Bridlington Bay Road 
+##                   11 
+##    Constitution Hill 
+##                    3 
+##      Cottingham Road 
+##                   13 
+##        Ganstead Lane 
+##                    7 
+##           Grange Way 
+##                    8 
+##     Greenwood Avenue 
+##                   11 
+##           Hedon Road 
+##                    1 
+##      Holderness Road 
+##                    7 
+##     Hull Bridge Road 
+##                   13 
+##            Hull Road 
+##                   18 
+##            Long Lane 
+##                    1 
+##            Main Road 
+##                   18 
+##          Main Street 
+##                   19 
+##      Northfield Road 
+##                    2 
+##              Norwood 
+##                   11 
+##                Other 
+##                  350 
+##        Oubrough Lane 
+##                    3 
+##            Quay Road 
+##                   13 
+##     Raich Carter Way 
+##                    8 
+##  Thomas Clarkson Way 
+##                    1 
+##     White Cross Road 
+##                    5</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.2893 
+## 3rd Qu.    Max. 
+##  0.6508  1.0056</code></pre>
 <pre><code>## [1] 20</code></pre>
-<pre><code>## # A tibble: 20 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A10…    39     1 Beverley Road                   1 Beve…         2726              153          8
-##  2 &quot;&quot;       86    10 Other                          13 Boot…          764              200         10
-##  3 &quot;&quot;       64     5 Greenwood Avenue                1 Gree…         1054              149         10
-##  4 &quot;A16…    31     2 Holderness Road                 1 Hold…         1607              144          7
-##  5 &quot;A61…     1     1 Other                          11 A614          4176               96          7
-##  6 &quot;&quot;       85     7 Long Lane                       1 Long…         1237               90         12
-##  7 &quot;B12…    32     2 Norwood                         1 Norw…          647              125         13
-##  8 &quot;A10…    34     1 Grange Way                      1 Gran…         1452               80         10
-##  9 &quot;A16…     1     1 Other                           3 A165          2295               80          7
-## 10 &quot;B12…    91     1 Cottingham Road                 1 Cott…          938               85         12
-## 11 &quot;B14…     7     1 Quay Road                       1 Quay…          710               92         10
-## 12 &quot;A16…     1     1 Main Street                     1 Main…          606               87          8
-## 13 &quot;B12…    31     1 Main Road                       2 Main…          526               99         10
-## 14 &quot;A61…     1     1 Main Street                     2 Main…          992               51          7
-## 15 &quot;A16…    39     1 Other                          15 A164          5851               47         10
-## 16 &quot;&quot;       32     1 Other                          16 Nort…          618               51         12
-## 17 &quot;A10…    31     2 Other                           5 A1035         6622               31          8
-## 18 &quot;A16…    40     2 Other                          19 A164          3404               30          9
-## 19 &quot;A16…     1     1 Bessingby Hill                  1 Bess…          771               36          8
-## 20 &quot;A16…     1     1 Other                           2 A165          1004               24          8
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                A1033                A1035                A1079                 A164                 A165 
-##                    1                    3                    1                    2                    7 
-##                 A614          Airmyn Road          Anlaby Road                B1233       Bessingby Hill 
-##                    2                    1                    1                    1                    1 
-##        Beverley Road      Boothferry Road Bridlington Bay Road    Constitution Hill      Cottingham Road 
-##                    2                    1                    1                    1                    1 
-##        Ganstead Lane           Grange Way     Greenwood Avenue           Hedon Road      Holderness Road 
-##                    1                    1                    1                    1                    1 
-##     Hull Bridge Road            Hull Road            Long Lane            Main Road          Main Street 
-##                    1                    2                    1                    2                    2 
-##       New Walkergate     North Bar Within      Northfield Road              Norwood        Oubrough Lane 
-##                    1                    1                    1                    1                    1 
-##            Quay Road     Raich Carter Way   Roebank Roundabout     Scarborough Road   Springfield Avenue 
-##                    1                    1                    1                    1                    1 
-##      Springfield Way  Thomas Clarkson Way         Unnamed road     White Cross Road            York Road 
-##                    1                    1                    3                    1                    1</code></pre>
+##                A1033 
+##                    1 
+##                A1035 
+##                    3 
+##                A1079 
+##                    1 
+##                 A164 
+##                    2 
+##                 A165 
+##                    7 
+##                 A614 
+##                    2 
+##          Airmyn Road 
+##                    1 
+##          Anlaby Road 
+##                    1 
+##                B1233 
+##                    1 
+##       Bessingby Hill 
+##                    1 
+##        Beverley Road 
+##                    2 
+##      Boothferry Road 
+##                    1 
+## Bridlington Bay Road 
+##                    1 
+##    Constitution Hill 
+##                    1 
+##      Cottingham Road 
+##                    1 
+##        Ganstead Lane 
+##                    1 
+##           Grange Way 
+##                    1 
+##     Greenwood Avenue 
+##                    1 
+##           Hedon Road 
+##                    1 
+##      Holderness Road 
+##                    1 
+##     Hull Bridge Road 
+##                    1 
+##            Hull Road 
+##                    2 
+##            Long Lane 
+##                    1 
+##            Main Road 
+##                    2 
+##          Main Street 
+##                    2 
+##       New Walkergate 
+##                    1 
+##     North Bar Within 
+##                    1 
+##      Northfield Road 
+##                    1 
+##              Norwood 
+##                    1 
+##        Oubrough Lane 
+##                    1 
+##            Quay Road 
+##                    1 
+##     Raich Carter Way 
+##                    1 
+##   Roebank Roundabout 
+##                    1 
+##     Scarborough Road 
+##                    1 
+##   Springfield Avenue 
+##                    1 
+##      Springfield Way 
+##                    1 
+##  Thomas Clarkson Way 
+##                    1 
+##         Unnamed road 
+##                    3 
+##     White Cross Road 
+##                    1 
+##            York Road 
+##                    1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       20                       23                       12</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       23                       12                        1</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       23                       12                        1</code></pre>
-<pre><code>## # A tibble: 20 x 5
-##    Name             Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Beverley Road    &quot;A1079&quot;                      2726                 153                       417
-##  2 Boothferry Road  &quot;&quot;                            764                 200                       153
-##  3 Greenwood Avenue &quot;&quot;                           1054                 149                       157
-##  4 Holderness Road  &quot;A165&quot;                       1607                 144                       231
-##  5 A614             &quot;A614&quot;                       4176                  96                       401
-##  6 Long Lane        &quot;&quot;                           1237                  90                       111
-##  7 Norwood          &quot;B1230&quot;                       647                 125                        81
-##  8 Grange Way       &quot;A1035&quot;                      1452                  80                       116
-##  9 A165             &quot;A165&quot;                       2295                  80                       184
-## 10 Cottingham Road  &quot;B1233&quot;                       938                  85                        80
-## 11 Quay Road        &quot;B1423&quot;                       710                  92                        65
-## 12 Main Street      &quot;A165&quot;                        606                  87                        53
-## 13 Main Road        &quot;B1238&quot;                       526                  99                        52
-## 14 Main Street      &quot;A614&quot;                        992                  51                        51
-## 15 A164             &quot;A164&quot;                       5851                  47                       275
-## 16 North Bar Within &quot;&quot;                            618                  51                        32
-## 17 A1035            &quot;A1035&quot;                      6622                  31                       205
-## 18 A164             &quot;A164&quot;                       3404                  30                       102
-## 19 Bessingby Hill   &quot;A165&quot;                        771                  36                        28
-## 20 A165             &quot;A165&quot;                       1004                  24                        24</code></pre>
+## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       24 
+##    Estimated width &gt; 10m 
+##                       11</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       24 
+##    Estimated width &gt; 10m 
+##                       11 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       24 
+##    Estimated width &gt; 10m 
+##                       11 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## # A tibble: 20 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Boot… &quot;&quot;                 764
+##  2 Beve… &quot;A1079&quot;           2726
+##  3 Gree… &quot;&quot;                1054
+##  4 Hold… &quot;A165&quot;            1607
+##  5 Norw… &quot;B1230&quot;            647
+##  6 Main… &quot;B1238&quot;            526
+##  7 A614  &quot;A614&quot;            4176
+##  8 Quay… &quot;B1423&quot;            710
+##  9 Long… &quot;&quot;                1237
+## 10 Main… &quot;A165&quot;             606
+## 11 Cott… &quot;B1233&quot;            938
+## 12 Gran… &quot;A1035&quot;           1452
+## 13 A165  &quot;A165&quot;            2295
+## 14 Nort… &quot;&quot;                 618
+## 15 Main… &quot;A614&quot;             992
+## 16 A164  &quot;A164&quot;            5851
+## 17 Hedo… &quot;B1362&quot;            503
+## 18 Bess… &quot;A165&quot;             771
+## 19 A1035 &quot;A1035&quot;           6622
+## 20 A164  &quot;A164&quot;            3404
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

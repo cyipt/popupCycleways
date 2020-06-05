@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,86 +388,199 @@ summary {
 ##       A2047    A3 
 ##    34     1    18</code></pre>
 <pre><code>## [1] 29</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   594.3  1208.8  2967.8  4009.3  8399.3  8399.3</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   594.3  1208.8  2967.8  4009.3 
+## 3rd Qu.    Max. 
+##  8399.3  8399.3</code></pre>
 <pre><code>## 
-##            Albert Road          Anglesea Road           Baffins Road            Copnor Road 
-##                     14                      9                      3                     43 
-##      Devonshire Avenue            East Street           Eastern Road           Fratton Road 
-##                     10                      6                     35                     19 
-##          Gunwharf Road            Havant Road            Hope Street          Kingston Road 
-##                     13                     23                      5                     17 
-##            London Road              Marketway          Mile End Road            Milton Road 
-##                     65                      9                     15                     20 
-##             Mumby Road        Northern Parade          Northern Road                  Other 
-##                     14                     20                      8                    319 
-##              Park Road Portsbridge Roundabout           Queen Street       Southampton Road 
-##                      1                     12                     21                     33 
+##            Albert Road 
+##                     14 
+##          Anglesea Road 
+##                      9 
+##           Baffins Road 
+##                      3 
+##            Copnor Road 
+##                     43 
+##      Devonshire Avenue 
+##                     10 
+##            East Street 
+##                      6 
+##           Eastern Road 
+##                     35 
+##           Fratton Road 
+##                     19 
+##          Gunwharf Road 
+##                     13 
+##            Havant Road 
+##                     23 
+##            Hope Street 
+##                      5 
+##          Kingston Road 
+##                     17 
+##            London Road 
+##                     65 
+##              Marketway 
+##                      9 
+##          Mile End Road 
+##                     15 
+##            Milton Road 
+##                     20 
+##             Mumby Road 
+##                     14 
+##        Northern Parade 
+##                     20 
+##          Northern Road 
+##                      8 
+##                  Other 
+##                    319 
+##              Park Road 
+##                      1 
+## Portsbridge Roundabout 
+##                     12 
+##           Queen Street 
+##                     21 
+##       Southampton Road 
+##                     33 
 ##           Western Road 
 ##                     18</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.2377  0.4009  0.8265  1.0019</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.2377  0.4009 
+## 3rd Qu.    Max. 
+##  0.8265  1.0019</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;&quot;        1     1 Queen Street                    1 Quee…          738              724         11
-##  2 &quot;A28…     1     2 Copnor Road                     2 Copn…         1317              454         10
-##  3 &quot;A20…     1     1 London Road                     3 Lond…         1916              388         12
-##  4 &quot;A3&quot;      1     1 Marketway                       1 Mark…          695              527          8
-##  5 &quot;A27&quot;     1     1 East Street                     1 East…          786              448          6
-##  6 &quot;A20…     1     1 Fratton Road                    1 Frat…         1104              329         10
-##  7 &quot;A20…     1     1 Kingston Road                   1 King…          756              388         10
-##  8 &quot;A27&quot;     1     1 Other                           8 A27            735              387          8
-##  9 &quot;A28…     1     2 Milton Road                     1 Milt…         1050              264         11
-## 10 &quot;B21…     1     1 Albert Road                     1 Albe…          742              266         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                      A27                     A288                       A3                     A397 
-##                        2                        1                        3                        1 
-##              Albert Road              Alfred Road            Anglesea Road             Baffins Road 
-##                        1                        1                        1                        1 
-##    Bedhampton Roundabout           Bransbury Road           Cambridge Road          Commercial Road 
-##                        1                        1                        1                        1 
-##              Copnor Road        Devonshire Avenue              East Street             Eastern Road 
-##                        2                        1                        1                        5 
-##             Eastney Road             Fratton Road            Frensham Road            Gunwharf Road 
-##                        1                        1                        1                        1 
-##              Havant Road            Highland Road              Hope Street        Kingston Crescent 
-##                        3                        1                        1                        1 
-##            Kingston Road                Lake Road              London Road                Marketway 
-##                        1                        2                        3                        1 
-##            Mile End Road              Milton Road               Mumby Road          Northern Parade 
-##                        1                        1                        1                        1 
-##            Northern Road                Park Road   Portsbridge Roundabout          Portsmouth Road 
-##                        1                        1                        1                        1 
-##          Priory Crescent             Queen Street         Southampton Road        St James&#39;s Street 
-##                        1                        1                        2                        1 
-##             Unnamed road            Velder Avenue      Victoria Road North      Victoria Road South 
-##                        7                        1                        1                        1 
-##             Western Road Winston Churchill Avenue 
-##                        1                        1</code></pre>
+##                      A27 
+##                        2 
+##                     A288 
+##                        1 
+##                       A3 
+##                        3 
+##                     A397 
+##                        1 
+##              Albert Road 
+##                        1 
+##              Alfred Road 
+##                        1 
+##            Anglesea Road 
+##                        1 
+##             Baffins Road 
+##                        1 
+##    Bedhampton Roundabout 
+##                        1 
+##           Bransbury Road 
+##                        1 
+##           Cambridge Road 
+##                        1 
+##          Commercial Road 
+##                        1 
+##              Copnor Road 
+##                        2 
+##        Devonshire Avenue 
+##                        1 
+##              East Street 
+##                        1 
+##             Eastern Road 
+##                        5 
+##             Eastney Road 
+##                        1 
+##             Fratton Road 
+##                        1 
+##            Frensham Road 
+##                        1 
+##            Gunwharf Road 
+##                        1 
+##              Havant Road 
+##                        3 
+##            Highland Road 
+##                        1 
+##              Hope Street 
+##                        1 
+##        Kingston Crescent 
+##                        1 
+##            Kingston Road 
+##                        1 
+##                Lake Road 
+##                        2 
+##              London Road 
+##                        3 
+##                Marketway 
+##                        1 
+##            Mile End Road 
+##                        1 
+##              Milton Road 
+##                        1 
+##               Mumby Road 
+##                        1 
+##          Northern Parade 
+##                        1 
+##            Northern Road 
+##                        1 
+##                Park Road 
+##                        1 
+##   Portsbridge Roundabout 
+##                        1 
+##          Portsmouth Road 
+##                        1 
+##          Priory Crescent 
+##                        1 
+##             Queen Street 
+##                        1 
+##         Southampton Road 
+##                        2 
+##        St James&#39;s Street 
+##                        1 
+##             Unnamed road 
+##                        7 
+##            Velder Avenue 
+##                        1 
+##      Victoria Road North 
+##                        1 
+##      Victoria Road South 
+##                        1 
+##             Western Road 
+##                        1 
+## Winston Churchill Avenue 
+##                        1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                       20                       33</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                       20                       33                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                       20                       33                        3</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name          Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;         &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Queen Street  &quot;&quot;                            738                 724                       534
-##  2 Copnor Road   &quot;A288&quot;                       1317                 454                       598
-##  3 London Road   &quot;A2047&quot;                      1916                 388                       743
-##  4 Marketway     &quot;A3&quot;                          695                 527                       366
-##  5 East Street   &quot;A27&quot;                         786                 448                       352
-##  6 Fratton Road  &quot;A2047&quot;                      1104                 329                       363
-##  7 Kingston Road &quot;A2047&quot;                       756                 388                       293
-##  8 A27           &quot;A27&quot;                         735                 387                       284
-##  9 Milton Road   &quot;A288&quot;                       1050                 264                       277
-## 10 Albert Road   &quot;B2154&quot;                       742                 266                       197</code></pre>
+## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                       20 
+##    Estimated width &gt; 10m 
+##                       33</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                       20 
+##    Estimated width &gt; 10m 
+##                       33 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                       20 
+##    Estimated width &gt; 10m 
+##                       33 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Quee… &quot;&quot;                 738
+##  2 Mark… &quot;A3&quot;               695
+##  3 Copn… &quot;A288&quot;            1317
+##  4 East… &quot;A27&quot;              786
+##  5 King… &quot;A2047&quot;            756
+##  6 Lond… &quot;A2047&quot;           1916
+##  7 A27   &quot;A27&quot;              735
+##  8 Frat… &quot;A2047&quot;           1104
+##  9 Nort… &quot;A397&quot;             553
+## 10 Copn… &quot;A288&quot;             581
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

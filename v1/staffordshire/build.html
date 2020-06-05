@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,138 +378,440 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A34 A4091  A449  A459  A462 A5009  A511 A5121  A518 A5187 A5189 B4154 B5017 B5018 B5045 B5066 B5404 
-##   235    19     1    14     9     1     1    29    18    22     1     1     1     2     9     4     1     1 
+##         A34 A4091  A449  A459  A462 
+##   235    19     1    14     9     1 
+## A5009  A511 A5121  A518 A5187 A5189 
+##     1    29    18    22     1     1 
+## B4154 B5017 B5018 B5045 B5066 B5404 
+##     1     2     9     4     1     1 
 ## B5416 
 ##    13</code></pre>
 <pre><code>## [1] 142</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1012    2674    3953    4494    6625    9780</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1012    2674    3953    4494 
+## 3rd Qu.    Max. 
+##    6625    9780</code></pre>
 <pre><code>## 
-##        Ash Bank Road           Ashby Road           Beaconside         Broad Street          Burton Road 
-##                   22                    7                   36                    8                   16 
-##          Buxton Road         Cannock Road          Castle Bank      Cellarhead Road         Cheadle Road 
-##                   14                    9                    8                    2                   15 
-##      Cheddleton Road       Coleshill Road       Congleton Road           Derby Road         Derby Street 
-##                   30                   14                    7                   30                    6 
-##    East Cannock Road          Eastern Way      Eccleshall Road         Etruria Road       Hartshill Road 
-##                    4                   27                   22                   47                   19 
-##      Hednesford Road    Horninglow Street           Horse Fair           Keele Road          King Street 
-##                    1                   15                   11                    3                   11 
-##        Kingsley Road           Ladderedge        Leek New Road            Leek Road       Lichfield Road 
-##                    4                   14                   13                   75                   30 
-##       Liverpool Road           Lodge Lane          London Road         Lower Street   Main Road Brereton 
-##                   47                    5                   20                   23                   38 
-##           Miners Way              Mosspit       Newcastle Road         Newport Road                Other 
-##                    1                   13                   71                   67                  951 
-##            Queensway         Radford Bank         Rising Brook         Rugeley Road             Ryecroft 
-##                   28                   13                   12                   24                   18 
-##       Rykneld Street     Shelton New Road        Stafford Road         Stanton Road      Stapenhill Road 
-##                   14                   16                   73                    8                   13 
-##           Stone Road           Talke Road      The Fillybrooks        Trentham Road       Uttoxeter Road 
-##                  111                   40                   14                   15                   14 
-##         Walsall Road       Watling Street      Wellington Road      Werrington Road Western Springs Road 
-##                    9                   23                   23                    8                    8 
-##          Weston Bank          Weston Road        Wobaston Road        Wolseley Road   Wolverhampton Road 
-##                   32                   47                    6                    7                   64 
+##        Ash Bank Road 
+##                   22 
+##           Ashby Road 
+##                    7 
+##           Beaconside 
+##                   36 
+##         Broad Street 
+##                    8 
+##          Burton Road 
+##                   16 
+##          Buxton Road 
+##                   14 
+##         Cannock Road 
+##                    9 
+##          Castle Bank 
+##                    8 
+##      Cellarhead Road 
+##                    2 
+##         Cheadle Road 
+##                   15 
+##      Cheddleton Road 
+##                   30 
+##       Coleshill Road 
+##                   14 
+##       Congleton Road 
+##                    7 
+##           Derby Road 
+##                   30 
+##         Derby Street 
+##                    6 
+##    East Cannock Road 
+##                    4 
+##          Eastern Way 
+##                   27 
+##      Eccleshall Road 
+##                   22 
+##         Etruria Road 
+##                   47 
+##       Hartshill Road 
+##                   19 
+##      Hednesford Road 
+##                    1 
+##    Horninglow Street 
+##                   15 
+##           Horse Fair 
+##                   11 
+##           Keele Road 
+##                    3 
+##          King Street 
+##                   11 
+##        Kingsley Road 
+##                    4 
+##           Ladderedge 
+##                   14 
+##        Leek New Road 
+##                   13 
+##            Leek Road 
+##                   75 
+##       Lichfield Road 
+##                   30 
+##       Liverpool Road 
+##                   47 
+##           Lodge Lane 
+##                    5 
+##          London Road 
+##                   20 
+##         Lower Street 
+##                   23 
+##   Main Road Brereton 
+##                   38 
+##           Miners Way 
+##                    1 
+##              Mosspit 
+##                   13 
+##       Newcastle Road 
+##                   71 
+##         Newport Road 
+##                   67 
+##                Other 
+##                  951 
+##            Queensway 
+##                   28 
+##         Radford Bank 
+##                   13 
+##         Rising Brook 
+##                   12 
+##         Rugeley Road 
+##                   24 
+##             Ryecroft 
+##                   18 
+##       Rykneld Street 
+##                   14 
+##     Shelton New Road 
+##                   16 
+##        Stafford Road 
+##                   73 
+##         Stanton Road 
+##                    8 
+##      Stapenhill Road 
+##                   13 
+##           Stone Road 
+##                  111 
+##           Talke Road 
+##                   40 
+##      The Fillybrooks 
+##                   14 
+##        Trentham Road 
+##                   15 
+##       Uttoxeter Road 
+##                   14 
+##         Walsall Road 
+##                    9 
+##       Watling Street 
+##                   23 
+##      Wellington Road 
+##                   23 
+##      Werrington Road 
+##                    8 
+## Western Springs Road 
+##                    8 
+##          Weston Bank 
+##                   32 
+##          Weston Road 
+##                   47 
+##        Wobaston Road 
+##                    6 
+##        Wolseley Road 
+##                    7 
+##   Wolverhampton Road 
+##                   64 
 ##        Woodland Road 
 ##                   10</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.09575 0.04826 1.00115</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.00000 0.09575 
+## 3rd Qu.    Max. 
+## 0.04826 1.00115</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A34       4     2 Other                          24 A34           1095              222         10
-##  2 A518      4     1 Weston Road                     1 West…         1610              210          8
-##  3 A5121    76     1 Derby Street                    1 Derb…          703              281          8
-##  4 A34       4     2 Lichfield Road                  2 Lich…          897              214          9
-##  5 A449      4     4 Rising Brook                    1 Risi…         1003              152          7
-##  6 A518      4     2 Newport Road                    2 Newp…         1800              144          9
-##  7 A444     76     1 Woodland Road                   1 Wood…         1484              143          7
-##  8 A449      4     4 Wolverhampton R…                2 Wolv…          746              178          7
-##  9 B5045   140     1 Shelton New Road                1 Shel…          957              131         10
-## 10 A5121    76     1 Other                          10 Well…          654              189          9
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                  A34                  A38                A4091                A4124                 A444 
-##                    6                    2                    1                    1                    2 
-##                 A449                 A460                   A5                  A50                 A500 
-##                    2                    4                    2                    2                    1 
-##                 A511                A5121                 A518                A5189                 A525 
-##                    2                    2                    2                    2                    1 
-##                 A527        Anglesey Road        Ash Bank Road        Ashboune Road       Ashbourne Road 
-##                    1                    1                    1                    1                    1 
-##           Ashby Road               Audnam            Avon Road                B5030     Ball Haye Street 
-##                    1                    1                    1                    1                    1 
-##   Basford Roundabout           Beaconside         Broad Street          Burton Road          Buxton Road 
-##                    1                    1                    1                    1                    1 
-##         Cannock Road          Castle Bank      Cellarhead Road         Cheadle Road      Cheddleton Road 
-##                    2                    1                    1                    1                    1 
-##        Church Street         Clayton Lane        Cobridge Road       Coleshill Road       Congleton Road 
-##                    1                    1                    1                    1                    1 
-##           Derby Road         Derby Street Dimsdale Parade West    East Cannock Road          Eastern Way 
-##                    1                    1                    1                    1                    1 
-##      Eccleshall Road          Elmore Lane         Etruria Road    Etruria Vale Road          Gaol Square 
-##                    1                    1                    2                    1                    1 
-##      Gaolgate Street        George Street           Greyfriars Grosvenor Roundabout         Guild Street 
-##                    1                    1                    1                    1                    1 
-##       Hartshill Road      Hednesford Road    Horninglow Street           Horse Fair           Keele Road 
-##                    1                    2                    1                    1                    1 
-##          King Street        Kingsley Road         Knutton Lane           Ladderedge        Leek New Road 
-##                    1                    1                    1                    1                    1 
-##            Leek Road       Lichfield Road       Liverpool Road           Lodge Lane          London Road 
-##                    4                    4                    1                    1                    3 
-##         Lower Street   Main Road Brereton           Miners Way              Mosspit       Newcastle Road 
-##                    1                    1                    1                    1                    4 
-##         Newport Road         North Street        Park Crescent      Patshull Avenue             Pool Dam 
-##                    3                    1                    1                    1                    1 
-##        Porthill Bank            Queensway     Queensway Island         Radford Bank         Rising Brook 
-##                    1                    2                    1                    1                    1 
-##         Rugeley Road             Ryecroft       Rykneld Street     Shelton New Road     St Peters Street 
-##                    1                    1                    1                    1                    1 
-##        Stafford Road         Stanton Road      Stapenhill Road           Stone Road           Talke Road 
-##                    6                    1                    1                    2                    1 
-##        Tamworth Road      The Fillybrooks           The Friary        Trentham Road         Unnamed road 
-##                    1                    1                    1                    1                    8 
-##       Uttoxeter Road          Vine Island          Wall Bridge         Walsall Road       Watling Street 
-##                    2                    1                    1                    3                    3 
-##      Wellington Road    Wellington Street      Werrington Road Western Springs Road          Weston Bank 
-##                    1                    1                    1                    2                    1 
-##          Weston Road        Whitmore Road        Wobaston Road       Wollaston Road        Wolseley Road 
-##                    2                    1                    1                    1                    1 
-##   Wolverhampton Road        Woodland Road 
-##                    4                    1</code></pre>
+##                  A34 
+##                    6 
+##                  A38 
+##                    2 
+##                A4091 
+##                    1 
+##                A4124 
+##                    1 
+##                 A444 
+##                    2 
+##                 A449 
+##                    2 
+##                 A460 
+##                    4 
+##                   A5 
+##                    2 
+##                  A50 
+##                    2 
+##                 A500 
+##                    1 
+##                 A511 
+##                    2 
+##                A5121 
+##                    2 
+##                 A518 
+##                    2 
+##                A5189 
+##                    2 
+##                 A525 
+##                    1 
+##                 A527 
+##                    1 
+##        Anglesey Road 
+##                    1 
+##        Ash Bank Road 
+##                    1 
+##        Ashboune Road 
+##                    1 
+##       Ashbourne Road 
+##                    1 
+##           Ashby Road 
+##                    1 
+##               Audnam 
+##                    1 
+##            Avon Road 
+##                    1 
+##                B5030 
+##                    1 
+##     Ball Haye Street 
+##                    1 
+##   Basford Roundabout 
+##                    1 
+##           Beaconside 
+##                    1 
+##         Broad Street 
+##                    1 
+##          Burton Road 
+##                    1 
+##          Buxton Road 
+##                    1 
+##         Cannock Road 
+##                    2 
+##          Castle Bank 
+##                    1 
+##      Cellarhead Road 
+##                    1 
+##         Cheadle Road 
+##                    1 
+##      Cheddleton Road 
+##                    1 
+##        Church Street 
+##                    1 
+##         Clayton Lane 
+##                    1 
+##        Cobridge Road 
+##                    1 
+##       Coleshill Road 
+##                    1 
+##       Congleton Road 
+##                    1 
+##           Derby Road 
+##                    1 
+##         Derby Street 
+##                    1 
+## Dimsdale Parade West 
+##                    1 
+##    East Cannock Road 
+##                    1 
+##          Eastern Way 
+##                    1 
+##      Eccleshall Road 
+##                    1 
+##          Elmore Lane 
+##                    1 
+##         Etruria Road 
+##                    2 
+##    Etruria Vale Road 
+##                    1 
+##          Gaol Square 
+##                    1 
+##      Gaolgate Street 
+##                    1 
+##        George Street 
+##                    1 
+##           Greyfriars 
+##                    1 
+## Grosvenor Roundabout 
+##                    1 
+##         Guild Street 
+##                    1 
+##       Hartshill Road 
+##                    1 
+##      Hednesford Road 
+##                    2 
+##    Horninglow Street 
+##                    1 
+##           Horse Fair 
+##                    1 
+##           Keele Road 
+##                    1 
+##          King Street 
+##                    1 
+##        Kingsley Road 
+##                    1 
+##         Knutton Lane 
+##                    1 
+##           Ladderedge 
+##                    1 
+##        Leek New Road 
+##                    1 
+##            Leek Road 
+##                    4 
+##       Lichfield Road 
+##                    4 
+##       Liverpool Road 
+##                    1 
+##           Lodge Lane 
+##                    1 
+##          London Road 
+##                    3 
+##         Lower Street 
+##                    1 
+##   Main Road Brereton 
+##                    1 
+##           Miners Way 
+##                    1 
+##              Mosspit 
+##                    1 
+##       Newcastle Road 
+##                    4 
+##         Newport Road 
+##                    3 
+##         North Street 
+##                    1 
+##        Park Crescent 
+##                    1 
+##      Patshull Avenue 
+##                    1 
+##             Pool Dam 
+##                    1 
+##        Porthill Bank 
+##                    1 
+##            Queensway 
+##                    2 
+##     Queensway Island 
+##                    1 
+##         Radford Bank 
+##                    1 
+##         Rising Brook 
+##                    1 
+##         Rugeley Road 
+##                    1 
+##             Ryecroft 
+##                    1 
+##       Rykneld Street 
+##                    1 
+##     Shelton New Road 
+##                    1 
+##     St Peters Street 
+##                    1 
+##        Stafford Road 
+##                    6 
+##         Stanton Road 
+##                    1 
+##      Stapenhill Road 
+##                    1 
+##           Stone Road 
+##                    2 
+##           Talke Road 
+##                    1 
+##        Tamworth Road 
+##                    1 
+##      The Fillybrooks 
+##                    1 
+##           The Friary 
+##                    1 
+##        Trentham Road 
+##                    1 
+##         Unnamed road 
+##                    8 
+##       Uttoxeter Road 
+##                    2 
+##          Vine Island 
+##                    1 
+##          Wall Bridge 
+##                    1 
+##         Walsall Road 
+##                    3 
+##       Watling Street 
+##                    3 
+##      Wellington Road 
+##                    1 
+##    Wellington Street 
+##                    1 
+##      Werrington Road 
+##                    1 
+## Western Springs Road 
+##                    2 
+##          Weston Bank 
+##                    1 
+##          Weston Road 
+##                    2 
+##        Whitmore Road 
+##                    1 
+##        Wobaston Road 
+##                    1 
+##       Wollaston Road 
+##                    1 
+##        Wolseley Road 
+##                    1 
+##   Wolverhampton Road 
+##                    4 
+##        Woodland Road 
+##                    1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       97                       43</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       97                       43                        4</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       97                       43                        4</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 A34                A34                          1095                 222                       243
-##  2 Weston Road        A518                         1610                 210                       338
-##  3 Derby Street       A5121                         703                 281                       198
-##  4 Lichfield Road     A34                           897                 214                       192
-##  5 Rising Brook       A449                         1003                 152                       152
-##  6 Newport Road       A518                         1800                 144                       259
-##  7 Woodland Road      A444                         1484                 143                       212
-##  8 Wolverhampton Road A449                          746                 178                       133
-##  9 Shelton New Road   B5045                         957                 131                       125
-## 10 Wellington Street  A5121                         654                 189                       124
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       98 
+##    Estimated width &gt; 10m 
+##                       42</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       98 
+##    Estimated width &gt; 10m 
+##                       42 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       98 
+##    Estimated width &gt; 10m 
+##                       42 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Derb… A5121              703
+##  2 Park… A449               506
+##  3 A34   A34               1095
+##  4 Lich… A34                897
+##  5 West… A518              1610
+##  6 Well… A5121              654
+##  7 Wolv… A449               746
+##  8 Risi… A449              1003
+##  9 Radf… A34                724
+## 10 Horn… A511               791
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

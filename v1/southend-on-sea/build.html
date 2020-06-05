@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,54 +388,91 @@ summary {
 ##       A1158 A1159  A127   A13 B1015 
 ##    20     3     1     1     8     6</code></pre>
 <pre><code>## [1] 23</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   751.3  1614.2  1728.8  2179.7  3406.1  3406.1</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   751.3  1614.2  1728.8  2179.7 
+## 3rd Qu.    Max. 
+##  3406.1  3406.1</code></pre>
 <pre><code>## 
-##            London Road                  Other          Prince Avenue          Rayleigh Road 
-##                     86                     72                     27                     48 
-##       Southchurch Road Southend Arterial Road            Sutton Road        Victoria Avenue 
-##                     22                     36                      5                     27</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.02085 0.26415 0.47993 1.02564</code></pre>
+##            London Road 
+##                     86 
+##                  Other 
+##                     72 
+##          Prince Avenue 
+##                     27 
+##          Rayleigh Road 
+##                     48 
+##       Southchurch Road 
+##                     22 
+## Southend Arterial Road 
+##                     36 
+##            Sutton Road 
+##                      5 
+##        Victoria Avenue 
+##                     27</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.02085 0.26415 
+## 3rd Qu.    Max. 
+## 0.47993 1.02564</code></pre>
 <pre><code>## [1] 8</code></pre>
-<pre><code>## # A tibble: 8 x 16
-##   ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-## * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-## 1 &quot;A13&quot;     1     3 Southchurch Road                1 Sout…         1481              195         10
-## 2 &quot;A13&quot;     2     1 London Road                     1 Lond…         6043              152         10
-## 3 &quot;A12…     1     1 Victoria Avenue                 1 Vict…         2411              139          7
-## 4 &quot;B10…     8     1 Sutton Road                     1 Sutt…          523              205          9
-## 5 &quot;A12…     1     1 Prince Avenue                   1 Prin…         5076               85          7
-## 6 &quot;A10…     1     1 Rayleigh Road                   1 Rayl…         2447               75         11
-## 7 &quot;&quot;        1     1 Other                           3 Quee…          598               94         10
-## 8 &quot;A13&quot;     9     2 Other                           5 A13            557               58         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                    A13          Cuckoo Corner            East Street            London Road 
-##                      1                      1                      2                      1 
-##          Prince Avenue              Queensway          Rayleigh Road       Southchurch Road 
-##                      2                      3                      1                      1 
-## Southend Arterial Road            Sutton Road        Victoria Avenue              West Road 
-##                      1                      2                      1                      1</code></pre>
+##                    A13 
+##                      1 
+##          Cuckoo Corner 
+##                      1 
+##            East Street 
+##                      2 
+##            London Road 
+##                      1 
+##          Prince Avenue 
+##                      2 
+##              Queensway 
+##                      3 
+##          Rayleigh Road 
+##                      1 
+##       Southchurch Road 
+##                      1 
+## Southend Arterial Road 
+##                      1 
+##            Sutton Road 
+##                      2 
+##        Victoria Avenue 
+##                      1 
+##              West Road 
+##                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        8                        2                        7</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        8                        2                        7</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        8                        2                        7</code></pre>
-<pre><code>## # A tibble: 8 x 5
-##   Name             Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-## * &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-## 1 Southchurch Road &quot;A13&quot;                        1481                 195                       289
-## 2 London Road      &quot;A13&quot;                        6043                 152                       919
-## 3 Victoria Avenue  &quot;A127&quot;                       2411                 139                       335
-## 4 Sutton Road      &quot;B1015&quot;                       523                 205                       107
-## 5 Prince Avenue    &quot;A127&quot;                       5076                  85                       431
-## 6 Rayleigh Road    &quot;A1015&quot;                      2447                  75                       184
-## 7 Queensway        &quot;&quot;                            598                  94                        56
-## 8 A13              &quot;A13&quot;                         557                  58                        32</code></pre>
+## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                        2 
+##    Estimated width &gt; 10m 
+##                        7</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                        2 
+##    Estimated width &gt; 10m 
+##                        7</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                        2 
+##    Estimated width &gt; 10m 
+##                        7</code></pre>
+<pre><code>## # A tibble: 8 x 6
+##   Name  Reference `Length (m)`
+## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+## 1 Sutt… &quot;B1015&quot;            523
+## 2 Sout… &quot;A13&quot;             1481
+## 3 Lond… &quot;A13&quot;             6043
+## 4 Vict… &quot;A127&quot;            2411
+## 5 Quee… &quot;&quot;                 598
+## 6 Prin… &quot;A127&quot;            5076
+## 7 Rayl… &quot;A1015&quot;           2447
+## 8 A13   &quot;A13&quot;              557
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

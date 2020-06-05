@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,172 +378,510 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         131   A52   A60 A6005 A6008 A6011  A612 A6200 A6514 B6326 
-##   334     1     1    28    44     1     5     1     5     7    10</code></pre>
+##         131   A52   A60 A6005 A6008 
+##   334     1     1    28    44     1 
+## A6011  A612 A6200 A6514 B6326 
+##     5     1     5     7    10</code></pre>
 <pre><code>## [1] 117</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1908    3760    7157    8842   10251   16926</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1908    3760    7157    8842 
+## 3rd Qu.    Max. 
+##   10251   16926</code></pre>
 <pre><code>## 
-##           Alfreton Road           Annesley Road           Arlington Way             Arnold Road 
-##                      64                       8                       6                       9 
-##             Aspley Lane           Babworth Road             Bath Street        Beacon Hill Road 
-##                      37                       1                      13                       9 
-##        Brian Clough Way           Broxtowe Lane            Canal Street            Carlton Hill 
-##                      27                      20                      27                      20 
-##            Carlton Road        Castle Boulevard             Chalons Way Chesterfield Road North 
-##                      36                      32                       2                      23 
-## Chesterfield Road South             Church Road           Church Street         Cinderhill Road 
-##                      54                       7                      14                      13 
-##       Clifton Boulevard            Clifton Lane     Clipstone Road West             Common Road 
-##                      49                      15                       6                       9 
-##           Daleside Road              Derby Road           Gateford Road    Glaisdale Drive East 
-##                      11                     147                      10                       5 
-##       Gregory Boulevard           Highbury Road           Hucknall Lane           Hucknall Road 
-##                      23                      24                      22                      55 
-##       Huntingdon Street          Huthwaite Road           Ilkeston Road             Kelham Road 
-##                      27                      16                      36                       6 
-##    Kings Mill Road East       Kirkby Folly Road            Leeming Lane      Leeming Lane North 
-##                      17                       7                       3                      27 
-##      Leeming Lane South        Lenton Boulevard             London Road       Loughborough Road 
-##                      18                      23                     102                      32 
-## Lower Parliament Street         Maid Marian Way               Main Road          Mansfield Road 
-##                      30                      20                       4                     232 
-##          Manvers Street             Meadow Lane     Middleton Boulevard         Nottingham Road 
-##                      20                      22                      33                      76 
-##            Nuthall Road                   Other              Perry Road             Plains Road 
-##                      60                    1118                      15                      16 
-##         Porchester Road      Queen&#39;s Bower Road           Queen&#39;s Drive            Queens Drive 
-##                      18                       9                      13                      18 
-##          Radcliffe Road       Radford Boulevard            Radford Road            Retford Road 
-##                      42                      22                      25                       7 
-##         Rosemary Street       Saint Peter&#39;s Way     Seller&#39;s Wood Drive               Shilo Way 
-##                      19                       2                      13                       3 
-##           Sneinton Dale     Southwell Road West          Stockhill Lane           Strelley Road 
-##                      12                      17                       8                      12 
-##             Sutton Road            Trowell Road             Valley Road             Vernon Road 
-##                      16                      25                      43                      13 
-##       Western Boulevard           Windmill Lane           Wollaton Road           Wollaton Vale 
-##                      67                      11                      25                       8 
-##        Woodborough Road          Woodhouse Road 
-##                      60                      12</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.08475 0.29387 0.55269 1.01852</code></pre>
+##           Alfreton Road 
+##                      64 
+##           Annesley Road 
+##                       8 
+##           Arlington Way 
+##                       6 
+##             Arnold Road 
+##                       9 
+##             Aspley Lane 
+##                      37 
+##           Babworth Road 
+##                       1 
+##             Bath Street 
+##                      13 
+##        Beacon Hill Road 
+##                       9 
+##        Brian Clough Way 
+##                      27 
+##           Broxtowe Lane 
+##                      20 
+##            Canal Street 
+##                      27 
+##            Carlton Hill 
+##                      20 
+##            Carlton Road 
+##                      36 
+##        Castle Boulevard 
+##                      32 
+##             Chalons Way 
+##                       2 
+## Chesterfield Road North 
+##                      23 
+## Chesterfield Road South 
+##                      54 
+##             Church Road 
+##                       7 
+##           Church Street 
+##                      14 
+##         Cinderhill Road 
+##                      13 
+##       Clifton Boulevard 
+##                      49 
+##            Clifton Lane 
+##                      15 
+##     Clipstone Road West 
+##                       6 
+##             Common Road 
+##                       9 
+##           Daleside Road 
+##                      11 
+##              Derby Road 
+##                     147 
+##           Gateford Road 
+##                      10 
+##    Glaisdale Drive East 
+##                       5 
+##       Gregory Boulevard 
+##                      23 
+##           Highbury Road 
+##                      24 
+##           Hucknall Lane 
+##                      22 
+##           Hucknall Road 
+##                      55 
+##       Huntingdon Street 
+##                      27 
+##          Huthwaite Road 
+##                      16 
+##           Ilkeston Road 
+##                      36 
+##             Kelham Road 
+##                       6 
+##    Kings Mill Road East 
+##                      17 
+##       Kirkby Folly Road 
+##                       7 
+##            Leeming Lane 
+##                       3 
+##      Leeming Lane North 
+##                      27 
+##      Leeming Lane South 
+##                      18 
+##        Lenton Boulevard 
+##                      23 
+##             London Road 
+##                     102 
+##       Loughborough Road 
+##                      32 
+## Lower Parliament Street 
+##                      30 
+##         Maid Marian Way 
+##                      20 
+##               Main Road 
+##                       4 
+##          Mansfield Road 
+##                     232 
+##          Manvers Street 
+##                      20 
+##             Meadow Lane 
+##                      22 
+##     Middleton Boulevard 
+##                      33 
+##         Nottingham Road 
+##                      76 
+##            Nuthall Road 
+##                      60 
+##                   Other 
+##                    1118 
+##              Perry Road 
+##                      15 
+##             Plains Road 
+##                      16 
+##         Porchester Road 
+##                      18 
+##      Queen&#39;s Bower Road 
+##                       9 
+##           Queen&#39;s Drive 
+##                      13 
+##            Queens Drive 
+##                      18 
+##          Radcliffe Road 
+##                      42 
+##       Radford Boulevard 
+##                      22 
+##            Radford Road 
+##                      25 
+##            Retford Road 
+##                       7 
+##         Rosemary Street 
+##                      19 
+##       Saint Peter&#39;s Way 
+##                       2 
+##     Seller&#39;s Wood Drive 
+##                      13 
+##               Shilo Way 
+##                       3 
+##           Sneinton Dale 
+##                      12 
+##     Southwell Road West 
+##                      17 
+##          Stockhill Lane 
+##                       8 
+##           Strelley Road 
+##                      12 
+##             Sutton Road 
+##                      16 
+##            Trowell Road 
+##                      25 
+##             Valley Road 
+##                      43 
+##             Vernon Road 
+##                      13 
+##       Western Boulevard 
+##                      67 
+##           Windmill Lane 
+##                      11 
+##           Wollaton Road 
+##                      25 
+##           Wollaton Vale 
+##                       8 
+##        Woodborough Road 
+##                      60 
+##          Woodhouse Road 
+##                      12</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.08475 0.29387 
+## 3rd Qu.    Max. 
+## 0.55269 1.01852</code></pre>
 <pre><code>## [1] 40</code></pre>
-<pre><code>## # A tibble: 40 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;B63…    10     3 London Road                     3 Lond…         2399              320         10
-##  2 &quot;A60…   263     3 Nottingham Road                 1 Nott…         2481              250         11
-##  3 &quot;A60&quot;   181     2 Lower Parliamen…                1 Lowe…          928              236         14
-##  4 &quot;A60…   242     2 Other                          41 Quee…          899              239         10
-##  5 &quot;A38&quot;    69     1 Sutton Road                     1 Sutt…         1347              213         12
-##  6 &quot;&quot;       23     1 Other                          55 Beac…          596              346         10
-##  7 &quot;A60…   263     3 Derby Road                      6 Derb…          779              263         11
-##  8 &quot;&quot;      181    17 Perry Road                      1 Perr…         1607              164         11
-##  9 &quot;B60…    68     2 Huthwaite Road                  1 Huth…         1034              160         11
-## 10 &quot;A60&quot;    69     1 Woodhouse Road                  1 Wood…          760              204          8
-## # … with 30 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                     A38                    A453                     A52                   A6005 
-##                       3                       1                       1                       1 
-##                    A610                    A611                   A6200                   A6514 
-##                       3                       2                       2                       1 
-##            Abbey Street           Alfreton Road           Annesley Road           Arlington Way 
-##                       1                       3                       1                       1 
-##             Arnold Road             Aspley Lane                   B6326             Babbage Way 
-##                       1                       1                       2                       1 
-##           Babworth Road                Bar Lane             Bath Street        Beacon Hill Road 
-##                       1                       1                       1                       2 
-##     Bobbers Mill Bridge           Bosworth Walk        Brian Clough Way           Broxtowe Lane 
-##                       1                       1                       1                       1 
-##           Burnside Road            Canal Street            Carlton Hill            Carlton Road 
-##                       1                       1                       1                       1 
-##        Castle Boulevard      Cattle Market Road             Chalons Way           Charnock Walk 
-##                       1                       1                       1                       1 
-##               Cheapside Chesterfield Road North Chesterfield Road South             Church Road 
-##                       1                       1                       3                       1 
-##           Church Street         Cinderhill Road       Clifton Boulevard            Clifton Lane 
-##                       1                       1                       3                       1 
-##     Clipstone Road West             Common Road            Crown Island           Daleside Road 
-##                       1                       1                       1                       1 
-##              Derby Road            Edwards Lane       Foxhill Road East           Gateford Road 
-##                       9                       1                       1                       1 
-##    Glaisdale Drive East        Great North Road       Gregory Boulevard           High Hoe Road 
-##                       1                       1                       1                       1 
-##           Highbury Road           Hucknall Lane           Hucknall Road       Huntingdon Street 
-##                       1                       2                       1                       1 
-##          Huthwaite Road           Ilkeston Road             Kelham Road    Kings Mill Road East 
-##                       1                       2                       1                       2 
-##       Kirkby Folly Road             Kirkby Road         Lady Bay Bridge             Lammas Road 
-##                       1                       1                       2                       1 
-##            Leeming Lane      Leeming Lane North      Leeming Lane South        Lenton Boulevard 
-##                       1                       1                       1                       1 
-##             London Road           Longmoor Lane       Loughborough Road Lower Parliament Street 
-##                       4                       1                       1                       1 
-##              Lower Road         Maid Marian Way               Main Road             Main Street 
-##                       1                       1                       1                       1 
-##          Mansfield Road          Manvers Street           Mapleleaf Way            Market Place 
-##                       5                       1                       1                       1 
-##             Meadow Lane             Melton Road     Middleton Boulevard     Mildenhall Crescent 
-##                       1                       1                       2                       1 
-##          New Derby Road             Newark Road         Nottingham Road            Nuthall Road 
-##                       1                       1                       3                       1 
-##            Oakdale Road          Penny Emma Way              Perry Road             Plains Road 
-##                       1                       1                       1                       1 
-##         Porchester Road      Queen&#39;s Bower Road           Queen&#39;s Drive            Queens Drive 
-##                       1                       1                       2                       1 
-##             Queens Road          Radcliffe Road       Radford Boulevard            Radford Road 
-##                       1                       2                       1                       1 
-##          Ratcliffe Gate            Raymoth Lane            Retford Road         Rosemary Street 
-##                       1                       1                       1                       1 
-##         Ruddington Lane       Saint Peter&#39;s Way     Seller&#39;s Wood Drive            Sherwin Road 
-##                       1                       1                       1                       1 
-##      Sherwood Hall Road           Sherwood Rise               Shilo Way           Sneinton Dale 
-##                       1                       1                       1                       1 
-##        Southwark Street          Southwell Road     Southwell Road West          St Peter&#39;s Way 
-##                       1                       1                       1                       1 
-##            Station Road          Stockhill Lane          Stockwell Gate         Stoneyford Road 
-##                       2                       1                       1                       1 
-##           Strelley Road             Sutton Road            Trent Bridge            Trowell Road 
-##                       1                       2                       1                       1 
-##            Unnamed road             Valley Road             Vernon Road       Western Boulevard 
-##                      18                       1                       1                       1 
-##       Wheatcroft Island            Wilford Lane          Wilford Street        Wilkinson Street 
-##                       1                       1                       1                       1 
-##           Windmill Lane           Wollaton Road           Wollaton Vale        Woodborough Road 
-##                       1                       1                       1                       1 
-##          Woodhouse Road        Woodthorpe Drive 
-##                       1                       1</code></pre>
+##                     A38 
+##                       3 
+##                    A453 
+##                       1 
+##                     A52 
+##                       1 
+##                   A6005 
+##                       1 
+##                    A610 
+##                       3 
+##                    A611 
+##                       2 
+##                   A6200 
+##                       2 
+##                   A6514 
+##                       1 
+##            Abbey Street 
+##                       1 
+##           Alfreton Road 
+##                       3 
+##           Annesley Road 
+##                       1 
+##           Arlington Way 
+##                       1 
+##             Arnold Road 
+##                       1 
+##             Aspley Lane 
+##                       1 
+##                   B6326 
+##                       2 
+##             Babbage Way 
+##                       1 
+##           Babworth Road 
+##                       1 
+##                Bar Lane 
+##                       1 
+##             Bath Street 
+##                       1 
+##        Beacon Hill Road 
+##                       2 
+##     Bobbers Mill Bridge 
+##                       1 
+##           Bosworth Walk 
+##                       1 
+##        Brian Clough Way 
+##                       1 
+##           Broxtowe Lane 
+##                       1 
+##           Burnside Road 
+##                       1 
+##            Canal Street 
+##                       1 
+##            Carlton Hill 
+##                       1 
+##            Carlton Road 
+##                       1 
+##        Castle Boulevard 
+##                       1 
+##      Cattle Market Road 
+##                       1 
+##             Chalons Way 
+##                       1 
+##           Charnock Walk 
+##                       1 
+##               Cheapside 
+##                       1 
+## Chesterfield Road North 
+##                       1 
+## Chesterfield Road South 
+##                       3 
+##             Church Road 
+##                       1 
+##           Church Street 
+##                       1 
+##         Cinderhill Road 
+##                       1 
+##       Clifton Boulevard 
+##                       3 
+##            Clifton Lane 
+##                       1 
+##     Clipstone Road West 
+##                       1 
+##             Common Road 
+##                       1 
+##            Crown Island 
+##                       1 
+##           Daleside Road 
+##                       1 
+##              Derby Road 
+##                       9 
+##            Edwards Lane 
+##                       1 
+##       Foxhill Road East 
+##                       1 
+##           Gateford Road 
+##                       1 
+##    Glaisdale Drive East 
+##                       1 
+##        Great North Road 
+##                       1 
+##       Gregory Boulevard 
+##                       1 
+##           High Hoe Road 
+##                       1 
+##           Highbury Road 
+##                       1 
+##           Hucknall Lane 
+##                       2 
+##           Hucknall Road 
+##                       1 
+##       Huntingdon Street 
+##                       1 
+##          Huthwaite Road 
+##                       1 
+##           Ilkeston Road 
+##                       2 
+##             Kelham Road 
+##                       1 
+##    Kings Mill Road East 
+##                       2 
+##       Kirkby Folly Road 
+##                       1 
+##             Kirkby Road 
+##                       1 
+##         Lady Bay Bridge 
+##                       2 
+##             Lammas Road 
+##                       1 
+##            Leeming Lane 
+##                       1 
+##      Leeming Lane North 
+##                       1 
+##      Leeming Lane South 
+##                       1 
+##        Lenton Boulevard 
+##                       1 
+##             London Road 
+##                       4 
+##           Longmoor Lane 
+##                       1 
+##       Loughborough Road 
+##                       1 
+## Lower Parliament Street 
+##                       1 
+##              Lower Road 
+##                       1 
+##         Maid Marian Way 
+##                       1 
+##               Main Road 
+##                       1 
+##             Main Street 
+##                       1 
+##          Mansfield Road 
+##                       5 
+##          Manvers Street 
+##                       1 
+##           Mapleleaf Way 
+##                       1 
+##            Market Place 
+##                       1 
+##             Meadow Lane 
+##                       1 
+##             Melton Road 
+##                       1 
+##     Middleton Boulevard 
+##                       2 
+##     Mildenhall Crescent 
+##                       1 
+##          New Derby Road 
+##                       1 
+##             Newark Road 
+##                       1 
+##         Nottingham Road 
+##                       3 
+##            Nuthall Road 
+##                       1 
+##            Oakdale Road 
+##                       1 
+##          Penny Emma Way 
+##                       1 
+##              Perry Road 
+##                       1 
+##             Plains Road 
+##                       1 
+##         Porchester Road 
+##                       1 
+##      Queen&#39;s Bower Road 
+##                       1 
+##           Queen&#39;s Drive 
+##                       2 
+##            Queens Drive 
+##                       1 
+##             Queens Road 
+##                       1 
+##          Radcliffe Road 
+##                       2 
+##       Radford Boulevard 
+##                       1 
+##            Radford Road 
+##                       1 
+##          Ratcliffe Gate 
+##                       1 
+##            Raymoth Lane 
+##                       1 
+##            Retford Road 
+##                       1 
+##         Rosemary Street 
+##                       1 
+##         Ruddington Lane 
+##                       1 
+##       Saint Peter&#39;s Way 
+##                       1 
+##     Seller&#39;s Wood Drive 
+##                       1 
+##            Sherwin Road 
+##                       1 
+##      Sherwood Hall Road 
+##                       1 
+##           Sherwood Rise 
+##                       1 
+##               Shilo Way 
+##                       1 
+##           Sneinton Dale 
+##                       1 
+##        Southwark Street 
+##                       1 
+##          Southwell Road 
+##                       1 
+##     Southwell Road West 
+##                       1 
+##          St Peter&#39;s Way 
+##                       1 
+##            Station Road 
+##                       2 
+##          Stockhill Lane 
+##                       1 
+##          Stockwell Gate 
+##                       1 
+##         Stoneyford Road 
+##                       1 
+##           Strelley Road 
+##                       1 
+##             Sutton Road 
+##                       2 
+##            Trent Bridge 
+##                       1 
+##            Trowell Road 
+##                       1 
+##            Unnamed road 
+##                      18 
+##             Valley Road 
+##                       1 
+##             Vernon Road 
+##                       1 
+##       Western Boulevard 
+##                       1 
+##       Wheatcroft Island 
+##                       1 
+##            Wilford Lane 
+##                       1 
+##          Wilford Street 
+##                       1 
+##        Wilkinson Street 
+##                       1 
+##           Windmill Lane 
+##                       1 
+##           Wollaton Road 
+##                       1 
+##           Wollaton Vale 
+##                       1 
+##        Woodborough Road 
+##                       1 
+##          Woodhouse Road 
+##                       1 
+##        Woodthorpe Drive 
+##                       1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       40                       48                       94</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       48                       94                       13</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       48                       94                       13</code></pre>
-<pre><code>## # A tibble: 40 x 5
-##    Name                    Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;                   &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 London Road             &quot;B6326&quot;                      2399                 320                       768
-##  2 Nottingham Road         &quot;A6005&quot;                      2481                 250                       620
-##  3 Lower Parliament Street &quot;A60&quot;                         928                 236                       219
-##  4 Queens Road             &quot;A6005&quot;                       899                 239                       215
-##  5 Sutton Road             &quot;A38&quot;                        1347                 213                       287
-##  6 Beacon Hill Road        &quot;&quot;                            596                 346                       206
-##  7 Derby Road              &quot;A6005&quot;                       779                 263                       205
-##  8 Perry Road              &quot;&quot;                           1607                 164                       264
-##  9 Huthwaite Road          &quot;B6026&quot;                      1034                 160                       165
-## 10 Woodhouse Road          &quot;A60&quot;                         760                 204                       155
-## # … with 30 more rows</code></pre>
+## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       52 
+##    Estimated width &gt; 10m 
+##                       90</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       52 
+##    Estimated width &gt; 10m 
+##                       90 
+##                     NA&#39;s 
+##                       13</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       52 
+##    Estimated width &gt; 10m 
+##                       90 
+##                     NA&#39;s 
+##                       13</code></pre>
+<pre><code>## # A tibble: 40 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Beac… &quot;&quot;                 596
+##  2 Lond… &quot;B6326&quot;           2399
+##  3 Derb… &quot;A6005&quot;            779
+##  4 Nott… &quot;A6005&quot;           2481
+##  5 Quee… &quot;A6005&quot;            899
+##  6 Lowe… &quot;A60&quot;              928
+##  7 Sutt… &quot;A38&quot;             1347
+##  8 Wood… &quot;A60&quot;              760
+##  9 Beac… &quot;&quot;                 745
+## 10 Abbe… &quot;A6005&quot;            802
+## # … with 30 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

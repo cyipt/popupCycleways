@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,64 +388,87 @@ summary {
 ##      A438  A49 
 ##   51    3    8</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   18777   18777   18777   18777   18777   18777</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   18777   18777   18777   18777 
+## 3rd Qu.    Max. 
+##   18777   18777</code></pre>
 <pre><code>## 
-##  Aylestone Hill    Belmont Road  City Link Road    Edgar Street   Hereford Road     Holmer Road 
-##              22              14               7              15              26               4 
-##    Ledbury Road     Mill Street           Other       Ross Road Victoria Street 
-##              38              12             109              23              22</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.1686  0.1630  1.0000</code></pre>
+##  Aylestone Hill    Belmont Road 
+##              22              14 
+##  City Link Road    Edgar Street 
+##               7              15 
+##   Hereford Road     Holmer Road 
+##              26               4 
+##    Ledbury Road     Mill Street 
+##              38              12 
+##           Other       Ross Road 
+##             109              23 
+## Victoria Street 
+##              22</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.1686 
+## 3rd Qu.    Max. 
+##  0.1630  1.0000</code></pre>
 <pre><code>## [1] 12</code></pre>
-<pre><code>## # A tibble: 12 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A49&quot;     6     1 Victoria Street                 1 Vict…         1916              292          8
-##  2 &quot;A46…     6     2 Belmont Road                    1 Belm…         1072              236         10
-##  3 &quot;A49&quot;     6     1 Edgar Street                    1 Edga…         1050              193         10
-##  4 &quot;&quot;        6     1 Other                           1 Comm…          576              187         12
-##  5 &quot;A43…     6     2 Ledbury Road                    1 Ledb…         2241              107          8
-##  6 &quot;A49&quot;     6     1 Ross Road                       2 Ross…         1466               98          9
-##  7 &quot;A43…     6     2 Other                           3 A438          1134               62          7
-##  8 &quot;A49&quot;    31     4 Holmer Road                     1 Holm…          526              111         10
-##  9 &quot;A46…     6     1 Aylestone Hill                  1 Ayle…         1758               48          9
-## 10 &quot;A44&quot;    11     1 Other                           7 Broa…          606               43          8
-## 11 &quot;A43…     6     2 Hereford Road                   1 Here…         6459               23          7
-## 12 &quot;A46…   118     6 Other                           9 A465           875               25         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##               A438               A465                A49     Aylestone Hill       Belmont Road 
-##                  1                  1                  2                  1                  1 
-## Belmont Roundabout       Broad Street     City Link Road    Commercial Road       Edgar Street 
-##                  1                  1                  1                  2                  1 
-##      Hereford Road        Holmer Road  Holmer Roundabout       Ledbury Road        Mill Street 
-##                  1                  1                  1                  1                  1 
-##         Roman Road          Ross Road  St. Owen&#39;s Street       Unnamed road    Victoria Street 
-##                  1                  1                  1                  2                  1</code></pre>
+##               A438               A465 
+##                  1                  1 
+##                A49     Aylestone Hill 
+##                  2                  1 
+##       Belmont Road Belmont Roundabout 
+##                  1                  1 
+##       Broad Street     City Link Road 
+##                  1                  1 
+##    Commercial Road       Edgar Street 
+##                  2                  1 
+##      Hereford Road        Holmer Road 
+##                  1                  1 
+##  Holmer Roundabout       Ledbury Road 
+##                  1                  1 
+##        Mill Street         Roman Road 
+##                  1                  1 
+##          Ross Road  St. Owen&#39;s Street 
+##                  1                  1 
+##       Unnamed road    Victoria Street 
+##                  2                  1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       12                        8                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       12                        8                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       12                        8                        3</code></pre>
-<pre><code>## # A tibble: 12 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Victoria Street &quot;A49&quot;                        1916                 292                       559
-##  2 Belmont Road    &quot;A465&quot;                       1072                 236                       253
-##  3 Edgar Street    &quot;A49&quot;                        1050                 193                       203
-##  4 Commercial Road &quot;&quot;                            576                 187                       108
-##  5 Ledbury Road    &quot;A438&quot;                       2241                 107                       240
-##  6 Ross Road       &quot;A49&quot;                        1466                  98                       144
-##  7 A438            &quot;A438&quot;                       1134                  62                        70
-##  8 Holmer Road     &quot;A49&quot;                         526                 111                        58
-##  9 Aylestone Hill  &quot;A465&quot;                       1758                  48                        84
-## 10 Broad Street    &quot;A44&quot;                         606                  43                        26
-## 11 Hereford Road   &quot;A438&quot;                       6459                  23                       149
-## 12 A465            &quot;A465&quot;                        875                  25                        22</code></pre>
+## Top ranked new cycleways 
+##                       12 
+##            Spare lane(s) 
+##                        8 
+##    Estimated width &gt; 10m 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       12 
+##            Spare lane(s) 
+##                        8 
+##    Estimated width &gt; 10m 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       12 
+##            Spare lane(s) 
+##                        8 
+##    Estimated width &gt; 10m 
+##                        3</code></pre>
+<pre><code>## # A tibble: 12 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Vict… &quot;A49&quot;             1916
+##  2 Belm… &quot;A465&quot;            1072
+##  3 Edga… &quot;A49&quot;             1050
+##  4 Comm… &quot;&quot;                 576
+##  5 Holm… &quot;A49&quot;              526
+##  6 Ledb… &quot;A438&quot;            2241
+##  7 Ross… &quot;A49&quot;             1466
+##  8 A438  &quot;A438&quot;            1134
+##  9 Ayle… &quot;A465&quot;            1758
+## 10 Broa… &quot;A44&quot;              606
+## 11 A465  &quot;A465&quot;             875
+## 12 Here… &quot;A438&quot;            6459
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

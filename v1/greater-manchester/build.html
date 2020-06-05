@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,456 +378,860 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A34 A5014 A5067 A5103 A5145 A5184   A56   A57  A572  A576  A577    A6 A6044   A62  A626  A635  A664 
-##   389    16     2     2    82     3     9    68     7     1     3     3    32    14     2     2     1    15 
-##  A666 B5117 B5158 B5166 B5211 B5217 B5218 B5219 B5320 B6104 B6469 
-##     1     5     1     2    34     9    22    21     1     1     2</code></pre>
+##         A34 A5014 A5067 A5103 A5145 
+##   389    16     2     2    82     3 
+## A5184   A56   A57  A572  A576  A577 
+##     9    68     7     1     3     3 
+##    A6 A6044   A62  A626  A635  A664 
+##    32    14     2     2     1    15 
+##  A666 B5117 B5158 B5166 B5211 B5217 
+##     1     5     1     2    34     9 
+## B5218 B5219 B5320 B6104 B6469 
+##    22    21     1     1     2</code></pre>
 <pre><code>## [1] 285</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    3187    6566   96197   61059   96197   96197</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    3187    6566   96197   61059 
+## 3rd Qu.    Max. 
+##   96197   96197</code></pre>
 <pre><code>## 
-##                         Adswood Road                        Agecroft Road 
-##                                   10                                   20 
-##                          Ainslie Way                           Albion Way 
-##                                    2                                    7 
-##                      Altrincham Road                           Anson Road 
-##                                   28                                   10 
-##                  Ardwick Green South                      Ashton Old Road 
-##                                    5                                   73 
-##                          Ashton Road                        Atherton Road 
-##                                   70                                   55 
-##                       Audenshaw Road                     Barlow Moor Road 
-##                                   20                                   59 
-##                     Barton Dock Road                          Barton Road 
-##                                   18                                   12 
-##                           Birch Lane                     Birchfields Road 
-##                                    4                                   18 
-##                       Blackburn Road                     Blackfriars Road 
-##                                  125                                   13 
-##                          Bolton Road                      Bradford Street 
-##                                   20                                   12 
-##                        Bramhall Lane                      Bridgewater Way 
-##                                   24                                   20 
-##                         Broad Street                         Burnage Lane 
-##                                   22                                   20 
-##                        Bury New Road                        Bury Old Road 
-##                                  139                                   53 
-##                            Bury Road                          Buxton Road 
-##                                   15                                  100 
-##                     Central Park Way                          Chapel Lane 
-##                                    9                                   10 
-##                        Chapel Street                   Cheetham Hill Road 
-##                                   30                                   53 
-##                         Chester Road                     Chorley New Road 
-##                                  149                                  160 
-##                         Chorley Road                        Chorlton Road 
-##                                   24                                   21 
-##                          Church Road                        Church Street 
-##                                   16                                   21 
-##                             Crescent                         Crompton Way 
-##                                   18                                    3 
-##                         Cross Street               Darlington Street East 
-##                                   14                                   15 
-##                  Davyhulme Road East                            Deansgate 
-##                                    8                                   30 
-##                          Denton Road                      Derbyshire Lane 
-##                                   13                                    5 
-##                       Dialstone Lane                        Didsbury Road 
-##                                   28                                   32 
-##                          Dunham Road                 East Lancashire Road 
-##                                   17                                    2 
-##                      Eccles New Road                      Eccles Old Road 
-##                                   43                                   28 
-##                       Edenfield Road                            Edge Lane 
-##                                   11                                   44 
-##                         Edgeley Road                    Featherstall Road 
-##                                   25                                   12 
-##                       Frederick Road                          Gatley Road 
-##                                   26                                   14 
-##                          Gorton Road                 Great Ancoats Street 
-##                                   30                                   35 
-##                  Great Clowes Street                   Great Ducie Street 
-##                                   18                                   28 
-##                            Greengate                  Greenheys Lane West 
-##                                   11                                   18 
-##                           Guide Lane                         Halifax Road 
-##                                   20                                   43 
-##                       Heywood Street              Higher Cambridge Street 
-##                                   10                                    7 
-##                          Higher Lane                            Hyde Road 
-##                                   10                                  116 
-##                           Kay Street                           Kings Road 
-##                                   21                                   45 
-##                             Kingsway                       Leicester Road 
-##                                  149                                   19 
-##                           Leigh Road                       Liverpool Road 
-##                                   23                                   62 
-##                          London Road                    London Road North 
-##                                   67                                    9 
-##                         Longley Lane                    Macclesfield Road 
-##                                    5                                   26 
-## Manchester Airport Eastern Link Road                      Manchester Road 
-##                                    5                                  350 
-##                    Manchester Street                        Mancunian Way 
-##                                   23                                   36 
-##                        Market Street                        Marsland Road 
-##                                   24                                   43 
-##                   Mauldeth Road West                       Mealhouse Lane 
-##                                   14                                   10 
-##                          Mercian Way                       Middleton Road 
-##                                   15                                   25 
-##                            Moss Road                         Mossley Road 
-##                                   12                                   19 
-##                             New Road                        Oldfield Road 
-##                                    7                                   18 
-##                          Oldham Road                           Oldham Way 
-##                                  166                                   22 
-##                         Ordsall Lane                        Ormskirk Road 
-##                                   17                                   29 
-##                                Other                          Oxford Road 
-##                                 1462                                   20 
-##                        Palatine Road                          Park Parade 
-##                                   18                                   27 
-##                              Parkway                             Peel Way 
-##                                   13                                    5 
-##                       Plymouth Grove                     Princess Parkway 
-##                                   24                                   16 
-##                        Princess Road                      Princess Street 
-##                                  101                                   32 
-##                          Regent Road                            River Way 
-##                                   39                                   19 
-##                        Rochdale Road                   Rochdale Road East 
-##                                   92                                   14 
-##                            Scot Lane                        Seymour Grove 
-##                                   15                                   21 
-##                   Shaftesbury Avenue                            Simonsway 
-##                                   20                                    9 
-##                      Smallbrook Lane                        Spotland Road 
-##                                    4                                   10 
-##                       St Helens Road                      St. Mary&#39;s Gate 
-##                                    4                                   18 
-##                      St. Peter&#39;s Way                      Stamford Street 
-##                                   45                                    7 
-##                       Stockport Road                  Stockport Road West 
-##                                  230                                   17 
-##                          Storeys Way                       Stretford Road 
-##                                    5                                   29 
-##                           Styal Road                          Talbot Road 
-##                                    5                                   43 
-##                      Tonge Moor Road                        Trafford Road 
-##                                   17                                   55 
-##                       Trinity Street                          Trinity Way 
-##                                   14                                   46 
-##                   Upper Brook Street                  Upper Chorlton Road 
-##                                   11                                   22 
-##                          Village Way                             Wallgate 
-##                                   18                                   14 
-##                      Walmersley Road                      Warrington Road 
-##                                   46                                   45 
-##                         Washway Road                Wellington Road North 
-##                                   45                                   70 
-##                Wellington Road South                Whitworth Street West 
-##                                   29                                   27 
-##                           Wigan Road                       Wilbraham Road 
-##                                   34                                   51 
-##                        Wilmslow Road            Wilmslow-Handforth Bypass 
-##                                  100                                    4 
-##                       Woodlands Road                         Worsley Brow 
-##                                   22                                    3 
-##                         Worsley Road                          York Street 
-##                                   14                                    8 
+##                         Adswood Road 
+##                                   10 
+##                        Agecroft Road 
+##                                   20 
+##                          Ainslie Way 
+##                                    2 
+##                           Albion Way 
+##                                    7 
+##                      Altrincham Road 
+##                                   28 
+##                           Anson Road 
+##                                   10 
+##                  Ardwick Green South 
+##                                    5 
+##                      Ashton Old Road 
+##                                   73 
+##                          Ashton Road 
+##                                   70 
+##                        Atherton Road 
+##                                   55 
+##                       Audenshaw Road 
+##                                   20 
+##                     Barlow Moor Road 
+##                                   59 
+##                     Barton Dock Road 
+##                                   18 
+##                          Barton Road 
+##                                   12 
+##                           Birch Lane 
+##                                    4 
+##                     Birchfields Road 
+##                                   18 
+##                       Blackburn Road 
+##                                  125 
+##                     Blackfriars Road 
+##                                   13 
+##                          Bolton Road 
+##                                   20 
+##                      Bradford Street 
+##                                   12 
+##                        Bramhall Lane 
+##                                   24 
+##                      Bridgewater Way 
+##                                   20 
+##                         Broad Street 
+##                                   22 
+##                         Burnage Lane 
+##                                   20 
+##                        Bury New Road 
+##                                  139 
+##                        Bury Old Road 
+##                                   53 
+##                            Bury Road 
+##                                   15 
+##                          Buxton Road 
+##                                  100 
+##                     Central Park Way 
+##                                    9 
+##                          Chapel Lane 
+##                                   10 
+##                        Chapel Street 
+##                                   30 
+##                   Cheetham Hill Road 
+##                                   53 
+##                         Chester Road 
+##                                  149 
+##                     Chorley New Road 
+##                                  160 
+##                         Chorley Road 
+##                                   24 
+##                        Chorlton Road 
+##                                   21 
+##                          Church Road 
+##                                   16 
+##                        Church Street 
+##                                   21 
+##                             Crescent 
+##                                   18 
+##                         Crompton Way 
+##                                    3 
+##                         Cross Street 
+##                                   14 
+##               Darlington Street East 
+##                                   15 
+##                  Davyhulme Road East 
+##                                    8 
+##                            Deansgate 
+##                                   30 
+##                          Denton Road 
+##                                   13 
+##                      Derbyshire Lane 
+##                                    5 
+##                       Dialstone Lane 
+##                                   28 
+##                        Didsbury Road 
+##                                   32 
+##                          Dunham Road 
+##                                   17 
+##                 East Lancashire Road 
+##                                    2 
+##                      Eccles New Road 
+##                                   43 
+##                      Eccles Old Road 
+##                                   28 
+##                       Edenfield Road 
+##                                   11 
+##                            Edge Lane 
+##                                   44 
+##                         Edgeley Road 
+##                                   25 
+##                    Featherstall Road 
+##                                   12 
+##                       Frederick Road 
+##                                   26 
+##                          Gatley Road 
+##                                   14 
+##                          Gorton Road 
+##                                   30 
+##                 Great Ancoats Street 
+##                                   35 
+##                  Great Clowes Street 
+##                                   18 
+##                   Great Ducie Street 
+##                                   28 
+##                            Greengate 
+##                                   11 
+##                  Greenheys Lane West 
+##                                   18 
+##                           Guide Lane 
+##                                   20 
+##                         Halifax Road 
+##                                   43 
+##                       Heywood Street 
+##                                   10 
+##              Higher Cambridge Street 
+##                                    7 
+##                          Higher Lane 
+##                                   10 
+##                            Hyde Road 
+##                                  116 
+##                           Kay Street 
+##                                   21 
+##                           Kings Road 
+##                                   45 
+##                             Kingsway 
+##                                  149 
+##                       Leicester Road 
+##                                   19 
+##                           Leigh Road 
+##                                   23 
+##                       Liverpool Road 
+##                                   62 
+##                          London Road 
+##                                   67 
+##                    London Road North 
+##                                    9 
+##                         Longley Lane 
+##                                    5 
+##                    Macclesfield Road 
+##                                   26 
+## Manchester Airport Eastern Link Road 
+##                                    5 
+##                      Manchester Road 
+##                                  350 
+##                    Manchester Street 
+##                                   23 
+##                        Mancunian Way 
+##                                   36 
+##                        Market Street 
+##                                   24 
+##                        Marsland Road 
+##                                   43 
+##                   Mauldeth Road West 
+##                                   14 
+##                       Mealhouse Lane 
+##                                   10 
+##                          Mercian Way 
+##                                   15 
+##                       Middleton Road 
+##                                   25 
+##                            Moss Road 
+##                                   12 
+##                         Mossley Road 
+##                                   19 
+##                             New Road 
+##                                    7 
+##                        Oldfield Road 
+##                                   18 
+##                          Oldham Road 
+##                                  166 
+##                           Oldham Way 
+##                                   22 
+##                         Ordsall Lane 
+##                                   17 
+##                        Ormskirk Road 
+##                                   29 
+##                                Other 
+##                                 1462 
+##                          Oxford Road 
+##                                   20 
+##                        Palatine Road 
+##                                   18 
+##                          Park Parade 
+##                                   27 
+##                              Parkway 
+##                                   13 
+##                             Peel Way 
+##                                    5 
+##                       Plymouth Grove 
+##                                   24 
+##                     Princess Parkway 
+##                                   16 
+##                        Princess Road 
+##                                  101 
+##                      Princess Street 
+##                                   32 
+##                          Regent Road 
+##                                   39 
+##                            River Way 
+##                                   19 
+##                        Rochdale Road 
+##                                   92 
+##                   Rochdale Road East 
+##                                   14 
+##                            Scot Lane 
+##                                   15 
+##                        Seymour Grove 
+##                                   21 
+##                   Shaftesbury Avenue 
+##                                   20 
+##                            Simonsway 
+##                                    9 
+##                      Smallbrook Lane 
+##                                    4 
+##                        Spotland Road 
+##                                   10 
+##                       St Helens Road 
+##                                    4 
+##                      St. Mary&#39;s Gate 
+##                                   18 
+##                      St. Peter&#39;s Way 
+##                                   45 
+##                      Stamford Street 
+##                                    7 
+##                       Stockport Road 
+##                                  230 
+##                  Stockport Road West 
+##                                   17 
+##                          Storeys Way 
+##                                    5 
+##                       Stretford Road 
+##                                   29 
+##                           Styal Road 
+##                                    5 
+##                          Talbot Road 
+##                                   43 
+##                      Tonge Moor Road 
+##                                   17 
+##                        Trafford Road 
+##                                   55 
+##                       Trinity Street 
+##                                   14 
+##                          Trinity Way 
+##                                   46 
+##                   Upper Brook Street 
+##                                   11 
+##                  Upper Chorlton Road 
+##                                   22 
+##                          Village Way 
+##                                   18 
+##                             Wallgate 
+##                                   14 
+##                      Walmersley Road 
+##                                   46 
+##                      Warrington Road 
+##                                   45 
+##                         Washway Road 
+##                                   45 
+##                Wellington Road North 
+##                                   70 
+##                Wellington Road South 
+##                                   29 
+##                Whitworth Street West 
+##                                   27 
+##                           Wigan Road 
+##                                   34 
+##                       Wilbraham Road 
+##                                   51 
+##                        Wilmslow Road 
+##                                  100 
+##            Wilmslow-Handforth Bypass 
+##                                    4 
+##                       Woodlands Road 
+##                                   22 
+##                         Worsley Brow 
+##                                    3 
+##                         Worsley Road 
+##                                   14 
+##                          York Street 
+##                                    8 
 ##                     Yorkshire Street 
 ##                                   12</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0222  0.2093  0.2834  1.0037</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0222  0.2093 
+## 3rd Qu.    Max. 
+##  0.2834  1.0037</code></pre>
 <pre><code>## [1] 50</code></pre>
-<pre><code>## # A tibble: 50 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;B52…     4     1 Upper Chorlton …                1 Uppe…         1374              664         11
-##  2 &quot;A56&quot;     4     1 Deansgate                       1 Dean…         1117              618         11
-##  3 &quot;&quot;        4    25 Barton Road                     1 Bart…          699              790         10
-##  4 &quot;A51…     4     1 Other                          17 Albi…          535              809         12
-##  5 &quot;A51…     4     1 Princess Road                   1 Prin…        11682              411          9
-##  6 &quot;B52…     4     1 Other                          75 Moss…          543              743         10
-##  7 &quot;A60…   432     1 Agecroft Road                   1 Agec…         1057              374         11
-##  8 &quot;A34&quot;     4     2 Upper Brook Str…                1 Uppe…          997              344         15
-##  9 &quot;B52…     4     3 Barton Dock Road                1 Bart…         1217              291         11
-## 10 &quot;B52…     4     1 Manchester Road                 8 Manc…          748              362         11
-## # … with 40 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                                  A49                                A5063 
-##                                    2                                    1 
-##                                  A56                                  A57 
-##                                    6                                    2 
-##                                 A577                                 A579 
-##                                    2                                    1 
-##                                  A58                                   A6 
-##                                    3                                    5 
-##                                 A635                                 A663 
-##                                    1                                    1 
-##                                 A666                       Adelphi Street 
-##                                    1                                    1 
-##                         Adswood Road                        Agecroft Road 
-##                                    1                                    1 
-##                          Ainslie Way                        Albion Street 
-##                                    1                                    1 
-##                           Albion Way                      Altrincham Road 
-##                                    1                                    1 
-##                           Anson Road                  Ardwick Green South 
-##                                    1                                    1 
-##                      Ashton Old Road                          Ashton Road 
-##                                    1                                    3 
-##                        Atherton Road                       Audenshaw Road 
-##                                    1                                    1 
-##                        Aytoun Street                                B5211 
-##                                    1                                    1 
-##                                B5358                                B5461 
-##                                    1                                    1 
-##                     Barlow Moor Road                      Barrington Road 
-##                                    3                                    1 
-##                     Barton Dock Road                          Barton Road 
-##                                    1                                    3 
-##                           Birch Lane                     Birchfields Road 
-##                                    1                                    1 
-##                       Blackburn Road                     Blackford Bridge 
-##                                    1                                    1 
-##                     Blackfriars Road                   Blackfriars Street 
-##                                    1                                    1 
-##                          Bolton Road                          Bond Street 
-##                                    4                                    1 
-##                      Bradford Street                         Bradshawgate 
-##                                    1                                    1 
-##                        Bramhall Lane                        Bridge Street 
-##                                    1                                    2 
-##                  Bridgewater Viaduct                      Bridgewater Way 
-##                                    1                                    2 
-##                         Broad Street                         Burnage Lane 
-##                                    2                                    1 
-##                          Burton Road                        Bury New Road 
-##                                    1                                    4 
-##                        Bury Old Road                            Bury Road 
-##                                    1                                    1 
-##                          Buxton Road                     Cambridge Street 
-##                                    3                                    1 
-##                          Camp Street                           Canal Bank 
-##                                    1                                    1 
-##                     Central Park Way                        Challenge Way 
-##                                    1                                    1 
-##                          Chapel Lane                        Chapel Street 
-##                                    1                                    1 
-##                   Cheetham Hill Road                         Chester Road 
-##                                    1                                    3 
-##                     Chorley New Road                         Chorley Road 
-##                                    1                                    1 
-##                        Chorlton Road                      Chorlton Street 
-##                                    2                                    1 
-##                          Church Road                        Church Street 
-##                                    1                                    2 
-##                          Corner Lane                             Crescent 
-##                                    1                                    1 
-##                        Crickets Lane                         Crompton Way 
-##                                    1                                    1 
-##                         Cross Street                        Crostons Road 
-##                                    1                                    1 
-##                            Dane Road                    Darlington Street 
-##                                    1                                    1 
-##               Darlington Street East                       Davyhulme Road 
-##                                    1                                    1 
-##                  Davyhulme Road East                        Dawson Street 
-##                                    1                                    1 
-##                            Deansgate                            Dene Road 
-##                                    1                                    1 
-##                          Denton Road                      Derbyshire Lane 
-##                                    1                                    1 
-##                       Dialstone Lane                        Didsbury Road 
-##                                    1                                    1 
-##                       Downing Street                          Dunham Road 
-##                                    1                                    1 
-##                 East Lancashire Road                      Eccles New Road 
-##                                    1                                    1 
-##                      Eccles Old Road                       Edenfield Road 
-##                                    2                                    1 
-##                            Edge Lane                         Edgeley Road 
-##                                    1                                    1 
-##                     Elizabeth Street                    Featherstall Road 
-##                                    1                                    1 
-##                          Finney Lane                         Flixton Road 
-##                                    1                                    1 
-##                           Folds Road                           Folly Lane 
-##                                    1                                    1 
-##                       Frederick Road                         Garners Lane 
-##                                    1                                    1 
-##                          Gatley Road                     Gilda Brook Road 
-##                                    1                                    1 
-##                          Gorton Road                 Great Ancoats Street 
-##                                    1                                    1 
-##                  Great Clowes Street                   Great Ducie Street 
-##                                    1                                    1 
-##                           Green Lane                            Greengate 
-##                                    1                                    1 
-##                  Greenheys Lane West                         Guide Bridge 
-##                                    1                                    1 
-##                           Guide Lane                         Halifax Road 
-##                                    1                                    3 
-##                       Heywood Street                      Higginshaw Lane 
-##                                    2                                    1 
-##                          High Street                 Higher Bridge Street 
-##                                    1                                    1 
-##              Higher Cambridge Street                      Higher Hillgate 
-##                                    1                                    1 
-##                          Higher Lane                 Higher Market Street 
-##                                    1                                    1 
-##                            Hyde Road                           Kay Street 
-##                                    1                                    1 
-##                          King Street                     King Street West 
-##                                    1                                    1 
-##                           Kings Road                             Kingsway 
-##                                    2                                    1 
-##                       Leicester Road                           Leigh Road 
-##                                    1                                    1 
-##                            Lime Road                       Liverpool Road 
-##                                    1                                    2 
-##                          London Road                    London Road North 
-##                                    2                                    2 
-##                         Longley Lane                    Macclesfield Road 
-##                                    1                                    1 
-## Manchester Airport Eastern Link Road                      Manchester Road 
-##                                    1                                   12 
-##                    Manchester Street                        Mancunian Way 
-##                                    1                                    3 
-##                        Market Street                         Marsden Road 
-##                                    2                                    1 
-##                        Marsland Road                   Mauldeth Road West 
-##                                    1                                    1 
-##                       Mealhouse Lane                          Mercian Way 
-##                                    1                                    1 
-##                       Middleton Road                         Moseley Road 
-##                                    1                                    1 
-##                       Moss Lane East                       Moss Lane West 
-##                                    1                                    1 
-##                            Moss Road                         Mossley Road 
-##                                    1                                    1 
-##                            Nell Lane                             New Road 
-##                                    1                                    1 
-##                     Old Market Place                      Old Mill Street 
-##                                    1                                    1 
-##                        Oldfield Road                          Oldham Road 
-##                                    1                                    2 
-##                           Oldham Way                         Ordsall Lane 
-##                                    1                                    2 
-##                        Ormskirk Road                          Oxford Road 
-##                                    2                                    1 
-##                        Oxford Street                        Palatine Road 
-##                                    1                                    2 
-##                          Park Parade                       Parkhills Road 
-##                                    1                                    1 
-##                              Parkway                             Peel Way 
-##                                    2                                    1 
-##                        Pin Mill Brow                       Plymouth Grove 
-##                                    1                                    1 
-##                      Portland Street                         Pottery Road 
-##                                    1                                    1 
-##                        Powell Street                     Princess Parkway 
-##                                    1                                    1 
-##                        Princess Road                      Princess Street 
-##                                    1                                    1 
-##                       Redclyffe Road                          Regent Road 
-##                                    1                                    2 
-##                            River Way                        Rochdale Road 
-##                                    1                                    2 
-##                   Rochdale Road East                            Scot Lane 
-##                                    1                                    1 
-##                        Seymour Grove                   Shaftesbury Avenue 
-##                                    1                                    1 
-##                           Shaw Heath                         Shepley Road 
-##                                    1                                    1 
-##                            Shudehill                          Sibson Road 
-##                                    1                                    1 
-##                     Siddall&#39;s Bridge                            Simonsway 
-##                                    1                                    1 
-##                      Smallbrook Lane                             Spa Road 
-##                                    1                                    1 
-##                        Spotland Road                       St Helens Road 
-##                                    1                                    1 
-##                      St. Mary&#39;s Gate                      St. Peter&#39;s Way 
-##                                    1                                    1 
-##                    Stamford New Road                      Stamford Square 
-##                                    1                                    1 
-##                      Stamford Street                         Station Road 
-##                                    2                                    1 
-##                       Stockport Road                  Stockport Road East 
-##                                    5                                    1 
-##                  Stockport Road West                          Storeys Way 
-##                                    2                                    1 
-##                       Stretford Road                           Styal Road 
-##                                    1                                    1 
-##                          Talbot Road                             The Rock 
-##                                    1                                    1 
-##                         Thorley Lane                           Thorp Road 
-##                                    1                                    1 
-##                      Tonge Moor Road                             Topp Way 
-##                                    1                                    1 
-##                        Trafford Road                       Trinity Street 
-##                                    1                                    1 
-##                          Trinity Way                           Twist Lane 
-##                                    1                                    1 
-##                         Unnamed road                   Upper Brook Street 
-##                                   16                                    2 
-##                  Upper Chorlton Road                      Victoria Street 
-##                                    1                                    1 
-##                          Village Way                             Wallgate 
-##                                    1                                    1 
-##                      Walmersley Road                      Warrington Road 
-##                                    1                                    1 
-##                   Warwick Road South                         Washway Road 
-##                                    1                                    1 
-##                         Water Street                      Wellington Road 
-##                                    1                                    1 
-##                Wellington Road North                Wellington Road South 
-##                                    1                                    1 
-##                       White City Way                Whitworth Street West 
-##                                    1                                    1 
-##                           Wigan Road                       Wilbraham Road 
-##                                    2                                    1 
-##                        Wilmslow Road            Wilmslow-Handforth Bypass 
-##                                    8                                    1 
-##                       Woodlands Road                         Worsley Brow 
-##                                    1                                    1 
-##                         Worsley Road                          York Street 
-##                                    2                                    1 
+##                                  A49 
+##                                    2 
+##                                A5063 
+##                                    1 
+##                                  A56 
+##                                    6 
+##                                  A57 
+##                                    2 
+##                                 A577 
+##                                    2 
+##                                 A579 
+##                                    1 
+##                                  A58 
+##                                    3 
+##                                   A6 
+##                                    5 
+##                                 A635 
+##                                    1 
+##                                 A663 
+##                                    1 
+##                                 A666 
+##                                    1 
+##                       Adelphi Street 
+##                                    1 
+##                         Adswood Road 
+##                                    1 
+##                        Agecroft Road 
+##                                    1 
+##                          Ainslie Way 
+##                                    1 
+##                        Albion Street 
+##                                    1 
+##                           Albion Way 
+##                                    1 
+##                      Altrincham Road 
+##                                    1 
+##                           Anson Road 
+##                                    1 
+##                  Ardwick Green South 
+##                                    1 
+##                      Ashton Old Road 
+##                                    1 
+##                          Ashton Road 
+##                                    3 
+##                        Atherton Road 
+##                                    1 
+##                       Audenshaw Road 
+##                                    1 
+##                        Aytoun Street 
+##                                    1 
+##                                B5211 
+##                                    1 
+##                                B5358 
+##                                    1 
+##                                B5461 
+##                                    1 
+##                     Barlow Moor Road 
+##                                    3 
+##                      Barrington Road 
+##                                    1 
+##                     Barton Dock Road 
+##                                    1 
+##                          Barton Road 
+##                                    3 
+##                           Birch Lane 
+##                                    1 
+##                     Birchfields Road 
+##                                    1 
+##                       Blackburn Road 
+##                                    1 
+##                     Blackford Bridge 
+##                                    1 
+##                     Blackfriars Road 
+##                                    1 
+##                   Blackfriars Street 
+##                                    1 
+##                          Bolton Road 
+##                                    4 
+##                          Bond Street 
+##                                    1 
+##                      Bradford Street 
+##                                    1 
+##                         Bradshawgate 
+##                                    1 
+##                        Bramhall Lane 
+##                                    1 
+##                        Bridge Street 
+##                                    2 
+##                  Bridgewater Viaduct 
+##                                    1 
+##                      Bridgewater Way 
+##                                    2 
+##                         Broad Street 
+##                                    2 
+##                         Burnage Lane 
+##                                    1 
+##                          Burton Road 
+##                                    1 
+##                        Bury New Road 
+##                                    4 
+##                        Bury Old Road 
+##                                    1 
+##                            Bury Road 
+##                                    1 
+##                          Buxton Road 
+##                                    3 
+##                     Cambridge Street 
+##                                    1 
+##                          Camp Street 
+##                                    1 
+##                           Canal Bank 
+##                                    1 
+##                     Central Park Way 
+##                                    1 
+##                        Challenge Way 
+##                                    1 
+##                          Chapel Lane 
+##                                    1 
+##                        Chapel Street 
+##                                    1 
+##                   Cheetham Hill Road 
+##                                    1 
+##                         Chester Road 
+##                                    3 
+##                     Chorley New Road 
+##                                    1 
+##                         Chorley Road 
+##                                    1 
+##                        Chorlton Road 
+##                                    2 
+##                      Chorlton Street 
+##                                    1 
+##                          Church Road 
+##                                    1 
+##                        Church Street 
+##                                    2 
+##                          Corner Lane 
+##                                    1 
+##                             Crescent 
+##                                    1 
+##                        Crickets Lane 
+##                                    1 
+##                         Crompton Way 
+##                                    1 
+##                         Cross Street 
+##                                    1 
+##                        Crostons Road 
+##                                    1 
+##                            Dane Road 
+##                                    1 
+##                    Darlington Street 
+##                                    1 
+##               Darlington Street East 
+##                                    1 
+##                       Davyhulme Road 
+##                                    1 
+##                  Davyhulme Road East 
+##                                    1 
+##                        Dawson Street 
+##                                    1 
+##                            Deansgate 
+##                                    1 
+##                            Dene Road 
+##                                    1 
+##                          Denton Road 
+##                                    1 
+##                      Derbyshire Lane 
+##                                    1 
+##                       Dialstone Lane 
+##                                    1 
+##                        Didsbury Road 
+##                                    1 
+##                       Downing Street 
+##                                    1 
+##                          Dunham Road 
+##                                    1 
+##                 East Lancashire Road 
+##                                    1 
+##                      Eccles New Road 
+##                                    1 
+##                      Eccles Old Road 
+##                                    2 
+##                       Edenfield Road 
+##                                    1 
+##                            Edge Lane 
+##                                    1 
+##                         Edgeley Road 
+##                                    1 
+##                     Elizabeth Street 
+##                                    1 
+##                    Featherstall Road 
+##                                    1 
+##                          Finney Lane 
+##                                    1 
+##                         Flixton Road 
+##                                    1 
+##                           Folds Road 
+##                                    1 
+##                           Folly Lane 
+##                                    1 
+##                       Frederick Road 
+##                                    1 
+##                         Garners Lane 
+##                                    1 
+##                          Gatley Road 
+##                                    1 
+##                     Gilda Brook Road 
+##                                    1 
+##                          Gorton Road 
+##                                    1 
+##                 Great Ancoats Street 
+##                                    1 
+##                  Great Clowes Street 
+##                                    1 
+##                   Great Ducie Street 
+##                                    1 
+##                           Green Lane 
+##                                    1 
+##                            Greengate 
+##                                    1 
+##                  Greenheys Lane West 
+##                                    1 
+##                         Guide Bridge 
+##                                    1 
+##                           Guide Lane 
+##                                    1 
+##                         Halifax Road 
+##                                    3 
+##                       Heywood Street 
+##                                    2 
+##                      Higginshaw Lane 
+##                                    1 
+##                          High Street 
+##                                    1 
+##                 Higher Bridge Street 
+##                                    1 
+##              Higher Cambridge Street 
+##                                    1 
+##                      Higher Hillgate 
+##                                    1 
+##                          Higher Lane 
+##                                    1 
+##                 Higher Market Street 
+##                                    1 
+##                            Hyde Road 
+##                                    1 
+##                           Kay Street 
+##                                    1 
+##                          King Street 
+##                                    1 
+##                     King Street West 
+##                                    1 
+##                           Kings Road 
+##                                    2 
+##                             Kingsway 
+##                                    1 
+##                       Leicester Road 
+##                                    1 
+##                           Leigh Road 
+##                                    1 
+##                            Lime Road 
+##                                    1 
+##                       Liverpool Road 
+##                                    2 
+##                          London Road 
+##                                    2 
+##                    London Road North 
+##                                    2 
+##                         Longley Lane 
+##                                    1 
+##                    Macclesfield Road 
+##                                    1 
+## Manchester Airport Eastern Link Road 
+##                                    1 
+##                      Manchester Road 
+##                                   12 
+##                    Manchester Street 
+##                                    1 
+##                        Mancunian Way 
+##                                    3 
+##                        Market Street 
+##                                    2 
+##                         Marsden Road 
+##                                    1 
+##                        Marsland Road 
+##                                    1 
+##                   Mauldeth Road West 
+##                                    1 
+##                       Mealhouse Lane 
+##                                    1 
+##                          Mercian Way 
+##                                    1 
+##                       Middleton Road 
+##                                    1 
+##                         Moseley Road 
+##                                    1 
+##                       Moss Lane East 
+##                                    1 
+##                       Moss Lane West 
+##                                    1 
+##                            Moss Road 
+##                                    1 
+##                         Mossley Road 
+##                                    1 
+##                            Nell Lane 
+##                                    1 
+##                             New Road 
+##                                    1 
+##                     Old Market Place 
+##                                    1 
+##                      Old Mill Street 
+##                                    1 
+##                        Oldfield Road 
+##                                    1 
+##                          Oldham Road 
+##                                    2 
+##                           Oldham Way 
+##                                    1 
+##                         Ordsall Lane 
+##                                    2 
+##                        Ormskirk Road 
+##                                    2 
+##                          Oxford Road 
+##                                    1 
+##                        Oxford Street 
+##                                    1 
+##                        Palatine Road 
+##                                    2 
+##                          Park Parade 
+##                                    1 
+##                       Parkhills Road 
+##                                    1 
+##                              Parkway 
+##                                    2 
+##                             Peel Way 
+##                                    1 
+##                        Pin Mill Brow 
+##                                    1 
+##                       Plymouth Grove 
+##                                    1 
+##                      Portland Street 
+##                                    1 
+##                         Pottery Road 
+##                                    1 
+##                        Powell Street 
+##                                    1 
+##                     Princess Parkway 
+##                                    1 
+##                        Princess Road 
+##                                    1 
+##                      Princess Street 
+##                                    1 
+##                       Redclyffe Road 
+##                                    1 
+##                          Regent Road 
+##                                    2 
+##                            River Way 
+##                                    1 
+##                        Rochdale Road 
+##                                    2 
+##                   Rochdale Road East 
+##                                    1 
+##                            Scot Lane 
+##                                    1 
+##                        Seymour Grove 
+##                                    1 
+##                   Shaftesbury Avenue 
+##                                    1 
+##                           Shaw Heath 
+##                                    1 
+##                         Shepley Road 
+##                                    1 
+##                            Shudehill 
+##                                    1 
+##                          Sibson Road 
+##                                    1 
+##                     Siddall&#39;s Bridge 
+##                                    1 
+##                            Simonsway 
+##                                    1 
+##                      Smallbrook Lane 
+##                                    1 
+##                             Spa Road 
+##                                    1 
+##                        Spotland Road 
+##                                    1 
+##                       St Helens Road 
+##                                    1 
+##                      St. Mary&#39;s Gate 
+##                                    1 
+##                      St. Peter&#39;s Way 
+##                                    1 
+##                    Stamford New Road 
+##                                    1 
+##                      Stamford Square 
+##                                    1 
+##                      Stamford Street 
+##                                    2 
+##                         Station Road 
+##                                    1 
+##                       Stockport Road 
+##                                    5 
+##                  Stockport Road East 
+##                                    1 
+##                  Stockport Road West 
+##                                    2 
+##                          Storeys Way 
+##                                    1 
+##                       Stretford Road 
+##                                    1 
+##                           Styal Road 
+##                                    1 
+##                          Talbot Road 
+##                                    1 
+##                             The Rock 
+##                                    1 
+##                         Thorley Lane 
+##                                    1 
+##                           Thorp Road 
+##                                    1 
+##                      Tonge Moor Road 
+##                                    1 
+##                             Topp Way 
+##                                    1 
+##                        Trafford Road 
+##                                    1 
+##                       Trinity Street 
+##                                    1 
+##                          Trinity Way 
+##                                    1 
+##                           Twist Lane 
+##                                    1 
+##                         Unnamed road 
+##                                   16 
+##                   Upper Brook Street 
+##                                    2 
+##                  Upper Chorlton Road 
+##                                    1 
+##                      Victoria Street 
+##                                    1 
+##                          Village Way 
+##                                    1 
+##                             Wallgate 
+##                                    1 
+##                      Walmersley Road 
+##                                    1 
+##                      Warrington Road 
+##                                    1 
+##                   Warwick Road South 
+##                                    1 
+##                         Washway Road 
+##                                    1 
+##                         Water Street 
+##                                    1 
+##                      Wellington Road 
+##                                    1 
+##                Wellington Road North 
+##                                    1 
+##                Wellington Road South 
+##                                    1 
+##                       White City Way 
+##                                    1 
+##                Whitworth Street West 
+##                                    1 
+##                           Wigan Road 
+##                                    2 
+##                       Wilbraham Road 
+##                                    1 
+##                        Wilmslow Road 
+##                                    8 
+##            Wilmslow-Handforth Bypass 
+##                                    1 
+##                       Woodlands Road 
+##                                    1 
+##                         Worsley Brow 
+##                                    1 
+##                         Worsley Road 
+##                                    2 
+##                          York Street 
+##                                    1 
 ##                     Yorkshire Street 
 ##                                    1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       50                      118                      156</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       50                      118                      156                       12</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       50                      118                      156                       12</code></pre>
-<pre><code>## # A tibble: 50 x 5
-##    Name                Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;               &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Upper Chorlton Road &quot;B5218&quot;                      1374                 664                       912
-##  2 Deansgate           &quot;A56&quot;                        1117                 618                       690
-##  3 Barton Road         &quot;&quot;                            699                 790                       552
-##  4 Albion Street       &quot;A5103&quot;                       535                 809                       433
-##  5 Princess Road       &quot;A5103&quot;                     11682                 411                      4801
-##  6 Moss Lane West      &quot;B5219&quot;                       543                 743                       403
-##  7 Agecroft Road       &quot;A6044&quot;                      1057                 374                       395
-##  8 Upper Brook Street  &quot;A34&quot;                         997                 344                       343
-##  9 Barton Dock Road    &quot;B5211&quot;                      1217                 291                       354
-## 10 Manchester Road     &quot;B5217&quot;                       748                 362                       271
-## # … with 40 more rows</code></pre>
+## Top ranked new cycleways 
+##                       50 
+##            Spare lane(s) 
+##                      120 
+##    Estimated width &gt; 10m 
+##                      154</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       50 
+##            Spare lane(s) 
+##                      120 
+##    Estimated width &gt; 10m 
+##                      154 
+##                     NA&#39;s 
+##                       12</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       50 
+##            Spare lane(s) 
+##                      120 
+##    Estimated width &gt; 10m 
+##                      154 
+##                     NA&#39;s 
+##                       12</code></pre>
+<pre><code>## # A tibble: 50 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Albi… &quot;A5103&quot;            535
+##  2 Bart… &quot;&quot;                 699
+##  3 Moss… &quot;B5219&quot;            543
+##  4 Uppe… &quot;B5218&quot;           1374
+##  5 Dean… &quot;A56&quot;             1117
+##  6 Davy… &quot;&quot;                 566
+##  7 Prin… &quot;A5103&quot;          11682
+##  8 Agec… &quot;A6044&quot;           1057
+##  9 Manc… &quot;B5217&quot;            748
+## 10 Anso… &quot;A34&quot;              728
+## # … with 40 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

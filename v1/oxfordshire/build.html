@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,100 +388,250 @@ summary {
 ##       A4144  A420  B480 
 ##   205    58    36     2</code></pre>
 <pre><code>## [1] 62</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1216   28297   28297   22255   28297   28297</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1216   28297   28297   22255 
+## 3rd Qu.    Max. 
+##   28297   28297</code></pre>
 <pre><code>## 
-##        Aylesbury Road          Banbury Road             Bath Road           Botley Road 
-##                     4                   108                     6                    31 
-##       Concorde Avenue           Cowley Road  Eastern By-pass Road          Elsfield Way 
-##                    13                    54                    11                    12 
-##          Forbury Road            Frieze Way       Garsington Road       Headington Road 
-##                    15                     5                    12                    13 
-##            Hennef Way           High Street           Iffley Road           King&#39;s Road 
-##                    12                    55                    11                     8 
-##           London Road             North Way Northern By-pass Road            Ock Street 
-##                    82                    20                    24                    15 
-##                 Other           Oxford Road             Rose Hill        Ruscote Avenue 
-##                   522                    46                    19                    25 
-##             St Giles&#39;  Upper Windsor Street        Warneford Lane       Watlington Road 
-##                    21                     5                     7                    20 
-##              West Way       Wheatley Bypass        Woodstock Road 
-##                    15                    11                    64</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.3529  0.4569  0.9859  1.0435</code></pre>
+##        Aylesbury Road 
+##                     4 
+##          Banbury Road 
+##                   108 
+##             Bath Road 
+##                     6 
+##           Botley Road 
+##                    31 
+##       Concorde Avenue 
+##                    13 
+##           Cowley Road 
+##                    54 
+##  Eastern By-pass Road 
+##                    11 
+##          Elsfield Way 
+##                    12 
+##          Forbury Road 
+##                    15 
+##            Frieze Way 
+##                     5 
+##       Garsington Road 
+##                    12 
+##       Headington Road 
+##                    13 
+##            Hennef Way 
+##                    12 
+##           High Street 
+##                    55 
+##           Iffley Road 
+##                    11 
+##           King&#39;s Road 
+##                     8 
+##           London Road 
+##                    82 
+##             North Way 
+##                    20 
+## Northern By-pass Road 
+##                    24 
+##            Ock Street 
+##                    15 
+##                 Other 
+##                   522 
+##           Oxford Road 
+##                    46 
+##             Rose Hill 
+##                    19 
+##        Ruscote Avenue 
+##                    25 
+##             St Giles&#39; 
+##                    21 
+##  Upper Windsor Street 
+##                     5 
+##        Warneford Lane 
+##                     7 
+##       Watlington Road 
+##                    20 
+##              West Way 
+##                    15 
+##       Wheatley Bypass 
+##                    11 
+##        Woodstock Road 
+##                    64</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.3529  0.4569 
+## 3rd Qu.    Max. 
+##  0.9859  1.0435</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A41…    82     1 St Giles&#39;                       1 St G…          782             1379         17
-##  2 &quot;A41…    82     1 Woodstock Road                  2 Wood…         3257              938          9
-##  3 &quot;A42…    82     1 Other                          21 St C…          821              843         12
-##  4 &quot;B48…    82     2 Cowley Road                     1 Cowl…         1546              622         10
-##  5 &quot;A42…    82     2 Botley Road                     1 Botl…          909              569         11
-##  6 &quot;A41…    82     2 Banbury Road                    4 Banb…         1690              509         11
-##  7 &quot;A41…    82     1 Banbury Road                    3 Banb…         2350              423          9
-##  8 &quot;A42…    82     1 London Road                     3 Lond…         1608              313         10
-##  9 &quot;B40…    82     1 West Way                        1 West…          660              444         12
-## 10 &quot;&quot;       97     4 Warneford Lane                  1 Warn…          504              574          6
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                       A4                      A40                    A4074                     A415 
-##                        1                        3                        1                        2 
-##                     A418                     A420                     A422                     A423 
-##                        1                        1                        2                        1 
-##                    A4421           Aylesbury Road                    B4017                     B480 
-##                        1                        1                        1                        1 
-##             Banbury Road                Bath Road          Beaumont Street              Botley Road 
-##                        4                        1                        1                        1 
-##            Bridge Street          Cherwell Street             Church Green          Concorde Avenue 
-##                        1                        1                        1                        1 
-##              Cowley Road   Donnington Bridge Road     Eastern By-pass Road             Elsfield Way 
-##                        2                        1                        3                        1 
-##             Forbury Road               Frieze Way          Garsington Road            George Street 
-##                        1                        1                        2                        1 
-##    Green Road Roundabout          Headington Road              Headley Way            Henley Avenue 
-##                        1                        1                        1                        1 
-##               Hennef Way              High Street Hinksey Hill Interchange        Horspath Driftway 
-##                        1                        2                        1                        1 
-##              Iffley Road              King&#39;s Road             Launton Road              London Road 
-##                        2                        1                        1                        8 
-##             Marcham Road       Marston Ferry Road                North Way    Northern By-pass Road 
-##                        1                        1                        1                        1 
-##               Ock Street              Oxford Road              Queens Road                Rose Hill 
-##                        1                        6                        1                        1 
-##           Ruscote Avenue         South Bar Street             Southam Road              St Aldate&#39;s 
-##                        1                        1                        2                        2 
-##       St Clements Street                St Giles&#39;             Station Road             Unnamed road 
-##                        1                        2                        1                       13 
-##     Upper Windsor Street             Vastern Road           Warneford Lane             Warwick Road 
-##                        1                        1                        1                        1 
-##          Watlington Road                 West Way          Wheatley Bypass           Wokingham Road 
-##                        1                        1                        1                        1 
+##                       A4 
+##                        1 
+##                      A40 
+##                        3 
+##                    A4074 
+##                        1 
+##                     A415 
+##                        2 
+##                     A418 
+##                        1 
+##                     A420 
+##                        1 
+##                     A422 
+##                        2 
+##                     A423 
+##                        1 
+##                    A4421 
+##                        1 
+##           Aylesbury Road 
+##                        1 
+##                    B4017 
+##                        1 
+##                     B480 
+##                        1 
+##             Banbury Road 
+##                        4 
+##                Bath Road 
+##                        1 
+##          Beaumont Street 
+##                        1 
+##              Botley Road 
+##                        1 
+##            Bridge Street 
+##                        1 
+##          Cherwell Street 
+##                        1 
+##             Church Green 
+##                        1 
+##          Concorde Avenue 
+##                        1 
+##              Cowley Road 
+##                        2 
+##   Donnington Bridge Road 
+##                        1 
+##     Eastern By-pass Road 
+##                        3 
+##             Elsfield Way 
+##                        1 
+##             Forbury Road 
+##                        1 
+##               Frieze Way 
+##                        1 
+##          Garsington Road 
+##                        2 
+##            George Street 
+##                        1 
+##    Green Road Roundabout 
+##                        1 
+##          Headington Road 
+##                        1 
+##              Headley Way 
+##                        1 
+##            Henley Avenue 
+##                        1 
+##               Hennef Way 
+##                        1 
+##              High Street 
+##                        2 
+## Hinksey Hill Interchange 
+##                        1 
+##        Horspath Driftway 
+##                        1 
+##              Iffley Road 
+##                        2 
+##              King&#39;s Road 
+##                        1 
+##             Launton Road 
+##                        1 
+##              London Road 
+##                        8 
+##             Marcham Road 
+##                        1 
+##       Marston Ferry Road 
+##                        1 
+##                North Way 
+##                        1 
+##    Northern By-pass Road 
+##                        1 
+##               Ock Street 
+##                        1 
+##              Oxford Road 
+##                        6 
+##              Queens Road 
+##                        1 
+##                Rose Hill 
+##                        1 
+##           Ruscote Avenue 
+##                        1 
+##         South Bar Street 
+##                        1 
+##             Southam Road 
+##                        2 
+##              St Aldate&#39;s 
+##                        2 
+##       St Clements Street 
+##                        1 
+##                St Giles&#39; 
+##                        2 
+##             Station Road 
+##                        1 
+##             Unnamed road 
+##                       13 
+##     Upper Windsor Street 
+##                        1 
+##             Vastern Road 
+##                        1 
+##           Warneford Lane 
+##                        1 
+##             Warwick Road 
+##                        1 
+##          Watlington Road 
+##                        1 
+##                 West Way 
+##                        1 
+##          Wheatley Bypass 
+##                        1 
+##           Wokingham Road 
+##                        1 
 ##           Woodstock Road 
 ##                        3</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       27                       47</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       27                       47                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       27                       47                        3</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 St Giles&#39;          &quot;A4144&quot;                       782                1379                      1078
-##  2 Woodstock Road     &quot;A4144&quot;                      3257                 938                      3055
-##  3 St Clements Street &quot;A420&quot;                        821                 843                       692
-##  4 Cowley Road        &quot;B480&quot;                       1546                 622                       962
-##  5 Botley Road        &quot;A420&quot;                        909                 569                       517
-##  6 Banbury Road       &quot;A4165&quot;                      1690                 509                       860
-##  7 Banbury Road       &quot;A4165&quot;                      2350                 423                       994
-##  8 London Road        &quot;A420&quot;                       1608                 313                       503
-##  9 West Way           &quot;B4044&quot;                       660                 444                       293
-## 10 Warneford Lane     &quot;&quot;                            504                 574                       289
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       27 
+##    Estimated width &gt; 10m 
+##                       46</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       27 
+##    Estimated width &gt; 10m 
+##                       46 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       27 
+##    Estimated width &gt; 10m 
+##                       46 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 St G… &quot;A4144&quot;            782
+##  2 Wood… &quot;A4144&quot;           3257
+##  3 St C… &quot;A420&quot;             821
+##  4 Cowl… &quot;B480&quot;            1546
+##  5 Warn… &quot;&quot;                 504
+##  6 Botl… &quot;A420&quot;             909
+##  7 Banb… &quot;A4165&quot;           1690
+##  8 West… &quot;B4044&quot;            660
+##  9 Banb… &quot;A4165&quot;           2350
+## 10 Lond… &quot;A420&quot;            1608
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,112 +378,215 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##        A355    A4  A408   A41  A412  A413 A4157 B3028  B416 B4443  B470 
-##   125     1    39    10    10     4     5     6     1     1     5     2</code></pre>
+##        A355    A4  A408   A41  A412 
+##   125     1    39    10    10     4 
+##  A413 A4157 B3028  B416 B4443  B470 
+##     5     6     1     1     5     2</code></pre>
 <pre><code>## [1] 74</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1428    2153    3527    4455    6057    8457</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1428    2153    3527    4455 
+## 3rd Qu.    Max. 
+##    6057    8457</code></pre>
 <pre><code>## 
-##          Bath Road      Bicester Road       Bierton Road        Bridge Road    Buckingham Road 
-##                 29                 24                 21                 10                  6 
-##  Colnbrook By-pass       Douglas Road      Elmhurst Road    Exchange Street       Farnham Road 
-##                  7                 10                 21                 19                 13 
-##      Friarage Road     Gatehouse Road          High Road    Hillingdon Road Langley Roundabout 
-##                 21                  8                 13                  7                  8 
-##        London Road    Maidenhead Road        Marlow Hill North Orbital Road              Other 
-##                 32                 15                 21                  8                327 
-##        Oxford Road  Royal Windsor Way       Station Road    Vale Park Drive      Walton Street 
-##                 17                 11                  7                 10                 17 
-##        Weedon Road  Wellington Street      Wendover Road        Wycombe End 
-##                  8                  7                 19                  5</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.2313  0.2848  1.0312</code></pre>
+##          Bath Road      Bicester Road 
+##                 29                 24 
+##       Bierton Road        Bridge Road 
+##                 21                 10 
+##    Buckingham Road  Colnbrook By-pass 
+##                  6                  7 
+##       Douglas Road      Elmhurst Road 
+##                 10                 21 
+##    Exchange Street       Farnham Road 
+##                 19                 13 
+##      Friarage Road     Gatehouse Road 
+##                 21                  8 
+##          High Road    Hillingdon Road 
+##                 13                  7 
+## Langley Roundabout        London Road 
+##                  8                 32 
+##    Maidenhead Road        Marlow Hill 
+##                 15                 21 
+## North Orbital Road              Other 
+##                  8                327 
+##        Oxford Road  Royal Windsor Way 
+##                 17                 11 
+##       Station Road    Vale Park Drive 
+##                  7                 10 
+##      Walton Street        Weedon Road 
+##                 17                  8 
+##  Wellington Street      Wendover Road 
+##                  7                 19 
+##        Wycombe End 
+##                  5</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.2313 
+## 3rd Qu.    Max. 
+##  0.2848  1.0312</code></pre>
 <pre><code>## [1] 20</code></pre>
-<pre><code>## # A tibble: 20 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A4&quot;    461     1 Colnbrook By-pa…                1 Coln…         1601              175         11
-##  2 &quot;A41…    34     2 Wendover Road                   1 Wend…         1245              158         11
-##  3 &quot;A40…   477     1 High Road                       1 High…         1107              143         14
-##  4 &quot;A41…    34     2 Walton Street                   1 Walt…          964              135          7
-##  5 &quot;A4&quot;    469     4 Bath Road                       1 Bath…         2854              111         11
-##  6 &quot;A4&quot;    507     5 Wellington Stre…                1 Well…          519              212         10
-##  7 &quot;&quot;      476     6 Station Road                    1 Stat…          746              147         10
-##  8 &quot;A41…    42     1 Other                           1 A413          2028              108          9
-##  9 &quot;A33…   545     1 Royal Windsor W…                1 Roya…         2236              101          7
-## 10 &quot;A41&quot;    34     1 Friarage Road                   1 Fria…          889              113          7
-## 11 &quot;A4&quot;    466     3 Bridge Road                     1 Brid…          671              145         11
-## 12 &quot;A41…    34     2 Weedon Road                     1 Weed…          704              135         10
-## 13 &quot;A41…    34     2 Bierton Road                    1 Bier…          994               84          9
-## 14 &quot;&quot;       34     1 Bicester Road                   1 Bice…          620              131         10
-## 15 &quot;A40&quot;     7     2 London Road                     1 Lond…          642              116         10
-## 16 &quot;A41…    34     1 Douglas Road                    1 Doug…          627              113         10
-## 17 &quot;A41…    51     2 North Orbital R…                1 Nort…          685              102         10
-## 18 &quot;A35…   473     1 Farnham Road                    1 Farn…          566              121         11
-## 19 &quot;A40&quot;    17     1 Wycombe End                     1 Wyco…         1031               64          9
-## 20 &quot;A41…    34     1 Other                          10 A418          1537               59         11
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                  A4                 A40                A404                 A41                A413 
-##                   2                   1                   1                   1                   4 
-##               A4156                A418           Abbey Way      Aylesbury Road           Bath Road 
-##                   1                   2                   1                   1                   2 
-##       Bicester Road        Bierton Road     Brandville Road       Bridge Avenue         Bridge Road 
-##                   2                   1                   1                   1                   1 
-##     Buckingham Road   Colnbrook By-pass         Cowley Road        Cross Street        Douglas Road 
-##                   1                   1                   1                   1                   1 
-##       Elmhurst Road      Eton Wick Road     Exchange Street        Farnham Road       Friarage Road 
-##                   2                   1                   1                   1                   1 
-##      Gatehouse Road      Germain Street         Haydon Road           High Road         High Street 
-##                   1                   1                   1                   1                   2 
-##     Hillingdon Road  Langley Roundabout         London Road     Maidenhead Road     Mandeville Road 
-##                   1                   1                   3                   1                   1 
-##         Marlow Hill  North Orbital Road       Oakfield Road         Oxford Road Queen Victoria Road 
-##                   2                   1                   1                   3                   1 
-##     Rockingham Road   Royal Windsor Way       St Mary&#39;s Way        Station Road         Sutton Lane 
-##                   1                   1                   1                   1                   1 
-##        Unnamed road       Uxbridge Road     Vale Park Drive       Walton Street         Weedon Road 
-##                   6                   1                   1                   1                   1 
-##   Wellington Street       Wendover Road         Wycombe End 
-##                   1                   3                   1</code></pre>
+##                  A4 
+##                   2 
+##                 A40 
+##                   1 
+##                A404 
+##                   1 
+##                 A41 
+##                   1 
+##                A413 
+##                   4 
+##               A4156 
+##                   1 
+##                A418 
+##                   2 
+##           Abbey Way 
+##                   1 
+##      Aylesbury Road 
+##                   1 
+##           Bath Road 
+##                   2 
+##       Bicester Road 
+##                   2 
+##        Bierton Road 
+##                   1 
+##     Brandville Road 
+##                   1 
+##       Bridge Avenue 
+##                   1 
+##         Bridge Road 
+##                   1 
+##     Buckingham Road 
+##                   1 
+##   Colnbrook By-pass 
+##                   1 
+##         Cowley Road 
+##                   1 
+##        Cross Street 
+##                   1 
+##        Douglas Road 
+##                   1 
+##       Elmhurst Road 
+##                   2 
+##      Eton Wick Road 
+##                   1 
+##     Exchange Street 
+##                   1 
+##        Farnham Road 
+##                   1 
+##       Friarage Road 
+##                   1 
+##      Gatehouse Road 
+##                   1 
+##      Germain Street 
+##                   1 
+##         Haydon Road 
+##                   1 
+##           High Road 
+##                   1 
+##         High Street 
+##                   2 
+##     Hillingdon Road 
+##                   1 
+##  Langley Roundabout 
+##                   1 
+##         London Road 
+##                   3 
+##     Maidenhead Road 
+##                   1 
+##     Mandeville Road 
+##                   1 
+##         Marlow Hill 
+##                   2 
+##  North Orbital Road 
+##                   1 
+##       Oakfield Road 
+##                   1 
+##         Oxford Road 
+##                   3 
+## Queen Victoria Road 
+##                   1 
+##     Rockingham Road 
+##                   1 
+##   Royal Windsor Way 
+##                   1 
+##       St Mary&#39;s Way 
+##                   1 
+##        Station Road 
+##                   1 
+##         Sutton Lane 
+##                   1 
+##        Unnamed road 
+##                   6 
+##       Uxbridge Road 
+##                   1 
+##     Vale Park Drive 
+##                   1 
+##       Walton Street 
+##                   1 
+##         Weedon Road 
+##                   1 
+##   Wellington Street 
+##                   1 
+##       Wendover Road 
+##                   3 
+##         Wycombe End 
+##                   1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       20                       20                       31</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       20                       31                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       20                       31                        3</code></pre>
-<pre><code>## # A tibble: 20 x 5
-##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Colnbrook By-pass  &quot;A4&quot;                         1601                 175                       280
-##  2 Wendover Road      &quot;A413&quot;                       1245                 158                       197
-##  3 High Road          &quot;A408&quot;                       1107                 143                       158
-##  4 Walton Street      &quot;A413&quot;                        964                 135                       130
-##  5 Bath Road          &quot;A4&quot;                         2854                 111                       317
-##  6 Wellington Street  &quot;A4&quot;                          519                 212                       110
-##  7 Station Road       &quot;&quot;                            746                 147                       110
-##  8 A413               &quot;A413&quot;                       2028                 108                       219
-##  9 Royal Windsor Way  &quot;A332&quot;                       2236                 101                       226
-## 10 Friarage Road      &quot;A41&quot;                         889                 113                       100
-## 11 Bridge Road        &quot;A4&quot;                          671                 145                        97
-## 12 Weedon Road        &quot;A4157&quot;                       704                 135                        95
-## 13 Bierton Road       &quot;A418&quot;                        994                  84                        83
-## 14 Bicester Road      &quot;&quot;                            620                 131                        81
-## 15 London Road        &quot;A40&quot;                         642                 116                        74
-## 16 Douglas Road       &quot;A4157&quot;                       627                 113                        71
-## 17 North Orbital Road &quot;A412&quot;                        685                 102                        70
-## 18 Farnham Road       &quot;A355&quot;                        566                 121                        68
-## 19 Wycombe End        &quot;A40&quot;                        1031                  64                        66
-## 20 A418               &quot;A418&quot;                       1537                  59                        91</code></pre>
+## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       20 
+##    Estimated width &gt; 10m 
+##                       30</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       20 
+##    Estimated width &gt; 10m 
+##                       30 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       20 
+##    Estimated width &gt; 10m 
+##                       30 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## # A tibble: 20 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Well… &quot;A4&quot;               519
+##  2 Coln… &quot;A4&quot;              1601
+##  3 Wend… &quot;A413&quot;            1245
+##  4 Stat… &quot;&quot;                 746
+##  5 Brid… &quot;A4&quot;               671
+##  6 High… &quot;A408&quot;            1107
+##  7 Walt… &quot;A413&quot;             964
+##  8 Weed… &quot;A4157&quot;            704
+##  9 Bice… &quot;&quot;                 620
+## 10 Farn… &quot;A355&quot;             566
+## 11 Lond… &quot;A40&quot;              642
+## 12 Fria… &quot;A41&quot;              889
+## 13 Doug… &quot;A4157&quot;            627
+## 14 Bath… &quot;A4&quot;              2854
+## 15 A413  &quot;A413&quot;            2028
+## 16 Lang… &quot;A4&quot;               509
+## 17 Nort… &quot;A412&quot;             685
+## 18 Roya… &quot;A332&quot;            2236
+## 19 Elmh… &quot;A4157&quot;            519
+## 20 St M… &quot;A416&quot;             538
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

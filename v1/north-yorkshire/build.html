@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,112 +378,272 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A1041  A167  A171   A19   A59   A64  A661  A684 B1223 B1248 B1333 B1364 
-##    91    10     2     8    19    51    39     1     9     3     7     4     2</code></pre>
+##       A1041  A167  A171   A19   A59 
+##    91    10     2     8    19    51 
+##   A64  A661  A684 B1223 B1248 B1333 
+##    39     1     9     3     7     4 
+## B1364 
+##     2</code></pre>
 <pre><code>## [1] 50</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1354    4860    7297    7222    8788   13572</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1354    4860    7297    7222 
+## 3rd Qu.    Max. 
+##    8788   13572</code></pre>
 <pre><code>## 
-##          Bishopdyke Road             Carlton Road          Cayton Low Road Colne and Broughton Road 
-##                        3                       33                        5                       11 
-##           Doncaster Road                East Road                 Eastgate               Filey Road 
-##                       11                       14                       15                       66 
-##              High Street                Hull Road            Keighley Road                Keld Head 
-##                       65                        3                       11                        8 
-##               Leeds Road                Main Road              Main Street                Moor Road 
-##                       27                       20                       10                       26 
-##                    Other           Pickering Road          Racecourse Road             Ripon Bypass 
-##                      749                       25                       12                        2 
-##               Ripon Road              Scalby Road           Seamer By Pass              Seamer Road 
-##                       28                       69                        5                       45 
-##            Selby By-Pass    Sinnington Cliff Road             Skipton Road              Spital Road 
-##                       13                        9                       13                       11 
-##           Station Parade             Station Road             Stepney Hill             Stepney Road 
-##                       22                       21                        4                       16 
-##            Thornton Road          Victoria Avenue             Weeland Road                 Westgate 
-##                       10                       30                        5                        5 
-##            Wetherby Road                York Road 
-##                        5                       38</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.0734  0.0000  1.0417</code></pre>
+##          Bishopdyke Road 
+##                        3 
+##             Carlton Road 
+##                       33 
+##          Cayton Low Road 
+##                        5 
+## Colne and Broughton Road 
+##                       11 
+##           Doncaster Road 
+##                       11 
+##                East Road 
+##                       14 
+##                 Eastgate 
+##                       15 
+##               Filey Road 
+##                       66 
+##              High Street 
+##                       65 
+##                Hull Road 
+##                        3 
+##            Keighley Road 
+##                       11 
+##                Keld Head 
+##                        8 
+##               Leeds Road 
+##                       27 
+##                Main Road 
+##                       20 
+##              Main Street 
+##                       10 
+##                Moor Road 
+##                       26 
+##                    Other 
+##                      749 
+##           Pickering Road 
+##                       25 
+##          Racecourse Road 
+##                       12 
+##             Ripon Bypass 
+##                        2 
+##               Ripon Road 
+##                       28 
+##              Scalby Road 
+##                       69 
+##           Seamer By Pass 
+##                        5 
+##              Seamer Road 
+##                       45 
+##            Selby By-Pass 
+##                       13 
+##    Sinnington Cliff Road 
+##                        9 
+##             Skipton Road 
+##                       13 
+##              Spital Road 
+##                       11 
+##           Station Parade 
+##                       22 
+##             Station Road 
+##                       21 
+##             Stepney Hill 
+##                        4 
+##             Stepney Road 
+##                       16 
+##            Thornton Road 
+##                       10 
+##          Victoria Avenue 
+##                       30 
+##             Weeland Road 
+##                        5 
+##                 Westgate 
+##                        5 
+##            Wetherby Road 
+##                        5 
+##                York Road 
+##                       38</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.0734 
+## 3rd Qu.    Max. 
+##  0.0000  1.0417</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A64&quot;   171     1 Seamer Road                     1 Seam…         3316              170          8
-##  2 &quot;A64&quot;   171     1 Other                          23 West…          980              115          9
-##  3 &quot;B12…   171     1 Cayton Low Road                 1 Cayt…          633              130         10
-##  4 &quot;A62…     1     1 Other                           1 A629          6671               81          9
-##  5 &quot;A17…   171     1 Scalby Road                     1 Scal…         6357               75          8
-##  6 &quot;A16…   247     5 East Road                       1 East…          521              123         10
-##  7 &quot;A61&quot;    11     1 Station Parade                  1 Stat…          718               87          8
-##  8 &quot;A61&quot;   228     5 Station Road                    1 Stat…         1769               58          9
-##  9 &quot;A17…   171     7 Stepney Hill                    1 Step…         1124               55          7
-## 10 &quot;&quot;       11     2 Victoria Avenue                 1 Vict…         1260               53         13
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                     A162                     A165                     A168                     A170 
-##                        1                        2                        1                        6 
-##                      A19                    A6055                      A61                     A629 
-##                        3                        1                        5                        1 
-##                      A63                      A64                    B1448              Barlby Road 
-##                        4                        4                        1                        1 
-##              Bawtry Road          Bishopdyke Road              Burn Bridge             Carlton Road 
-##                        1                        1                        1                        1 
-##          Cayton Low Road          Chubb Hill Road Colne and Broughton Road        Commercial Street 
-##                        1                        1                        1                        1 
-##           Doncaster Road                East Road                 Eastgate           Falsgrave Road 
-##                        1                        1                        1                        1 
-##               Filey Road                Gowthorpe              High Street                Hull Road 
-##                        2                        1                        5                        1 
-##            Keighley Road                Keld Head               Leeds Road              Long Street 
-##                        1                        2                        2                        1 
-##                Main Road              Main Street              Malton Road                Moor Road 
-##                        1                        3                        1                        1 
-##           Pickering Road                Pump Hill          Racecourse Road             Ripon Bypass 
-##                        2                        1                        1                        1 
-##               Ripon Road              Scalby Road           Seamer By Pass         Seamer Moor Hill 
-##                        2                        1                        1                        1 
-##              Seamer Road            Selby By-Pass    Sinnington Cliff Road             Skipton Road 
-##                        1                        2                        2                        2 
-##              Spital Road           Station Parade             Station Road             Stepney Hill 
-##                        1                        1                        2                        1 
-##             Stepney Road            Thornton Road             Unnamed road          Victoria Avenue 
-##                        1                        1                        8                        1 
-##             Weeland Road              Westborough                 Westgate            Wetherby Road 
-##                        1                        1                        1                        1 
-##               York Place                York Road 
-##                        1                        3</code></pre>
+##                     A162 
+##                        1 
+##                     A165 
+##                        2 
+##                     A168 
+##                        1 
+##                     A170 
+##                        6 
+##                      A19 
+##                        3 
+##                    A6055 
+##                        1 
+##                      A61 
+##                        5 
+##                     A629 
+##                        1 
+##                      A63 
+##                        4 
+##                      A64 
+##                        4 
+##                    B1448 
+##                        1 
+##              Barlby Road 
+##                        1 
+##              Bawtry Road 
+##                        1 
+##          Bishopdyke Road 
+##                        1 
+##              Burn Bridge 
+##                        1 
+##             Carlton Road 
+##                        1 
+##          Cayton Low Road 
+##                        1 
+##          Chubb Hill Road 
+##                        1 
+## Colne and Broughton Road 
+##                        1 
+##        Commercial Street 
+##                        1 
+##           Doncaster Road 
+##                        1 
+##                East Road 
+##                        1 
+##                 Eastgate 
+##                        1 
+##           Falsgrave Road 
+##                        1 
+##               Filey Road 
+##                        2 
+##                Gowthorpe 
+##                        1 
+##              High Street 
+##                        5 
+##                Hull Road 
+##                        1 
+##            Keighley Road 
+##                        1 
+##                Keld Head 
+##                        2 
+##               Leeds Road 
+##                        2 
+##              Long Street 
+##                        1 
+##                Main Road 
+##                        1 
+##              Main Street 
+##                        3 
+##              Malton Road 
+##                        1 
+##                Moor Road 
+##                        1 
+##           Pickering Road 
+##                        2 
+##                Pump Hill 
+##                        1 
+##          Racecourse Road 
+##                        1 
+##             Ripon Bypass 
+##                        1 
+##               Ripon Road 
+##                        2 
+##              Scalby Road 
+##                        1 
+##           Seamer By Pass 
+##                        1 
+##         Seamer Moor Hill 
+##                        1 
+##              Seamer Road 
+##                        1 
+##            Selby By-Pass 
+##                        2 
+##    Sinnington Cliff Road 
+##                        2 
+##             Skipton Road 
+##                        2 
+##              Spital Road 
+##                        1 
+##           Station Parade 
+##                        1 
+##             Station Road 
+##                        2 
+##             Stepney Hill 
+##                        1 
+##             Stepney Road 
+##                        1 
+##            Thornton Road 
+##                        1 
+##             Unnamed road 
+##                        8 
+##          Victoria Avenue 
+##                        1 
+##             Weeland Road 
+##                        1 
+##              Westborough 
+##                        1 
+##                 Westgate 
+##                        1 
+##            Wetherby Road 
+##                        1 
+##               York Place 
+##                        1 
+##                York Road 
+##                        3</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       47                       24</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       47                       24                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       47                       24                        3</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Seamer Road     &quot;A64&quot;                        3316                 170                       564
-##  2 Westborough     &quot;A64&quot;                         980                 115                       113
-##  3 Cayton Low Road &quot;B1261&quot;                       633                 130                        82
-##  4 A629            &quot;A629&quot;                       6671                  81                       540
-##  5 Scalby Road     &quot;A171&quot;                       6357                  75                       477
-##  6 East Road       &quot;A167&quot;                        521                 123                        64
-##  7 Station Parade  &quot;A61&quot;                         718                  87                        62
-##  8 Station Road    &quot;A61&quot;                        1769                  58                       103
-##  9 Stepney Hill    &quot;A170&quot;                       1124                  55                        62
-## 10 Victoria Avenue &quot;&quot;                           1260                  53                        67
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       48 
+##    Estimated width &gt; 10m 
+##                       23</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       48 
+##    Estimated width &gt; 10m 
+##                       23 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       48 
+##    Estimated width &gt; 10m 
+##                       23 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Seam… A64               3316
+##  2 Cayt… B1261              633
+##  3 East… A167               521
+##  4 West… A64                980
+##  5 Stat… A61                718
+##  6 Comm… B1248              567
+##  7 A629  A629              6671
+##  8 Scal… A171              6357
+##  9 A170  A170               626
+## 10 Leed… A61                804
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

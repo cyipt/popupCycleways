@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,74 +388,127 @@ summary {
 ##        A308    A4 B3024 B3027  B376 
 ##    44     4     7    11     1     5</code></pre>
 <pre><code>## [1] 32</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   825.6  1432.8  2006.8  3506.4  5005.0  7082.5</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   825.6  1432.8  2006.8  3506.4 
+## 3rd Qu.    Max. 
+##  5005.0  7082.5</code></pre>
 <pre><code>## 
-##  Bad Godesberg Way        Bridge Road  Colnbrook By-pass      Dedworth Road       Frances Road 
-##                  2                 10                  6                 16                  7 
-## Langley Roundabout        London Road    Maidenhead Road              Other  Royal Windsor Way 
-##                  8                 61                 29                127                 31 
-##       St Cloud Way      Straight Road          Tuns Lane 
-##                  8                 12                  9</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.08815 0.31250 0.59257 1.07692</code></pre>
+##  Bad Godesberg Way        Bridge Road 
+##                  2                 10 
+##  Colnbrook By-pass      Dedworth Road 
+##                  6                 16 
+##       Frances Road Langley Roundabout 
+##                  7                  8 
+##        London Road    Maidenhead Road 
+##                 61                 29 
+##              Other  Royal Windsor Way 
+##                127                 31 
+##       St Cloud Way      Straight Road 
+##                  8                 12 
+##          Tuns Lane 
+##                  9</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.08815 0.31250 
+## 3rd Qu.    Max. 
+## 0.59257 1.07692</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 B3024    58     1 Dedworth Road                   1 Dedw…          936              267          9
-##  2 A4       54     1 London Road                     2 Lond…         2076              235         10
-##  3 A4       54     1 Colnbrook By-pa…                1 Coln…         1457              167         11
-##  4 A4       25     3 Bridge Road                     1 Brid…          671              145         11
-##  5 A332     53     1 Royal Windsor W…                1 Roya…         3574               91          8
-##  6 A355     53     1 Tuns Lane                       1 Tuns…         1124               76          8
-##  7 A355     53     1 Royal Windsor W…                1 Roya…         1502               71          7
-##  8 A30      31     1 London Road                     1 Lond…         1866               70         10
-##  9 A308    109     8 Straight Road                   1 Stra…          700               85         11
-## 10 A308     82     9 Other                           2 Clar…          716               76          8
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                           A355                             A4                  Albert Street 
-##                              3                              3                              1 
-##              Bad Godesberg Way                      Bath Road                  Bridge Avenue 
-##                              1                              2                              1 
-##                    Bridge Road                  Clarence Road                Clarence Street 
-##                              1                              3                              1 
-##              Colnbrook By-pass                  Dedworth Road                 Eton Wick Road 
-##                              1                              1                              1 
-##                   Frances Road                    High Street High Street cycle path (north) 
-##                              1                              3                              1 
-##                  Imperial Road             Langley Roundabout                    London Road 
-##                              1                              1                              4 
-##                Maidenhead Road              Royal Windsor Way                   St Cloud Way 
-##                              1                              2                              1 
-##                  Straight Road                    Sutton Lane                    Thorpe Road 
-##                              1                              1                              1 
-##                      Tuns Lane                   Unnamed road              Wellington Street 
-##                              1                              3                              1 
+##                           A355 
+##                              3 
+##                             A4 
+##                              3 
+##                  Albert Street 
+##                              1 
+##              Bad Godesberg Way 
+##                              1 
+##                      Bath Road 
+##                              2 
+##                  Bridge Avenue 
+##                              1 
+##                    Bridge Road 
+##                              1 
+##                  Clarence Road 
+##                              3 
+##                Clarence Street 
+##                              1 
+##              Colnbrook By-pass 
+##                              1 
+##                  Dedworth Road 
+##                              1 
+##                 Eton Wick Road 
+##                              1 
+##                   Frances Road 
+##                              1 
+##                    High Street 
+##                              3 
+## High Street cycle path (north) 
+##                              1 
+##                  Imperial Road 
+##                              1 
+##             Langley Roundabout 
+##                              1 
+##                    London Road 
+##                              4 
+##                Maidenhead Road 
+##                              1 
+##              Royal Windsor Way 
+##                              2 
+##                   St Cloud Way 
+##                              1 
+##                  Straight Road 
+##                              1 
+##                    Sutton Lane 
+##                              1 
+##                    Thorpe Road 
+##                              1 
+##                      Tuns Lane 
+##                              1 
+##                   Unnamed road 
+##                              3 
+##              Wellington Street 
+##                              1 
 ##                   Windsor Road 
 ##                              1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        7                       23</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                        7                       23                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                        7                       23                        3</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name              Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;             &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Dedworth Road     B3024                         936                 267                       250
-##  2 London Road       A4                           2076                 235                       488
-##  3 Colnbrook By-pass A4                           1457                 167                       243
-##  4 Bridge Road       A4                            671                 145                        97
-##  5 Royal Windsor Way A332                         3574                  91                       325
-##  6 Tuns Lane         A355                         1124                  76                        85
-##  7 Royal Windsor Way A355                         1502                  71                       107
-##  8 London Road       A30                          1866                  70                       131
-##  9 Straight Road     A308                          700                  85                        60
-## 10 Clarence Street   A308                          716                  76                        54</code></pre>
+## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        7 
+##    Estimated width &gt; 10m 
+##                       23</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        7 
+##    Estimated width &gt; 10m 
+##                       23 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        7 
+##    Estimated width &gt; 10m 
+##                       23 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Dedw… &quot;B3024&quot;            936
+##  2 Lond… &quot;A4&quot;              2076
+##  3 Coln… &quot;A4&quot;              1457
+##  4 Brid… &quot;A4&quot;               671
+##  5 Lang… &quot;A4&quot;               509
+##  6 Bath… &quot;&quot;                 552
+##  7 Roya… &quot;A332&quot;            3574
+##  8 Stra… &quot;A308&quot;             700
+##  9 Clar… &quot;A308&quot;             716
+## 10 Tuns… &quot;A355&quot;            1124
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

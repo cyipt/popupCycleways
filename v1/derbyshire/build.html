@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,126 +378,324 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##        A444   A57 A6005  A608   A61  A617 B5010 B5017 B5018  B600 B6002 B6039 B6179 B6388 B6540 
-##   178     7     2    84     6     5     3    17     2    17     1     5     3     2     1    69</code></pre>
+##        A444   A57 A6005  A608   A61 
+##   178     7     2    84     6     5 
+##  A617 B5010 B5017 B5018  B600 B6002 
+##     3    17     2    17     1     5 
+## B6039 B6179 B6388 B6540 
+##     3     2     1    69</code></pre>
 <pre><code>## [1] 165</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2032    3006    4298    8162   16822   16822</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    2032    3006    4298    8162 
+## 3rd Qu.    Max. 
+##   16822   16822</code></pre>
 <pre><code>## 
-##             Alfreton Road            Ashbourne Road                Ashby Road           Ashby Road East 
-##                        15                         4                         7                         9 
-##               Baslow Road            Bochum Parkway          Brian Clough Way               Burton Road 
-##                        11                        19                        59                        32 
-##               Chalons Way           Chatsworth Road         Chesterfield Road   Chesterfield Road South 
-##                         2                        43                        38                        14 
-##            Clinthill Lane               Common Road                Derby Road             Draycott Road 
-##                         6                         9                       132                        15 
-##               Etwall Road              Glossop Road              Hasland Road           Hawksley Avenue 
-##                         8                         6                        14                         8 
-##               Heanor Road                High Cross               High Street            Kedleston Road 
-##                        20                        13                        14                        13 
-##            Lichfield Road                Littlemoor      Loundsley Green Road                 Main Road 
-##                        25                        10                         6                         3 
-##                Meadowhead              Newbold Road             Norton Avenue           Nottingham Road 
-##                        13                        18                        23                        64 
-##                     Other             Ringwood Road                Rother Way     Sandiacre Interchange 
-##                       644                        11                        11                        12 
-##            Sheffield Road                 Shilo Way    Sir Frank Whittle Road              Stanton Road 
-##                        28                         3                         7                        12 
-##             Stretton Road             Tamworth Road Unstone-Dronfield By-Pass             Woodland Road 
-##                         9                        59                        22                        14 
+##             Alfreton Road 
+##                        15 
+##            Ashbourne Road 
+##                         4 
+##                Ashby Road 
+##                         7 
+##           Ashby Road East 
+##                         9 
+##               Baslow Road 
+##                        11 
+##            Bochum Parkway 
+##                        19 
+##          Brian Clough Way 
+##                        59 
+##               Burton Road 
+##                        32 
+##               Chalons Way 
+##                         2 
+##           Chatsworth Road 
+##                        43 
+##         Chesterfield Road 
+##                        38 
+##   Chesterfield Road South 
+##                        14 
+##            Clinthill Lane 
+##                         6 
+##               Common Road 
+##                         9 
+##                Derby Road 
+##                       132 
+##             Draycott Road 
+##                        15 
+##               Etwall Road 
+##                         8 
+##              Glossop Road 
+##                         6 
+##              Hasland Road 
+##                        14 
+##           Hawksley Avenue 
+##                         8 
+##               Heanor Road 
+##                        20 
+##                High Cross 
+##                        13 
+##               High Street 
+##                        14 
+##            Kedleston Road 
+##                        13 
+##            Lichfield Road 
+##                        25 
+##                Littlemoor 
+##                        10 
+##      Loundsley Green Road 
+##                         6 
+##                 Main Road 
+##                         3 
+##                Meadowhead 
+##                        13 
+##              Newbold Road 
+##                        18 
+##             Norton Avenue 
+##                        23 
+##           Nottingham Road 
+##                        64 
+##                     Other 
+##                       644 
+##             Ringwood Road 
+##                        11 
+##                Rother Way 
+##                        11 
+##     Sandiacre Interchange 
+##                        12 
+##            Sheffield Road 
+##                        28 
+##                 Shilo Way 
+##                         3 
+##    Sir Frank Whittle Road 
+##                         7 
+##              Stanton Road 
+##                        12 
+##             Stretton Road 
+##                         9 
+##             Tamworth Road 
+##                        59 
+## Unstone-Dronfield By-Pass 
+##                        22 
+##             Woodland Road 
+##                        14 
 ##              Worksop Road 
 ##                        38</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.1805  0.1751  1.0028</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.1805 
+## 3rd Qu.    Max. 
+##  0.1751  1.0028</code></pre>
 <pre><code>## [1] 40</code></pre>
-<pre><code>## # A tibble: 40 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A6005   712     4 Nottingham Road                 2 Nott…         2481              250         11
-##  2 A6005   712     4 Derby Road                      3 Derb…         1784              163         11
-##  3 B6540   712     4 Tamworth Road                   2 Tamw…         1977              153         10
-##  4 A444      4     1 Woodland Road                   1 Wood…         2143              116          8
-##  5 A444      4     1 Stanton Road                    1 Stan…         1218              110          8
-##  6 B600    147     1 Nottingham Road                 3 Nott…         1118              104         10
-##  7 B6039   146     1 Hasland Road                    1 Hasl…          864              118          9
-##  8 A619    146     2 Ringwood Road                   1 Ring…         1307               77          9
-##  9 A511     10     2 Ashby Road East                 1 Ashb…          879               87         10
-## 10 B6052   146     1 Other                          22 Stat…          557              129         10
-## # … with 30 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                       A38                      A444                      A511                     A5121 
-##                         3                         2                         2                         1 
-##                      A516                     A5189                     A6005                     A6007 
-##                         2                         1                         1                         1 
-##                       A61                      A617                      A619                      A632 
-##                         4                         1                         2                         1 
-##             Alfreton Road            Ashbourne Road                Ashby Road           Ashby Road East 
-##                         2                         1                         1                         1 
-##                     B5030                     B6179                     B6540               Baslow Road 
-##                         1                         2                         2                         1 
-##            Bochum Parkway          Brian Clough Way               Burton Road            Butterley Hill 
-##                         1                         1                         2                         1 
-##               Chalons Way           Chatsworth Road         Chesterfield Road   Chesterfield Road South 
-##                         1                         1                         4                         1 
-##            Clinthill Lane               Common Road                Derby Road             Draycott Road 
-##                         1                         1                         8                         1 
-##               Etwall Road            Fairfield Road              Glossop Road                 Hall Road 
-##                         2                         1                         1                         1 
-##              Hasland Road           Hawksley Avenue               Heanor Road                Heath Road 
-##                         1                         1                         1                         1 
-##                High Cross               High Street               Hollis Lane             Jawbones Hill 
-##                         1                         2                         1                         1 
-##            Kedleston Road                Kelham Way            Lichfield Road                Littlemoor 
-##                         1                         1                         1                         1 
-##               London Road             Longmoor Lane      Loundsley Green Road                 Main Road 
-##                         1                         1                         1                         1 
-##              Manners Road            Mansfield Road              Market Place                Meadowhead 
-##                         1                         3                         1                         1 
-##            New Derby Road              Newbold Road             Norton Avenue           Nottingham Road 
-##                         1                         1                         1                         3 
-##             Ringwood Road                Rother Way            Rotherham Road     Sandiacre Interchange 
-##                         1                         1                         1                         1 
-##            Sheffield Road                 Shilo Way    Sir Frank Whittle Road         St Leonards Drive 
-##                         2                         1                         1                         1 
-##          St Peters Street           St. John&#39;s Road              Stanton Road              Station Road 
-##                         1                         1                         3                         3 
-##             Stretton Road             Tamworth Road                 The Green              Unnamed road 
-##                         1                         2                         1                         7 
-## Unstone-Dronfield By-Pass                White Lane           Wilsthorpe Road             Woodland Road 
-##                         1                         1                         3                         1 
+##                       A38 
+##                         3 
+##                      A444 
+##                         2 
+##                      A511 
+##                         2 
+##                     A5121 
+##                         1 
+##                      A516 
+##                         2 
+##                     A5189 
+##                         1 
+##                     A6005 
+##                         1 
+##                     A6007 
+##                         1 
+##                       A61 
+##                         4 
+##                      A617 
+##                         1 
+##                      A619 
+##                         2 
+##                      A632 
+##                         1 
+##             Alfreton Road 
+##                         2 
+##            Ashbourne Road 
+##                         1 
+##                Ashby Road 
+##                         1 
+##           Ashby Road East 
+##                         1 
+##                     B5030 
+##                         1 
+##                     B6179 
+##                         2 
+##                     B6540 
+##                         2 
+##               Baslow Road 
+##                         1 
+##            Bochum Parkway 
+##                         1 
+##          Brian Clough Way 
+##                         1 
+##               Burton Road 
+##                         2 
+##            Butterley Hill 
+##                         1 
+##               Chalons Way 
+##                         1 
+##           Chatsworth Road 
+##                         1 
+##         Chesterfield Road 
+##                         4 
+##   Chesterfield Road South 
+##                         1 
+##            Clinthill Lane 
+##                         1 
+##               Common Road 
+##                         1 
+##                Derby Road 
+##                         8 
+##             Draycott Road 
+##                         1 
+##               Etwall Road 
+##                         2 
+##            Fairfield Road 
+##                         1 
+##              Glossop Road 
+##                         1 
+##                 Hall Road 
+##                         1 
+##              Hasland Road 
+##                         1 
+##           Hawksley Avenue 
+##                         1 
+##               Heanor Road 
+##                         1 
+##                Heath Road 
+##                         1 
+##                High Cross 
+##                         1 
+##               High Street 
+##                         2 
+##               Hollis Lane 
+##                         1 
+##             Jawbones Hill 
+##                         1 
+##            Kedleston Road 
+##                         1 
+##                Kelham Way 
+##                         1 
+##            Lichfield Road 
+##                         1 
+##                Littlemoor 
+##                         1 
+##               London Road 
+##                         1 
+##             Longmoor Lane 
+##                         1 
+##      Loundsley Green Road 
+##                         1 
+##                 Main Road 
+##                         1 
+##              Manners Road 
+##                         1 
+##            Mansfield Road 
+##                         3 
+##              Market Place 
+##                         1 
+##                Meadowhead 
+##                         1 
+##            New Derby Road 
+##                         1 
+##              Newbold Road 
+##                         1 
+##             Norton Avenue 
+##                         1 
+##           Nottingham Road 
+##                         3 
+##             Ringwood Road 
+##                         1 
+##                Rother Way 
+##                         1 
+##            Rotherham Road 
+##                         1 
+##     Sandiacre Interchange 
+##                         1 
+##            Sheffield Road 
+##                         2 
+##                 Shilo Way 
+##                         1 
+##    Sir Frank Whittle Road 
+##                         1 
+##         St Leonards Drive 
+##                         1 
+##          St Peters Street 
+##                         1 
+##           St. John&#39;s Road 
+##                         1 
+##              Stanton Road 
+##                         3 
+##              Station Road 
+##                         3 
+##             Stretton Road 
+##                         1 
+##             Tamworth Road 
+##                         2 
+##                 The Green 
+##                         1 
+##              Unnamed road 
+##                         7 
+## Unstone-Dronfield By-Pass 
+##                         1 
+##                White Lane 
+##                         1 
+##           Wilsthorpe Road 
+##                         3 
+##             Woodland Road 
+##                         1 
 ##              Worksop Road 
 ##                         2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       40                       39                       43</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       39                       43                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       39                       43                        3</code></pre>
-<pre><code>## # A tibble: 40 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Nottingham Road A6005                        2481                 250                       620
-##  2 Derby Road      A6005                        1784                 163                       291
-##  3 Tamworth Road   B6540                        1977                 153                       302
-##  4 Woodland Road   A444                         2143                 116                       249
-##  5 Stanton Road    A444                         1218                 110                       134
-##  6 Nottingham Road B600                         1118                 104                       116
-##  7 Hasland Road    B6039                         864                 118                       102
-##  8 Ringwood Road   A619                         1307                  77                       101
-##  9 Ashby Road East A511                          879                  87                        76
-## 10 Station Road    B6052                         557                 129                        72
-## # … with 30 more rows</code></pre>
+## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       43 
+##    Estimated width &gt; 10m 
+##                       39</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       43 
+##    Estimated width &gt; 10m 
+##                       39 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       43 
+##    Estimated width &gt; 10m 
+##                       39 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 40 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Nott… A6005             2481
+##  2 Derb… A6005             1784
+##  3 Tamw… B6540             1977
+##  4 Stat… B6052              557
+##  5 Hasl… B6039              864
+##  6 Wood… A444              2143
+##  7 Stan… A444              1218
+##  8 Nott… B600              1118
+##  9 Ashb… A511               571
+## 10 Ashb… A511               879
+## # … with 30 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

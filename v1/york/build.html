@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,86 +388,150 @@ summary {
 ##       A1036   A19   A59 B1227 
 ##    37    21    24     9     1</code></pre>
 <pre><code>## [1] 27</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   741.8   945.6  1242.5  1876.7  3045.7  3045.7</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   741.8   945.6  1242.5  1876.7 
+## 3rd Qu.    Max. 
+##  3045.7  3045.7</code></pre>
 <pre><code>## 
-##                 Acomb Road         Boroughbridge Road                    Clifton          Foss Islands Road 
-##                         17                         30                         19                         19 
-##               Fulford Road              Heworth Green                  Hull Road            Knavesmire Road 
-##                         23                         23                         42                         10 
-##            Lawrence Street                Main Street                Malton Road                      Other 
-##                         30                         25                         28                        346 
-##             Poppleton Road                  Ring Road               Shipton Road             Tadcaster Road 
-##                         10                         24                         23                          9 
+##                 Acomb Road 
+##                         17 
+##         Boroughbridge Road 
+##                         30 
+##                    Clifton 
+##                         19 
+##          Foss Islands Road 
+##                         19 
+##               Fulford Road 
+##                         23 
+##              Heworth Green 
+##                         23 
+##                  Hull Road 
+##                         42 
+##            Knavesmire Road 
+##                         10 
+##            Lawrence Street 
+##                         30 
+##                Main Street 
+##                         25 
+##                Malton Road 
+##                         28 
+##                      Other 
+##                        346 
+##             Poppleton Road 
+##                         10 
+##                  Ring Road 
+##                         24 
+##               Shipton Road 
+##                         23 
+##             Tadcaster Road 
+##                          9 
 ## Tadcaster Road Dringhouses 
 ##                         27</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.1743  0.4054  0.4644  0.7580  1.0070</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.1743  0.4054  0.4644 
+## 3rd Qu.    Max. 
+##  0.7580  1.0070</code></pre>
 <pre><code>## [1] 17</code></pre>
-<pre><code>## # A tibble: 17 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A19&quot;     2     1 Clifton                         1 Clif…          619              745          9
-##  2 &quot;A59&quot;     7     1 Boroughbridge R…                1 Boro…         1194              389         10
-##  3 &quot;B13…     2     2 Other                           1 Clar…          717              384         10
-##  4 &quot;A10…     2     1 Foss Islands Ro…                1 Foss…          869              303         12
-##  5 &quot;A10…     2     1 Heworth Green                   1 Hewo…          790              296          9
-##  6 &quot;A19&quot;     2     3 Fulford Road                    1 Fulf…         1015              215         10
-##  7 &quot;A19&quot;    17     4 Shipton Road                    1 Ship…         1999              191         10
-##  8 &quot;A10…     2     1 Tadcaster Road                  1 Tadc…          642              295          9
-##  9 &quot;B12…     7     1 Acomb Road                      1 Acom…          825              200         10
-## 10 &quot;A10…     2     2 Lawrence Street                 1 Lawr…          533              282         11
-## 11 &quot;A10…     2     1 Tadcaster Road …                1 Tadc…          747              197         11
-## 12 &quot;A59&quot;     7     1 Poppleton Road                  1 Popp…          583              207         10
-## 13 &quot;&quot;        2     3 Knavesmire Road                 1 Knav…          571              189         10
-## 14 &quot;A12…     1     1 Ring Road                       1 Ring…         1273              105         11
-## 15 &quot;A10…     2     1 Malton Road                     1 Malt…         2366               93          9
-## 16 &quot;A19&quot;     2     3 Main Street                     1 Main…          646               91         11
-## 17 &quot;A10…     2     2 Hull Road                       2 Hull…          540              105         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                      A1036                 A166;A1079                        A19                        A59 
-##                          1                          1                          2                          2 
-##                 Acomb Road                    Bootham         Boroughbridge Road              Cemetery Road 
-##                          1                          1                          1                          1 
-##            Clarence Street                    Clifton          Foss Islands Road               Fulford Road 
-##                          1                          1                          1                          1 
-##              Heworth Green               Holgate Road                  Hull Road            Knavesmire Road 
-##                          1                          1                          2                          1 
-##            Lawrence Street                Main Street                Malton Road             Poppleton Road 
-##                          1                          1                          1                          1 
-##                  Ring Road               Shipton Road             Tadcaster Road Tadcaster Road Dringhouses 
-##                          2                          1                          1                          1 
-##               Unnamed road                  York Road 
-##                          6                          1</code></pre>
+##                      A1036 
+##                          1 
+##                 A166;A1079 
+##                          1 
+##                        A19 
+##                          2 
+##                        A59 
+##                          2 
+##                 Acomb Road 
+##                          1 
+##                    Bootham 
+##                          1 
+##         Boroughbridge Road 
+##                          1 
+##              Cemetery Road 
+##                          1 
+##            Clarence Street 
+##                          1 
+##                    Clifton 
+##                          1 
+##          Foss Islands Road 
+##                          1 
+##               Fulford Road 
+##                          1 
+##              Heworth Green 
+##                          1 
+##               Holgate Road 
+##                          1 
+##                  Hull Road 
+##                          2 
+##            Knavesmire Road 
+##                          1 
+##            Lawrence Street 
+##                          1 
+##                Main Street 
+##                          1 
+##                Malton Road 
+##                          1 
+##             Poppleton Road 
+##                          1 
+##                  Ring Road 
+##                          2 
+##               Shipton Road 
+##                          1 
+##             Tadcaster Road 
+##                          1 
+## Tadcaster Road Dringhouses 
+##                          1 
+##               Unnamed road 
+##                          6 
+##                  York Road 
+##                          1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       17                        4                       11</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       17                        4                       11                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       17                        4                       11                        3</code></pre>
-<pre><code>## # A tibble: 17 x 5
-##    Name                       Reference `Continuous length (m)` `Cycling potential` `Length * potential (km…
-##  * &lt;chr&gt;                      &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                    &lt;dbl&gt;
-##  1 Clifton                    &quot;A19&quot;                         619                 745                      461
-##  2 Boroughbridge Road         &quot;A59&quot;                        1194                 389                      464
-##  3 Clarence Street            &quot;B1363&quot;                       717                 384                      275
-##  4 Foss Islands Road          &quot;A1036&quot;                       869                 303                      263
-##  5 Heworth Green              &quot;A1036&quot;                       790                 296                      234
-##  6 Fulford Road               &quot;A19&quot;                        1015                 215                      218
-##  7 Shipton Road               &quot;A19&quot;                        1999                 191                      382
-##  8 Tadcaster Road             &quot;A1036&quot;                       642                 295                      189
-##  9 Acomb Road                 &quot;B1224&quot;                       825                 200                      165
-## 10 Lawrence Street            &quot;A1079&quot;                       533                 282                      150
-## 11 Tadcaster Road Dringhouses &quot;A1036&quot;                       747                 197                      147
-## 12 Poppleton Road             &quot;A59&quot;                         583                 207                      121
-## 13 Knavesmire Road            &quot;&quot;                            571                 189                      108
-## 14 Ring Road                  &quot;A1237&quot;                      1273                 105                      134
-## 15 Malton Road                &quot;A1036&quot;                      2366                  93                      220
-## 16 Main Street                &quot;A19&quot;                         646                  91                       59
-## 17 Hull Road                  &quot;A1079&quot;                       540                 105                       57</code></pre>
+## Top ranked new cycleways 
+##                       17 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                       11</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       17 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                       11 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       17 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                       11 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 17 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Clif… &quot;A19&quot;              619
+##  2 Boro… &quot;A59&quot;             1194
+##  3 Clar… &quot;B1363&quot;            717
+##  4 Foss… &quot;A1036&quot;            869
+##  5 Hewo… &quot;A1036&quot;            790
+##  6 Tadc… &quot;A1036&quot;            642
+##  7 Lawr… &quot;A1079&quot;            533
+##  8 Fulf… &quot;A19&quot;             1015
+##  9 Popp… &quot;A59&quot;              583
+## 10 Acom… &quot;B1224&quot;            825
+## 11 Tadc… &quot;A1036&quot;            747
+## 12 Ship… &quot;A19&quot;             1999
+## 13 Knav… &quot;&quot;                 571
+## 14 Hull… &quot;A1079&quot;            540
+## 15 Ring… &quot;A1237&quot;           1273
+## 16 Malt… &quot;A1036&quot;           2366
+## 17 Main… &quot;A19&quot;              646
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

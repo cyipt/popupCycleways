@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,40 +388,55 @@ summary {
 ##       A3020 A3054 
 ##    19    30     4</code></pre>
 <pre><code>## [1] 20</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1490    3500    6093    5723    8192    8192</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1490    3500    6093    5723 
+## 3rd Qu.    Max. 
+##    8192    8192</code></pre>
 <pre><code>## 
-##      Kite Hill     Medina Way          Other Parkhurst Road 
-##             11             22             36              6</code></pre>
-<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## 0.000000 0.000000 0.000000 0.006534 0.006135 0.027735</code></pre>
+##      Kite Hill     Medina Way 
+##             11             22 
+##          Other Parkhurst Road 
+##             36              6</code></pre>
+<pre><code>##     Min.  1st Qu.   Median     Mean 
+## 0.000000 0.000000 0.000000 0.006534 
+##  3rd Qu.     Max. 
+## 0.006135 0.027735</code></pre>
 <pre><code>## [1] 4</code></pre>
-<pre><code>## # A tibble: 4 x 16
-##   ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-## * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-## 1 &quot;A30…     7     1 Other                           1 Park…          552              247          9
-## 2 &quot;A30…     7     1 Medina Way                      1 Medi…         2119              105          8
-## 3 &quot;&quot;        7     3 Parkhurst Road                  1 Park…          582              170         10
-## 4 &quot;A30…    57     3 Kite Hill                       1 Kite…          649               73         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##  Elenors Grove   Fairlee Road      Kite Hill     Medina Way Parkhurst Road   Unnamed road 
-##              1              1              1              1              2              2</code></pre>
+##  Elenors Grove   Fairlee Road 
+##              1              1 
+##      Kite Hill     Medina Way 
+##              1              1 
+## Parkhurst Road   Unnamed road 
+##              2              2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        4                        4                        0</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s) 
-##                        4                        4</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        4                        4                        0</code></pre>
-<pre><code>## # A tibble: 4 x 5
-##   Name           Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-## * &lt;chr&gt;          &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-## 1 Parkhurst Road &quot;A3020&quot;                       552                 247                       136
-## 2 Medina Way     &quot;A3020&quot;                      2119                 105                       222
-## 3 Parkhurst Road &quot;&quot;                            582                 170                        99
-## 4 Kite Hill      &quot;A3054&quot;                       649                  73                        47</code></pre>
+## Top ranked new cycleways 
+##                        4 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                        0</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        4 
+##            Spare lane(s) 
+##                        4</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        4 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                        0</code></pre>
+<pre><code>## # A tibble: 4 x 6
+##   Name  Reference `Length (m)`
+## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+## 1 Park… &quot;A3020&quot;            552
+## 2 Park… &quot;&quot;                 582
+## 3 Medi… &quot;A3020&quot;           2119
+## 4 Kite… &quot;A3054&quot;            649
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

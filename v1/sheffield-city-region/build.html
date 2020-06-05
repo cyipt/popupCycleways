@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,170 +378,504 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A18   A19   A61 A6102 A6178  A625  A630  A631  A638 B6070 B6388 B6539 
-##   272    22     9    28     1     4     9    38     1    27     1     1     1</code></pre>
+##         A18   A19   A61 A6102 A6178 
+##   272    22     9    28     1     4 
+##  A625  A630  A631  A638 B6070 B6388 
+##     9    38     1    27     1     1 
+## B6539 
+##     1</code></pre>
 <pre><code>## [1] 117</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1302    6632   25020   23395   46527   46527</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1302    6632   25020   23395 
+## 3rd Qu.    Max. 
+##   46527   46527</code></pre>
 <pre><code>## 
-##            Abbeydale Road      Abbeydale Road South               Askern Road        Attercliffe Common 
-##                        55                        35                        45                        27 
-##          Attercliffe Road           Balby Carr Bank             Balby Flyover                Balby Road 
-##                        26                         1                        12                        35 
-##             Barnsley Road               Bawtry Road              Bentley Road          Birley Moor Road 
-##                        14                       103                        16                        32 
-##            Bochum Parkway              Bramall Lane              Broad Street                  Broadway 
-##                        19                        19                         7                        17 
-##                Broom Road           Burngreave Road           Carr House Road             Cemetery Road 
-##                        12                        10                        32                        10 
-##             Centenary Way           Chapeltown Road         Chesterfield Road   Chesterfield Road South 
-##                         4                         4                        60                        14 
-##                Church Way                 City Road            Clayfield Lane          Cleveland Street 
-##                        19                        15                         1                        10 
-##            Doncaster Lane            Doncaster Road            Ecclesall Road      Ecclesall Road South 
-##                        13                        57                        44                        35 
-##          Ecclesfield Road            Edlington Lane          Fitzwilliam Road             Gateford Road 
-##                        16                         5                        24                         4 
-##        Greasbrough Street          Great North Road            Greenland Road              Halifax Road 
-##                        10                        42                        40                        31 
-##               Hanover Way              Herries Road                 High Road               High Street 
-##                         7                         8                        10                        25 
-##                 Leger Way               London Road              Mangham Road            Mansfield Road 
-##                        37                        32                        19                        16 
-##            Meadowhall Way                Meadowhead           Middlewood Road             Moorgate Road 
-##                        16                        25                        22                        14 
-##         Netherthorpe Road         North Bridge Road             Norton Avenue                     Other 
-##                         7                        11                        23                       857 
-##                 Park Road               Park Square            Penistone Road      Penistone Road North 
-##                        39                        11                        84                        23 
-##      Prince of Wales Road               Queens Road              Retford Road             Ridgeway Road 
-##                        70                        24                        22                        38 
-##            Rotherham Road         Saint Mary&#39;s Gate         Saint Mary&#39;s Road             Sandford Road 
-##                        15                         8                        15                        24 
-##          Sandringham Road        Shaftesbury Avenue              Sheaf Street            Sheffield Road 
-##                         7                         7                         8                        40 
-##             Shepcote Lane                The Common               Thorne Road             Tickhill Road 
-##                        23                        14                        65                         5 
-##        Tinsley Roundabout           Tinsley Viaduct              Trafford Way Unstone-Dronfield By-Pass 
-##                        12                         2                        33                        11 
-##      Upper Hanover Street            Wakefield Road           Warmsworth Road            West Moor Link 
-##                        13                        19                        14                         5 
-##        Wheatley Hall Road           Wickersley Road                 York Road 
-##                        48                        11                        16</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.10311 0.05806 1.00174</code></pre>
+##            Abbeydale Road 
+##                        55 
+##      Abbeydale Road South 
+##                        35 
+##               Askern Road 
+##                        45 
+##        Attercliffe Common 
+##                        27 
+##          Attercliffe Road 
+##                        26 
+##           Balby Carr Bank 
+##                         1 
+##             Balby Flyover 
+##                        12 
+##                Balby Road 
+##                        35 
+##             Barnsley Road 
+##                        14 
+##               Bawtry Road 
+##                       103 
+##              Bentley Road 
+##                        16 
+##          Birley Moor Road 
+##                        32 
+##            Bochum Parkway 
+##                        19 
+##              Bramall Lane 
+##                        19 
+##              Broad Street 
+##                         7 
+##                  Broadway 
+##                        17 
+##                Broom Road 
+##                        12 
+##           Burngreave Road 
+##                        10 
+##           Carr House Road 
+##                        32 
+##             Cemetery Road 
+##                        10 
+##             Centenary Way 
+##                         4 
+##           Chapeltown Road 
+##                         4 
+##         Chesterfield Road 
+##                        60 
+##   Chesterfield Road South 
+##                        14 
+##                Church Way 
+##                        19 
+##                 City Road 
+##                        15 
+##            Clayfield Lane 
+##                         1 
+##          Cleveland Street 
+##                        10 
+##            Doncaster Lane 
+##                        13 
+##            Doncaster Road 
+##                        57 
+##            Ecclesall Road 
+##                        44 
+##      Ecclesall Road South 
+##                        35 
+##          Ecclesfield Road 
+##                        16 
+##            Edlington Lane 
+##                         5 
+##          Fitzwilliam Road 
+##                        24 
+##             Gateford Road 
+##                         4 
+##        Greasbrough Street 
+##                        10 
+##          Great North Road 
+##                        42 
+##            Greenland Road 
+##                        40 
+##              Halifax Road 
+##                        31 
+##               Hanover Way 
+##                         7 
+##              Herries Road 
+##                         8 
+##                 High Road 
+##                        10 
+##               High Street 
+##                        25 
+##                 Leger Way 
+##                        37 
+##               London Road 
+##                        32 
+##              Mangham Road 
+##                        19 
+##            Mansfield Road 
+##                        16 
+##            Meadowhall Way 
+##                        16 
+##                Meadowhead 
+##                        25 
+##           Middlewood Road 
+##                        22 
+##             Moorgate Road 
+##                        14 
+##         Netherthorpe Road 
+##                         7 
+##         North Bridge Road 
+##                        11 
+##             Norton Avenue 
+##                        23 
+##                     Other 
+##                       857 
+##                 Park Road 
+##                        39 
+##               Park Square 
+##                        11 
+##            Penistone Road 
+##                        84 
+##      Penistone Road North 
+##                        23 
+##      Prince of Wales Road 
+##                        70 
+##               Queens Road 
+##                        24 
+##              Retford Road 
+##                        22 
+##             Ridgeway Road 
+##                        38 
+##            Rotherham Road 
+##                        15 
+##         Saint Mary&#39;s Gate 
+##                         8 
+##         Saint Mary&#39;s Road 
+##                        15 
+##             Sandford Road 
+##                        24 
+##          Sandringham Road 
+##                         7 
+##        Shaftesbury Avenue 
+##                         7 
+##              Sheaf Street 
+##                         8 
+##            Sheffield Road 
+##                        40 
+##             Shepcote Lane 
+##                        23 
+##                The Common 
+##                        14 
+##               Thorne Road 
+##                        65 
+##             Tickhill Road 
+##                         5 
+##        Tinsley Roundabout 
+##                        12 
+##           Tinsley Viaduct 
+##                         2 
+##              Trafford Way 
+##                        33 
+## Unstone-Dronfield By-Pass 
+##                        11 
+##      Upper Hanover Street 
+##                        13 
+##            Wakefield Road 
+##                        19 
+##           Warmsworth Road 
+##                        14 
+##            West Moor Link 
+##                         5 
+##        Wheatley Hall Road 
+##                        48 
+##           Wickersley Road 
+##                        11 
+##                 York Road 
+##                        16</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.00000 0.10311 
+## 3rd Qu.    Max. 
+## 0.05806 1.00174</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A63…   161     2 Balby Road                      2 Balb…         1545              307          7
-##  2 &quot;A63…   161     2 Trafford Way                    1 Traf…         1028              272         10
-##  3 &quot;&quot;      161     6 Thorne Road                     3 Thor…         2053              256         11
-##  4 &quot;A18&quot;   161     1 Carr House Road                 1 Carr…         4106              212          8
-##  5 &quot;A62…     7     1 Ecclesall Road                  1 Eccl…         2377              208         10
-##  6 &quot;A19&quot;   161     1 Bentley Road                    1 Bent…          891              220          9
-##  7 &quot;A61&quot;     7     3 London Road                     1 Lond…          529              337         11
-##  8 &quot;A63…   161     2 Balby Flyover                   1 Balb…          532              310         10
-##  9 &quot;A19&quot;   161     1 Other                          37 A19            598              241          9
-## 10 &quot;A61…     7     1 Attercliffe Road                1 Atte…         1467              144         11
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                       A18                       A19                     A6021                       A61 
-##                         1                         1                         1                         3 
-##                     A6102                     A6133                     A6178                      A630 
-##                         1                         1                         1                         1 
-##                      A631                      A633                      A635                      A638 
-##                         4                         1                         1                         5 
-##            Abbeydale Road      Abbeydale Road South               Askern Road        Attercliffe Common 
-##                         1                         1                         1                         1 
-##          Attercliffe Road           Balby Carr Bank             Balby Flyover                Balby Road 
-##                         2                         1                         2                         2 
-##           Barnby Dun Road             Barnsley Road               Bawtry Road              Bentley Road 
-##                         1                         2                         4                         1 
-##          Birley Moor Road            Bochum Parkway              Bramall Lane                Broad Lane 
-##                         1                         1                         1                         1 
-##              Broad Street                  Broadway                Brook Hill                Broom Road 
-##                         1                         1                         1                         1 
-##           Burngreave Road              Cantley Lane           Carr House Road             Cemetery Road 
-##                         1                         1                         1                         1 
-##             Centenary Way           Chapeltown Road         Chesterfield Road   Chesterfield Road South 
-##                         1                         1                         1                         1 
-##                Church Way                 City Road            Clayfield Lane          Cleveland Street 
-##                         1                         2                         1                         1 
-##                Cross Hill              Darnall Road          Derek Dooley Way            Doncaster Lane 
-##                         1                         1                         1                         1 
-##            Doncaster Road               Duke Street            Ecclesall Road      Ecclesall Road South 
-##                         4                         1                         1                         1 
-##          Ecclesfield Road            Edlington Lane          Fitzwilliam Road             Furnival Road 
-##                         1                         1                         1                         1 
-##            Gate Wood Lane             Gateford Road          Greasbrough Road        Greasbrough Street 
-##                         1                         1                         2                         1 
-##          Great North Road                Green Lane            Greenland Road              Halifax Road 
-##                         3                         1                         1                         1 
-##               Hanover Way              Herries Road                 High Road               High Street 
-##                         1                         1                         2                         3 
-##              Hunter&#39;s Bar         Ickles Roundabout                 Leger Way          Leicester Avenue 
-##                         1                         1                         1                         1 
-##             Leppings Lane               London Road              Mangham Road            Mansfield Road 
-##                         1                         3                         1                         1 
-##            Meadowhall Way                Meadowhead           Middlewood Road     Middlewood Road North 
-##                         1                         1                         2                         1 
-##              Moore Street             Moorgate Road            Mowbray Street             Neepsend Lane 
-##                         2                         1                         1                         1 
-##         Netherthorpe Road         North Bridge Road             Norton Avenue                 Park Road 
-##                         1                         1                         1                         1 
-##               Park Square            Penistone Road      Penistone Road North      Prince of Wales Road 
-##                         1                         2                         1                         1 
-##               Queens Road              Retford Road             Ridgeway Road            Rotherham Road 
-##                         1                         1                         1                         1 
-##         Saint Mary&#39;s Gate         Saint Mary&#39;s Road             Sandford Road          Sandringham Road 
-##                         1                         1                         1                         1 
-##             Savile Street                Selby Road        Shaftesbury Avenue              Sheaf Street 
-##                         1                         1                         1                         1 
-##            Sheffield Road             Shepcote Lane           Shrewsbury Road               Spital Hill 
-##                         5                         2                         1                         1 
-##    St Sepulchre Gate West           Staniforth Road              Taylors Lane                The Common 
-##                         1                         1                         1                         1 
-##               Thorne Road             Tickhill Road        Tinsley Roundabout           Tinsley Viaduct 
-##                         3                         1                         1                         1 
-##          Town Moor Avenue              Trafford Way              Unnamed road Unstone-Dronfield By-Pass 
-##                         1                         2                         9                         1 
-##      Upper Hanover Street            Wakefield Road           Warmsworth Road             Weedon Street 
-##                         1                         1                         1                         1 
-##            West Moor Link        Wheatley Hall Road           Wickersley Road           Winchester Road 
-##                         1                         1                         1                         1 
+##                       A18 
+##                         1 
+##                       A19 
+##                         1 
+##                     A6021 
+##                         1 
+##                       A61 
+##                         3 
+##                     A6102 
+##                         1 
+##                     A6133 
+##                         1 
+##                     A6178 
+##                         1 
+##                      A630 
+##                         1 
+##                      A631 
+##                         4 
+##                      A633 
+##                         1 
+##                      A635 
+##                         1 
+##                      A638 
+##                         5 
+##            Abbeydale Road 
+##                         1 
+##      Abbeydale Road South 
+##                         1 
+##               Askern Road 
+##                         1 
+##        Attercliffe Common 
+##                         1 
+##          Attercliffe Road 
+##                         2 
+##           Balby Carr Bank 
+##                         1 
+##             Balby Flyover 
+##                         2 
+##                Balby Road 
+##                         2 
+##           Barnby Dun Road 
+##                         1 
+##             Barnsley Road 
+##                         2 
+##               Bawtry Road 
+##                         4 
+##              Bentley Road 
+##                         1 
+##          Birley Moor Road 
+##                         1 
+##            Bochum Parkway 
+##                         1 
+##              Bramall Lane 
+##                         1 
+##                Broad Lane 
+##                         1 
+##              Broad Street 
+##                         1 
+##                  Broadway 
+##                         1 
+##                Brook Hill 
+##                         1 
+##                Broom Road 
+##                         1 
+##           Burngreave Road 
+##                         1 
+##              Cantley Lane 
+##                         1 
+##           Carr House Road 
+##                         1 
+##             Cemetery Road 
+##                         1 
+##             Centenary Way 
+##                         1 
+##           Chapeltown Road 
+##                         1 
+##         Chesterfield Road 
+##                         1 
+##   Chesterfield Road South 
+##                         1 
+##                Church Way 
+##                         1 
+##                 City Road 
+##                         2 
+##            Clayfield Lane 
+##                         1 
+##          Cleveland Street 
+##                         1 
+##                Cross Hill 
+##                         1 
+##              Darnall Road 
+##                         1 
+##          Derek Dooley Way 
+##                         1 
+##            Doncaster Lane 
+##                         1 
+##            Doncaster Road 
+##                         4 
+##               Duke Street 
+##                         1 
+##            Ecclesall Road 
+##                         1 
+##      Ecclesall Road South 
+##                         1 
+##          Ecclesfield Road 
+##                         1 
+##            Edlington Lane 
+##                         1 
+##          Fitzwilliam Road 
+##                         1 
+##             Furnival Road 
+##                         1 
+##            Gate Wood Lane 
+##                         1 
+##             Gateford Road 
+##                         1 
+##          Greasbrough Road 
+##                         2 
+##        Greasbrough Street 
+##                         1 
+##          Great North Road 
+##                         3 
+##                Green Lane 
+##                         1 
+##            Greenland Road 
+##                         1 
+##              Halifax Road 
+##                         1 
+##               Hanover Way 
+##                         1 
+##              Herries Road 
+##                         1 
+##                 High Road 
+##                         2 
+##               High Street 
+##                         3 
+##              Hunter&#39;s Bar 
+##                         1 
+##         Ickles Roundabout 
+##                         1 
+##                 Leger Way 
+##                         1 
+##          Leicester Avenue 
+##                         1 
+##             Leppings Lane 
+##                         1 
+##               London Road 
+##                         3 
+##              Mangham Road 
+##                         1 
+##            Mansfield Road 
+##                         1 
+##            Meadowhall Way 
+##                         1 
+##                Meadowhead 
+##                         1 
+##           Middlewood Road 
+##                         2 
+##     Middlewood Road North 
+##                         1 
+##              Moore Street 
+##                         2 
+##             Moorgate Road 
+##                         1 
+##            Mowbray Street 
+##                         1 
+##             Neepsend Lane 
+##                         1 
+##         Netherthorpe Road 
+##                         1 
+##         North Bridge Road 
+##                         1 
+##             Norton Avenue 
+##                         1 
+##                 Park Road 
+##                         1 
+##               Park Square 
+##                         1 
+##            Penistone Road 
+##                         2 
+##      Penistone Road North 
+##                         1 
+##      Prince of Wales Road 
+##                         1 
+##               Queens Road 
+##                         1 
+##              Retford Road 
+##                         1 
+##             Ridgeway Road 
+##                         1 
+##            Rotherham Road 
+##                         1 
+##         Saint Mary&#39;s Gate 
+##                         1 
+##         Saint Mary&#39;s Road 
+##                         1 
+##             Sandford Road 
+##                         1 
+##          Sandringham Road 
+##                         1 
+##             Savile Street 
+##                         1 
+##                Selby Road 
+##                         1 
+##        Shaftesbury Avenue 
+##                         1 
+##              Sheaf Street 
+##                         1 
+##            Sheffield Road 
+##                         5 
+##             Shepcote Lane 
+##                         2 
+##           Shrewsbury Road 
+##                         1 
+##               Spital Hill 
+##                         1 
+##    St Sepulchre Gate West 
+##                         1 
+##           Staniforth Road 
+##                         1 
+##              Taylors Lane 
+##                         1 
+##                The Common 
+##                         1 
+##               Thorne Road 
+##                         3 
+##             Tickhill Road 
+##                         1 
+##        Tinsley Roundabout 
+##                         1 
+##           Tinsley Viaduct 
+##                         1 
+##          Town Moor Avenue 
+##                         1 
+##              Trafford Way 
+##                         2 
+##              Unnamed road 
+##                         9 
+## Unstone-Dronfield By-Pass 
+##                         1 
+##      Upper Hanover Street 
+##                         1 
+##            Wakefield Road 
+##                         1 
+##           Warmsworth Road 
+##                         1 
+##             Weedon Street 
+##                         1 
+##            West Moor Link 
+##                         1 
+##        Wheatley Hall Road 
+##                         1 
+##           Wickersley Road 
+##                         1 
+##           Winchester Road 
+##                         1 
 ##                 York Road 
 ##                         2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       73                       65</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       73                       65                        9</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       73                       65                        9</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name             Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Balby Road       &quot;A630&quot;                       1545                 307                       474
-##  2 Trafford Way     &quot;A630&quot;                       1028                 272                       280
-##  3 Thorne Road      &quot;&quot;                           2053                 256                       526
-##  4 Carr House Road  &quot;A18&quot;                        4106                 212                       870
-##  5 Ecclesall Road   &quot;A625&quot;                       2377                 208                       494
-##  6 Bentley Road     &quot;A19&quot;                         891                 220                       196
-##  7 London Road      &quot;A61&quot;                         529                 337                       178
-##  8 Balby Flyover    &quot;A630&quot;                        532                 310                       165
-##  9 A19              &quot;A19&quot;                         598                 241                       144
-## 10 Attercliffe Road &quot;A6178&quot;                      1467                 144                       211
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       80 
+##    Estimated width &gt; 10m 
+##                       59</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       80 
+##    Estimated width &gt; 10m 
+##                       59 
+##                     NA&#39;s 
+##                        8</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       80 
+##    Estimated width &gt; 10m 
+##                       59 
+##                     NA&#39;s 
+##                        8</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Lond… &quot;A61&quot;              529
+##  2 Balb… &quot;A630&quot;             532
+##  3 Balb… &quot;A630&quot;            1545
+##  4 Traf… &quot;A630&quot;            1028
+##  5 Thor… &quot;&quot;                2053
+##  6 A19   &quot;A19&quot;              598
+##  7 Bent… &quot;A19&quot;              891
+##  8 Carr… &quot;A18&quot;             4106
+##  9 High… &quot;A19&quot;              685
+## 10 Eccl… &quot;A625&quot;            2377
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

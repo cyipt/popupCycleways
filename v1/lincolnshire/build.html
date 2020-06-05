@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,142 +378,308 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A1137 A1192 A1434   A15  A151   A16   A52   A57  A607 B1003 B1172 B1190 B1241 B1397 
-##   126     5    15    39    25     2     7     2     1    12     1     3     3    15     4</code></pre>
+##       A1137 A1192 A1434   A15  A151 
+##   126     5    15    39    25     2 
+##   A16   A52   A57  A607 B1003 B1172 
+##     7     2     1    12     1     3 
+## B1190 B1241 B1397 
+##     3    15     4</code></pre>
 <pre><code>## [1] 63</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1278    4653    9437   11249   20040   20040</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1278    4653    9437   11249 
+## 3rd Qu.    Max. 
+##   20040   20040</code></pre>
 <pre><code>## 
-##      Barrowby Road        Boston Road       Brayford Way        Bridge Road       Bunkers Hill 
-##                 10                 10                 10                  3                  4 
-##         Burgh Road       Canwick Road      Carholme Road         Croft Bank Cross O&#39;Cliff Hill 
-##                 44                 23                 43                 14                  9 
-##    Doddington Road          East Road          High Road        High Street      Holbeach Road 
-##                  6                 11                 32                 34                  7 
-##     John Adams Way       Lincoln Road        Lindum Road        London Road          Main Road 
-##                 33                  8                  9                 22                 22 
-##     Nettleham Road        Newark Road            Newland          Newmarket         North Road 
-##                  9                 70                 21                  9                  9 
-##              Other  Outer Circle Road      Pelham Bridge         Roman Bank           Ropewalk 
-##                824                 22                  3                 19                 16 
-## Sankt Augustin Way        Sibsey Road      Skegness Road      Sleaford Road       Somerby Hill 
-##                  5                 12                 23                 43                  6 
-##         South Park  South Park Avenue         South Road    Spalding Bypass      Spalding Road 
-##                  9                  3                 21                  1                 14 
-##       Spilsby Road     St Catherine&#39;s    Swineshead Road       Tritton Road   Wainfleet Bypass 
-##                 15                 10                  5                 51                 10 
-##     Wainfleet Road       Washway Road        Welton Road        Wragby Road 
-##                 25                  9                 19                 35</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.12435 0.09114 1.01961</code></pre>
+##      Barrowby Road        Boston Road 
+##                 10                 10 
+##       Brayford Way        Bridge Road 
+##                 10                  3 
+##       Bunkers Hill         Burgh Road 
+##                  4                 44 
+##       Canwick Road      Carholme Road 
+##                 23                 43 
+##         Croft Bank Cross O&#39;Cliff Hill 
+##                 14                  9 
+##    Doddington Road          East Road 
+##                  6                 11 
+##          High Road        High Street 
+##                 32                 34 
+##      Holbeach Road     John Adams Way 
+##                  7                 33 
+##       Lincoln Road        Lindum Road 
+##                  8                  9 
+##        London Road          Main Road 
+##                 22                 22 
+##     Nettleham Road        Newark Road 
+##                  9                 70 
+##            Newland          Newmarket 
+##                 21                  9 
+##         North Road              Other 
+##                  9                824 
+##  Outer Circle Road      Pelham Bridge 
+##                 22                  3 
+##         Roman Bank           Ropewalk 
+##                 19                 16 
+## Sankt Augustin Way        Sibsey Road 
+##                  5                 12 
+##      Skegness Road      Sleaford Road 
+##                 23                 43 
+##       Somerby Hill         South Park 
+##                  6                  9 
+##  South Park Avenue         South Road 
+##                  3                 21 
+##    Spalding Bypass      Spalding Road 
+##                  1                 14 
+##       Spilsby Road     St Catherine&#39;s 
+##                 15                 10 
+##    Swineshead Road       Tritton Road 
+##                  5                 51 
+##   Wainfleet Bypass     Wainfleet Road 
+##                 10                 25 
+##       Washway Road        Welton Road 
+##                  9                 19 
+##        Wragby Road 
+##                 35</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.00000 0.12435 
+## 3rd Qu.    Max. 
+## 0.09114 1.01961</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A14…   177     2 Newark Road                     2 Newa…         1528              419         11
-##  2 &quot;A15&quot;   159     1 Canwick Road                    1 Canw…          798              463          9
-##  3 &quot;A15&quot;   159     1 Other                          34 Melv…         1048              367          8
-##  4 &quot;A15&quot;   159     1 Pelham Bridge                   1 Pelh…          605              563          7
-##  5 &quot;A16&quot;     1     1 Spalding Road                   1 Spal…         1068              317         10
-##  6 &quot;&quot;        1     1 Other                           1 High…          707              440         10
-##  7 &quot;B11…   244     1 Doddington Road                 1 Dodd…          633              479         10
-##  8 &quot;A15&quot;   159     1 South Park                      1 Sout…         1006              263          9
-##  9 &quot;A14…   177     2 Other                          31 A1434         1535              248         10
-## 10 &quot;A11…   159     2 Tritton Road                    1 Trit…         1955              226          9
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                        A1434                          A15                         A151 
-##                            2                            3                            3 
-##                         A153                         A158                          A16 
-##                            1                            1                            2 
-##                          A17                          A46                          A52 
-##                            3                            1                            7 
-##                          A57                         A607                 Allenby Road 
-##                            1                            1                            1 
-##                        B1003                        B1226           Bargate Roundabout 
-##                            1                            1                            1 
-##                Barrowby Road                    Berry Way                  Boston Road 
-##                            2                            1                            1 
-##                  Bourne Road                 Brayford Way              Bridge End Road 
-##                            1                            2                            1 
-##                  Bridge Road                 Bunkers Hill                   Burgh Road 
-##                            1                            1                            1 
-##                 Canwick Hill                 Canwick Road                Carholme Road 
-##                            1                            2                            1 
-##          Castleton Boulevard             Cherry Holt Road                  Clasketgate 
-##                            1                            1                            1 
-##                   Croft Bank           Cross O&#39;Cliff Hill              Doddington Road 
-##                            1                            1                            1 
-##                    East Road                   Fleet Road               Gosberton Road 
-##                            1                            1                            1 
-##                Grantham Road                 Haven Bridge                    High Road 
-##                            1                            1                            1 
-##                  High Street                Holbeach Road        Holdingham Roundabout 
-##                            3                            1                            1 
-##               John Adams Way                Kelsey Bridge                  King&#39;s Road 
-##                            1                            1                            1 
-##                 Lincoln Road                  Lindum Road Liquorpond Street Roundabout 
-##                            3                            1                            1 
-##                  London Road                Lumley Avenue                  Lumley Road 
-##                            3                            1                            1 
-##                    Main Road              Melville Street               Nettleham Road 
-##                            1                            1                            1 
-##                  Newark Road                      Newland                    Newmarket 
-##                            3                            2                            1 
-##                   North Road                 North Street            Outer Circle Road 
-##                            1                            1                            1 
-##                Pelham Bridge               Pinchbeck Road                   Roman Bank 
-##                            1                            1                            2 
-##                     Ropewalk                Ruskin Avenue            Saint Peters Hill 
-##                            1                            1                            1 
-##           Sankt Augustin Way                  Sibsey Road                Silver Street 
-##                            1                            1                            1 
-##                Skegness Road                Sleaford Road                 Somerby Hill 
-##                            2                            2                            1 
-##                    South End                   South Park            South Park Avenue 
-##                            1                            1                            1 
-##                   South Road              Spalding Bypass                Spalding Road 
-##                            1                            1                            1 
-##                 Spilsby Road             Springfield Road               St Catherine&#39;s 
-##                            1                            1                            1 
-##              Stockhouse Lane              Swineshead Road                 Tritton Road 
-##                            1                            3                            3 
-##                 Unnamed road             Wainfleet Bypass               Wainfleet Road 
-##                            5                            1                            1 
-##                 Washway Road                  Welton Road                  West Street 
-##                            1                            2                            1 
-##                   Wharf Road                  Wragby Road             Wragby Road East 
-##                            1                            1                            1</code></pre>
+##                        A1434 
+##                            2 
+##                          A15 
+##                            3 
+##                         A151 
+##                            3 
+##                         A153 
+##                            1 
+##                         A158 
+##                            1 
+##                          A16 
+##                            2 
+##                          A17 
+##                            3 
+##                          A46 
+##                            1 
+##                          A52 
+##                            7 
+##                          A57 
+##                            1 
+##                         A607 
+##                            1 
+##                 Allenby Road 
+##                            1 
+##                        B1003 
+##                            1 
+##                        B1226 
+##                            1 
+##           Bargate Roundabout 
+##                            1 
+##                Barrowby Road 
+##                            2 
+##                    Berry Way 
+##                            1 
+##                  Boston Road 
+##                            1 
+##                  Bourne Road 
+##                            1 
+##                 Brayford Way 
+##                            2 
+##              Bridge End Road 
+##                            1 
+##                  Bridge Road 
+##                            1 
+##                 Bunkers Hill 
+##                            1 
+##                   Burgh Road 
+##                            1 
+##                 Canwick Hill 
+##                            1 
+##                 Canwick Road 
+##                            2 
+##                Carholme Road 
+##                            1 
+##          Castleton Boulevard 
+##                            1 
+##             Cherry Holt Road 
+##                            1 
+##                  Clasketgate 
+##                            1 
+##                   Croft Bank 
+##                            1 
+##           Cross O&#39;Cliff Hill 
+##                            1 
+##              Doddington Road 
+##                            1 
+##                    East Road 
+##                            1 
+##                   Fleet Road 
+##                            1 
+##               Gosberton Road 
+##                            1 
+##                Grantham Road 
+##                            1 
+##                 Haven Bridge 
+##                            1 
+##                    High Road 
+##                            1 
+##                  High Street 
+##                            3 
+##                Holbeach Road 
+##                            1 
+##        Holdingham Roundabout 
+##                            1 
+##               John Adams Way 
+##                            1 
+##                Kelsey Bridge 
+##                            1 
+##                  King&#39;s Road 
+##                            1 
+##                 Lincoln Road 
+##                            3 
+##                  Lindum Road 
+##                            1 
+## Liquorpond Street Roundabout 
+##                            1 
+##                  London Road 
+##                            3 
+##                Lumley Avenue 
+##                            1 
+##                  Lumley Road 
+##                            1 
+##                    Main Road 
+##                            1 
+##              Melville Street 
+##                            1 
+##               Nettleham Road 
+##                            1 
+##                  Newark Road 
+##                            3 
+##                      Newland 
+##                            2 
+##                    Newmarket 
+##                            1 
+##                   North Road 
+##                            1 
+##                 North Street 
+##                            1 
+##            Outer Circle Road 
+##                            1 
+##                Pelham Bridge 
+##                            1 
+##               Pinchbeck Road 
+##                            1 
+##                   Roman Bank 
+##                            2 
+##                     Ropewalk 
+##                            1 
+##                Ruskin Avenue 
+##                            1 
+##            Saint Peters Hill 
+##                            1 
+##           Sankt Augustin Way 
+##                            1 
+##                  Sibsey Road 
+##                            1 
+##                Silver Street 
+##                            1 
+##                Skegness Road 
+##                            2 
+##                Sleaford Road 
+##                            2 
+##                 Somerby Hill 
+##                            1 
+##                    South End 
+##                            1 
+##                   South Park 
+##                            1 
+##            South Park Avenue 
+##                            1 
+##                   South Road 
+##                            1 
+##              Spalding Bypass 
+##                            1 
+##                Spalding Road 
+##                            1 
+##                 Spilsby Road 
+##                            1 
+##             Springfield Road 
+##                            1 
+##               St Catherine&#39;s 
+##                            1 
+##              Stockhouse Lane 
+##                            1 
+##              Swineshead Road 
+##                            3 
+##                 Tritton Road 
+##                            3 
+##                 Unnamed road 
+##                            5 
+##             Wainfleet Bypass 
+##                            1 
+##               Wainfleet Road 
+##                            1 
+##                 Washway Road 
+##                            1 
+##                  Welton Road 
+##                            2 
+##                  West Street 
+##                            1 
+##                   Wharf Road 
+##                            1 
+##                  Wragby Road 
+##                            1 
+##             Wragby Road East 
+##                            1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       53                       42</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       53                       42                        6</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       53                       42                        6</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Newark Road     &quot;A1434&quot;                      1528                 419                       640
-##  2 Canwick Road    &quot;A15&quot;                         798                 463                       369
-##  3 Melville Street &quot;A15&quot;                        1048                 367                       385
-##  4 Pelham Bridge   &quot;A15&quot;                         605                 563                       341
-##  5 Spalding Road   &quot;A16&quot;                        1068                 317                       339
-##  6 High Street     &quot;&quot;                            707                 440                       311
-##  7 Doddington Road &quot;B1190&quot;                       633                 479                       303
-##  8 South Park      &quot;A15&quot;                        1006                 263                       265
-##  9 A1434           &quot;A1434&quot;                      1535                 248                       381
-## 10 Tritton Road    &quot;A1192&quot;                      1955                 226                       442
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       54 
+##    Estimated width &gt; 10m 
+##                       41</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       54 
+##    Estimated width &gt; 10m 
+##                       41 
+##                     NA&#39;s 
+##                        6</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       54 
+##    Estimated width &gt; 10m 
+##                       41 
+##                     NA&#39;s 
+##                        6</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Pelh… &quot;A15&quot;              605
+##  2 Dodd… &quot;B1190&quot;            633
+##  3 Canw… &quot;A15&quot;              798
+##  4 High… &quot;&quot;                 707
+##  5 Newa… &quot;A1434&quot;           1528
+##  6 Sout… &quot;A15&quot;              514
+##  7 St C… &quot;A1434&quot;            566
+##  8 Melv… &quot;A15&quot;             1048
+##  9 Spal… &quot;A16&quot;             1068
+## 10 Lind… &quot;A15&quot;              672
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

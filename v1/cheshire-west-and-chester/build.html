@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,126 +378,279 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##                                   A5104                 A56               B5082               B5132 
-##                 104                   5                   1                  16                   3 
-## Chester City FP 118 Chester City FP 161 Chester City FP 238 Chester City FP 248              FX1224 
-##                   1                   1                   2                   1                   4 
+##                     
+##                 104 
+##               A5104 
+##                   5 
+##                 A56 
+##                   1 
+##               B5082 
+##                  16 
+##               B5132 
+##                   3 
+## Chester City FP 118 
+##                   1 
+## Chester City FP 161 
+##                   1 
+## Chester City FP 238 
+##                   2 
+## Chester City FP 248 
+##                   1 
+##              FX1224 
+##                   4 
 ##              FX1225 
 ##                   3</code></pre>
 <pre><code>## [1] 44</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1359    2547    3343    5251    5029   13447</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1359    2547    3343    5251 
+## 3rd Qu.    Max. 
+##    5029   13447</code></pre>
 <pre><code>## 
-##            Boughton   Chester High Road        Chester Road         Chester Way        Countess Way 
-##                  13                  17                  93                  23                   6 
-##      Grosvenor Road         High Street          Hoole Road           Hoole Way         Hough Green 
-##                  10                  22                  16                   8                  10 
-##      Liverpool Road         London Road           Long Lane     Middlewich Road         Moston Road 
-##                  77                  16                  24                  18                  10 
-##    New Chester Road     Nicholas Street      Northwich Road               Other           Ring Road 
-##                  11                  16                  55                 417                  33 
-##        Runcorn Road        Sealand Road Southern Expressway     St. Oswalds Way         Tarvin Road 
-##                  33                  24                  16                  12                  21 
-##   Vicars Cross Road         Whitby Road     Whitchurch Road     Winnington Lane    Winsford By-pass 
-##                  13                   7                  57                  42                   3 
+##            Boughton 
+##                  13 
+##   Chester High Road 
+##                  17 
+##        Chester Road 
+##                  93 
+##         Chester Way 
+##                  23 
+##        Countess Way 
+##                   6 
+##      Grosvenor Road 
+##                  10 
+##         High Street 
+##                  22 
+##          Hoole Road 
+##                  16 
+##           Hoole Way 
+##                   8 
+##         Hough Green 
+##                  10 
+##      Liverpool Road 
+##                  77 
+##         London Road 
+##                  16 
+##           Long Lane 
+##                  24 
+##     Middlewich Road 
+##                  18 
+##         Moston Road 
+##                  10 
+##    New Chester Road 
+##                  11 
+##     Nicholas Street 
+##                  16 
+##      Northwich Road 
+##                  55 
+##               Other 
+##                 417 
+##           Ring Road 
+##                  33 
+##        Runcorn Road 
+##                  33 
+##        Sealand Road 
+##                  24 
+## Southern Expressway 
+##                  16 
+##     St. Oswalds Way 
+##                  12 
+##         Tarvin Road 
+##                  21 
+##   Vicars Cross Road 
+##                  13 
+##         Whitby Road 
+##                   7 
+##     Whitchurch Road 
+##                  57 
+##     Winnington Lane 
+##                  42 
+##    Winsford By-pass 
+##                   3 
 ##        Wrexham Road 
 ##                  20</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.03671 0.23289 0.37977 1.01818</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.03671 0.23289 
+## 3rd Qu.    Max. 
+## 0.37977 1.01818</code></pre>
 <pre><code>## [1] 20</code></pre>
-<pre><code>## # A tibble: 20 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;&quot;        1     1 Hough Green                     1 Houg…          802              292         11
-##  2 &quot;A56&quot;     1     1 Hoole Road                      1 Hool…          745              186          8
-##  3 &quot;A48…     1     1 Grosvenor Road                  1 Gros…          823              168          8
-##  4 &quot;A50…    64     3 Whitby Road                     1 Whit…          658              170         10
-##  5 &quot;A51…     1     1 Liverpool Road                  2 Live…         4679              109          9
-##  6 &quot;A41&quot;     1     2 Liverpool Road                  1 Live…         3879              105          9
-##  7 &quot;A41&quot;     1     2 Other                           4 A41            698              145         12
-##  8 &quot;A51&quot;     1     1 Tarvin Road                     1 Tarv…          965              104          8
-##  9 &quot;A41&quot;     1     2 Chester Road                    2 Ches…          987              100         10
-## 10 &quot;A54…   144     5 Sealand Road                    2 Seal…          886              104         11
-## 11 &quot;A56&quot;     1     1 Hoole Way                       1 Hool…          757              114         10
-## 12 &quot;A41&quot;     1     1 Chester Road                    1 Ches…         4105               84         12
-## 13 &quot;A54&quot;   155     2 High Street                     1 High…         2985               79          8
-## 14 &quot;A53…   159     2 Winnington Lane                 1 Winn…         1735               78          7
-## 15 &quot;A48…     1     1 Wrexham Road                    1 Wrex…          801               88          9
-## 16 &quot;A51…     1     1 Other                          14 Chri…          523              128          9
-## 17 &quot;A51…    41     1 Other                          23 A5117         3724               65         10
-## 18 &quot;A48…     1     2 Other                          19 A483          3729               64          8
-## 19 &quot;A53…   155     3 Other                          37 A533          4950               64          7
-## 20 &quot;A53…   159     2 Other                          18 A533          1038               64          8
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                     A41                    A483                   A5018                   A5032 
-##                       4                       3                       1                       2 
-##                     A51                   A5116                   A5117                    A530 
-##                       1                       1                       1                       1 
-##                    A533                    A540                   B5132        Bache Roundabout 
-##                       3                       1                       1                       1 
-##                Boughton       Chester High Road            Chester Road             Chester Way 
-##                       1                       2                       8                       2 
-##        Christleton Road               Civic Way            Countess Way        Grosvenor Bridge 
-##                       1                       1                       1                       1 
-##          Grosvenor Road         Hayhurst Bridge             High Street              Hoole Road 
-##                       1                       1                       1                       1 
-##               Hoole Way    Hoole Way Roundabout             Hough Green            Ledsham Road 
-##                       1                       1                       1                       1 
-##          Liverpool Road             London Road               Long Lane         Manchester Road 
-##                       2                       2                       1                       1 
-##         Middlewich Road             Moston Road        New Chester Road        New Crane Street 
-##                       1                       2                       2                       1 
-##             Newton Bank         Nicholas Street          Northwich Road           Parkgate Road 
-##                       1                       1                       2                       1 
-##               Ring Road      Rossmore Road East            Runcorn Road            Sealand Road 
-##                       1                       1                       1                       2 
-##     Southern Expressway         St. Oswalds Way         Sutton Causeway              Sutton Way 
-##                       1                       1                       1                       1 
-##             Tarvin Road                The Bars            Unnamed road  Upper Northgate Street 
-##                       1                       1                       3                       1 
-##       Vicars Cross Road Wharton Road Roundabout             Whitby Road         Whitchurch Road 
-##                       1                       1                       2                       2 
-##         Winnington Lane       Winnington Street        Winsford By-pass            Wrexham Road 
-##                       1                       1                       1                       2</code></pre>
+##                     A41 
+##                       4 
+##                    A483 
+##                       3 
+##                   A5018 
+##                       1 
+##                   A5032 
+##                       2 
+##                     A51 
+##                       1 
+##                   A5116 
+##                       1 
+##                   A5117 
+##                       1 
+##                    A530 
+##                       1 
+##                    A533 
+##                       3 
+##                    A540 
+##                       1 
+##                   B5132 
+##                       1 
+##        Bache Roundabout 
+##                       1 
+##                Boughton 
+##                       1 
+##       Chester High Road 
+##                       2 
+##            Chester Road 
+##                       8 
+##             Chester Way 
+##                       2 
+##        Christleton Road 
+##                       1 
+##               Civic Way 
+##                       1 
+##            Countess Way 
+##                       1 
+##        Grosvenor Bridge 
+##                       1 
+##          Grosvenor Road 
+##                       1 
+##         Hayhurst Bridge 
+##                       1 
+##             High Street 
+##                       1 
+##              Hoole Road 
+##                       1 
+##               Hoole Way 
+##                       1 
+##    Hoole Way Roundabout 
+##                       1 
+##             Hough Green 
+##                       1 
+##            Ledsham Road 
+##                       1 
+##          Liverpool Road 
+##                       2 
+##             London Road 
+##                       2 
+##               Long Lane 
+##                       1 
+##         Manchester Road 
+##                       1 
+##         Middlewich Road 
+##                       1 
+##             Moston Road 
+##                       2 
+##        New Chester Road 
+##                       2 
+##        New Crane Street 
+##                       1 
+##             Newton Bank 
+##                       1 
+##         Nicholas Street 
+##                       1 
+##          Northwich Road 
+##                       2 
+##           Parkgate Road 
+##                       1 
+##               Ring Road 
+##                       1 
+##      Rossmore Road East 
+##                       1 
+##            Runcorn Road 
+##                       1 
+##            Sealand Road 
+##                       2 
+##     Southern Expressway 
+##                       1 
+##         St. Oswalds Way 
+##                       1 
+##         Sutton Causeway 
+##                       1 
+##              Sutton Way 
+##                       1 
+##             Tarvin Road 
+##                       1 
+##                The Bars 
+##                       1 
+##            Unnamed road 
+##                       3 
+##  Upper Northgate Street 
+##                       1 
+##       Vicars Cross Road 
+##                       1 
+## Wharton Road Roundabout 
+##                       1 
+##             Whitby Road 
+##                       2 
+##         Whitchurch Road 
+##                       2 
+##         Winnington Lane 
+##                       1 
+##       Winnington Street 
+##                       1 
+##        Winsford By-pass 
+##                       1 
+##            Wrexham Road 
+##                       2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       20                       41                       25</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       41                       25                        2</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       41                       25                        2</code></pre>
-<pre><code>## # A tibble: 20 x 5
-##    Name             Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Hough Green      &quot;&quot;                            802                 292                       234
-##  2 Hoole Road       &quot;A56&quot;                         745                 186                       139
-##  3 Grosvenor Road   &quot;A483&quot;                        823                 168                       138
-##  4 Whitby Road      &quot;A5032&quot;                       658                 170                       112
-##  5 Liverpool Road   &quot;A5116&quot;                      4679                 109                       510
-##  6 Liverpool Road   &quot;A41&quot;                        3879                 105                       407
-##  7 A41              &quot;A41&quot;                         698                 145                       101
-##  8 Tarvin Road      &quot;A51&quot;                         965                 104                       100
-##  9 Chester Road     &quot;A41&quot;                         987                 100                        99
-## 10 Sealand Road     &quot;A548&quot;                        886                 104                        92
-## 11 Hoole Way        &quot;A56&quot;                         757                 114                        86
-## 12 Chester Road     &quot;A41&quot;                        4105                  84                       345
-## 13 High Street      &quot;A54&quot;                        2985                  79                       236
-## 14 Winnington Lane  &quot;A533&quot;                       1735                  78                       135
-## 15 Wrexham Road     &quot;A483&quot;                        801                  88                        70
-## 16 Christleton Road &quot;A5115&quot;                       523                 128                        67
-## 17 A5117            &quot;A5117&quot;                      3724                  65                       242
-## 18 A483             &quot;A483&quot;                       3729                  64                       239
-## 19 A533             &quot;A533&quot;                       4950                  64                       317
-## 20 A533             &quot;A533&quot;                       1038                  64                        66</code></pre>
+## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       41 
+##    Estimated width &gt; 10m 
+##                       25</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       41 
+##    Estimated width &gt; 10m 
+##                       25 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       41 
+##    Estimated width &gt; 10m 
+##                       25 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## # A tibble: 20 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Houg… &quot;&quot;                 802
+##  2 Hool… &quot;A56&quot;              745
+##  3 Whit… &quot;A5032&quot;            658
+##  4 Gros… &quot;A483&quot;             823
+##  5 A41   &quot;A41&quot;              698
+##  6 Chri… &quot;A5115&quot;            523
+##  7 Hool… &quot;A56&quot;              757
+##  8 Live… &quot;A5116&quot;           4679
+##  9 Ches… &quot;A5509&quot;            555
+## 10 Live… &quot;A41&quot;             3879
+## 11 Tarv… &quot;A51&quot;              965
+## 12 Seal… &quot;A548&quot;             886
+## 13 Ches… &quot;A41&quot;              987
+## 14 Wrex… &quot;A483&quot;             801
+## 15 Ches… &quot;A41&quot;             4105
+## 16 High… &quot;A54&quot;             2985
+## 17 Winn… &quot;A533&quot;            1735
+## 18 New … &quot;A41&quot;              596
+## 19 A5117 &quot;A5117&quot;           3724
+## 20 Lond… &quot;A533&quot;             946
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

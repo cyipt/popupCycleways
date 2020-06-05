@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,142 +378,310 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##        A425  A426  A428  A429 B4087 B4112 B4113 
-##   187    15     1     3    49    15     3     7</code></pre>
+##        A425  A426  A428  A429 B4087 
+##   187    15     1     3    49    15 
+## B4112 B4113 
+##     3     7</code></pre>
 <pre><code>## [1] 80</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##     995    3174    7009    8945   16173   16173</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##     995    3174    7009    8945 
+## 3rd Qu.    Max. 
+##   16173   16173</code></pre>
 <pre><code>## 
-##                Alcester Highway                 Bedworth Bypass                 Binswood Avenue 
-##                               5                              32                               4 
-##                 Birmingham Road                    Brandon Road                 Bromsgrove Road 
-##                              16                              21                              12 
-## Cheylesmore &amp; Stivichall Bypass            Clifford Bridge Road                 Coldfield Drive 
-##                               7                              14                               3 
-##              Corporation Street                      Coton Road                   Coventry Road 
-##                              18                              12                              13 
-##                  Dunchurch Road                    Emscote Road                       Griff Way 
-##                              32                              40                               7 
-##                   Hinckley Road                  Jimmy Hill Way               Kenilworth Bypass 
-##                              18                              11                               9 
-##                 Leamington Road                  Leicester Road                     London Road 
-##                              10                              23                              16 
-##                    Newbold Road                 Newbold Terrace                       Node Hill 
-##                              28                               7                               6 
-##             Northumberland Road                Old Warwick Road                           Other 
-##                               7                               9                             777 
-##                          Parade                  Parkfield Road                     Phoenix Way 
-##                              12                               7                              18 
-##                   Princes Drive                    Radford Road                Rough Hill Drive 
-##                              14                              17                               8 
-##                  Stratford Road                  Tachbrook Road                      The Slough 
-##                              20                              22                              14 
-##                    Trinity Road                     Tuttle Hill                  Warwick Street 
-##                               1                               5                              14 
-##                  Watling Street                 Weddington Road             Western Relief Road 
-##                              77                              17                              29 
-##                     Willes Road                  Windmill Drive 
-##                              11                               3</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.1886  0.2523  1.0025</code></pre>
+##                Alcester Highway 
+##                               5 
+##                 Bedworth Bypass 
+##                              32 
+##                 Binswood Avenue 
+##                               4 
+##                 Birmingham Road 
+##                              16 
+##                    Brandon Road 
+##                              21 
+##                 Bromsgrove Road 
+##                              12 
+## Cheylesmore &amp; Stivichall Bypass 
+##                               7 
+##            Clifford Bridge Road 
+##                              14 
+##                 Coldfield Drive 
+##                               3 
+##              Corporation Street 
+##                              18 
+##                      Coton Road 
+##                              12 
+##                   Coventry Road 
+##                              13 
+##                  Dunchurch Road 
+##                              32 
+##                    Emscote Road 
+##                              40 
+##                       Griff Way 
+##                               7 
+##                   Hinckley Road 
+##                              18 
+##                  Jimmy Hill Way 
+##                              11 
+##               Kenilworth Bypass 
+##                               9 
+##                 Leamington Road 
+##                              10 
+##                  Leicester Road 
+##                              23 
+##                     London Road 
+##                              16 
+##                    Newbold Road 
+##                              28 
+##                 Newbold Terrace 
+##                               7 
+##                       Node Hill 
+##                               6 
+##             Northumberland Road 
+##                               7 
+##                Old Warwick Road 
+##                               9 
+##                           Other 
+##                             777 
+##                          Parade 
+##                              12 
+##                  Parkfield Road 
+##                               7 
+##                     Phoenix Way 
+##                              18 
+##                   Princes Drive 
+##                              14 
+##                    Radford Road 
+##                              17 
+##                Rough Hill Drive 
+##                               8 
+##                  Stratford Road 
+##                              20 
+##                  Tachbrook Road 
+##                              22 
+##                      The Slough 
+##                              14 
+##                    Trinity Road 
+##                               1 
+##                     Tuttle Hill 
+##                               5 
+##                  Warwick Street 
+##                              14 
+##                  Watling Street 
+##                              77 
+##                 Weddington Road 
+##                              17 
+##             Western Relief Road 
+##                              29 
+##                     Willes Road 
+##                              11 
+##                  Windmill Drive 
+##                               3</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.1886 
+## 3rd Qu.    Max. 
+##  0.2523  1.0025</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A445    391     3 Emscote Road                    1 Emsc…         1395              188          9
-##  2 A426    124     1 Newbold Road                    1 Newb…          901              186          8
-##  3 B4087   391     4 Tachbrook Road                  1 Tach…         1250              134         10
-##  4 A47     108     1 Other                          20 A47            868              150          7
-##  5 B4099   391     2 Other                          34 Warw…          900              144         10
-##  6 B4099   391     1 Willes Road                     1 Will…          872              139          9
-##  7 B4082   109     1 Clifford Bridge…                1 Clif…          987              116         10
-##  8 A426    124     1 Dunchurch Road                  2 Dunc…          723              131         10
-##  9 B4113   110     1 Leamington Road                 1 Leam…          644              132         11
-## 10 A444    108     2 Weddington Road                 2 Wedd…         1053               82         10
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                           A3400                            A425                            A426 
-##                               1                               1                               2 
-##                            A428                            A441                            A444 
-##                               2                               1                               1 
-##                            A452                             A46                           A4600 
-##                               2                               1                               2 
-##                             A47                              A5                Alcester Highway 
-##                               1                               3                               1 
-##                   Alcester Road                    Arden Street                           B4065 
-##                               1                               1                               1 
-##                            B439                 Bedworth Bypass                     Bilton Road 
-##                               1                               1                               2 
-##                     Binley Road                 Binswood Avenue                 Birmingham Road 
-##                               1                               1                               4 
-##                    Brandon Road                   Brinklow Road                 Bromsgrove Road 
-##                               1                               2                               1 
-## Cheylesmore &amp; Stivichall Bypass            Clifford Bridge Road                 Coldfield Drive 
-##                               1                               1                               1 
-##              Corporation Street                       Coten End                      Coton Road 
-##                               1                               1                               1 
-##                   Coventry Road                  Dunchurch Road                    Emscote Road 
-##                               3                               2                               1 
-##                      Europa Way                 Festival Island                   Friars Street 
-##                               1                               1                               1 
-##                       Griff Way             Guy&#39;s Cliffe Avenue                     High Street 
-##                               1                               1                               1 
-##                   Hinckley Road                  Jimmy Hill Way               Kenilworth Bypass 
-##                               1                               1                               1 
-##                 Leamington Road                  Leicester Road                 Lillington Road 
-##                               1                               1                               1 
-##                     London Road                    Newbold Road                 Newbold Terrace 
-##                               1                               2                               1 
-##                       Node Hill             Northumberland Road                Old Warwick Road 
-##                               1                               1                               1 
-##                          Parade                      Park Drive                  Parkfield Road 
-##                               1                               1                               1 
-##                     Phoenix Way                   Princes Drive                     Queens Road 
-##                               2                               2                               1 
-##                    Radford Road                  Riverside Walk                Rough Hill Drive 
-##                               2                               1                               1 
-##                      Rugby Road                 St Martins Road                  Stratford Road 
-##                               3                               1                               1 
-##                  Tachbrook Road                      The Slough           Thickthorn Roundabout 
-##                               1                               1                               1 
-##                    Trinity Road                     Tuttle Hill                    Unnamed road 
-##                               1                               1                              17 
-##                Warwick New Road                  Warwick Street                  Watling Street 
-##                               1                               1                               4 
-##                 Weddington Road             Western Relief Road                     Willes Road 
-##                               2                               2                               1 
+##                           A3400 
+##                               1 
+##                            A425 
+##                               1 
+##                            A426 
+##                               2 
+##                            A428 
+##                               2 
+##                            A441 
+##                               1 
+##                            A444 
+##                               1 
+##                            A452 
+##                               2 
+##                             A46 
+##                               1 
+##                           A4600 
+##                               2 
+##                             A47 
+##                               1 
+##                              A5 
+##                               3 
+##                Alcester Highway 
+##                               1 
+##                   Alcester Road 
+##                               1 
+##                    Arden Street 
+##                               1 
+##                           B4065 
+##                               1 
+##                            B439 
+##                               1 
+##                 Bedworth Bypass 
+##                               1 
+##                     Bilton Road 
+##                               2 
+##                     Binley Road 
+##                               1 
+##                 Binswood Avenue 
+##                               1 
+##                 Birmingham Road 
+##                               4 
+##                    Brandon Road 
+##                               1 
+##                   Brinklow Road 
+##                               2 
+##                 Bromsgrove Road 
+##                               1 
+## Cheylesmore &amp; Stivichall Bypass 
+##                               1 
+##            Clifford Bridge Road 
+##                               1 
+##                 Coldfield Drive 
+##                               1 
+##              Corporation Street 
+##                               1 
+##                       Coten End 
+##                               1 
+##                      Coton Road 
+##                               1 
+##                   Coventry Road 
+##                               3 
+##                  Dunchurch Road 
+##                               2 
+##                    Emscote Road 
+##                               1 
+##                      Europa Way 
+##                               1 
+##                 Festival Island 
+##                               1 
+##                   Friars Street 
+##                               1 
+##                       Griff Way 
+##                               1 
+##             Guy&#39;s Cliffe Avenue 
+##                               1 
+##                     High Street 
+##                               1 
+##                   Hinckley Road 
+##                               1 
+##                  Jimmy Hill Way 
+##                               1 
+##               Kenilworth Bypass 
+##                               1 
+##                 Leamington Road 
+##                               1 
+##                  Leicester Road 
+##                               1 
+##                 Lillington Road 
+##                               1 
+##                     London Road 
+##                               1 
+##                    Newbold Road 
+##                               2 
+##                 Newbold Terrace 
+##                               1 
+##                       Node Hill 
+##                               1 
+##             Northumberland Road 
+##                               1 
+##                Old Warwick Road 
+##                               1 
+##                          Parade 
+##                               1 
+##                      Park Drive 
+##                               1 
+##                  Parkfield Road 
+##                               1 
+##                     Phoenix Way 
+##                               2 
+##                   Princes Drive 
+##                               2 
+##                     Queens Road 
+##                               1 
+##                    Radford Road 
+##                               2 
+##                  Riverside Walk 
+##                               1 
+##                Rough Hill Drive 
+##                               1 
+##                      Rugby Road 
+##                               3 
+##                 St Martins Road 
+##                               1 
+##                  Stratford Road 
+##                               1 
+##                  Tachbrook Road 
+##                               1 
+##                      The Slough 
+##                               1 
+##           Thickthorn Roundabout 
+##                               1 
+##                    Trinity Road 
+##                               1 
+##                     Tuttle Hill 
+##                               1 
+##                    Unnamed road 
+##                              17 
+##                Warwick New Road 
+##                               1 
+##                  Warwick Street 
+##                               1 
+##                  Watling Street 
+##                               4 
+##                 Weddington Road 
+##                               2 
+##             Western Relief Road 
+##                               2 
+##                     Willes Road 
+##                               1 
 ##                  Windmill Drive 
 ##                               1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       46                       39</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       46                       39                        2</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       46                       39                        2</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name                 Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;                &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Emscote Road         A445                         1395                 188                       262
-##  2 Newbold Road         A426                          901                 186                       168
-##  3 Tachbrook Road       B4087                        1250                 134                       168
-##  4 A47                  A47                           868                 150                       130
-##  5 Warwick New Road     B4099                         900                 144                       130
-##  6 Willes Road          B4099                         872                 139                       121
-##  7 Clifford Bridge Road B4082                         987                 116                       114
-##  8 Dunchurch Road       A426                          723                 131                        95
-##  9 Leamington Road      B4113                         644                 132                        85
-## 10 Weddington Road      A444                         1053                  82                        86
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       47 
+##    Estimated width &gt; 10m 
+##                       39</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       47 
+##    Estimated width &gt; 10m 
+##                       39 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       47 
+##    Estimated width &gt; 10m 
+##                       39 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Emsc… A445              1395
+##  2 Newb… A426               901
+##  3 A47   A47                868
+##  4 Warw… B4099              900
+##  5 Will… B4099              872
+##  6 Tach… B4087             1250
+##  7 Leam… B4113              644
+##  8 Dunc… A426               723
+##  9 Radf… A425               546
+## 10 Clif… B4082              987
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,56 +388,97 @@ summary {
 ##      A126 
 ##   16   19</code></pre>
 <pre><code>## [1] 17</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1279    2133    2484    2938    3878    3878</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1279    2133    2484    2938 
+## 3rd Qu.    Max. 
+##    3878    3878</code></pre>
 <pre><code>## 
-## Arterial Road Purfleet     Dock Approach Road            London Road  Marshfoot Interchange 
-##                      4                      4                     12                      2 
-##               New Road                  Other        Purfleet Bypass       St Andrew&#39;s Road 
-##                      8                     68                      7                     11 
+## Arterial Road Purfleet 
+##                      4 
+##     Dock Approach Road 
+##                      4 
+##            London Road 
+##                     12 
+##  Marshfoot Interchange 
+##                      2 
+##               New Road 
+##                      8 
+##                  Other 
+##                     68 
+##        Purfleet Bypass 
+##                      7 
+##       St Andrew&#39;s Road 
+##                     11 
 ##          Stanford Road 
 ##                      5</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.2135  0.3691  0.7647  1.0000</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.2135  0.3691 
+## 3rd Qu.    Max. 
+##  0.7647  1.0000</code></pre>
 <pre><code>## [1] 8</code></pre>
-<pre><code>## # A tibble: 8 x 16
-##   ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-## * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-## 1 &quot;A12…    22     4 Other                           5 A126           656              352         10
-## 2 &quot;A10…    23     1 Dock Approach R…                1 Dock…         1402               83          6
-## 3 &quot;A10…     4     1 London Road                     2 Lond…          567              132         10
-## 4 &quot;A10…     4     1 Purfleet Bypass                 1 Purf…         1330               54         10
-## 5 &quot;A10…     7     1 Stanford Road                   1 Stan…          627               86         10
-## 6 &quot;&quot;       23     4 Other                           9 Calc…          697               74         10
-## 7 &quot;A12…     5     1 Other                           3 A126           712               63         11
-## 8 &quot;&quot;       23     2 Marshfoot Inter…                1 Mars…          692               45          6
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                   A126 Arterial Road Purfleet          Calcutta Road             Crown Road 
-##                      2                      1                      1                      1 
-##     Dock Approach Road            London Road  Marshfoot Interchange               New Road 
-##                      1                      4                      1                      1 
-##        Purfleet Bypass       St Andrew&#39;s Road          Stanford Road           Unnamed road 
-##                      1                      1                      1                      2</code></pre>
+##                   A126 
+##                      2 
+## Arterial Road Purfleet 
+##                      1 
+##          Calcutta Road 
+##                      1 
+##             Crown Road 
+##                      1 
+##     Dock Approach Road 
+##                      1 
+##            London Road 
+##                      4 
+##  Marshfoot Interchange 
+##                      1 
+##               New Road 
+##                      1 
+##        Purfleet Bypass 
+##                      1 
+##       St Andrew&#39;s Road 
+##                      1 
+##          Stanford Road 
+##                      1 
+##           Unnamed road 
+##                      2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        8                        1                        6</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                        8                        1                        6                        2</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                        8                        1                        6                        2</code></pre>
-<pre><code>## # A tibble: 8 x 5
-##   Name                  Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-## * &lt;chr&gt;                 &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-## 1 A126                  &quot;A126&quot;                        656                 352                       231
-## 2 Dock Approach Road    &quot;A1089&quot;                      1402                  83                       116
-## 3 London Road           &quot;A1090&quot;                       567                 132                        75
-## 4 Purfleet Bypass       &quot;A1090&quot;                      1330                  54                        72
-## 5 Stanford Road         &quot;A1013&quot;                       627                  86                        54
-## 6 Calcutta Road         &quot;&quot;                            697                  74                        52
-## 7 A126                  &quot;A126&quot;                        712                  63                        45
-## 8 Marshfoot Interchange &quot;&quot;                            692                  45                        31</code></pre>
+## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                        1 
+##    Estimated width &gt; 10m 
+##                        6</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                        1 
+##    Estimated width &gt; 10m 
+##                        6 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                        1 
+##    Estimated width &gt; 10m 
+##                        6 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## # A tibble: 8 x 6
+##   Name  Reference `Length (m)`
+## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+## 1 A126  &quot;A126&quot;             656
+## 2 Lond… &quot;A1090&quot;            567
+## 3 Stan… &quot;A1013&quot;            627
+## 4 Dock… &quot;A1089&quot;           1402
+## 5 Calc… &quot;&quot;                 697
+## 6 A126  &quot;A126&quot;             712
+## 7 Purf… &quot;A1090&quot;           1330
+## 8 Mars… &quot;&quot;                 692
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

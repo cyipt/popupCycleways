@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,98 +378,127 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A34   A50  A500 A5006 A5007 A5009   A52 B5041 B5045 B5046 
-##    24     1    13     1    10     5     1    15    25     8     1</code></pre>
+##         A34   A50  A500 A5006 A5007 
+##    24     1    13     1    10     5 
+## A5009   A52 B5041 B5045 B5046 
+##     1    15    25     8     1</code></pre>
 <pre><code>## [1] 52</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1688    3185    5150    6400    9858    9858</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1688    3185    5150    6400 
+## 3rd Qu.    Max. 
+##    9858    9858</code></pre>
 <pre><code>## 
-##    Ash Bank Road    Bucknall Road    Cobridge Road     Etruria Road  Ford Green Road       Grove Road 
-##                9               20               23               36                9                4 
-##      King Street    Leek New Road        Leek Road      London Road   Newcastle Road            Other 
-##               24               56               81               11                3              109 
-##    Potteries Way      Scotia Road Shelton New Road    Trentham Road   Uttoxeter Road    Waterloo Road 
-##               15                9               17               15               16               28 
+##    Ash Bank Road    Bucknall Road 
+##                9               20 
+##    Cobridge Road     Etruria Road 
+##               23               36 
+##  Ford Green Road       Grove Road 
+##                9                4 
+##      King Street    Leek New Road 
+##               24               56 
+##        Leek Road      London Road 
+##               81               11 
+##   Newcastle Road            Other 
+##                3              109 
+##    Potteries Way      Scotia Road 
+##               15                9 
+## Shelton New Road    Trentham Road 
+##               17               15 
+##   Uttoxeter Road    Waterloo Road 
+##               16               28 
 ##  Werrington Road 
 ##               27</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.04727 0.07963 0.45335</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.00000 0.04727 
+## 3rd Qu.    Max. 
+## 0.07963 0.45335</code></pre>
 <pre><code>## [1] 20</code></pre>
-<pre><code>## # A tibble: 20 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;B50…     4     1 Shelton New Road                1 Shel…          993              129         10
-##  2 &quot;A50…     4     1 King Street                     1 King…         1112              128         10
-##  3 &quot;A50…    93     2 Leek Road                       3 Leek…         1191              119         10
-##  4 &quot;A52&quot;     4     1 Leek Road                       2 Leek…         3242              118         10
-##  5 &quot;B50…    24     2 London Road                     1 Lond…          577              204         10
-##  6 &quot;A34&quot;    87     1 Newcastle Road                  1 Newc…          892              116          9
-##  7 &quot;A50&quot;     4     1 Waterloo Road                   1 Wate…         1554               98         10
-##  8 &quot;A53&quot;     4     1 Cobridge Road                   1 Cobr…         1464               87         10
-##  9 &quot;A52&quot;     4     1 Werrington Road                 1 Werr…         1965               61          8
-## 10 &quot;A53&quot;     4     1 Etruria Road                    2 Etru…         1062               58          8
-## 11 &quot;&quot;        4     6 Grove Road                      1 Grov…          552               88         10
-## 12 &quot;A50…    26     1 Trentham Road                   1 Tren…         1667               48         10
-## 13 &quot;A53&quot;     4     1 Leek New Road                   1 Leek…         4360               47          7
-## 14 &quot;A53&quot;     4     1 Etruria Road                    1 Etru…          796               57          8
-## 15 &quot;B50…    37     2 Ford Green Road                 1 Ford…          791               50         10
-## 16 &quot;A50&quot;    20     2 Scotia Road                     1 Scot…          686               55         11
-## 17 &quot;&quot;        4     4 Uttoxeter Road                  1 Utto…          689               51          7
-## 18 &quot;A52&quot;     4     1 Bucknall Road                   1 Buck…          516               59         10
-## 19 &quot;A50…     4     1 Bucknall Road                   1 Buck…          560               49         11
-## 20 &quot;A53&quot;     4     1 Other                           4 Basf…          507               50          8
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##              A5008                A52      Ash Bank Road Basford Roundabout      Bucknall Road 
-##                  1                  1                  1                  1                  2 
-##      Cobridge Road    Copeland Street         Elder Road       Etruria Road  Etruria Vale Road 
-##                  1                  1                  1                  2                  1 
-##    Ford Green Road         Grove Road        King Street      Leek New Road          Leek Road 
-##                  1                  1                  1                  1                  4 
-##        London Road     Newcastle Road   Newcastle Street      Potteries Way        Regent Road 
-##                  1                  1                  1                  1                  1 
-##        Scotia Road   Shelton New Road      Trentham Road       Unnamed road     Uttoxeter Road 
-##                  1                  1                  1                  2                  1 
-##         Vale Place      Waterloo Road    Werrington Road 
-##                  1                  1                  1</code></pre>
+##              A5008                A52 
+##                  1                  1 
+##      Ash Bank Road Basford Roundabout 
+##                  1                  1 
+##      Bucknall Road      Cobridge Road 
+##                  2                  1 
+##    Copeland Street         Elder Road 
+##                  1                  1 
+##       Etruria Road  Etruria Vale Road 
+##                  2                  1 
+##    Ford Green Road         Grove Road 
+##                  1                  1 
+##        King Street      Leek New Road 
+##                  1                  1 
+##          Leek Road        London Road 
+##                  4                  1 
+##     Newcastle Road   Newcastle Street 
+##                  1                  1 
+##      Potteries Way        Regent Road 
+##                  1                  1 
+##        Scotia Road   Shelton New Road 
+##                  1                  1 
+##      Trentham Road       Unnamed road 
+##                  1                  2 
+##     Uttoxeter Road         Vale Place 
+##                  1                  1 
+##      Waterloo Road    Werrington Road 
+##                  1                  1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       20                        6                        7</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                        6                        7                        1</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                        6                        7                        1</code></pre>
-<pre><code>## # A tibble: 20 x 5
-##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Shelton New Road   &quot;B5045&quot;                       993                 129                       128
-##  2 King Street        &quot;A5007&quot;                      1112                 128                       142
-##  3 Leek Road          &quot;A5009&quot;                      1191                 119                       142
-##  4 Leek Road          &quot;A52&quot;                        3242                 118                       383
-##  5 London Road        &quot;B5041&quot;                       577                 204                       118
-##  6 Newcastle Road     &quot;A34&quot;                         892                 116                       103
-##  7 Waterloo Road      &quot;A50&quot;                        1554                  98                       152
-##  8 Cobridge Road      &quot;A53&quot;                        1464                  87                       127
-##  9 Werrington Road    &quot;A52&quot;                        1965                  61                       120
-## 10 Etruria Road       &quot;A53&quot;                        1062                  58                        62
-## 11 Grove Road         &quot;&quot;                            552                  88                        49
-## 12 Trentham Road      &quot;A5035&quot;                      1667                  48                        80
-## 13 Leek New Road      &quot;A53&quot;                        4360                  47                       205
-## 14 Etruria Road       &quot;A53&quot;                         796                  57                        45
-## 15 Ford Green Road    &quot;B5051&quot;                       791                  50                        40
-## 16 Scotia Road        &quot;A50&quot;                         686                  55                        38
-## 17 Uttoxeter Road     &quot;&quot;                            689                  51                        35
-## 18 Bucknall Road      &quot;A52&quot;                         516                  59                        30
-## 19 Bucknall Road      &quot;A5008&quot;                       560                  49                        27
-## 20 Basford Roundabout &quot;A53&quot;                         507                  50                        25</code></pre>
+## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                        6 
+##    Estimated width &gt; 10m 
+##                        7</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                        6 
+##    Estimated width &gt; 10m 
+##                        7 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                        6 
+##    Estimated width &gt; 10m 
+##                        7 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## # A tibble: 20 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Lond… &quot;B5041&quot;            577
+##  2 Shel… &quot;B5045&quot;            993
+##  3 King… &quot;A5007&quot;           1112
+##  4 Leek… &quot;A5009&quot;           1191
+##  5 Leek… &quot;A52&quot;             3242
+##  6 Newc… &quot;A34&quot;              892
+##  7 Wate… &quot;A50&quot;             1554
+##  8 Grov… &quot;&quot;                 552
+##  9 Cobr… &quot;A53&quot;             1464
+## 10 Werr… &quot;A52&quot;             1965
+## 11 Buck… &quot;A52&quot;              516
+## 12 Etru… &quot;A53&quot;             1062
+## 13 Etru… &quot;A53&quot;              796
+## 14 Scot… &quot;A50&quot;              686
+## 15 Utto… &quot;&quot;                 689
+## 16 Basf… &quot;A53&quot;              507
+## 17 Ford… &quot;B5051&quot;            791
+## 18 Buck… &quot;A5008&quot;            560
+## 19 Tren… &quot;A5035&quot;           1667
+## 20 Leek… &quot;A53&quot;             4360
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

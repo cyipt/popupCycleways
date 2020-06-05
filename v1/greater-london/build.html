@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,36 +378,86 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##                            A1            A10           A100          A1200          A1202          A1208 
-##           1152              7              1              1              2              2              1 
-##          A1209           A200           A201           A202           A205           A219          A2207 
-##              5              7             45             33              1              1              2 
-##            A23             A3         A3;A23           A300           A301           A302          A3036 
-##             32             17              1             36             20             15             30 
-##           A306           A308          A3127           A315          A3200          A3203          A3204 
-##              1              1              1              2              1              6              2 
-##          A3205          A3211          A3212          A3214          A3216          A3217          A3218 
-##              6             39              2              8             11             24              1 
-##          A3220             A4            A40           A400           A401           A402           A404 
-##              2             33              6             31             16              1              1 
-##          A4200          A4202          A4208           A501          A5200          A5201          A5202 
-##              8              6              7              5              1              4              1 
-##          A5203           B100           B101           B102           B108           B126           B144 
-##              2              6             10              7              1             45              9 
-##           B221           B237           B300           B323           B326           B401           B402 
-##             14              1              4             14              2              1             10 
-##           B500           B502           B506 Riverside Walk 
-##              3             22              7              1</code></pre>
+##                            A1 
+##           1152              7 
+##            A10           A100 
+##              1              1 
+##          A1200          A1202 
+##              2              2 
+##          A1208          A1209 
+##              1              5 
+##           A200           A201 
+##              7             45 
+##           A202           A205 
+##             33              1 
+##           A219          A2207 
+##              1              2 
+##            A23             A3 
+##             32             17 
+##         A3;A23           A300 
+##              1             36 
+##           A301           A302 
+##             20             15 
+##          A3036           A306 
+##             30              1 
+##           A308          A3127 
+##              1              1 
+##           A315          A3200 
+##              2              1 
+##          A3203          A3204 
+##              6              2 
+##          A3205          A3211 
+##              6             39 
+##          A3212          A3214 
+##              2              8 
+##          A3216          A3217 
+##             11             24 
+##          A3218          A3220 
+##              1              2 
+##             A4            A40 
+##             33              6 
+##           A400           A401 
+##             31             16 
+##           A402           A404 
+##              1              1 
+##          A4200          A4202 
+##              8              6 
+##          A4208           A501 
+##              7              5 
+##          A5200          A5201 
+##              1              4 
+##          A5202          A5203 
+##              1              2 
+##           B100           B101 
+##              6             10 
+##           B102           B108 
+##              7              1 
+##           B126           B144 
+##             45              9 
+##           B221           B237 
+##             14              1 
+##           B300           B323 
+##              4             14 
+##           B326           B401 
+##              2              1 
+##           B402           B500 
+##             10              3 
+##           B502           B506 
+##             22              7 
+## Riverside Walk 
+##              1</code></pre>
 <pre><code>## [1] 365</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    4576  196272  196272  165651  196272  196272</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    4576  196272  196272  165651 
+## 3rd Qu.    Max. 
+##  196272  196272</code></pre>
 <pre><code>## 
 ##                                                 Acre Lane 
 ##                                                        19 
@@ -951,25 +1001,11 @@ summary {
 ##                                                        68 
 ##                                                  York Way 
 ##                                                        24</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   0.000   0.000   0.175   0.325   0.544   1.091</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   0.000   0.000   0.175   0.325 
+## 3rd Qu.    Max. 
+##   0.544   1.091</code></pre>
 <pre><code>## [1] 80</code></pre>
-<pre><code>## # A tibble: 80 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A3        9     4 Kennington Park…                1 Kenn…          877             4307         12
-##  2 A300      9     1 Southwark Bridg…                1 Sout…         1155             3385         11
-##  3 A301      9     1 Waterloo Bridge                 1 Wate…         1164             1814          8
-##  4 A200      9     1 Jamaica Road                    1 Jama…         1395             1758          7
-##  5 A400      9     1 Kentish Town Ro…                1 Kent…          903             1773         10
-##  6 A4        9     1 Brompton Road                   1 Brom…         1116             1480         14
-##  7 A23       9     1 Brixton Road                    1 Brix…         2823             1460         11
-##  8 A3216     9     1 Chelsea Bridge …                1 Chel…          542             2641         11
-##  9 A200      9     2 Evelyn Street                   1 Evel…         1903             1385         10
-## 10 A3036     9     1 Wandsworth Road                 1 Wand…         2726             1344         11
-## # … with 70 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
 ##                                                        A1 
 ##                                                         1 
@@ -1922,26 +1958,46 @@ summary {
 ##                                                  York Way 
 ##                                                         1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       80                      186                      286</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       80                      186                      286                       32</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       80                      186                      286                       32</code></pre>
-<pre><code>## # A tibble: 80 x 5
-##    Name                  Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;                 &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Kennington Park Road  A3                            877                4307                      3777
-##  2 Southwark Bridge Road A300                         1155                3385                      3910
-##  3 Waterloo Bridge       A301                         1164                1814                      2111
-##  4 Jamaica Road          A200                         1395                1758                      2452
-##  5 Kentish Town Road     A400                          903                1773                      1601
-##  6 Brompton Road         A4                           1116                1480                      1652
-##  7 Brixton Road          A23                          2823                1460                      4122
-##  8 Chelsea Bridge Road   A3216                         542                2641                      1431
-##  9 Evelyn Street         A200                         1903                1385                      2636
-## 10 Wandsworth Road       A3036                        2726                1344                      3664
-## # … with 70 more rows</code></pre>
+## Top ranked new cycleways 
+##                       80 
+##            Spare lane(s) 
+##                      187 
+##    Estimated width &gt; 10m 
+##                      284</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       80 
+##            Spare lane(s) 
+##                      187 
+##    Estimated width &gt; 10m 
+##                      284 
+##                     NA&#39;s 
+##                       33</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       80 
+##            Spare lane(s) 
+##                      187 
+##    Estimated width &gt; 10m 
+##                      284 
+##                     NA&#39;s 
+##                       33</code></pre>
+<pre><code>## # A tibble: 80 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Kenn… &quot;A3&quot;               877
+##  2 Sout… &quot;A300&quot;            1155
+##  3 Chel… &quot;A3216&quot;            542
+##  4 Wate… &quot;A301&quot;            1164
+##  5 Kent… &quot;A400&quot;             903
+##  6 Jama… &quot;A200&quot;            1395
+##  7 Ceda… &quot;A3216&quot;            503
+##  8 Loug… &quot;&quot;                 599
+##  9 Brom… &quot;A4&quot;              1116
+## 10 Brix… &quot;A23&quot;             2823
+## # … with 70 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

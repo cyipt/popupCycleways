@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,162 +378,474 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##               A38       A4    A4018    A4044     A420     A432    B4051    B4053    B4465    B4469 Bridge 6 
-##      266       35        4        6        1        3        2       26       13        1        1        1</code></pre>
+##               A38       A4    A4018 
+##      266       35        4        6 
+##    A4044     A420     A432    B4051 
+##        1        3        2       26 
+##    B4053    B4465    B4469 Bridge 6 
+##       13        1        1        1</code></pre>
 <pre><code>## [1] 114</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1478    6527   29659   22395   29659   29659</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1478    6527   29659   22395 
+## 3rd Qu.    Max. 
+##   29659   29659</code></pre>
 <pre><code>## 
-##     Abbots Leigh Road           Anchor Road Ashton Gate Underpass        Badminton Road 
-##                     7                    17                     9                    70 
-##             Bath Road  Bedminster Down Road        Bell Hill Road     Bond Street South 
-##                   112                    14                     8                    18 
-##     Bradley Stoke Way      Brislington Hill            Brunel Way       Callington Road 
-##                     9                    11                    25                     6 
-##       Cheltenham Road           Church Road         Clarence Road       Coronation Road 
-##                    17                    42                    12                    34 
-##        Cranbrook Road       Cumberland Road         Duckmoor Road           Durley Hill 
-##                     7                    12                    20                     5 
-##       Falcondale Road           Feeder Road        Fishponds Road       Gloucester Road 
-##                    30                    14                    63                   215 
-## Gloucester Road North        Hartcliffe Way          Hotwell Road        Ingleside Road 
-##                    63                    12                    23                     8 
-##       Kellaway Avenue           Kennedy Way      Keynsham By-Pass         Lawrence Hill 
-##                    26                     9                    13                    15 
-##             Link Road           London Road    Lower Bristol Road           Muller Road 
-##                     7                    43                    22                    59 
-##        Newbridge Road      Newfoundland Way          North Street                 Other 
-##                    14                     3                    29                  1634 
-##           Park Avenue           Parrys Lane          Passage Road         Pembroke Road 
-##                    19                    28                    18                    11 
-##         Pen Park Road         Portview Road         Pulteney Road          Redland Road 
-##                    15                     7                    11                    24 
-##       Rosedown Avenue     Shirehampton Road        Speedwell Road        Stapleton Road 
-##                     7                    26                    30                    22 
-##          Station Road       Summerhill Road            Temple Way  Temple Way Underpass 
-##                    57                    15                    19                     5 
-##    Upper Bristol Road            Wells Road           West Street        West Town Lane 
-##                    25                    78                    39                     8 
-##         Westbury Road        Whitehall Road      Whiteladies Road      Winterstoke Road 
-##                    26                    28                    46                    44 
+##     Abbots Leigh Road 
+##                     7 
+##           Anchor Road 
+##                    17 
+## Ashton Gate Underpass 
+##                     9 
+##        Badminton Road 
+##                    70 
+##             Bath Road 
+##                   112 
+##  Bedminster Down Road 
+##                    14 
+##        Bell Hill Road 
+##                     8 
+##     Bond Street South 
+##                    18 
+##     Bradley Stoke Way 
+##                     9 
+##      Brislington Hill 
+##                    11 
+##            Brunel Way 
+##                    25 
+##       Callington Road 
+##                     6 
+##       Cheltenham Road 
+##                    17 
+##           Church Road 
+##                    42 
+##         Clarence Road 
+##                    12 
+##       Coronation Road 
+##                    34 
+##        Cranbrook Road 
+##                     7 
+##       Cumberland Road 
+##                    12 
+##         Duckmoor Road 
+##                    20 
+##           Durley Hill 
+##                     5 
+##       Falcondale Road 
+##                    30 
+##           Feeder Road 
+##                    14 
+##        Fishponds Road 
+##                    63 
+##       Gloucester Road 
+##                   215 
+## Gloucester Road North 
+##                    63 
+##        Hartcliffe Way 
+##                    12 
+##          Hotwell Road 
+##                    23 
+##        Ingleside Road 
+##                     8 
+##       Kellaway Avenue 
+##                    26 
+##           Kennedy Way 
+##                     9 
+##      Keynsham By-Pass 
+##                    13 
+##         Lawrence Hill 
+##                    15 
+##             Link Road 
+##                     7 
+##           London Road 
+##                    43 
+##    Lower Bristol Road 
+##                    22 
+##           Muller Road 
+##                    59 
+##        Newbridge Road 
+##                    14 
+##      Newfoundland Way 
+##                     3 
+##          North Street 
+##                    29 
+##                 Other 
+##                  1634 
+##           Park Avenue 
+##                    19 
+##           Parrys Lane 
+##                    28 
+##          Passage Road 
+##                    18 
+##         Pembroke Road 
+##                    11 
+##         Pen Park Road 
+##                    15 
+##         Portview Road 
+##                     7 
+##         Pulteney Road 
+##                    11 
+##          Redland Road 
+##                    24 
+##       Rosedown Avenue 
+##                     7 
+##     Shirehampton Road 
+##                    26 
+##        Speedwell Road 
+##                    30 
+##        Stapleton Road 
+##                    22 
+##          Station Road 
+##                    57 
+##       Summerhill Road 
+##                    15 
+##            Temple Way 
+##                    19 
+##  Temple Way Underpass 
+##                     5 
+##    Upper Bristol Road 
+##                    25 
+##            Wells Road 
+##                    78 
+##           West Street 
+##                    39 
+##        West Town Lane 
+##                     8 
+##         Westbury Road 
+##                    26 
+##        Whitehall Road 
+##                    28 
+##      Whiteladies Road 
+##                    46 
+##      Winterstoke Road 
+##                    44 
 ##             York Road 
 ##                    10</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.09713 0.30016 0.55764 1.02703</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.09713 0.30016 
+## 3rd Qu.    Max. 
+## 0.55764 1.02703</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A38     129     2 Cheltenham Road                 1 Chel…          698             1164         12
-##  2 A38     129     2 Gloucester Road                 2 Glou…         2453              358         11
-##  3 A4        1     1 Upper Bristol R…                1 Uppe…         1169              279         10
-##  4 A4018   129     2 Whiteladies Road                1 Whit…         1544              243         12
-##  5 A4        1     1 London Road                     1 Lond…         1266              236         11
-##  6 B4468   129     1 Kellaway Avenue                 1 Kell…         1692              211         10
-##  7 A38     129     1 Gloucester Road…                1 Glou…         4205              210          9
-##  8 B4054   129     5 Cranbrook Road                  1 Cran…          680              304          9
-##  9 A4032   129     1 Newfoundland Way                1 Newf…          888              227          8
-## 10 B4058   129     1 Other                          32 Bell…          783              249         10
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                  A3029                    A36                   A367                   A369 
-##                      1                      1                      1                      1 
-##                   A370                    A38                     A4                  A4018 
-##                      1                      2                      4                      2 
-##                  A4032                   A432                  A4320      Abbots Leigh Road 
-##                      1                      2                      1                      1 
-## Almondsbury Roundabout            Anchor Road  Ashton Gate Underpass            Ashton Road 
-##                      1                      1                      1                      2 
-##         Avonmouth Road                  B4058                  B4059         Badminton Road 
-##                      1                      1                      1                      3 
-##              Bath Hill              Bath Road   Bedminster Down Road        Bedminster Road 
-##                      2                      6                      1                      1 
-##              Bell Hill         Bell Hill Road      Bond Street South      Bradley Stoke Way 
-##                      1                      1                      1                      1 
-##        Bridgwater Road       Brislington Hill           Bristol Hill           Bristol Road 
-##                      1                      1                      1                      1 
-##     Bromley Heath Road         Brougham Hayes             Brunel Way              Cabot Way 
-##                      1                      1                      2                      1 
-##        Callington Road            Canons Road         Charles Street          Charlton Road 
-##                      1                      1                      1                      2 
-##        Cheltenham Road            Church Road          Clarence Road           Clifton Park 
-##                      1                      1                      1                      1 
-##       Coldharbour Road        Coronation Road          Cotswold Road         Cranbrook Road 
-##                      2                      1                      1                      1 
-##        Cumberland Road           Downend Road          Duckmoor Road            Durley Hill 
-##                      1                      2                      1                      1 
-##            East Street            Easton Road        Falcondale Road            Feeder Road 
-##                      2                      1                      1                      1 
-##          Filton Avenue         Fishponds Road        Gloucester Road  Gloucester Road North 
-##                      1                      1                      2                      1 
-##         Grovesend Road          Hanover Place         Hartcliffe Way              Hayes Way 
-##                      1                      1                      1                      1 
-##            High Street           Hotwell Road         Ingleside Road        Kellaway Avenue 
-##                      2                      1                      1                      1 
-##            Kennedy Way       Keynsham By-Pass      Kings Weston Road          Lawrence Hill 
-##                      1                      1                      1                      1 
-##            Linden Road              Link Road            London Road       London Road West 
-##                      1                      1                      1                      1 
-##     Lower Bristol Road      Lower High Street          Luckwell Road             Marsh Lane 
-##                      1                      1                      1                      1 
-##    Midland Bridge Road            Muller Road         Newbridge Road    Newfoundland Circus 
-##                      1                      1                      2                      1 
-##       Newfoundland Way           North Street             North View      Old Market Street 
-##                      1                      2                      1                      1 
-##            Park Avenue            Park Street            Parrys Lane          Parson Street 
-##                      1                      1                      1                      2 
-##           Passage Road          Pembroke Road          Pen Park Road          Portview Road 
-##                      1                      1                      1                      1 
-##          Pulteney Road           Queen Square           Queen&#39;s Road          Redland Grove 
-##                      1                      1                      1                      2 
-##           Redland Road        Rosedown Avenue            Royate Hill    Saint Michaels Hill 
-##                      1                      1                      1                      1 
-## Saint Philips Causeway           Savages Wood      Shirehampton Road         Soundwell Road 
-##                      1                      1                      1                      1 
-##         Speedwell Road         Stapleton Road           Station Road         Stockwood Road 
-##                      1                      1                      4                      1 
-##        Summerhill Road             Sylvan Way             Temple Way   Temple Way Underpass 
-##                      1                      1                      1                      1 
-##     Two Mile Hill Road           Unnamed road    Upper Belgrave Road     Upper Bristol Road 
-##                      1                     23                      1                      1 
-##        Victoria Street          Walcot Street           Warwick Road        Waterside Drive 
-##                      1                      1                      1                      1 
-##             Wells Road               Wellsway            West Street         West Town Lane 
-##                      1                      1                      1                      1 
-##          Westbury Road             White Tree        Whitefield Road         Whitehall Road 
-##                      1                      1                      1                      1 
-##       Whiteladies Road    Windsor Bridge Road       Winterstoke Road              York Road 
-##                      1                      1                      1                      1</code></pre>
+##                  A3029 
+##                      1 
+##                    A36 
+##                      1 
+##                   A367 
+##                      1 
+##                   A369 
+##                      1 
+##                   A370 
+##                      1 
+##                    A38 
+##                      2 
+##                     A4 
+##                      4 
+##                  A4018 
+##                      2 
+##                  A4032 
+##                      1 
+##                   A432 
+##                      2 
+##                  A4320 
+##                      1 
+##      Abbots Leigh Road 
+##                      1 
+## Almondsbury Roundabout 
+##                      1 
+##            Anchor Road 
+##                      1 
+##  Ashton Gate Underpass 
+##                      1 
+##            Ashton Road 
+##                      2 
+##         Avonmouth Road 
+##                      1 
+##                  B4058 
+##                      1 
+##                  B4059 
+##                      1 
+##         Badminton Road 
+##                      3 
+##              Bath Hill 
+##                      2 
+##              Bath Road 
+##                      6 
+##   Bedminster Down Road 
+##                      1 
+##        Bedminster Road 
+##                      1 
+##              Bell Hill 
+##                      1 
+##         Bell Hill Road 
+##                      1 
+##      Bond Street South 
+##                      1 
+##      Bradley Stoke Way 
+##                      1 
+##        Bridgwater Road 
+##                      1 
+##       Brislington Hill 
+##                      1 
+##           Bristol Hill 
+##                      1 
+##           Bristol Road 
+##                      1 
+##     Bromley Heath Road 
+##                      1 
+##         Brougham Hayes 
+##                      1 
+##             Brunel Way 
+##                      2 
+##              Cabot Way 
+##                      1 
+##        Callington Road 
+##                      1 
+##            Canons Road 
+##                      1 
+##         Charles Street 
+##                      1 
+##          Charlton Road 
+##                      2 
+##        Cheltenham Road 
+##                      1 
+##            Church Road 
+##                      1 
+##          Clarence Road 
+##                      1 
+##           Clifton Park 
+##                      1 
+##       Coldharbour Road 
+##                      2 
+##        Coronation Road 
+##                      1 
+##          Cotswold Road 
+##                      1 
+##         Cranbrook Road 
+##                      1 
+##        Cumberland Road 
+##                      1 
+##           Downend Road 
+##                      2 
+##          Duckmoor Road 
+##                      1 
+##            Durley Hill 
+##                      1 
+##            East Street 
+##                      2 
+##            Easton Road 
+##                      1 
+##        Falcondale Road 
+##                      1 
+##            Feeder Road 
+##                      1 
+##          Filton Avenue 
+##                      1 
+##         Fishponds Road 
+##                      1 
+##        Gloucester Road 
+##                      2 
+##  Gloucester Road North 
+##                      1 
+##         Grovesend Road 
+##                      1 
+##          Hanover Place 
+##                      1 
+##         Hartcliffe Way 
+##                      1 
+##              Hayes Way 
+##                      1 
+##            High Street 
+##                      2 
+##           Hotwell Road 
+##                      1 
+##         Ingleside Road 
+##                      1 
+##        Kellaway Avenue 
+##                      1 
+##            Kennedy Way 
+##                      1 
+##       Keynsham By-Pass 
+##                      1 
+##      Kings Weston Road 
+##                      1 
+##          Lawrence Hill 
+##                      1 
+##            Linden Road 
+##                      1 
+##              Link Road 
+##                      1 
+##            London Road 
+##                      1 
+##       London Road West 
+##                      1 
+##     Lower Bristol Road 
+##                      1 
+##      Lower High Street 
+##                      1 
+##          Luckwell Road 
+##                      1 
+##             Marsh Lane 
+##                      1 
+##    Midland Bridge Road 
+##                      1 
+##            Muller Road 
+##                      1 
+##         Newbridge Road 
+##                      2 
+##    Newfoundland Circus 
+##                      1 
+##       Newfoundland Way 
+##                      1 
+##           North Street 
+##                      2 
+##             North View 
+##                      1 
+##      Old Market Street 
+##                      1 
+##            Park Avenue 
+##                      1 
+##            Park Street 
+##                      1 
+##            Parrys Lane 
+##                      1 
+##          Parson Street 
+##                      2 
+##           Passage Road 
+##                      1 
+##          Pembroke Road 
+##                      1 
+##          Pen Park Road 
+##                      1 
+##          Portview Road 
+##                      1 
+##          Pulteney Road 
+##                      1 
+##           Queen Square 
+##                      1 
+##           Queen&#39;s Road 
+##                      1 
+##          Redland Grove 
+##                      2 
+##           Redland Road 
+##                      1 
+##        Rosedown Avenue 
+##                      1 
+##            Royate Hill 
+##                      1 
+##    Saint Michaels Hill 
+##                      1 
+## Saint Philips Causeway 
+##                      1 
+##           Savages Wood 
+##                      1 
+##      Shirehampton Road 
+##                      1 
+##         Soundwell Road 
+##                      1 
+##         Speedwell Road 
+##                      1 
+##         Stapleton Road 
+##                      1 
+##           Station Road 
+##                      4 
+##         Stockwood Road 
+##                      1 
+##        Summerhill Road 
+##                      1 
+##             Sylvan Way 
+##                      1 
+##             Temple Way 
+##                      1 
+##   Temple Way Underpass 
+##                      1 
+##     Two Mile Hill Road 
+##                      1 
+##           Unnamed road 
+##                     23 
+##    Upper Belgrave Road 
+##                      1 
+##     Upper Bristol Road 
+##                      1 
+##        Victoria Street 
+##                      1 
+##          Walcot Street 
+##                      1 
+##           Warwick Road 
+##                      1 
+##        Waterside Drive 
+##                      1 
+##             Wells Road 
+##                      1 
+##               Wellsway 
+##                      1 
+##            West Street 
+##                      1 
+##         West Town Lane 
+##                      1 
+##          Westbury Road 
+##                      1 
+##             White Tree 
+##                      1 
+##        Whitefield Road 
+##                      1 
+##         Whitehall Road 
+##                      1 
+##       Whiteladies Road 
+##                      1 
+##    Windsor Bridge Road 
+##                      1 
+##       Winterstoke Road 
+##                      1 
+##              York Road 
+##                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       53                       92</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       53                       92                       12</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       53                       92                       12</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name                  Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;                 &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Cheltenham Road       A38                           698                1164                       812
-##  2 Gloucester Road       A38                          2453                 358                       878
-##  3 Upper Bristol Road    A4                           1169                 279                       326
-##  4 Whiteladies Road      A4018                        1544                 243                       375
-##  5 London Road           A4                           1266                 236                       299
-##  6 Kellaway Avenue       B4468                        1692                 211                       357
-##  7 Gloucester Road North A38                          4205                 210                       883
-##  8 Cranbrook Road        B4054                         680                 304                       207
-##  9 Newfoundland Way      A4032                         888                 227                       202
-## 10 Bell Hill             B4058                         783                 249                       195
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       53 
+##    Estimated width &gt; 10m 
+##                       92</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       53 
+##    Estimated width &gt; 10m 
+##                       92 
+##                     NA&#39;s 
+##                       12</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       53 
+##    Estimated width &gt; 10m 
+##                       92 
+##                     NA&#39;s 
+##                       12</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Chel… &quot;A38&quot;              698
+##  2 Glou… &quot;A38&quot;             2453
+##  3 Cran… &quot;B4054&quot;            680
+##  4 Uppe… &quot;A4&quot;              1169
+##  5 Bell… &quot;B4058&quot;            783
+##  6 Whit… &quot;A4018&quot;           1544
+##  7 Lond… &quot;A4&quot;              1266
+##  8 Filt… &quot;&quot;                 612
+##  9 Newf… &quot;A4032&quot;            888
+## 10 Stap… &quot;A432&quot;             854
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

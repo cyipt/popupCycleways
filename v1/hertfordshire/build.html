@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,108 +378,254 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A1010 A1081 A1155 A1170  A119 A4008  A411  A412 A4145 A4178 A5183 A6129  B176  B195  B691 
-##   241     9     1     9     5     7     2     1    59    14     5     1    12    28     1     1</code></pre>
+##       A1010 A1081 A1155 A1170  A119 
+##   241     9     1     9     5     7 
+## A4008  A411  A412 A4145 A4178 A5183 
+##     2     1    59    14     5     1 
+## A6129  B176  B195  B691 
+##    12    28     1     1</code></pre>
 <pre><code>## [1] 141</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1776    2522    3485    4531    5786    8965</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1776    2522    3485    4531 
+## 3rd Qu.    Max. 
+##    5786    8965</code></pre>
 <pre><code>## 
-##          Aerodrome Way         Barnet By-Pass           Bedford Road             Beech Hill 
-##                     10                      2                     15                      8 
-##         Bullsmoor Lane         Cambridge Road       Dinant Link Road          Eastbury Road 
-##                     41                      8                      2                     11 
-##          Edinburgh Way          Exchange Road           Gascoyne Way   Great Cambridge Road 
-##                     10                     18                      4                     62 
-##       Great North Road      Gunnels Wood Road           Hadley Green          Hatfield Road 
-##                     17                     22                     16                     15 
-##         Hempstead Road          Hertford Road            High Street            London Road 
-##                     10                     26                     29                     23 
-##             Lytton Way           Mardley Hill          Monkswood Way Newgate Street Village 
-##                     33                      7                      6                      1 
-##     North Orbital Road             North Road                  Other     Rickmansworth Road 
-##                     77                      4                    516                     11 
-##         St Albans Road           Watford Road 
-##                     35                     26</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.08428 0.31460 0.44090 1.01887</code></pre>
+##          Aerodrome Way 
+##                     10 
+##         Barnet By-Pass 
+##                      2 
+##           Bedford Road 
+##                     15 
+##             Beech Hill 
+##                      8 
+##         Bullsmoor Lane 
+##                     41 
+##         Cambridge Road 
+##                      8 
+##       Dinant Link Road 
+##                      2 
+##          Eastbury Road 
+##                     11 
+##          Edinburgh Way 
+##                     10 
+##          Exchange Road 
+##                     18 
+##           Gascoyne Way 
+##                      4 
+##   Great Cambridge Road 
+##                     62 
+##       Great North Road 
+##                     17 
+##      Gunnels Wood Road 
+##                     22 
+##           Hadley Green 
+##                     16 
+##          Hatfield Road 
+##                     15 
+##         Hempstead Road 
+##                     10 
+##          Hertford Road 
+##                     26 
+##            High Street 
+##                     29 
+##            London Road 
+##                     23 
+##             Lytton Way 
+##                     33 
+##           Mardley Hill 
+##                      7 
+##          Monkswood Way 
+##                      6 
+## Newgate Street Village 
+##                      1 
+##     North Orbital Road 
+##                     77 
+##             North Road 
+##                      4 
+##                  Other 
+##                    516 
+##     Rickmansworth Road 
+##                     11 
+##         St Albans Road 
+##                     35 
+##           Watford Road 
+##                     26</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.08428 0.31460 
+## 3rd Qu.    Max. 
+## 0.44090 1.01887</code></pre>
 <pre><code>## [1] 30</code></pre>
-<pre><code>## # A tibble: 30 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A41…   201     1 Other                          27 A412           845              263          8
-##  2 &quot;A41…   147     3 St Albans Road                  1 St A…         1687              202         10
-##  3 &quot;A41…   201     1 St Albans Road                  2 St A…          652              215          8
-##  4 &quot;A10…     4     1 Hertford Road                   2 Hert…          822              152         11
-##  5 &quot;B17…   168     1 Other                          32 Cros…          515              211         10
-##  6 &quot;A41…   201     5 Hempstead Road                  1 Hemp…         1234               94          9
-##  7 &quot;&quot;      147     9 Other                          40 Moor…          569              133         11
-##  8 &quot;B46…   374     2 Watford Road                    2 Watf…          965               71         10
-##  9 &quot;A41…   322     2 Watford Road                    1 Watf…         1029               55          9
-## 10 &quot;B19…   592     2 North Road                      1 Nort…          567               94          9
-## # … with 20 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                    A10                  A1184                   A120                   A411 
-##                      3                      1                      1                      1 
-##                   A412                   A414                   A505                  A5183 
-##                      2                      3                      3                      1 
-##                   A602                  A6129  Abbey View Roundabout          Aerodrome Way 
-##                      1                      1                      1                      1 
-##          Amwell Street                   B197                   B198         Barnet By-Pass 
-##                      1                      1                      1                      2 
-##           Bedford Road             Beech Hill          Beechen Grove          Broadhall Way 
-##                      1                      1                      2                      1 
-##         Bullsmoor Lane         Cambridge Road      Crossbrook Street       Dinant Link Road 
-##                      2                      1                      1                      1 
-##          Eastbury Road          Edinburgh Way          Exchange Road           Fifth Avenue 
-##                      1                      1                      1                      1 
-##         Fishponds Road      Fourth Roundabout           Gascoyne Way       Gates Roundabout 
-##                      1                      1                      1                      1 
-##   Great Cambridge Road       Great North Road      Gunnels Wood Road           Hadley Green 
-##                      2                      2                      2                      1 
-##        Hampermill Lane          Hatfield Road         Hempstead Road          Hertford Road 
-##                      1                      2                      1                      3 
-##            High Street  Leighton Buzzard Road            London Road             Lytton Way 
-##                      6                      2                      3                      1 
-##           Mardley Hill            Merton Road          Monkswood Way          Moor End Road 
-##                      1                      1                      1                      1 
-## Newgate Street Village     North Orbital Road             North Road            Pepper Hill 
-##                      1                      1                      1                      1 
-##     Rickmansworth Road         St Albans Road        St George&#39;s Way         Stanstead Road 
-##                      1                      3                      1                      1 
-##           Station Road             Stonecross           Unnamed road              Ware Road 
-##                      1                      1                      6                      1 
+##                    A10 
+##                      3 
+##                  A1184 
+##                      1 
+##                   A120 
+##                      1 
+##                   A411 
+##                      1 
+##                   A412 
+##                      2 
+##                   A414 
+##                      3 
+##                   A505 
+##                      3 
+##                  A5183 
+##                      1 
+##                   A602 
+##                      1 
+##                  A6129 
+##                      1 
+##  Abbey View Roundabout 
+##                      1 
+##          Aerodrome Way 
+##                      1 
+##          Amwell Street 
+##                      1 
+##                   B197 
+##                      1 
+##                   B198 
+##                      1 
+##         Barnet By-Pass 
+##                      2 
+##           Bedford Road 
+##                      1 
+##             Beech Hill 
+##                      1 
+##          Beechen Grove 
+##                      2 
+##          Broadhall Way 
+##                      1 
+##         Bullsmoor Lane 
+##                      2 
+##         Cambridge Road 
+##                      1 
+##      Crossbrook Street 
+##                      1 
+##       Dinant Link Road 
+##                      1 
+##          Eastbury Road 
+##                      1 
+##          Edinburgh Way 
+##                      1 
+##          Exchange Road 
+##                      1 
+##           Fifth Avenue 
+##                      1 
+##         Fishponds Road 
+##                      1 
+##      Fourth Roundabout 
+##                      1 
+##           Gascoyne Way 
+##                      1 
+##       Gates Roundabout 
+##                      1 
+##   Great Cambridge Road 
+##                      2 
+##       Great North Road 
+##                      2 
+##      Gunnels Wood Road 
+##                      2 
+##           Hadley Green 
+##                      1 
+##        Hampermill Lane 
+##                      1 
+##          Hatfield Road 
+##                      2 
+##         Hempstead Road 
+##                      1 
+##          Hertford Road 
+##                      3 
+##            High Street 
+##                      6 
+##  Leighton Buzzard Road 
+##                      2 
+##            London Road 
+##                      3 
+##             Lytton Way 
+##                      1 
+##           Mardley Hill 
+##                      1 
+##            Merton Road 
+##                      1 
+##          Monkswood Way 
+##                      1 
+##          Moor End Road 
+##                      1 
+## Newgate Street Village 
+##                      1 
+##     North Orbital Road 
+##                      1 
+##             North Road 
+##                      1 
+##            Pepper Hill 
+##                      1 
+##     Rickmansworth Road 
+##                      1 
+##         St Albans Road 
+##                      3 
+##        St George&#39;s Way 
+##                      1 
+##         Stanstead Road 
+##                      1 
+##           Station Road 
+##                      1 
+##             Stonecross 
+##                      1 
+##           Unnamed road 
+##                      6 
+##              Ware Road 
+##                      1 
 ##           Watford Road 
 ##                      2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       30                       28                       29</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       28                       29                        6</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       30                       28                       29                        6</code></pre>
-<pre><code>## # A tibble: 30 x 5
-##    Name              Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;             &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 A412              &quot;A412&quot;                        845                 263                       222
-##  2 St Albans Road    &quot;A412&quot;                       1687                 202                       341
-##  3 St Albans Road    &quot;A412&quot;                        652                 215                       140
-##  4 Hertford Road     &quot;A1010&quot;                       822                 152                       125
-##  5 Crossbrook Street &quot;B176&quot;                        515                 211                       109
-##  6 Hempstead Road    &quot;A411&quot;                       1234                  94                       116
-##  7 Moor End Road     &quot;&quot;                            569                 133                        76
-##  8 Watford Road      &quot;B4630&quot;                       965                  71                        69
-##  9 Watford Road      &quot;A412&quot;                       1029                  55                        57
-## 10 North Road        &quot;B197&quot;                        567                  94                        53
-## # … with 20 more rows</code></pre>
+## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       32 
+##    Estimated width &gt; 10m 
+##                       25</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       32 
+##    Estimated width &gt; 10m 
+##                       25 
+##                     NA&#39;s 
+##                        6</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       30 
+##            Spare lane(s) 
+##                       32 
+##    Estimated width &gt; 10m 
+##                       25 
+##                     NA&#39;s 
+##                        6</code></pre>
+<pre><code>## # A tibble: 30 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 A412  &quot;A412&quot;             845
+##  2 St A… &quot;A412&quot;             652
+##  3 Cros… &quot;B176&quot;             515
+##  4 St A… &quot;A412&quot;            1687
+##  5 Hert… &quot;A1010&quot;            822
+##  6 Moor… &quot;&quot;                 569
+##  7 Hemp… &quot;A411&quot;            1234
+##  8 Nort… &quot;B197&quot;             567
+##  9 St G… &quot;&quot;                 555
+## 10 Watf… &quot;B4630&quot;            965
+## # … with 20 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,66 +388,133 @@ summary {
 ##        A583  A587 B5124 B5266 
 ##     4    13    11    16     4</code></pre>
 <pre><code>## [1] 26</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   826.1  1480.0  1659.7  2115.6  3421.3  3421.3</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   826.1  1480.0  1659.7  2115.6 
+## 3rd Qu.    Max. 
+##  3421.3  3421.3</code></pre>
 <pre><code>## 
-## Amounderness Way     Bispham Road    Central Drive Common Edge Road  Devonshire Road     Dickson Road 
-##               20               24               15               17               10               14 
-##  East Park Drive     Newton Drive            Other        Park Road Preston New Road        Promenade 
-##                7               19              136               13               64               30 
-##      Talbot Road    Waterloo Road  Whitegate Drive 
-##               24               32               29</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.14157 0.08314 1.00000</code></pre>
+## Amounderness Way     Bispham Road 
+##               20               24 
+##    Central Drive Common Edge Road 
+##               15               17 
+##  Devonshire Road     Dickson Road 
+##               10               14 
+##  East Park Drive     Newton Drive 
+##                7               19 
+##            Other        Park Road 
+##              136               13 
+## Preston New Road        Promenade 
+##               64               30 
+##      Talbot Road    Waterloo Road 
+##               24               32 
+##  Whitegate Drive 
+##               29</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.00000 0.14157 
+## 3rd Qu.    Max. 
+## 0.08314 1.00000</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A58…     1     1 Whitegate Drive                 1 Whit…         1586              229         11
-##  2 &quot;A58…     1     2 East Park Drive                 1 East…          941              239         11
-##  3 &quot;A58…     1     1 Bispham Road                    1 Bisp…         1429              160          9
-##  4 &quot;A50…     1     1 Central Drive                   1 Cent…         1197              152         11
-##  5 &quot;A58…     3     1 Amounderness Way                1 Amou…         3104               96          9
-##  6 &quot;A58…     1     1 Other                           7 West…          864              108         10
-##  7 &quot;B53…     1     1 Park Road                       1 Park…          654              137         10
-##  8 &quot;B52…    27     5 Common Edge Road                1 Comm…         1121               89         10
-##  9 &quot;&quot;        1     2 Other                          15 Wats…          757               97         10
-## 10 &quot;B52…     1     1 Newton Drive                    1 Newt…         1110               69         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##     Amounderness Way         Ansdell Road         Bispham Road        Central Drive        Church Street 
-##                    1                    1                    1                    1                    1 
-##     Common Edge Lane     Common Edge Road      Devonshire Road         Dickson Road      East Park Drive 
-##                    1                    1                    1                    1                    1 
-##       Fleetwood Road Fleetwood Road South      Hawes Side Lane        Marton Circle         Newton Drive 
-##                    1                    1                    1                    1                    1 
-##  Norcross Roundabout     North Park Drive            Park Road        Plymouth Road     Preston New Road 
-##                    1                    1                    2                    1                    1 
-##            Promenade     South Park Drive          Talbot Road  Thornton Roundabout   Victoria Road East 
-##                    2                    1                    1                    1                    1 
-##   Warbreck Hill Road        Waterloo Road          Watson Road     Westcliffe Drive      Whitegate Drive 
-##                    1                    2                    1                    1                    1</code></pre>
+##     Amounderness Way 
+##                    1 
+##         Ansdell Road 
+##                    1 
+##         Bispham Road 
+##                    1 
+##        Central Drive 
+##                    1 
+##        Church Street 
+##                    1 
+##     Common Edge Lane 
+##                    1 
+##     Common Edge Road 
+##                    1 
+##      Devonshire Road 
+##                    1 
+##         Dickson Road 
+##                    1 
+##      East Park Drive 
+##                    1 
+##       Fleetwood Road 
+##                    1 
+## Fleetwood Road South 
+##                    1 
+##      Hawes Side Lane 
+##                    1 
+##        Marton Circle 
+##                    1 
+##         Newton Drive 
+##                    1 
+##  Norcross Roundabout 
+##                    1 
+##     North Park Drive 
+##                    1 
+##            Park Road 
+##                    2 
+##        Plymouth Road 
+##                    1 
+##     Preston New Road 
+##                    1 
+##            Promenade 
+##                    2 
+##     South Park Drive 
+##                    1 
+##          Talbot Road 
+##                    1 
+##  Thornton Roundabout 
+##                    1 
+##   Victoria Road East 
+##                    1 
+##   Warbreck Hill Road 
+##                    1 
+##        Waterloo Road 
+##                    2 
+##          Watson Road 
+##                    1 
+##     Westcliffe Drive 
+##                    1 
+##      Whitegate Drive 
+##                    1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        4                       17</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                        4                       17                        2</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                        4                       17                        2</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name             Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Whitegate Drive  &quot;A583&quot;                       1586                 229                       363
-##  2 East Park Drive  &quot;A587&quot;                        941                 239                       225
-##  3 Bispham Road     &quot;A587&quot;                       1429                 160                       229
-##  4 Central Drive    &quot;A5099&quot;                      1197                 152                       182
-##  5 Amounderness Way &quot;A585&quot;                       3104                  96                       298
-##  6 Westcliffe Drive &quot;A586&quot;                        864                 108                        93
-##  7 Park Road        &quot;B5390&quot;                       654                 137                        90
-##  8 Common Edge Road &quot;B5261&quot;                      1121                  89                       100
-##  9 Watson Road      &quot;&quot;                            757                  97                        73
-## 10 Newton Drive     &quot;B5266&quot;                      1110                  69                        77</code></pre>
+## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                       17</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                       17 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                       17 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 East… &quot;A587&quot;             941
+##  2 Whit… &quot;A583&quot;            1586
+##  3 Bisp… &quot;A587&quot;            1429
+##  4 Cent… &quot;A5099&quot;           1197
+##  5 Park… &quot;B5390&quot;            654
+##  6 Ansd… &quot;B5261&quot;            514
+##  7 West… &quot;A586&quot;             864
+##  8 Wats… &quot;&quot;                 757
+##  9 Amou… &quot;A585&quot;            3104
+## 10 Comm… &quot;B5261&quot;           1121
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

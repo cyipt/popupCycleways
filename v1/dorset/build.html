@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,94 +378,204 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A3060  A337   A35 B3059 B3068 B3073 B3154 B3156 
-##    93    13     3    43    15     1    16     1     3</code></pre>
+##       A3060  A337   A35 B3059 B3068 
+##    93    13     3    43    15     1 
+## B3073 B3154 B3156 
+##    16     1     3</code></pre>
 <pre><code>## [1] 68</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2071    3994    6690   13057   24424   24424</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    2071    3994    6690   13057 
+## 3rd Qu.    Max. 
+##   24424   24424</code></pre>
 <pre><code>## 
-##         Barrack Road Blandford Road North     Castle Lane East     Castle Lane West  Christchurch Bypass 
-##                   25                    1                   24                   18                   17 
-##      Dorchester Road          Easton Lane         Fortuneswell      Highcliffe Road             New Road 
-##                    8                   15                   16                   10                    9 
-##                Other  Purewell Cross Road        Radipole Lane        Ringwood Road       Somerford Road 
-##                  318                    8                    8                   62                   14 
-##            Spur Road         Upton Bypass           Upton Road         Westwey Road Weymouth Relief Road 
-##                   17                   14                    9                    9                    5 
+##         Barrack Road 
+##                   25 
+## Blandford Road North 
+##                    1 
+##     Castle Lane East 
+##                   24 
+##     Castle Lane West 
+##                   18 
+##  Christchurch Bypass 
+##                   17 
+##      Dorchester Road 
+##                    8 
+##          Easton Lane 
+##                   15 
+##         Fortuneswell 
+##                   16 
+##      Highcliffe Road 
+##                   10 
+##             New Road 
+##                    9 
+##                Other 
+##                  318 
+##  Purewell Cross Road 
+##                    8 
+##        Radipole Lane 
+##                    8 
+##        Ringwood Road 
+##                   62 
+##       Somerford Road 
+##                   14 
+##            Spur Road 
+##                   17 
+##         Upton Bypass 
+##                   14 
+##           Upton Road 
+##                    9 
+##         Westwey Road 
+##                    9 
+## Weymouth Relief Road 
+##                    5 
 ##        Wimborne Road 
 ##                   11</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.08111 0.34374 0.73577 1.00469</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.08111 0.34374 
+## 3rd Qu.    Max. 
+## 0.73577 1.00469</code></pre>
 <pre><code>## [1] 23</code></pre>
-<pre><code>## # A tibble: 23 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A35     105     2 Barrack Road                    2 Barr…          699              262         11
-##  2 B3059   105     1 Purewell Cross …                1 Pure…          718              247          9
-##  3 A35     105     1 Christchurch By…                1 Chri…         5372              127          7
-##  4 B3159   257     2 Other                          26 B3159          931              118         11
-##  5 B3059   105     1 Somerford Road                  1 Some…          969              103         10
-##  6 A350    371     3 Upton Bypass                    1 Upto…         2605               96         13
-##  7 A35     371     7 Upton Road                      1 Upto…         1067               91          7
-##  8 A3060   119     1 Castle Lane West                1 Cast…         1637               67          8
-##  9 A354    265     2 Weymouth Relief…                1 Weym…         1715               56         12
-## 10 B3159   269     3 Dorchester Road                 1 Dorc…          541              101         10
-## # … with 13 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                   A31                   A35                  A352                 B3073 
-##                     2                     2                     1                     1 
-##                 B3159     Bailey Roundabout              Bargates          Barrack Road 
-##                     2                     1                     1                     2 
-## Bear Cross Roundabout  Blandford Road North      Castle Lane East      Castle Lane West 
-##                     1                     2                     1                     2 
-##       Chalbury Corner       Chickerell Road   Christchurch Bypass     Christchurch Road 
-##                     1                     1                     1                     1 
-##       Dorchester Road           Easton Lane         Easton Street          Fortuneswell 
-##                     3                     1                     1                     1 
-##   Fountain Roundabout           High Street       Highcliffe Road        Jumpers Corner 
-##                     1                     1                     1                     1 
-##              New Road            Poole Road          Preston Road           Priory Road 
-##                     2                     1                     1                     1 
-##   Purewell Cross Road         Radipole Lane         Ringwood Road          Rodwell Road 
-##                     1                     1                     5                     1 
-##        Somerford Road  Somerford Roundabout             Spur Road    Stanpit Roundabout 
-##                     1                     1                     1                     1 
-##       Swannery Bridge    Turbary Roundabout          Unnamed road          Upton Bypass 
-##                     1                     1                     8                     2 
-##            Upton Road         Victoria Road          Westwey Road  Weymouth Relief Road 
-##                     1                     1                     1                     1 
-##         Wimborne Road    Wimborne Road East 
-##                     1                     2</code></pre>
+##                   A31 
+##                     2 
+##                   A35 
+##                     2 
+##                  A352 
+##                     1 
+##                 B3073 
+##                     1 
+##                 B3159 
+##                     2 
+##     Bailey Roundabout 
+##                     1 
+##              Bargates 
+##                     1 
+##          Barrack Road 
+##                     2 
+## Bear Cross Roundabout 
+##                     1 
+##  Blandford Road North 
+##                     2 
+##      Castle Lane East 
+##                     1 
+##      Castle Lane West 
+##                     2 
+##       Chalbury Corner 
+##                     1 
+##       Chickerell Road 
+##                     1 
+##   Christchurch Bypass 
+##                     1 
+##     Christchurch Road 
+##                     1 
+##       Dorchester Road 
+##                     3 
+##           Easton Lane 
+##                     1 
+##         Easton Street 
+##                     1 
+##          Fortuneswell 
+##                     1 
+##   Fountain Roundabout 
+##                     1 
+##           High Street 
+##                     1 
+##       Highcliffe Road 
+##                     1 
+##        Jumpers Corner 
+##                     1 
+##              New Road 
+##                     2 
+##            Poole Road 
+##                     1 
+##          Preston Road 
+##                     1 
+##           Priory Road 
+##                     1 
+##   Purewell Cross Road 
+##                     1 
+##         Radipole Lane 
+##                     1 
+##         Ringwood Road 
+##                     5 
+##          Rodwell Road 
+##                     1 
+##        Somerford Road 
+##                     1 
+##  Somerford Roundabout 
+##                     1 
+##             Spur Road 
+##                     1 
+##    Stanpit Roundabout 
+##                     1 
+##       Swannery Bridge 
+##                     1 
+##    Turbary Roundabout 
+##                     1 
+##          Unnamed road 
+##                     8 
+##          Upton Bypass 
+##                     2 
+##            Upton Road 
+##                     1 
+##         Victoria Road 
+##                     1 
+##          Westwey Road 
+##                     1 
+##  Weymouth Relief Road 
+##                     1 
+##         Wimborne Road 
+##                     1 
+##    Wimborne Road East 
+##                     2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       23                       16                       27</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       23                       16                       27                        2</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       23                       16                       27                        2</code></pre>
-<pre><code>## # A tibble: 23 x 5
-##    Name                 Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;                &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Barrack Road         A35                           699                 262                       183
-##  2 Purewell Cross Road  B3059                         718                 247                       177
-##  3 Christchurch Bypass  A35                          5372                 127                       682
-##  4 B3159                B3159                         931                 118                       110
-##  5 Somerford Road       B3059                         969                 103                       100
-##  6 Upton Bypass         A350                         2605                  96                       250
-##  7 Upton Road           A35                          1067                  91                        97
-##  8 Castle Lane West     A3060                        1637                  67                       110
-##  9 Weymouth Relief Road A354                         1715                  56                        96
-## 10 Dorchester Road      B3159                         541                 101                        55
-## # … with 13 more rows</code></pre>
+## Top ranked new cycleways 
+##                       23 
+##            Spare lane(s) 
+##                       16 
+##    Estimated width &gt; 10m 
+##                       27</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       23 
+##            Spare lane(s) 
+##                       16 
+##    Estimated width &gt; 10m 
+##                       27 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       23 
+##            Spare lane(s) 
+##                       16 
+##    Estimated width &gt; 10m 
+##                       27 
+##                     NA&#39;s 
+##                        2</code></pre>
+<pre><code>## # A tibble: 23 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Barr… A35                699
+##  2 Pure… B3059              718
+##  3 Chri… A35               5372
+##  4 B3159 B3159              931
+##  5 Some… B3059              969
+##  6 Dorc… B3159              541
+##  7 Upto… A350              2605
+##  8 Upto… A35               1067
+##  9 Fort… A354               575
+## 10 New … A354               534
+## # … with 13 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

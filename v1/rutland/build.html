@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,56 +388,75 @@ summary {
 ##      A606 B640 B668 
 ##    9    1    2    6</code></pre>
 <pre><code>## [1] 7</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    3447    3447    3983    4146    5142    5142</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    3447    3447    3983    4146 
+## 3rd Qu.    Max. 
+##    5142    5142</code></pre>
 <pre><code>## 
-##     Ayston Road Burley Park Way  Empingham Road     London Road     Melton Road     Oakham Road 
-##               9               4               7               5               8              19 
-##           Other  Uppingham Road   Whitwell Road 
-##              57              20               5</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.1126  0.0000  1.0000</code></pre>
+##     Ayston Road Burley Park Way 
+##               9               4 
+##  Empingham Road     London Road 
+##               7               5 
+##     Melton Road     Oakham Road 
+##               8              19 
+##           Other  Uppingham Road 
+##              57              20 
+##   Whitwell Road 
+##               5</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.1126 
+## 3rd Qu.    Max. 
+##  0.0000  1.0000</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A606      3     1 Oakham Road                     2 Oakh…          717               44          7
-##  2 A6003     4     2 Uppingham Road                  2 Uppi…         3086               26          7
-##  3 A6003     4     1 Ayston Road                     1 Ayst…          878               15          9
-##  4 A6003     4     1 Oakham Road                     3 Oakh…         1476               12          7
-##  5 A6003     4     1 Uppingham Road                  1 Uppi…         1859               12          7
-##  6 A606     10     4 Empingham Road                  1 Empi…         1286               12          6
-##  7 A606      3     1 Burley Park Way                 1 Burl…          867               13        NaN
-##  8 A606     12     3 Other                           3 A606           556               18         11
-##  9 A606     25     5 Whitwell Road                   1 Whit…          567               15          7
-## 10 A6003     4     1 Uppingham Road                  3 Uppi…          701               12          7
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##             A6003              A606       Ayston Road   Burley Park Way    Empingham Road       London Road 
-##                 1                 6                 1                 1                 1                 2 
-##       Melton Road North Street West       Oakham Road          Red Hill    Uppingham Road     Whitwell Road 
-##                 1                 1                 3                 1                 3                 1</code></pre>
+##             A6003              A606 
+##                 1                 6 
+##       Ayston Road   Burley Park Way 
+##                 1                 1 
+##    Empingham Road       London Road 
+##                 1                 2 
+##       Melton Road North Street West 
+##                 1                 1 
+##       Oakham Road          Red Hill 
+##                 3                 1 
+##    Uppingham Road     Whitwell Road 
+##                 3                 1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                       11                        1</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                       11                        1</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                       11                        1</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Oakham Road     A606                          717                  44                        32
-##  2 Uppingham Road  A6003                        3086                  26                        80
-##  3 Ayston Road     A6003                         878                  15                        13
-##  4 Oakham Road     A6003                        1476                  12                        18
-##  5 Uppingham Road  A6003                        1859                  12                        22
-##  6 Empingham Road  A606                         1286                  12                        15
-##  7 Burley Park Way A606                          867                  13                        11
-##  8 A606            A606                          556                  18                        10
-##  9 Whitwell Road   A606                          567                  15                         9
-## 10 Uppingham Road  A6003                         701                  12                         8</code></pre>
+## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                       11 
+##    Estimated width &gt; 10m 
+##                        1</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                       11 
+##    Estimated width &gt; 10m 
+##                        1</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                       11 
+##    Estimated width &gt; 10m 
+##                        1</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Oakh… A606               717
+##  2 Uppi… A6003             3086
+##  3 A606  A606               556
+##  4 Ayst… A6003              878
+##  5 Whit… A606               567
+##  6 Burl… A606               867
+##  7 Oakh… A6003             1476
+##  8 Uppi… A6003             1859
+##  9 Uppi… A6003              701
+## 10 Empi… A606              1286
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

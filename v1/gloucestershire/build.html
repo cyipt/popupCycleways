@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,122 +378,261 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A38   A40  A438   A46 B4008 B4063 
-##   163     5    29     1     1     1    15</code></pre>
+##         A38   A40  A438   A46 B4008 
+##   163     5    29     1     1     1 
+## B4063 
+##    15</code></pre>
 <pre><code>## [1] 61</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1206    3873    6824    7510   12274   12274</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1206    3873    6824    7510 
+## 3rd Qu.    Max. 
+##   12274   12274</code></pre>
 <pre><code>## 
-##       Ashchurch Road        Barnwood Road            Bath Road         Bristol Road    Brockworth Bypass 
-##                   11                    9                   21                   58                    8 
-##           Bruton Way      Cheltenham Road Cheltenham Road East          Cole Avenue      Corinium Avenue 
-##                   12                   16                    3                   12                   11 
-##       Dudbridge Road       Eastern Avenue         Evesham Road          Finlay Road      Gloucester Road 
-##                    9                   42                    8                   13                   47 
-##      Hucclecote Road        Lansdown Road     Leckhampton Road          London Road        Old Bath Road 
-##                   15                   35                   12                   31                    8 
-##                Other   Saint Georges Road        Sandford Road          Secunda Way     Southgate Street 
-##                  547                   13                   10                    5                   13 
-##         Suffolk Road      Tewkesbury Road    Thirlestaine Road 
-##                   13                   82                    8</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.1047  0.3449  0.7879  1.0294</code></pre>
+##       Ashchurch Road 
+##                   11 
+##        Barnwood Road 
+##                    9 
+##            Bath Road 
+##                   21 
+##         Bristol Road 
+##                   58 
+##    Brockworth Bypass 
+##                    8 
+##           Bruton Way 
+##                   12 
+##      Cheltenham Road 
+##                   16 
+## Cheltenham Road East 
+##                    3 
+##          Cole Avenue 
+##                   12 
+##      Corinium Avenue 
+##                   11 
+##       Dudbridge Road 
+##                    9 
+##       Eastern Avenue 
+##                   42 
+##         Evesham Road 
+##                    8 
+##          Finlay Road 
+##                   13 
+##      Gloucester Road 
+##                   47 
+##      Hucclecote Road 
+##                   15 
+##        Lansdown Road 
+##                   35 
+##     Leckhampton Road 
+##                   12 
+##          London Road 
+##                   31 
+##        Old Bath Road 
+##                    8 
+##                Other 
+##                  547 
+##   Saint Georges Road 
+##                   13 
+##        Sandford Road 
+##                   10 
+##          Secunda Way 
+##                    5 
+##     Southgate Street 
+##                   13 
+##         Suffolk Road 
+##                   13 
+##      Tewkesbury Road 
+##                   82 
+##    Thirlestaine Road 
+##                    8</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.1047  0.3449 
+## 3rd Qu.    Max. 
+##  0.7879  1.0294</code></pre>
 <pre><code>## [1] 20</code></pre>
-<pre><code>## # A tibble: 20 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;B40…    46     3 London Road                     2 Lond…          725              526         10
-##  2 &quot;A38&quot;    46     8 Cole Avenue                     1 Cole…         1881              379         10
-##  3 &quot;A38&quot;    46     8 Finlay Road                     1 Finl…         1159              339         11
-##  4 &quot;&quot;      241    10 Bristol Road                    4 Bris…         1158              268         10
-##  5 &quot;&quot;       46     4 Other                          13 Bays…          851              290         11
-##  6 &quot;A40&quot;    46     1 Sandford Road                   1 Sand…          689              293          7
-##  7 &quot;&quot;       46     4 Saint Georges R…                1 Sain…          799              238         10
-##  8 &quot;A38&quot;    46     8 Barnwood Road                   1 Barn…          932              202          9
-##  9 &quot;A38&quot;    46     8 Eastern Avenue                  1 East…         2920              168          8
-## 10 &quot;&quot;       46     8 Hucclecote Road                 1 Hucc…          625              259         11
-## 11 &quot;A38&quot;    46     8 Other                           6 A38            513              289          8
-## 12 &quot;A43…   241     1 Southgate Street                1 Sout…          556              264         10
-## 13 &quot;B40…    46     3 Bristol Road                    2 Bris…         1008              143          9
-## 14 &quot;A40&quot;    46     1 Gloucester Road                 1 Glou…         2202              140          9
-## 15 &quot;B40…    46     2 Bristol Road                    1 Bris…         1776              135         10
-## 16 &quot;A40&quot;    46     1 London Road                     1 Lond…         1353              131          9
-## 17 &quot;A46&quot;    46     2 Bath Road                       1 Bath…          889              137         10
-## 18 &quot;A40&quot;    46     1 Other                          13 A40           1023              120          7
-## 19 &quot;A40…    46     2 Other                          13 Fair…          722              137          9
-## 20 &quot;B46…    46     1 Gloucester Road                 2 Glou…         1079               89         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                    A38                    A40                  A4019                   A417 
-##                     10                      2                      1                      1 
-##                  A4173                   A419                   A430                  A4302 
-##                      1                      1                      1                      1 
-##                    A46       All Saints&#39; Road           Andover Road         Ashchurch Road 
-##                      1                      1                      1                      1 
-##                  B4632          Barnwood Road              Bath Road          Bayshill Road 
-##                      1                      1                      1                      1 
-##           Bristol Road      Brockworth Bypass             Bruton Way        Cainscross Road 
-##                      5                      1                      1                      1 
-##        Cheltenham Road   Cheltenham Road East            Cole Avenue        Corinium Avenue 
-##                      5                      2                      1                      1 
-##         Dudbridge Hill         Dudbridge Road         Eastern Avenue           Ermin Street 
-##                      1                      1                      1                      1 
-##           Evesham Road          Fairview Road            Finlay Road        Gloucester Road 
-##                      1                      1                      1                      2 
-##             Hales Road            High Street        Hucclecote Road         Kingsholm Road 
-##                      1                      1                      1                      1 
-##          Lansdown Road       Leckhampton Road            London Road        Marina Junction 
-##                      1                      1                      2                      1 
-##               Metz Way       Montpellier Walk   Naas Lane Roundabout          New Barn Lane 
-##                      1                      1                      1                      1 
-##          Old Bath Road    Old Gloucester Road        Portland Street         Prestbury Road 
-##                      1                      1                      1                      1 
-## Princess Elizabeth Way          Saint Ann Way     Saint Georges Road          Sandford Road 
-##                      1                      1                      1                      1 
-##            Secunda Way       Southgate Street            Stroud Road           Suffolk Road 
-##                      1                      1                      1                      1 
-##        Tewkesbury Road               The Quay      Thirlestaine Road              Trier Way 
-##                      3                      1                      1                      1 
-##           Unnamed road       Walls Roundabout          Westward Road 
-##                      9                      1                      1</code></pre>
+##                    A38 
+##                     10 
+##                    A40 
+##                      2 
+##                  A4019 
+##                      1 
+##                   A417 
+##                      1 
+##                  A4173 
+##                      1 
+##                   A419 
+##                      1 
+##                   A430 
+##                      1 
+##                  A4302 
+##                      1 
+##                    A46 
+##                      1 
+##       All Saints&#39; Road 
+##                      1 
+##           Andover Road 
+##                      1 
+##         Ashchurch Road 
+##                      1 
+##                  B4632 
+##                      1 
+##          Barnwood Road 
+##                      1 
+##              Bath Road 
+##                      1 
+##          Bayshill Road 
+##                      1 
+##           Bristol Road 
+##                      5 
+##      Brockworth Bypass 
+##                      1 
+##             Bruton Way 
+##                      1 
+##        Cainscross Road 
+##                      1 
+##        Cheltenham Road 
+##                      5 
+##   Cheltenham Road East 
+##                      2 
+##            Cole Avenue 
+##                      1 
+##        Corinium Avenue 
+##                      1 
+##         Dudbridge Hill 
+##                      1 
+##         Dudbridge Road 
+##                      1 
+##         Eastern Avenue 
+##                      1 
+##           Ermin Street 
+##                      1 
+##           Evesham Road 
+##                      1 
+##          Fairview Road 
+##                      1 
+##            Finlay Road 
+##                      1 
+##        Gloucester Road 
+##                      2 
+##             Hales Road 
+##                      1 
+##            High Street 
+##                      1 
+##        Hucclecote Road 
+##                      1 
+##         Kingsholm Road 
+##                      1 
+##          Lansdown Road 
+##                      1 
+##       Leckhampton Road 
+##                      1 
+##            London Road 
+##                      2 
+##        Marina Junction 
+##                      1 
+##               Metz Way 
+##                      1 
+##       Montpellier Walk 
+##                      1 
+##   Naas Lane Roundabout 
+##                      1 
+##          New Barn Lane 
+##                      1 
+##          Old Bath Road 
+##                      1 
+##    Old Gloucester Road 
+##                      1 
+##        Portland Street 
+##                      1 
+##         Prestbury Road 
+##                      1 
+## Princess Elizabeth Way 
+##                      1 
+##          Saint Ann Way 
+##                      1 
+##     Saint Georges Road 
+##                      1 
+##          Sandford Road 
+##                      1 
+##            Secunda Way 
+##                      1 
+##       Southgate Street 
+##                      1 
+##            Stroud Road 
+##                      1 
+##           Suffolk Road 
+##                      1 
+##        Tewkesbury Road 
+##                      3 
+##               The Quay 
+##                      1 
+##      Thirlestaine Road 
+##                      1 
+##              Trier Way 
+##                      1 
+##           Unnamed road 
+##                      9 
+##       Walls Roundabout 
+##                      1 
+##          Westward Road 
+##                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       20                       26                       44</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       26                       44                        4</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       20                       26                       44                        4</code></pre>
-<pre><code>## # A tibble: 20 x 5
-##    Name               Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;              &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 London Road        &quot;B4063&quot;                       725                 526                       381
-##  2 Cole Avenue        &quot;A38&quot;                        1881                 379                       713
-##  3 Finlay Road        &quot;A38&quot;                        1159                 339                       393
-##  4 Bristol Road       &quot;&quot;                           1158                 268                       310
-##  5 Bayshill Road      &quot;&quot;                            851                 290                       247
-##  6 Sandford Road      &quot;A40&quot;                         689                 293                       202
-##  7 Saint Georges Road &quot;&quot;                            799                 238                       190
-##  8 Barnwood Road      &quot;A38&quot;                         932                 202                       188
-##  9 Eastern Avenue     &quot;A38&quot;                        2920                 168                       491
-## 10 Hucclecote Road    &quot;&quot;                            625                 259                       162
-## 11 A38                &quot;A38&quot;                         513                 289                       148
-## 12 Southgate Street   &quot;A4301&quot;                       556                 264                       147
-## 13 Bristol Road       &quot;B4008&quot;                      1008                 143                       144
-## 14 Gloucester Road    &quot;A40&quot;                        2202                 140                       308
-## 15 Bristol Road       &quot;B4008&quot;                      1776                 135                       240
-## 16 London Road        &quot;A40&quot;                        1353                 131                       177
-## 17 Bath Road          &quot;A46&quot;                         889                 137                       122
-## 18 A40                &quot;A40&quot;                        1023                 120                       123
-## 19 Fairview Road      &quot;A4019&quot;                       722                 137                        99
-## 20 Gloucester Road    &quot;B4633&quot;                      1079                  89                        96</code></pre>
+## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       25 
+##    Estimated width &gt; 10m 
+##                       45</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       25 
+##    Estimated width &gt; 10m 
+##                       45 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       20 
+##            Spare lane(s) 
+##                       25 
+##    Estimated width &gt; 10m 
+##                       45 
+##                     NA&#39;s 
+##                        4</code></pre>
+<pre><code>## # A tibble: 20 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Lond… &quot;B4063&quot;            725
+##  2 Cole… &quot;A38&quot;             1881
+##  3 Finl… &quot;A38&quot;             1159
+##  4 Sand… &quot;A40&quot;              689
+##  5 Bays… &quot;&quot;                 851
+##  6 A38   &quot;A38&quot;              513
+##  7 Bris… &quot;&quot;                1158
+##  8 Sout… &quot;A4301&quot;            556
+##  9 Hucc… &quot;&quot;                 625
+## 10 Sain… &quot;&quot;                 799
+## 11 Barn… &quot;A38&quot;              932
+## 12 East… &quot;A38&quot;             2920
+## 13 Bris… &quot;B4008&quot;           1008
+## 14 Glou… &quot;A40&quot;             2202
+## 15 Fair… &quot;A4019&quot;            722
+## 16 Bath… &quot;A46&quot;              889
+## 17 Bris… &quot;B4008&quot;           1776
+## 18 Lond… &quot;A40&quot;             1353
+## 19 Suff… &quot;A40&quot;              657
+## 20 A40   &quot;A40&quot;             1023
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,78 +388,150 @@ summary {
 ##        A514 A5194    A6  A601 
 ##    46    17    26    16    13</code></pre>
 <pre><code>## [1] 32</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   597.5  2930.5  5070.9  3989.8  5622.8  6174.8</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   597.5  2930.5  5070.9  3989.8 
+## 3rd Qu.    Max. 
+##  5622.8  6174.8</code></pre>
 <pre><code>## 
-##          Alfreton Road       Brian Clough Way        Chellaston Road             Derby Road 
-##                     10                     45                     50                     10 
-##         Derwent Parade               Eastgate         Kedleston Road            London Road 
-##                     16                     15                     14                     32 
-##        Nottingham Road          Osmaston Road                  Other              Raynesway 
-##                     29                     48                    312                     30 
-##    Saint Alkmund&#39;s Way            Sinfin Lane Sir Frank Whittle Road     Uttoxeter New Road 
-##                     48                     23                     20                     25 
+##          Alfreton Road 
+##                     10 
+##       Brian Clough Way 
+##                     45 
+##        Chellaston Road 
+##                     50 
+##             Derby Road 
+##                     10 
+##         Derwent Parade 
+##                     16 
+##               Eastgate 
+##                     15 
+##         Kedleston Road 
+##                     14 
+##            London Road 
+##                     32 
+##        Nottingham Road 
+##                     29 
+##          Osmaston Road 
+##                     48 
+##                  Other 
+##                    312 
+##              Raynesway 
+##                     30 
+##    Saint Alkmund&#39;s Way 
+##                     48 
+##            Sinfin Lane 
+##                     23 
+## Sir Frank Whittle Road 
+##                     20 
+##     Uttoxeter New Road 
+##                     25 
 ##         Uttoxeter Road 
 ##                     17</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.01846 0.31257 0.40593 0.77548 1.02083</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.01846 0.31257 0.40593 
+## 3rd Qu.    Max. 
+## 0.77548 1.02083</code></pre>
 <pre><code>## [1] 13</code></pre>
-<pre><code>## # A tibble: 13 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A51…     3     1 London Road                     2 Lond…          640              392         11
-##  2 &quot;&quot;        2     2 Sinfin Lane                     1 Sinf…         1134              247         11
-##  3 &quot;A60…     3     1 Saint Alkmund&#39;s…                1 Sain…         2113              162         10
-##  4 &quot;A51…     2     1 Osmaston Road                   1 Osma…         1747              156         11
-##  5 &quot;B50…     3     1 Uttoxeter Road                  1 Utto…          988              148         11
-##  6 &quot;&quot;        3     7 Nottingham Road                 1 Nott…         1524              146         10
-##  7 &quot;A51…     2     2 Uttoxeter New R…                1 Utto…         1731              143          8
-##  8 &quot;A6&quot;      3     2 London Road                     1 Lond…          541              245         10
-##  9 &quot;A52&quot;     3     1 Eastgate                        1 East…         1080              121         12
-## 10 &quot;A51…     2     1 Chellaston Road                 1 Chel…          675              138         10
-## 11 &quot;A52&quot;     3     1 Brian Clough Way                1 Bria…        12416               49          7
-## 12 &quot;A60…     3     1 Derby Road                      1 Derb…          505               67         10
-## 13 &quot;A52&quot;     3     1 Other                           4 Sain…          609               53         11
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                  A5111                   A514                   A516                  A6005 
-##                      1                      1                      1                      2 
-##          Alfreton Road                  B6000         Balaclava Road       Brian Clough Way 
-##                      1                      1                      1                      1 
-##   Chaddesden Park Road        Chellaston Road             Derby Road         Derwent Parade 
-##                      1                      1                      2                      1 
-##               Eastgate          Harrow Street            Harvey Road         Kedleston Road 
-##                      1                      1                      1                      1 
-##            London Road        Nottingham Road          Osmaston Road              Raynesway 
-##                      3                      2                      2                      1 
-##    Saint Alkmund&#39;s Way            Sinfin Lane Sir Frank Whittle Road           The Pentagon 
-##                      2                      1                      1                      1 
-##         Traffic Street           Unnamed road     Uttoxeter New Road         Uttoxeter Road 
-##                      1                      7                      2                      1</code></pre>
+##                  A5111 
+##                      1 
+##                   A514 
+##                      1 
+##                   A516 
+##                      1 
+##                  A6005 
+##                      2 
+##          Alfreton Road 
+##                      1 
+##                  B6000 
+##                      1 
+##         Balaclava Road 
+##                      1 
+##       Brian Clough Way 
+##                      1 
+##   Chaddesden Park Road 
+##                      1 
+##        Chellaston Road 
+##                      1 
+##             Derby Road 
+##                      2 
+##         Derwent Parade 
+##                      1 
+##               Eastgate 
+##                      1 
+##          Harrow Street 
+##                      1 
+##            Harvey Road 
+##                      1 
+##         Kedleston Road 
+##                      1 
+##            London Road 
+##                      3 
+##        Nottingham Road 
+##                      2 
+##          Osmaston Road 
+##                      2 
+##              Raynesway 
+##                      1 
+##    Saint Alkmund&#39;s Way 
+##                      2 
+##            Sinfin Lane 
+##                      1 
+## Sir Frank Whittle Road 
+##                      1 
+##           The Pentagon 
+##                      1 
+##         Traffic Street 
+##                      1 
+##           Unnamed road 
+##                      7 
+##     Uttoxeter New Road 
+##                      2 
+##         Uttoxeter Road 
+##                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       13                       11                       17</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       13                       11                       17                        1</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       13                       11                       17                        1</code></pre>
-<pre><code>## # A tibble: 13 x 5
-##    Name                Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;               &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 London Road         &quot;A5194&quot;                       640                 392                       251
-##  2 Sinfin Lane         &quot;&quot;                           1134                 247                       280
-##  3 Saint Alkmund&#39;s Way &quot;A601&quot;                       2113                 162                       342
-##  4 Osmaston Road       &quot;A514&quot;                       1747                 156                       273
-##  5 Uttoxeter Road      &quot;B5020&quot;                       988                 148                       146
-##  6 Nottingham Road     &quot;&quot;                           1524                 146                       223
-##  7 Uttoxeter New Road  &quot;A516&quot;                       1731                 143                       248
-##  8 London Road         &quot;A6&quot;                          541                 245                       133
-##  9 Eastgate            &quot;A52&quot;                        1080                 121                       131
-## 10 Chellaston Road     &quot;A514&quot;                        675                 138                        93
-## 11 Brian Clough Way    &quot;A52&quot;                       12416                  49                       608
-## 12 Derby Road          &quot;A6005&quot;                       505                  67                        34
-## 13 Saint Alkmund&#39;s Way &quot;A52&quot;                         609                  53                        32</code></pre>
+## Top ranked new cycleways 
+##                       13 
+##            Spare lane(s) 
+##                       11 
+##    Estimated width &gt; 10m 
+##                       17</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       13 
+##            Spare lane(s) 
+##                       11 
+##    Estimated width &gt; 10m 
+##                       17 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       13 
+##            Spare lane(s) 
+##                       11 
+##    Estimated width &gt; 10m 
+##                       17 
+##                     NA&#39;s 
+##                        1</code></pre>
+<pre><code>## # A tibble: 13 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Lond… &quot;A5194&quot;            640
+##  2 Sinf… &quot;&quot;                1134
+##  3 Lond… &quot;A6&quot;               541
+##  4 Sain… &quot;A601&quot;            2113
+##  5 Osma… &quot;A514&quot;            1747
+##  6 Utto… &quot;B5020&quot;            988
+##  7 Nott… &quot;&quot;                1524
+##  8 Utto… &quot;A516&quot;            1731
+##  9 Chel… &quot;A514&quot;             675
+## 10 East… &quot;A52&quot;             1080
+## 11 Derb… &quot;A6005&quot;            505
+## 12 Sain… &quot;A52&quot;              609
+## 13 Bria… &quot;A52&quot;            12416
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,140 +378,382 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A1060 A1099 A1114  A130  A132 A1321  A133  A134  A137 B1008 B1009 B1014 B1022 B1026 
-##   283     6    26     3     3     9     9     7    18     1    25     3     6    17    13</code></pre>
+##       A1060 A1099 A1114  A130  A132 
+##   283     6    26     3     3     9 
+## A1321  A133  A134  A137 B1008 B1009 
+##     9     7    18     1    25     3 
+## B1014 B1022 B1026 
+##     6    17    13</code></pre>
 <pre><code>## [1] 118</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2560    4308    9685   11439   22447   22447</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    2560    4308    9685   11439 
+## 3rd Qu.    Max. 
+##   22447   22447</code></pre>
 <pre><code>## 
-##            Balkerne Hill           Braintree Road          Broomfield Road           Cambridge Road 
-##                        9                        8                       35                        8 
-##             Chelmer Road      Chelmer Valley Road          Chelmsford Road             Clingoe Hill 
-##                       45                       24                       11                       14 
-##     Colchester Main Road          Colchester Road           Cowdray Avenue         Cranes Farm Road 
-##                        7                       10                        8                       27 
-##            Cymbeline Way            Edinburgh Way       Essex Yeomanry Way             Frinton Road 
-##                       15                       10                       13                        7 
-##       Golden Jubilee Way             Haydens Road              Hutton Road             Ipswich Road 
-##                       13                       21                       12                       35 
-##                Kiln Road               Layer Road              London Road                Main Road 
-##                       21                       14                       38                        9 
-##              Maldon Road              Mersea Road           Millennium Way             Nether Mayne 
-##                        6                       18                        5                       16 
-##            Nevendon Road          New London Road                    Other                  Parkway 
-##                        2                       15                      666                       69 
-##           Pitsea Flyover             Princes Road              Ramsey Road            Rayleigh Road 
-##                        1                       14                       14                       13 
-##             Roxwell Road    Saint Andrew&#39;s Avenue           Shenfield Road           Shrub End Road 
-##                        8                       25                        8                       12 
-##            Somnes Avenue   Southend Arterial Road            Southend Road                 Southway 
-##                        5                       95                        5                       25 
-##         Springfield Road Stanford-le-Hope By-Pass               The Street              Turner Road 
-##                       15                        2                       18                       38 
-##            Velizy Avenue                  Westway 
-##                        7                       12</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.2568  0.4159  0.9853  1.0435</code></pre>
+##            Balkerne Hill 
+##                        9 
+##           Braintree Road 
+##                        8 
+##          Broomfield Road 
+##                       35 
+##           Cambridge Road 
+##                        8 
+##             Chelmer Road 
+##                       45 
+##      Chelmer Valley Road 
+##                       24 
+##          Chelmsford Road 
+##                       11 
+##             Clingoe Hill 
+##                       14 
+##     Colchester Main Road 
+##                        7 
+##          Colchester Road 
+##                       10 
+##           Cowdray Avenue 
+##                        8 
+##         Cranes Farm Road 
+##                       27 
+##            Cymbeline Way 
+##                       15 
+##            Edinburgh Way 
+##                       10 
+##       Essex Yeomanry Way 
+##                       13 
+##             Frinton Road 
+##                        7 
+##       Golden Jubilee Way 
+##                       13 
+##             Haydens Road 
+##                       21 
+##              Hutton Road 
+##                       12 
+##             Ipswich Road 
+##                       35 
+##                Kiln Road 
+##                       21 
+##               Layer Road 
+##                       14 
+##              London Road 
+##                       38 
+##                Main Road 
+##                        9 
+##              Maldon Road 
+##                        6 
+##              Mersea Road 
+##                       18 
+##           Millennium Way 
+##                        5 
+##             Nether Mayne 
+##                       16 
+##            Nevendon Road 
+##                        2 
+##          New London Road 
+##                       15 
+##                    Other 
+##                      666 
+##                  Parkway 
+##                       69 
+##           Pitsea Flyover 
+##                        1 
+##             Princes Road 
+##                       14 
+##              Ramsey Road 
+##                       14 
+##            Rayleigh Road 
+##                       13 
+##             Roxwell Road 
+##                        8 
+##    Saint Andrew&#39;s Avenue 
+##                       25 
+##           Shenfield Road 
+##                        8 
+##           Shrub End Road 
+##                       12 
+##            Somnes Avenue 
+##                        5 
+##   Southend Arterial Road 
+##                       95 
+##            Southend Road 
+##                        5 
+##                 Southway 
+##                       25 
+##         Springfield Road 
+##                       15 
+## Stanford-le-Hope By-Pass 
+##                        2 
+##               The Street 
+##                       18 
+##              Turner Road 
+##                       38 
+##            Velizy Avenue 
+##                        7 
+##                  Westway 
+##                       12</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.2568  0.4159 
+## 3rd Qu.    Max. 
+##  0.9853  1.0435</code></pre>
 <pre><code>## [1] 40</code></pre>
-<pre><code>## # A tibble: 40 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 B1026   548     1 Layer Road                      1 Laye…         1051              235         10
-##  2 B1008   103     1 Broomfield Road                 1 Broo…         1937              145         10
-##  3 A1099   103     2 Other                          22 Vict…          582              246          9
-##  4 B1025   568     1 Mersea Road                     1 Mers…         1253              139         10
-##  5 B1022   548     2 Shrub End Road                  1 Shru…         1001              131         11
-##  6 A1232   211     1 Ipswich Road                    1 Ipsw…          757              155         10
-##  7 B1022   548     2 Maldon Road                     1 Mald…          520              213          9
-##  8 A13     784     2 Kiln Road                       1 Kiln…         1547              106         10
-##  9 A134    211     5 Balkerne Hill                   1 Balk…         1137              105          7
-## 10 A13     105     1 Other                          21 A13           3678              103         14
-## # … with 30 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                      A1019                      A1184                       A120                      A1232 
-##                          1                          1                          2                          1 
-##                      A1235                      A1245                        A13                       A130 
-##                          1                          1                          3                          2 
-##                       A131                       A132                       A133                       A134 
-##                          1                          3                          1                          2 
-##                       A176                       A414      Abbey View Roundabout     Army &amp; Navy Roundabout 
-##                          1                          1                          1                          1 
-##                Baddow Road              Balkerne Hill              Benfleet Road             Braintree Road 
-##                          1                          1                          1                          1 
-##                 Broadmayne            Broomfield Road                  Butt Road             Cambridge Road 
-##                          1                          2                          2                          1 
-##                Canvey Road               Chelmer Road    Chelmer Road Roundabout        Chelmer Valley Road 
-##                          1                          1                          1                          2 
-##            Chelmsford Road               Clingoe Hill       Colchester Main Road            Colchester Road 
-##                          1                          1                          2                          1 
-##          Colne Bank Avenue           Connaught Avenue             Courtauld Road             Cowdray Avenue 
-##                          1                          1                          1                          1 
-##           Cranes Farm Road           Cranes Park Road               Crooked Mile           Cuton Roundabout 
-##                          3                          1                          1                          1 
-##              Cymbeline Way           Eastern Approach              Edinburgh Way         Essex Yeomanry Way 
-##                          1                          1                          1                          1 
-##               Fifth Avenue   Fowler&#39;s Farm Roundabout               Frinton Road         Golden Jubilee Way 
-##                          1                          1                          1                          1 
-##      Greenstead Roundabout               Harwich Road               Haydens Road           High Bridge Road 
-##                          1                          1                          1                          1 
-##                  High Road                High Street                Hutton Road               Ipswich Road 
-##                          2                          1                          1                          2 
-##                  Kiln Road                 Layer Road                Lexden Road                London Road 
-##                          1                          1                          1                          9 
-##                  Main Road                Maldon Road          Market Roundabout                Mersea Road 
-##                          2                          2                          1                          2 
-##             Millennium Way            Moulsham Street   Nabbotts Farm Roundabout               Nether Mayne 
-##                          1                          1                          1                          1 
-##              Nevendon Road            New London Road         North Station Road     Northern Approach Road 
-##                          1                          1                          1                          1 
-##                Oakley Road           Odeon Roundabout                    Parkway             Pitsea Flyover 
-##                          1                          1                          2                          1 
-##               Princes Road             Rainsford Lane             Rainsford Road                Ramsey Road 
-##                          1                          1                          2                          1 
-##              Rayleigh Road               Rectory Lane               Roxwell Road               Runwell Road 
-##                          1                          1                          1                          1 
-##      Saint Andrew&#39;s Avenue             Shenfield Road             Shrub End Road              Somnes Avenue 
-##                          3                          1                          1                          1 
-##     Southend Arterial Road              Southend Road                   Southway     Spring Lane Roundabout 
-##                          1                          2                          1                          1 
-##           Springfield Road        St Botolph&#39;s Circus   Stanford-le-Hope By-Pass               Station Road 
-##                          3                          1                          1                          1 
-##                 The Street                Turner Road               Unnamed road              Velizy Avenue 
-##                          1                          1                          7                          1 
-##              Victoria Road        Victoria Road South             Wellesley Road                    Westway 
-##                          1                          1                          1                          1 
+##                      A1019 
+##                          1 
+##                      A1184 
+##                          1 
+##                       A120 
+##                          2 
+##                      A1232 
+##                          1 
+##                      A1235 
+##                          1 
+##                      A1245 
+##                          1 
+##                        A13 
+##                          3 
+##                       A130 
+##                          2 
+##                       A131 
+##                          1 
+##                       A132 
+##                          3 
+##                       A133 
+##                          1 
+##                       A134 
+##                          2 
+##                       A176 
+##                          1 
+##                       A414 
+##                          1 
+##      Abbey View Roundabout 
+##                          1 
+##     Army &amp; Navy Roundabout 
+##                          1 
+##                Baddow Road 
+##                          1 
+##              Balkerne Hill 
+##                          1 
+##              Benfleet Road 
+##                          1 
+##             Braintree Road 
+##                          1 
+##                 Broadmayne 
+##                          1 
+##            Broomfield Road 
+##                          2 
+##                  Butt Road 
+##                          2 
+##             Cambridge Road 
+##                          1 
+##                Canvey Road 
+##                          1 
+##               Chelmer Road 
+##                          1 
+##    Chelmer Road Roundabout 
+##                          1 
+##        Chelmer Valley Road 
+##                          2 
+##            Chelmsford Road 
+##                          1 
+##               Clingoe Hill 
+##                          1 
+##       Colchester Main Road 
+##                          2 
+##            Colchester Road 
+##                          1 
+##          Colne Bank Avenue 
+##                          1 
+##           Connaught Avenue 
+##                          1 
+##             Courtauld Road 
+##                          1 
+##             Cowdray Avenue 
+##                          1 
+##           Cranes Farm Road 
+##                          3 
+##           Cranes Park Road 
+##                          1 
+##               Crooked Mile 
+##                          1 
+##           Cuton Roundabout 
+##                          1 
+##              Cymbeline Way 
+##                          1 
+##           Eastern Approach 
+##                          1 
+##              Edinburgh Way 
+##                          1 
+##         Essex Yeomanry Way 
+##                          1 
+##               Fifth Avenue 
+##                          1 
+##   Fowler&#39;s Farm Roundabout 
+##                          1 
+##               Frinton Road 
+##                          1 
+##         Golden Jubilee Way 
+##                          1 
+##      Greenstead Roundabout 
+##                          1 
+##               Harwich Road 
+##                          1 
+##               Haydens Road 
+##                          1 
+##           High Bridge Road 
+##                          1 
+##                  High Road 
+##                          2 
+##                High Street 
+##                          1 
+##                Hutton Road 
+##                          1 
+##               Ipswich Road 
+##                          2 
+##                  Kiln Road 
+##                          1 
+##                 Layer Road 
+##                          1 
+##                Lexden Road 
+##                          1 
+##                London Road 
+##                          9 
+##                  Main Road 
+##                          2 
+##                Maldon Road 
+##                          2 
+##          Market Roundabout 
+##                          1 
+##                Mersea Road 
+##                          2 
+##             Millennium Way 
+##                          1 
+##            Moulsham Street 
+##                          1 
+##   Nabbotts Farm Roundabout 
+##                          1 
+##               Nether Mayne 
+##                          1 
+##              Nevendon Road 
+##                          1 
+##            New London Road 
+##                          1 
+##         North Station Road 
+##                          1 
+##     Northern Approach Road 
+##                          1 
+##                Oakley Road 
+##                          1 
+##           Odeon Roundabout 
+##                          1 
+##                    Parkway 
+##                          2 
+##             Pitsea Flyover 
+##                          1 
+##               Princes Road 
+##                          1 
+##             Rainsford Lane 
+##                          1 
+##             Rainsford Road 
+##                          2 
+##                Ramsey Road 
+##                          1 
+##              Rayleigh Road 
+##                          1 
+##               Rectory Lane 
+##                          1 
+##               Roxwell Road 
+##                          1 
+##               Runwell Road 
+##                          1 
+##      Saint Andrew&#39;s Avenue 
+##                          3 
+##             Shenfield Road 
+##                          1 
+##             Shrub End Road 
+##                          1 
+##              Somnes Avenue 
+##                          1 
+##     Southend Arterial Road 
+##                          1 
+##              Southend Road 
+##                          2 
+##                   Southway 
+##                          1 
+##     Spring Lane Roundabout 
+##                          1 
+##           Springfield Road 
+##                          3 
+##        St Botolph&#39;s Circus 
+##                          1 
+##   Stanford-le-Hope By-Pass 
+##                          1 
+##               Station Road 
+##                          1 
+##                 The Street 
+##                          1 
+##                Turner Road 
+##                          1 
+##               Unnamed road 
+##                          7 
+##              Velizy Avenue 
+##                          1 
+##              Victoria Road 
+##                          1 
+##        Victoria Road South 
+##                          1 
+##             Wellesley Road 
+##                          1 
+##                    Westway 
+##                          1 
 ## White Hart Lane Roundabout 
 ##                          1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       40                       50                       48</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       50                       48                        6</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       40                       50                       48                        6</code></pre>
-<pre><code>## # A tibble: 40 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Layer Road      B1026                        1051                 235                       247
-##  2 Broomfield Road B1008                        1937                 145                       281
-##  3 Victoria Road   A1099                         582                 246                       143
-##  4 Mersea Road     B1025                        1253                 139                       174
-##  5 Shrub End Road  B1022                        1001                 131                       131
-##  6 Ipswich Road    A1232                         757                 155                       117
-##  7 Maldon Road     B1022                         520                 213                       111
-##  8 Kiln Road       A13                          1547                 106                       164
-##  9 Balkerne Hill   A134                         1137                 105                       119
-## 10 A13             A13                          3678                 103                       379
-## # … with 30 more rows</code></pre>
+## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       51 
+##    Estimated width &gt; 10m 
+##                       47</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       51 
+##    Estimated width &gt; 10m 
+##                       47 
+##                     NA&#39;s 
+##                        6</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       40 
+##            Spare lane(s) 
+##                       51 
+##    Estimated width &gt; 10m 
+##                       47 
+##                     NA&#39;s 
+##                        6</code></pre>
+<pre><code>## # A tibble: 40 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Vict… A1099              582
+##  2 Laye… B1026             1051
+##  3 Mald… B1022              520
+##  4 Ipsw… A1232              757
+##  5 Broo… B1008             1937
+##  6 Lond… A1124              614
+##  7 Mers… B1025             1253
+##  8 Shru… B1022             1001
+##  9 Roxw… A1060              671
+## 10 Shen… A1023              774
+## # … with 30 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

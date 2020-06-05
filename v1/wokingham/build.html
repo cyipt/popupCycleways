@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,62 +388,125 @@ summary {
 ##        A329    A4 B3350 
 ##    86     6     2     4</code></pre>
 <pre><code>## [1] 37</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2489    2716    2915    3199    3184    4682</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    2489    2716    2915    3199 
+## 3rd Qu.    Max. 
+##    3184    4682</code></pre>
 <pre><code>## 
-##       Basingstoke Road              Bath Road          Berkshire Way           Forbury Road 
-##                     13                      6                      8                      9 
-##            King&#39;s Road            London Road       Lower Earley Way Lower Earley Way North 
-##                      8                    107                      1                      8 
-##                  Other           Reading Road           Rectory Road         Wokingham Road 
-##                    163                     97                      7                     59</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.1056  0.6549  0.5575  1.0000  1.0435</code></pre>
+##       Basingstoke Road 
+##                     13 
+##              Bath Road 
+##                      6 
+##          Berkshire Way 
+##                      8 
+##           Forbury Road 
+##                      9 
+##            King&#39;s Road 
+##                      8 
+##            London Road 
+##                    107 
+##       Lower Earley Way 
+##                      1 
+## Lower Earley Way North 
+##                      8 
+##                  Other 
+##                    163 
+##           Reading Road 
+##                     97 
+##           Rectory Road 
+##                      7 
+##         Wokingham Road 
+##                     59</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.1056  0.6549  0.5575 
+## 3rd Qu.    Max. 
+##  1.0000  1.0435</code></pre>
 <pre><code>## [1] 8</code></pre>
-<pre><code>## # A tibble: 8 x 16
-##   ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-## * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-## 1 A329      4     2 Wokingham Road                  1 Woki…         2014               97         11
-## 2 A4        4     1 London Road                     2 Lond…         1959               93          8
-## 3 A4       24     2 Bath Road                       1 Bath…         1010               68         10
-## 4 B3031    13     1 Basingstoke Road                1 Basi…          654               87         11
-## 5 A327     17     1 Other                           1 Shin…          550              100         11
-## 6 A329      8     3 London Road                     1 Lond…         3095               53          9
-## 7 A329      8     3 Other                           4 Peac…          868               44          8
-## 8 A329      4     1 Forbury Road                    1 Forb…          519               52          7
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                        A4                     B3270          Basingstoke Road                 Bath Road 
-##                         1                         1                         1                         1 
-##             Berkshire Way   Coppid Beach Roundabout              Forbury Road           Glebelands Road 
-##                         1                         1                         1                         1 
-## Jennett&#39;s Park Roundabout          King Street Lane               King&#39;s Road               London Road 
-##                         1                         1                         1                         5 
-##          Lower Earley Way    Lower Earley Way North              Peach Street                Pitts Lane 
-##                         1                         1                         1                         1 
-##               Queens Road              Reading Road              Rectory Road            Shinfield Road 
-##                         1                         2                         1                         1 
-##              Unnamed road           Wilderness Road            Wokingham Road 
-##                         3                         1                         2</code></pre>
+##                        A4 
+##                         1 
+##                     B3270 
+##                         1 
+##          Basingstoke Road 
+##                         1 
+##                 Bath Road 
+##                         1 
+##             Berkshire Way 
+##                         1 
+##   Coppid Beach Roundabout 
+##                         1 
+##              Forbury Road 
+##                         1 
+##           Glebelands Road 
+##                         1 
+## Jennett&#39;s Park Roundabout 
+##                         1 
+##          King Street Lane 
+##                         1 
+##               King&#39;s Road 
+##                         1 
+##               London Road 
+##                         5 
+##          Lower Earley Way 
+##                         1 
+##    Lower Earley Way North 
+##                         1 
+##              Peach Street 
+##                         1 
+##                Pitts Lane 
+##                         1 
+##               Queens Road 
+##                         1 
+##              Reading Road 
+##                         2 
+##              Rectory Road 
+##                         1 
+##            Shinfield Road 
+##                         1 
+##              Unnamed road 
+##                         3 
+##           Wilderness Road 
+##                         1 
+##            Wokingham Road 
+##                         2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        8                       13                        7</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                        8                       13                        7                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                        8                       13                        7                        3</code></pre>
-<pre><code>## # A tibble: 8 x 5
-##   Name             Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-## * &lt;chr&gt;            &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-## 1 Wokingham Road   A329                         2014                  97                       195
-## 2 London Road      A4                           1959                  93                       182
-## 3 Bath Road        A4                           1010                  68                        69
-## 4 Basingstoke Road B3031                         654                  87                        57
-## 5 Shinfield Road   A327                          550                 100                        55
-## 6 London Road      A329                         3095                  53                       164
-## 7 Peach Street     A329                          868                  44                        38
-## 8 Forbury Road     A329                          519                  52                        27</code></pre>
+## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                       13 
+##    Estimated width &gt; 10m 
+##                        7</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                       13 
+##    Estimated width &gt; 10m 
+##                        7 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        8 
+##            Spare lane(s) 
+##                       13 
+##    Estimated width &gt; 10m 
+##                        7 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 8 x 6
+##   Name  Reference `Length (m)`
+## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+## 1 Shin… A327               550
+## 2 Woki… A329              2014
+## 3 Lond… A4                1959
+## 4 Basi… B3031              654
+## 5 Bath… A4                1010
+## 6 Lond… A329              3095
+## 7 Forb… A329               519
+## 8 Peac… A329               868
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

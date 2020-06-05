@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,62 +388,103 @@ summary {
 ##      A505   A6 B579 
 ##   36    3    1    5</code></pre>
 <pre><code>## [1] 18</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   656.7   801.8  3281.8  2192.2  3302.7  3302.7</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   656.7   801.8  3281.8  2192.2 
+## 3rd Qu.    Max. 
+##  3302.7  3302.7</code></pre>
 <pre><code>## 
-##            Barton Road         Dunstable Road      Gateway Link Road   Leagrave High Street 
-##                      6                     28                      8                      6 
-##            Lewsey Road Luton Dunstable Busway             Luton Road       New Bedford Road 
-##                      6                     11                      6                     10 
+##            Barton Road 
+##                      6 
+##         Dunstable Road 
+##                     28 
+##      Gateway Link Road 
+##                      8 
+##   Leagrave High Street 
+##                      6 
+##            Lewsey Road 
+##                      6 
+## Luton Dunstable Busway 
+##                     11 
+##             Luton Road 
+##                      6 
+##       New Bedford Road 
+##                     10 
 ##                  Other 
 ##                     90</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.1675  0.1371  1.0013</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.0000  0.0000  0.1675 
+## 3rd Qu.    Max. 
+##  0.1371  1.0013</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;A50…    64     3 Luton Road                      1 Luto…          969              146         11
-##  2 &quot;&quot;        5     3 Other                           6 High…          910              153         10
-##  3 &quot;&quot;       17     4 Luton Dunstable…                1 Luto…         1894              118        NaN
-##  4 &quot;A50…     5     1 Dunstable Road                  1 Duns…         1586               89          7
-##  5 &quot;A50…     5     1 Dunstable Road                  2 Duns…          710              109         11
-##  6 &quot;&quot;        5     6 Luton Dunstable…                3 Luto…          940               80          7
-##  7 &quot;&quot;        1     7 Other                           9 Park…          630              115         11
-##  8 &quot;&quot;        5     5 Leagrave High S…                1 Leag…          591               92         10
-##  9 &quot;&quot;        5     2 Dunstable Road                  1 Duns…          660               82          7
-## 10 &quot;&quot;        1     1 Luton Dunstable…                2 Luto…          543               94          8
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                   A505            Barton Road     Crawley Green Road         Dunstable Road 
-##                      1                      1                      1                      3 
-##      Gateway Link Road            High Street   Leagrave High Street            Lewsey Road 
-##                      1                      1                      1                      1 
-## Luton Dunstable Busway             Luton Road       New Bedford Road            Park Street 
-##                      3                      1                      1                      1 
-##          Poynters Road           Unnamed road 
-##                      1                      5</code></pre>
+##                   A505 
+##                      1 
+##            Barton Road 
+##                      1 
+##     Crawley Green Road 
+##                      1 
+##         Dunstable Road 
+##                      3 
+##      Gateway Link Road 
+##                      1 
+##            High Street 
+##                      1 
+##   Leagrave High Street 
+##                      1 
+##            Lewsey Road 
+##                      1 
+## Luton Dunstable Busway 
+##                      3 
+##             Luton Road 
+##                      1 
+##       New Bedford Road 
+##                      1 
+##            Park Street 
+##                      1 
+##          Poynters Road 
+##                      1 
+##           Unnamed road 
+##                      5</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        3                        6</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                        3                        6                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       10                        3                        6                        3</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name                   Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;                  &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Luton Road             &quot;A505&quot;                        969                 146                       141
-##  2 High Street            &quot;&quot;                            910                 153                       139
-##  3 Luton Dunstable Busway &quot;&quot;                           1894                 118                       223
-##  4 Dunstable Road         &quot;A505&quot;                       1586                  89                       141
-##  5 Dunstable Road         &quot;A505&quot;                        710                 109                        77
-##  6 Luton Dunstable Busway &quot;&quot;                            940                  80                        75
-##  7 Park Street            &quot;&quot;                            630                 115                        72
-##  8 Leagrave High Street   &quot;&quot;                            591                  92                        54
-##  9 Dunstable Road         &quot;&quot;                            660                  82                        54
-## 10 Luton Dunstable Busway &quot;&quot;                            543                  94                        51</code></pre>
+## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        3 
+##    Estimated width &gt; 10m 
+##                        6</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        3 
+##    Estimated width &gt; 10m 
+##                        6 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        3 
+##    Estimated width &gt; 10m 
+##                        6 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 High… &quot;&quot;                 910
+##  2 Luto… &quot;A505&quot;             969
+##  3 Luto… &quot;&quot;                1894
+##  4 Park… &quot;&quot;                 630
+##  5 Duns… &quot;A505&quot;             710
+##  6 Luto… &quot;&quot;                 543
+##  7 Leag… &quot;&quot;                 591
+##  8 Duns… &quot;A505&quot;            1586
+##  9 Duns… &quot;&quot;                 660
+## 10 Luto… &quot;&quot;                 940
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

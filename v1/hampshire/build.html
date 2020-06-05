@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,164 +378,406 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##                       A27           A3        A3023          A32         A325         A326        B2149 
-##          407           46            1            2           31            4            1            4 
-##        B2150        B3053        B3333        B3334        B3385 Footpath 54B 
-##            1            3           15           24            1            1</code></pre>
+##                       A27 
+##          407           46 
+##           A3        A3023 
+##            1            2 
+##          A32         A325 
+##           31            4 
+##         A326        B2149 
+##            1            4 
+##        B2150        B3053 
+##            1            3 
+##        B3333        B3334 
+##           15           24 
+##        B3385 Footpath 54B 
+##            1            1</code></pre>
 <pre><code>## [1] 137</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2621    7162   45415   30911   45415   45415</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    2621    7162   45415   30911 
+## 3rd Qu.    Max. 
+##   45415   45415</code></pre>
 <pre><code>## 
-##        Alexandra Road         Alison&#39;s Road Bedhampton Roundabout       Brockhurst Road 
-##                    17                    11                     8                    10 
-##             Cams Hill     Charles Watts Way         Churchill Way    Churchill Way East 
-##                     2                    12                     8                     7 
-##    Churchill Way West           East Street           Eastern Way      Farnborough Road 
-##                    30                     6                    12                    77 
-##           Forton Road          Gosport Road           Grange Road           Havant Road 
-##                    22                    24                     5                    32 
-##        Henry Cort Way           High Street        Langstone Road            Leigh Road 
-##                     6                    38                    28                    46 
-##           London Road      Marchwood Bypass            Mumby Road              New Road 
-##                    43                     2                    17                    15 
-##          Newbury Road          Newgate Lane                 Other       Park Road North 
-##                     8                    12                   873                     9 
-##       Park Road South      Petersfield Road      Portchester Road          Purbrook Way 
-##                    10                    27                     9                    12 
-##          Reading Road          Ringway East         Ringway North         Ringway South 
-##                    54                    19                     7                    16 
-##          Ringway West          South Street         Spicer&#39;s Hill          Stoneham Way 
-##                    21                    19                     4                     3 
-##            The Avenue           Tollbar Way         Victoria Road        Wallington Way 
-##                    32                     9                    14                     5 
-##           West Street        Western Avenue           Western Way       Winchester Road 
-##                     9                     7                     6                     3 
+##        Alexandra Road 
+##                    17 
+##         Alison&#39;s Road 
+##                    11 
+## Bedhampton Roundabout 
+##                     8 
+##       Brockhurst Road 
+##                    10 
+##             Cams Hill 
+##                     2 
+##     Charles Watts Way 
+##                    12 
+##         Churchill Way 
+##                     8 
+##    Churchill Way East 
+##                     7 
+##    Churchill Way West 
+##                    30 
+##           East Street 
+##                     6 
+##           Eastern Way 
+##                    12 
+##      Farnborough Road 
+##                    77 
+##           Forton Road 
+##                    22 
+##          Gosport Road 
+##                    24 
+##           Grange Road 
+##                     5 
+##           Havant Road 
+##                    32 
+##        Henry Cort Way 
+##                     6 
+##           High Street 
+##                    38 
+##        Langstone Road 
+##                    28 
+##            Leigh Road 
+##                    46 
+##           London Road 
+##                    43 
+##      Marchwood Bypass 
+##                     2 
+##            Mumby Road 
+##                    17 
+##              New Road 
+##                    15 
+##          Newbury Road 
+##                     8 
+##          Newgate Lane 
+##                    12 
+##                 Other 
+##                   873 
+##       Park Road North 
+##                     9 
+##       Park Road South 
+##                    10 
+##      Petersfield Road 
+##                    27 
+##      Portchester Road 
+##                     9 
+##          Purbrook Way 
+##                    12 
+##          Reading Road 
+##                    54 
+##          Ringway East 
+##                    19 
+##         Ringway North 
+##                     7 
+##         Ringway South 
+##                    16 
+##          Ringway West 
+##                    21 
+##          South Street 
+##                    19 
+##         Spicer&#39;s Hill 
+##                     4 
+##          Stoneham Way 
+##                     3 
+##            The Avenue 
+##                    32 
+##           Tollbar Way 
+##                     9 
+##         Victoria Road 
+##                    14 
+##        Wallington Way 
+##                     5 
+##           West Street 
+##                     9 
+##        Western Avenue 
+##                     7 
+##           Western Way 
+##                     6 
+##       Winchester Road 
+##                     3 
 ##       Woodside Avenue 
 ##                    32</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.04028 0.38804 0.46056 0.97007 1.07143</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.04028 0.38804 0.46056 
+## 3rd Qu.    Max. 
+## 0.97007 1.07143</code></pre>
 <pre><code>## [1] 50</code></pre>
-<pre><code>## # A tibble: 50 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 &quot;&quot;      594    31 Henry Cort Way                  2 Henr…          909              597        NaN
-##  2 &quot;A27&quot;   494     1 West Street                     1 West…          748              611         10
-##  3 &quot;A32&quot;   496     1 Gosport Road                    1 Gosp…         1853              378          7
-##  4 &quot;&quot;      594    30 Henry Cort Way                  1 Henr…          601              595        NaN
-##  5 &quot;A27&quot;   494     1 East Street                     1 East…          786              448          6
-##  6 &quot;A32&quot;   528     2 Forton Road                     1 Fort…         1116              326         10
-##  7 &quot;A32&quot;   528     2 Mumby Road                      1 Mumb…          889              308         10
-##  8 &quot;B33…   528     4 South Street                    1 Sout…         1245              258         10
-##  9 &quot;A27&quot;   494     1 Other                          22 A27            557              307          7
-## 10 &quot;B21…   499     1 Other                          24 Bedh…          686              224         12
-## # … with 40 more rows, and 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;,
-## #   length_in_cycleway &lt;dbl&gt;, km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;,
-## #   km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                        A2030                         A259                          A27 
-##                            1                            1                            3 
-##                          A30                        A3010                          A32 
-##                            2                            1                            1 
-##                          A33                         A331                         A335 
-##                            1                            1                            1 
-##                         A339                         A343                          A35 
-##                            1                            1                            1 
-##               Alexandra Road                Alison&#39;s Road                        B1731 
-##                            1                            1                            1 
-##                        B1732                        B2149                        B3334 
-##                            1                            1                            1 
-##                        B3403                   Beach Road              Bedhampton Hill 
-##                            2                            1                            1 
-##              Bedhampton Road        Bedhampton Roundabout         Binfields Roundabout 
-##                            1                            1                            1 
-##      Borden Gates Roundabout                  Botley Road                  Bridge Road 
-##                            1                            1                            2 
-##          Broadcut Roundabout              Brockhurst Road                    Broom Way 
-##                            1                            1                            2 
-##               Bursledon Road                    Bury Road                    Camp Road 
-##                            1                            1                            1 
-##                    Cams Hill            Charles Watts Way                Churchill Way 
-##                            1                            1                            1 
-##           Churchill Way East           Churchill Way West        Clockhouse Roundabout 
-##                            1                            2                            1 
-##               Clubhouse Road              Commercial Road     Cornaway Lane Roundabout 
-##                            1                            1                            1 
-##         Crockford Roundabout                  East Street                  Eastern Way 
-##                            1                            1                            1 
-##           Eastrop Roundabout                 Fareham Road             Farnborough Road 
-##                            1                            1                            1 
-##   Farnborough Road cyclepath                  Forton Road                   Friarsgate 
-##                            1                            1                            1 
-##                 Gosport Road                  Grange Road                  Hamble Lane 
-##                            1                            2                            1 
-##                  Havant Road                  Hawley Lane               Henry Cort Way 
-##                            2                            2                            2 
-##                  High Street                 Hulbert Road      Hulbert Road Roundabout 
-##                            4                            1                            1 
-##                 Jewry Street King Arthur&#39;s Way Roundabout               Langstone Road 
-##                            1                            1                            1 
-##         Langstone Roundabout                   Leigh Road                  London Road 
-##                            1                            1                            4 
-##               Lynchford Road             Marchwood Bypass                Moorhill Road 
-##                            1                            2                            1 
-##                   Mumby Road                     New Road          New Road roundabout 
-##                            1                            1                            1 
-##                 Newbury Road                 Newgate Lane              Park Road North 
-##                            1                            1                            1 
-##              Park Road South             Petersfield Road               Pinehurst Road 
-##                            1                            1                            1 
-##             Portchester Road                 Purbrook Way                 Reading Road 
-##                            1                            1                            3 
-##                 Ringway East                Ringway North                Ringway South 
-##                            1                            1                            1 
-##                 Ringway West                Ringwood Road                    Saxon Way 
-##                            1                            1                            1 
-##                 South Street             Southampton Road                Spicer&#39;s Hill 
-##                            1                            1                            1 
-##         Stoneham Interchange                 Stoneham Way                   Subway 792 
-##                            1                            1                            1 
-##                   subway 794                   The Avenue                  Tollbar Way 
-##                            1                            2                            1 
-##               Trinity Street                 Union Street                 Unnamed road 
-##                            1                            1                           20 
-##           Viables Roundabout                Victoria Road           Victory Roundabout 
-##                            1                            2                            1 
-##               Wallington Way          West Ham Roundabout                  West Street 
-##                            1                            1                            1 
-##               Western Avenue                  Western Way      Whiteley Way Roundabout 
-##                            1                            1                            1 
-##              Winchester Hill              Winchester Road   Winchester Road Roundabout 
-##                            1                            1                            1 
-##         Windhover Roundabout      Woodside Ave Roundabout              Woodside Avenue 
-##                            1                            1                            1</code></pre>
+##                        A2030 
+##                            1 
+##                         A259 
+##                            1 
+##                          A27 
+##                            3 
+##                          A30 
+##                            2 
+##                        A3010 
+##                            1 
+##                          A32 
+##                            1 
+##                          A33 
+##                            1 
+##                         A331 
+##                            1 
+##                         A335 
+##                            1 
+##                         A339 
+##                            1 
+##                         A343 
+##                            1 
+##                          A35 
+##                            1 
+##               Alexandra Road 
+##                            1 
+##                Alison&#39;s Road 
+##                            1 
+##                        B1731 
+##                            1 
+##                        B1732 
+##                            1 
+##                        B2149 
+##                            1 
+##                        B3334 
+##                            1 
+##                        B3403 
+##                            2 
+##                   Beach Road 
+##                            1 
+##              Bedhampton Hill 
+##                            1 
+##              Bedhampton Road 
+##                            1 
+##        Bedhampton Roundabout 
+##                            1 
+##         Binfields Roundabout 
+##                            1 
+##      Borden Gates Roundabout 
+##                            1 
+##                  Botley Road 
+##                            1 
+##                  Bridge Road 
+##                            2 
+##          Broadcut Roundabout 
+##                            1 
+##              Brockhurst Road 
+##                            1 
+##                    Broom Way 
+##                            2 
+##               Bursledon Road 
+##                            1 
+##                    Bury Road 
+##                            1 
+##                    Camp Road 
+##                            1 
+##                    Cams Hill 
+##                            1 
+##            Charles Watts Way 
+##                            1 
+##                Churchill Way 
+##                            1 
+##           Churchill Way East 
+##                            1 
+##           Churchill Way West 
+##                            2 
+##        Clockhouse Roundabout 
+##                            1 
+##               Clubhouse Road 
+##                            1 
+##              Commercial Road 
+##                            1 
+##     Cornaway Lane Roundabout 
+##                            1 
+##         Crockford Roundabout 
+##                            1 
+##                  East Street 
+##                            1 
+##                  Eastern Way 
+##                            1 
+##           Eastrop Roundabout 
+##                            1 
+##                 Fareham Road 
+##                            1 
+##             Farnborough Road 
+##                            1 
+##   Farnborough Road cyclepath 
+##                            1 
+##                  Forton Road 
+##                            1 
+##                   Friarsgate 
+##                            1 
+##                 Gosport Road 
+##                            1 
+##                  Grange Road 
+##                            2 
+##                  Hamble Lane 
+##                            1 
+##                  Havant Road 
+##                            2 
+##                  Hawley Lane 
+##                            2 
+##               Henry Cort Way 
+##                            2 
+##                  High Street 
+##                            4 
+##                 Hulbert Road 
+##                            1 
+##      Hulbert Road Roundabout 
+##                            1 
+##                 Jewry Street 
+##                            1 
+## King Arthur&#39;s Way Roundabout 
+##                            1 
+##               Langstone Road 
+##                            1 
+##         Langstone Roundabout 
+##                            1 
+##                   Leigh Road 
+##                            1 
+##                  London Road 
+##                            4 
+##               Lynchford Road 
+##                            1 
+##             Marchwood Bypass 
+##                            2 
+##                Moorhill Road 
+##                            1 
+##                   Mumby Road 
+##                            1 
+##                     New Road 
+##                            1 
+##          New Road roundabout 
+##                            1 
+##                 Newbury Road 
+##                            1 
+##                 Newgate Lane 
+##                            1 
+##              Park Road North 
+##                            1 
+##              Park Road South 
+##                            1 
+##             Petersfield Road 
+##                            1 
+##               Pinehurst Road 
+##                            1 
+##             Portchester Road 
+##                            1 
+##                 Purbrook Way 
+##                            1 
+##                 Reading Road 
+##                            3 
+##                 Ringway East 
+##                            1 
+##                Ringway North 
+##                            1 
+##                Ringway South 
+##                            1 
+##                 Ringway West 
+##                            1 
+##                Ringwood Road 
+##                            1 
+##                    Saxon Way 
+##                            1 
+##                 South Street 
+##                            1 
+##             Southampton Road 
+##                            1 
+##                Spicer&#39;s Hill 
+##                            1 
+##         Stoneham Interchange 
+##                            1 
+##                 Stoneham Way 
+##                            1 
+##                   Subway 792 
+##                            1 
+##                   subway 794 
+##                            1 
+##                   The Avenue 
+##                            2 
+##                  Tollbar Way 
+##                            1 
+##               Trinity Street 
+##                            1 
+##                 Union Street 
+##                            1 
+##                 Unnamed road 
+##                           20 
+##           Viables Roundabout 
+##                            1 
+##                Victoria Road 
+##                            2 
+##           Victory Roundabout 
+##                            1 
+##               Wallington Way 
+##                            1 
+##          West Ham Roundabout 
+##                            1 
+##                  West Street 
+##                            1 
+##               Western Avenue 
+##                            1 
+##                  Western Way 
+##                            1 
+##      Whiteley Way Roundabout 
+##                            1 
+##              Winchester Hill 
+##                            1 
+##              Winchester Road 
+##                            1 
+##   Winchester Road Roundabout 
+##                            1 
+##         Windhover Roundabout 
+##                            1 
+##      Woodside Ave Roundabout 
+##                            1 
+##              Woodside Avenue 
+##                            1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       50                       54                       44</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       50                       54                       44                        7</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                       50                       54                       44                        7</code></pre>
-<pre><code>## # A tibble: 50 x 5
-##    Name            Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;           &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Henry Cort Way  &quot;&quot;                            909                 597                       543
-##  2 West Street     &quot;A27&quot;                         748                 611                       457
-##  3 Gosport Road    &quot;A32&quot;                        1853                 378                       700
-##  4 Henry Cort Way  &quot;&quot;                            601                 595                       358
-##  5 East Street     &quot;A27&quot;                         786                 448                       352
-##  6 Forton Road     &quot;A32&quot;                        1116                 326                       364
-##  7 Mumby Road      &quot;A32&quot;                         889                 308                       274
-##  8 South Street    &quot;B3333&quot;                      1245                 258                       321
-##  9 A27             &quot;A27&quot;                         557                 307                       171
-## 10 Bedhampton Road &quot;B2150&quot;                       686                 224                       154
-## # … with 40 more rows</code></pre>
+## Top ranked new cycleways 
+##                       50 
+##            Spare lane(s) 
+##                       56 
+##    Estimated width &gt; 10m 
+##                       42</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       50 
+##            Spare lane(s) 
+##                       56 
+##    Estimated width &gt; 10m 
+##                       42 
+##                     NA&#39;s 
+##                        7</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       50 
+##            Spare lane(s) 
+##                       56 
+##    Estimated width &gt; 10m 
+##                       42 
+##                     NA&#39;s 
+##                        7</code></pre>
+<pre><code>## # A tibble: 50 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 West… &quot;A27&quot;              748
+##  2 Henr… &quot;&quot;                 909
+##  3 Henr… &quot;&quot;                 601
+##  4 East… &quot;A27&quot;              786
+##  5 Gosp… &quot;A32&quot;             1853
+##  6 Fort… &quot;A32&quot;             1116
+##  7 Mumb… &quot;A32&quot;              889
+##  8 A27   &quot;A27&quot;              557
+##  9 Sout… &quot;B3333&quot;           1245
+## 10 Bedh… &quot;B2150&quot;            686
+## # … with 40 more rows, and 3 more
+## #   variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

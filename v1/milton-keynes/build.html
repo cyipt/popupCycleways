@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,62 +388,122 @@ summary {
 ##      H7  H9  V4  V7 
 ## 148  12   6   4   3</code></pre>
 <pre><code>## [1] 34</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1897   36067   36067   34122   36067   36067</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##    1897   36067   36067   34122 
+## 3rd Qu.    Max. 
+##   36067   36067</code></pre>
 <pre><code>## 
-##   Brickhill Street       Chaffron Way         Childs Way       Dansteed Way     Grafton Street 
-##                 25                 22                 17                  7                 56 
-##           Groveway Marlborough Street              Other         Overstreet            Portway 
-##                  8                 50                103                 10                 14 
-##         Saxon Gate       Saxon Street       Standing Way         Witan Gate 
-##                 10                 61                 80                 15</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.6235  0.9541  0.7625  0.9988  1.0278</code></pre>
+##   Brickhill Street       Chaffron Way 
+##                 25                 22 
+##         Childs Way       Dansteed Way 
+##                 17                  7 
+##     Grafton Street           Groveway 
+##                 56                  8 
+## Marlborough Street              Other 
+##                 50                103 
+##         Overstreet            Portway 
+##                 10                 14 
+##         Saxon Gate       Saxon Street 
+##                 10                 61 
+##       Standing Way         Witan Gate 
+##                 80                 15</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##  0.0000  0.6235  0.9541  0.7625 
+## 3rd Qu.    Max. 
+##  0.9988  1.0278</code></pre>
 <pre><code>## [1] 7</code></pre>
-<pre><code>## # A tibble: 7 x 16
-##   ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-## * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-## 1 &quot;&quot;        4     8 Saxon Street                    4 Saxo…          650              243         10
-## 2 &quot;H7&quot;      4     2 Chaffron Way                    1 Chaf…         1314              126         10
-## 3 &quot;&quot;        4     3 Witan Gate                      1 Wita…         1226              120          9
-## 4 &quot;H4&quot;      4     3 Dansteed Way                    1 Dans…          606              102         10
-## 5 &quot;A50…     4     1 Portway                         1 Port…         2189               32          8
-## 6 &quot;V9&quot;      4     1 Overstreet                      1 Over…          734               29         11
-## 7 &quot;A50…     4     1 Other                           7 A508           655               29         10
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##                   A421                   A508                   A509                  B4034 
-##                      1                      1                      1                      1 
-##       Brickhill Street         Chadwick Drive           Chaffron Way             Childs Way 
-##                      2                      1                      2                      2 
-##           Dansteed Way  Eaglestone Roundabout          Fulmer Street         Grafton Street 
-##                      3                      1                      1                      4 
-##               Groveway                     H6  Leadenhall Roundabout     Marlborough Street 
-##                      1                      1                      1                      1 
-##             Overstreet                Portway     Redmoor Roundabout    Rooksley Roundabout 
-##                      1                      1                      1                      1 
-##             Saxon Gate           Saxon Street South Witan Roundabout           Standing Way 
-##                      1                      7                      1                      1 
-##           Unnamed road         Watling Street             Witan Gate 
-##                      8                      1                      1</code></pre>
+##                   A421 
+##                      1 
+##                   A508 
+##                      1 
+##                   A509 
+##                      1 
+##                  B4034 
+##                      1 
+##       Brickhill Street 
+##                      2 
+##         Chadwick Drive 
+##                      1 
+##           Chaffron Way 
+##                      2 
+##             Childs Way 
+##                      2 
+##           Dansteed Way 
+##                      3 
+##  Eaglestone Roundabout 
+##                      1 
+##          Fulmer Street 
+##                      1 
+##         Grafton Street 
+##                      4 
+##               Groveway 
+##                      1 
+##                     H6 
+##                      1 
+##  Leadenhall Roundabout 
+##                      1 
+##     Marlborough Street 
+##                      1 
+##             Overstreet 
+##                      1 
+##                Portway 
+##                      1 
+##     Redmoor Roundabout 
+##                      1 
+##    Rooksley Roundabout 
+##                      1 
+##             Saxon Gate 
+##                      1 
+##           Saxon Street 
+##                      7 
+## South Witan Roundabout 
+##                      1 
+##           Standing Way 
+##                      1 
+##           Unnamed road 
+##                      8 
+##         Watling Street 
+##                      1 
+##             Witan Gate 
+##                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                        7                       19                       19</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                        7                       19                       19                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
-##                        7                       19                       19                        3</code></pre>
-<pre><code>## # A tibble: 7 x 5
-##   Name         Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-## * &lt;chr&gt;        &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-## 1 Saxon Street &quot;&quot;                            650                 243                       158
-## 2 Chaffron Way &quot;H7&quot;                         1314                 126                       166
-## 3 Witan Gate   &quot;&quot;                           1226                 120                       147
-## 4 Dansteed Way &quot;H4&quot;                          606                 102                        62
-## 5 Portway      &quot;A509&quot;                       2189                  32                        70
-## 6 Overstreet   &quot;V9&quot;                          734                  29                        21
-## 7 A508         &quot;A508&quot;                        655                  29                        19</code></pre>
+## Top ranked new cycleways 
+##                        7 
+##            Spare lane(s) 
+##                       19 
+##    Estimated width &gt; 10m 
+##                       19</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        7 
+##            Spare lane(s) 
+##                       19 
+##    Estimated width &gt; 10m 
+##                       19 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                        7 
+##            Spare lane(s) 
+##                       19 
+##    Estimated width &gt; 10m 
+##                       19 
+##                     NA&#39;s 
+##                        3</code></pre>
+<pre><code>## # A tibble: 7 x 6
+##   Name  Reference `Length (m)`
+## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+## 1 Saxo… &quot;&quot;                 650
+## 2 Chaf… &quot;H7&quot;              1314
+## 3 Wita… &quot;&quot;                1226
+## 4 Dans… &quot;H4&quot;               606
+## 5 Port… &quot;A509&quot;            2189
+## 6 A508  &quot;A508&quot;             655
+## 7 Over… &quot;V9&quot;               734
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 

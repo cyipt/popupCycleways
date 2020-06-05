@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-05" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-04</h4>
+<h4 class="date">2020-06-05</h4>
 
 </div>
 
@@ -388,58 +388,99 @@ summary {
 ##       A3022  A380 
 ##     9    31     1</code></pre>
 <pre><code>## [1] 18</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##   843.4  3329.9  5754.0  4627.5  5754.0  5909.4</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+##   843.4  3329.9  5754.0  4627.5 
+## 3rd Qu.    Max. 
+##  5754.0  5909.4</code></pre>
 <pre><code>## 
-##        Brixham Road         Hamelin Way  Hellevoetsluis Way     King&#39;s Ash Road         Marldon Way 
-##                  22                   4                  14                  16                   5 
-##               Other         Riviera Way South Devon Highway         Torbay Road         Totnes Road 
-##                  57                  18                  11                  20                  20</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00000 0.00000 0.00000 0.12571 0.02991 0.96032</code></pre>
+##        Brixham Road 
+##                  22 
+##         Hamelin Way 
+##                   4 
+##  Hellevoetsluis Way 
+##                  14 
+##     King&#39;s Ash Road 
+##                  16 
+##         Marldon Way 
+##                   5 
+##               Other 
+##                  57 
+##         Riviera Way 
+##                  18 
+## South Devon Highway 
+##                  11 
+##         Torbay Road 
+##                  20 
+##         Totnes Road 
+##                  20</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 
+## 0.00000 0.00000 0.00000 0.12571 
+## 3rd Qu.    Max. 
+## 0.02991 0.96032</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>## # A tibble: 10 x 16
-##    ref   group    ig long_named_sect… long_named_group name  group_length mean_cycling_po… mean_width
-##  * &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-##  1 A3022     2     1 Torbay Road                     1 Torb…          880              129         10
-##  2 A3022     6     2 Other                           1 Torq…          772              141         10
-##  3 A3022     3     3 Totnes Road                     1 Totn…         1097               99         11
-##  4 A380      3     2 King&#39;s Ash Road                 2 King…          814               93         10
-##  5 A380      5     1 King&#39;s Ash Road                 1 King…          757               69          7
-##  6 A380      5     1 Marldon Way                     1 Marl…         1160               48          9
-##  7 A380      5     1 South Devon Hig…                1 Sout…         1544               43          3
-##  8 A3022    13     6 Brixham Road                    1 Brix…         1495               42          8
-##  9 A3022     5     5 Riviera Way                     1 Rivi…         2356               27          8
-## 10 A380      5     1 Hellevoetsluis …                1 Hell…         4000               26          9
-## # … with 7 more variables: majority_spare_lane &lt;lgl&gt;, group_id &lt;int&gt;, length_in_cycleway &lt;dbl&gt;,
-## #   km_cycled &lt;dbl&gt;, proportion_on_cycleway &lt;dbl&gt;, length_up_to_1km &lt;dbl&gt;, km_cycled_1km &lt;dbl&gt;</code></pre>
 <pre><code>## 
-##        Brixham Road    Churscombe Cross         Hamelin Way  Hellevoetsluis Way     King&#39;s Ash Road 
-##                   2                   1                   2                   1                   2 
-##        Marldon Road         Marldon Way       Rathmore Road         Riviera Way South Devon Highway 
-##                   1                   1                   1                   1                   1 
-##         Torbay Road        Torquay Road         Totnes Road 
-##                   1                   2                   1</code></pre>
+##        Brixham Road 
+##                   2 
+##    Churscombe Cross 
+##                   1 
+##         Hamelin Way 
+##                   2 
+##  Hellevoetsluis Way 
+##                   1 
+##     King&#39;s Ash Road 
+##                   2 
+##        Marldon Road 
+##                   1 
+##         Marldon Way 
+##                   1 
+##       Rathmore Road 
+##                   1 
+##         Riviera Way 
+##                   1 
+## South Devon Highway 
+##                   1 
+##         Torbay Road 
+##                   1 
+##        Torquay Road 
+##                   2 
+##         Totnes Road 
+##                   1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        4                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        4                        3</code></pre>
-<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
-##                       10                        4                        3</code></pre>
-<pre><code>## # A tibble: 10 x 5
-##    Name                Reference `Continuous length (m)` `Cycling potential` `Length * potential (km)`
-##  * &lt;chr&gt;               &lt;chr&gt;                       &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt;
-##  1 Torbay Road         A3022                         880                 129                       114
-##  2 Torquay Road        A3022                         772                 141                       109
-##  3 Totnes Road         A3022                        1097                  99                       109
-##  4 King&#39;s Ash Road     A380                          814                  93                        76
-##  5 King&#39;s Ash Road     A380                          757                  69                        52
-##  6 Marldon Way         A380                         1160                  48                        56
-##  7 South Devon Highway A380                         1544                  43                        66
-##  8 Brixham Road        A3022                        1495                  42                        63
-##  9 Riviera Way         A3022                        2356                  27                        64
-## 10 Hellevoetsluis Way  A380                         4000                  26                       104</code></pre>
+## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                        3</code></pre>
+<pre><code>## Top ranked new cycleways 
+##                       10 
+##            Spare lane(s) 
+##                        4 
+##    Estimated width &gt; 10m 
+##                        3</code></pre>
+<pre><code>## # A tibble: 10 x 6
+##    Name  Reference `Length (m)`
+##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
+##  1 Torq… A3022              772
+##  2 Torb… A3022              880
+##  3 Totn… A3022             1097
+##  4 King… A380               814
+##  5 King… A380               757
+##  6 Marl… A380              1160
+##  7 Sout… A380              1544
+##  8 Brix… A3022             1495
+##  9 Rivi… A3022             2356
+## 10 Hell… A380              4000
+## # … with 3 more variables: `Cycling
+## #   potential` &lt;dbl&gt;, `Length *
+## #   potential (km)` &lt;dbl&gt;, `Speed
+## #   limit` &lt;chr&gt;</code></pre>
 
 
 
