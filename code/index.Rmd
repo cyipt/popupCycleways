@@ -47,21 +47,27 @@ The rapid cycleway prioritisation tool aims to help produce evidence-based answe
 The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock as the lockdown eases.
 
 Reallocating road space on strategic corridors is just one of the measures available for transport authorities.
-Evidence provided by the tool can also support a range of temporary, experimental and permanent treatments that will enable shift to walking and cycling in the coming weeks and months.
+Evidence provided by the tool can also support a range of temporary, experimental and permanent treatments that will enable rapid and safe uptake of cycling.
 New [statutory guidance on network management in response to COVID-19](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19) outlines a range of measures, including the creation of new cycleways, reducing speed limits, widening of footways and closing roads to motor traffic via 'modal filters'.
-Road space reallocation is suited to larger arterial roads and can have a large impact quickly, especially when moving large numbers of people away from public transport and capacity is a priority.
-Furthermore, low but gradually increasing levels of peak hour motor traffic mean that there is a window of opportunity to reallocate lanes without causing congestion. 
-
+Road space reallocation is suited to larger roads and can have a large impact quickly, especially when moving large numbers of people away from public transport and capacity is a priority.
+Furthermore, low but gradually increasing levels of peak hour motor traffic mean that there is a window of opportunity to reallocate lanes without causing congestion in the short term. 
 
 <!-- # Input data -->
 
-The focus is on roads that have 'spare space' (defined as those with a spare lane or that have an estimated width of above 10 m) and high cycling potential based on the [Propensity to Cycle Tool](https://www.pct.bike/) [@lovelace_propensity_2017].
-The 10 m width is an indicator of road conditions and larger widths, of 15+ m, may be required for road space reallocation without other changes such as making roads one way for motor traffic or removing [central markings](https://doi.org/10.1016/j.aap.2014.08.015) [@shackel_influence_2014].
-Which roads to prioritise and the most effective interventions will also depend on factors such as on street parking levels not present in the analysis.
+The tool identifies roads that have 'spare space', defined as roads with a spare lane or a width greater than 10 metres and high cycling potential, based on scenarios of mode shift to cycling for work and school in the [Propensity to Cycle Tool](https://www.pct.bike/).
+The 10 m width is an indicator of where it may be possible to introduce new light segregation, depending on levels of on street parking and other factors, without altering the navigable network for motor vehicles.
+On roads that are around 10 m wide or less, other interventions such as 'modal filters' which prevent through traffic for motor vehicles, making roads one way for motor traffic (as implemented successfully with an Experimental Traffic Regulation Order in [Torrington Place](https://www.camden.gov.uk/torrington-tavistock-consultation), London, for example) or removing [central markings](https://doi.org/10.1016/j.aap.2014.08.015) [@shackel_influence_2014] may be required.^[
+The road width required for new cycleways depends on a range of factors including the presence of on street parking. 
+When on street parking is not an issue new cycleways supported by light segregation measures may be possible on narrower roads, as illustrated by the new trial cycleway on [South Road in Lancaster](https://www.facebook.com/photo/?fbid=10158393513440797&set=gm.1409892779205719&__cft__[0]=AZWl60wQjK9GqKMN_1t25YvwumbO3srWVvigT0H8NpP6n_8oaqPUKCLOW-u5ubg7Lg4agxSS7qNwVzEDCsBZYegxRVBGgHky-AkNLR-DJYyytsJpvi16VVEG8aofuaq9-S1ajmZA24d922GG8aapZ1LWv1dJ6N5ROym1TVK9rdB7mQ&__tn__=EH-R), which involved re-allocating carraigeway space on both sides of a ~9 m wide two way road using plastic wands.
+A photo of this intervention can be seen [here](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/lancashire-lane.jpeg).
+]
+Which roads to prioritise and the most effective interventions will also depend on factors such as on street parking levels, safety considerations and symbolic and aesthetic considerations not present in the analysis.
 
-The cycling potential of each road is based on data from the Propensity to Cycle Tool (see [www.pct.bike](https://www.pct.bike/) for further details) and represents the number of one way cycle trips to work and school that could be expected when the [Government's aim of doubling cycling is met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
-The scenario assumes cycling grows evenly nationwide accounting for distance and hilliness.
-Our figures include data on travel to work from 2011 Census data and travel to school. Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit.
+
+The cycling potential of each road is based on the Government Target (equality) scenario from the Propensity to Cycle Tool. 
+The numbers represents the number of one way cycle trips to work and school that could be expected when the [Government's aim of doubling cycling is met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
+Our figures include data on travel to work from 2011 Census data and travel to school, assuming cycling grows evenly nationwide accounting for distance and hilliness [@lovelace_propensity_2017; @goodman_scenarios_2019]
+Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit (see [cyipt.bike](https://www.cyipt.bike/)).
 
 Overall the evidence presented in the tool is designed to encourage bold interventions where more space for active modes is most needed.
 Currently the results are only available for England.
