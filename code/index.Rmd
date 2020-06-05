@@ -89,7 +89,7 @@ The three main layers are arranged in order of planning timescales:
 
 1. The **Existing cycleways** layer provides an approximation of where cycling infrastructure exists **currently** (based on OpenStreetMap data downloaded in May 2020) and is intended to help identify gaps in the network that could be filled with new interventions.
 2. The **Top ranked new cycleways** layer is the central result of the analysis, providing a list of roads that have high cycling potential, a minimum threshold length, and spare space according to our definition. These may be strong candidates for reallocation of road space **immediately or in the near future** to create new cycleways on strategic corridors under the Emergency Active Travel Fund.
-3. The **Cohesive network** layer is intended to show what a joined-up cycle network could look like if we were to consider new cycleways by either closing roads to motorised traffic or creating one-way systems. Composed of roads that have high cycling potential on some or all of their length, the layer is designed to guide **long term planning**, alongside pre-existing plans such LCWIPs [@departmentfortransport_cycling_2017], towards a continuous and coherent network.
+3. The **Cohesive network** layer is intended to show what a joined-up cycle network could look like if we were to consider using a wider range of interventions to design new cycleways, such as closing roads to motorised traffic or creating one-way systems. Composed of roads that have high cycling potential on some or all of their length, the layer is designed to guide **long term planning**, alongside pre-existing plans such LCWIPs [@departmentfortransport_cycling_2017], towards a continuous and coherent network.
 
 These main layers, and two other layers that informed the results but which are not shown by default, are described in detail below.
 
@@ -145,9 +145,12 @@ Like the Spare lane(s) layer, this layer is intended to highlight road sections 
 
 # Basemaps
 
-There are also seven basemaps to choose from. The default basemap is grey and provides an uncluttered view. We then have basemap options showing four different scenarios from the Propensity to Cycle Tool. This allows our results to be compared with cycling potentials across the road network. The scenarios available show cycling potential for Commuting and travel to Schools under the Government Target scenario.
-
-A further basemap option shows all existing cycleways, including on-road cycle lanes. Finally, a satellite image is also available as a basemap.
+There are also five basemaps to choose from. The default basemap is grey and provides an uncluttered view. 
+The second basemap option is a thematic map which shows all existing cycleways, including on-road cycle lanes. 
+We then have two basemap options showing cycling potential for travel to work and travel to school from the Propensity to Cycle Tool. 
+This allows our results to be compared with cycling potentials across the wider road network. 
+These both follow the Government Target scenario; this is the same scenario as is used to derive the map layers described above. 
+Finally, a satellite image is also available as a basemap.
 
 
 # Known issues and limitations
