@@ -1,11 +1,11 @@
 ---
 title: "Data analysis to prioritise new cycleways in response to COVID-19"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
-output: bookdown::word_document2
-# output:
-#   bookdown::pdf_document2:
-#     toc: true
-#     toc_depth: 1
+# output: bookdown::word_document2
+output:
+  bookdown::pdf_document2:
+    toc: true
+    toc_depth: 1
 bibliography:
  - refs.bib
  - report-refs.bib
@@ -181,7 +181,7 @@ Its reliance on data rather than community engagement represents a rather top-do
 To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure \@ref(fig:widenmypath).
 
 ```{r widenmypath, out.width="100%", fig.cap="widenmypath.com, an example of participatory tools to support prioritisation of new active transport infrastructure, including new cycleways. The open data provided by the project could be overlaid to encourage community feedback on promising options highlighted by our tool."}
-knitr::include_graphics("figures/widenmypath1.png")
+knitr::include_graphics("figures/widenmypath-bristol.png")
 ```
 
 
