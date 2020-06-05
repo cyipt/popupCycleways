@@ -49,13 +49,9 @@ if(!exists("s")) {
 if(!exists("region_name")) {
   region_name = "West Yorkshire"
 }
-if(region_name == "Nottingham") {
-  region = regions %>% filter(str_detect(string = Name, pattern = "Nott")) %>% 
-    st_geometry() %>% 
-    st_union()
-} else {
-  region = regions %>% filter(Name == region_name)
-}
+
+region = regions %>% filter(Name == region_name)
+
 if(as.numeric(sf::st_area(region)) < 3000000000) {
   region = stplanr::geo_buffer(region, dist = 1000)
 }
