@@ -1,19 +1,36 @@
 ---
 title: "Data analysis to prioritise new cycleways in response to COVID-19"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
-output: bookdown::pdf_document2
+output:
+  bookdown::pdf_document2:
+    toc: true
+    toc_depth: 1
 bibliography: refs.bib
 ---
 
 ```{r, eval=FALSE, echo=FALSE}
 citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "report.Rmd", file = "refs.bib")
 citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "code/index.Rmd", file = "refs.bib")
-citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "refs.bib")
+citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "article-refs.bib")
 browseURL("report.pdf")
 ```
 
 ```{r setup2, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+```
+
+&nbsp;
+
+&nbsp;
+
+&nbsp;
+
+```{r park-lane, fig.cap="New space for cycling created by road space reallocation in Park Lane, London.", out.width="80%"}
+# source: Hillingdon and Uxbridge Times
+# https://www.hillingdontimes.co.uk/news/national/18450461.one-londons-prestigious-roads-gets-cycle-lane-due-pandemic/
+knitr::include_graphics(c(
+  "figures/cycleway-image.jpg"
+  ))
 ```
 
 
@@ -33,12 +50,6 @@ Light segregation infrastructure such as flexible plastic wands (illustrated in 
 
 <!-- https://twitter.com/doddyuk/status/1267146449227255808 -->
 
-```{r park-lane, fig.cap="New space for cycling created by road space reallocation in Park Lane, London.", out.width="60%"}
-# source: Hillingdon and Uxbridge Times
-# https://www.hillingdontimes.co.uk/news/national/18450461.one-londons-prestigious-roads-gets-cycle-lane-due-pandemic/
-knitr::include_graphics("figures/cycleway-image.jpg")
-```
-
 The £250m released by the Emergency Active Travel Fund will be spent in three broad [ways](https://www.transportxtra.com/publications/local-transport-today/news/65661/dft-releases-first-45m-of-250m-fund/):
 
 - The first tranche: £45m released on 1^st^ June, is for swift interventions that must be implemented by the end of June
@@ -51,6 +62,8 @@ However, the evidence could also be used to support identification of schemes fo
 Given the importance of acting quickly, and the unique opportunity that the crisis poses to improve physical activity levels in the long term, it is vital that local authorities have the evidence they need.
 Without a nationally consistent and systematic evidence base, there is a risk that some already stretched local authorities will rely on ad-hoc methods to allocate funding.
 The rapid cycleway prioritisation tool can also support authorities to make bold plans by highlighting the potential of key strategic corridors.
+
+\newpage
 
 # Methods
 
@@ -119,7 +132,7 @@ As a result of the feedback we made a few adjustments to the results:
 
 - We refined the road identification method, to highlight more central road sections and fewer long sections far from high density areas, in response to feedback suggesting that some of the road sections went too far into the countryside.
 - We simplified the legend of the basemap, so that the layers were presented in time order: Existing cycleway (now); Top ranked new cycleways (near term); Cohesive network (long term).
-- We requested data from Highways England to flag the recommendations on the Strategic Road Network (SRN)
+- We requested data from Highways England to flag the recommendations on the Strategic Road Network (SRN) and trialed adding a column to the results. Having tested the results we decided to add a column showing current speed limits on road sections instead, highlighting safety issues around potential routes and encouraging consideration speed limit reductions along strategic corridors with high cycling potential.
 
 # Outputs
 
