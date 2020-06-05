@@ -1,16 +1,18 @@
 ---
 title: "Data analysis to prioritise new cycleways in response to COVID-19"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
-output:
-  bookdown::pdf_document2:
-    toc: true
-    toc_depth: 1
-bibliography: refs.bib
+output: bookdown::word_document2
+# output:
+#   bookdown::pdf_document2:
+#     toc: true
+#     toc_depth: 1
+bibliography:
+ - refs.bib
+ - report-refs.bib
 ---
 
 ```{r, eval=FALSE, echo=FALSE}
-citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "report.Rmd", file = "refs.bib")
-citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "code/index.Rmd", file = "refs.bib")
+citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "report.Rmd", file = "report-refs.bib")
 citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "article-refs.bib")
 browseURL("report.pdf")
 ```
@@ -75,7 +77,7 @@ The PCT maps cycle uptake at area, route and route network levels, for commuting
 A limitation of the PCT is that it takes little account of existing infrastructure: variables such as road width and even the presence/absence of cycle infrastructure currently are not included in the results.
 The rapid cycleway prioritisation tool overcomes this issue by using road network data which includes geographic attributes and cycle infrastructure from OpenStreetMap.
 Carriageway width data were taken from the Cycling Infrastructure Prioritisation Tool (CyIPT) project, funded as a prototype project by a DfT Transport-technology research innovation grants (T-TRIG).
-This uses road data derived from OpenStreetMap.org (OSM)
+This uses road data derived from OpenStreetMap.org (OSM) [@barrington-leigh_world_2017].
 
 The rapid cycleway prioritisation tool is based on levels of cycling potential *and* road attribute data, with an emphasis on road space reallocation.
 The method was parameterised to highlight roads that have sufficient space to allow for new cycleways without affecting the navigable network for motorised modes [@lovelace_methods_2020].
@@ -149,7 +151,7 @@ The quality of the cycle paths is not reported in the data and the presence of a
 Also, because of the variable time lag between new cycleways being built and their appearance on OSM, not all existing cycleways are included in this layer (although most established cycleways in most areas are).
 The data was accessed from OpenStreetMap in May 2020 so is up-to-date in many areas.
 
-The layer highlights the importance of planning new infrastructure in reference to existing networks or routes, which have not yet been joined up to form a cohesive network in most cities.
+The Existing cycleways layer highlights the importance of planning new infrastructure in reference to existing networks or routes, which have not yet been joined up to form a cohesive network in most cities.
 New interventions, including new cycleways created by reallocating space on strategic corridors with sufficient space, identified in the next layer, should be prioritised based on their ability to improve cycle network cohesion.
 
 
@@ -176,26 +178,56 @@ Gappy networks are off-putting to many cyclists, and busy or complex road juncti
 
 The approach is not without limitations.
 Its reliance on data rather than community engagement represents a rather top-down approach to transport planning.
-To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure x (add widenmypath fig).
+To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure \@ref(fig:widenmypath).
 
-As stated above, we focus on road space reallocation, but this is best pursued as part of a wider multi-intervention strategy. 
+```{r widenmypath, out.width="100%", fig.cap="widenmypath.com, an example of participatory tools to support prioritisation of new active transport infrastructure, including new cycleways. The open data provided by the project could be overlaid to encourage community feedback on promising options highlighted by our tool."}
+knitr::include_graphics("figures/widenmypath1.png")
+```
+
+
+The datasets used also have limitations.
+As with any dataset, the OpenStreetMap (OSM) data on which the estimates of road width and number of lanes are based is not a perfect representation of the real world.
+OSM data is contributed by the community and continuously improving so represents a future-proof and easy-to-update solution [@barrington-leigh_world_2017].
+To the best of our knowledge OSM is also the richest national source of combined cycleway *and* road network data in the UK (and most countries) that is open access and free from licensing restrictions.^[
+We are in discussion with the Ordnance Survey and the Department for Transport about ways to include some of their additional datasets in future transport planning tools.
+]
+However, it is important to understand the limitations of OSM data when using the tool.
+OSM data is better in some places than others, the geometry is not always accurate, and the data model makes some simplifying assumptions (shared use paths without high quality surfaces can be labelled as cycleways, for example).
+
+An strength of the tool is it's focus on one aspect of the wider planning to support focussed attention on road space reallocation on strategic corridors.
+This could also be seen as a limitation: road space reallocation should be pursued as part of a wider multi-intervention strategy, and our tool should be used alongside other sources of evidence of other types of intervention: it has a specific scope.
 In urban and residential areas, other interventions such as strategic use of modal filters, road closures, traffic calming, and conversions to one-way working can be used to prevent 'rat-running', enhance filtered permeability, and create Low Traffic Neighbourhoods (image).
 For longer journeys, park-and-cycle schemes can solve 'last-mile' problems and cut congestion.
+Other tools could be developed to support such broader interventions, perhaps partly building on our work (the methods of which are open and modular and therefore extendible).
 
-We have used crowd-sourced open data for road width and number of lanes, which does not give comprehensive coverage of these road attributes in all parts of the country. 
-The 'cohesive network' layer mitigates the impact of any inaccuracies here.
+OSM data on does not give comprehensive coverage of road width and number of lane attributes in all parts of the country. 
+The Cohesive network layer was developed to mitigate the impact of the disjointed nature of roads with spare space and the data underlying the estimation of where there is (and is not) spare space.
 
-Our current methodology only selects roads that have the same name for a continuous stretch of at least 500m, as candidates for top routes. Roads that don't meet this criteria can still appear in the 'spare lane' and 'estimated width > 10m' layers. 
+The methodology only selects roads that have the same name for a continuous stretch of at least 500m, as candidates for top routes.
+To mitigate this limitation, roads that don't meet this criteria can still appear in the 'spare lane' and 'estimated width > 10m' layers. 
 
 Vehicular traffic volumes may restrict the potential for road space reallocation, and the presence of on-street car parking may prevent the use of particular alignments. 
 While we do not account for these limitations, the reduction in traffic due to COVID-19 has brought about both a unique opportunity and an urgent necessity to change travel patterns and behaviours in profound ways.
 As an example of the changes are happening right now, Glasgow has recently suspended around a third of its on-street parking spaces, to widen pavements and increase space for social distancing.
 
+The tool cannot account for such nuanced policy responses or, currently, distinguish between design options.
+Physical protection of cycleways will improve their, but permeable barriers (such as flexible plastic wands) are preferred to solid barriers that may obstruct pedestrians from crossing the road and encourage speeding. Interventions will be most effective where they form part of a wider transport policy and where experimental measures that prove successful can be adopted long-term.
+The tool is designed to inform a 'first pass' in the planning process around new emergency cycleways but deeper consideration is needed when developing strategic plans and specific designs.
+
+
 # Next steps
 
-This tool can be used together with existing knowledge to identify locations for investment in new cycleways.
+This tool has been developed rapidly to support rapid decision making, and there are many promising potential future directions of travel, including:
 
-Further consideration should be given to community consultation and to other factors such as materials, design, and engineering constraints. Physical protection of cycleways will improve their safety, but permeable barriers (such as flexible plastic wands) are preferred to solid barriers that may obstruct pedestrians from crossing the road and encourage speeding. Interventions will be most effective where they form part of a wider transport policy and where experimental measures that prove successful can be adopted long-term.
+- Integration with tools for community consultation.
+- Use of new datasets such as traffic volumes (available as 'AADT' counts on many major roads as open data), road casualty data and more exotic datasets such as passively collected movement data from smartphone applications (pending data availability).
+- Inclusion of 'supply side' considerations such as materials (e.g. wands and orcas), specific design options (as demonstrated with the original CyIPT project), and engineering constraints. 
+- Inclusion of additional trip purposes in estimates of cycling potential, that may require updates to or extensions of the Propensity to Cycle Tool.
+
+Perhaps the most promising future direction of travel is towards more flexible tools for transport planning.
+By demonstrating how existing datasets can be combined to create new results that are useful, the project has shown that, like infrastructure planning itself, an 'agile' approach to transport planning tools can yield useful and perhaps unexpectedly successfull results that support local knowledge and transport planning expertise.
+We hope to take lessons learned during the project forward into future, more strategic, transport planning tool research and development work.
+
 
 # References
 
