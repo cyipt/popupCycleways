@@ -262,6 +262,8 @@ for(rn in region_names_to_build) {
   sf::write_sf(key_network_final, file.path(d, "cohesive_network.geojson"))
   sf::write_sf(spare_lanes_final, file.path(d, "spare_lanes.geojson"))
   sf::write_sf(wide_lanes_final, file.path(d, "wide_lanes.geojson"))
+  sf::write_sf(region, file.path(d, "region.geojson"))
+  sf::write_sf(lads, file.path(d, "lads.geojson"))
   message(round(time_to_run), " minutes to build ", rn)
 }
 m =

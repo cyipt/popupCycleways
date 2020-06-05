@@ -490,7 +490,7 @@ r_lanes_top = r_lanes_joined %>%
     km_cycled_1km = length_up_to_1km * mean_cycling_potential,
     srn = name %in% srn_names_df$roa_number
     ) %>% 
-  arrange(desc(km_cycled_1km)) %>% 
+  arrange(desc(mean_cycling_potential)) %>% 
   slice(1:n_top_roads) 
 nrow(r_lanes_top)
 
