@@ -56,32 +56,28 @@ Furthermore, low but gradually increasing levels of peak hour motor traffic mean
 
 The tool identifies roads that have 'spare space', defined as roads with a spare lane or a width greater than 10 metres and high cycling potential, based on scenarios of mode shift to cycling for work and school in the [Propensity to Cycle Tool](https://www.pct.bike/).
 The 10 m width is an indicator of where it may be possible to introduce new light segregation, depending on levels of on street parking and other factors, without altering the navigable network for motor vehicles.
-On roads that are around 10 m wide or less, other interventions such as 'modal filters' which prevent through traffic for motor vehicles, making roads one way for motor traffic (as implemented successfully with an Experimental Traffic Regulation Order in [Torrington Place](https://www.camden.gov.uk/torrington-tavistock-consultation), London, for example) or removing [central markings](https://doi.org/10.1016/j.aap.2014.08.015) [@shackel_influence_2014] may be required.^[
+On roads that are around 10 m wide or less, not highlighted by the tool, other interventions may be appropriate.
+Options include 'modal filters' which prevent through traffic for motor vehicles, making roads one way for motor traffic (as implemented successfully with an Experimental Traffic Regulation Order in [Torrington Place](https://www.camden.gov.uk/torrington-tavistock-consultation), London, for example) or removing [central markings](https://doi.org/10.1016/j.aap.2014.08.015) [@shackel_influence_2014] may be required.^[
 The road width required for new cycleways depends on a range of factors including the presence of on street parking. 
 When on street parking is not an issue new cycleways supported by light segregation measures may be possible on narrower roads, as illustrated by the new trial cycleway on [South Road in Lancaster](https://www.facebook.com/photo/?fbid=10158393513440797&set=gm.1409892779205719&__cft__[0]=AZWl60wQjK9GqKMN_1t25YvwumbO3srWVvigT0H8NpP6n_8oaqPUKCLOW-u5ubg7Lg4agxSS7qNwVzEDCsBZYegxRVBGgHky-AkNLR-DJYyytsJpvi16VVEG8aofuaq9-S1ajmZA24d922GG8aapZ1LWv1dJ6N5ROym1TVK9rdB7mQ&__tn__=EH-R), which involved re-allocating carraigeway space on both sides of a ~9 m wide two way road using plastic wands.
 A photo of this intervention can be seen [here](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/lancashire-lane.jpeg).
 ]
-Which roads to prioritise and the most effective interventions will also depend on factors such as on street parking levels, safety considerations and symbolic and aesthetic considerations not present in the analysis.
-
+Which roads to prioritise for road space reallocation and the most effective designs will also depend on factors such as on street parking levels, safety considerations and symbolic and aesthetic considerations not present in the analysis.
 
 The cycling potential of each road is based on the Government Target (equality) scenario from the Propensity to Cycle Tool. 
 The numbers represents the number of one way cycle trips to work and school that could be expected when the [Government's aim of doubling cycling is met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
 Our figures include data on travel to work from 2011 Census data and travel to school, assuming cycling grows evenly nationwide accounting for distance and hilliness [@lovelace_propensity_2017; @goodman_scenarios_2019]
 Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit (see [cyipt.bike](https://www.cyipt.bike/)).
 
-Overall the evidence presented in the tool is designed to encourage bold interventions where more space for active modes is most needed.
-Currently the results are only available for England.
-<!-- The work is based evidence that road space can be reallocated without causing congestion at a time when traffic levels, particularly during the rush hours, are greatly reduced. -->
-
 # How to use the tool
 
 To use the evidence generated for this project:
 
-- Type in the name of the local authority of interest into the search bar above the table below and click on the associated URL.
+- Type in the name of the authority of interest into the search bar above the table below and click on the associated URL.
 - Explore the results in the map (you will find a link to a full screen map) by panning, zooming and clicking on the layers. See additional layers by clicking on the layers icon in the top left of the map.
-- Rank the 'top roads' in various ways (including by length and cycling potential) to support prioritisation of road space reallocation schemes.
+- Rank the 'top roads' in various ways (including by length and cycling potential) in the table below, to explore options highlighted by the tool to help prioritise road space reallocation schemes.
 - Interpret the results with care based on other sources of information and an understanding of the limitations of the analysis (see 'Known issues and limitations' below).
-- Refer to the description of the map layers below when exploring the results and complete the [web form](https://urldefense.proofpoint.com/v2/url?u=https-3A__forms.office.com_Pages_ResponsePage.aspx-3Fid-3DqO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u&d=DwMCaQ&c=troKkvwivNn_CddsvWCHHPiPoFoTgTGIbXJULvYU158&r=DXeEYtdSYDBZN2DBwEgAHMmX5PQ_ob9r2MynFWta2mU&m=mkyUa3RIC9d5LSrHUqk_WdstQR1OQuTWyYLBecHFMm0&s=dD7GVcQbjZ2AcdCObSe-rNKmLLDBhu98ChFupIIrlJA&e=) with any feedback.
+- Refer to the description of the map layers below when exploring the results.
 
 # Map layers
 
@@ -90,9 +86,9 @@ Clicking on the lines on the map for any of these layers will reveal a pop-up bo
 
 The three main layers are arranged in order of planning timescales:
 
-1. The **Existing cycleways** layer provides an approximation of where cycling infrastructure exists **in the recent past** and is intended to help identify gaps in the network that could be filled with new interventions.
-2. The **Top ranked new cycleways** layer is the central result of the analysis, providing a list of roads that have high cycling potential, a minimum threshold length, and spare space according to our definition. These may be strong candidates for reallocation of road space **immediately or in the near future** to create new cycleways on strategic corridors under the first and second tranches of funding.
-3. The **Cohesive network** layer is intended to show what a joined-up cycle network could look like, if road space was not a constraint on creating new infrastructure. Composed of roads that have high cycling potential on some or all of their length, the layer is designed to guide **long term planning** towards a continuous and coherent network.
+1. The **Existing cycleways** layer provides an approximation of where cycling infrastructure exists **currently** (based on OpenStreetMap data downloaded in May 2020) and is intended to help identify gaps in the network that could be filled with new interventions.
+2. The **Top ranked new cycleways** layer is the central result of the analysis, providing a list of roads that have high cycling potential, a minimum threshold length, and spare space according to our definition. These may be strong candidates for reallocation of road space **immediately or in the near future** to create new cycleways on strategic corridors under the Emergency Active Travel Fund.
+3. The **Cohesive network** layer is intended to show what a joined-up cycle network could look like if we were to consider new cycleways by either closing roads to motorised traffic or creating one-way systems. Composed of roads that have high cycling potential on some or all of their length, the layer is designed to guide **long term planning**, alongside pre-existing plans such LCWIPs [@departmentfortransport_cycling_2017], towards a continuous and coherent network.
 
 These main layers, and two other layers that informed the results but which are not shown be default, are described in detail below.
 
@@ -100,17 +96,17 @@ These main layers, and two other layers that informed the results but which are 
 
 On the basis that plans should build on and extend existing provision, this layer shows existing cycleways.
 This may be helpful to view in connection with the other layers, because it can reveal where gaps in the existing cycle network could be filled by new infrastructure.
-This layer does not include some on-road cycle lanes or cycleways less than 500m in length, but these can be viewed in one of the basemap options (see below for more information about the basemaps).
+<!-- This layer does not include some on-road cycle lanes or cycleways less than 500m in length, but these can be viewed in one of the basemap options (see below for more information about the basemaps). -->
 The definition of 'cycleway' includes shared use paths but excludes cycle lanes painted on roads in this layer.
 
 ## 2. Top ranked new cycleways
 
 These are the 'top n' road sections in terms of cycling potential with 'spare space' defined above.
 They may be suitable candidates for road space reallocation to create new cycleways. 
-These roads have either a spare lane or width of at least 10m, and are ranked according to their mean cycling potential. 
-For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the mean cycling potential multiplied by the length of the route. 
+These roads have either a spare lane or an average width greater than 10 m, and are ranked according to their mean cycling potential. 
+<!-- For routes that are shorter than 1km in length, we use 'km_cycled' instead of mean cycling potential - this is simply the mean cycling potential multiplied by the length of the route.  -->
 Top ranked new cycleways are listed in the table below the map, so you can see more information on them. 
-The number of Top ranked new cycleways selected is normally 20, with some variation by region.
+The number of Top ranked new cycleways varies depending on the size of the region.
 
 We used certain eligibility criteria for the Top ranked new cycleways: 
 
@@ -118,29 +114,36 @@ We used certain eligibility criteria for the Top ranked new cycleways:
 - unnamed roads cannot be a top route 
 - routes less than 500m in length cannot be a top route
 
+Some road sections highlighted by the tool may not currently be suitable for new cycleways.
+Road sections that are on strategic and major road networks (SRN and MRN respectively) and which had a high speed limit (40 mph+) before the COVID-19 crises can be in the top routes.
+To highlight such roads, the speed limits of road sections are listed in the table of the top ranked new cycleway locations to inform prioritisation and speed reduction interventions.
+
 ## 3. Cohesive network
 
-This layer is designed to represent a cohesive network of direct routes.
+This layer is represents what a joined-up cycle network could look like if new cycleways were placed along corridors of high potential, by either closing roads to motorised traffic or creating one-way systems.
 It shows what a joined-up cycle network could look like if there were no constraints on road space, along some of the most important corridors.
 
-The layer takes no account spare space and is designed to support consideration of alternative options, e.g. one way streets, where there may be insufficient space for road space reallocation without changing the navigable network for motor traffic.
+The cohesive network layer supports consideration of **long term** plans and alternatives to road space reallocation.
+Road sections in the cohesive network but not in the Top ranked new cycleway layer may be suitable candidates for one way streets, where there may be insufficient space for road space reallocation without changing the navigable network for motor traffic.
 The cohesive network layer was created based on evidence that cohesive cycle networks, that are continuous and do not 'give up' at awkward junctions, are a key component of plans to get people cycling.
 
-The layer was generated by first identifying the roads (classified by reference number) on which there is most cycling potential accross the city and joining them together.
+The layer was generated by first identifying the roads (classified by reference number) on which there is most cycling potential across the city and joining them together.
 Specifically we first selected all road segments with cycle potential in the 85th percentile and above, which also belong to classified trunk roads, A roads or B roads.
 These segments are then joined together to form a continuous network.
 
 ## 3. Spare lane(s) (not shown by default)
 
 These are routes that have more than one vehicle lane in either direction and have a cycling potential above the minimum threshold (which varies according to region as it needs to be higher in e.g. Greater London than in rural areas).
+This layer can be used to identify where there may be spare lanes on the network that could be reallocated to cycling (or pedestrianisation) beyond those highlighted in the Top ranked new cycleways layer.
 
 ## 4. Width >= 10m (not shown by default)
 
 These routes are at least 10m in width and have a cycling potential above the minimum threshold. 
+Like the Spare lane(s) layer, this layer is intended to highlight road sections on which increasing space for cycling and walking by reallocating road space may be a viable option.
 
 # Basemaps
 
-There are also seven basemaps to choose from. The default basemap is grey and provides an uncluttered view. We then have basemap options showing four different scenarios from the Propensity to Cycle Tool. This allows our results to be compared with cycling potentials across the road network. The scenarios available show cycling potential for Commuting (government target), Schools (government targets), Commuting (e-bikes), and schools (Go Dutch).
+There are also seven basemaps to choose from. The default basemap is grey and provides an uncluttered view. We then have basemap options showing four different scenarios from the Propensity to Cycle Tool. This allows our results to be compared with cycling potentials across the road network. The scenarios available show cycling potential for Commuting and travel to Schools under the Government Target scenario.
 
 A further basemap option shows all existing cycleways, including on-road cycle lanes. Finally, a satellite image is also available as a basemap.
 
@@ -149,15 +152,15 @@ A further basemap option shows all existing cycleways, including on-road cycle l
 
 <!-- We have developed this evidence base rapidly and -->
 
-- The 'Top ranked new cycleways' highlighted in the map-based results were produced automatically based on a simple score of continuous candidate road length multiplied by cycling potential. For roads with a length of more than 1 km, the cycling potential alone is used to rank roads. **The results should be interpreted based on local knowledge and an understanding of the limitations of the data. The results are designed to complement not replace other factors such as feedback from the local community and long-term strategic cycle network plans.**
+- The 'Top ranked new cycleways' highlighted in the map-based results were produced automatically based on a simple score combined cycling potential for school and commute trips.  **The results should be interpreted based on local knowledge and an understanding of the limitations of the data. The results are designed to complement not replace other factors such as feedback from the local community and long-term strategic cycle network plans.**
 - The estimates of cycling potential only include school and work travel. Accounting for increases in cycling for other trip purposes such as for shopping and leisure would increase cycling potential substantially.
-- The results rely on grouping roads by proximity, name and other variables. Currently some roads that are strong candidates for new cycleways may be missing from the results because of how the algorithm works (we are working on this issue).
-- The road network data was taken from the Cycling Infrastructure Prioritisation Toolkit (CyIPT) project which was completed in 2017, so may be out of date (we are looking at ways to update the data).
-- The results are based on the existing road network and does not flag potential routes that could be constructed.
+- The road network data was taken from the Cycling Infrastructure Prioritisation Toolkit (CyIPT) project which was completed in 2017, so may be out of date.
+- The results are based on the existing road network and does not flag potential routes that could be constructed, e.g. along old railway tracks or across open areas.
+- The results can highlight major roads that have a speed limit above 40mph that may currently be unsuitable for new cycleways created with light segregation. Roads not controlled by local authorities on the SRN can also be highlighted (although motorways are excluded); we do not alter the results based on who is in control of the roads.
+- Other than the Cohesive network layer, which highlights what a joined-up cycle network could look like if roads could be made one way to motor traffic and opened-up to cycling via modal filters, the results do not provide evidence on the full range of interventions. Identifying locations for filtered permeability interventions in residential areas, for example, requires data on residential networks not contained in this analysis, for example.
 
 <!-- Like many projects that have been initiated in response to COVID-19 we have developed the analy -->
 
-If you find any other issues with the results or have suggestions of ways to improve the results, please provide feedback on the [web form](https://forms.office.com/Pages/ResponsePage.aspx?id=qO3qvR3IzkWGPlIypTW3y9orQ9urif9IgBaXiRS9eEpUM0JCTDRFTTEwSDRVMUs0VVhVWEdGRDA3RS4u).
 If you are interested in the code underlying the project and would like to support the project with technical input, please provide feedback via the [GitHub issue tracker (requires a GitHub account)](https://github.com/cyipt/popupCycleways/issues).
 
 
