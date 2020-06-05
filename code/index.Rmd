@@ -40,9 +40,9 @@ bibtool refs.bib report-refs.bib code/index.bib > refs.bib
 # Introduction
 
 The [rapid cycleway prioritisation tool](https://www.cyipt.bike/rapid/) helps identify promising locations for road space reallocation in England to create new cycleways.
-Used with local knowledge, it provides a strong evidence base to support planning of rapid measures to support safe travel as part of the COVID-19 response.
+Used with local knowledge, it provides an evidence base to support planning of rapid measures to support safe travel as part of the COVID-19 response.
 The rational for the tool is that, in the context of COVID-19, big decisions need to be made quickly.
-The tool aims to support fast yet informed decision making a 'first pass' to help focus planning attention on road sections that are most likely to be suitable for new schemes.
+The tool aims to support fast yet informed decision making, by providing a 'first pass' assessment of the existing road network to help focus planning attention on options that are likely to have sufficient space for new infrastructure in places where there is high latent demand.
 
 The rapid cycleway prioritisation tool aims to help produce evidence-based answers the question: **where to reallocate road space on strategic corridors to enable uptake of cycling?**
 The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock as the lockdown eases.
