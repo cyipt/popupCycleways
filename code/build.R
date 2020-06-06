@@ -10,13 +10,14 @@ library(stplanr)
 if(!exists("s")) {
   message("Loading global parameters")  
   s = c(
-    `Grey basemap` = "Esri.WorldGrayCanvas",
+    `Grey basemap` = "CartoDB.Positron",
+    `Coloured basemap` = "Esri.WorldTopoMap",
     `OSM existing cycle provision (CyclOSM)` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
     `PCT commuting, Government Target` = "https://npttile.vs.mythic-beasts.com/commute/v2/govtarget/{z}/{x}/{y}.png",
     `PCT schools, Government Target` = "https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png",
     `Satellite image` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
   )
-  tms = c(FALSE, FALSE, TRUE, TRUE, FALSE)
+  tms = c(FALSE, FALSE, FALSE, TRUE, TRUE, FALSE)
   # test basemap:
   tmap_mode("view")
   if(!exists("parameters")) {
