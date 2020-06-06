@@ -571,14 +571,16 @@ key_network_final = key_network[pvars_key]
 pvars_spare = c("name", "ref", "maxspeed", "cycling_potential", "n_lanes")
 spare_lanes_final = spare_lanes[pvars_spare]
 wide_lanes_final = wide_lanes[pvars_spare]
-legend_labels = c(cycleways_name, labels[1], "Cohesive network", labels[2], labels[3])
+legend_labels = c(cycleways_name, labels[1], "Cohesive network", 
+                  paste(c(labels[2], labels[3]), "(hidden by default)")
+                  )
 cols_status = c("blue", "#B91F48", "#FF7F00")
-legend_colours = c("darkgreen", cols_status[1], "darkgrey", cols_status[2:3])
+legend_colours = c("darkgreen", cols_status[1], "#9077AD", cols_status[2:3])
 
 m =
-  tm_shape(lads, name = "Local authority district boundaries") + tm_borders() +
+  tm_shape(lads, name = "Local authority district boundaries") + tm_borders(col = "black") +
   tm_shape(key_network_final, name = "Cohesive network") +
-  tm_lines(lwd = 5, col = "darkgrey", popup.vars = pvars_key) +
+  tm_lines(lwd = 5, col = "#9077AD", popup.vars = pvars_key) +
   tm_shape(spare_lanes_final, name = labels[2]) +
   tm_lines(legend.col.show = FALSE,
            col = cols_status[2], 
@@ -604,9 +606,9 @@ m =
            popup.vars = pvars_top
   ) +
   tm_basemap(server = s, tms = tms) +
-  tm_add_legend(type = "fill", labels = legend_labels[1:3], col = legend_colours[1:3]) +
-  tm_add_legend(type = "fill", labels = labels[2], col = legend_colours[4], group = labels[2]) +
-  tm_add_legend(type = "fill", labels = labels[3], col = legend_colours[5], group = labels[3]) +
+  tm_add_legend(type = "fill", labels = legend_labels, col = legend_colours) +
+  # tm_add_legend(type = "fill", labels = labels[2], col = legend_colours[4], group = labels[2]) +
+  # tm_add_legend(type = "fill", labels = labels[3], col = legend_colours[5], group = labels[3]) +
   tm_scale_bar() 
 # m
 m_leaflet = tmap_leaflet(m) %>% leaflet::hideGroup(labels[2:3])
