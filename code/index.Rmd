@@ -21,6 +21,7 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```{r pkg, include=FALSE}
 library(sf)
 library(tidyverse)
+library(dplyr)
 library(tmap)
 tmap_mode("view")
 ```
@@ -42,7 +43,7 @@ bibtool refs.bib report-refs.bib code/index.bib > refs.bib
 The [rapid cycleway prioritisation tool](https://www.cyipt.bike/rapid/) helps identify promising locations for road space reallocation in England.
 The tool provides an evidence base to support investment in cycling infrastructure, in response to new pressures placed on transport and public health systems by the COVID-19 crisis, at local and regional levels.
 The rational for the tool is that, in the context of COVID-19, big decisions around where to prioritise investment on the road network need to be made quickly.
-The tool provides a 'first pass' assessment of the existing road network to help focus planning attention on options that are likely to have sufficient space for new infrastructure in places where there is high latent demand.
+The tool provides a ‘first pass’ assessment of promising locations for new cycleways which have high latent demand for cycling and where road space can be reallocated whilst maintaining two-way traffic flows for motorists.
 
 The rapid cycleway prioritisation tool aims to help produce evidence-based answers the question: **where to reallocate road space on strategic corridors to enable uptake of cycling?**
 The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock as the lockdown eases.
@@ -186,7 +187,7 @@ tm_shape(regions) + tm_polygons("Level", popup.vars = pvars)
 ```
 
 ```{r}
-dn = "popupCycleways/v1" # dirctory name
+dn = "popupCycleways/v1.1" # dirctory name
 built_regions = list.files(dn)
 regions = regions %>% 
   filter(stringr::str_detect(string = Name, "Scilly", negate = TRUE))
