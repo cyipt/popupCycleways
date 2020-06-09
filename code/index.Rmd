@@ -186,9 +186,16 @@ regions$url = paste0("<a href='", regions$html_name ,"' target='_blank'>", regio
 ```
 
 ```{r}
-pvars = c("Name", "Level")
-tm_shape(regions) + tm_polygons("Level", popup.vars = pvars) 
+# pvars = c("Name", "Level")
+# tm_shape(regions) + tm_polygons("Level", popup.vars = pvars) 
   # + tm_shape(regions_centroids) + tm_text("Name", size = 0.7)
+library(leaflet)
+leaflet(data = (regions)) %>% 
+  addTiles(urlTemplate = "//b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png") %>% 
+  addPolygons(popup = ~url, fillOpacity = 0, weight = 1) 
+  # addLabelOnlyMarkers(data = regions_centroids, label = ~as.character(Name), 
+  #                     labelOptions = labelOptions(noHide = T, direction = 'top', textOnly = T)
+  #                     )
 ```
 
 ```{r}
