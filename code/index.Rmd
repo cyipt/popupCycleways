@@ -187,13 +187,28 @@ regions$url = paste0("<a href='", regions$html_name ,"' target='_blank'>", regio
 ```
 
 ```{r}
+s = c(
+    `Grey basemap` = "CartoDB.Positron",
+    `Coloured basemap` = "Esri.WorldTopoMap",
+    `OSM existing cycle provision (CyclOSM)` = "https://b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png",
+    `PCT commuting, Government Target` = "https://npttile.vs.mythic-beasts.com/commute/v2/govtarget/{z}/{x}/{y}.png",
+    `PCT schools, Government Target` = "https://npttile.vs.mythic-beasts.com/school/v2/govtarget/{z}/{x}/{y}.png",
+    `Satellite image` = "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'"
+  )
+tms = c(FALSE, FALSE, FALSE, TRUE, TRUE, FALSE)
 # pvars = c("Name", "Level")
-# tm_shape(regions) + tm_polygons("Level", popup.vars = pvars) 
-  # + tm_shape(regions_centroids) + tm_text("Name", size = 0.7)
-library(leaflet)
-leaflet(data = (regions)) %>% 
-  addTiles(urlTemplate = "//b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png") %>% 
-  addPolygons(popup = ~url, fillOpacity = 0, weight = 1) 
+Regions = regions %>% 
+  mutate(Level = gsub(pattern = "UA", replacement = "Unitary authority", x = Level))
+m_regions = tm_shape(Regions) + tm_polygons("Level", popup.vars = FALSE, alpha = 0.3) +
+  tm_basemap(server = s, tms = tms)
+# + tm_shape(regions_centroids)
+# + tm_text("Name", size = 0.7)
+tmap_leaflet(m_regions) %>% 
+  addPolygons(data = regions, popup = ~url, fillOpacity = 0, weight = 1) 
+# library(leaflet)
+# leaflet(data = (regions)) %>% 
+#   addTiles(urlTemplate = "//b.tile-cyclosm.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png") %>% 
+#   addPolygons(popup = ~url, fillOpacity = 0, weight = 1) 
   # addLabelOnlyMarkers(data = regions_centroids, label = ~as.character(Name), 
   #                     labelOptions = labelOptions(noHide = T, direction = 'top', textOnly = T)
   #                     )
