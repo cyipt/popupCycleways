@@ -136,24 +136,29 @@ Roads with an existing cycleway along 75% or more of their length were excluded 
 Roads were ranked in terms of their cycling potential and highest ranking roads were included in the roads.
 The number of roads identified as Top ranked new cycleways varies depending on the size of the authority, ranging from 4 in the [Isle of Wight](https://www.cyipt.bike/rapid/isle-of-wight/) to 80 in [Greater London](https://www.cyipt.bike/rapid/greater-london/).
 
-Roads that met the spare space criteria but which were not selected as top routes were kept and can be shown in the layers named 'spare lane' and 'estimated width >10m', which are hidden by default to simplify the visualisation of results and to focus attention on the most important results, including the Cohesive network.
-
-
-## Identification of a cohesive network
+## Cohesive network
 
 The Cohesive network layer was derived using a different method from the other layers. 
-To identify this network, we select road segments on the trunk road, A road and B road network that have cycling potential in the 85th percentile or above, for their region. 
-We then join together these segments using a 1000m buffer, to form a coherent network.
-This is thus based on the cycling potential of roads, without reference to the road width or number of lanes.
+To identify this network, we selected 'through traffic' roads, primarily A roads and B roads, that had high cycling potential (in the 85th percentile or above for all roads in the authority) on some or all of their length. 
+We then join together these segments together to form a coherent network.
+<!-- using a 1000m buffer -->
+The resulting layer shows what a joined up cycle network could look like if new cycleways were placed along corridors of high potential, by either closing roads to motorised traffic or creating one-way systems.
+
+## Roads with spare space
+
+Roads that met the spare space criteria but which were not selected as top routes were kept and can be shown in the layers named 'spare lane' and 'estimated width >10m'.
+These results are hidden by default to simplify the visualisation of results and to focus attention on the most important results, including the Cohesive network.
+They represent roads on which there is more than one lane in one direction, and roads with an estimated carriageway width of 10 m or more, respectively.
+They can be visualised in the map by clicking on the layers button in the top lefthand corner of the map.
 
 ## Feedback from stakeholders
 
 We elicited feedback from stakeholders via the Basecamp forum for authority transport planners.
 As a result of the feedback we made a few adjustments to the results:
 
-- We refined the road identification method, to highlight more central road sections and fewer long sections far from high density areas, in response to feedback suggesting that some of the road sections went too far into the countryside.
-- We simplified the legend of the basemap, so that the layers were presented in time order: Existing cycleway (now); Top ranked new cycleways (near term); Cohesive network (long term).
-- We requested data from Highways England to flag the recommendations on the Strategic Road Network (SRN) and trialed adding a column to the results. Having tested the results the great majority of regions did not contain routes on the SRN. We decided to add a column showing current speed limits on road sections instead, highlighting safety issues around potential routes and encouraging consideration of speed limit reductions along strategic corridors with high cycling potential.
+- We refined the road identification method, to highlight more roads close to city centres, in response to feedback suggesting that some of the road sections went too far into the countryside.
+- We changed the legend of the basemap, so that the layers were presented in time order: Existing cycleway (now); Top ranked new cycleways (near term); Cohesive network (long term).
+- We added a column showing current speed limits on road sections, highlighting safety issues around potential routes and encouraging consideration of speed limit reductions along strategic corridors with high cycling potential.
 - We updated the description and framing of the tool to clarify the limitations of the data and its intended use.
 
 # Outputs
@@ -178,7 +183,8 @@ New interventions, including new cycleways created by reallocating space on stra
 
 Three layers show the roads we have identified as candidates for road space reallocation. These roads have both high cycling potential and available space. They also meet criteria for length and continuity. 
 
-Named roads with the highest cycling potential are ranked and selected as top routes. For the remaining roads, we identify whether they have a spare lane for the majority of their length, or an estimated mean width >10m.
+Named roads with the highest cycling potential are ranked and selected as top routes. For the remaining roads, we identified whether they have a spare lane for the majority of their length, or an estimated mean width >10m.
+The resulting layers, are hidden by default, were used to help identify where 'connecting' cycleway sections' that have spare space but do not meet the criteria for inclusion in the 'top routes' layer that could help form part of a cohesive network.
 
 ## Long term: Cohesive network
 
@@ -186,17 +192,19 @@ The final layer represents a cohesive network of cycle routes along the most imp
 It allows visualisation of what a joined-up cycle network would look like, without considering road capacity constraints.
 
 This provides the ability to identify roads that may be key priorities today for cycle infrastructure, but which are missing from the other results, either due to the limitations of our road attribute data, or because the roads are simply too narrow to show up in the other results. 
-Interventions may still be possible on narrow roads, for example the removal of central line markings has been shown to reduce average vehicle speeds (ref). 
-In other cases, it may be possible to convert a two-way road to one-way working and re-allocate the space previously occupied by one of the traffic lanes to bi-directional cycleways. (Torrington Place image)
+Interventions may still be possible on narrow roads, for example the removal of central line markings has been shown to reduce average vehicle speeds [@shackel_influence_2014]. 
+In other cases, it may be possible to convert a two-way road to one-way working and re-allocate the space previously occupied by one of the traffic lanes to bi-directional cycleways, as happened in a successful Experimental Traffic Regulation Order (ETRO) intervention in Torrington Place, [Cambden](https://www.camden.gov.uk/documents/20142/18667687/14-1+-+Licensed+Taxi+Drivers%27+Association+%28LTDA%29.pdf/20bc7ead-5ccc-13ed-66f4-e713eee4e103).
 
-Finally the cohesive network can help identify gaps in existing and/or proposed cycle infrastructure. 
-Gappy networks are off-putting to many cyclists, and busy or complex road junctions in particular can create barriers to cycle movement (ref).
+Finally, the cohesive network can help identify gaps in existing and/or proposed cycle infrastructure. 
+'Gappy' networks are off-putting to many cyclists, and busy or complex road junctions in particular can create barriers to cycle movement [@buehler_bikeway_2016].
 
 # Limitations and known issues
 
 The approach is not without limitations.
-Its reliance on data rather than community engagement represents a rather top-down approach to transport planning.
-To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure \@ref(fig:widenmypath).
+Its reliance on data rather than community engagement represents a rather top-down approach to transport planning, meaning that the results should be sense-checked by people with local knowledge and feedback from stakeholders where timescales permit.
+
+Participatory maps are one way to crowd source such stakeholder feedback, as shown in Figure \@ref(fig:widenmypath).
+The data from the tool could also feed into such participatory tools.
 
 ```{r widenmypath, out.width="100%", fig.cap="widenmypath.com, an example of participatory tools to support prioritisation of new active transport infrastructure, including new cycleways. The open data provided by the project could be overlaid to encourage community feedback on promising options highlighted by our tool."}
 knitr::include_graphics("figures/widenmypath-bristol.png")
@@ -205,32 +213,39 @@ knitr::include_graphics("figures/widenmypath-bristol.png")
 
 The datasets used also have limitations.
 As with any dataset, the OpenStreetMap (OSM) data on which the estimates of road width and number of lanes are based is not a perfect representation of the real world.
-OSM data is contributed by the community and continuously improving so represents a future-proof and easy-to-update solution [@barrington-leigh_world_2017].
+OSM data is contributed by the OSM community and continuously improving so represents a future-proof and easy-to-update solution [@barrington-leigh_world_2017].
 To the best of our knowledge OSM is also the richest national source of combined cycleway *and* road network data in the UK (and most countries) that is open access and free from licensing restrictions.^[
 We are in discussion with the Ordnance Survey and the Department for Transport about ways to include some of their additional datasets in future transport planning tools.
 ]
 However, it is important to understand the limitations of OSM data when using the tool.
 OSM data is better in some places than others, the geometry is not always accurate, and the data model makes some simplifying assumptions (shared use paths without high quality surfaces can be labelled as cycleways, for example).
 
-An strength of the tool is it's focus on one aspect of the wider planning to support focussed attention on road space reallocation on strategic corridors.
-This could also be seen as a limitation: road space reallocation should be pursued as part of a wider multi-intervention strategy, and our tool should be used alongside other sources of evidence of other types of intervention: it has a specific scope.
-In urban and residential areas, other interventions such as strategic use of modal filters, road closures, traffic calming, and conversions to one-way working can be used to prevent 'rat-running', enhance filtered permeability, and create Low Traffic Neighbourhoods (image).
+It is important to remember that the Cycleway Prioritisation Tool focuses on only one aspect of the wider planning process.
+It focusses attention on the important question of road space reallocation on strategic corridors with high cycling potential.
+This focus on strategic corridors has advantages but could also be seen as a limitation: road space reallocation is only one part of the range of interventions needed to get people cycling.
+
+The tool should be used alongside other sources of evidence and alongside plans for other types of intervention, outlined in new [statutory guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities).
+In urban and residential areas, other interventions include use of modal filters, point closures of roads, traffic calming, and making roads oneway for motor traffic.
+Future work could help prioritise modal filters to prevent 'rat-running', enhance filtered permeability, and create Low Traffic Neighbourhoods.
 For longer journeys, park-and-cycle schemes can solve 'last-mile' problems and cut congestion.
 Other tools could be developed to support such broader interventions, perhaps partly building on our work (the methods of which are open and modular and therefore extendible).
 
-OSM data on does not give comprehensive coverage of road width and number of lane attributes in all parts of the country. 
-The Cohesive network layer was developed to mitigate the impact of the disjointed nature of roads with spare space and the data underlying the estimation of where there is (and is not) spare space.
-
-The methodology only selects roads that have the same name for a continuous stretch of at least 500m, as candidates for top routes.
+As stated above, OpenStreetMap data on does not give comprehensive coverage in all parts of the country. 
+The Cohesive network layer was developed to mitigate the disjointed nature of roads with spare space, but this layer does not include potential new routes outside the current road network.
+The methodology only selects roads that have the same name for a continuous stretch of at least 500m, as candidates for top routes, meaning that some roads will be excluded from the 'top routes' result due to name changes (although most continuous road sections have consistent names).
 To mitigate this limitation, roads that don't meet this criteria can still appear in the 'spare lane' and 'estimated width > 10m' layers. 
 
 Vehicular traffic volumes may restrict the potential for road space reallocation, and the presence of on-street car parking may prevent the use of particular alignments. 
-While we do not account for these limitations, the reduction in traffic due to COVID-19 has brought about both a unique opportunity and an urgent necessity to change travel patterns and behaviours in profound ways.
+While we do not account for this, the reduction in traffic due to COVID-19 has brought about both a unique opportunity and an urgent necessity to change travel patterns and behaviours in profound ways.
 As an example of the changes are happening right now, Glasgow has recently suspended around a third of its on-street parking spaces, to widen pavements and increase space for social distancing.
 
 The tool cannot account for such nuanced policy responses or, currently, distinguish between design options.
-Physical protection of cycleways will improve their, but permeable barriers (such as flexible plastic wands) are preferred to solid barriers that may obstruct pedestrians from crossing the road and encourage speeding. Interventions will be most effective where they form part of a wider transport policy and where experimental measures that prove successful can be adopted long-term.
-The tool is designed to inform a 'first pass' in the planning process around new emergency cycleways but deeper consideration is needed when developing strategic plans and specific designs.
+After a network of routes has been identified using a range of sources of evidence, including this tool, a number of other policy and design decisions need to be made, that are beyond the scope of this tool.
+Overall, interventions will be most effective where they form part of a wider transport policy and where measures can be adopted long-term.
+
+The coming 'restart' will lead to long lasting changes in transport systems.
+Whether these changes include a worsening of air pollution, traffic and road traffic casualty rates, or uptake of active transport is an open question that depends effective and timely interventions.
+The Rapid Cycleway Prioritisation Tool provides an evidence base in support of effective and timely interventions that will form part of broader strategies to respond to COVID-19.
 
 
 # Next steps
