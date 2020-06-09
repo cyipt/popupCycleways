@@ -67,7 +67,7 @@ The tool can also support authorities to make bold plans by highlighting the pot
 
 # Methods
 
-The approach was designed to identify roads and road segments where investment in new cycleways should be prioritised using a transparent methodology and nationally consistent datasets, alongside local authority expertise and local knowledge.
+The approach was designed to identify roads and road segments where investment in new cycleways should be prioritised using a transparent methodology and nationally consistent datasets, alongside planning authority expertise and local knowledge.
 Strong and actionable datasets already exist to support strategic cycle network planning, notably the Propensity to Cycle Tool (PCT), a national planning support system [@lovelace_propensity_2017].
 The PCT is already used by local authorities and contains key data showing not only current levels of cycling but also scenarios of growth, notably the Government Target scenario of doubling the number of cycling stages made by 2025 [@departmentfortransport_cycling_2017].
 The PCT maps cycle uptake at area, route and route network levels, for commuting and school travel (as of May 2020) [@goodman_scenarios_2019].
@@ -127,7 +127,7 @@ This is thus based on the cycling potential of roads, without reference to the r
 
 ## Feedback from stakeholders
 
-We elicited feedback from stakeholders via the Basecamp forum for local authority transport planners.
+We elicited feedback from stakeholders via the Basecamp forum for authority transport planners.
 As a result of the feedback we made a few adjustments to the results:
 
 - We refined the road identification method, to highlight more central road sections and fewer long sections far from high density areas, in response to feedback suggesting that some of the road sections went too far into the countryside.
