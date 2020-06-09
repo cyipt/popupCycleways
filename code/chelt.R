@@ -26,8 +26,7 @@ long_list = lapply(lgs, FUN = function(i) {
   # mapview::mapview(lg)
   l_buff = lg %>%
     st_transform(27700) %>%
-    st_buffer(buff_dist_large) %>%
-    st_transform(4326)
+    st_buffer(buff_dist_large) 
   touching_list = st_intersects(l_buff)
   g = igraph::graph.adjlist(touching_list)
   components = igraph::components(g)
@@ -47,7 +46,7 @@ lg_new2 = lg_new %>%
   group_by(group3) %>%
   mutate(
     group3_length = sum(length),
-    new_group3 = group3
+    new_group3 = as.factor(group3)
   ) %>%
   # summarise(
   #   group2 = first(group2),
@@ -77,7 +76,6 @@ while (min(lg_c$group3_length) < min_grouped_length) {
   nearest = NULL
   near = NULL
   mindist = NULL
-  shortest_l = NULL
   nearest_l = NULL
   new_l = NULL
   new_geom = NULL
@@ -85,8 +83,8 @@ while (min(lg_c$group3_length) < min_grouped_length) {
   new_c = NULL
   
   shortest_centroid = lg_c[which.min(lg_c$group3_length), ]
-  shortest_segment = lg_new2[which.min(lg_c$group3_length), ]
-  if(dim(shortest_centroid)[1] > 1) shortest = shortest[1,]
+  shortest_segment = lg_new2[which.min(lg_new2$group3_length), ]
+  if(dim(shortest_centroid)[1] > 1) shortest_centroid = shortest_centroid[1,]
   near = lg_c %>% 
     filter(group2 == shortest_centroid$group2) %>% 
     filter(new_group3 != shortest_centroid$new_group3) # must remove the point itself from this group
