@@ -2,11 +2,11 @@
 title: "Rapid Cycleway Prioritisation Tool"
 subtitle: "Technical specification"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
-# output: bookdown::word_document2
-output:
-  bookdown::pdf_document2:
-    toc: true
-    toc_depth: 1
+output: bookdown::word_document2
+# output:
+#   bookdown::pdf_document2:
+#     toc: true
+#     toc_depth: 1
 bibliography:
  - refs.bib
  - report-refs.bib
@@ -45,7 +45,8 @@ https://www.gov.uk/government/publications/reallocating-road-space-in-response-t
 ]
 
 The statutory guidance on network management in response to COVID-19 outlines a range of measures that can support a safe and healthy restart, including the creation of new cycleways, reducing speed limits, widening of footways and closing roads to motor traffic via 'modal filters'.
-**This report describes the Rapid Cycleway Prioritisation Tool project, which provides aims help authorities effectively prioritise locations of new cycleways created by reallocating road space.**
+The focus of this report is a tool that provides evidence in support of the first of these measures.
+**The Rapid Cycleway Prioritisation Tool aims provide evidence on where to prioritise cycleways created by reallocating road space.**
 <!-- Light segregation infrastructure such as flexible plastic wands (illustrated in Figure 1) and bollards can deliver a step change in provision for cycling, when implemented in combination with other measures such reduced speed limits on key corridors (as has happened on the A33 in Southampton and the A56 in Manchester) and when placed where they are most needed. -->
 
 <!-- 17:29:01	 From Gill M (Manchester cyclist) : Trafford is planning to reduce speeds on Bridgewater Way element of A56 when the pop up lane goes in there “OneTrafford tweeted that work is continuing to add pop up cycle lanes along Cornbrook Road and Warwick Road in Stretford too, with temporary 30mph speed limit imposed along Bridgewater Way.” Source (https://www.messengernewspapers.co.uk/news/18489349.cyclists-praise-pop-up-cycle-lanes-along-a56-trafford/) -->
@@ -59,10 +60,8 @@ The Emergency Active Travel Fund allocated £225m for new infrastructure in two 
 - The first tranche: £45m allocated for swift interventions for which applications were submitted by authorities on 5^th^ June.
 - The second tranche: £180m will be released later in the summer for permanent measures
 
-The [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/) was designed to provide evidence in support of schemes eligible for the second tranche of funding.
-Given the importance of acting quickly, and the unique opportunity that the crisis poses to improve physical activity levels in the long term, it is vital that local authorities have the evidence they need.
-Without a nationally consistent and systematic evidence base, there is a risk that some already stretched local authorities will rely on ad-hoc methods to allocate funding.
-The tool can also support authorities to make bold plans by highlighting the potential of key strategic corridors.
+The [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/), supported by the Department for Transport and Sustrans, was designed to provide evidence in support of schemes eligible for the second tranche of funding.
+The tool provides a national evidence base that, used alongside other sources of evidence, and help ensure that the funding is spent effectively, to maximise cycling uptake in the coming and months and years of the post COVID-19 world.
 
 \newpage
 
