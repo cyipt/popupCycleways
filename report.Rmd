@@ -113,31 +113,35 @@ The tool does not account for space currently occupied by on street parking, ver
 
 ## Grouping and filtering of road segments
 
-For our three core outputs of near-term cycleway prioritisation, we follow a series of grouping and filtering steps, to identify roads that have both high cycle potential and available road space. 
-Segments are grouped by their road reference number, with stricter filtering criteria for roads with no reference number, to avoid a mass of short road segments on side streets. 
-We use a 100m buffer to further group these segments, as shown in Figure \@ref(fig:levels) (middle and right, respectively), which shows that grouping nearby road segments before filtering results in a more cohesive network. 
+<!-- For our three core outputs of near-term cycleway prioritisation, we follow a series of grouping and filtering steps, to identify roads that have both high cycle potential and available road space.  -->
+<!-- Segments are grouped by their road reference number, with stricter filtering criteria for roads with no reference number, to avoid a mass of short road segments on side streets.  -->
+<!-- We use a 100m buffer to further group these segments, as shown in Figure \@ref(fig:levels) (middle and right, respectively), which shows that grouping nearby road segments before filtering results in a more cohesive network.  -->
 
-We then remove groups which do not have either an estimated mean road width of at least 10m or a spare lane for the majority of their length. 
-Groups with mean cycling potential below a minimum threshold are also removed. This threshold varies according to cycling levels in each region. 
-Finally, any segments not part of a wider group of > 500m length (using a 100m buffer) are removed.
+<!-- We then remove groups which do not have either an estimated mean road width of at least 10m or a spare lane for the majority of their length.  -->
+<!-- Groups with mean cycling potential below a minimum threshold are also removed. This threshold varies according to cycling levels in each region.  -->
+<!-- Finally, any segments not part of a wider group of > 500m length (using a 100m buffer) are removed. -->
 
 ```{r levels, out.width="90%", fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"}
-knitr::include_graphics("figures/filter-then-group.png")
+# knitr::include_graphics("figures/filter-then-group.png")
 ```
 
-## Selection of top routes
+## Top ranked new cycleways
 
-From the results of the previous steps, we can now select the top routes for cycling. 
-Only roads that have the same name for a continuous stretch of at least 500m are eligible for selection as a top route. 
-Roads cannot be candidates for top routes if there is an existing cycleway along 75% or more of their length. 
-We selected such a high value because the presence of a cycleway in OSM does not guarantee that this is a high quality, continuous route.
-Top routes are ranked according to their cycling potential.
+To identify wide and continuous roads with high cycling potential we first excluded roads with low cycling potential from the analysis.
 
-Roads not selected as top routes are shown in the layers named 'spare lane' and 'estimated width >10m.'
+Roads with high cycling potential but insufficient width were excluded from the 'Top ranked new cycleways' layer but were included in the 'Cohesive network' layer, described in the next section and on the tools main web page at [www.cyipt.bike/rapid](https://www.cyipt.bike/rapid/#map-layers).
 
-## Identification of cohesive cycle network
+Only roads with a continuous length above a threshold distance (500 m) identified as candidates for inclusion in the Top ranked new cycleways layer. 
+Roads with an existing cycleway along 75% or more of their length were excluded (we selected such a high value because the presence of a cycleway in OSM does not guarantee that this is a high quality, continuous route).
+Roads were ranked in terms of their cycling potential and highest ranking roads were included in the roads.
+The number of roads identified as Top ranked new cycleways varies depending on the size of the authority, ranging from 4 in the [Isle of Wight](https://www.cyipt.bike/rapid/isle-of-wight/) to 80 in [Greater London](https://www.cyipt.bike/rapid/greater-london/).
 
-The cohesive network is derived using a different method from the other layers. 
+Roads that met the spare space criteria but which were not selected as top routes were kept and can be shown in the layers named 'spare lane' and 'estimated width >10m', which are hidden by default to simplify the visualisation of results and to focus attention on the most important results, including the Cohesive network.
+
+
+## Identification of a cohesive network
+
+The Cohesive network layer was derived using a different method from the other layers. 
 To identify this network, we select road segments on the trunk road, A road and B road network that have cycling potential in the 85th percentile or above, for their region. 
 We then join together these segments using a 1000m buffer, to form a coherent network.
 This is thus based on the cycling potential of roads, without reference to the road width or number of lanes.
