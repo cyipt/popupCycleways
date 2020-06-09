@@ -1,5 +1,6 @@
 ---
-title: "Data analysis to prioritise new cycleways in response to COVID-19"
+title: "Rapid cycleway prioritisation tool"
+subtitle: "Technical specification"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
 # output: bookdown::word_document2
 output:
