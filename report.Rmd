@@ -92,10 +92,24 @@ At a time of reduced travel, fewer lanes dedicated to motor traffic are needed.
 Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
 This definition assumes no reduction in mobility for motor vehicles (making two-way streets one-way is another option not explored in this analysis).
 
-To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
-All segments defined as having a spare lane using this method are shown in Figure \@ref(fig:levels) (left).
-We also included estimates of road width, only flagging roads with an average estimated width of more than 10m (the minimum that should be considered for cycleways without additional changes).
-In future, this methodology could be enhanced to include verge and pavement width estimates, which could increase the effective available space for new cycleways, and the presence of vehicle parking bays, and on street parking which reduce it.
+The tool highlights roads that have sufficient space for new infrastructure, by which we mean either having more than one lane in either direction *or* an average estimated width of more than 10 metres.
+There are three main reasons for this focus on roads with 'spare space':
+
+- It is possible to rapidly implement new cycleways on wide roads through a range of interventions, including light segregation along one or both sides of the road or point closures. There is a window of opportunity to get people cycling and the creation of cycleways by road space reallocation on wide roads with high cycling potential is one of the fastest and most effective ways to maximise mode switch to cycling during the 'restart'.
+- Wide roads tend to be direct, continuous and located along strategic corridors, where cycling potential (including cycling trips replacing trips previously made by public transport) is likely to be highest.
+- The cycleways resulting from space reallocation on such roads are likely to be sufficiently wide, continuous and direct to enable large numbers of people to switch to cycling while observing physical distancing guidelines, potentially reducing pressure on public transport on strategic corridors.
+
+<!-- To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes. -->
+We defined roads with 'spare lanes' as those on which there was at least 2 lanes (including bus lanes) going in the same direction, based on data from [OpenStreetMap](https://www.openstreetmap.org).
+We also included estimates of road width, only flagging roads with an average estimated width of more than 10 m using data that had previously been generated for the Cycling Infrastructure Prioritisation Tool.
+10 m was selected because it is roughly the minimum width required for new cycleways created by road space reallocation measures, although there are examples of roads that are less than 10 m on which new cycleways have been successfully created in response to COVID-19.^[
+[South Road](https://www.lancasterguardian.co.uk/news/uk-news/mixed-reactions-new-lancaster-pop-cycle-lanes-busy-city-centre-road-2875909#gsc.tab=0) in Lancaster, for example, has an average width of around 8 m, yet protected cycleways in either direction have been created by installation of wands on either side.
+]
+The tool does not account for space currently occupied by on street parking, verges and pavements, which could provide additional space for cycling interventions.
+
+<!-- Usingcould increase the effective available space for new cycleways, and the presence of vehicle parking bays, and on street parking which reduce it. -->
+
+<!-- All segments defined as having a spare lane using this method are shown in Figure \@ref(fig:levels) (left). -->
 
 ## Grouping and filtering of road segments
 
@@ -169,7 +183,6 @@ It allows visualisation of what a joined-up cycle network would look like, witho
 
 This provides the ability to identify roads that may be key priorities today for cycle infrastructure, but which are missing from the other results, either due to the limitations of our road attribute data, or because the roads are simply too narrow to show up in the other results. 
 Interventions may still be possible on narrow roads, for example the removal of central line markings has been shown to reduce average vehicle speeds (ref). 
-As an example of cycle infrastructure on a narrow road, South Road in Lancaster is recorded on OSM as having road width <10m, yet protected cycleways are currently being constructed there (image). 
 In other cases, it may be possible to convert a two-way road to one-way working and re-allocate the space previously occupied by one of the traffic lanes to bi-directional cycleways. (Torrington Place image)
 
 Finally the cohesive network can help identify gaps in existing and/or proposed cycle infrastructure. 
