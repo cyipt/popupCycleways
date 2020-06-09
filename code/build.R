@@ -625,7 +625,9 @@ res_table = r_lanes_top %>%
     `Cycling potential` = mean_cycling_potential,
     `Length * potential (km)` = km_cycled,
     # `SRN` = srn,
-    `Speed limit` = speed_limit
+    `Speed limit` = speed_limit,
+    `Mean estimated width (m)` = mean_width,
+    `Majority spare lane(s)?` = majority_spare_lane
     ) 
 res_table
 # knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up active transport infrastructure according to methods presented in this paper.", digits = 0)
