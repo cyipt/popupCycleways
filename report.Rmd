@@ -71,20 +71,28 @@ The approach was designed to identify roads and road segments where investment i
 Strong and actionable datasets already exist to support strategic cycle network planning, notably the Propensity to Cycle Tool (PCT), a national planning support system.
 The PCT is already used by local authorities and contains key data showing not only current levels of cycling but also scenarios of growth in usage of cycling for everyday trips (for commuting and school travel).
 The scenarios include Government Target, which represents a doubling the number of cycling stages made by 2025 [@departmentfortransport_cycling_2017].
-The PCT maps cycle uptake at area, route and route network levels, for commuting and school travel (as of May 2020) [@goodman_scenarios_2019].
+The PCT maps cycle uptake at area, route and route network levels, for commuting and (since May 2019) school travel [@goodman_scenarios_2019].
 
-A limitation of the PCT is that it takes little account of existing infrastructure: variables such as road width and even the presence/absence of cycle infrastructure currently are not included in the results.
-The Rapid Cycleway Prioritisation Tool overcomes this issue by using road network data which includes geographic attributes and cycle infrastructure from OpenStreetMap.
+The PCT takes little account of existing infrastructure: variables such as road width and even the presence/absence of cycle infrastructure are not included in the results, with the focus being on where there is most latent demand for cycling.
+The Rapid Cycleway Prioritisation Tool overcomes this issue from the perspective of planners who need to prioritise scheme candidates from hundreds of potential options.
+It does this by using road network data which includes geographic attributes and cycle infrastructure from OpenStreetMap [@barrington-leigh_world_2017].
 Carriageway width data were taken from the Cycling Infrastructure Prioritisation Tool (CyIPT) project, funded as a prototype project by a DfT Transport-technology research innovation grants (T-TRIG).
-This uses road data derived from OpenStreetMap.org (OSM) [@barrington-leigh_world_2017].
 
-The Rapid Cycleway Prioritisation Tool identifies roads which can accommodate new cycleways whilst maintaining 2-way motorized traffic.
-Of these roads, it identifies priority locations for new cycleways that are expected to receive most usage under the 'Government Target' scenario.
-The amount of usage under modelled scenarios of cycling uptake, based on evidence of the percentage of trips cycled in relation to the distance and hilliness of the trip, is known as 'cycling potential' [@lovelace_propensity_2017].
+Among the wide range of locations where new cycleways could be implemented, the Rapid Cycleway Prioritisation Tool identifies roads which can accommodate new cycleways whilst maintaining 2-way motorized traffic.
+Of these roads, it identifies priority locations for new cycleways that have the highest 'cycling potential' under the 'Government Target' scenario in the PCT [@lovelace_propensity_2017].
+By cycling potential we mean the number of oneway trips that could be expected if cycling levels double, based on the distances and hilliness of routes between [origin-destination pairs](https://docs.ropensci.org/stplanr/articles/stplanr-od.html).
 
-The tool identifies continuous road sections and ranks them according to their cycling potential.
-Roads can also be ranked by length, on the basis that interventions on long, continuous road sections will tend to have a large impact on the overall transport network, and the estimated amount of cycling in units of 'km per day', which is simply cycling potential multiplied by section length.
-The aim is to provide evidence that maximises the impact of new interventions in creating a joined-up and continuous, a vital component of cycling strategies [@parkin_designing_2018].
+The main output of the tool is ranked lists of continuous road sections to support the prioritisation process.
+Roads can also be ranked by cycling potential, length, speed limit and presence of spare lanes.
+Length was included on the basis that interventions on long, continuous road sections will tend to have a large impact on the overall transport network.
+Road sections can also be ranked by estimated amount of cycling in units of 'km per day', which is simply cycling potential multiplied by section length, as illustrated in Figure \@ref(fig:rank) (see Figure \ref(fig:mapout)).
+
+```{r rank, fig.cap="Illustration of the tabular output of the Rapid Cycleway Prioritisation Tool for West Yorkshire."}
+knitr::include_graphics("figures/Screenshot_2020-06-09 West Yorkshire.png")
+```
+
+The rationale was to provide interactive evidence that supports scheme prioritisation based on a range of variables.
+Length, for example, is important for creating a joined-up and continuous, a vital component of cycling strategies [@parkin_designing_2018].
 
 ## Road attribute data
 
@@ -165,9 +173,20 @@ As a result of the feedback we made a few adjustments to the results:
 # Outputs
 
 The results of this research are publicly accessible at www.cyipt.bike/rapid. 
-Maps are available for regions covering the whole of England, at the level of Combined Authorities, Unitary Authorities, or Upper Tier Authorities. 
-Using the methods outlined above, we have derived a set of outputs which are represented as layers in these maps.
-The layers are presented in chronological order to make reading the maps more intuitive, indicating that the data should be used to identify ways to fill key gaps in the existing network in the short term but also plan for a cohesive network in the long term, providing a long-term 'direction of travel' in line with Local Cycling and Walking Plans (LCWIPs), which provide a strategic vision of joined-up networks.
+The main output is a list of candidate roads that meet the 'spare space' criteria outlined above, presented in tabular form in Figure \@ref(fig:rank) above.
+From a planning perspective the most useful output is an interactive map of a type shown in Figure \@ref(fig:mapout).
+Results are available for regions covering the whole of England, at the level of Combined Authorities, Unitary Authorities, or Upper Tier Authorities. 
+
+```{r mapout, fig.cap="The map output of the Rapid Cycleway Prioritisation Tool for West Yorkshire, zoomed in on Leeds"}
+knitr::include_graphics("figures/mapout.png")
+```
+
+
+In addition to a list of highlighted road sections, a number of outputs were generated for each authority.
+These are represented as layers in the interactive map, and ordered chronologically, with the aim of making the results more intuitive.
+For the immediate task of joining-up existing cycleways, for example, the Existing cycleways layer may be of most use.
+The Cohesive network provides a long-term 'direction of travel' that could be used to support a longer term strategic vision, in support of Local Cycling and Walking Plans (LCWIPs).
+These are other layers are described below.
 
 ## Existing cycleways
 
@@ -198,6 +217,12 @@ In other cases, it may be possible to convert a two-way road to one-way working 
 
 Finally, the cohesive network can help identify gaps in existing and/or proposed cycle infrastructure. 
 'Gappy' networks are off-putting to many cyclists, and busy or complex road junctions in particular can create barriers to cycle movement [@buehler_bikeway_2016].
+
+## Road space layers
+
+In addition to the layers mentioned above, two other layers are available in the map: Spare lane(s) and Estimated width > 10 m layers.
+These layers, which are hidden by default, do not meet the cycling potential or length criteria needed for inclusion in the top ranked routes.
+They were included in the map to highlight routes where 'connecting' infrastructure joining existing infrastructure or routes to destinations not picked up in the PCT, may be appropriate.
 
 # Limitations and known issues
 
@@ -260,7 +285,7 @@ This tool has been developed rapidly to support rapid decision making, and there
 - Inclusion of additional trip purposes in estimates of cycling potential, that may require updates to or extensions of the Propensity to Cycle Tool.
 
 Perhaps the most promising future direction of travel is towards more flexible tools for transport planning.
-By demonstrating how existing datasets can be combined to create new results that are useful, the project has shown that, like infrastructure planning itself, an 'agile' approach to transport planning tools can yield useful and perhaps unexpectedly successfull results that support local knowledge and transport planning expertise.
+By demonstrating how existing datasets can be combined to create new results that are useful, the project has shown that, like infrastructure planning itself, an 'agile' approach to transport planning tools can yield useful and perhaps unexpectedly successful results that support local knowledge and transport planning expertise.
 We hope to take lessons learned during the project forward into future, more strategic, transport planning tool research and development work.
 
 
