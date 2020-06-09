@@ -171,6 +171,7 @@ Finally, a satellite image is also available as a basemap.
 <!-- Like many projects that have been initiated in response to COVID-19 we have developed the analy -->
 
 If you are interested in the code underlying the project and would like to support the project with technical input, please provide feedback via the [GitHub issue tracker (requires a GitHub account)](https://github.com/cyipt/popupCycleways/issues).
+To see and edit the data in OpenStreetMap on which the results are based, see [osm.org](https://www.openstreetmap.org/#map=7/52.486/-2.428&layers=C) (requires an OSM login to [edit the data](https://www.cyclestreets.net/edit/tutorial/)).
 
 # Use the tool
 
