@@ -68,8 +68,9 @@ The tool can also support authorities to make bold plans by highlighting the pot
 # Methods
 
 The approach was designed to identify roads and road segments where investment in new cycleways should be prioritised using a transparent methodology and nationally consistent datasets, alongside planning authority expertise and local knowledge.
-Strong and actionable datasets already exist to support strategic cycle network planning, notably the Propensity to Cycle Tool (PCT), a national planning support system [@lovelace_propensity_2017].
-The PCT is already used by local authorities and contains key data showing not only current levels of cycling but also scenarios of growth, notably the Government Target scenario of doubling the number of cycling stages made by 2025 [@departmentfortransport_cycling_2017].
+Strong and actionable datasets already exist to support strategic cycle network planning, notably the Propensity to Cycle Tool (PCT), a national planning support system.
+The PCT is already used by local authorities and contains key data showing not only current levels of cycling but also scenarios of growth in usage of cycling for everyday trips (for commuting and school travel).
+The scenarios include Government Target, which represents a doubling the number of cycling stages made by 2025 [@departmentfortransport_cycling_2017].
 The PCT maps cycle uptake at area, route and route network levels, for commuting and school travel (as of May 2020) [@goodman_scenarios_2019].
 
 A limitation of the PCT is that it takes little account of existing infrastructure: variables such as road width and even the presence/absence of cycle infrastructure currently are not included in the results.
@@ -77,11 +78,13 @@ The rapid cycleway prioritisation tool overcomes this issue by using road networ
 Carriageway width data were taken from the Cycling Infrastructure Prioritisation Tool (CyIPT) project, funded as a prototype project by a DfT Transport-technology research innovation grants (T-TRIG).
 This uses road data derived from OpenStreetMap.org (OSM) [@barrington-leigh_world_2017].
 
-The rapid cycleway prioritisation tool is based on levels of cycling potential *and* road attribute data, with an emphasis on road space reallocation.
-The method was parameterised to highlight roads that have sufficient space to allow for new cycleways without affecting the navigable network for motorised modes [@lovelace_methods_2020].
-A benefit of this method is that it allows continuous road sections to be identified and ranked, supporting prioritisation of investment.
-Roads can be ranked based not only on cycling potential, but also based on continuous road length and estimated cycle usage measured in km per day.
-The tool highlights continuous road sections with high cycling potential in the context of existing infrastructure on the basis that new infrastructure should maximise cycle network cohesion and continuity [@parkin_designing_2018].
+The rapid cycleway prioritisation tool identifies roads which can accommodate new cycleways whilst maintaining 2-way motorized traffic.
+Of these roads, it identifies priority locations for new cycleways that are expected to receive most usage under the 'Government Target' scenario.
+The amount of usage under modelled scenarios of cycling uptake, based on evidence of the percentage of trips cycled in relation to the distance and hilliness of the trip, is known as 'cycling potential' [@lovelace_propensity_2017].
+
+The tool identifies continuous road sections and ranks them according to their cycling potential.
+Roads can also be ranked by length, on the basis that interventions on long, continuous road sections will tend to have a large impact on the overall transport network, and the estimated amount of cycling in units of 'km per day', which is simply cycling potential multiplied by section length.
+The aim is to provide evidence that maximises the impact of new interventions in creating a joined-up and continuous, a vital component of cycling strategies [@parkin_designing_2018].
 
 ## Road attribute data
 
