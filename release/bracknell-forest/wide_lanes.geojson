@@ -1,0 +1,21 @@
+{
+"type": "FeatureCollection",
+"name": "wide_lanes",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "name": "Hallgrove Bottom", "ref": "A30", "maxspeed": "40+ mph", "cycling_potential": 96.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.68344, 51.3714 ], [ -0.68288, 51.37165 ], [ -0.68012, 51.37292 ] ] } },
+{ "type": "Feature", "properties": { "name": "Hallgrove Bottom", "ref": "A30", "maxspeed": "40+ mph", "cycling_potential": 4.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.68344, 51.3714 ], [ -0.68373, 51.37124 ], [ -0.68404, 51.37107 ], [ -0.68415, 51.37096 ], [ -0.68423, 51.37088 ] ] } },
+{ "type": "Feature", "properties": { "name": "Reading Road", "ref": "B3272", "maxspeed": "30 mph", "cycling_potential": 91.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.79018, 51.3306 ], [ -0.79002, 51.33054 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "Subway 13", "maxspeed": "20 mph or less", "cycling_potential": 64.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.74399, 51.41753 ], [ -0.74425, 51.41746 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "Subway 35", "maxspeed": "20 mph or less", "cycling_potential": 198.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.76081, 51.41323 ], [ -0.76074, 51.41337 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "Subway 37", "maxspeed": "20 mph or less", "cycling_potential": 175.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.76083, 51.41248 ], [ -0.76089, 51.41269 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "Subway 30", "maxspeed": "20 mph or less", "cycling_potential": 47.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.73209, 51.41358 ], [ -0.73231, 51.41358 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "Subway 14", "maxspeed": "20 mph or less", "cycling_potential": 64.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.74427, 51.41659 ], [ -0.74437, 51.41671 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "", "maxspeed": "40+ mph", "cycling_potential": 33.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.75973, 51.41614 ], [ -0.75986, 51.41621 ], [ -0.75992, 51.41627 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "", "maxspeed": "30 mph", "cycling_potential": 33.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.75989, 51.41546 ], [ -0.76001, 51.41548 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "", "maxspeed": "30 mph", "cycling_potential": 47.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.76004, 51.41515 ], [ -0.76016, 51.41517 ] ] } },
+{ "type": "Feature", "properties": { "name": "High Street cycle path (north)", "ref": "", "maxspeed": "20 mph or less", "cycling_potential": 71.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.68445, 51.41125 ], [ -0.68067, 51.41121 ] ] } },
+{ "type": "Feature", "properties": { "name": "High Street cycle path (north)", "ref": "", "maxspeed": "20 mph or less", "cycling_potential": 68.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.68067, 51.41121 ], [ -0.68032, 51.41121 ] ] } },
+{ "type": "Feature", "properties": { "name": "High Street cycle path (north)", "ref": "", "maxspeed": "20 mph or less", "cycling_potential": 68.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -0.68032, 51.41121 ], [ -0.67928, 51.41119 ], [ -0.67903, 51.41118 ], [ -0.6788, 51.41117 ], [ -0.67861, 51.41116 ] ] } }
+]
+}
