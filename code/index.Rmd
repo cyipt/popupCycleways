@@ -215,7 +215,7 @@ tmap_leaflet(m_regions) %>%
 ```
 
 ```{r}
-dn = "popupCycleways/v1.1" # dirctory name
+dn = "popupCycleways/release" # dirctory name
 built_regions = list.files(dn)
 regions = regions %>% 
   filter(stringr::str_detect(string = Name, "Scilly", negate = TRUE))
