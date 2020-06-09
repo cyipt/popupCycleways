@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-08" />
+<meta name="date" content="2020-06-09" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-08</h4>
+<h4 class="date">2020-06-09</h4>
 
 </div>
 
@@ -456,19 +456,19 @@ summary {
 ##                       30                       46                       48                        6</code></pre>
 <pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
 ##                       30                       46                       48                        6</code></pre>
-<pre><code>## # A tibble: 30 x 6
-##    Name            Reference `Length (m)` `Cycling potential` `Length * potential (km)` `Speed limit`
-##    &lt;chr&gt;           &lt;chr&gt;            &lt;dbl&gt;               &lt;dbl&gt;                     &lt;dbl&gt; &lt;chr&gt;        
-##  1 Hills Road      &quot;A1307&quot;            649                1423                       924 30 mph       
-##  2 Perne Road      &quot;A1134&quot;            944                 729                       688 30 mph       
-##  3 A1134           &quot;A1134&quot;            664                 494                       328 30 mph       
-##  4 Chesterton Road &quot;A1303&quot;            540                 466                       252 30 mph       
-##  5 Huntingdon Road &quot;A1307&quot;           1934                 458                       886 30 mph       
-##  6 Gonville Place  &quot;A603&quot;             737                 391                       288 30 mph       
-##  7 Newmarket Road  &quot;A1134&quot;            804                 326                       262 30 mph       
-##  8 A1303           &quot;A1303&quot;            628                 279                       175 40+ mph      
-##  9 London Road     &quot;A15&quot;              534                 258                       138 30 mph       
-## 10 Lincoln Road    &quot;&quot;                2273                 245                       557 30 mph       
+<pre><code>## # A tibble: 30 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Hills … &quot;A1307&quot;            649              1423               924 30 mph                       10 FALSE            
+##  2 Perne … &quot;A1134&quot;            944               729               688 30 mph                        9 FALSE            
+##  3 A1134   &quot;A1134&quot;            664               494               328 30 mph                        9 FALSE            
+##  4 Cheste… &quot;A1303&quot;            540               466               252 30 mph                       11 FALSE            
+##  5 Huntin… &quot;A1307&quot;           1934               458               886 30 mph                       10 FALSE            
+##  6 Gonvil… &quot;A603&quot;             737               391               288 30 mph                       10 FALSE            
+##  7 Newmar… &quot;A1134&quot;            804               326               262 30 mph                       10 FALSE            
+##  8 A1303   &quot;A1303&quot;            628               279               175 40+ mph                      10 TRUE             
+##  9 London… &quot;A15&quot;              534               258               138 30 mph                       12 FALSE            
+## 10 Lincol… &quot;&quot;                2273               245               557 30 mph                       10 FALSE            
 ## # … with 20 more rows</code></pre>
 
 
