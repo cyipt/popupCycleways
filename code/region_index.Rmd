@@ -17,17 +17,17 @@ tmap_mode("view")
 
 The map shows three key layers (see [www.cyipt.bike/rapid](https://www.cyipt.bike/rapid/#map-layers) for a detailed description of these layers):
 
-1. The **Existing cycleways** layer provides an approximation of where cycling infrastructure exists **currently** (based on OpenStreetMap data downloaded in May 2020) and is intended to help identify gaps in the network that could be filled with new interventions.
-2. The **Top ranked new cycleways** layer is the central result of the analysis, providing a list of roads that have high cycling potential, a minimum threshold length, and spare space according to our definition. These may be strong candidates for reallocation of road space **immediately or in the near future** to create new cycleways on strategic corridors under the Emergency Active Travel Fund.
-3. The **Cohesive network** layer is intended to show what a joined-up cycle network could look like if we were to consider new cycleways by either closing roads to motorised traffic or creating one-way systems. Composed of roads that have high cycling potential on some or all of their length, the layer is designed to guide **long term planning**, alongside pre-existing plans.
+1. The **Existing cycleways** layer provides an approximation of where cycling infrastructure exists **currently** (based on OpenStreetMap data downloaded in May 2020) and is intended to help identify gaps in the existing network that could be filled with new interventions (data stored as [cycleways.geojson](cycleways.geojson)).
+2. The **Top ranked new cycleways** layer is the central result of the analysis, providing a list of roads that have high cycling potential, a minimum threshold length, and spare space according to our definition. These may be strong candidates for reallocation of road space **immediately or in the near future** to create new cycleways on strategic corridors under the Emergency Active Travel Fund (data stored as [top_routes.geojson](top_routes.geojson)).
+3. The **Cohesive network** layer is intended to show what a joined-up cycle network could look like if we were to consider new cycleways by either closing roads to motorised traffic or creating one-way systems. Composed of roads that have high cycling potential on some or all of their length, the layer is designed to guide **long term planning**, alongside pre-existing plans (data stored as [cohesive_network.geojson](cohesive_network.geojson)).
 
-To see additional layers showing road sections with 'spare lanes' and width greater than 10 m, click on the layers icon in the top left, just below the +/- buttons on the map.
+To see additional layers showing road sections with 'spare lanes' (data stored as [spare_lanes.geojson](spare_lanes.geojson)) and width an estimated width of greater than 10 m (data stored as [wide_lanes.geojson](wide_lanes.geojson)), click on the layers icon in the top left, just below the +/- buttons on the map.
 
 ```{r, out.width="100%"}
 knitr::include_url("m.html")
 ```
 
-See full map [here](m.html), and a more description of the layers and the methodology at [cyipt.bike/rapid](https://www.cyipt.bike/rapid/)
+See full map [here](m.html), and a more description of the layers and the methodology at [cyipt.bike/rapid](https://www.cyipt.bike/rapid/).
 
 The table below shows the top `r nrow(res_table)` roads, in terms of cycling potential and spare space criteria outlined on the landing page.
 The length refers to the continuous length of road.
