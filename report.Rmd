@@ -148,6 +148,7 @@ The resulting layer shows what a joined up cycle network could look like if new 
 ## Roads with spare space
 
 Roads that met the spare space criteria but which were not selected as top routes were kept and can be shown in the layers named 'spare lane' and 'estimated width >10m'.
+This includes roads with high cycling potential but which were not selected as top routes because they do not keep the same name for a stretch of at least 500 m in length.
 These results are hidden by default to simplify the visualisation of results and to focus attention on the most important results, including the Cohesive network.
 They represent roads on which there is more than one lane in one direction, and roads with an estimated carriageway width of 10 m or more, respectively.
 They can be visualised in the map by clicking on the layers button in the top lefthand corner of the map.
@@ -233,6 +234,7 @@ Other tools could be developed to support such broader interventions, perhaps pa
 
 As stated above, OpenStreetMap data on does not give comprehensive coverage in all parts of the country. 
 The Cohesive network layer was developed to mitigate the disjointed nature of roads with spare space, but this layer does not include potential new routes outside the current road network.
+
 The methodology only selects roads that have the same name for a continuous stretch of at least 500m, as candidates for top routes, meaning that some roads will be excluded from the 'top routes' result due to name changes (although most continuous road sections have consistent names).
 To mitigate this limitation, roads that don't meet this criteria can still appear in the 'spare lane' and 'estimated width > 10m' layers. 
 
