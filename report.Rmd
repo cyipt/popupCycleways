@@ -1,5 +1,5 @@
 ---
-title: "Rapid cycleway prioritisation tool"
+title: "Rapid Cycleway Prioritisation Tool"
 subtitle: "Technical specification"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
 # output: bookdown::word_document2
@@ -45,7 +45,7 @@ https://www.gov.uk/government/publications/reallocating-road-space-in-response-t
 ]
 
 The statutory guidance on network management in response to COVID-19 outlines a range of measures that can support a safe and healthy restart, including the creation of new cycleways, reducing speed limits, widening of footways and closing roads to motor traffic via 'modal filters'.
-**This report describes the rapid cycleway prioritisation tool project, which provides aims help authorities effectively prioritise locations of new cycleways created by reallocating road space.**
+**This report describes the Rapid Cycleway Prioritisation Tool project, which provides aims help authorities effectively prioritise locations of new cycleways created by reallocating road space.**
 <!-- Light segregation infrastructure such as flexible plastic wands (illustrated in Figure 1) and bollards can deliver a step change in provision for cycling, when implemented in combination with other measures such reduced speed limits on key corridors (as has happened on the A33 in Southampton and the A56 in Manchester) and when placed where they are most needed. -->
 
 <!-- 17:29:01	 From Gill M (Manchester cyclist) : Trafford is planning to reduce speeds on Bridgewater Way element of A56 when the pop up lane goes in there “OneTrafford tweeted that work is continuing to add pop up cycle lanes along Cornbrook Road and Warwick Road in Stretford too, with temporary 30mph speed limit imposed along Bridgewater Way.” Source (https://www.messengernewspapers.co.uk/news/18489349.cyclists-praise-pop-up-cycle-lanes-along-a56-trafford/) -->
@@ -75,11 +75,11 @@ The scenarios include Government Target, which represents a doubling the number 
 The PCT maps cycle uptake at area, route and route network levels, for commuting and school travel (as of May 2020) [@goodman_scenarios_2019].
 
 A limitation of the PCT is that it takes little account of existing infrastructure: variables such as road width and even the presence/absence of cycle infrastructure currently are not included in the results.
-The rapid cycleway prioritisation tool overcomes this issue by using road network data which includes geographic attributes and cycle infrastructure from OpenStreetMap.
+The Rapid Cycleway Prioritisation Tool overcomes this issue by using road network data which includes geographic attributes and cycle infrastructure from OpenStreetMap.
 Carriageway width data were taken from the Cycling Infrastructure Prioritisation Tool (CyIPT) project, funded as a prototype project by a DfT Transport-technology research innovation grants (T-TRIG).
 This uses road data derived from OpenStreetMap.org (OSM) [@barrington-leigh_world_2017].
 
-The rapid cycleway prioritisation tool identifies roads which can accommodate new cycleways whilst maintaining 2-way motorized traffic.
+The Rapid Cycleway Prioritisation Tool identifies roads which can accommodate new cycleways whilst maintaining 2-way motorized traffic.
 Of these roads, it identifies priority locations for new cycleways that are expected to receive most usage under the 'Government Target' scenario.
 The amount of usage under modelled scenarios of cycling uptake, based on evidence of the percentage of trips cycled in relation to the distance and hilliness of the trip, is known as 'cycling potential' [@lovelace_propensity_2017].
 
