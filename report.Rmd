@@ -10,6 +10,7 @@ output:
 bibliography:
  - refs.bib
  - report-refs.bib
+ - code/index.bib
 ---
 
 ```{r, eval=FALSE, echo=FALSE}
