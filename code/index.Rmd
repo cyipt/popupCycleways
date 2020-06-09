@@ -172,6 +172,11 @@ Finally, a satellite image is also available as a basemap.
 
 If you are interested in the code underlying the project and would like to support the project with technical input, please provide feedback via the [GitHub issue tracker (requires a GitHub account)](https://github.com/cyipt/popupCycleways/issues).
 
+# Use the tool
+
+To use the tool, click on the region of interest below and click on the link ([www.cyipt.bike/rapid/west-yorkshire](https://www.cyipt.bike/rapid/west-yorkshire/) for West Yorkshire, for example).
+Explore the results in the new page that appears with reference to the guidance on this page and the [Rapid Cycleway Prioritisation Tool report](https://github.com/cyipt/popupCycleways/releases/download/0.3/report.pdf).
+
 
 ```{r}
 regions = readRDS("regions_dft.Rds")
