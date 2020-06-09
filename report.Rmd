@@ -261,6 +261,7 @@ The Cohesive network layer was developed to mitigate the disjointed nature of ro
 
 The methodology only selects roads that have the same name for a continuous stretch of at least 500m, as candidates for top routes, meaning that some roads will be excluded from the 'top routes' result due to name changes (although most continuous road sections have consistent names).
 To mitigate this limitation, roads that don't meet this criteria can still appear in the 'spare lane' and 'estimated width > 10m' layers. 
+Dual carriageways lengths are currently counted twice, meaning a dual carriageway section of 260 m may be included in the results.
 
 Vehicular traffic volumes may restrict the potential for road space reallocation, and the presence of on-street car parking may prevent the use of particular alignments. 
 While we do not account for this, the reduction in traffic due to COVID-19 has brought about both a unique opportunity and an urgent necessity to change travel patterns and behaviours in profound ways.
