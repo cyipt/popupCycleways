@@ -2,11 +2,11 @@
 title: "Rapid Cycleway Prioritisation Tool"
 subtitle: "Technical specification"
 author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
-output: bookdown::word_document2
-# output:
-#   bookdown::pdf_document2:
-#     toc: true
-#     toc_depth: 1
+# output: bookdown::word_document2
+output:
+  bookdown::pdf_document2:
+    toc: true
+    toc_depth: 1
 bibliography:
  - refs.bib
  - report-refs.bib
@@ -21,7 +21,7 @@ browseURL("report.docx")
 ```
 
 ```{r setup2, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, fig.align = "center")
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", out.width = "100%")
 ```
 
 &nbsp;
@@ -89,7 +89,7 @@ Length was included on the basis that interventions on long, continuous road sec
 Road sections can also be ranked by estimated amount of cycling in units of 'km per day', which is simply cycling potential multiplied by section length, as illustrated in Figure \@ref(fig:rank) (see Figure \ref(fig:mapout)).
 
 ```{r rank, fig.cap="Illustration of the tabular output of the Rapid Cycleway Prioritisation Tool for West Yorkshire."}
-knitr::include_graphics("figures/Screenshot_2020-06-09 West Yorkshire.png")
+knitr::include_graphics("figures/wyca.png")
 ```
 
 The rationale was to provide interactive evidence that supports scheme prioritisation based on a range of variables.
