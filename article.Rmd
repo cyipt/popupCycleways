@@ -185,12 +185,18 @@ r_main_region = rj %>%
 
 Three key datasets were used for the project:
 
-- Estimates of cycling potential to work at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017]
+- Estimates of cycling potential at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017]
 - Data derived from OpenStreetMap, with several new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overview)
 - A list of hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
 <!-- - Data on the location of road traffic casualties from -->
 
 Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Table 1.
+Cycling potential is defined as the number of one-way commuter journeys, under a scenario in which the government aim of doubling cycling levels is met.
+This does not include other types of journey such as leisure and shopping.
+
+Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with the odds of cyclist injury on 20 mph roads in London being found to be 21% lower than on 30 mph roads [@aldred_cycling_2018]. 
+Therefore the suitability of roads for cycle infrastructure, the preferred degree of physical segregation, or the necessity to reduce traffic speeds could all be influenced by current speed limits.
+
 A map showing the spatial distribution of hospitals in the case study city of Leeds is shown in Figure \@ref(fig:hospitals).
 
 Table 1: Summary of the road segment dataset for Leeds
@@ -227,7 +233,8 @@ m1
 <!-- The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones. -->
 <!-- In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people. -->
 We set a modifiable parameter `city_centre_buffer_radius` with an initial value of 8 km (5 miles) to geographically subset potential routes. 5 miles represents a distance that most people have the physical ability to cycle.
-Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance from the centre vs plotting all possible transport network segments within the city boundaries.
+Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance from the centre vs plotting all possible transport network segments within the city boundaries. 
+In some cases, regional geographies mean that roads close to an urban centre do not lie within the city boundaries.
 To ensure roads that could serve key destinations were included, the parameter `key_destination_buffer_radius` (initially set to 5 km) was used.
 <!-- could say more... -->
 
@@ -260,13 +267,16 @@ tmap_arrange(m1, m2, nrow = 1)
 
 At a time of reduced travel, fewer lanes dedicated to motor traffic are needed.
 Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
-This definition assumes no reduction in mobility for motor vehicles (making two-way lanes one-way is another option not explored in this analysis).
+This definition assumes no alteration of the navigable network for motor vehicles (making two-way streets one-way is another option not explored in this analysis).
 
 To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
-All segments defined as having a spare lane using this method is shown in Figure \@ref(fig:levels) (left).
+All segments defined as having a spare lane using this method are shown in Figure \@ref(fig:levels) (left).
 In future, this methodology could be enhanced to take into account the effect of lane widths, which increase the effective available space, and the presence of vehicle parking bays, which reduce it.
-The result of filtering by distance and cycling potential before and after grouping using graph membership of touching roads is shown in \@ref(fig:levels) (middle and right, respectively).
-Grouping linked roads before filtering results in a more cohesive network. 
+
+The filtering and grouping of road segments is shown in Figure \@ref(fig:levels). 
+Segments are grouped with a 100m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential. 
+The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels.
+We can see that grouping the segments first then filtering based on mean group-level attributes results in a more cohesive network than filtering individual segments then grouping the results. 
 
 
 <!-- Note this could be a function in an R package.. -->
@@ -276,7 +286,7 @@ Grouping linked roads before filtering results in a more cohesive network.
 <!-- An important distinction when developing methods for automated analysis of transport networks is the level of analysis. -->
 
 
-```{r levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential"}
+```{r levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify roads with spare lanes that meet threshold values for length and cycling potential"}
 r_pct_lanes_all = r_central %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
   filter(lanes_f > 1 | lanes_b > 1)
