@@ -187,6 +187,7 @@ regions$url = paste0("<a href='", regions$html_name ,"' target='_blank'>", regio
 ```
 
 ```{r}
+library(leaflet)
 s = c(
     `Grey basemap` = "CartoDB.Positron",
     `Coloured basemap` = "Esri.WorldTopoMap",
@@ -351,7 +352,7 @@ Thanks to Jeremy Clarke, Rabina Nawaz, John Sweetman and Richard Mace from the [
 Thanks to Kevin McCann from [Sustrans](https://www.sustrans.org.uk/) for guidance that improved the tool from a policy perspective.
 Thanks to Roger Geffen and others from [CyclingUK](https://www.cyclinguk.org/) for input into prototype versions of the tool.
 Thanks to developers of open source software, especially to [contributors](https://www.r-project.org/contributors.html) to the R language in which most of the data analysis was conducted.
-Thanks also to all the contributors to OpenStreetMap who provided open data on which much of the analysis was based, allowing use to publish the results as open data under the conditions of the Open Data Commons Open Database License. Data (c) [OpenStreetMap](https://www.openstreetmap.org) contributors, ODbL 1.0. https://www.openstreetmap.org/copyright .
+Thanks also to all the contributors to OpenStreetMap who provided open data on which much of the analysis was based, allowing publication of the results as open data under the conditions of the Open Data Commons Open Database License ([ODbL 1.0](https://www.openstreetmap.org/copyright)). Data (c) [OpenStreetMap](https://www.openstreetmap.org) contributors.
 
 
 # References
