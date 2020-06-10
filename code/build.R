@@ -32,7 +32,7 @@ if(!exists("s")) {
   rj_all = readRDS("rj.Rds")
   region_names = regions$Name
   # hospitals:
-  hsf = readRDS("hsf.Rds")
+  hsf = readRDS("acute_hospitals.Rds")
   nrow(regions)
   cycleways_en = readRDS("cycleways_en.Rds")
   tm_shape(regions) + tm_polygons(alpha = 0.1) + tm_basemap(s, tms = tms) # check basemaps

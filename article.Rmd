@@ -220,7 +220,9 @@ m1 = r_main_region %>%
   tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
            lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
            lwd.legend.labels = c("0 - 100", "100 - 200", "200 - 500", "500+")) +
-  tm_shape(h_leeds) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
+  tm_shape(h_leeds) + tm_dots(size = 0.5, 
+                              # col = "ParentName", 
+                              palette = "Dark2", title = "Hospital") +
   tm_layout(legend.outside = TRUE)
 # + tm_text("OrganisationName")
 m1
