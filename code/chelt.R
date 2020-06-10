@@ -83,8 +83,10 @@ while (min(lg_c$group3_length) < min_grouped_length) {
   new_c = NULL
   
   shortest_centroid = lg_c[which.min(lg_c$group3_length), ]
-  shortest_segment = lg_new2[which.min(lg_new2$group3_length), ]
   if(dim(shortest_centroid)[1] > 1) shortest_centroid = shortest_centroid[1,]
+  
+  shortest_segment = lg_new2[which(lg_new2$new_group3 == shortest_centroid$new_group3), ]
+  
   near = lg_c %>% 
     filter(group2 == shortest_centroid$group2) %>% 
     filter(new_group3 != shortest_centroid$new_group3) # must remove the point itself from this group
@@ -106,28 +108,16 @@ while (min(lg_c$group3_length) < min_grouped_length) {
   lg_new2$group3_length[(lg_new2$new_group3 == near$new_group3[mindist]) | lg_new2$new_group3 == shortest_segment$new_group3] =
     sum(mean(shortest_segment$group3_length), mean(lg_new2$group3_length[lg_new2$new_group3 == near$new_group3[mindist]]))
 
-  lg_new2$geometry[(lg_new2$new_group3 == near$new_group3[mindist]) | lg_new2$new_group3 == shortest_segment$new_group3] =
-    sf::st_union(
-    shortest_segment$geometry, lg_new2$geometry[lg_new2$new_group3 == near$new_group3[mindist]]
-    )
-
-  lg_new2$new_group3[lg_new2$new_group3 == shortest_segment$new_group3] = 
-    lg_new2$new_group3[lg_new2$new_group3 == near$new_group3[mindist]]
+  lg_new2$new_group3[lg_new2$new_group3 == shortest_segment$new_group3] = near$new_group3[mindist]
+  
+  # adapt = lg_new2[lg_new2$new_group3 == near$new_group3[mindist],]
   
   lg_c[(lg_c$new_group3 == near$new_group3[mindist]),] =
     lg_new2 %>% filter(new_group3 == near$new_group3[mindist]) %>%
     group_by(group2, group3_length, new_group3) %>%
     summarise() %>%
     sf::st_centroid()
-  
-  # lg_c[lg_c$new_group3 == shortest_centroid$new_group3, ] =
-  #   lg_new2 %>% filter(new_group3 == near$new_group3[mindist]) %>%
-  #   group_by(group2, group3_length, new_group3) %>%
-  #   summarise() %>%
-  #   sf::st_centroid(lg_new2[lg_new2$new_group3 == near$new_group3[mindist],])
-  
-  # lg_new2 = lg_new2 %>%
-  #   filter(new_group3 != shortest_segment$new_group3) 
+
   lg_c = lg_c %>%
     filter(new_group3 != shortest_centroid$new_group3)
 }
@@ -138,11 +128,9 @@ while (min(lg_c$group3_length) < min_grouped_length) {
 lg_new2 = lg_new2 %>%
   st_transform(4326)
 
-lg_segments = st_join(lg_new, lg_new2, op = st_covered_by)
 
-# lg_new2 = lg_new2 %>%
-#   st_drop_geometry()
-
-# lg_segments = inner_join(lg_new, lg_new2, by = c("group2", "group3"))
+# dalby %>% 
+#   group_by(name) %>%
+#   summarise(length = sum(length))
 
 

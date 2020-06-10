@@ -362,28 +362,44 @@ rg_new3 = r_lanes %>%
 short_roads = rg_new3 %>%
   filter(group2_length <= 2000)
 
-rg_new4 = rbind()
+short_roads$group3 = NA
+short_roads$group3_length = NA
+short_roads$new_group3 = NA
+
+rg_new4 = rbind(short_roads, lg_new2)
 
 # create a new group to capture long continuous sections with the same name
-min_length_named_road = 1000
-rg_new4 = rg_new3 %>% 
-  group_by(ref, group, group2, name) %>% 
-  mutate(long_named_section = case_when(
-    sum(length) > min_length_named_road & name != "" ~ name,
-    TRUE ~ "Other"
-  )
-  ) %>% 
-  ungroup()
-# Only one group (meaning no impact on results) in many regions:
-table(rg_new4$long_named_section)
+# min_length_named_road = 1000
+# rg_new4 = rg_new3 %>% 
+#   group_by(ref, group, group2, name) %>% 
+#   mutate(long_named_section = case_when(
+#     sum(length) > min_length_named_road & name != "" ~ name,
+#     TRUE ~ "Other"
+#   )
+#   ) %>% 
+#   ungroup()
+# # Only one group (meaning no impact on results) in many regions:
+# table(rg_new4$long_named_section)
 
 
 # Name the groups and calculate stats -------------------------------------
-
+# new_names = rg_new4 %>%
+#   group_by(ref, group, group2, new_group3, name) %>%
+#   mutate(length = sum(length)) %>%
+#   filter(length == max(length)) 
+# 
+# rg_new4$new_name = rg_new4
+#   
+# 
+# new_name = dalby %>%
+#   group_by(name) %>%
+#   mutate(name_length = sum(length)) %>%
+#   filter(name_length == max(name_length)) 
+# new_name$name
 
 # find group membership of top named roads
 r_lanes_grouped2 = rg_new4 %>% 
-  group_by(ref, group, group2, long_named_section) %>% 
+  group_by(ref, group, group2, new_group3) %>% 
   summarise(
     name = case_when(
       length(table(name)) == 1 & names(table(name))[1] != "" ~ 
