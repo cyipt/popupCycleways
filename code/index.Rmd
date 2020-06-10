@@ -40,13 +40,13 @@ bibtool refs.bib report-refs.bib code/index.bib > refs.bib
 
 # Introduction
 
-The [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/) helps identify promising locations for road space reallocation in England.
+The [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/) is a research project and web application supported by the [Department for Transport](https://www.gov.uk/government/organisations/department-for-transport) and [Sustrans](https://www.sustrans.org.uk/) to help identify promising locations for road space reallocation in England.
 The tool provides an evidence base to support investment in cycling infrastructure, in response to new pressures placed on transport and public health systems by the COVID-19 crisis, at local and regional levels.
 The rational for the tool is that, in the context of COVID-19, big decisions around where to prioritise investment on the road network need to be made quickly.
 The tool provides a ‘first pass’ assessment of promising locations for new cycleways which have high latent demand for cycling and where road space can be reallocated whilst maintaining two-way traffic flows for motorists.
 
 The Rapid Cycleway Prioritisation Tool aims to help produce evidence-based answers the question: **where to reallocate road space on strategic corridors to enable uptake of cycling?**
-The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock as the lockdown eases.
+The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock during the phased 'restart'.
 
 Reallocating road space on strategic corridors is just one of the measures available for transport authorities.
 Evidence provided by the tool can also support a range of temporary, experimental and permanent treatments that will enable rapid and safe uptake of cycling.
@@ -342,6 +342,16 @@ m =
 # m
 m_leaflet = tmap_leaflet(m) %>% leaflet::hideGroup(labels[2:3])
 ```
+
+# Credits
+
+Many thanks to Dr Malcolm Morgan ([University of Leeds](http://www.leeds.ac.uk/)) and Martin Lucas-Smith ([CycleStreets.net](https://www.cyclestreets.net/)) for providing substantial input into methodological and web development aspects of the project respectively.
+
+Thanks to Jeremy Clarke, Rabina Nawaz, John Sweetman and Richard Mace from the [Department for Transport](https://www.gov.uk/government/organisations/department-for-transport) for vital input into the tool's design.
+Thanks to Kevin McCann from [Sustrans](https://www.sustrans.org.uk/) for guidance that improved the tool from a policy perspective.
+Thanks to Roger Geffen and others from [CyclingUK](https://www.cyclinguk.org/) for input into prototype versions of the tool.
+Thanks to developers of open source software, especially to [contributors](https://www.r-project.org/contributors.html) to the R language in which most of the data analysis was conducted.
+Thanks also to all the contributors to OpenStreetMap who provided open data on which much of the analysis was based, allowing use to publish the results as open data under the conditions of the Open Data Commons Open Database License. Data (c) [OpenStreetMap](https://www.openstreetmap.org) contributors, ODbL 1.0. https://www.openstreetmap.org/copyright .
 
 
 # References
