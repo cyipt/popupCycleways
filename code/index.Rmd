@@ -48,7 +48,7 @@ For each combined and local authority, the tool identifies existing cycleways, p
 
 # How does the tool identify 'top ranked new cycleways'?
 
-The tool identifies priority locations for new cycleways, ranking roads by their ‘cycling potential’ estimated using the Propensity to Cycle Tool ([PCT](https://www.pct.bike/)). This represents the estimated number of cycling trips along this road travelling to or from work or school assuming the Government’s [aim](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy) to double cycling by 2025 is met.
+The tool identifies priority locations for new cycleways, ranking roads by their 'cycling potential' estimated using the Propensity to Cycle Tool ([PCT](https://www.pct.bike/)). This represents the estimated number of cycling trips along this road travelling to or from work or school assuming the Government's [aim](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy) to double cycling by 2025 is met.
 
 The 'top ranked new cycleways' represents the roads with the highest cycling potential which also have spare space; that is, are either wide or have two or more road lanes in one direction.
 We have restricted the analysis to focusing on roads with spare lanes since these have the capacity to accommodate new cycleways whilst maintaining two-way traffic.
@@ -57,19 +57,19 @@ In addition, these are likely to represent the key arterial routes into town and
 
 # How does the tool identify what a 'cohesive network' might look like?
 
-The tool also identifies what a ‘cohesive network’ for cycling might look like if we were to consider a wider range of interventions such as closing roads to motorised traffic and creating one-way systems. This has been estimated by joining up roads that have a high cycling potential on some or all their length. The ‘cohesive network’ might help authorities considering area-wide interventions such as pedestrian and cycle zones or modal filters.
+The tool also identifies what a 'cohesive network' for cycling might look like if we were to consider a wider range of interventions such as closing roads to motorised traffic and creating one-way systems. This has been estimated by joining up roads that have a high cycling potential on some or all their length. The 'cohesive network' might help authorities considering area-wide interventions such as pedestrian and cycle zones or modal filters.
 
 # How can I find the results for my area?
 
-Results for each combined and local authorities can be accessed by clicking on the relevant area from the map below or search the authority’s name from the list below.
-This opens a separate webpage presenting a map of the areas identifying ‘existing cycleways’, ‘top ranked new cycleways’ and the ‘cohesive network’.
+Results for each combined and local authorities can be accessed by clicking on the relevant area from the map below or search the authority's name from the list below.
+This opens a separate webpage presenting a map of the areas identifying 'existing cycleways', 'top ranked new cycleways' and the 'cohesive network'.
 It also presents a table providing various data about the top ranked new cycleways including the cycling potential, length of continuous cycle network (including the existing network), current speed limit and whether the road is wide and/or has spare road lanes.
 
 # How should I use these results?
 
 Authorities may wish to use results from the tool to help prioritise their bids for Tranche 2 of the Emergency Active Travel Fund, complementing local knowledge and stakeholder engagement.
 
-For example, authorities considering new cycleways may want to review the ‘top ranked new cycleways’ to inform their decision where best to invest. The table below the maps allows users to rank potential new cycleways by various metrics including: 
+For example, authorities considering new cycleways may want to review the 'top ranked new cycleways' to inform their decision where best to invest. The table below the maps allows users to rank potential new cycleways by various metrics including: 
 
 - cycling potential (default metric to rank schemes)
 - total length of cycling infrastructure created
@@ -81,15 +81,15 @@ For example:
 - Trunk roads with speed limits of 40mph or over may be less suitable for cycleways given their strategic importance for heavy goods vehicles or potentially due to safety concerns for cyclists (particularly for temporary cycleways).
 - Authorities may wish to prioritise new cycleways on wide roads rather than reallocating road lanes from motorists to cyclists.
 
-Additionally, authorities considering area-wide measures may wish to consider the data for the ‘cohesive network’. Currently the tool cannot identify specific interventions to promote cycling (e.g. such as pedestrian and cycle zones or modal filters); however, it should give an indication of where such measures might add greatest value.
+Additionally, authorities considering area-wide measures may wish to consider the data for the 'cohesive network'. Currently the tool cannot identify specific interventions to promote cycling (e.g. such as pedestrian and cycle zones or modal filters); however, it should give an indication of where such measures might add greatest value.
 
 # What are the key limitations of the tool?
 
 
-- Currently the tool has been developed primarily to help authorities prioritise the best locations for new cycleways. While it provides some indication of what a cohesive network might look like, it doesn’t seek to prioritise what is the best type of intervention for a given location.
-- The ranking of cycleways may not represent a proxy for which schemes are likely to deliver the best value for money. As a consequence this tool doesn’t remove the need to use the Department for Transport’s Active Mode Appraisal Toolkit ([AMAT](https://www.gov.uk/government/publications/tag-social-and-distributional-impacts-worksheets)) to assess whether proposed schemes deliver value for money.
+- Currently the tool has been developed primarily to help authorities prioritise the best locations for new cycleways. While it provides some indication of what a cohesive network might look like, it doesn't seek to prioritise what is the best type of intervention for a given location.
+- The ranking of cycleways may not represent a proxy for which schemes are likely to deliver the best value for money. As a consequence this tool doesn't remove the need to use the Department for Transport's Active Mode Appraisal Toolkit ([AMAT](https://www.gov.uk/government/publications/tag-social-and-distributional-impacts-worksheets)) to assess whether proposed schemes deliver value for money.
 - The best locations for new cycleways may not always be on roads with spare lanes. For example, in some circumstances it may be preferable for new cycleways to be along quiet roads running parallel to major arterial routes.
-- The results for the ‘top ranked new cycleways’ doesn’t identify routes under 500m with multiple changes of road name and doesn’t identify short routes (under 500m) linking up existing cycleways. To address this limitation, the tool includes results labelled ‘spare lane(s)’ and ‘estimated width >10m’ which plug these gaps. These layers are hidden by default but can be found by clicking the ‘layer’ button in the top left corner of the map.
+- The results for the 'top ranked new cycleways' doesn't identify routes under 500m with multiple changes of road name and doesn't identify short routes (under 500m) linking up existing cycleways. To address this limitation, the tool includes results labelled 'spare lane(s)' and 'estimated width >10m' which plug these gaps. These layers are hidden by default but can be found by clicking the 'layer' button in the top left corner of the map.
 - The road network data is from 2017 and so will be slightly out-of-date.
 - The model estimates the cycling potential of roads based on the estimated number of trips to and from work and school. Currently it is not possible to estimate cycling potential accounting for all journey purposes including shopping and leisure trips, which would significantly increase the estimated cycling potential.
 - The PCT uses data from the 2011 Census and 2011 Cycle to School Census to estimate cycling potential. Hence the estimated cycling potential may represent an underestimate if there has been significant construction active in the area since 2011.
@@ -127,7 +127,7 @@ The results from this project have been delivered rapidly and should be used alo
 
 The tool provides an evidence base to support investment in cycling infrastructure, in response to new pressures placed on transport and public health systems by the COVID-19 crisis, at local and regional levels.
 The rational for the tool is that, in the context of COVID-19, big decisions around where to prioritise investment on the road network need to be made quickly.
-The tool provides a ‘first pass’ assessment of promising locations for new cycleways which have high latent demand for cycling and where road space can be reallocated whilst maintaining two-way traffic flows for motorists.
+The tool provides a 'first pass' assessment of promising locations for new cycleways which have high latent demand for cycling and where road space can be reallocated whilst maintaining two-way traffic flows for motorists.
 
 The Rapid Cycleway Prioritisation Tool aims to help produce evidence-based answers the question: **where to reallocate road space on strategic corridors to enable uptake of cycling?**
 The focus of the tool is road space reallocation on strategic corridors, a key way in which transport systems can be transformed to overcome capacity constraints on public transport modes and prevent gridlock during the phased 'restart'.
@@ -151,7 +151,7 @@ A photo of this intervention can be seen [here](https://raw.githubusercontent.co
 Which roads to prioritise for road space reallocation and the most effective designs will also depend on factors such as on street parking levels, safety considerations and symbolic and aesthetic considerations not present in the analysis.
 
 The cycling potential of each road is based on the Government Target (equality) scenario from the Propensity to Cycle Tool. 
-The figures given represent the numbers of one way cycle trips to work and school that could be expected on each road, in a scenario where the [ Government’s aim of an overall doubling of cycling trips has been met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
+The figures given represent the numbers of one way cycle trips to work and school that could be expected on each road, in a scenario where the [ Government's aim of an overall doubling of cycling trips has been met](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy).
 Our figures include data on travel to work from 2011 Census data and travel to school, assuming cycling grows evenly nationwide accounting for distance and hilliness [@lovelace_propensity_2017; @goodman_scenarios_2019]
 Data on road widths and number of lanes is derived from the Cycling Infrastructure Prioritisation Toolkit (see [cyipt.bike](https://www.cyipt.bike/)).
 
@@ -183,7 +183,7 @@ These main layers, and two other layers that informed the results but which are 
 On the basis that plans should build on and extend existing provision, this layer shows existing cycleways.
 This may be helpful to view in connection with the other layers, because it can reveal where gaps in the existing cycle network could be filled by new infrastructure.
 <!-- This layer does not include some on-road cycle lanes or cycleways less than 500m in length, but these can be viewed in one of the basemap options (see below for more information about the basemaps). -->
-The definition of ‘cycleway’ for the purpose of this layer includes shared use paths but excludes cycle lanes painted on roads.
+The definition of 'cycleway' for the purpose of this layer includes shared use paths but excludes cycle lanes painted on roads.
 The quality of the cycle paths is not reported in the data and the presence of a cycleway cannot guarantee that there is adequate provision, because some cycleways included in this dataset are of poor quality and/or are on paths shared by pedestrians that have limited capacity for high cycle traffic while observing physical distancing guidelines.
 Also, because of the variable time lag between new cycleways being built and their appearance on OSM, not all existing cycleways are included in this layer (although most established cycleways in most areas are).
 The data was accessed from OpenStreetMap in May 2020 so is up-to-date in many areas.
