@@ -200,7 +200,7 @@ tms = c(FALSE, FALSE, FALSE, TRUE, TRUE, FALSE)
 # pvars = c("Name", "Level")
 Regions = regions %>% 
   mutate(Level = gsub(pattern = "UA", replacement = "Unitary authority", x = Level))
-m_regions = tm_shape(Regions) + tm_polygons("Level", popup.vars = FALSE, alpha = 0.3) +
+m_regions = tm_shape(Regions) + tm_polygons("Level", popup.vars = FALSE, alpha = 0.5) +
   tm_basemap(server = s, tms = tms)
 # + tm_shape(regions_centroids)
 # + tm_text("Name", size = 0.7)
@@ -344,7 +344,7 @@ m =
 m_leaflet = tmap_leaflet(m) %>% leaflet::hideGroup(labels[2:3])
 ```
 
-# Credits
+# Acknowledgments
 
 Many thanks to Dr Malcolm Morgan ([University of Leeds](http://www.leeds.ac.uk/)) and Martin Lucas-Smith ([CycleStreets.net](https://www.cyclestreets.net/)) for providing substantial input into methodological and web development aspects of the project respectively.
 
