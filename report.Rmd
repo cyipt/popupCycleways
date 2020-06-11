@@ -112,7 +112,7 @@ There are three main reasons for this focus on roads with 'spare space':
 We defined roads with 'spare lanes' as those on which there was at least 2 lanes (including bus lanes) going in the same direction, based on data from [OpenStreetMap](https://www.openstreetmap.org).
 We also included estimates of road width, only flagging roads with an average estimated width of more than 10 m using data that had previously been generated for the Cycling Infrastructure Prioritisation Tool.
 10 m was selected because it is roughly the minimum width required for new cycleways created by road space reallocation measures, although there are examples of roads that are less than 10 m on which new cycleways have been successfully created in response to COVID-19.^[
-[South Road](https://www.lancasterguardian.co.uk/news/uk-news/mixed-reactions-new-lancaster-pop-cycle-lanes-busy-city-centre-road-2875909#gsc.tab=0) in Lancaster, for example, has an average width of around 8 m, yet protected cycleways in either direction have been created by installation of wands on either side.
+[South Road](https://www.lancasterguardian.co.uk/news/uk-news/mixed-reactions-new-lancaster-pop-cycle-lanes-busy-city-centre-road-2875909#gsc.tab=0) in Lancaster, for example, has an average width of around 9 m, yet protected cycleways in either direction have been created by installation of wands on either side.
 ]
 The tool does not account for space currently occupied by on street parking, verges and pavements, which could provide additional space for cycling interventions.
 
