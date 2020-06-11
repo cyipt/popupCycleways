@@ -100,6 +100,10 @@ tm_shape(regions) + tm_polygons("Level") + tm_shape(regions_centroids) + tm_text
 regions_dft_centroids = sf::st_point_on_surface(regions_dft)
 tm_shape(regions_dft) + tm_polygons("Level") + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
 
+
+
+
+
 # identify regions completely within other regions
 region_matches = sf::st_intersects(regions_dft)
 summary({nmatches = lengths(region_matches)})
@@ -109,8 +113,38 @@ regions_dft$Name[regions_within]
 regions_within_names = c("Leicester", "Nottingham", "Derby", "Stoke-on-Trent")
 regions_dft$url = paste0("<a href='test'>test</a>")
 pvars = c("url", "Name")
+
 tm_shape(regions_dft) + tm_polygons("Level", popup.vars = pvars) + tm_shape(regions_dft_centroids) + tm_text("Name", size = 0.7)
+
+
 
 saveRDS(regions_dft, "regions_dft.Rds")
 piggyback::pb_upload("regions_dft.Rds", "cyipt/cyipt-phase-1-data")
 piggyback::pb_upload("lads.Rds", "cyipt/cyipt-phase-1-data")
+
+# Add more attributes -----------------------------------------------------
+
+regions_dft = readRDS("regions_dft.Rds")
+msoa_pct = sf::read_sf("https://github.com/npct/pct-outputs-national/raw/master/commute/msoa/z_all.geojson")
+msoa_centroids = sf::st_centroid(msoa_pct)
+msoas_joined = st_join(msoa_centroids, regions["Name"])
+plot(msoas_joined["Name"])
+summary(msoas_joined$train_tube)
+summary(jsoa)
+msoas_aggregated = msoas_joined %>% 
+  sf::st_drop_geometry() %>% 
+  group_by(Name) %>% 
+  summarise(
+    n_commuters = sum(all),
+    n_pt = sum(train_tube + bus),
+    pt_cycle_shift_govtarget = round(sum(- govtarget_sipt)),
+    pt_cycle_shift_ebike = round(sum(- ebike_sipt))
+  )
+
+regions_census = inner_join(regions_dft, msoas_aggregated)
+plot(regions_census)
+saveRDS(regions_census, "regions_census.Rds")
+regions_top_12 = regions_census %>% 
+  arrange(desc(pt_cycle_shift_govtarget)) %>% 
+  slice(1:12)
+saveRDS(regions_top_12, "regions_top_12.Rds")
