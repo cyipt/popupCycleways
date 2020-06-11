@@ -291,7 +291,7 @@ Perhaps the most promising future direction of travel is towards more flexible t
 By demonstrating how existing datasets can be combined to create new results that are useful, the project has shown that, like infrastructure planning itself, an 'agile' approach to transport planning tools can yield useful and perhaps unexpectedly successful results that support local knowledge and transport planning expertise.
 We hope to take lessons learned during the project forward into future, more strategic, transport planning tool research and development work.
 
-# Credits
+# Acknowledgments
 
 Many thanks to Dr Malcolm Morgan ([University of Leeds](http://www.leeds.ac.uk/)) and Martin Lucas-Smith ([CycleStreets.net](https://www.cyclestreets.net/)) for providing substantial input into methodological and web development aspects of the project respectively.
 
