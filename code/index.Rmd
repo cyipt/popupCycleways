@@ -351,7 +351,8 @@ Many thanks to Dr Malcolm Morgan ([University of Leeds](http://www.leeds.ac.uk/)
 Thanks to Jeremy Clarke, Rabina Nawaz, John Sweetman and Richard Mace from the [Department for Transport](https://www.gov.uk/government/organisations/department-for-transport) for vital input into the tool's design.
 Thanks to Kevin McCann from [Sustrans](https://www.sustrans.org.uk/) for guidance that improved the tool from a policy perspective.
 Thanks to Roger Geffen and others from [CyclingUK](https://www.cyclinguk.org/) for input into prototype versions of the tool.
-Thanks to developers of open source software, especially to [contributors](https://www.r-project.org/contributors.html) to the R language in which most of the data analysis was conducted.
+
+Thanks to developers of open source software, especially to developers of the [R language](https://www.r-project.org/contributors.html) and the packages [sf](https://github.com/r-spatial/sf) and [tmap](https://github.com/mtennekes/tmap) which underpinned the analysis.
 Thanks also to all the contributors to OpenStreetMap who provided open data on which much of the analysis was based, allowing publication of the results as open data under the conditions of the Open Data Commons Open Database License ([ODbL 1.0](https://www.openstreetmap.org/copyright)). Data (c) [OpenStreetMap](https://www.openstreetmap.org) contributors.
 
 
