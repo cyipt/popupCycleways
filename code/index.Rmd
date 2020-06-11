@@ -42,7 +42,7 @@ bibtool refs.bib report-refs.bib code/index.bib > refs.bib
 
 The [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/) is a research project and web application supported by the [Department for Transport](https://www.gov.uk/government/organisations/department-for-transport) and [Sustrans](https://www.sustrans.org.uk/) to help identify promising locations for road space reallocation in England.
 The tool provides an evidence base to support investment in cycling infrastructure, in response to new pressures placed on transport and public health systems by the COVID-19 crisis, at local and regional levels.
-The rationale for the tool is that, in the context of COVID-19, big decisions around where to prioritise investment on the road network need to be made quickly.
+The rational for the tool is that, in the context of COVID-19, big decisions around where to prioritise investment on the road network need to be made quickly.
 The tool provides a ‘first pass’ assessment of promising locations for new cycleways which have high latent demand for cycling and where road space can be reallocated whilst maintaining two-way traffic flows for motorists.
 
 The Rapid Cycleway Prioritisation Tool aims to help produce evidence-based answers the question: **where to reallocate road space on strategic corridors to enable uptake of cycling?**
