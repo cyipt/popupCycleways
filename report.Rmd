@@ -93,7 +93,7 @@ knitr::include_graphics("figures/wyca.png")
 ```
 
 The rational was to provide interactive evidence that supports scheme prioritisation based on a range of variables.
-Length, for example, is important for creating a joined-up and continuous, a vital component of cycling strategies [@parkin_designing_2018].
+Length, for example, is important for creating a joined-up and continuous network, a vital component of cycling strategies [@parkin_designing_2018].
 
 ## Road attribute data
 
@@ -141,7 +141,7 @@ To identify wide and continuous roads with high cycling potential we first exclu
 Roads with high cycling potential but insufficient width were excluded from the 'Top ranked new cycleways' layer but were included in the 'Cohesive network' layer, described in the next section and on the tools main web page at [www.cyipt.bike/rapid](https://www.cyipt.bike/rapid/#map-layers).
 
 Only roads with a continuous length above a threshold distance (500 m) identified as candidates for inclusion in the Top ranked new cycleways layer. 
-Roads with an existing cycleway along 75% or more of their length were excluded (we selected such a high value because the presence of a cycleway in OSM does not guarantee that this is a high quality, continuous route).
+Roads with an existing cycleway along 80% or more of their length were excluded (we selected such a high value because the presence of a cycleway in OSM does not guarantee that this is a high quality, continuous route).
 Roads were ranked in terms of their cycling potential and highest ranking roads were included in the roads.
 The number of roads identified as Top ranked new cycleways varies depending on the size of the authority, ranging from 4 in the [Isle of Wight](https://www.cyipt.bike/rapid/isle-of-wight/) to 80 in [Greater London](https://www.cyipt.bike/rapid/greater-london/).
 
