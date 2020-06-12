@@ -76,7 +76,7 @@ For example, authorities considering new cycleways may want to review the 'top r
 
 - cycling potential (default metric to rank schemes)
 - total length of cycling infrastructure created
-- cycling potential x infrastructure length
+- cycling potential multiplied by road section length
 
 In addition, the table provides information about road speed limits, width and road lanes which might help users filter out locations which are less desirable for them.
 For example:
@@ -94,7 +94,7 @@ Additionally, authorities considering area-wide measures may wish to consider th
 - The results for the 'top ranked new cycleways' doesn't identify routes under 500m with multiple changes of road name and doesn't identify short routes (under 500m) linking up existing cycleways. To address this limitation, the tool includes results labelled 'spare lane(s)' and 'estimated width >10m' which plug these gaps. These layers are hidden by default but can be found by clicking the 'layer' button in the top left corner of the map.
 - The road network data is from 2017 and so will be slightly out-of-date.
 - The model estimates the cycling potential of roads based on the estimated number of trips to and from work and school. Currently it is not possible to estimate cycling potential accounting for all journey purposes including shopping and leisure trips, which would significantly increase the estimated cycling potential.
-- The PCT uses data from the 2011 Census and 2011 Cycle to School Census to estimate cycling potential. Hence the estimated cycling potential may represent an underestimate if there has been significant construction active in the area since 2011.
+- The PCT uses data from the 2011 Census and 2011 [National School Census](https://www.sciencedirect.com/science/article/pii/S2214140518301257) to estimate cycling potential. Hence the estimated cycling potential may represent an underestimate if new developments have been completed in the area since 2011.
 - The tool currently only identifies priority on-road routes for new cycleways. There may also be desirable off-road locations for new cycleways including alongside old railway lines or across open areas.
 - Currently the tool allows for new cycleways on trunk roads with speeds of 40mph or more. While in some limited cases this may be desirable (e.g. where trunk roads are causing significant air pollution), in many cases it may not be desirable to reallocate road space from trunk roads to new cycleways. To address this, we have identify which top ranked routes have speed limits of 40mph or more in the tables.
 
