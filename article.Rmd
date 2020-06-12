@@ -191,7 +191,7 @@ Three key datasets were used for the project:
 <!-- - Data on the location of road traffic casualties from -->
 
 Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Table 1.
-Cycling potential is defined as the number of one-way commuter journeys, under a scenario in which the government aim of doubling cycling levels is met.
+Cycling potential is defined as the number of one-way journeys to work and to school, under a scenario in which the government aim of doubling cycling levels is met.
 This does not include other types of journey such as leisure and shopping.
 
 Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with the odds of cyclist injury on 20 mph roads in London being found to be 21% lower than on 30 mph roads [@aldred_cycling_2018]. 
@@ -232,7 +232,7 @@ m1
 
 <!-- The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones. -->
 <!-- In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people. -->
-We set a modifiable parameter `city_centre_buffer_radius` with an initial value of 8 km (5 miles) to geographically subset potential routes. 5 miles represents a distance that most people have the physical ability to cycle.
+We set a modifiable parameter `city_centre_buffer_radius` with an initial value of 8 km (5 miles) to geographically subset potential routes. This represents a distance that most people have the physical ability to cycle.
 Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance from the centre vs plotting all possible transport network segments within the city boundaries. 
 In some cases, regional geographies mean that roads close to an urban centre do not lie within the city boundaries.
 To ensure roads that could serve key destinations were included, the parameter `key_destination_buffer_radius` (initially set to 5 km) was used.
@@ -263,17 +263,42 @@ m2 = tm_shape(r_main) +
 tmap_arrange(m1, m2, nrow = 1)
 ```
 
-## Attribute filtering and grouping
+## Road attributes
 
 At a time of reduced travel, fewer lanes dedicated to motor traffic are needed.
 Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
-This definition assumes no alteration of the navigable network for motor vehicles (making two-way streets one-way is another option not explored in this analysis).
+This definition assumes no alteration of the navigable network for motor vehicles (other options such as making two-way streets one-way are not explored in this analysis).
 
 To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
 All segments defined as having a spare lane using this method are shown in Figure \@ref(fig:levels) (left).
-In future, this methodology could be enhanced to take into account the effect of lane widths, which increase the effective available space, and the presence of vehicle parking bays, which reduce it.
 
-The filtering and grouping of road segments is shown in Figure \@ref(fig:levels). 
+We also included estimates of road width, flagging roads with an average estimated width of more than 10 m using OSM-derived data that had previously been generated for the Cycling Infrastructure Prioritisation Tool.
+10 m was selected because it is roughly the minimum width required for new cycleways created by road space reallocation measures.
+
+## Attribute filtering and grouping
+
+To ensure the route recommendations we generated could achieve sufficient coherency, we undertook several stages of filtering and grouping of road segments. 
+Firstly, road segments were grouped together with neighbours within a 100m buffer, using the `igraph` R package. 
+Segments were additionally grouped by road reference number (i.e. 'A' or 'B' road number).
+
+Filtering was then applied.
+Roads without a reference number were subjected to stricter filtering conditions than roads with a reference number, in order to prevent the inclusion of unwanted short segments on side streets. 
+Any segment on a road with no reference number that had a cycling potential below a threshold of 30 was excluded from the analysis. 
+These segments were then grouped again, using a buffer of 20 m, and these (smaller) groups were filtered to exclude any group with a distance weighted mean cycling potential below the minimum grouped cycling potential threshold, which varied by region.
+Filtering also removed groups with length below 300 m, and groups that did not have distance weighted mean width of at least 10 m or spare lanes along the majority of their length.
+
+For roads with a reference number, filtering simply removed groups with distance weighted mean cycling potential below the minimum grouped cycling potential threshold, and groups that did not have distance weighted mean width of at least 10 m or spare lanes along the majority of their length.
+
+The next step for all segments was a further round of grouping using a 100 m buffer, in which all previous groups were ignored. 
+The results of this were filtered to remove groups with length below 500 m. 
+We introduced this step to remove short sections that were distant from any other high cycling potential sections, and thus to improve the coherency of the results. 
+
+Additional grouping was undertaken using road names, building on top of the previous groupings. 
+Any continuous road section of the same name with length >= 500 m was assigned its own group.
+All other existing groups were labelled with the most frequent road name, or if they contained more than four different named roads they were labelled "Unnamed road."
+A final filter again removed groups without cycling potential above the minimum threshold or length >= 500 m.  
+
+An example of the impact of grouping strategy is shown in Figure \@ref(fig:levels). 
 Segments are grouped with a 100m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential. 
 The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels.
 We can see that grouping the segments first then filtering based on mean group-level attributes results in a more cohesive network than filtering individual segments then grouping the results. 
@@ -364,6 +389,14 @@ r_pct_top_n = r_pct_top %>%
 # summary(r_pct_grouped$group_length)
 ```
 
+## Selection of top routes
+
+The previous steps generate a set of road sections that have both cycle potential and sufficient road space for reallocation. 
+From these we then select top named routes and rank them by cycling potential. 
+Top routes must have cycling potential above the minimum threshold value, length >= 500m, and they must not be labelled "Unnamed road." 
+They must not have existing cycleways along more than 80% of their length. 
+A high threshold was chosen for this value because the presence of an existing cycleway on OSM does not mean that this is necessarily a high quality cycleway. 
+Continuity of cycle provision is important for creating high quality networks [@parkin_designing_2018].
 
 <!-- ## Scenarios and visualisation -->
 
@@ -388,9 +421,9 @@ knitr::include_graphics("figures/results-leeds.png")
 ```{r}
 res_table = r_pct_top_n %>% 
   sf::st_drop_geometry() %>% 
-  arrange(desc(km_day)) %>% 
+  arrange(desc(cycling_potential)) %>% 
   select(Name = name, `Length (m)` = group_length, `Potential (Government Target)` = cycling_potential, `Km/day (length * potential)` = km_day) 
-knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up lane reallocation interventions. Roads with 'spare lanes' identified using methods presented in the paper are ranked by km cycled per day (length of section multiplied by potential) under the Government Target scenario, representing a doubling in commuter cycling levels compared with 2011 levels.", digits = 0)
+knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up lane reallocation interventions. Roads with 'spare lanes' identified using methods presented in the paper are ranked by cycling potential under the Government Target scenario, representing a doubling in commuter and school cycling levels compared with 2011 levels.", digits = 0)
 ```
 
 The approach is not without limitations.
