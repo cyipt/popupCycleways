@@ -1,39 +1,61 @@
 ---
-title: "Pop-up cycleways provide a peak into post COVID-19 transport futures"
+title: "Cities must act to secure the future of urban cycling: our research shows how"
+# title: "Pop-up cycleways provide a peak into post COVID-19 transport futures"
+output: github_document
 ---
-As cities across the world prepare to emerge from lockdown, continued social distancing measures will mean that public transport options are likely to run at a fraction of their intended capacity. This is a crucial moment for urban cycling. 
 
-There is a window of opportunity to change urban travel. Acting fast, [before roads become busy again](https://www.forbes.com/sites/carltonreid/2020/05/07/car-traffic-rise-of-11-shows-urgent-need-for-pop-ups-to-protect-cyclists-and-pedestrians/amp/), will enable new and healthy active transport habits to become embedded long-term.
+Cities worldwide are preparing for the long transition out of [lockdown](https://www.bsg.ox.ac.uk/research/research-projects/coronavirus-government-response-tracker). Physical distancing measures will be in place for many months, with impacts on all walks of life, not least transport. 
 
-Our research at the University of Leeds is investigating how best to make rapid changes to urban cycling infrastructure. We have developed [methods](https://osf.io/7wjb6) to identify roads where there is space for pop-up infrastructure, and where it is most needed. 
+With public transport options running at low capacity and emerging evidence of the role of [air quality](https://www.sciencedirect.com/science/article/pii/S0048969720321215) and [exercise](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7118448/) in mitigating the risks of COVID-19, solutions are needed more than ever. 
 
-The UK government has announced £2 billion of investment in measures to promote walking and cycling in England over the next 5 years. £250 million has been allocated for "emergency interventions to make cycling and walking safer" as [Transport Secretary Grant Shapps put it](https://www.gov.uk/government/speeches/transport-secretarys-statement-on-coronavirus-covid-19-9-may-2020), with similar commitments being made by [Scottish](https://www.transport.gov.scot/news/10-million-to-support-pop-up-active-travel-infrastructure/) and [Welsh](https://gov.wales/councils-challenged-change-wales-transport-environment-during-coronavirus-lockdown) governments. 
+New cycleways are being introduced in [many cities](https://twitter.com/robinlovelace/status/1268834853472088066), allowing healthy habits started during the lockdown to continue. Transport authorities must act fast, however, to take advantage of the current [cycling boom](https://www.bbc.co.uk/news/business-52564351) while [traffic levels are still below normal](https://www.forbes.com/sites/carltonreid/2020/05/07/car-traffic-rise-of-11-shows-urgent-need-for-pop-ups-to-protect-cyclists-and-pedestrians/amp/), and to avoid [gridlock](https://static1.squarespace.com/static/5d30896202a18c0001b49180/t/5ee090e5635f3e0513867b40/1591775464939/Report_1+-+Congestion+ahead_+a+faster+route+is+now+available.pdf). 
 
-<tc-read-more id="137909"></tc-read-more>
+<image id="341146" align="centre" caption="New cycleway on space reclaimed from motor traffic as part of the COVID-19 response in Park Lane, London." source="Transport for London." />
 
-Local authorities urgently need to decide how this funding should be spent, and where the reallocation of road space should be prioritised. New cycling infrastructure is more likely to be effective when it is developed based on analysis of the best available data, in combination with local knowledge and community engagement.
+
+Our research at the University of Leeds has identified roads where there is both space and demand for cycling infrastructure. 
+
+Our [methods](https://osf.io/7wjb6) have been used in a nationwide project funded by the [Department for Transport](https://www.gov.uk/government/organisations/department-for-transport) and transport charity [Sustrans](https://www.sustrans.org.uk/) to help relieve immediate pressures on the transport system and create long term change. The result is the [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/). This is a free and open tool to help ensure that the government's [Emergency Active Travel Fund](https://www.gov.uk/government/publications/emergency-active-travel-fund-local-transport-authority-allocations) is spent where it is most needed, for maximum long term benefit. 
+
+## New routes
+
+The [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/) provides an interactive map for every transport authority in England. The main result is a list of road sections that have both high demand and sufficient space for cycling. 
+
+These are represented as blue lines in the map of Leeds below, many of which are included in the council's [new cycleway plans](https://news.leeds.gov.uk/news/leeds-city-council-announces-emergency-walking-and-cycling-plans-in-response-to-covid-19). Additional layers in the map include existing off road cycleways (shown in green), which in many cities are disjointed or of variable quality, and, in purple, a vision of what a joined-up cycle network could look like.
+
+<image id="340974" align="centre" source="University of Leeds" caption="The map output of the Rapid Cycleway Prioritisation Tool for West Yorkshire, zoomed in on Leeds" />
+
+This new tool builds on [our previous work](https://www.jtlu.org/index.php/jtlu/article/view/862), carried out with other universities, to help authorities identify and develop [strategic cycle networks](https://npct.github.io/pct-shiny/regions_www/www/static/03d_other_reports/2019-use-of-pct-report.pdf). We created a national dataset of roads, including estimates of the number of lanes in either direction and road width. 
+
+This can help identify where roads have space that could be reallocated to widen pavements or to rapidly introduce new cycleways. One of the first of has been installed outside a hospital in [Leicester](https://www.leicestermercury.co.uk/news/leicester-news/light-lockdown-traffic-leicester-allows-4083625). Community engagement through projects such as [Widen My Path](https://www.widenmypath.com/), which provides a forum for comments on where more space for walking and cycling is most needed, is another vital part of this process.
+
+
+<tc-read-more id="135248"></tc-read-more>
+
+The tool's focus on road space reallocation is due to the importance of speed and capacity. Light segregation measures such as plastic bollards or [wands](https://www.bbc.co.uk/news/uk-england-leeds-52577554) can be implemented much faster than constructing new cycleways from scratch. Wide, direct and continuous cycleways, of the type created by road space reallocation on wide roads, are needed for capacity and to ensure physical distancing guidelines can be followed. Finally, road space reallocation has environmental benefits, representing '[zero carbon infrastructure](https://www.ice.org.uk/news-and-insight/the-infrastructure-blog/october-2019/net-zero-needs-zero-carbon-infrastructure)'.
+
+An important [finding](https://osf.io/7wjb6) is that many cities have wide roads with spare space, as shown the maps of six major cities below. Notably, none of these yet have a joined-up cycle network. An example of the type of road highlighted by our tool is [Kirkstall Road](https://www.openstreetmap.org/way/7991370#map=15/53.8049/-1.5718) in Leeds, which has high cycling potential and sufficient width for new cycleways. Kirkstall road is already part of plans by [Leeds City Council](https://news.leeds.gov.uk/news/new-measures-to-support-social-distancing-for-people-walking-and-cycling-in-leeds) to become a [trial cycleway](https://www.transportxtra.com/publications/local-transport-today/news/65382/leeds-to-pilot-enhanced-cycling-safety-u). 
+
+Our methods, based on open data and code, could be used in cities worldwide. Given the global nature of the challenges we face, open and collaborative research is vital. The potential for international application can be seen in [research we carried out](https://atfutures.github.io/upthat/articles/adaptation.html) for the World Health Organisation on possible cycling uptake in cities in low income countries.
+
+<image id="341363" align="centre" source="Robin Lovelace" caption="Maps showing existing, disjointed cycleway networks (green), potential cycleway routes on wide roads according to the Rapid Cycleway Prioritisation Tool (blue) and cohesive networks (purple) in 6 major cities." zoomable="true" />
+
+
+
+## Planning for the future
+
+The UK government has announced £2 billion of investment in measures to promote walking and cycling in England over the next five years. £250 million has been allocated for emergency interventions [to make cycling and walking safer](https://www.gov.uk/government/speeches/transport-secretarys-statement-on-coronavirus-covid-19-9-may-2020). 
+
+Similar commitments are being made in [Scotland](https://www.transport.gov.scot/news/10-million-to-support-pop-up-active-travel-infrastructure/) and [Wales](https://gov.wales/councils-challenged-change-wales-transport-environment-during-coronavirus-lockdown). Local authorities urgently need to decide how this funding should be spent.
 
 <tweet url="https://twitter.com/laura_laker/status/1257660564098162689" />
 
-If action is prioritised in places where there is a long-term need for cycle improvements, there is a greater chance that these pop-up developments can become permanent. In Paris, COVID-19 related measures aim to contribute towards Mayor Anne Hidalgo's long-term [Plan Velo](https://www.curbed.com/2020/1/15/21065343/bike-paris-cycling-anne-hidalgo).
+If action is prioritised in places where there is a long-term need for cycle improvements, there is a greater chance that these developments can become permanent. In Paris, COVID-19 related measures aim to contribute towards Mayor Anne Hidalgo's long-term [Plan Velo](https://www.curbed.com/2020/1/15/21065343/bike-paris-cycling-anne-hidalgo).
 
-We have experience of building tools and software to help highlight roads that may be suitable candidates for pop-up infrastructure. The [Propensity to Cycle Tool](https://www.pct.bike/), built in collaboration with other universities and funded by the Department for Transport, helps local authorities identify [where cycle networks](https://npct.github.io/pct-shiny/regions_www/www/static/03d_other_reports/2019-use-of-pct-report.pdf) can be established. 
+<tc-read-more id="137909"></tc-read-more>
 
-Now, we have used this knowledge to generate results that can support investment in pop-up infrastructure. As with the PCT, the visualised and interpreted using interactive maps. The accessible and open nature of the results encourages community engagement and online debate, based on the evidence. 
+New cycling infrastructure is more likely to be effective when it is developed based on analysis of the best available data, in combination with vital local knowledge. City planners, politicians and citizens need to act to ensure that transport interventions made during the crisis are of maximum benefit now and in the post-pandemic world.
 
-<tweet url="https://twitter.com/robinlovelace/status/1258411769682366466" />
-
-In streets that are wide or have multiple lanes, road space can be reallocated to widen pavements or introduce pop-up cycleways, such as outside a hospital in [Leicester](https://www.leicestermercury.co.uk/news/leicester-news/light-lockdown-traffic-leicester-allows-4083625). This is simple to implement,  with relatively few implications for traffic flow. 
-
-[Publicly available and interactive preliminary results](https://cyipt.github.io/popupCycleways/) for 10 cities highlight the potential of the methods and provide an opportunity for people with local knowledge to feedback, via ['issues' on the collaboration platform GitHub](https://github.com/cyipt/popupCycleways/issues) (requires a [GitHub](https://github.com/) account). Our work has already been [used](https://www.cyclinguk.org/press-release/100-miles-pop-cycle-lanes-could-enable-millions-cycle-safely-post-lockdown) to support cycling advocates to push pop-up infrastructure where it is most needed. An [interactive map of local interventions nationwide](https://www.cyclinguk.org/covid-19-safe-space-social-distancing) highlights what is possible and provides a basis for engaging with local authorities to encourage swift and effective action to encourage walking and cycling. Our research will contribute to the effort by strengthening the case for pop-up cycleways and highlighting available road space and locations with high long-term cycling potential.
-
-The results are based on two main inputs: the Propensity to Cycle Tools's analysis of Census data under the UK Government’s [national target](https://www.gov.uk/government/publications/cycling-and-walking-investment-strategy) of doubling cycling levels by 2025, and data on the characteristics of road sections from the CyIPT project. Roads with spare lanes were defined as roads on which there are at least two lanes going in the same direction. The methods, based on open data, open source software and reproducible code, could scale nationwide and to other cities worldwide. Further refinements of the methods could include the prioritisation of roads to 'key destinations' such as hospitals (with hospitals in Leeds shown in the map below) and the inclusion of other relevant variables such as road width and safety statistics.
-
-<image id="334113" align="centre" caption="Roads in Leeds with at least one spare lane that could be reallocated to provide space for active travel, and locations of hospitals" />
-
-The use of open data and publicly accessible models is a key aspect of this research. Given the global nature of the challenges we face, open and collaborative research is vital so that methods can be applied by as wide a user base as possible. The potential for international application can be seen for example in [research for the World Health Organisation](https://atfutures.github.io/upthat/articles/adaptation.html) modelling cycling uptake in cities in low income countries. Within the UK, [over 50 Local Authorities](https://npct.github.io/pct-shiny/regions_www/www/static/03d_other_reports/2019-use-of-pct-report.pdf) are now using the PCT to inform their strategic cycle network plans.
-
-An important [finding](https://osf.io/7wjb6) is that many cities have excess road space, under reduced traffic conditions, on routes leading to key destinations. Identifying such roads, like [Kirkstall Road](https://www.openstreetmap.org/way/7991370#map=15/53.8049/-1.5718), highlighted by the results shown in the map above and already part of plans by [Leeds City Council](https://news.leeds.gov.uk/news/new-measures-to-support-social-distancing-for-people-walking-and-cycling-in-leeds) to become a [pilot pop-up cycleway](https://www.transportxtra.com/publications/local-transport-today/news/65382/leeds-to-pilot-enhanced-cycling-safety-u), could be the key to effective investment in pop-up infrastructure. The evidence generated by our methods, in combination with community engagement, can ensure that transport interventions made during the crisis are of maximum benefit now and in the post pandemic world.
 
 
 
