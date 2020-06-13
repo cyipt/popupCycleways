@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,277 +378,101 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A3049  A347   A35  A350 B3059 
-##    70     4     7     3     8     1 
-## B3063 B3068 B3074 B3093 
-##     2    20     2     5</code></pre>
+##       A3049  A347   A35  A350 B3059 B3063 B3068 B3074 B3093 
+##    70     4     7     3     8     1     2    20     2     5</code></pre>
 <pre><code>## [1] 61</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1013    2622    7558    5726 
-## 3rd Qu.    Max. 
-##    7826    7878</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1013    2622    7558    5726    7826    7878</code></pre>
 <pre><code>## 
-##         Ashley Road 
-##                  11 
-##        Barrack Road 
-##                  25 
-##    Bournemouth Road 
-##                  28 
-##      Broadstone Way 
-##                   8 
-## Canford Cliffs Road 
-##                   7 
-##         Canford Way 
-##                   2 
-##    Castle Lane East 
-##                  24 
-##    Castle Lane West 
-##                  13 
-## Christchurch Bypass 
-##                  17 
-##   Christchurch Road 
-##                  26 
-##     Commercial Road 
-##                  13 
-##          Dorset Way 
-##                  20 
-##       Fernside Road 
-##                  24 
-##  Glenferness Avenue 
-##                  14 
-##     Highcliffe Road 
-##                  10 
-##      Holes Bay Road 
-##                  33 
-##      Lansdowne Road 
-##                  18 
-##               Other 
-##                 358 
-##      Parkstone Road 
-##                   9 
-##    Penn Hill Avenue 
-##                   4 
-##          Poole Road 
-##                  13 
-## Purewell Cross Road 
-##                   8 
-##       Ringwood Road 
-##                  67 
-##      Sandbanks Road 
-##                   8 
-##      Somerford Road 
-##                  14 
-##           Spur Road 
-##                   8 
-##        Upton Bypass 
-##                  24 
-##          Upton Road 
-##                  20 
-##       Waterloo Road 
-##                  14 
-##          Wessex Way 
-##                  51 
-##      West Quay Road 
-##                  14 
-##         West Street 
-##                  10 
-##       Wimborne Road 
-##                  60</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.1782  0.3662 
-## 3rd Qu.    Max. 
-##  0.8183  1.0047</code></pre>
+##         Ashley Road        Barrack Road    Bournemouth Road      Broadstone Way Canford Cliffs Road 
+##                  11                  25                  28                   8                   7 
+##         Canford Way    Castle Lane East    Castle Lane West Christchurch Bypass   Christchurch Road 
+##                   2                  24                  13                  17                  26 
+##     Commercial Road          Dorset Way       Fernside Road  Glenferness Avenue     Highcliffe Road 
+##                  13                  20                  24                  14                  10 
+##      Holes Bay Road      Lansdowne Road               Other      Parkstone Road    Penn Hill Avenue 
+##                  33                  18                 358                   9                   4 
+##          Poole Road Purewell Cross Road       Ringwood Road      Sandbanks Road      Somerford Road 
+##                  13                   8                  67                   8                  14 
+##           Spur Road        Upton Bypass          Upton Road       Waterloo Road          Wessex Way 
+##                   8                  24                  20                  14                  51 
+##      West Quay Road         West Street       Wimborne Road 
+##                  14                  10                  60</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.1782  0.3662  0.8183  1.0047</code></pre>
 <pre><code>## [1] 20</code></pre>
 <pre><code>## 
-##                      A3060 
-##                          1 
-##                       A347 
-##                          1 
-##                       A349 
-##                          1 
-##                        A35 
-##                          2 
-##        Alderney Roundabout 
-##                          1 
-##                Ashley Road 
-##                          1 
-##                      B3093 
-##                          1 
-##          Bailey Roundabout 
-##                          1 
-##                   Bargates 
-##                          1 
-##               Barrack Road 
-##                          2 
-##             Blandford Road 
-##                          1 
-##           Bournemouth Road 
-##                          1 
-##             Broadstone Way 
-##                          1 
-##        Canford Cliffs Road 
-##                          1 
-##         Canford Heath Road 
-##                          1 
-##                Canford Way 
-##                          1 
-##           Castle Lane East 
-##                          1 
-##           Castle Lane West 
-##                          1 
-##        Christchurch Bypass 
-##                          1 
-##          Christchurch Road 
-##                          2 
-##            Commercial Road 
-##                          1 
-##      County Gates Gyratory 
-##                          1 
-##                 Dorset Way 
-##                          1 
-##              Fernside Road 
-##                          1 
-##    Fleetsbridge Roundabout 
-##                          1 
-##        Fountain Roundabout 
-##                          1 
-##         Glenferness Avenue 
-##                          1 
-##                High Street 
-##                          1 
-##            Highcliffe Road 
-##                          1 
-##           Holdenhurst Road 
-##                          2 
-## Holes Bay North Roundabout 
-##                          1 
-##             Holes Bay Road 
-##                          1 
-##       Holes Bay Roundabout 
-##                          1 
-##            Holloway Avenue 
-##                          1 
-##                Hunger Hill 
-##                          1 
-##             Lansdowne Road 
-##                          1 
-##       Lansdowne Roundabout 
-##                          1 
-##  Mannings Heath Roundabout 
-##                          1 
-##                Milton Road 
-##                          1 
-##           Old Wareham Road 
-##                          1 
-##             Parkstone Road 
-##                          2 
-##           Penn Hill Avenue 
-##                          1 
-##                 Poole Road 
-##                          1 
-##        Purewell Cross Road 
-##                          1 
-##   Richmond Hill Roundabout 
-##                          1 
-##              Ringwood Road 
-##                          3 
-##             Sandbanks Road 
-##                          2 
-##              Sea View Road 
-##                          1 
-##             Somerford Road 
-##                          1 
-##       Somerford Roundabout 
-##                          1 
-##           Southbourne Road 
-##                          1 
-##                  Spur Road 
-##                          1 
-##        St Pauls Roundabout 
-##                          1 
-##         Stanpit Roundabout 
-##                          1 
-##                 The Avenue 
-##                          1 
-##                 The George 
-##                          1 
-## Twin Sails Bridge Approach 
-##                          1 
-##               Unnamed road 
-##                          4 
-##               Upton Bypass 
-##                          3 
-##                 Upton Road 
-##                          1 
-##            Wallisdown Road 
-##                          1 
-##              Waterloo Road 
-##                          1 
-##                 Wessex Way 
-##                          2 
-##             West Quay Road 
-##                          2 
-##                West Street 
-##                          1 
-##              Wimborne Road 
-##                          4</code></pre>
+##                      A3060                       A347                       A349                        A35 
+##                          1                          1                          1                          2 
+##        Alderney Roundabout                Ashley Road                      B3093          Bailey Roundabout 
+##                          1                          1                          1                          1 
+##                   Bargates               Barrack Road             Blandford Road           Bournemouth Road 
+##                          1                          2                          1                          1 
+##             Broadstone Way        Canford Cliffs Road         Canford Heath Road                Canford Way 
+##                          1                          1                          1                          1 
+##           Castle Lane East           Castle Lane West        Christchurch Bypass          Christchurch Road 
+##                          1                          1                          1                          2 
+##            Commercial Road      County Gates Gyratory                 Dorset Way              Fernside Road 
+##                          1                          1                          1                          1 
+##    Fleetsbridge Roundabout        Fountain Roundabout         Glenferness Avenue                High Street 
+##                          1                          1                          1                          1 
+##            Highcliffe Road           Holdenhurst Road Holes Bay North Roundabout             Holes Bay Road 
+##                          1                          2                          1                          1 
+##       Holes Bay Roundabout            Holloway Avenue                Hunger Hill             Lansdowne Road 
+##                          1                          1                          1                          1 
+##       Lansdowne Roundabout  Mannings Heath Roundabout                Milton Road           Old Wareham Road 
+##                          1                          1                          1                          1 
+##             Parkstone Road           Penn Hill Avenue                 Poole Road        Purewell Cross Road 
+##                          2                          1                          1                          1 
+##   Richmond Hill Roundabout              Ringwood Road             Sandbanks Road              Sea View Road 
+##                          1                          3                          2                          1 
+##             Somerford Road       Somerford Roundabout           Southbourne Road                  Spur Road 
+##                          1                          1                          1                          1 
+##        St Pauls Roundabout         Stanpit Roundabout                 The Avenue                 The George 
+##                          1                          1                          1                          1 
+## Twin Sails Bridge Approach               Unnamed road               Upton Bypass                 Upton Road 
+##                          1                          4                          3                          1 
+##            Wallisdown Road              Waterloo Road                 Wessex Way             West Quay Road 
+##                          1                          1                          2                          2 
+##                West Street              Wimborne Road 
+##                          1                          4</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       33 
-##    Estimated width &gt; 10m 
-##                       28</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       33 
-##    Estimated width &gt; 10m 
-##                       28 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       33 
-##    Estimated width &gt; 10m 
-##                       28 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 20 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Ring… &quot;B3068&quot;           2630
-##  2 Lans… &quot;B3064&quot;           1169
-##  3 Sout… &quot;B3059&quot;            946
-##  4 Wimb… &quot;B3093&quot;           1128
-##  5 Barr… &quot;A35&quot;              699
-##  6 Wimb… &quot;A347&quot;            1563
-##  7 Pure… &quot;B3059&quot;            718
-##  8 Pool… &quot;A35&quot;              579
-##  9 Cast… &quot;A3060&quot;            731
-## 10 Chri… &quot;A35&quot;             1302
-## 11 Ashl… &quot;B3061&quot;            640
-## 12 Glen… &quot;&quot;                1449
-## 13 Bour… &quot;A35&quot;             2043
-## 14 Hold… &quot;A3049&quot;            596
-## 15 Park… &quot;A350&quot;             727
-## 16 Penn… &quot;&quot;                 849
-## 17 Chri… &quot;A35&quot;             5372
-## 18 Wess… &quot;A338&quot;           11291
-## 19 Comm… &quot;A35&quot;              810
-## 20 Chri… &quot;A35&quot;              834
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                       33                       28</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                       33                       28                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                       33                       28                        3</code></pre>
+<pre><code>## # A tibble: 20 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Ringwo… &quot;B3068&quot;           2630               305               802 30 mph                       10 FALSE            
+##  2 Lansdo… &quot;B3064&quot;           1169               285               333 30 mph                       10 FALSE            
+##  3 Southb… &quot;B3059&quot;            946               273               258 30 mph                       10 FALSE            
+##  4 Wimbor… &quot;B3093&quot;           1128               271               306 30 mph                       11 FALSE            
+##  5 Barrac… &quot;A35&quot;              699               262               183 30 mph                       11 FALSE            
+##  6 Wimbor… &quot;A347&quot;            1563               259               405 30 mph                       11 FALSE            
+##  7 Purewe… &quot;B3059&quot;            718               247               177 30 mph                        9 FALSE            
+##  8 Poole … &quot;A35&quot;              579               210               122 30 mph                        9 TRUE             
+##  9 Castle… &quot;A3060&quot;            731               207               151 30 mph                       11 FALSE            
+## 10 Christ… &quot;A35&quot;             1302               205               267 30 mph                       10 FALSE            
+## 11 Ashley… &quot;B3061&quot;            640               186               119 30 mph                       10 FALSE            
+## 12 Glenfe… &quot;&quot;                1449               183               265 30 mph                       12 FALSE            
+## 13 Bourne… &quot;A35&quot;             2043               182               372 30 mph                        9 TRUE             
+## 14 Holden… &quot;A3049&quot;            596               181               108 30 mph                       10 FALSE            
+## 15 Parkst… &quot;A350&quot;             727               161               117 30 mph                        9 FALSE            
+## 16 Penn H… &quot;&quot;                 849               136               115 30 mph                       10 FALSE            
+## 17 Christ… &quot;A35&quot;             5372               127               682 40+ mph                       7 TRUE             
+## 18 Wessex… &quot;A338&quot;           11291               119              1344 40+ mph                       8 TRUE             
+## 19 Commer… &quot;A35&quot;              810               118                96 30 mph                        9 TRUE             
+## 20 Christ… &quot;A35&quot;              834               118                98 30 mph                       10 FALSE</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,172 +378,68 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A3047 A3058 A3083  A374   A39 
-##    83    31    10     5    19     4 
-##  A390  A394 B3297 
-##    20     8     2</code></pre>
+##       A3047 A3058 A3083  A374   A39  A390  A394 B3297 
+##    83    31    10     5    19     4    20     8     2</code></pre>
 <pre><code>## [1] 69</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    2331    4104    4104    4770 
-## 3rd Qu.    Max. 
-##    7052    7052</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2331    4104    4104    4770    7052    7052</code></pre>
 <pre><code>## 
-##        Arch Hill    Cromwell Road 
-##                8                7 
-##  Dracaena Avenue        East Road 
-##               13                7 
-##    Falmouth Road      Gannel Road 
-##                4                7 
-##       Highertown  Launceston Road 
-##               11                9 
-##   Morlaix Avenue         New Road 
-##                8               11 
-##            Other Southbourne Road 
-##              456                5 
-##  St Austell Road    Tregolls Road 
-##                5               10 
-##    Tresawls Road   Trevemper Road 
-##               11                6 
-##      Treyew Road       Truro Road 
-##               12                4 
-##        West Road Westheath Avenue 
-##                7                6</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.00000 0.03705 
-## 3rd Qu.    Max. 
-## 0.00000 0.48465</code></pre>
+##        Arch Hill    Cromwell Road  Dracaena Avenue        East Road    Falmouth Road      Gannel Road       Highertown 
+##                8                7               13                7                4                7               11 
+##  Launceston Road   Morlaix Avenue         New Road            Other Southbourne Road  St Austell Road    Tregolls Road 
+##                9                8               11              456                5                5               10 
+##    Tresawls Road   Trevemper Road      Treyew Road       Truro Road        West Road Westheath Avenue 
+##               11                6               12                4                7                6</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.00000 0.03705 0.00000 0.48465</code></pre>
 <pre><code>## [1] 30</code></pre>
 <pre><code>## 
-##                   A30 
-##                     3 
-##                 A3047 
-##                     2 
-##                 A3075 
-##                     2 
-##                  A388 
-##                     1 
-##                   A39 
-##                     4 
-##                  A390 
-##                     7 
-##                  A392 
-##                     2 
-##             Arch Hill 
-##                     1 
-##                 B3271 
-##                     1 
-##                 B3275 
-##                     1 
-##                 B3298 
-##                     1 
-##             Back Lane 
-##                     1 
-##       Commercial Road 
-##                     1 
-##         Cromwell Road 
-##                     1 
-##       Dracaena Avenue 
-##                     1 
-##             East Road 
-##                     1 
-##      Edgcumbe Terrace 
-##                     1 
-##         Falmouth Road 
-##                     1 
-##           Gannel Road 
-##                     1 
-##            Highertown 
-##                     1 
-##       Launceston Road 
-##                     1 
-##           Madron Road 
-##                     1 
-##        Morlaix Avenue 
-##                     1 
-## Mount Wise Roundabout 
-##                     1 
-##              New Road 
-##                     1 
-##            North Road 
-##                     2 
-##         Pentewan Road 
-##                     1 
-##       Penwinnick Road 
-##                     1 
-##          River Street 
-##                     1 
-##      Southbourne Road 
-##                     1 
-##       St Austell Road 
-##                     1 
-##     St Clement Street 
-##                     1 
-##          Tamar Bridge 
-##                     1 
-##         Tregolls Road 
-##                     1 
-##         Tresawls Road 
-##                     1 
-##        Trevemper Road 
-##                     1 
-##           Treyew Road 
-##                     1 
-##            Truro Road 
-##                     1 
-##          Unnamed road 
-##                     1 
-##             West Road 
-##                     1 
+##                   A30                 A3047                 A3075                  A388                   A39 
+##                     3                     2                     2                     1                     4 
+##                  A390                  A392             Arch Hill                 B3271                 B3275 
+##                     7                     2                     1                     1                     1 
+##                 B3298             Back Lane       Commercial Road         Cromwell Road       Dracaena Avenue 
+##                     1                     1                     1                     1                     1 
+##             East Road      Edgcumbe Terrace         Falmouth Road           Gannel Road            Highertown 
+##                     1                     1                     1                     1                     1 
+##       Launceston Road           Madron Road        Morlaix Avenue Mount Wise Roundabout              New Road 
+##                     1                     1                     1                     1                     1 
+##            North Road         Pentewan Road       Penwinnick Road          River Street      Southbourne Road 
+##                     2                     1                     1                     1                     1 
+##       St Austell Road     St Clement Street          Tamar Bridge         Tregolls Road         Tresawls Road 
+##                     1                     1                     1                     1                     1 
+##        Trevemper Road           Treyew Road            Truro Road          Unnamed road             West Road 
+##                     1                     1                     1                     1                     1 
 ##      Westheath Avenue 
 ##                     1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                        9 
-##    Estimated width &gt; 10m 
-##                       14</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                        9 
-##    Estimated width &gt; 10m 
-##                       14 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                        9 
-##    Estimated width &gt; 10m 
-##                       14 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 30 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Tres… &quot;A390&quot;             619
-##  2 High… &quot;A390&quot;             736
-##  3 Comm… &quot;B3292&quot;            503
-##  4 A390  &quot;A390&quot;            1687
-##  5 A390  &quot;A390&quot;            2841
-##  6 New … &quot;&quot;                 634
-##  7 St A… &quot;A390&quot;            1001
-##  8 A39   &quot;A39&quot;              908
-##  9 Sout… &quot;A390&quot;             799
-## 10 Falm… &quot;A39&quot;              526
-## # … with 20 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       30                        9                       14</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                        9                       14                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                        9                       14                        3</code></pre>
+<pre><code>## # A tibble: 30 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Tresaw… &quot;A390&quot;             619               151                93 40+ mph                       9 FALSE            
+##  2 Higher… &quot;A390&quot;             736               126                93 40+ mph                      10 FALSE            
+##  3 Commer… &quot;B3292&quot;            503                74                37 30 mph                       12 FALSE            
+##  4 A390    &quot;A390&quot;            1687                66               111 40+ mph                      11 FALSE            
+##  5 A390    &quot;A390&quot;            2841                51               145 40+ mph                       8 TRUE             
+##  6 New Ro… &quot;&quot;                 634                44                28 30 mph                       10 FALSE            
+##  7 St Aus… &quot;A390&quot;            1001                43                43 40+ mph                      10 FALSE            
+##  8 A39     &quot;A39&quot;              908                41                37 40+ mph                      12 TRUE             
+##  9 Southb… &quot;A390&quot;             799                41                33 30 mph                       10 FALSE            
+## 10 Falmou… &quot;A39&quot;              526                37                19 40+ mph                      11 TRUE             
+## # … with 20 more rows</code></pre>
 
 
 

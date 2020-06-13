@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,143 +388,53 @@ summary {
 ##        A374  A379 B3240 
 ##    38    22     4     8</code></pre>
 <pre><code>## [1] 18</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   750.9  6826.1  8904.1 10146.4 
-## 3rd Qu.    Max. 
-## 16292.7 16292.7</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   750.9  6826.1  8904.1 10146.4 16292.7 16292.7</code></pre>
 <pre><code>## 
-##       Albert Road   Billacombe Road 
-##                 9                17 
-##  Eggbuckland Road   Embankment Road 
-##                 8                18 
-##     Exeter Street        Gdynia Way 
-##                16                 7 
-## Laira Bridge Road      Manadon Hill 
-##                13                 6 
-##             Other      Outland Road 
-##               344                34 
-##       Pemros Road   Plymbridge Road 
-##                 5                10 
-##     Plymouth Road    Tavistock Road 
-##                49                84 
-##      Union Street     Victoria Road 
-##                10                 6 
-##  Western Approach     Wolseley Road 
-##                16                28</code></pre>
-<pre><code>##      Min.   1st Qu.    Median 
-## 0.0000000 0.0009202 0.2632880 
-##      Mean   3rd Qu.      Max. 
-## 0.3881590 0.7541861 1.0000000</code></pre>
+##       Albert Road   Billacombe Road  Eggbuckland Road   Embankment Road     Exeter Street        Gdynia Way 
+##                 9                17                 8                18                16                 7 
+## Laira Bridge Road      Manadon Hill             Other      Outland Road       Pemros Road   Plymbridge Road 
+##                13                 6               344                34                 5                10 
+##     Plymouth Road    Tavistock Road      Union Street     Victoria Road  Western Approach     Wolseley Road 
+##                49                84                10                 6                16                28</code></pre>
+<pre><code>##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## 0.0000000 0.0009202 0.2632880 0.3881590 0.7541861 1.0000000</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre><code>## 
-##                  A3064 
-##                      1 
-##                   A386 
-##                      4 
-##            Albert Road 
-##                      1 
-##              Alma Road 
-##                      2 
-##                  B3214 
-##                      1 
-##                  B3413 
-##                      1 
-##                  B3416 
-##                      1 
-##        Billacombe Road 
-##                      1 
-##         Crownhill Road 
-##                      1 
-##   Derriford Roundabout 
-##                      1 
-##         Devonport Road 
-##                      1 
-##       Eggbuckland Road 
-##                      1 
-##        Embankment Road 
-##                      1 
-##          Exeter Street 
-##                      1 
-##             Ferry Road 
-##                      1 
-##             Gdynia Way 
-##                      2 
-##      Laira Bridge Road 
-##                      1 
-##           Manadon Hill 
-##                      1 
-##     Manadon Roundabout 
-##                      1 
-## Marsh Mills Roundabout 
-##                      1 
-##         Milehouse Road 
-##                      2 
-##             North Road 
-##                      1 
-##           Outland Road 
-##                      1 
-##            Pemros Road 
-##                      1 
-##        Plymbridge Road 
-##                      1 
-##          Plymouth Road 
-##                      2 
-##          Shapters Road 
-##                      1 
-##           Tamar Bridge 
-##                      1 
-##         Tavistock Road 
-##                      1 
-##           Union Street 
-##                      1 
-##           Unnamed road 
-##                      9 
-##          Victoria Road 
-##                      1 
-##       Western Approach 
-##                      1 
-##          Wolseley Road 
-##                      2</code></pre>
+##                  A3064                   A386            Albert Road              Alma Road                  B3214 
+##                      1                      4                      1                      2                      1 
+##                  B3413                  B3416        Billacombe Road         Crownhill Road   Derriford Roundabout 
+##                      1                      1                      1                      1                      1 
+##         Devonport Road       Eggbuckland Road        Embankment Road          Exeter Street             Ferry Road 
+##                      1                      1                      1                      1                      1 
+##             Gdynia Way      Laira Bridge Road           Manadon Hill     Manadon Roundabout Marsh Mills Roundabout 
+##                      2                      1                      1                      1                      1 
+##         Milehouse Road             North Road           Outland Road            Pemros Road        Plymbridge Road 
+##                      2                      1                      1                      1                      1 
+##          Plymouth Road          Shapters Road           Tamar Bridge         Tavistock Road           Union Street 
+##                      2                      1                      1                      1                      1 
+##           Unnamed road          Victoria Road       Western Approach          Wolseley Road 
+##                      9                      1                      1                      2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        8 
-##    Estimated width &gt; 10m 
-##                       29</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        8 
-##    Estimated width &gt; 10m 
-##                       29 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        8 
-##    Estimated width &gt; 10m 
-##                       29 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 10 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Gdyn… &quot;A374&quot;             761
-##  2 Unio… &quot;A374&quot;             716
-##  3 Plym… &quot;B3416&quot;           2468
-##  4 Mana… &quot;A386&quot;             937
-##  5 A386  &quot;A386&quot;            1313
-##  6 Pemr… &quot;&quot;                 668
-##  7 Outl… &quot;A386&quot;            3419
-##  8 Mana… &quot;&quot;                 886
-##  9 Wols… &quot;A3064&quot;           3375
-## 10 Eggb… &quot;&quot;                 587
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        8                       29</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                        8                       29                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                        8                       29                        3</code></pre>
+<pre><code>## # A tibble: 10 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Gdynia… &quot;A374&quot;             761               289               220 30 mph                        8 TRUE             
+##  2 Union … &quot;A374&quot;             716               210               150 30 mph                        9 FALSE            
+##  3 Plymou… &quot;B3416&quot;           2468               194               479 30 mph                       10 FALSE            
+##  4 Manado… &quot;A386&quot;             937               173               162 40+ mph                       8 TRUE             
+##  5 A386    &quot;A386&quot;            1313               148               194 30 mph                       11 TRUE             
+##  6 Pemros… &quot;&quot;                 668               144                96 30 mph                        9 FALSE            
+##  7 Outlan… &quot;A386&quot;            3419               134               458 30 mph                       11 FALSE            
+##  8 Manado… &quot;&quot;                 886                99                88 40+ mph                      13 FALSE            
+##  9 Wolsel… &quot;A3064&quot;           3375                93               314 30 mph                        7 TRUE             
+## 10 Eggbuc… &quot;&quot;                 587                91                53 30 mph                       10 FALSE</code></pre>
 
 
 

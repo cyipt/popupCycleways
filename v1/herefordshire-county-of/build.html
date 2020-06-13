@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,87 +388,47 @@ summary {
 ##      A438  A49 
 ##   51    3    8</code></pre>
 <pre><code>## [1] 10</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   18777   18777   18777   18777 
-## 3rd Qu.    Max. 
-##   18777   18777</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   18777   18777   18777   18777   18777   18777</code></pre>
 <pre><code>## 
-##  Aylestone Hill    Belmont Road 
-##              22              14 
-##  City Link Road    Edgar Street 
-##               7              15 
-##   Hereford Road     Holmer Road 
-##              26               4 
-##    Ledbury Road     Mill Street 
-##              38              12 
-##           Other       Ross Road 
-##             109              23 
-## Victoria Street 
-##              22</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.0000  0.1686 
-## 3rd Qu.    Max. 
-##  0.1630  1.0000</code></pre>
+##  Aylestone Hill    Belmont Road  City Link Road    Edgar Street   Hereford Road     Holmer Road    Ledbury Road 
+##              22              14               7              15              26               4              38 
+##     Mill Street           Other       Ross Road Victoria Street 
+##              12             109              23              22</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.1686  0.1630  1.0000</code></pre>
 <pre><code>## [1] 12</code></pre>
 <pre><code>## 
-##               A438               A465 
-##                  1                  1 
-##                A49     Aylestone Hill 
-##                  2                  1 
-##       Belmont Road Belmont Roundabout 
-##                  1                  1 
-##       Broad Street     City Link Road 
-##                  1                  1 
-##    Commercial Road       Edgar Street 
-##                  2                  1 
-##      Hereford Road        Holmer Road 
-##                  1                  1 
-##  Holmer Roundabout       Ledbury Road 
-##                  1                  1 
-##        Mill Street         Roman Road 
-##                  1                  1 
-##          Ross Road  St. Owen&#39;s Street 
-##                  1                  1 
+##               A438               A465                A49     Aylestone Hill       Belmont Road Belmont Roundabout 
+##                  1                  1                  2                  1                  1                  1 
+##       Broad Street     City Link Road    Commercial Road       Edgar Street      Hereford Road        Holmer Road 
+##                  1                  1                  2                  1                  1                  1 
+##  Holmer Roundabout       Ledbury Road        Mill Street         Roman Road          Ross Road  St. Owen&#39;s Street 
+##                  1                  1                  1                  1                  1                  1 
 ##       Unnamed road    Victoria Street 
 ##                  2                  1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       12 
-##            Spare lane(s) 
-##                        8 
-##    Estimated width &gt; 10m 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       12 
-##            Spare lane(s) 
-##                        8 
-##    Estimated width &gt; 10m 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       12 
-##            Spare lane(s) 
-##                        8 
-##    Estimated width &gt; 10m 
-##                        3</code></pre>
-<pre><code>## # A tibble: 12 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Vict… &quot;A49&quot;             1916
-##  2 Belm… &quot;A465&quot;            1072
-##  3 Edga… &quot;A49&quot;             1050
-##  4 Comm… &quot;&quot;                 576
-##  5 Holm… &quot;A49&quot;              526
-##  6 Ledb… &quot;A438&quot;            2241
-##  7 Ross… &quot;A49&quot;             1466
-##  8 A438  &quot;A438&quot;            1134
-##  9 Ayle… &quot;A465&quot;            1758
-## 10 Broa… &quot;A44&quot;              606
-## 11 A465  &quot;A465&quot;             875
-## 12 Here… &quot;A438&quot;            6459
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       12                        8                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       12                        8                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       12                        8                        3</code></pre>
+<pre><code>## # A tibble: 12 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Victor… &quot;A49&quot;             1916               292               559 30 mph                        8 TRUE             
+##  2 Belmon… &quot;A465&quot;            1072               236               253 30 mph                       10 FALSE            
+##  3 Edgar … &quot;A49&quot;             1050               193               203 30 mph                       10 TRUE             
+##  4 Commer… &quot;&quot;                 576               187               108 30 mph                       12 FALSE            
+##  5 Holmer… &quot;A49&quot;              526               111                58 30 mph                       10 FALSE            
+##  6 Ledbur… &quot;A438&quot;            2241               107               240 40+ mph                       8 TRUE             
+##  7 Ross R… &quot;A49&quot;             1466                98               144 30 mph                        9 TRUE             
+##  8 A438    &quot;A438&quot;            1134                62                70 40+ mph                       7 TRUE             
+##  9 Aylest… &quot;A465&quot;            1758                48                84 30 mph                        9 TRUE             
+## 10 Broad … &quot;A44&quot;              606                43                26 30 mph                        8 TRUE             
+## 11 A465    &quot;A465&quot;             875                25                22 40+ mph                      10 FALSE            
+## 12 Herefo… &quot;A438&quot;            6459                23               149 30 mph                        7 TRUE</code></pre>
 
 
 

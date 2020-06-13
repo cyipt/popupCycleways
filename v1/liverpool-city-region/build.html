@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,906 +378,324 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A41 A5027 A5036 A5038 A5039 
-##   193    25     7     5     2     4 
-## A5046 A5047 A5048 A5049  A506 A5080 
-##    15    12     1    11     1     1 
-## A5090 A5267  A552  A553  A554  A561 
-##     6    23     1     1     1     1 
-##  A562  A565  A567   A57   A58  A580 
-##     2    25     2    23     3     4 
-##   A59 B5132 B5136 B5175 B5178 B5179 
-##     3    13     1    13     1     1 
-## B5186 B5339 
-##     9    13</code></pre>
+##         A41 A5027 A5036 A5038 A5039 A5046 A5047 A5048 A5049  A506 A5080 A5090 A5267  A552  A553  A554  A561  A562 
+##   193    25     7     5     2     4    15    12     1    11     1     1     6    23     1     1     1     1     2 
+##  A565  A567   A57   A58  A580   A59 B5132 B5136 B5175 B5178 B5179 B5186 B5339 
+##    25     2    23     3     4     3    13     1    13     1     1     9    13</code></pre>
 <pre><code>## [1] 156</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1258    4524    9715   15252 
-## 3rd Qu.    Max. 
-##   33594   33594</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1258    4524    9715   15252   33594   33594</code></pre>
 <pre><code>## 
-##                 Aigburth Drive 
-##                              9 
-##                  Aigburth Road 
-##                             87 
-##                    Albert Road 
-##                              8 
-##                  Allerton Road 
-##                             10 
-##               Arrowe Park Road 
-##                              2 
-##                   Bailey Drive 
-##                              9 
-##                   Balliol Road 
-##                              8 
-##                  Barnston Road 
-##                             11 
-##                   Belmont Road 
-##                              7 
-##                Blackbrook Road 
-##                              9 
-##                  Boaler Street 
-##                             18 
-##                  Booker Avenue 
-##                             12 
-##                   Borough Road 
-##                             19 
-##                     Breck Road 
-##                              7 
-##                    Breeze Hill 
-##                              9 
-##                Brewster Street 
-##                              5 
-##                Brighton Street 
-##                             16 
-##                  Brodie Avenue 
-##                             18 
-##                  Brownlow Hill 
-##                             19 
-##                   Byrom Street 
-##                             10 
-##                 Cambridge Road 
-##                             10 
-##                 Canning Street 
-##                             15 
-##                 Central Avenue 
-##                              3 
-##                   Chester Road 
-##                             19 
-##                 Chester Street 
-##                             17 
-##                 Childwall Road 
-##                             12 
-##          Childwall Valley Road 
-##                             14 
-##                    Church Road 
-##                             17 
-##                  Churchill Way 
-##                              6 
-##                 Claughton Road 
-##                             16 
-##                 Clockface Road 
-##                             11 
-##                Commercial Road 
-##                              8 
-##                    County Road 
-##                             39 
-##                    Crosby Road 
-##                             19 
-##              Crosby Road North 
-##                             11 
-##              Crosby Road South 
-##                              9 
-##                 Crow Lane West 
-##                              7 
-##                   Crown Street 
-##                             12 
-##                  Croxteth Road 
-##                              6 
-##                     Derby Lane 
-##                             16 
-##                     Derby Road 
-##                             38 
-##                 Dovecot Avenue 
-##                              6 
-##                    Duke Street 
-##                             17 
-##           Dunnings Bridge Road 
-##                             44 
-##               Dwerryhouse Lane 
-##                              4 
-##           East Lancashire Road 
-##                             13 
-##              East Prescot Road 
-##                             64 
-##                Eastbank Street 
-##                             16 
-##                      Edge Lane 
-##                             51 
-##                Edge Lane Drive 
-##                             23 
-##                   Everton Road 
-##                             11 
-##                 Formby By-Pass 
-##                             32 
-##                 Fountains Road 
-##                             11 
-##                    Garston Way 
-##                             14 
-##                    Gorsey Lane 
-##                             19 
-##             Great Homer Street 
-##                             11 
-##            Great Howard Street 
-##                             36 
-##                     Green Lane 
-##                             22 
-##                      Hall Lane 
-##                             11 
-##                 Hawthorne Road 
-##                             11 
-##                    Higher Road 
-##                              8 
-##                Hillfoot Avenue 
-##                             15 
-##                  Hillfoot Road 
-##                             16 
-##               Hough Green Road 
-##                             14 
-##                   Hoylake Road 
-##                             51 
-##                      Islington 
-##                              9 
-##                    Jubits Lane 
-##                             10 
-##                     Kensington 
-##                             31 
-##                    King Street 
-##                             11 
-##                  King&#39;s Square 
-##                             13 
-##                  Kirkdale Road 
-##                              9 
-##                  Knowsley Road 
-##                             17 
-##                   Laird Street 
-##                             21 
-##                   Leasowe Road 
-##                             59 
-##                   Linacre Road 
-##                             22 
-##                   Liscard Road 
-##                             28 
-##                 Liverpool Road 
-##                            158 
-##                  Longmoor Lane 
-##                             22 
-##                    Lord Street 
-##                             16 
-##                       Low Hill 
-##                              8 
-##                     Lower Lane 
-##                             10 
-##                Lowerhouse Lane 
-##                             13 
-##                  Lulworth Road 
-##                              9 
-##                     Marsh Lane 
-##                              8 
-##                   Melrose Road 
-##                              5 
-##                 Menlove Avenue 
-##                             44 
-##                    Merton Road 
-##                              8 
-##                      Mill Lane 
-##                             35 
-##                    Mill Street 
-##                             18 
-##                      Moor Lane 
-##                             20 
-##                     Mount Road 
-##                              6 
-##                Muirhead Avenue 
-##                             18 
-##           Muirhead Avenue East 
-##                             12 
-##                  Netherton Way 
-##                             16 
-##               New Chester Road 
-##                             98 
-##              New Ferry By-pass 
-##                              3 
-##                  Oakfield Road 
-##                             17 
-##               Old Chester Road 
-##                             16 
-##                  Ormskirk Road 
-##                             15 
-##                          Other 
-##                           1019 
-##                  Oxford Street 
-##                             12 
-##                      Park Road 
-##                             43 
-##                Park Road North 
-##                             10 
-##                Park Road South 
-##                             10 
-##                 Park Road West 
-##                              7 
-##              Parliament Street 
-##                              6 
-##                   Pasture Road 
-##                             27 
-##                   Penketh Road 
-##                             10 
-##                    Picton Road 
-##                             27 
-##                     Pilch Lane 
-##                              8 
-##                   Poulton Road 
-##                             38 
-##                   Prescot Road 
-##                             61 
-##               Preston New Road 
-##                             22 
-##                   Price Street 
-##                             12 
-##                 Princes Avenue 
-##                             11 
-##                   Princes Road 
-##                             10 
-##                   Princess Way 
-##                              5 
-##                   Queens Drive 
-##                            136 
-##       Queens Drive Stoneycroft 
-##                              7 
-##                      Queensway 
-##                              7 
-##      Queensway (Mersey Tunnel) 
-##                              1 
-##                      Rake Lane 
-##                             15 
-##                  Rathbone Road 
-##                             21 
-##                    Regent Road 
-##                             17 
-##                      Rice Lane 
-##                             48 
-##                   Rimrose Road 
-##                             11 
-##             Rock Ferry By-pass 
-##                              8 
-##                     Rocky Lane 
-##                             13 
-##                       Roe Lane 
-##                             11 
-##              Saint Mary&#39;s Road 
-##                             17 
-##           Saughall Massie Road 
-##                             13 
-##                  Scaffold Lane 
-##                             14 
-##           Scarisbrick New Road 
-##                             30 
-##                     Scorecross 
-##                              6 
-##                  Scotland Road 
-##                             20 
-##                   Seaview Road 
-##                             25 
-##                  Sefton Street 
-##                             22 
-## Silver Jubilee Bridge, NCR 562 
-##                              1 
-##                 Smithdown Road 
-##                             46 
-##             Southport New Road 
-##                              2 
-##                 Southport Road 
-##                             40 
-##                Speke Boulevard 
-##                             32 
-##                Speke Hall Road 
-##                             16 
-##                     Speke Road 
-##                             29 
-##                 St Anne Street 
-##                             15 
-##               Stanley Bank Way 
-##                              8 
-##                   Stanley Road 
-##                             23 
-##                  Strand Street 
-##                              9 
-##                    Thomas Lane 
-##                              4 
-##        Upper Parliament Street 
-##                             17 
-##                     Upton Road 
-##                             37 
-##                  Wallasey Road 
-##                             17 
-##              Walton Breck Road 
-##                             17 
-##                    Walton Road 
-##                             31 
-##                        Wapping 
-##                             21 
-##                  Warbreck Moor 
-##                             18 
-##                Warrington Road 
-##                             63 
-##                     Water Lane 
-##                             11 
-##                  Waterloo Road 
-##                             29 
-##                 Wavertree Road 
-##                             18 
-##                West Derby Road 
-##                             47 
-##               Westminster Road 
-##                             10 
-##                Woodchurch Road 
-##                             56 
-##                   Woolton Road 
-##                             23</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.0000  0.1474 
-## 3rd Qu.    Max. 
-##  0.1444  1.0588</code></pre>
+##                 Aigburth Drive                  Aigburth Road                    Albert Road 
+##                              9                             87                              8 
+##                  Allerton Road               Arrowe Park Road                   Bailey Drive 
+##                             10                              2                              9 
+##                   Balliol Road                  Barnston Road                   Belmont Road 
+##                              8                             11                              7 
+##                Blackbrook Road                  Boaler Street                  Booker Avenue 
+##                              9                             18                             12 
+##                   Borough Road                     Breck Road                    Breeze Hill 
+##                             19                              7                              9 
+##                Brewster Street                Brighton Street                  Brodie Avenue 
+##                              5                             16                             18 
+##                  Brownlow Hill                   Byrom Street                 Cambridge Road 
+##                             19                             10                             10 
+##                 Canning Street                 Central Avenue                   Chester Road 
+##                             15                              3                             19 
+##                 Chester Street                 Childwall Road          Childwall Valley Road 
+##                             17                             12                             14 
+##                    Church Road                  Churchill Way                 Claughton Road 
+##                             17                              6                             16 
+##                 Clockface Road                Commercial Road                    County Road 
+##                             11                              8                             39 
+##                    Crosby Road              Crosby Road North              Crosby Road South 
+##                             19                             11                              9 
+##                 Crow Lane West                   Crown Street                  Croxteth Road 
+##                              7                             12                              6 
+##                     Derby Lane                     Derby Road                 Dovecot Avenue 
+##                             16                             38                              6 
+##                    Duke Street           Dunnings Bridge Road               Dwerryhouse Lane 
+##                             17                             44                              4 
+##           East Lancashire Road              East Prescot Road                Eastbank Street 
+##                             13                             64                             16 
+##                      Edge Lane                Edge Lane Drive                   Everton Road 
+##                             51                             23                             11 
+##                 Formby By-Pass                 Fountains Road                    Garston Way 
+##                             32                             11                             14 
+##                    Gorsey Lane             Great Homer Street            Great Howard Street 
+##                             19                             11                             36 
+##                     Green Lane                      Hall Lane                 Hawthorne Road 
+##                             22                             11                             11 
+##                    Higher Road                Hillfoot Avenue                  Hillfoot Road 
+##                              8                             15                             16 
+##               Hough Green Road                   Hoylake Road                      Islington 
+##                             14                             51                              9 
+##                    Jubits Lane                     Kensington                    King Street 
+##                             10                             31                             11 
+##                  King&#39;s Square                  Kirkdale Road                  Knowsley Road 
+##                             13                              9                             17 
+##                   Laird Street                   Leasowe Road                   Linacre Road 
+##                             21                             59                             22 
+##                   Liscard Road                 Liverpool Road                  Longmoor Lane 
+##                             28                            158                             22 
+##                    Lord Street                       Low Hill                     Lower Lane 
+##                             16                              8                             10 
+##                Lowerhouse Lane                  Lulworth Road                     Marsh Lane 
+##                             13                              9                              8 
+##                   Melrose Road                 Menlove Avenue                    Merton Road 
+##                              5                             44                              8 
+##                      Mill Lane                    Mill Street                      Moor Lane 
+##                             35                             18                             20 
+##                     Mount Road                Muirhead Avenue           Muirhead Avenue East 
+##                              6                             18                             12 
+##                  Netherton Way               New Chester Road              New Ferry By-pass 
+##                             16                             98                              3 
+##                  Oakfield Road               Old Chester Road                  Ormskirk Road 
+##                             17                             16                             15 
+##                          Other                  Oxford Street                      Park Road 
+##                           1019                             12                             43 
+##                Park Road North                Park Road South                 Park Road West 
+##                             10                             10                              7 
+##              Parliament Street                   Pasture Road                   Penketh Road 
+##                              6                             27                             10 
+##                    Picton Road                     Pilch Lane                   Poulton Road 
+##                             27                              8                             38 
+##                   Prescot Road               Preston New Road                   Price Street 
+##                             61                             22                             12 
+##                 Princes Avenue                   Princes Road                   Princess Way 
+##                             11                             10                              5 
+##                   Queens Drive       Queens Drive Stoneycroft                      Queensway 
+##                            136                              7                              7 
+##      Queensway (Mersey Tunnel)                      Rake Lane                  Rathbone Road 
+##                              1                             15                             21 
+##                    Regent Road                      Rice Lane                   Rimrose Road 
+##                             17                             48                             11 
+##             Rock Ferry By-pass                     Rocky Lane                       Roe Lane 
+##                              8                             13                             11 
+##              Saint Mary&#39;s Road           Saughall Massie Road                  Scaffold Lane 
+##                             17                             13                             14 
+##           Scarisbrick New Road                     Scorecross                  Scotland Road 
+##                             30                              6                             20 
+##                   Seaview Road                  Sefton Street Silver Jubilee Bridge, NCR 562 
+##                             25                             22                              1 
+##                 Smithdown Road             Southport New Road                 Southport Road 
+##                             46                              2                             40 
+##                Speke Boulevard                Speke Hall Road                     Speke Road 
+##                             32                             16                             29 
+##                 St Anne Street               Stanley Bank Way                   Stanley Road 
+##                             15                              8                             23 
+##                  Strand Street                    Thomas Lane        Upper Parliament Street 
+##                              9                              4                             17 
+##                     Upton Road                  Wallasey Road              Walton Breck Road 
+##                             37                             17                             17 
+##                    Walton Road                        Wapping                  Warbreck Moor 
+##                             31                             21                             18 
+##                Warrington Road                     Water Lane                  Waterloo Road 
+##                             63                             11                             29 
+##                 Wavertree Road                West Derby Road               Westminster Road 
+##                             18                             47                             10 
+##                Woodchurch Road                   Woolton Road 
+##                             56                             23</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.1474  0.1444  1.0588</code></pre>
 <pre><code>## [1] 30</code></pre>
 <pre><code>## 
-##                            A41 
-##                              3 
-##                          A5027 
-##                              1 
-##                           A552 
-##                              2 
-##                            A56 
-##                              1 
-##                           A565 
-##                              1 
-##                           A566 
-##                              1 
-##                           A569 
-##                              1 
-##                            A57 
-##                              1 
-##                            A59 
-##                              2 
-##                 Aigburth Drive 
-##                              1 
-##                  Aigburth Road 
-##                              1 
-##                    Albert Road 
-##                              1 
-##                  Allerton Road 
-##                              1 
-##               Arrowe Park Road 
-##                              1 
-##                          B5175 
-##                              1 
-##                   Bailey Drive 
-##                              1 
-##                   Balliol Road 
-##                              1 
-##                    Barlow Lane 
-##                              1 
-##                  Barnston Road 
-##                              1 
-##                   Belmont Road 
-##                              1 
-##                   Beloe Street 
-##                              1 
-##                 Belvidere Road 
-##                              1 
-##                Birkenhead Road 
-##                              2 
-##                Blackbrook Road 
-##                              1 
-##                  Boaler Street 
-##                              1 
-##                  Booker Avenue 
-##                              1 
-##                   Borough Road 
-##                              1 
-##                     Breck Road 
-##                              2 
-##                    Breeze Hill 
-##                              1 
-##                Brewster Street 
-##                              1 
-##                Brighton Street 
-##                              1 
-##                  Brodie Avenue 
-##                              1 
-##                  Brownlow Hill 
-##                              1 
-##                   Byrom Street 
-##                              1 
-##                 Cambridge Road 
-##                              1 
-##                 Canning Street 
-##                              2 
-##               Catharine Street 
-##                              1 
-##                 Central Avenue 
-##                              1 
-##                Chaloner Street 
-##                              1 
-##                  Chancery Lane 
-##                              1 
-##                   Chester Lane 
-##                              2 
-##                   Chester Road 
-##                              2 
-##                 Chester Street 
-##                              1 
-##                 Childwall Road 
-##                              1 
-##          Childwall Valley Road 
-##                              1 
-##                    Church Road 
-##                              1 
-##                  Churchill Way 
-##                              1 
-##                Claremount Road 
-##                              1 
-##                 Claughton Road 
-##                              1 
-##               Cleveland Street 
-##                              1 
-##                 Clockface Road 
-##                              1 
-##                Commercial Road 
-##                              1 
-##                      Copy Lane 
-##                              2 
-##                    County Road 
-##                              2 
-##                    Crosby Road 
-##                              1 
-##              Crosby Road North 
-##                              1 
-##              Crosby Road South 
-##                              1 
-##                 Crow Lane West 
-##                              1 
-##                   Crown Street 
-##                              2 
-##                 Croxteth Drive 
-##                              1 
-##                  Croxteth Road 
-##                              1 
-##                    Dale Street 
-##                              1 
-##                     Derby Lane 
-##                              1 
-##                     Derby Road 
-##                              1 
-##                 Dovecot Avenue 
-##                              1 
-##                    Dragon Lane 
-##                              1 
-##                  Dryden Street 
-##                              1 
-##                    Duke Street 
-##                              1 
-##           Dunnings Bridge Road 
-##                              1 
-##               Dwerryhouse Lane 
-##                              1 
-##                     Earle Road 
-##                              1 
-##           East Lancashire Road 
-##                              1 
-##              East Prescot Road 
-##                              1 
-##                Eastbank Street 
-##                              1 
-##                      Edge Lane 
-##                              1 
-##                Edge Lane Drive 
-##                              1 
-##                 Erskine Street 
-##                              1 
-##                   Everton Road 
-##                              1 
-##                    Fender Lane 
-##                              1 
-##                     Fender Way 
-##                              1 
-##                  Fernhill Road 
-##                              1 
-##                 Formby By-Pass 
-##                              1 
-##                 Fountains Road 
-##                              1 
-##                    Garston Way 
-##                              1 
-##                    Gorsey Lane 
-##                              1 
-##                 Grafton Street 
-##                              1 
-##         Great Crosshall Street 
-##                              1 
-##             Great Homer Street 
-##                              1 
-##            Great Howard Street 
-##                              1 
-##                     Green Lane 
-##                              1 
-##                 Greenhill Road 
-##                              1 
-##                      Hale Road 
-##                              1 
-##                      Hall Lane 
-##                              1 
-##                 Hanover Street 
-##                              1 
-##                 Hawthorne Road 
-##                              2 
-##               High Park Street 
-##                              1 
-##                    High Street 
-##                              1 
-##                    Higher Road 
-##                              1 
-##                Hillfoot Avenue 
-##                              1 
-##                  Hillfoot Road 
-##                              1 
-##                Horrocks Avenue 
-##                              1 
-##               Hough Green Road 
-##                              1 
-##                   Hoylake Road 
-##                              2 
-##                      Islington 
-##                              1 
-##                   James Street 
-##                              1 
-##                    Jubits Lane 
-##                              1 
-##                    Kelvin Road 
-##                              1 
-##                     Kensington 
-##                              1 
-##                    King Street 
-##                              1 
-##                  King&#39;s Square 
-##                              1 
-##                  Kirkdale Road 
-##                              1 
-##                  Knowsley Road 
-##                              1 
-##                   Laird Street 
-##                              1 
-##                   Leasowe Road 
-##                              1 
-##                   Leigh Avenue 
-##                              1 
-##                   Linacre Lane 
-##                              1 
-##                   Linacre Road 
-##                              1 
-##               Liscard Crescent 
-##                              1 
-##                   Liscard Road 
-##                              1 
-##                   Liver Street 
-##                              1 
-##                 Liverpool Road 
-##                              8 
-##             Livingstone Street 
-##                              1 
-##                  Longmoor Lane 
-##                              1 
-##                    Lord Street 
-##                              2 
-##                       Low Hill 
-##                              1 
-##                     Lower Lane 
-##                              1 
-##                Lowerhouse Lane 
-##                              1 
-##                  Lulworth Road 
-##                              1 
-##                Mainwaring Road 
-##                              1 
-##                   Marlowe Road 
-##                              1 
-##                     Marsh Lane 
-##                              1 
-##           Marshalls Cross Road 
-##                              1 
-##                   Melrose Road 
-##                              1 
-##                 Menlove Avenue 
-##                              2 
-##                    Merton Road 
-##                              1 
-##                      Mill Bank 
-##                              1 
-##                      Mill Lane 
-##                              2 
-##                    Mill Street 
-##                              1 
-##                      Moor Lane 
-##                              1 
-##                 Moss Pits Lane 
-##                              1 
-##                    Moss Street 
-##                              1 
-##             Mossley Hill Drive 
-##                              1 
-##                 Mount Pleasant 
-##                              1 
-##                     Mount Road 
-##                              1 
-##              Mount Vernon Road 
-##                              1 
-##                Muirhead Avenue 
-##                              2 
-##           Muirhead Avenue East 
-##                              1 
-##                  Netherton Way 
-##                              1 
-##               New Chester Road 
-##                              4 
-##              New Ferry By-pass 
-##                              1 
-##                  Norton Street 
-##                              1 
-##                  Oakfield Road 
-##                              1 
-##               Old Chester Road 
-##                              1 
-##                Old Hall Street 
-##                              1 
-##                  Ormskirk Road 
-##                              2 
-##                  Oxford Street 
-##                              1 
-##                      Pall Mall 
-##                              1 
-##                  Park Crescent 
-##                              1 
-##                      Park Lane 
-##                              1 
-##                 Park Lane West 
-##                              1 
-##                      Park Road 
-##                              2 
-##                Park Road North 
-##                              1 
-##                Park Road South 
-##                              1 
-##                 Park Road West 
-##                              1 
-##              Parliament Street 
-##                              1 
-##                    Parr Street 
-##                              1 
-##                   Pasture Road 
-##                              1 
-##                 Pembroke Place 
-##                              1 
-##                   Penketh Road 
-##                              1 
-##                    Picton Road 
-##                              1 
-##                     Pilch Lane 
-##                              1 
-##            Poulton Bridge Road 
-##                              1 
-##                   Poulton Road 
-##                              1 
-##                   Prescot Road 
-##                              1 
-##                 Prescot Street 
-##                              1 
-##               Preston New Road 
-##                              1 
-##                   Price Street 
-##                              1 
-##                 Princes Avenue 
-##                              1 
-##                   Princes Road 
-##                              1 
-##                   Princess Way 
-##                              1 
-##                   Queens Drive 
-##                              2 
-##       Queens Drive Stoneycroft 
-##                              1 
-##                      Queensway 
-##                              2 
-##      Queensway (Mersey Tunnel) 
-##                              1 
-##                      Rake Lane 
-##                              1 
-##                  Rathbone Road 
-##                              1 
-##                    Regent Road 
-##                              1 
-##                      Rice Lane 
-##                              1 
-##                   Rimrose Road 
-##                              1 
-##                Riverside Drive 
-##                              1 
-##             Rock Ferry By-pass 
-##                              1 
-##                     Rocky Lane 
-##                              1 
-##                       Roe Lane 
-##                              1 
-##                      Rose Lane 
-##                              1 
-##              Saint Mary&#39;s Road 
-##                              1 
-##           Saughall Massie Road 
-##                              1 
-##                  Scaffold Lane 
-##                              1 
-##           Scarisbrick New Road 
-##                              1 
-##                     Scorecross 
-##                              1 
-##                  Scotland Road 
-##                              1 
-##                   Seabank Road 
-##                              1 
-##                   Seaview Road 
-##                              1 
-##               Sefton Park Road 
-##                              1 
-##                  Sefton Street 
-##                              2 
-##                  Selwyn Street 
-##                              1 
-##                       Sherdley 
-##                              1 
-## Silver Jubilee Bridge, NCR 562 
-##                              1 
-##                    Skew Bridge 
-##                              1 
-##                   Smith Street 
-##                              1 
-##                 Smithdown Road 
-##                              1 
-##             Southport New Road 
-##                              1 
-##                 Southport Road 
-##                              2 
-##                Speke Boulevard 
-##                              1 
-##                Speke Hall Road 
-##                              2 
-##                     Speke Road 
-##                              1 
-##                    Spital Road 
-##                              1 
-##                 St Anne Street 
-##                              1 
-##                 St James Place 
-##                              1 
-##                  St James Road 
-##                              1 
-##               Stanley Bank Way 
-##                              1 
-##                   Stanley Road 
-##                              3 
-##                  Storeton Road 
-##                              1 
-##                    Strand Road 
-##                              1 
-##                  Strand Street 
-##                              1 
-##                    Thomas Lane 
-##                              1 
-##                     Tower Road 
-##                              1 
-##                    Tunnel Road 
-##                              1 
-##                     Ullet Road 
-##                              2 
-##                   Unnamed road 
-##                             17 
-##        Upper Parliament Street 
-##                              1 
-##                     Upton Road 
-##                              3 
-##                  Vauxhall Road 
-##                              2 
-##                  Wallasey Road 
-##                              1 
-##               Wallasey Village 
-##                              1 
-##              Walton Breck Road 
-##                              1 
-##                    Walton Road 
-##                              1 
-##                    Walton Vale 
-##                              1 
-##                        Wapping 
-##                              1 
-##                  Warbreck Moor 
-##                              1 
-##                Warrington Road 
-##                              1 
-##                     Water Lane 
-##                              1 
-##                  Waterloo Road 
-##                              2 
-##                 Wavertree Road 
-##                              1 
-##                West Derby Road 
-##                              2 
-##               Westminster Road 
-##                              1 
-##                 Wheatland Lane 
-##                              1 
-##                    Widnes Road 
-##                              1 
-##                Woodchurch Road 
-##                              2 
-##                 Woodend Avenue 
-##                              1 
+##                            A41                          A5027                           A552 
+##                              3                              1                              2 
+##                            A56                           A565                           A566 
+##                              1                              1                              1 
+##                           A569                            A57                            A59 
+##                              1                              1                              2 
+##                 Aigburth Drive                  Aigburth Road                    Albert Road 
+##                              1                              1                              1 
+##                  Allerton Road               Arrowe Park Road                          B5175 
+##                              1                              1                              1 
+##                   Bailey Drive                   Balliol Road                    Barlow Lane 
+##                              1                              1                              1 
+##                  Barnston Road                   Belmont Road                   Beloe Street 
+##                              1                              1                              1 
+##                 Belvidere Road                Birkenhead Road                Blackbrook Road 
+##                              1                              2                              1 
+##                  Boaler Street                  Booker Avenue                   Borough Road 
+##                              1                              1                              1 
+##                     Breck Road                    Breeze Hill                Brewster Street 
+##                              2                              1                              1 
+##                Brighton Street                  Brodie Avenue                  Brownlow Hill 
+##                              1                              1                              1 
+##                   Byrom Street                 Cambridge Road                 Canning Street 
+##                              1                              1                              2 
+##               Catharine Street                 Central Avenue                Chaloner Street 
+##                              1                              1                              1 
+##                  Chancery Lane                   Chester Lane                   Chester Road 
+##                              1                              2                              2 
+##                 Chester Street                 Childwall Road          Childwall Valley Road 
+##                              1                              1                              1 
+##                    Church Road                  Churchill Way                Claremount Road 
+##                              1                              1                              1 
+##                 Claughton Road               Cleveland Street                 Clockface Road 
+##                              1                              1                              1 
+##                Commercial Road                      Copy Lane                    County Road 
+##                              1                              2                              2 
+##                    Crosby Road              Crosby Road North              Crosby Road South 
+##                              1                              1                              1 
+##                 Crow Lane West                   Crown Street                 Croxteth Drive 
+##                              1                              2                              1 
+##                  Croxteth Road                    Dale Street                     Derby Lane 
+##                              1                              1                              1 
+##                     Derby Road                 Dovecot Avenue                    Dragon Lane 
+##                              1                              1                              1 
+##                  Dryden Street                    Duke Street           Dunnings Bridge Road 
+##                              1                              1                              1 
+##               Dwerryhouse Lane                     Earle Road           East Lancashire Road 
+##                              1                              1                              1 
+##              East Prescot Road                Eastbank Street                      Edge Lane 
+##                              1                              1                              1 
+##                Edge Lane Drive                 Erskine Street                   Everton Road 
+##                              1                              1                              1 
+##                    Fender Lane                     Fender Way                  Fernhill Road 
+##                              1                              1                              1 
+##                 Formby By-Pass                 Fountains Road                    Garston Way 
+##                              1                              1                              1 
+##                    Gorsey Lane                 Grafton Street         Great Crosshall Street 
+##                              1                              1                              1 
+##             Great Homer Street            Great Howard Street                     Green Lane 
+##                              1                              1                              1 
+##                 Greenhill Road                      Hale Road                      Hall Lane 
+##                              1                              1                              1 
+##                 Hanover Street                 Hawthorne Road               High Park Street 
+##                              1                              2                              1 
+##                    High Street                    Higher Road                Hillfoot Avenue 
+##                              1                              1                              1 
+##                  Hillfoot Road                Horrocks Avenue               Hough Green Road 
+##                              1                              1                              1 
+##                   Hoylake Road                      Islington                   James Street 
+##                              2                              1                              1 
+##                    Jubits Lane                    Kelvin Road                     Kensington 
+##                              1                              1                              1 
+##                    King Street                  King&#39;s Square                  Kirkdale Road 
+##                              1                              1                              1 
+##                  Knowsley Road                   Laird Street                   Leasowe Road 
+##                              1                              1                              1 
+##                   Leigh Avenue                   Linacre Lane                   Linacre Road 
+##                              1                              1                              1 
+##               Liscard Crescent                   Liscard Road                   Liver Street 
+##                              1                              1                              1 
+##                 Liverpool Road             Livingstone Street                  Longmoor Lane 
+##                              8                              1                              1 
+##                    Lord Street                       Low Hill                     Lower Lane 
+##                              2                              1                              1 
+##                Lowerhouse Lane                  Lulworth Road                Mainwaring Road 
+##                              1                              1                              1 
+##                   Marlowe Road                     Marsh Lane           Marshalls Cross Road 
+##                              1                              1                              1 
+##                   Melrose Road                 Menlove Avenue                    Merton Road 
+##                              1                              2                              1 
+##                      Mill Bank                      Mill Lane                    Mill Street 
+##                              1                              2                              1 
+##                      Moor Lane                 Moss Pits Lane                    Moss Street 
+##                              1                              1                              1 
+##             Mossley Hill Drive                 Mount Pleasant                     Mount Road 
+##                              1                              1                              1 
+##              Mount Vernon Road                Muirhead Avenue           Muirhead Avenue East 
+##                              1                              2                              1 
+##                  Netherton Way               New Chester Road              New Ferry By-pass 
+##                              1                              4                              1 
+##                  Norton Street                  Oakfield Road               Old Chester Road 
+##                              1                              1                              1 
+##                Old Hall Street                  Ormskirk Road                  Oxford Street 
+##                              1                              2                              1 
+##                      Pall Mall                  Park Crescent                      Park Lane 
+##                              1                              1                              1 
+##                 Park Lane West                      Park Road                Park Road North 
+##                              1                              2                              1 
+##                Park Road South                 Park Road West              Parliament Street 
+##                              1                              1                              1 
+##                    Parr Street                   Pasture Road                 Pembroke Place 
+##                              1                              1                              1 
+##                   Penketh Road                    Picton Road                     Pilch Lane 
+##                              1                              1                              1 
+##            Poulton Bridge Road                   Poulton Road                   Prescot Road 
+##                              1                              1                              1 
+##                 Prescot Street               Preston New Road                   Price Street 
+##                              1                              1                              1 
+##                 Princes Avenue                   Princes Road                   Princess Way 
+##                              1                              1                              1 
+##                   Queens Drive       Queens Drive Stoneycroft                      Queensway 
+##                              2                              1                              2 
+##      Queensway (Mersey Tunnel)                      Rake Lane                  Rathbone Road 
+##                              1                              1                              1 
+##                    Regent Road                      Rice Lane                   Rimrose Road 
+##                              1                              1                              1 
+##                Riverside Drive             Rock Ferry By-pass                     Rocky Lane 
+##                              1                              1                              1 
+##                       Roe Lane                      Rose Lane              Saint Mary&#39;s Road 
+##                              1                              1                              1 
+##           Saughall Massie Road                  Scaffold Lane           Scarisbrick New Road 
+##                              1                              1                              1 
+##                     Scorecross                  Scotland Road                   Seabank Road 
+##                              1                              1                              1 
+##                   Seaview Road               Sefton Park Road                  Sefton Street 
+##                              1                              1                              2 
+##                  Selwyn Street                       Sherdley Silver Jubilee Bridge, NCR 562 
+##                              1                              1                              1 
+##                    Skew Bridge                   Smith Street                 Smithdown Road 
+##                              1                              1                              1 
+##             Southport New Road                 Southport Road                Speke Boulevard 
+##                              1                              2                              1 
+##                Speke Hall Road                     Speke Road                    Spital Road 
+##                              2                              1                              1 
+##                 St Anne Street                 St James Place                  St James Road 
+##                              1                              1                              1 
+##               Stanley Bank Way                   Stanley Road                  Storeton Road 
+##                              1                              3                              1 
+##                    Strand Road                  Strand Street                    Thomas Lane 
+##                              1                              1                              1 
+##                     Tower Road                    Tunnel Road                     Ullet Road 
+##                              1                              1                              2 
+##                   Unnamed road        Upper Parliament Street                     Upton Road 
+##                             17                              1                              3 
+##                  Vauxhall Road                  Wallasey Road               Wallasey Village 
+##                              2                              1                              1 
+##              Walton Breck Road                    Walton Road                    Walton Vale 
+##                              1                              1                              1 
+##                        Wapping                  Warbreck Moor                Warrington Road 
+##                              1                              1                              1 
+##                     Water Lane                  Waterloo Road                 Wavertree Road 
+##                              1                              2                              1 
+##                West Derby Road               Westminster Road                 Wheatland Lane 
+##                              2                              1                              1 
+##                    Widnes Road                Woodchurch Road                 Woodend Avenue 
+##                              1                              2                              1 
 ##                   Woolton Road 
 ##                              1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                      123 
-##    Estimated width &gt; 10m 
-##                      144</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                      123 
-##    Estimated width &gt; 10m 
-##                      144 
-##                     NA&#39;s 
-##                       13</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                      123 
-##    Estimated width &gt; 10m 
-##                      144 
-##                     NA&#39;s 
-##                       13</code></pre>
-<pre><code>## # A tibble: 30 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Brow… &quot;&quot;                 946
-##  2 Prin… &quot;B5175&quot;           1022
-##  3 Grea… &quot;&quot;                 911
-##  4 Quee… &quot;A41&quot;             3240
-##  5 Pric… &quot;&quot;                1289
-##  6 Rock… &quot;A5049&quot;           1028
-##  7 King… &quot;A41&quot;              555
-##  8 Chur… &quot;A57&quot;              972
-##  9 Blac… &quot;A58&quot;              812
-## 10 Hawt… &quot;A5090&quot;            649
-## # … with 20 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       30                      123                      144</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                      123                      144                       13</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                      123                      144                       13</code></pre>
+<pre><code>## # A tibble: 30 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Brownl… &quot;&quot;                 946               379               359 30 mph                       11 TRUE             
+##  2 Prince… &quot;B5175&quot;           1022               379               387 30 mph                        7 TRUE             
+##  3 Great … &quot;&quot;                 911               309               281 30 mph                       12 FALSE            
+##  4 Queens… &quot;A41&quot;             3240               299               969 30 mph                      NaN TRUE             
+##  5 Price … &quot;&quot;                1289               282               363 30 mph                       10 FALSE            
+##  6 Rocky … &quot;A5049&quot;           1028               239               246 30 mph                        9 TRUE             
+##  7 King&#39;s… &quot;A41&quot;              555               234               130 30 mph                       15 FALSE            
+##  8 Church… &quot;A57&quot;              972               233               226 30 mph                        7 TRUE             
+##  9 Blackb… &quot;A58&quot;              812               226               184 30 mph                       12 TRUE             
+## 10 Hawtho… &quot;A5090&quot;            649               222               144 30 mph                       12 FALSE            
+## # … with 20 more rows</code></pre>
 
 
 

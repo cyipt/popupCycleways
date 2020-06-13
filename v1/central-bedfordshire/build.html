@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,159 +378,67 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##          A1 A1081 A4012  A505 A5183 
-##    74     1     1     1    27     3 
-##  B489 
-##     6</code></pre>
+##          A1 A1081 A4012  A505 A5183  B489 
+##    74     1     1     1    27     3     6</code></pre>
 <pre><code>## [1] 40</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1940    6173    6173    6962 
-## 3rd Qu.    Max. 
-##    9490    9490</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1940    6173    6173    6962    9490    9490</code></pre>
 <pre><code>## 
-##            Barton Road 
-##                      6 
-##     Biggleswade Bypass 
-##                     15 
-##          Church Street 
-##                     11 
-##         Dunstable Road 
-##                     16 
-##       Great North Road 
-##                     51 
-##            Hatters Way 
-##                      3 
-##      High Street North 
-##                     14 
-##      High Street South 
-##                     22 
-##   Leagrave High Street 
-##                      6 
-##            Lewsey Road 
-##                      6 
-## Luton Dunstable Busway 
-##                      8 
-##             Luton Road 
-##                     14 
-##       New Bedford Road 
-##                      7 
-##                  Other 
-##                    114 
-##         Tempsford Road 
-##                      2</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.00000 0.10686 
-## 3rd Qu.    Max. 
-## 0.00339 1.00150</code></pre>
+##            Barton Road     Biggleswade Bypass          Church Street         Dunstable Road       Great North Road 
+##                      6                     15                     11                     16                     51 
+##            Hatters Way      High Street North      High Street South   Leagrave High Street            Lewsey Road 
+##                      3                     14                     22                      6                      6 
+## Luton Dunstable Busway             Luton Road       New Bedford Road                  Other         Tempsford Road 
+##                      8                     14                      7                    114                      2</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.00000 0.10686 0.00339 1.00150</code></pre>
 <pre><code>## [1] 16</code></pre>
 <pre><code>## 
-##                     A1 
-##                      2 
-##                   A505 
-##                      2 
-##                  A5065 
-##                      1 
-##                   A507 
-##                      1 
-##                  A5183 
-##                      1 
-##                     A6 
-##                      1 
-##                   A603 
-##                      1 
-##            Barton Road 
-##                      1 
-##     Biggleswade Bypass 
-##                      1 
-##          Church Street 
-##                      1 
-##         Dunstable Road 
-##                      2 
-##       Great North Road 
-##                      2 
-##            Hatters Way 
-##                      1 
-##            High Street 
-##                      1 
-##      High Street North 
-##                      1 
-##      High Street South 
-##                      1 
-##              Hill Lane 
-##                      1 
-##            Lake Street 
-##                      1 
-##   Leagrave High Street 
-##                      1 
-##            Lewsey Road 
-##                      1 
-## Luton Dunstable Busway 
-##                      2 
-##             Luton Road 
-##                      2 
-##       New Bedford Road 
-##                      1 
-##          Poynters Road 
-##                      1 
-##         Tempsford Road 
-##                      1 
-##           Unnamed road 
-##                      4 
-##         Watling Street 
-##                      1</code></pre>
+##                     A1                   A505                  A5065                   A507                  A5183 
+##                      2                      2                      1                      1                      1 
+##                     A6                   A603            Barton Road     Biggleswade Bypass          Church Street 
+##                      1                      1                      1                      1                      1 
+##         Dunstable Road       Great North Road            Hatters Way            High Street      High Street North 
+##                      2                      2                      1                      1                      1 
+##      High Street South              Hill Lane            Lake Street   Leagrave High Street            Lewsey Road 
+##                      1                      1                      1                      1                      1 
+## Luton Dunstable Busway             Luton Road       New Bedford Road          Poynters Road         Tempsford Road 
+##                      2                      2                      1                      1                      1 
+##           Unnamed road         Watling Street 
+##                      4                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       16 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                       15</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       16 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                       15 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       16 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                       15 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## # A tibble: 16 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Chur… &quot;A505&quot;             790
-##  2 High… &quot;&quot;                 835
-##  3 Luto… &quot;A505&quot;            1020
-##  4 A1    &quot;A1&quot;              1692
-##  5 Luto… &quot;&quot;                1894
-##  6 High… &quot;A5183&quot;            927
-##  7 Luto… &quot;A505&quot;             515
-##  8 High… &quot;A5183&quot;           1661
-##  9 Leag… &quot;&quot;                 591
-## 10 Duns… &quot;A505&quot;            1586
-## 11 Duns… &quot;&quot;                 660
-## 12 Lews… &quot;&quot;                 526
-## 13 Luto… &quot;&quot;                1626
-## 14 A5065 &quot;A5065&quot;            659
-## 15 A6    &quot;A6&quot;              2020
-## 16 Grea… &quot;A1&quot;              7302
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       16                        4                       15</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       16                        4                       15                        1</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       16                        4                       15                        1</code></pre>
+<pre><code>## # A tibble: 16 x 8
+##    Name     Reference `Length (m)` `Cycling potent… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Church … &quot;A505&quot;             790              182               144 30 mph                       13 FALSE            
+##  2 High St… &quot;&quot;                 835              153               128 30 mph                       10 FALSE            
+##  3 Luton R… &quot;A505&quot;            1020              151               154 30 mph                       11 FALSE            
+##  4 A1       &quot;A1&quot;              1692              136               230 40+ mph                       9 TRUE             
+##  5 Luton D… &quot;&quot;                1894              118               223 40+ mph                     NaN TRUE             
+##  6 High St… &quot;A5183&quot;            927              118               109 30 mph                       10 FALSE            
+##  7 Luton R… &quot;A505&quot;             515              106                55 30 mph                        9 FALSE            
+##  8 High St… &quot;A5183&quot;           1661               95               158 30 mph                       11 FALSE            
+##  9 Leagrav… &quot;&quot;                 591               92                54 30 mph                       10 FALSE            
+## 10 Dunstab… &quot;A505&quot;            1586               89               141 30 mph                        7 TRUE             
+## 11 Dunstab… &quot;&quot;                 660               82                54 30 mph                        7 TRUE             
+## 12 Lewsey … &quot;&quot;                 526               68                36 30 mph                        9 FALSE            
+## 13 Luton D… &quot;&quot;                1626               60                98 40+ mph                       7 TRUE             
+## 14 A5065    &quot;A5065&quot;            659               58                38 40+ mph                       9 FALSE            
+## 15 A6       &quot;A6&quot;              2020               39                79 40+ mph                     NaN TRUE             
+## 16 Great N… &quot;A1&quot;              7302               33               241 40+ mph                       8 TRUE</code></pre>
 
 
 

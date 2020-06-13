@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,117 +388,49 @@ summary {
 ##      A329 
 ##   65    3</code></pre>
 <pre><code>## [1] 27</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   593.5   981.2  1562.8  1622.3 
-## 3rd Qu.    Max. 
-##  2047.8  2613.8</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   593.5   981.2  1562.8  1622.3  2047.8  2613.8</code></pre>
 <pre><code>## 
-##        Basingstoke Road 
-##                      46 
-##               Bath Road 
-##                      60 
-##         Berkeley Avenue 
-##                      11 
-##            Forbury Road 
-##                      15 
-## Inner Distribution Road 
-##                      26 
-##             King&#39;s Road 
-##                       8 
-##             London Road 
-##                      37 
-##                   Other 
-##                     191 
-##             Oxford Road 
-##                      42 
-##             Queens Road 
-##                      12 
-##          Wokingham Road 
-##                      44</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.1870  0.5095  0.5340 
-## 3rd Qu.    Max. 
-##  0.9452  1.0083</code></pre>
+##        Basingstoke Road               Bath Road         Berkeley Avenue            Forbury Road 
+##                      46                      60                      11                      15 
+## Inner Distribution Road             King&#39;s Road             London Road                   Other 
+##                      26                       8                      37                     191 
+##             Oxford Road             Queens Road          Wokingham Road 
+##                      42                      12                      44</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.1870  0.5095  0.5340  0.9452  1.0083</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre><code>## 
-##        Basingstoke Road 
-##                       2 
-##               Bath Road 
-##                       1 
-##         Berkeley Avenue 
-##                       2 
-##           Bridge Street 
-##                       1 
-##            Forbury Road 
-##                       1 
-##           George Street 
-##                       1 
-## Inner Distribution Road 
-##                       2 
-##             King&#39;s Road 
-##                       1 
-##              Kings Road 
-##                       2 
-##             London Road 
-##                       2 
-##               Mill Lane 
-##                       1 
-##             Oxford Road 
-##                       2 
-##             Pell Street 
-##                       1 
-##             Queens Road 
-##                       1 
-##          Shinfield Road 
-##                       1 
-##      Southampton Street 
-##                       1 
-##            Unnamed road 
-##                       3 
-##            Vastern Road 
-##                       1 
-##          Wokingham Road 
-##                       1</code></pre>
+##        Basingstoke Road               Bath Road         Berkeley Avenue           Bridge Street 
+##                       2                       1                       2                       1 
+##            Forbury Road           George Street Inner Distribution Road             King&#39;s Road 
+##                       1                       1                       2                       1 
+##              Kings Road             London Road               Mill Lane             Oxford Road 
+##                       2                       2                       1                       2 
+##             Pell Street             Queens Road          Shinfield Road      Southampton Street 
+##                       1                       1                       1                       1 
+##            Unnamed road            Vastern Road          Wokingham Road 
+##                       3                       1                       1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       10 
-##    Estimated width &gt; 10m 
-##                        6</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       10 
-##    Estimated width &gt; 10m 
-##                        6 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       10 
-##    Estimated width &gt; 10m 
-##                        6 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## # A tibble: 10 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Brid… &quot;A4155&quot;            924
-##  2 Oxfo… &quot;A329&quot;            1423
-##  3 Basi… &quot;B3031&quot;           1428
-##  4 Oxfo… &quot;&quot;                 514
-##  5 Pell… &quot;A4&quot;               526
-##  6 Inne… &quot;A329&quot;            2221
-##  7 Quee… &quot;A329&quot;             549
-##  8 Lond… &quot;A4&quot;              2238
-##  9 Shin… &quot;A327&quot;             550
-## 10 Woki… &quot;A329&quot;            2014
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                       10                        6</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                       10                        6                        1</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                       10                        6                        1</code></pre>
+<pre><code>## # A tibble: 10 x 8
+##    Name     Reference `Length (m)` `Cycling potent… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Bridge … &quot;A4155&quot;            924              241               223 30 mph                       10 FALSE            
+##  2 Oxford … &quot;A329&quot;            1423              219               312 30 mph                       10 FALSE            
+##  3 Basings… &quot;B3031&quot;           1428              157               224 30 mph                       11 TRUE             
+##  4 Oxford … &quot;&quot;                 514              122                63 30 mph                       11 FALSE            
+##  5 Pell St… &quot;A4&quot;               526              121                64 30 mph                        9 FALSE            
+##  6 Inner D… &quot;A329&quot;            2221              112               249 40+ mph                      11 TRUE             
+##  7 Queens … &quot;A329&quot;             549              109                60 30 mph                        8 TRUE             
+##  8 London … &quot;A4&quot;              2238              107               239 30 mph                        9 TRUE             
+##  9 Shinfie… &quot;A327&quot;             550              100                55 30 mph                       11 FALSE            
+## 10 Wokingh… &quot;A329&quot;            2014               97               195 30 mph                       11 FALSE</code></pre>
 
 
 

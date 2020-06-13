@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,278 +378,98 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A38  A438   A44  A443  A448 
-##   156    36    13    14     2     2 
-##  A449  A451 B4205 B4482 B4550 B4639 
-##     4     3     7     1     9     4</code></pre>
+##         A38  A438   A44  A443  A448  A449  A451 B4205 B4482 B4550 B4639 
+##   156    36    13    14     2     2     4     3     7     1     9     4</code></pre>
 <pre><code>## [1] 54</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1572    4887   10024   17033 
-## 3rd Qu.    Max. 
-##   29488   29488</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1572    4887   10024   17033   29488   29488</code></pre>
 <pre><code>## 
-##            Barbourne Road 
-##                        19 
-##                 Bath Road 
-##                        14 
-##              Bewdley Hill 
-##                        15 
-##              Bewdley Road 
-##                        11 
-##           Birmingham Road 
-##                        25 
-##            Blackpole Road 
-##                        18 
-##           Bromsgrove Road 
-##                         5 
-##             Bromwich Road 
-##                        19 
-##             Bromyard Road 
-##                        32 
-##        Chester Road North 
-##                        15 
-##        Chester Road South 
-##                        11 
-##           City Walls Road 
-##                        16 
-##           Coldfield Drive 
-##                         4 
-##            Comberton Road 
-##                        28 
-## Constitution Hill Ringway 
-##                         1 
-##          Coventry Highway 
-##                        16 
-##            Droitwich Road 
-##                         3 
-##              Franche Road 
-##                        16 
-##               High Street 
-##                        10 
-##     Icknield Street Drive 
-##                         5 
-##        Kidderminster Road 
-##                         8 
-##               London Road 
-##                        27 
-##              Malvern Road 
-##                        14 
-##                  New Road 
-##                         8 
-##                     Other 
-##                       446 
-##        Park Butts Ringway 
-##                        11 
-##               Powick Road 
-##                         3 
-##             Redditch Road 
-##                        24 
-##                   Saltway 
-##                         5 
-##         St Mary&#39;s Ringway 
-##                        11 
-##                Stone Hill 
-##                         3 
-##                The Slough 
-##                        14 
-##           Warwick Highway 
-##                        19 
-##          Whittington Road 
-##                         5 
-##            Windmill Drive 
-##                         3 
-##        Wolverhampton Road 
-##                        11 
+##            Barbourne Road                 Bath Road              Bewdley Hill              Bewdley Road 
+##                        19                        14                        15                        11 
+##           Birmingham Road            Blackpole Road           Bromsgrove Road             Bromwich Road 
+##                        25                        18                         5                        19 
+##             Bromyard Road        Chester Road North        Chester Road South           City Walls Road 
+##                        32                        15                        11                        16 
+##           Coldfield Drive            Comberton Road Constitution Hill Ringway          Coventry Highway 
+##                         4                        28                         1                        16 
+##            Droitwich Road              Franche Road               High Street     Icknield Street Drive 
+##                         3                        16                        10                         5 
+##        Kidderminster Road               London Road              Malvern Road                  New Road 
+##                         8                        27                        14                         8 
+##                     Other        Park Butts Ringway               Powick Road             Redditch Road 
+##                       446                        11                         3                        24 
+##                   Saltway         St Mary&#39;s Ringway                Stone Hill                The Slough 
+##                         5                        11                         3                        14 
+##           Warwick Highway          Whittington Road            Windmill Drive        Wolverhampton Road 
+##                        19                         5                         3                        11 
 ##            Worcester Road 
 ##                       109</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.00000 0.10056 
-## 3rd Qu.    Max. 
-## 0.05933 1.00221</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.00000 0.10056 0.05933 1.00221</code></pre>
 <pre><code>## [1] 30</code></pre>
 <pre><code>## 
-##                       A38 
-##                         1 
-##                     A4189 
-##                         1 
-##                       A44 
-##                         1 
-##                      A442 
-##                         1 
-##                      A448 
-##                         2 
-##                      A449 
-##                         3 
-##                      A451 
-##                         1 
-##                      A456 
-##                         3 
-##                     B4090 
-##                         1 
-##                     B4550 
-##                         1 
-##            Barbourne Road 
-##                         1 
-##                 Bath Road 
-##                         2 
-##              Bewdley Hill 
-##                         1 
-##              Bewdley Road 
-##                         1 
-##           Birmingham Road 
-##                         2 
-##            Blackpole Road 
-##                         1 
-##            Bransford Road 
-##                         1 
-##           Bromsgrove Road 
-##                         2 
-##             Bromwich Road 
-##                         1 
-##             Bromyard Road 
-##                         1 
-##              Chester Road 
-##                         1 
-##        Chester Road North 
-##                         1 
-##        Chester Road South 
-##                         1 
-##           Church Hill Way 
-##                         1 
-##           City Walls Road 
-##                         1 
-##           Coldfield Drive 
-##                         1 
-##            Comberton Hill 
-##                         1 
-##            Comberton Road 
-##                         1 
-##           Commandery Road 
-##                         1 
-## Constitution Hill Ringway 
-##                         1 
-##          Coventry Highway 
-##                         1 
-##                Croft Road 
-##                         1 
-##            Droitwich Road 
-##                         1 
-##              Franche Road 
-##                         1 
-##                 Greenhill 
-##                         1 
-##            Hanbury Street 
-##                         1 
-##               High Street 
-##                         1 
-##                Hurst Lane 
-##                         1 
-##               Hylton Road 
-##                         1 
-##     Icknield Street Drive 
-##                         1 
-##        Kidderminster Road 
-##                         1 
-##               London Road 
-##                         1 
-##              Malvern Road 
-##                         1 
-##                  New Road 
-##                         1 
-##                 Node Hill 
-##                         1 
-##          Paper Mill Drive 
-##                         1 
-##        Park Butts Ringway 
-##                         1 
-##               Powick Road 
-##                         1 
-##             Redditch Road 
-##                         1 
-##                   Saltway 
-##                         1 
-##            Sansome Street 
-##                         1 
-##           Shrub Hill Road 
-##                         1 
-##                   Sidbury 
-##                         1 
-##         St Mary&#39;s Ringway 
-##                         1 
-##                Stone Hill 
-##                         1 
-##            Stourport Road 
-##                         2 
-##               Tallow Hill 
-##                         1 
-##                The Slough 
-##                         1 
-##              Unnamed road 
-##                         4 
-##                 Vale Road 
-##                         1 
-##               Vine Street 
-##                         1 
-##           Warwick Highway 
-##                         1 
-##          Whittington Road 
-##                         1 
-##            Windmill Drive 
-##                         1 
-##        Wolverhampton Road 
-##                         1 
-##            Worcester Road 
-##                         7 
-##          Worcester Street 
-##                         1</code></pre>
+##                       A38                     A4189                       A44                      A442 
+##                         1                         1                         1                         1 
+##                      A448                      A449                      A451                      A456 
+##                         2                         3                         1                         3 
+##                     B4090                     B4550            Barbourne Road                 Bath Road 
+##                         1                         1                         1                         2 
+##              Bewdley Hill              Bewdley Road           Birmingham Road            Blackpole Road 
+##                         1                         1                         2                         1 
+##            Bransford Road           Bromsgrove Road             Bromwich Road             Bromyard Road 
+##                         1                         2                         1                         1 
+##              Chester Road        Chester Road North        Chester Road South           Church Hill Way 
+##                         1                         1                         1                         1 
+##           City Walls Road           Coldfield Drive            Comberton Hill            Comberton Road 
+##                         1                         1                         1                         1 
+##           Commandery Road Constitution Hill Ringway          Coventry Highway                Croft Road 
+##                         1                         1                         1                         1 
+##            Droitwich Road              Franche Road                 Greenhill            Hanbury Street 
+##                         1                         1                         1                         1 
+##               High Street                Hurst Lane               Hylton Road     Icknield Street Drive 
+##                         1                         1                         1                         1 
+##        Kidderminster Road               London Road              Malvern Road                  New Road 
+##                         1                         1                         1                         1 
+##                 Node Hill          Paper Mill Drive        Park Butts Ringway               Powick Road 
+##                         1                         1                         1                         1 
+##             Redditch Road                   Saltway            Sansome Street           Shrub Hill Road 
+##                         1                         1                         1                         1 
+##                   Sidbury         St Mary&#39;s Ringway                Stone Hill            Stourport Road 
+##                         1                         1                         1                         2 
+##               Tallow Hill                The Slough              Unnamed road                 Vale Road 
+##                         1                         1                         4                         1 
+##               Vine Street           Warwick Highway          Whittington Road            Windmill Drive 
+##                         1                         1                         1                         1 
+##        Wolverhampton Road            Worcester Road          Worcester Street 
+##                         1                         7                         1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       31 
-##    Estimated width &gt; 10m 
-##                       21</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       31 
-##    Estimated width &gt; 10m 
-##                       21 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       31 
-##    Estimated width &gt; 10m 
-##                       21 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 30 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Barb… A38                681
-##  2 Crof… A449               730
-##  3 Lond… A44               1626
-##  4 Ickn… B4497              611
-##  5 Blac… B4550             1076
-##  6 Hurs… A4536              664
-##  7 A442  A442               590
-##  8 Malv… A449               947
-##  9 High… A4184              543
-## 10 Fran… A442              1223
-## # … with 20 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       30                       31                       21</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       31                       21                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       31                       21                        3</code></pre>
+<pre><code>## # A tibble: 30 x 8
+##    Name     Reference `Length (m)` `Cycling potent… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Barbour… A38                681              221               151 30 mph                        9 TRUE             
+##  2 Croft R… A449               730              168               123 40+ mph                       8 TRUE             
+##  3 London … A44               1626              133               216 30 mph                        8 TRUE             
+##  4 Ickniel… B4497              611              128                78 40+ mph                      10 FALSE            
+##  5 Blackpo… B4550             1076              115               124 30 mph                       10 FALSE            
+##  6 Hurst L… A4536              664              110                73 30 mph                       10 FALSE            
+##  7 A442     A442               590               96                57 30 mph                       10 TRUE             
+##  8 Malvern… A449               947               96                91 40+ mph                       8 TRUE             
+##  9 High St… A4184              543               93                50 30 mph                       10 FALSE            
+## 10 Franche… A442              1223               85               104 30 mph                        9 TRUE             
+## # … with 20 more rows</code></pre>
 
 
 

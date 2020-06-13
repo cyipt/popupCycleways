@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,209 +378,81 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A2021 A2040 A2280  A259 B2104 
-##   105    22     1     1    23     4 
-## B2191 
-##     1</code></pre>
+##       A2021 A2040 A2280  A259 B2104 B2191 
+##   105    22     1     1    23     4     1</code></pre>
 <pre><code>## [1] 51</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1295    2548   10655    7187 
-## 3rd Qu.    Max. 
-##   11697   11697</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1295    2548   10655    7187   11697   11697</code></pre>
 <pre><code>## 
-##           Bexhill Road 
-##                     21 
-##      De La Warr Parade 
-##                     16 
-##        Eastbourne Road 
-##                     18 
-##              Enys Road 
-##                      7 
-##            Eridge Road 
-##                      6 
-##            Falmer Hill 
-##                      5 
-##     Golden Jubilee Way 
-##                     14 
-##         Highfield Link 
-##                      3 
-##           King&#39;s Drive 
-##                     22 
-##             Lewes Road 
-##                      2 
-##                 Marina 
-##                      6 
-##           Marine Drive 
-##                      9 
-##          Marine Parade 
-##                      6 
-##          Newhaven Road 
-##                      3 
-##                  Other 
-##                    209 
-##           Royal Parade 
-##                      8 
-##           Seaford Road 
-##                      3 
-##                Seaside 
-##                     40 
-## Sedlescombe Road North 
-##                     16 
-##       South Coast Road 
-##                     34 
-##   St. Anthony&#39;s Avenue 
-##                     12 
-##             The Avenue 
-##                     16 
-##        Willingdon Road 
-##                     13</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   0.000   0.000   0.000   0.283 
-## 3rd Qu.    Max. 
-##   0.641   1.003</code></pre>
+##           Bexhill Road      De La Warr Parade        Eastbourne Road              Enys Road            Eridge Road 
+##                     21                     16                     18                      7                      6 
+##            Falmer Hill     Golden Jubilee Way         Highfield Link           King&#39;s Drive             Lewes Road 
+##                      5                     14                      3                     22                      2 
+##                 Marina           Marine Drive          Marine Parade          Newhaven Road                  Other 
+##                      6                      9                      6                      3                    209 
+##           Royal Parade           Seaford Road                Seaside Sedlescombe Road North       South Coast Road 
+##                      8                      3                     40                     16                     34 
+##   St. Anthony&#39;s Avenue             The Avenue        Willingdon Road 
+##                     12                     16                     13</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   0.000   0.000   0.283   0.641   1.003</code></pre>
 <pre><code>## [1] 20</code></pre>
 <pre><code>## 
-##                   A259 
-##                      1 
-##                    A27 
-##                      2 
-##            Albert Road 
-##                      1 
-##       Bedfordwell Road 
-##                      1 
-##           Bexhill Road 
-##                      1 
-##         Buckle By-Pass 
-##                      1 
-##         Cambridge Road 
-##                      1 
-##       Cross Levels Way 
-##                      1 
-##      De La Warr Parade 
-##                      1 
-##        Eastbourne Road 
-##                      1 
-##              Enys Road 
-##                      1 
-##            Eridge Road 
-##                      1 
-##            Falmer Hill 
-##                      1 
-##         Gildredge Road 
-##                      1 
-##     Golden Jubilee Way 
-##                      1 
-##           Grand Parade 
-##                      2 
-##     Grosvenor Crescent 
-##                      1 
-##         Hartfield Road 
-##                      1 
-##            High Street 
-##                      1 
-##         Highfield Link 
-##                      1 
-##           King&#39;s Drive 
-##                      1 
-##            Kings Drive 
-##                      1 
-##           Langney Rise 
-##                      1 
-##             Lewes Road 
-##                      3 
-##       Lottbridge Drove 
-##                      1 
-##                 Marina 
-##                      1 
-##           Marine Drive 
-##                      1 
-##          Marine Parade 
-##                      1 
-##               New Town 
-##                      1 
-##          Newhaven Road 
-##                      1 
-##           Royal Parade 
-##                      1 
-##           Seaford Road 
-##                      1 
-##                Seaside 
-##                      1 
-## Sedlescombe Road North 
-##                      1 
-##       South Coast Road 
-##                      2 
-##   St. Anthony&#39;s Avenue 
-##                      1 
-##       St. Helen&#39;s Road 
-##                      1 
-##             The Avenue 
-##                      1 
-##           Unnamed road 
-##                      5 
-##          Upperton Road 
-##                      2 
-##         Wickham Avenue 
-##                      1 
-##        Willingdon Road 
-##                      1</code></pre>
+##                   A259                    A27            Albert Road       Bedfordwell Road           Bexhill Road 
+##                      1                      2                      1                      1                      1 
+##         Buckle By-Pass         Cambridge Road       Cross Levels Way      De La Warr Parade        Eastbourne Road 
+##                      1                      1                      1                      1                      1 
+##              Enys Road            Eridge Road            Falmer Hill         Gildredge Road     Golden Jubilee Way 
+##                      1                      1                      1                      1                      1 
+##           Grand Parade     Grosvenor Crescent         Hartfield Road            High Street         Highfield Link 
+##                      2                      1                      1                      1                      1 
+##           King&#39;s Drive            Kings Drive           Langney Rise             Lewes Road       Lottbridge Drove 
+##                      1                      1                      1                      3                      1 
+##                 Marina           Marine Drive          Marine Parade               New Town          Newhaven Road 
+##                      1                      1                      1                      1                      1 
+##           Royal Parade           Seaford Road                Seaside Sedlescombe Road North       South Coast Road 
+##                      1                      1                      1                      1                      2 
+##   St. Anthony&#39;s Avenue       St. Helen&#39;s Road             The Avenue           Unnamed road          Upperton Road 
+##                      1                      1                      1                      5                      2 
+##         Wickham Avenue        Willingdon Road 
+##                      1                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                       24</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                       24 
-##                     NA&#39;s 
-##                        2</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                       24 
-##                     NA&#39;s 
-##                        2</code></pre>
-<pre><code>## # A tibble: 20 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 St. … &quot;A259&quot;             948
-##  2 Seas… &quot;A259&quot;            1948
-##  3 King… &quot;A2021&quot;           2362
-##  4 Enys… &quot;&quot;                 508
-##  5 The … &quot;A2040&quot;            649
-##  6 Roya… &quot;&quot;                 746
-##  7 Gild… &quot;A259&quot;             618
-##  8 Mari… &quot;A259&quot;             728
-##  9 High… &quot;A22&quot;             1142
-## 10 Sout… &quot;A259&quot;            2245
-## 11 Mari… &quot;B2106&quot;            702
-## 12 Hart… &quot;&quot;                 557
-## 13 East… &quot;A2270&quot;           2241
-## 14 Lewe… &quot;A272&quot;             632
-## 15 Will… &quot;A2270&quot;           1237
-## 16 Bexh… &quot;A259&quot;            1894
-## 17 Sedl… &quot;A21&quot;             2166
-## 18 Camb… &quot;A21&quot;              838
-## 19 De L… &quot;&quot;                1121
-## 20 Gran… &quot;B2106&quot;            784
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                        6                       24</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                        6                       24                        2</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                        6                       24                        2</code></pre>
+<pre><code>## # A tibble: 20 x 8
+##    Name     Reference `Length (m)` `Cycling potent… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;            &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 St. Ant… &quot;A259&quot;             948              313               297 30 mph                       12 FALSE            
+##  2 Seaside  &quot;A259&quot;            1948              205               399 30 mph                       11 FALSE            
+##  3 King&#39;s … &quot;A2021&quot;           2362              193               456 30 mph                       10 FALSE            
+##  4 Enys Ro… &quot;&quot;                 508              118                60 30 mph                       10 FALSE            
+##  5 The Ave… &quot;A2040&quot;            649              118                77 30 mph                       10 FALSE            
+##  6 Royal P… &quot;&quot;                 746              116                87 30 mph                       10 FALSE            
+##  7 Gildred… &quot;A259&quot;             618              116                72 30 mph                       10 FALSE            
+##  8 Marine … &quot;A259&quot;             728              103                75 30 mph                       10 FALSE            
+##  9 Highfie… &quot;A22&quot;             1142               77                88 40+ mph                       8 TRUE             
+## 10 South C… &quot;A259&quot;            2245               73               164 30 mph                       10 FALSE            
+## 11 Marine … &quot;B2106&quot;            702               73                51 30 mph                       10 FALSE            
+## 12 Hartfie… &quot;&quot;                 557               69                38 30 mph                       10 FALSE            
+## 13 Eastbou… &quot;A2270&quot;           2241               69               155 30 mph                       10 FALSE            
+## 14 Lewes R… &quot;A272&quot;             632               54                34 40+ mph                      12 FALSE            
+## 15 Willing… &quot;A2270&quot;           1237               52                64 30 mph                       10 FALSE            
+## 16 Bexhill… &quot;A259&quot;            1894               52                98 30 mph                       11 FALSE            
+## 17 Sedlesc… &quot;A21&quot;             2166               50               108 40+ mph                      11 FALSE            
+## 18 Cambrid… &quot;A21&quot;              838               48                40 30 mph                       11 FALSE            
+## 19 De La W… &quot;&quot;                1121               46                52 30 mph                       12 FALSE            
+## 20 Grand P… &quot;B2106&quot;            784               43                34 30 mph                       14 FALSE</code></pre>
 
 
 

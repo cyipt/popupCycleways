@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,165 +388,55 @@ summary {
 ##       A50  A57 A574 
 ##   69    5    6    1</code></pre>
 <pre><code>## [1] 44</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   611.2  1716.3  3174.5  4184.5 
-## 3rd Qu.    Max. 
-##  7806.7  7806.7</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   611.2  1716.3  3174.5  4184.5  7806.7  7806.7</code></pre>
 <pre><code>## 
-##         Chester Road 
-##                   22 
-##       Farrell Street 
-##                   11 
-##       Knutsford Road 
-##                   21 
-##       Liverpool Road 
-##                   61 
-##          London Road 
-##                   19 
-##          Lovely Lane 
-##                    9 
-##      Manchester Road 
-##                   31 
-##        Mersey Street 
-##                   24 
-##          Midland Way 
-##                   16 
-##  New Manchester Road 
-##                   14 
-##          Newton Road 
-##                   10 
-##                Other 
-##                  192 
-##         Penketh Road 
-##                   42 
-##      Priestly Street 
-##                    7 
-##           Sankey Way 
-##                   33 
-##       Tarporley Road 
-##                   11 
-##      Warrington Road 
-##                   19 
-## Wilderspool Causeway 
-##                   32 
-##         Winwick Road 
-##                   42</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.03316 0.26681 
-## 3rd Qu.    Max. 
-## 0.46089 1.00000</code></pre>
+##         Chester Road       Farrell Street       Knutsford Road       Liverpool Road          London Road 
+##                   22                   11                   21                   61                   19 
+##          Lovely Lane      Manchester Road        Mersey Street          Midland Way  New Manchester Road 
+##                    9                   31                   24                   16                   14 
+##          Newton Road                Other         Penketh Road      Priestly Street           Sankey Way 
+##                   10                  192                   42                    7                   33 
+##       Tarporley Road      Warrington Road Wilderspool Causeway         Winwick Road 
+##                   11                   19                   32                   42</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.03316 0.26681 0.46089 1.00000</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre><code>## 
-##                  A49 
-##                    1 
-##                  A57 
-##                    2 
-##                 A574 
-##                    1 
-##                 A580 
-##                    1 
-##          Bewsey Road 
-##                    1 
-##          Bridge Foot 
-##                    1 
-##        Bridge Street 
-##                    1 
-##         Chester Road 
-##                    3 
-##      Cromwell Avenue 
-##                    1 
-##       Ellesmere Road 
-##                    1 
-##       Farrell Street 
-##                    1 
-##        Froghall Lane 
-##                    1 
-##       Knutsford Road 
-##                    1 
-## Lingley Green Avenue 
-##                    1 
-##       Liverpool Road 
-##                    4 
-##          London Road 
-##                    1 
-##            Long Lane 
-##                    1 
-##      Longford Street 
-##                    1 
-##          Lovely Lane 
-##                    1 
-##        Lythgoes Lane 
-##                    2 
-##      Manchester Road 
-##                    1 
-##        Mersey Street 
-##                    1 
-##          Midland Way 
-##                    1 
-##  New Manchester Road 
-##                    2 
-##          Newton Road 
-##                    1 
-##   Old Liverpool Road 
-##                    1 
-##         Penketh Road 
-##                    1 
-##      Priestly Street 
-##                    1 
-##           Sankey Way 
-##                    1 
-##       Tarporley Road 
-##                    1 
-##         Unnamed road 
-##                    2 
-##      Warrington Road 
-##                    2 
-##          Widnes Road 
-##                    1 
-## Wilderspool Causeway 
-##                    1 
-##         Winwick Road 
-##                    1</code></pre>
+##                  A49                  A57                 A574                 A580          Bewsey Road 
+##                    1                    2                    1                    1                    1 
+##          Bridge Foot        Bridge Street         Chester Road      Cromwell Avenue       Ellesmere Road 
+##                    1                    1                    3                    1                    1 
+##       Farrell Street        Froghall Lane       Knutsford Road Lingley Green Avenue       Liverpool Road 
+##                    1                    1                    1                    1                    4 
+##          London Road            Long Lane      Longford Street          Lovely Lane        Lythgoes Lane 
+##                    1                    1                    1                    1                    2 
+##      Manchester Road        Mersey Street          Midland Way  New Manchester Road          Newton Road 
+##                    1                    1                    1                    2                    1 
+##   Old Liverpool Road         Penketh Road      Priestly Street           Sankey Way       Tarporley Road 
+##                    1                    1                    1                    1                    1 
+##         Unnamed road      Warrington Road          Widnes Road Wilderspool Causeway         Winwick Road 
+##                    2                    2                    1                    1                    1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       18 
-##    Estimated width &gt; 10m 
-##                       16</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       18 
-##    Estimated width &gt; 10m 
-##                       16 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       18 
-##    Estimated width &gt; 10m 
-##                       16 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## # A tibble: 10 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 New … &quot;A57&quot;              819
-##  2 Love… &quot;&quot;                 716
-##  3 Bews… &quot;&quot;                 683
-##  4 Manc… &quot;A57&quot;             2750
-##  5 Live… &quot;A5061&quot;            873
-##  6 New … &quot;A57&quot;              913
-##  7 Wild… &quot;A49&quot;             1930
-##  8 Prie… &quot;A57&quot;              537
-##  9 Knut… &quot;A5061&quot;           1412
-## 10 Lond… &quot;A49&quot;             1447
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                       18                       16</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                       18                       16                        1</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       10                       18                       16                        1</code></pre>
+<pre><code>## # A tibble: 10 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 New Ma… &quot;A57&quot;              819               246               201 40+ mph                       9 TRUE             
+##  2 Lovely… &quot;&quot;                 716               217               155 30 mph                       11 FALSE            
+##  3 Bewsey… &quot;&quot;                 683               188               128 30 mph                       10 FALSE            
+##  4 Manche… &quot;A57&quot;             2750               174               478 30 mph                       10 FALSE            
+##  5 Liverp… &quot;A5061&quot;            873               166               145 30 mph                       11 TRUE             
+##  6 New Ma… &quot;A57&quot;              913               150               137 40+ mph                      10 FALSE            
+##  7 Wilder… &quot;A49&quot;             1930               149               288 30 mph                       11 TRUE             
+##  8 Priest… &quot;A57&quot;              537               126                68 30 mph                        9 TRUE             
+##  9 Knutsf… &quot;A5061&quot;           1412               121               171 30 mph                       10 TRUE             
+## 10 London… &quot;A49&quot;             1447               119               172 30 mph                        8 TRUE</code></pre>
 
 
 

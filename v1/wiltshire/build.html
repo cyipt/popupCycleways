@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,189 +378,77 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A30 A3102  A345  A350   A36 
-##    89     9    15     9     1    18 
-##  A361  A363 B3106 
-##     5    23    16</code></pre>
+##         A30 A3102  A345  A350   A36  A361  A363 B3106 
+##    89     9    15     9     1    18     5    23    16</code></pre>
 <pre><code>## [1] 67</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   970.5  1761.4  2555.5  3990.9 
-## 3rd Qu.    Max. 
-##  4534.1 10249.9</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   970.5  1761.4  2555.5  3990.9  4534.1 10249.9</code></pre>
 <pre><code>## 
-##       Beanacre Road 
-##                   5 
-##        Bristol Road 
-##                  12 
-##           Caen Hill 
-##                   6 
-##         Castle Road 
-##                  19 
-##  Churchill Way East 
-##                  17 
-## Churchill Way North 
-##                   6 
-## Churchill Way South 
-##                   6 
-##  Churchill Way West 
-##                  14 
-##          County Way 
-##                  13 
-##        Devizes Road 
-##                   1 
-##        Downton Road 
-##                  11 
-##         Easton Lane 
-##                   1 
-##         High Street 
-##                  13 
-##     Hilperton Drive 
-##                  16 
-##               Other 
-##                 187 
-##      Salisbury Road 
-##                   5 
-##    Southampton Road 
-##                  23 
-##        Swindon Road 
-##                   6 
-##     Warminster Road 
-##                   7</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.2873  0.3788 
-## 3rd Qu.    Max. 
-##  0.6395  1.0000</code></pre>
+##       Beanacre Road        Bristol Road           Caen Hill         Castle Road  Churchill Way East 
+##                   5                  12                   6                  19                  17 
+## Churchill Way North Churchill Way South  Churchill Way West          County Way        Devizes Road 
+##                   6                   6                  14                  13                   1 
+##        Downton Road         Easton Lane         High Street     Hilperton Drive               Other 
+##                  11                   1                  13                  16                 187 
+##      Salisbury Road    Southampton Road        Swindon Road     Warminster Road 
+##                   5                  23                   6                   7</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.2873  0.3788  0.6395  1.0000</code></pre>
 <pre><code>## [1] 20</code></pre>
 <pre><code>## 
-##               A3102 
-##                   1 
-##                A345 
-##                   2 
-##                 A36 
-##                   1 
-##                A361 
-##                   2 
-##                A363 
-##                   2 
-##           Bath Road 
-##                   2 
-##       Beanacre Road 
-##                   1 
-##       Bradford Road 
-##                   1 
-##   Bridge Roundabout 
-##                   1 
-##        Bristol Road 
-##                   1 
-##       Bythesea Road 
-##                   1 
-##           Caen Hill 
-##                   1 
-##         Castle Road 
-##                   1 
-##  Churchill Way East 
-##                   1 
-## Churchill Way North 
-##                   1 
-## Churchill Way South 
-##                   1 
-##  Churchill Way West 
-##                   1 
-##          Coped Hall 
-##                   1 
-##       Countess Road 
-##                   1 
-##          County Way 
-##                   1 
-##        Devizes Road 
-##                   1 
-##        Downton Road 
-##                   2 
-##         Easton Lane 
-##                   1 
-##         High Street 
-##                   1 
-##     Hilperton Drive 
-##                   1 
-##      Hilperton Road 
-##                   1 
-##            Ivy Lane 
-##                   1 
-##      Longfield Road 
-##                   1 
-##     New Park Street 
-##                   1 
-##      Salisbury Road 
-##                   1 
-##    Southampton Road 
-##                   1 
-##   St. John&#39;s Street 
-##                   1 
-##        Swindon Road 
-##                   1 
-##        Unnamed road 
-##                   3 
-##     Warminster Road 
-##                   1 
+##               A3102                A345                 A36                A361                A363 
+##                   1                   2                   1                   2                   2 
+##           Bath Road       Beanacre Road       Bradford Road   Bridge Roundabout        Bristol Road 
+##                   2                   1                   1                   1                   1 
+##       Bythesea Road           Caen Hill         Castle Road  Churchill Way East Churchill Way North 
+##                   1                   1                   1                   1                   1 
+## Churchill Way South  Churchill Way West          Coped Hall       Countess Road          County Way 
+##                   1                   1                   1                   1                   1 
+##        Devizes Road        Downton Road         Easton Lane         High Street     Hilperton Drive 
+##                   1                   2                   1                   1                   1 
+##      Hilperton Road            Ivy Lane      Longfield Road     New Park Street      Salisbury Road 
+##                   1                   1                   1                   1                   1 
+##    Southampton Road   St. John&#39;s Street        Swindon Road        Unnamed road     Warminster Road 
+##                   1                   1                   1                   3                   1 
 ##         Wilton Road 
 ##                   1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       10 
-##    Estimated width &gt; 10m 
-##                       10</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       10 
-##    Estimated width &gt; 10m 
-##                       10 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       10 
-##    Estimated width &gt; 10m 
-##                       10 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 20 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 New … &quot;A361&quot;             716
-##  2 Brid… &quot;A4&quot;               652
-##  3 East… &quot;&quot;                 762
-##  4 Swin… &quot;A3102&quot;            666
-##  5 High… &quot;A3102&quot;           1176
-##  6 A345  &quot;A345&quot;             719
-##  7 A363  &quot;A363&quot;             614
-##  8 Warm… &quot;A350&quot;             819
-##  9 Chur… &quot;A36&quot;             1536
-## 10 Chur… &quot;A36&quot;             1309
-## 11 Coun… &quot;A361&quot;            1043
-## 12 Coun… &quot;A345&quot;             576
-## 13 Caen… &quot;A361&quot;            1704
-## 14 Down… &quot;A338&quot;             568
-## 15 Hilp… &quot;A361&quot;            1044
-## 16 Bris… &quot;A420&quot;             815
-## 17 Chur… &quot;A36&quot;             2378
-## 18 Devi… &quot;A360&quot;             557
-## 19 A361  &quot;A361&quot;             954
-## 20 Down… &quot;A338&quot;             591
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                       10                       10</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                       10                       10                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                       10                       10                        3</code></pre>
+<pre><code>## # A tibble: 20 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 New Pa… &quot;A361&quot;             716               104                74 30 mph                       11 FALSE            
+##  2 Bridge… &quot;A4&quot;               652               100                65 30 mph                       10 TRUE             
+##  3 Easton… &quot;&quot;                 762                68                52 30 mph                       11 FALSE            
+##  4 Swindo… &quot;A3102&quot;            666                64                43 40+ mph                      10 FALSE            
+##  5 High S… &quot;A3102&quot;           1176                59                69 30 mph                       11 FALSE            
+##  6 A345    &quot;A345&quot;             719                47                34 40+ mph                      10 FALSE            
+##  7 A363    &quot;A363&quot;             614                44                27 40+ mph                      11 FALSE            
+##  8 Warmin… &quot;A350&quot;             819                43                35 40+ mph                      10 FALSE            
+##  9 Church… &quot;A36&quot;             1536                40                61 40+ mph                       7 TRUE             
+## 10 Church… &quot;A36&quot;             1309                40                52 40+ mph                       9 TRUE             
+## 11 County… &quot;A361&quot;            1043                38                40 40+ mph                       7 TRUE             
+## 12 Counte… &quot;A345&quot;             576                36                21 30 mph                       10 FALSE            
+## 13 Caen H… &quot;A361&quot;            1704                36                61 40+ mph                       9 TRUE             
+## 14 Downto… &quot;A338&quot;             568                29                16 40+ mph                       8 TRUE             
+## 15 Hilper… &quot;A361&quot;            1044                29                30 40+ mph                      10 TRUE             
+## 16 Bristo… &quot;A420&quot;             815                29                24 40+ mph                      10 FALSE            
+## 17 Church… &quot;A36&quot;             2378                25                59 40+ mph                       8 TRUE             
+## 18 Devize… &quot;A360&quot;             557                25                14 40+ mph                      16 FALSE            
+## 19 A361    &quot;A361&quot;             954                22                21 40+ mph                       9 TRUE             
+## 20 Downto… &quot;A338&quot;             591                20                12 30 mph                        9 TRUE</code></pre>
 
 
 

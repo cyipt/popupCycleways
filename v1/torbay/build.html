@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,99 +388,43 @@ summary {
 ##       A3022  A380 
 ##     9    31     1</code></pre>
 <pre><code>## [1] 18</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   843.4  3329.9  5754.0  4627.5 
-## 3rd Qu.    Max. 
-##  5754.0  5909.4</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   843.4  3329.9  5754.0  4627.5  5754.0  5909.4</code></pre>
 <pre><code>## 
-##        Brixham Road 
-##                  22 
-##         Hamelin Way 
-##                   4 
-##  Hellevoetsluis Way 
-##                  14 
-##     King&#39;s Ash Road 
-##                  16 
-##         Marldon Way 
-##                   5 
-##               Other 
-##                  57 
-##         Riviera Way 
-##                  18 
-## South Devon Highway 
-##                  11 
-##         Torbay Road 
-##                  20 
-##         Totnes Road 
-##                  20</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.00000 0.12571 
-## 3rd Qu.    Max. 
-## 0.02991 0.96032</code></pre>
+##        Brixham Road         Hamelin Way  Hellevoetsluis Way     King&#39;s Ash Road         Marldon Way 
+##                  22                   4                  14                  16                   5 
+##               Other         Riviera Way South Devon Highway         Torbay Road         Totnes Road 
+##                  57                  18                  11                  20                  20</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.00000 0.12571 0.02991 0.96032</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre><code>## 
-##        Brixham Road 
-##                   2 
-##    Churscombe Cross 
-##                   1 
-##         Hamelin Way 
-##                   2 
-##  Hellevoetsluis Way 
-##                   1 
-##     King&#39;s Ash Road 
-##                   2 
-##        Marldon Road 
-##                   1 
-##         Marldon Way 
-##                   1 
-##       Rathmore Road 
-##                   1 
-##         Riviera Way 
-##                   1 
-## South Devon Highway 
-##                   1 
-##         Torbay Road 
-##                   1 
-##        Torquay Road 
-##                   2 
-##         Totnes Road 
-##                   1</code></pre>
+##        Brixham Road    Churscombe Cross         Hamelin Way  Hellevoetsluis Way     King&#39;s Ash Road 
+##                   2                   1                   2                   1                   2 
+##        Marldon Road         Marldon Way       Rathmore Road         Riviera Way South Devon Highway 
+##                   1                   1                   1                   1                   1 
+##         Torbay Road        Torquay Road         Totnes Road 
+##                   1                   2                   1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                        3</code></pre>
-<pre><code>## # A tibble: 10 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Torq… A3022              772
-##  2 Torb… A3022              880
-##  3 Totn… A3022             1097
-##  4 King… A380               814
-##  5 King… A380               757
-##  6 Marl… A380              1160
-##  7 Sout… A380              1544
-##  8 Brix… A3022             1495
-##  9 Rivi… A3022             2356
-## 10 Hell… A380              4000
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        4                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        4                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        4                        3</code></pre>
+<pre><code>## # A tibble: 10 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Torqua… A3022              772               141               109 30 mph                       10 FALSE            
+##  2 Torbay… A3022              880               129               114 30 mph                       10 FALSE            
+##  3 Totnes… A3022             1097                99               109 30 mph                       11 FALSE            
+##  4 King&#39;s… A380               814                93                76 30 mph                       10 FALSE            
+##  5 King&#39;s… A380               757                69                52 30 mph                        7 TRUE             
+##  6 Marldo… A380              1160                48                56 40+ mph                       9 TRUE             
+##  7 South … A380              1544                43                66 40+ mph                       3 TRUE             
+##  8 Brixha… A3022             1495                42                63 40+ mph                       8 TRUE             
+##  9 Rivier… A3022             2356                27                64 40+ mph                       8 TRUE             
+## 10 Hellev… A380              4000                26               104 40+ mph                       9 TRUE</code></pre>
 
 
 

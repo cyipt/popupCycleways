@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,1626 +378,810 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##                            A1 
-##           1152              7 
-##            A10           A100 
-##              1              1 
-##          A1200          A1202 
-##              2              2 
-##          A1208          A1209 
-##              1              5 
-##           A200           A201 
-##              7             45 
-##           A202           A205 
-##             33              1 
-##           A219          A2207 
-##              1              2 
-##            A23             A3 
-##             32             17 
-##         A3;A23           A300 
-##              1             36 
-##           A301           A302 
-##             20             15 
-##          A3036           A306 
-##             30              1 
-##           A308          A3127 
-##              1              1 
-##           A315          A3200 
-##              2              1 
-##          A3203          A3204 
-##              6              2 
-##          A3205          A3211 
-##              6             39 
-##          A3212          A3214 
-##              2              8 
-##          A3216          A3217 
-##             11             24 
-##          A3218          A3220 
-##              1              2 
-##             A4            A40 
-##             33              6 
-##           A400           A401 
-##             31             16 
-##           A402           A404 
-##              1              1 
-##          A4200          A4202 
-##              8              6 
-##          A4208           A501 
-##              7              5 
-##          A5200          A5201 
-##              1              4 
-##          A5202          A5203 
-##              1              2 
-##           B100           B101 
-##              6             10 
-##           B102           B108 
-##              7              1 
-##           B126           B144 
-##             45              9 
-##           B221           B237 
-##             14              1 
-##           B300           B323 
-##              4             14 
-##           B326           B401 
-##              2              1 
-##           B402           B500 
-##             10              3 
-##           B502           B506 
-##             22              7 
-## Riverside Walk 
-##              1</code></pre>
+##                            A1            A10           A100          A1200          A1202          A1208 
+##           1152              7              1              1              2              2              1 
+##          A1209           A200           A201           A202           A205           A219          A2207 
+##              5              7             45             33              1              1              2 
+##            A23             A3         A3;A23           A300           A301           A302          A3036 
+##             32             17              1             36             20             15             30 
+##           A306           A308          A3127           A315          A3200          A3203          A3204 
+##              1              1              1              2              1              6              2 
+##          A3205          A3211          A3212          A3214          A3216          A3217          A3218 
+##              6             39              2              8             11             24              1 
+##          A3220             A4            A40           A400           A401           A402           A404 
+##              2             33              6             31             16              1              1 
+##          A4200          A4202          A4208           A501          A5200          A5201          A5202 
+##              8              6              7              5              1              4              1 
+##          A5203           B100           B101           B102           B108           B126           B144 
+##              2              6             10              7              1             45              9 
+##           B221           B237           B300           B323           B326           B401           B402 
+##             14              1              4             14              2              1             10 
+##           B500           B502           B506 Riverside Walk 
+##              3             22              7              1</code></pre>
 <pre><code>## [1] 365</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    4576  196272  196272  165651 
-## 3rd Qu.    Max. 
-##  196272  196272</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    4576  196272  196272  165651  196272  196272</code></pre>
 <pre><code>## 
-##                                                 Acre Lane 
-##                                                        19 
-##                                                Acton Lane 
-##                                                         7 
-##                                             Albany Street 
-##                                                        14 
-##                                        Albert Bridge Road 
-##                                                        12 
-##                                         Albert Embankment 
-##                                                        22 
-##                                              Amhurst Road 
-##                                                        14 
-##                                              Archway Road 
-##                                                        56 
-##                                                 Aspen Way 
-##                                                        28 
-##                                               Aylmer Road 
-##                                                        13 
-##                                          Balham High Road 
-##                                                        28 
-##                                            Barnsbury Road 
-##                                                         4 
-##                                                 Bath Road 
-##                                                        92 
-##                                     Battersea Bridge Road 
-##                                                        23 
-##                                       Battersea Park Road 
-##                                                        84 
-##                                            Bayswater Road 
-##                                                        29 
-##                                        Bethnal Green Road 
-##                                                        35 
-##                                             Birdcage Walk 
-##                                                        12 
-##                                               Bishopsgate 
-##                                                        33 
-##                                          Blackfriars Road 
-##                                                        25 
-##                                           Blackheath Hill 
-##                                                         8 
-##                                            Blackshaw Road 
-##                                                        14 
-##                                                  Bow Road 
-##                                                        40 
-##                                  Bricklayers Arms Flyover 
-##                                                         2 
-##                                              Brixton Hill 
-##                                                        52 
-##                                              Brixton Road 
-##                                                        65 
-##                                              Bromley Road 
-##                                                        39 
-##                                             Brompton Road 
-##                                                        29 
-##                                               Bruce Grove 
-##                                                         9 
-##                                    Buckingham Palace Road 
-##                                                        17 
-##                                           Burlington Lane 
-##                                                        13 
-##                                            Burntwood Lane 
-##                                                        11 
-##                                           Caledonian Road 
-##                                                        56 
-##                                       Camberwell New Road 
-##                                                        24 
-##                                      Cambridge Heath Road 
-##                                                        37 
-##                                        Camden High Street 
-##                                                        13 
-##                                               Camden Road 
-##                                                        52 
-##                                             Camden Street 
-##                                                        14 
-##                                            Canonbury Road 
-##                                                        20 
-##                                              Carlton Vale 
-##                                                        12 
-##                                                 Castelnau 
-##                                                        21 
-##                                            Cavendish Road 
-##                                                         7 
-##                                               Cedars Road 
-##                                                         9 
-##                                        Charing Cross Road 
-##                                                        15 
-##                                             Charlton Road 
-##                                                        15 
-##                                       Chelsea Bridge Road 
-##                                                         6 
-##                                             Chertsey Road 
-##                                                        33 
-##                                        Chiswick High Road 
-##                                                        26 
-##                                         Christchurch Road 
-##                                                        13 
-##                                                 City Road 
-##                                                        56 
-##                                       Clapham High Street 
-##                                                        23 
-##                                              Clapham Road 
-##                                                        54 
-##                                          Clerkenwell Road 
-##                                                        30 
-##                                           Clifford Avenue 
-##                                                        31 
-##                                          Coldharbour Lane 
-##                                                        25 
-##                                         Colnbrook By-pass 
-##                                                         5 
-##                                         Colnbrook By-Pass 
-##                                                        40 
-##                                           Commercial Road 
-##                                                       105 
-##                                         Commercial Street 
-##                                                        34 
-##                                         Constitution Hill 
-##                                                         3 
-##                                               Country Way 
-##                                                        18 
-##                                                Creek Road 
-##                                                        17 
-##                                             Cromwell Road 
-##                                                        47 
-##                                                Cross Deep 
-##                                                        13 
-##                                           Crownfield Road 
-##                                                         9 
-##                                   CS5 segregated cycleway 
-##                                                        20 
-##                                      Cycle Superhighway 7 
-##                                                         9 
-##                                              Denmark Hill 
-##                                                        31 
-##                                              Drayton Park 
-##                                                        10 
-##                                         Earl&#39;s Court Road 
-##                                                        27 
-##                                      East India Dock Road 
-##                                                        60 
-##                                                 East Lane 
-##                                                         8 
-##                                              Edgware Road 
-##                                                        56 
-##                                       Elephant and Castle 
-##                                                        23 
-##                                              Elgin Avenue 
-##                                                        16 
-##                                            Ellesmere Road 
-##                                                         5 
-##                                                Essex Road 
-##                                                        19 
-##                                               Euston Road 
-##                                                        63 
-##                                          Euston Underpass 
-##                                                         6 
-##                                             Evelyn Street 
-##                                                        34 
-##                                          Eversholt Street 
-##                                                        11 
-##                                              Falloden Way 
-##                                                        12 
-##                                           Ferme Park Road 
-##                                                         8 
-##                                          Forest Hill Road 
-##                                                        13 
-##                                               Forest Road 
-##                                                         6 
-##                                                Fryent Way 
-##                                                         5 
-##                                               Fulham Road 
-##                                                        39 
-##                                              Garratt Lane 
-##                                                        63 
-##                                         Gloucester Avenue 
-##                                                        13 
-##                                          Gloucester Place 
-##                                                        20 
-##                                             Goldhawk Road 
-##                                                        39 
-##                                              Goswell Road 
-##                                                        25 
-##                                              Gower Street 
-##                                                        13 
-##                                           Gray&#39;s Inn Road 
-##                                                        36 
-##                                       Great Chertsey Road 
-##                                                        20 
-##                                      Great Eastern Street 
-##                                                        17 
-##                                           Great West Road 
-##                                                        57 
-##                                               Green Lanes 
-##                                                        75 
-##                                           Grosvenor Place 
-##                                                        11 
-##                                              Hackney Road 
-##                                                        38 
-##                                          Hamilton Terrace 
-##                                                        12 
-##                                          Hammersmith Road 
-##                                                        20 
-##                                            Hampstead Road 
-##                                                        37 
-##                                        Hampton Court Road 
-##                                                        19 
-##                                               Hanley Road 
-##                                                        15 
-##                                               Harrow Road 
-##                                                        64 
-##                                           Haverstock Hill 
-##                                                        19 
-##                                                Heath Road 
-##                                                        14 
-##                                           Hemingford Road 
-##                                                         7 
-##                                              High Holborn 
-##                                                        30 
-##                                                 High Road 
-##                                                        43 
-##                                               High Street 
-##                                                        99 
-##                                 High Street Colliers Wood 
-##                                                        20 
-##                                             Highbury Hill 
-##                                                         5 
-##                                             Highgate Road 
-##                                                         7 
-##                                              Hogarth Lane 
-##                                                         4 
-##                                              Holland Road 
-##                                                         8 
-##                                             Holloway Road 
-##                                                       107 
-##                                              Hornsey Road 
-##                                                        28 
-##                                           Horseferry Road 
-##                                                        11 
-##                                              Isledon Road 
-##                                                        14 
-##                                              Jamaica Road 
-##                                                        23 
-##                                        John Ruskin Street 
-##                                                         4 
-##                                             Junction Road 
-##                                                        24 
-##                                           Kennington Lane 
-##                                                        41 
-##                                      Kennington Park Road 
-##                                                         9 
-##                                           Kennington Road 
-##                                                        39 
-##                                    Kensington High Street 
-##                                                        38 
-##                                         Kentish Town Road 
-##                                                        19 
-##                                                  Kew Road 
-##                                                        26 
-##                                               King Street 
-##                                                        19 
-##                                         King&#39;s Cross Road 
-##                                                        16 
-##                                               King&#39;s Road 
-##                                                        55 
-##                                              Kings Avenue 
-##                                                        17 
-##                                          Kingshill Avenue 
-##                                                         5 
-##                                            Kingsland Road 
-##                                                        52 
-##                                             Kingston Road 
-##                                                        17 
-##                                                  Kingsway 
-##                                                        10 
-##                                             Knightsbridge 
-##                                                        18 
-##                                            Ladbroke Grove 
-##                                                        31 
-##                                       Lambeth Palace Road 
-##                                                        23 
-##                                              Lambeth Road 
-##                                                        30 
-##                                             Lavender Hill 
-##                                                        34 
-##                                           Lea Bridge Road 
-##                                                        43 
-##                                            Liverpool Road 
-##                                                        50 
-##                                             London Bridge 
-##                                                         5 
-##                                               London Road 
-##                                                        74 
-##                                             Lonsdale Road 
-##                                                         6 
-##                                         Loughborough Road 
-##                                                         9 
-##                                       Lower Mortlake Road 
-##                                                        18 
-##                                       Lower Richmond Road 
-##                                                        17 
-##                                                Lower Road 
-##                                                        13 
-##                                              Lupus Street 
-##                                                        15 
-##                                            Lyttelton Road 
-##                                                        15 
-##                                                 Main Road 
-##                                                         9 
-##                                               Malden Road 
-##                                                        16 
-##                                           Manchester Road 
-##                                                        33 
-##                                            Mansell Street 
-##                                                        21 
-##                                           Marylebone Road 
-##                                                        50 
-##                                        Merton High Street 
-##                                                        19 
-##                                               Merton Road 
-##                                                        23 
-##                                              Midland Road 
-##                                                        11 
-##                                             Mile End Road 
-##                                                        63 
-##                                                  Millbank 
-##                                                        18 
-##                                              Mitcham Road 
-##                                                        30 
-##                                             Mortlake Road 
-##                                                        27 
-##                                            New Cross Road 
-##                                                        46 
-##                                             New Kent Road 
-##                                                        27 
-##                                           New King&#39;s Road 
-##                                                        14 
-##                                            New North Road 
-##                                                        22 
-##                                                Newham Way 
-##                                                        32 
-##                                            Nine Elms Lane 
-##                                                        30 
-##                                       North Circular Road 
-##                                                         5 
-##                                                North Hill 
-##                                                        14 
-## North-South Cycle Superhighway (Blackfriars Road section) 
-##                                                        10 
-##                                              Norwood Road 
-##                                                        27 
-##                                             Oakley Street 
-##                                                        15 
-##                                         Old Brompton Road 
-##                                                        30 
-##                                             Old Kent Road 
-##                                                        86 
-##                                                Old Street 
-##                                                        34 
-##                                                     Other 
-##                                                      4029 
-##                                              Outer Circle 
-##                                                        48 
-##                                                 Pall Mall 
-##                                                        12 
-##                                                 Park Lane 
-##                                                        38 
-##                                                 Park Road 
-##                                                        24 
-##                                            Parkhurst Road 
-##                                                        18 
-##                                       Peckham High Street 
-##                                                        16 
-##                                              Peckham Road 
-##                                                        27 
-##                                                Piccadilly 
-##                                                        36 
-##                                      Piccadilly Underpass 
-##                                                         2 
-##                                               Plough Lane 
-##                                                         7 
-##                                            Portland Place 
-##                                                         8 
-##                                             Poynders Road 
-##                                                        12 
-##                                     Prince of Wales Drive 
-##                                                        13 
-##                                      Prince of Wales Road 
-##                                                        11 
-##                                              Queen&#39;s Gate 
-##                                                        10 
-##                                              Queen&#39;s Road 
-##                                                        25 
-##                                         Queensbridge Road 
-##                                                        32 
-##                                           Queenstown Road 
-##                                                        32 
-##                                           Randolph Avenue 
-##                                                        13 
-##                                              Rectory Road 
-##                                                        12 
-##                                             Regent Street 
-##                                                        22 
-##                                                Roman Road 
-##                                                        26 
-##                                                 Roman Way 
-##                                                        25 
-##                                              Romford Road 
-##                                                        80 
-##                                           Rosebery Avenue 
-##                                                        29 
-##                                            Rosendale Road 
-##                                                        17 
-##                                      Royal College Street 
-##                                                        14 
-##                                          Royal Docks Road 
-##                                                        10 
-##                                           Rush Green Road 
-##                                                        13 
-##                                          Sandringham Road 
-##                                                        13 
-##                                               Scrubs Lane 
-##                                                         7 
-##                                        Seven Sisters Road 
-##                                                        58 
-##                                                Sheen Road 
-##                                                        17 
-##                                             Shirland Road 
-##                                                        13 
-##                                        Shooters Hill Road 
-##                                                        35 
-##                                    Shoreditch High Street 
-##                                                        26 
-##                                             Sloane Avenue 
-##                                                         8 
-##                                             Sloane Street 
-##                                                        15 
-##                                      South Carriage Drive 
-##                                                        20 
-##                                        South Lambeth Road 
-##                                                        23 
-##                                             Southall Lane 
-##                                                         5 
-##                                           Southampton Row 
-##                                                        11 
-##                                           Southampton Way 
-##                                                         7 
-##                                            Southgate Road 
-##                                                        12 
-##                                     Southwark Bridge Road 
-##                                                        23 
-##                                          Southwark Street 
-##                                                        21 
-##                                            St John Street 
-##                                                        15 
-##                                             Stamford Hill 
-##                                                        33 
-##                                           Stamford Street 
-##                                                         8 
-##                                        Stanwell Moor Road 
-##                                                        16 
-##                               Stoke Newington High Street 
-##                                                        20 
-##                                      Stoke Newington Road 
-##                                                        25 
-##                                                    Strand 
-##                                                        46 
-##                                           Strawberry Vale 
-##                                                         8 
-##                                       Streatham High Road 
-##                                                        22 
-##                                            Streatham Hill 
-##                                                        42 
-##                                         Sutherland Avenue 
-##                                                         5 
-##                                               Swandon Way 
-##                                                        15 
-##                                             Talgarth Road 
-##                                                        14 
-##                                                The Avenue 
-##                                                        14 
-##                                                  The Mall 
-##                                                        19 
-##                                            Theobalds Road 
-##                                                        12 
-##                                            Thurlow Street 
-##                                                        10 
-##                                             Tooley Street 
-##                                                        27 
-##                                       Tooting High Street 
-##                                                        17 
-##                                      Tottenham Court Road 
-##                                                        33 
-##                                         Tower Bridge Road 
-##                                                        36 
-##                                           Twickenham Road 
-##                                                        44 
-##                                       Upper Richmond Road 
-##                                                        60 
-##                                  Upper Richmond Road West 
-##                                                        39 
-##                                              Upper Street 
-##                                                        52 
-##                                        Upper Tooting Road 
-##                                                        25 
-##                                      Vauxhall Bridge Road 
-##                                                        25 
-##                                           Victoria Street 
-##                                                         9 
-##                                             Villiers Road 
-##                                                        10 
-##                                             Walworth Road 
-##                                                        21 
-##                                           Wandsworth Road 
-##                                                        52 
-##                                           Warwick Gardens 
-##                                                        11 
-##                                              Warwick Road 
-##                                                        30 
-##                                           Waterloo Bridge 
-##                                                        14 
-##                                       West Carriage Drive 
-##                                                        27 
-##                                        West Cromwell Road 
-##                                                        12 
-##                                      West India Dock Road 
-##                                                        12 
-##                                            Westferry Road 
-##                                                        19 
-##                                   Westminster Bridge Road 
-##                                                        34 
-##                                   Whitechapel High Street 
-##                                                        26 
-##                                          Whitechapel Road 
-##                                                        28 
-##                                            Wigmore Street 
-##                                                         7 
-##                                              Yeading Lane 
-##                                                         5 
-##                                                 York Road 
-##                                                        68 
+##                                                 Acre Lane                                                Acton Lane 
+##                                                        19                                                         7 
+##                                             Albany Street                                        Albert Bridge Road 
+##                                                        14                                                        12 
+##                                         Albert Embankment                                              Amhurst Road 
+##                                                        22                                                        14 
+##                                              Archway Road                                                 Aspen Way 
+##                                                        56                                                        28 
+##                                               Aylmer Road                                          Balham High Road 
+##                                                        13                                                        28 
+##                                            Barnsbury Road                                                 Bath Road 
+##                                                         4                                                        92 
+##                                     Battersea Bridge Road                                       Battersea Park Road 
+##                                                        23                                                        84 
+##                                            Bayswater Road                                        Bethnal Green Road 
+##                                                        29                                                        35 
+##                                             Birdcage Walk                                               Bishopsgate 
+##                                                        12                                                        33 
+##                                          Blackfriars Road                                           Blackheath Hill 
+##                                                        25                                                         8 
+##                                            Blackshaw Road                                                  Bow Road 
+##                                                        14                                                        40 
+##                                  Bricklayers Arms Flyover                                              Brixton Hill 
+##                                                         2                                                        52 
+##                                              Brixton Road                                              Bromley Road 
+##                                                        65                                                        39 
+##                                             Brompton Road                                               Bruce Grove 
+##                                                        29                                                         9 
+##                                    Buckingham Palace Road                                           Burlington Lane 
+##                                                        17                                                        13 
+##                                            Burntwood Lane                                           Caledonian Road 
+##                                                        11                                                        56 
+##                                       Camberwell New Road                                      Cambridge Heath Road 
+##                                                        24                                                        37 
+##                                        Camden High Street                                               Camden Road 
+##                                                        13                                                        52 
+##                                             Camden Street                                            Canonbury Road 
+##                                                        14                                                        20 
+##                                              Carlton Vale                                                 Castelnau 
+##                                                        12                                                        21 
+##                                            Cavendish Road                                               Cedars Road 
+##                                                         7                                                         9 
+##                                        Charing Cross Road                                             Charlton Road 
+##                                                        15                                                        15 
+##                                       Chelsea Bridge Road                                             Chertsey Road 
+##                                                         6                                                        33 
+##                                        Chiswick High Road                                         Christchurch Road 
+##                                                        26                                                        13 
+##                                                 City Road                                       Clapham High Street 
+##                                                        56                                                        23 
+##                                              Clapham Road                                          Clerkenwell Road 
+##                                                        54                                                        30 
+##                                           Clifford Avenue                                          Coldharbour Lane 
+##                                                        31                                                        25 
+##                                         Colnbrook By-pass                                         Colnbrook By-Pass 
+##                                                         5                                                        40 
+##                                           Commercial Road                                         Commercial Street 
+##                                                       105                                                        34 
+##                                         Constitution Hill                                               Country Way 
+##                                                         3                                                        18 
+##                                                Creek Road                                             Cromwell Road 
+##                                                        17                                                        47 
+##                                                Cross Deep                                           Crownfield Road 
+##                                                        13                                                         9 
+##                                   CS5 segregated cycleway                                      Cycle Superhighway 7 
+##                                                        20                                                         9 
+##                                              Denmark Hill                                              Drayton Park 
+##                                                        31                                                        10 
+##                                         Earl&#39;s Court Road                                      East India Dock Road 
+##                                                        27                                                        60 
+##                                                 East Lane                                              Edgware Road 
+##                                                         8                                                        56 
+##                                       Elephant and Castle                                              Elgin Avenue 
+##                                                        23                                                        16 
+##                                            Ellesmere Road                                                Essex Road 
+##                                                         5                                                        19 
+##                                               Euston Road                                          Euston Underpass 
+##                                                        63                                                         6 
+##                                             Evelyn Street                                          Eversholt Street 
+##                                                        34                                                        11 
+##                                              Falloden Way                                           Ferme Park Road 
+##                                                        12                                                         8 
+##                                          Forest Hill Road                                               Forest Road 
+##                                                        13                                                         6 
+##                                                Fryent Way                                               Fulham Road 
+##                                                         5                                                        39 
+##                                              Garratt Lane                                         Gloucester Avenue 
+##                                                        63                                                        13 
+##                                          Gloucester Place                                             Goldhawk Road 
+##                                                        20                                                        39 
+##                                              Goswell Road                                              Gower Street 
+##                                                        25                                                        13 
+##                                           Gray&#39;s Inn Road                                       Great Chertsey Road 
+##                                                        36                                                        20 
+##                                      Great Eastern Street                                           Great West Road 
+##                                                        17                                                        57 
+##                                               Green Lanes                                           Grosvenor Place 
+##                                                        75                                                        11 
+##                                              Hackney Road                                          Hamilton Terrace 
+##                                                        38                                                        12 
+##                                          Hammersmith Road                                            Hampstead Road 
+##                                                        20                                                        37 
+##                                        Hampton Court Road                                               Hanley Road 
+##                                                        19                                                        15 
+##                                               Harrow Road                                           Haverstock Hill 
+##                                                        64                                                        19 
+##                                                Heath Road                                           Hemingford Road 
+##                                                        14                                                         7 
+##                                              High Holborn                                                 High Road 
+##                                                        30                                                        43 
+##                                               High Street                                 High Street Colliers Wood 
+##                                                        99                                                        20 
+##                                             Highbury Hill                                             Highgate Road 
+##                                                         5                                                         7 
+##                                              Hogarth Lane                                              Holland Road 
+##                                                         4                                                         8 
+##                                             Holloway Road                                              Hornsey Road 
+##                                                       107                                                        28 
+##                                           Horseferry Road                                              Isledon Road 
+##                                                        11                                                        14 
+##                                              Jamaica Road                                        John Ruskin Street 
+##                                                        23                                                         4 
+##                                             Junction Road                                           Kennington Lane 
+##                                                        24                                                        41 
+##                                      Kennington Park Road                                           Kennington Road 
+##                                                         9                                                        39 
+##                                    Kensington High Street                                         Kentish Town Road 
+##                                                        38                                                        19 
+##                                                  Kew Road                                               King Street 
+##                                                        26                                                        19 
+##                                         King&#39;s Cross Road                                               King&#39;s Road 
+##                                                        16                                                        55 
+##                                              Kings Avenue                                          Kingshill Avenue 
+##                                                        17                                                         5 
+##                                            Kingsland Road                                             Kingston Road 
+##                                                        52                                                        17 
+##                                                  Kingsway                                             Knightsbridge 
+##                                                        10                                                        18 
+##                                            Ladbroke Grove                                       Lambeth Palace Road 
+##                                                        31                                                        23 
+##                                              Lambeth Road                                             Lavender Hill 
+##                                                        30                                                        34 
+##                                           Lea Bridge Road                                            Liverpool Road 
+##                                                        43                                                        50 
+##                                             London Bridge                                               London Road 
+##                                                         5                                                        74 
+##                                             Lonsdale Road                                         Loughborough Road 
+##                                                         6                                                         9 
+##                                       Lower Mortlake Road                                       Lower Richmond Road 
+##                                                        18                                                        17 
+##                                                Lower Road                                              Lupus Street 
+##                                                        13                                                        15 
+##                                            Lyttelton Road                                                 Main Road 
+##                                                        15                                                         9 
+##                                               Malden Road                                           Manchester Road 
+##                                                        16                                                        33 
+##                                            Mansell Street                                           Marylebone Road 
+##                                                        21                                                        50 
+##                                        Merton High Street                                               Merton Road 
+##                                                        19                                                        23 
+##                                              Midland Road                                             Mile End Road 
+##                                                        11                                                        63 
+##                                                  Millbank                                              Mitcham Road 
+##                                                        18                                                        30 
+##                                             Mortlake Road                                            New Cross Road 
+##                                                        27                                                        46 
+##                                             New Kent Road                                           New King&#39;s Road 
+##                                                        27                                                        14 
+##                                            New North Road                                                Newham Way 
+##                                                        22                                                        32 
+##                                            Nine Elms Lane                                       North Circular Road 
+##                                                        30                                                         5 
+##                                                North Hill North-South Cycle Superhighway (Blackfriars Road section) 
+##                                                        14                                                        10 
+##                                              Norwood Road                                             Oakley Street 
+##                                                        27                                                        15 
+##                                         Old Brompton Road                                             Old Kent Road 
+##                                                        30                                                        86 
+##                                                Old Street                                                     Other 
+##                                                        34                                                      4029 
+##                                              Outer Circle                                                 Pall Mall 
+##                                                        48                                                        12 
+##                                                 Park Lane                                                 Park Road 
+##                                                        38                                                        24 
+##                                            Parkhurst Road                                       Peckham High Street 
+##                                                        18                                                        16 
+##                                              Peckham Road                                                Piccadilly 
+##                                                        27                                                        36 
+##                                      Piccadilly Underpass                                               Plough Lane 
+##                                                         2                                                         7 
+##                                            Portland Place                                             Poynders Road 
+##                                                         8                                                        12 
+##                                     Prince of Wales Drive                                      Prince of Wales Road 
+##                                                        13                                                        11 
+##                                              Queen&#39;s Gate                                              Queen&#39;s Road 
+##                                                        10                                                        25 
+##                                         Queensbridge Road                                           Queenstown Road 
+##                                                        32                                                        32 
+##                                           Randolph Avenue                                              Rectory Road 
+##                                                        13                                                        12 
+##                                             Regent Street                                                Roman Road 
+##                                                        22                                                        26 
+##                                                 Roman Way                                              Romford Road 
+##                                                        25                                                        80 
+##                                           Rosebery Avenue                                            Rosendale Road 
+##                                                        29                                                        17 
+##                                      Royal College Street                                          Royal Docks Road 
+##                                                        14                                                        10 
+##                                           Rush Green Road                                          Sandringham Road 
+##                                                        13                                                        13 
+##                                               Scrubs Lane                                        Seven Sisters Road 
+##                                                         7                                                        58 
+##                                                Sheen Road                                             Shirland Road 
+##                                                        17                                                        13 
+##                                        Shooters Hill Road                                    Shoreditch High Street 
+##                                                        35                                                        26 
+##                                             Sloane Avenue                                             Sloane Street 
+##                                                         8                                                        15 
+##                                      South Carriage Drive                                        South Lambeth Road 
+##                                                        20                                                        23 
+##                                             Southall Lane                                           Southampton Row 
+##                                                         5                                                        11 
+##                                           Southampton Way                                            Southgate Road 
+##                                                         7                                                        12 
+##                                     Southwark Bridge Road                                          Southwark Street 
+##                                                        23                                                        21 
+##                                            St John Street                                             Stamford Hill 
+##                                                        15                                                        33 
+##                                           Stamford Street                                        Stanwell Moor Road 
+##                                                         8                                                        16 
+##                               Stoke Newington High Street                                      Stoke Newington Road 
+##                                                        20                                                        25 
+##                                                    Strand                                           Strawberry Vale 
+##                                                        46                                                         8 
+##                                       Streatham High Road                                            Streatham Hill 
+##                                                        22                                                        42 
+##                                         Sutherland Avenue                                               Swandon Way 
+##                                                         5                                                        15 
+##                                             Talgarth Road                                                The Avenue 
+##                                                        14                                                        14 
+##                                                  The Mall                                            Theobalds Road 
+##                                                        19                                                        12 
+##                                            Thurlow Street                                             Tooley Street 
+##                                                        10                                                        27 
+##                                       Tooting High Street                                      Tottenham Court Road 
+##                                                        17                                                        33 
+##                                         Tower Bridge Road                                           Twickenham Road 
+##                                                        36                                                        44 
+##                                       Upper Richmond Road                                  Upper Richmond Road West 
+##                                                        60                                                        39 
+##                                              Upper Street                                        Upper Tooting Road 
+##                                                        52                                                        25 
+##                                      Vauxhall Bridge Road                                           Victoria Street 
+##                                                        25                                                         9 
+##                                             Villiers Road                                             Walworth Road 
+##                                                        10                                                        21 
+##                                           Wandsworth Road                                           Warwick Gardens 
+##                                                        52                                                        11 
+##                                              Warwick Road                                           Waterloo Bridge 
+##                                                        30                                                        14 
+##                                       West Carriage Drive                                        West Cromwell Road 
+##                                                        27                                                        12 
+##                                      West India Dock Road                                            Westferry Road 
+##                                                        12                                                        19 
+##                                   Westminster Bridge Road                                   Whitechapel High Street 
+##                                                        34                                                        26 
+##                                          Whitechapel Road                                            Wigmore Street 
+##                                                        28                                                         7 
+##                                              Yeading Lane                                                 York Road 
+##                                                         5                                                        68 
 ##                                                  York Way 
 ##                                                        24</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   0.000   0.000   0.175   0.325 
-## 3rd Qu.    Max. 
-##   0.544   1.091</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   0.000   0.000   0.175   0.325   0.544   1.091</code></pre>
 <pre><code>## [1] 80</code></pre>
 <pre><code>## 
-##                                                        A1 
-##                                                         1 
-##                                                      A107 
-##                                                         1 
-##                                                       A11 
-##                                                         1 
-##                                                     A1206 
-##                                                         1 
-##                                                     A1261 
-##                                                         3 
-##                                                      A200 
-##                                                         1 
-##                                                       A23 
-##                                                         1 
-##                                                      A301 
-##                                                         1 
-##                                                     A3036 
-##                                                         1 
-##                                                      A307 
-##                                                         1 
-##                                                      A310 
-##                                                         1 
-##                                                      A315 
-##                                                         3 
-##                                                      A316 
-##                                                         5 
-##                                                     A3205 
-##                                                         1 
-##                                                        A4 
-##                                                         2 
-##                                                      A404 
-##                                                         1 
-##                                              Abbey Street 
-##                                                         1 
-##                                            Abercorn Place 
-##                                                         1 
-##                                            Aberdeen Place 
-##                                                         1 
-##                                           Abingdon Street 
-##                                                         1 
-##                                                 Acre Lane 
-##                                                         1 
-##                                                Acton Lane 
-##                                                         1 
-##                                          Addington Street 
-##                                                         1 
-##                                              Addison Road 
-##                                                         1 
-##                                             Albany Street 
-##                                                         1 
-##                                             Albert Bridge 
-##                                                         2 
-##                                        Albert Bridge Road 
-##                                                         1 
-##                                         Albert Embankment 
-##                                                         1 
-##                                         Aldersgate Street 
-##                                                         1 
-##                                                   Aldwych 
-##                                                         1 
-##                                              Amhurst Road 
-##                                                         1 
-##                                              Archway Road 
-##                                                         1 
-##                                                 Aspen Way 
-##                                                         1 
-##                                               Avenue Road 
-##                                                         1 
-##                                               Aylmer Road 
-##                                                         1 
-##                                                      B206 
-##                                                         1 
-##                                              Baker Street 
-##                                                         1 
-##                                          Balham High Road 
-##                                                         1 
-##                                             Baring Street 
-##                                                         1 
-##                                            Barnsbury Road 
-##                                                         1 
-##                                           Barrington Road 
-##                                                         1 
-##                                                 Bath Road 
-##                                                         2 
-##                                     Battersea Bridge Road 
-##                                                         1 
-##                                       Battersea Park Road 
-##                                                         1 
-##                                             Bayley Street 
-##                                                         1 
-##                                               Baylis Road 
-##                                                         1 
-##                                            Bayswater Road 
-##                                                         2 
-##                                           Beauchamp Place 
-##                                                         1 
-##                                               Bedford Row 
-##                                                         1 
-##                                            Belgrave Place 
-##                                                         1 
-##                                         Bermondsey Street 
-##                                                         1 
-##                                        Bethnal Green Road 
-##                                                         1 
-##                                             Birdcage Walk 
-##                                                         1 
-##                                               Bishopsgate 
-##                                                         1 
-##                                          Blackfriars Road 
-##                                                         1 
-##                                     Blackfriars Underpass 
-##                                                         1 
-##                                           Blackheath Hill 
-##                                                         1 
-##                                            Blackshaw Road 
-##                                                         1 
-##                                         Bloomsbury Square 
-##                                                         1 
-##                                         Bloomsbury Street 
-##                                                         1 
-##                                            Bolton Gardens 
-##                                                         1 
-##                                       Borough High Street 
-##                                                         2 
-##                                              Borough Road 
-##                                                         1 
-##                                               Bow Flyover 
-##                                                         1 
-##                                                  Bow Road 
-##                                                         1 
-##                                              Bowyer Place 
-##                                                         1 
-##                                  Bricklayers Arms Flyover 
-##                                                         1 
-##                                            Bridgeman Road 
-##                                                         1 
-##                                              Brixton Hill 
-##                                                         1 
-##                                              Brixton Road 
-##                                                         1 
-##                                              Bromley Road 
-##                                                         1 
-##                                             Brompton Road 
-##                                                         2 
-##                                                Brook Gate 
-##                                                         1 
-##                                            Brookmill Road 
-##                                                         1 
-##                                               Bruce Grove 
-##                                                         1 
-##                                          Brunswick Square 
-##                                                         1 
-##                                             Buckhold Road 
-##                                                         1 
-##                                           Buckingham Gate 
-##                                                         2 
-##                                    Buckingham Palace Road 
-##                                                         1 
-##                                           Burlington Lane 
-##                                                         1 
-##                                            Burntwood Lane 
-##                                                         1 
-##                                               Butcher Row 
-##                                                         1 
-##                                           Caledonian Road 
-##                                                         1 
-##                                          Calthorpe Street 
-##                                                         1 
-##                                  Camberwell Church Street 
-##                                                         1 
-##                                       Camberwell New Road 
-##                                                         1 
-##                                           Camberwell Road 
-##                                                         2 
-##                                      Cambridge Heath Road 
-##                                                         1 
-##                                        Camden High Street 
-##                                                         1 
-##                                               Camden Road 
-##                                                         2 
-##                                             Camden Street 
-##                                                         1 
-##                                   Canning Town Roundabout 
-##                                                         1 
-##                                            Canonbury Road 
-##                                                         1 
-##                                              Carlton Hill 
-##                                                         1 
-##                                              Carlton Vale 
-##                                                         2 
-##                                                 Castelnau 
-##                                                         1 
-##                                            Cavendish Road 
-##                                                         1 
-##                                               Cedars Road 
-##                                                         2 
-##                                           Chalk Farm Road 
-##                                                         1 
-##                                        Charing Cross Road 
-##                                                         1 
-##                                             Charlton Road 
-##                                                         1 
-##                                         Charterhouse Road 
-##                                                         1 
-##                                       Charterhouse Street 
-##                                                         1 
-##                                       Chelsea Bridge Road 
-##                                                         1 
-##                                        Chelsea Embankment 
-##                                                         1 
-##                                            Chepstow Place 
-##                                                         1 
-##                                             Chertsey Road 
-##                                                         1 
-##                                        Chiswick High Road 
-##                                                         1 
-##                                         Christchurch Road 
-##                                                         1 
-##                                                 City Road 
-##                                                         1 
-##                                 Clapham Common North Side 
-##                                                         1 
-##                                  Clapham Common West Side 
-##                                                         1 
-##                                       Clapham High Street 
-##                                                         1 
-##                                         Clapham Park Road 
-##                                                         1 
-##                                              Clapham Road 
-##                                                         1 
-##                                          Clarence Terrace 
-##                                                         1 
-##                                          Clerkenwell Road 
-##                                                         2 
-##                                           Clifford Avenue 
-##                                                         2 
-##                                          Coldharbour Lane 
-##                                                         1 
-##                                             College Cross 
-##                                                         1 
-##                                         Colnbrook By-pass 
-##                                                         1 
-##                                         Colnbrook By-Pass 
-##                                                         1 
-##                                             Columbia Road 
-##                                                         1 
-##                                           Commercial Road 
-##                                                         1 
-##                                         Commercial Street 
-##                                                         1 
-##                                            Conduit Street 
-##                                                         1 
-##                                         Constitution Hill 
-##                                                         1 
-##                                               Country Way 
-##                                                         1 
-##                                                Creek Road 
-##                                                         1 
-##                                             Cromwell Road 
-##                                                         3 
-##                                                Cross Deep 
-##                                                         1 
-##                                           Crownfield Road 
-##                                                         1 
-##                                   CS5 segregated cycleway 
-##                                                         1 
-##                                      Cycle Superhighway 7 
-##                                                         1 
-##                                             Dagenham Road 
-##                                                         1 
-##                                              Denmark Hill 
-##                                                         1 
-##                                           Deptford Bridge 
-##                                                         1 
-##                                           Draycott Avenue 
-##                                                         1 
-##                                              Drayton Park 
-##                                                         1 
-##                                              Druid Street 
-##                                                         1 
-##                                         Earl&#39;s Court Road 
-##                                                         1 
-##                                      East India Dock Road 
-##                                                         1 
-##                                                 East Lane 
-##                                                         1 
-##                                                 East Road 
-##                                                         1 
-##                                         Ebury Bridge Road 
-##                                                         1 
-##                                          Eccleston Square 
-##                                                         1 
-##                                              Edgware Road 
-##                                                         1 
-##                                       Elephant and Castle 
-##                                                         1 
-##                                              Elgin Avenue 
-##                                                         1 
-##                                            Ellesmere Road 
-##                                                         2 
-##                                             Endell Street 
-##                                                         1 
-##                                                Essex Road 
-##                                                         2 
-##                                               Euston Road 
-##                                                         1 
-##                                          Euston Underpass 
-##                                                         1 
-##                                             Evelyn Street 
-##                                                         1 
-##                                          Eversholt Street 
-##                                                         1 
-##                                              Falloden Way 
-##                                                         1 
-##                                         Farringdon Street 
-##                                                         1 
-##                                           Ferme Park Road 
-##                                                         1 
-##                                                Ferry Lane 
-##                                                         1 
-##                                         Finsbury Pavement 
-##                                                         1 
-##                                              Fleet Street 
-##                                                         1 
-##                                          Forest Hill Road 
-##                                                         1 
-##                                               Forest Road 
-##                                                         1 
-##                                              Fortess Road 
-##                                                         1 
-##                                                Fryent Way 
-##                                                         1 
-##                                           Fulham Broadway 
-##                                                         1 
-##                                               Fulham Road 
-##                                                         2 
-##                                              Garratt Lane 
-##                                                         1 
-##                                         Gloucester Avenue 
-##                                                         2 
-##                                          Gloucester Place 
-##                                                         1 
-##                                             Goldhawk Road 
-##                                                         1 
-##                                            Goodman&#39;s Yard 
-##                                                         1 
-##                                              Goswell Road 
-##                                                         1 
-##                                              Gower Street 
-##                                                         1 
-##                                        Gracechurch Street 
-##                                                         1 
-##                                               Grafton Way 
-##                                                         1 
-##                                               Grange Road 
-##                                                         1 
-##                                           Gray&#39;s Inn Road 
-##                                                         1 
-##                                            Grays Inn Road 
-##                                                         1 
-##                                       Great Chertsey Road 
-##                                                         2 
-##                                        Great Dover Street 
-##                                                         1 
-##                                        Great Eastern Road 
-##                                                         1 
-##                                      Great Eastern Street 
-##                                                         2 
-##                                           Great West Road 
-##                                                         3 
-##                                        Great Western Road 
-##                                                         1 
-##                                               Green Lanes 
-##                                                         1 
-##                                         Grosvenor Gardens 
-##                                                         1 
-##                                           Grosvenor Place 
-##                                                         1 
-##                                            Grosvenor Road 
-##                                                         1 
-##                                                Grove Road 
-##                                                         1 
-##                                           Guilford Street 
-##                                                         1 
-##                                              Hackney Road 
-##                                                         1 
-##                                            Half Moon Lane 
-##                                                         1 
-##                                          Hamilton Terrace 
-##                                                         1 
-##                                   Hammersmith Bridge Road 
-##                                                         1 
-##                                       Hammersmith Flyover 
-##                                                         1 
-##                                          Hammersmith Road 
-##                                                         1 
-##                                     Hampstead High Street 
-##                                                         1 
-##                                            Hampstead Road 
-##                                                         1 
-##                                        Hampton Court Road 
-##                                                         2 
-##                                               Hanley Road 
-##                                                         1 
-##                                            Harmood Street 
-##                                                         1 
-##                                         Harrington Square 
-##                                                         1 
-##                                               Harrow Road 
-##                                                         1 
-##                                                Hatch Lane 
-##                                                         1 
-##                                             Hatton Garden 
-##                                                         1 
-##                                           Haverstock Hill 
-##                                                         1 
-##                                                Hawks Road 
-##                                                         1 
-##                                           Headstone Drive 
-##                                                         1 
-##                                                Heath Road 
-##                                                         1 
-##                                           Hemingford Road 
-##                                                         1 
-##                                              High Holborn 
-##                                                         1 
-##                                                 High Road 
-##                                                         1 
-##                                               High Street 
-##                                                         4 
-##                                 High Street Colliers Wood 
-##                                                         1 
-##                                           Highbury Corner 
-##                                                         1 
-##                                             Highbury Hill 
-##                                                         1 
-##                                      Highgate High Street 
-##                                                         1 
-##                                             Highgate Road 
-##                                                         1 
-##                                           Hillmarton Road 
-##                                                         2 
-##                                               Hinton Road 
-##                                                         1 
-##                                              Hogarth Lane 
-##                                                         2 
-##                                               Holborn Way 
-##                                                         1 
-##                                              Holland Road 
-##                                                         1 
-##                                             Holloway Road 
-##                                                         1 
-##                                              Hornsey Road 
-##                                                         1 
-##                                           Horseferry Road 
-##                                                         1 
-##                                           Hyde Park Place 
-##                                                         1 
-##                                               Ilford Hill 
-##                                                         1 
-##                                              Isledon Road 
-##                                                         1 
-##                                     Islington High Street 
-##                                                         1 
-##                                              Jamaica Road 
-##                                                         1 
-##                                         John Islip Street 
-##                                                         1 
-##                                        John Ruskin Street 
-##                                                         1 
-##                                               Judd Street 
-##                                                         1 
-##                                             Junction Road 
-##                                                         1 
-##                                           Kennington Lane 
-##                                                         1 
-##                                      Kennington Park Road 
-##                                                         3 
-##                                           Kennington Road 
-##                                                         1 
-##                                    Kensington High Street 
-##                                                         1 
-##                                         Kentish Town Road 
-##                                                         2 
-##                                                  Kew Road 
-##                                                         2 
-##                                         King Henry&#39;s Road 
-##                                                         1 
-##                                               King Street 
-##                                                         1 
-##                                       King William Street 
-##                                                         1 
-##                                             King&#39;s Avenue 
-##                                                         1 
-##                                       King&#39;s Cross Bridge 
-##                                                         1 
-##                                         King&#39;s Cross Road 
-##                                                         1 
-##                                               King&#39;s Road 
-##                                                         2 
-##                                              Kings Avenue 
-##                                                         1 
-##                                          Kingshill Avenue 
-##                                                         1 
-##                                     Kingsland High Street 
-##                                                         1 
-##                                            Kingsland Road 
-##                                                         1 
-##                                             Kingston Road 
-##                                                         1 
-##                                                  Kingsway 
-##                                                         1 
-##                                             Knightsbridge 
-##                                                         1 
-##                                            Ladbroke Grove 
-##                                                         1 
-##                                            Lambeth Bridge 
-##                                                         1 
-##                                       Lambeth Palace Road 
-##                                                         1 
-##                                              Lambeth Road 
-##                                                         1 
-##                                           Lancaster Place 
-##                                                         1 
-##                                             Langham Place 
-##                                                         1 
-##                                             Lavender Hill 
-##                                                         1 
-##                                           Lea Bridge Road 
-##                                                         1 
-##                                             Leamouth Road 
-##                                                         1 
-##                                              Leman Street 
-##                                                         1 
-##                                               Lennox Road 
-##                                                         1 
-##                                          Leytonstone Road 
-##                                                         1 
-##                                              Lilford Road 
-##                                                         1 
-##                                               Lillie Road 
-##                                                         1 
-##                                            Limehouse Link 
-##                                                         1 
-##                                            Liverpool Road 
-##                                                         1 
-##                                              Lombard Road 
-##                                                         1 
-##                                             London Bridge 
-##                                                         1 
-##                                               London Road 
-##                                                         5 
-##                                                 Long Lane 
-##                                                         1 
-##                                                 Long Road 
-##                                                         1 
-##                                             Lonsdale Road 
-##                                                         1 
-##                                         Loughborough Road 
-##                                                         1 
-##                                       Lower Mortlake Road 
-##                                                         1 
-##                                       Lower Richmond Road 
-##                                                         1 
-##                                                Lower Road 
-##                                                         1 
-##                                              Lupus Street 
-##                                                         1 
-##                                            Lyttelton Road 
-##                                                         1 
-##                                                 Main Road 
-##                                                         1 
-##                                               Malden Road 
-##                                                         1 
-##                                           Manchester Road 
-##                                                         1 
-##                                            Mansell Street 
-##                                                         1 
-##                                               Mare Street 
-##                                                         1 
-##                                           Marshalsea Road 
-##                                                         1 
-##                                           Marylebone Road 
-##                                                         1 
-##                                        Merton High Street 
-##                                                         1 
-##                                               Merton Road 
-##                                                         1 
-##                                              Midland Road 
-##                                                         1 
-##                                              Mildmay Road 
-##                                                         1 
-##                                             Mile End Road 
-##                                                         1 
-##                                             Milkwood Road 
-##                                                         1 
-##                                                  Millbank 
-##                                                         1 
-##                                              Mitcham Road 
-##                                                         2 
-##                                              Monument Way 
-##                                                         1 
-##                                           Moreland Street 
-##                                                         1 
-##                                             Mortlake Road 
-##                                                         1 
-##                                            New Cross Road 
-##                                                         1 
-##                                             New Kent Road 
-##                                                         1 
-##                                           New King&#39;s Road 
-##                                                         1 
-##                                            New North Road 
-##                                                         2 
-##                                                Newham Way 
-##                                                         1 
-##                                        Newington Causeway 
-##                                                         1 
-##                                           Newington Green 
-##                                                         1 
-##                                            Nine Elms Lane 
-##                                                         1 
-##                                       North Circular Road 
-##                                                         1 
-##                                            North End Road 
-##                                                         1 
-##                                                North Hill 
-##                                                         1 
-## North-South Cycle Superhighway (Blackfriars Road section) 
-##                                                         1 
-##                                     Northumberland Avenue 
-##                                                         1 
-##                                            Northwold Road 
-##                                                         1 
-##                                              Norwood Road 
-##                                                         1 
-##                                         Notting Hill Gate 
-##                                                         1 
-##                                             Oakley Street 
-##                                                         1 
-##                                    Old Bethnal Green Road 
-##                                                         1 
-##                                         Old Brompton Road 
-##                                                         2 
-##                                             Old Ford Road 
-##                                                         1 
-##                                             Old Kent Road 
-##                                                         1 
-##                                       Old Marylebone Road 
-##                                                         1 
-##                                                Old Street 
-##                                                         2 
-##                                     Old Street Roundabout 
-##                                                         1 
-##                                              Outer Circle 
-##                                                         1 
-##                                                 Pall Mall 
-##                                                         1 
-##                                              Pancras Road 
-##                                                         1 
-##                                                 Park Lane 
-##                                                         1 
-##                                                 Park Road 
-##                                                         1 
-##                                            Parkhurst Road 
-##                                                         1 
-##                                                   Parkway 
-##                                                         1 
-##                                       Peckham High Street 
-##                                                         1 
-##                                              Peckham Road 
-##                                                         1 
-##                                               Peckham Rye 
-##                                                         1 
-##                                         Pemberton Gardens 
-##                                                         1 
-##                                            Pembridge Road 
-##                                                         1 
-##                                             Pembroke Road 
-##                                                         1 
-##                                               Penton Rise 
-##                                                         1 
-##                                                Piccadilly 
-##                                                         1 
-##                                      Piccadilly Underpass 
-##                                                         1 
-##                                              Pimlico Road 
-##                                                         1 
-##                                            Plender Street 
-##                                                         1 
-##                                               Plough Lane 
-##                                                         1 
-##                                               Pont Street 
-##                                                         1 
-##                                           Porchester Road 
-##                                                         1 
-##                                            Portland Place 
-##                                                         1 
-##                                            Portman Street 
-##                                                         1 
-##                                             Poynders Road 
-##                                                         1 
-##                                            Prescot Street 
-##                                                         1 
-##                                     Prince of Wales Drive 
-##                                                         1 
-##                                      Prince of Wales Gate 
-##                                                         1 
-##                                      Prince of Wales Road 
-##                                                         1 
-##                                        Queen Street Place 
-##                                                         1 
-##                                            Queen&#39;s Circus 
-##                                                         1 
-##                                              Queen&#39;s Gate 
-##                                                         1 
-##                                              Queen&#39;s Road 
-##                                                         1 
-##                                         Queensbridge Road 
-##                                                         1 
-##                                           Queenstown Road 
-##                                                         1 
-##                                                Ram Street 
-##                                                         1 
-##                                           Randolph Avenue 
-##                                                         1 
-##                                              Rectory Lane 
-##                                                         1 
-##                                              Rectory Road 
-##                                                         1 
-##                                             Regent Street 
-##                                                         1 
-##                                           Richmond Circus 
-##                                                         1 
-##                                             Richmond Road 
-##                                                         1 
-##                                             Rochester Row 
-##                                                         1 
-##                                                Rolls Road 
-##                                                         1 
-##                                                Roman Road 
-##                                                         1 
-##                                                 Roman Way 
-##                                                         2 
-##                                              Romford Road 
-##                                                         1 
-##                                           Rosebery Avenue 
-##                                                         1 
-##                                            Rosendale Road 
-##                                                         1 
-##                                      Royal College Street 
-##                                                         1 
-##                                          Royal Docks Road 
-##                                                         1 
-##                                       Royal Hospital Road 
-##                                                         2 
-##                                           Rush Green Road 
-##                                                         1 
-##                                      Saint Botolph Street 
-##                                                         1 
-##                                          Sandringham Road 
-##                                                         1 
-##                                               Scrubs Lane 
-##                                                         1 
-##                                        Seven Sisters Road 
-##                                                         1 
-##                                            Seymour Street 
-##                                                         1 
-##                                                Sheen Road 
-##                                                         1 
-##                                      Shepherds Bush Green 
-##                                                         1 
-##                                             Shirland Road 
-##                                                         1 
-##                                        Shooters Hill Road 
-##                                                         1 
-##                                    Shoreditch High Street 
-##                                                         1 
-##                                            Shorter Street 
-##                                                         1 
-##                                             Sloane Avenue 
-##                                                         1 
-##                                             Sloane Square 
-##                                                         1 
-##                                             Sloane Street 
-##                                                         2 
-##                                      South Carriage Drive 
-##                                                         2 
-##                                        South Lambeth Road 
-##                                                         1 
-##                                             Southall Lane 
-##                                                         1 
-##                                          Southampton Road 
-##                                                         1 
-##                                           Southampton Row 
-##                                                         1 
-##                                           Southampton Way 
-##                                                         1 
-##                                            Southgate Road 
-##                                                         1 
-##                                     Southwark Bridge Road 
-##                                                         1 
-##                                       Southwark Park Road 
-##                                                         1 
-##                                          Southwark Street 
-##                                                         1 
-##                                          St Andrew Street 
-##                                                         1 
-##                                            St John Street 
-##                                                         1 
-##                                             St John&#39;s Way 
-##                                                         1 
-##                                       St John&#39;s Wood Road 
-##                                                         1 
-##                                           St. John Street 
-##                                                         2 
-##                                           St. Paul&#39;s Road 
-##                                                         1 
-##                                             Stamford Hill 
-##                                                         1 
-##                                           Stamford Street 
-##                                                         1 
-##                                        Stanwell Moor Road 
-##                                                         1 
-##                                              Station Road 
-##                                                         1 
-##                               Stoke Newington High Street 
-##                                                         1 
-##                                      Stoke Newington Road 
-##                                                         1 
-##                                                    Strand 
-##                                                         1 
-##                                           Stratheden Road 
-##                                                         1 
-##                                           Strawberry Vale 
-##                                                         1 
-##                                       Streatham High Road 
-##                                                         1 
-##                                            Streatham Hill 
-##                                                         1 
-##                                           Streatham Place 
-##                                                         1 
-##                                                Sun Street 
-##                                                         1 
-##                                            Sussex Gardens 
-##                                                         1 
-##                                         Sutherland Avenue 
-##                                                         1 
-##                                               Swandon Way 
-##                                                         1 
-##                                             Talgarth Road 
-##                                                         1 
-##                                         Temple Mills Lane 
-##                                                         1 
-##                                                The Avenue 
-##                                                         1 
-##                                                  The Mall 
-##                                                         1 
-##                                            Theobalds Road 
-##                                                         1 
-##                                             Thurloe Place 
-##                                                         2 
-##                                            Thurlow Street 
-##                                                         1 
-##                                           Tollington Road 
-##                                                         1 
-##                                             Tooley Street 
-##                                                         1 
-##                                       Tooting High Street 
-##                                                         1 
-##                                      Tottenham Court Road 
-##                                                         1 
-##                                     Tower Bridge Approach 
-##                                                         1 
-##                                         Tower Bridge Road 
-##                                                         1 
-##                                            Trinity Street 
-##                                                         1 
-##                                               Turney Road 
-##                                                         1 
-##                                           Twickenham Road 
-##                                                         4 
-##                                              Union Street 
-##                                                         1 
-##                                              Unnamed road 
-##                                                        48 
-##                                       Upper Richmond Road 
-##                                                         1 
-##                                  Upper Richmond Road West 
-##                                                         1 
-##                                 Upper Saint Martin&#39;s Lane 
-##                                                         1 
-##                                              Upper Street 
-##                                                         1 
-##                                        Upper Tooting Road 
-##                                                         1 
-##                                             Vallance Road 
-##                                                         1 
-##                                      Vauxhall Bridge Road 
-##                                                         1 
-##                                       Victoria Embankment 
-##                                                         1 
-##                                           Victoria Street 
-##                                                         1 
-##                                             Villiers Road 
-##                                                         1 
-##                                             Walworth Road 
-##                                                         1 
-##                                    Wandsworth Bridge Road 
-##                                                         1 
-##                                           Wandsworth Road 
-##                                                         1 
-##                                           Warwick Gardens 
-##                                                         1 
-##                                              Warwick Road 
-##                                                         1 
-##                                           Waterloo Bridge 
-##                                                         1 
-##                                             Waterloo Road 
-##                                                         2 
-##                                       West Carriage Drive 
-##                                                         1 
-##                                        West Cromwell Road 
-##                                                         1 
-##                                      West India Dock Road 
-##                                                         1 
-##                                            Westferry Road 
-##                                                         2 
-##                                   Westminster Bridge Road 
-##                                                         1 
-##                                                   Westway 
-##                                                         1 
-##                                            Wharfdale Road 
-##                                                         1 
-##                                   Whitechapel High Street 
-##                                                         1 
-##                                          Whitechapel Road 
-##                                                         1 
-##                                            Wigmore Street 
-##                                                         1 
-##                                        William Henry Walk 
-##                                                         1 
-##                                            Wimbledon Road 
-##                                                         1 
-##                                              Yeading Lane 
-##                                                         1 
-##                                                 York Road 
-##                                                         2 
+##                                                        A1                                                      A107 
+##                                                         1                                                         1 
+##                                                       A11                                                     A1206 
+##                                                         1                                                         1 
+##                                                     A1261                                                      A200 
+##                                                         3                                                         1 
+##                                                       A23                                                      A301 
+##                                                         1                                                         1 
+##                                                     A3036                                                      A307 
+##                                                         1                                                         1 
+##                                                      A310                                                      A315 
+##                                                         1                                                         3 
+##                                                      A316                                                     A3205 
+##                                                         5                                                         1 
+##                                                        A4                                                      A404 
+##                                                         2                                                         1 
+##                                              Abbey Street                                            Abercorn Place 
+##                                                         1                                                         1 
+##                                            Aberdeen Place                                           Abingdon Street 
+##                                                         1                                                         1 
+##                                                 Acre Lane                                                Acton Lane 
+##                                                         1                                                         1 
+##                                          Addington Street                                              Addison Road 
+##                                                         1                                                         1 
+##                                             Albany Street                                             Albert Bridge 
+##                                                         1                                                         2 
+##                                        Albert Bridge Road                                         Albert Embankment 
+##                                                         1                                                         1 
+##                                         Aldersgate Street                                                   Aldwych 
+##                                                         1                                                         1 
+##                                              Amhurst Road                                              Archway Road 
+##                                                         1                                                         1 
+##                                                 Aspen Way                                               Avenue Road 
+##                                                         1                                                         1 
+##                                               Aylmer Road                                                      B206 
+##                                                         1                                                         1 
+##                                              Baker Street                                          Balham High Road 
+##                                                         1                                                         1 
+##                                             Baring Street                                            Barnsbury Road 
+##                                                         1                                                         1 
+##                                           Barrington Road                                                 Bath Road 
+##                                                         1                                                         2 
+##                                     Battersea Bridge Road                                       Battersea Park Road 
+##                                                         1                                                         1 
+##                                             Bayley Street                                               Baylis Road 
+##                                                         1                                                         1 
+##                                            Bayswater Road                                           Beauchamp Place 
+##                                                         2                                                         1 
+##                                               Bedford Row                                            Belgrave Place 
+##                                                         1                                                         1 
+##                                         Bermondsey Street                                        Bethnal Green Road 
+##                                                         1                                                         1 
+##                                             Birdcage Walk                                               Bishopsgate 
+##                                                         1                                                         1 
+##                                          Blackfriars Road                                     Blackfriars Underpass 
+##                                                         1                                                         1 
+##                                           Blackheath Hill                                            Blackshaw Road 
+##                                                         1                                                         1 
+##                                         Bloomsbury Square                                         Bloomsbury Street 
+##                                                         1                                                         1 
+##                                            Bolton Gardens                                       Borough High Street 
+##                                                         1                                                         2 
+##                                              Borough Road                                               Bow Flyover 
+##                                                         1                                                         1 
+##                                                  Bow Road                                              Bowyer Place 
+##                                                         1                                                         1 
+##                                  Bricklayers Arms Flyover                                            Bridgeman Road 
+##                                                         1                                                         1 
+##                                              Brixton Hill                                              Brixton Road 
+##                                                         1                                                         1 
+##                                              Bromley Road                                             Brompton Road 
+##                                                         1                                                         2 
+##                                                Brook Gate                                            Brookmill Road 
+##                                                         1                                                         1 
+##                                               Bruce Grove                                          Brunswick Square 
+##                                                         1                                                         1 
+##                                             Buckhold Road                                           Buckingham Gate 
+##                                                         1                                                         2 
+##                                    Buckingham Palace Road                                           Burlington Lane 
+##                                                         1                                                         1 
+##                                            Burntwood Lane                                               Butcher Row 
+##                                                         1                                                         1 
+##                                           Caledonian Road                                          Calthorpe Street 
+##                                                         1                                                         1 
+##                                  Camberwell Church Street                                       Camberwell New Road 
+##                                                         1                                                         1 
+##                                           Camberwell Road                                      Cambridge Heath Road 
+##                                                         2                                                         1 
+##                                        Camden High Street                                               Camden Road 
+##                                                         1                                                         2 
+##                                             Camden Street                                   Canning Town Roundabout 
+##                                                         1                                                         1 
+##                                            Canonbury Road                                              Carlton Hill 
+##                                                         1                                                         1 
+##                                              Carlton Vale                                                 Castelnau 
+##                                                         2                                                         1 
+##                                            Cavendish Road                                               Cedars Road 
+##                                                         1                                                         2 
+##                                           Chalk Farm Road                                        Charing Cross Road 
+##                                                         1                                                         1 
+##                                             Charlton Road                                         Charterhouse Road 
+##                                                         1                                                         1 
+##                                       Charterhouse Street                                       Chelsea Bridge Road 
+##                                                         1                                                         1 
+##                                        Chelsea Embankment                                            Chepstow Place 
+##                                                         1                                                         1 
+##                                             Chertsey Road                                        Chiswick High Road 
+##                                                         1                                                         1 
+##                                         Christchurch Road                                                 City Road 
+##                                                         1                                                         1 
+##                                 Clapham Common North Side                                  Clapham Common West Side 
+##                                                         1                                                         1 
+##                                       Clapham High Street                                         Clapham Park Road 
+##                                                         1                                                         1 
+##                                              Clapham Road                                          Clarence Terrace 
+##                                                         1                                                         1 
+##                                          Clerkenwell Road                                           Clifford Avenue 
+##                                                         2                                                         2 
+##                                          Coldharbour Lane                                             College Cross 
+##                                                         1                                                         1 
+##                                         Colnbrook By-pass                                         Colnbrook By-Pass 
+##                                                         1                                                         1 
+##                                             Columbia Road                                           Commercial Road 
+##                                                         1                                                         1 
+##                                         Commercial Street                                            Conduit Street 
+##                                                         1                                                         1 
+##                                         Constitution Hill                                               Country Way 
+##                                                         1                                                         1 
+##                                                Creek Road                                             Cromwell Road 
+##                                                         1                                                         3 
+##                                                Cross Deep                                           Crownfield Road 
+##                                                         1                                                         1 
+##                                   CS5 segregated cycleway                                      Cycle Superhighway 7 
+##                                                         1                                                         1 
+##                                             Dagenham Road                                              Denmark Hill 
+##                                                         1                                                         1 
+##                                           Deptford Bridge                                           Draycott Avenue 
+##                                                         1                                                         1 
+##                                              Drayton Park                                              Druid Street 
+##                                                         1                                                         1 
+##                                         Earl&#39;s Court Road                                      East India Dock Road 
+##                                                         1                                                         1 
+##                                                 East Lane                                                 East Road 
+##                                                         1                                                         1 
+##                                         Ebury Bridge Road                                          Eccleston Square 
+##                                                         1                                                         1 
+##                                              Edgware Road                                       Elephant and Castle 
+##                                                         1                                                         1 
+##                                              Elgin Avenue                                            Ellesmere Road 
+##                                                         1                                                         2 
+##                                             Endell Street                                                Essex Road 
+##                                                         1                                                         2 
+##                                               Euston Road                                          Euston Underpass 
+##                                                         1                                                         1 
+##                                             Evelyn Street                                          Eversholt Street 
+##                                                         1                                                         1 
+##                                              Falloden Way                                         Farringdon Street 
+##                                                         1                                                         1 
+##                                           Ferme Park Road                                                Ferry Lane 
+##                                                         1                                                         1 
+##                                         Finsbury Pavement                                              Fleet Street 
+##                                                         1                                                         1 
+##                                          Forest Hill Road                                               Forest Road 
+##                                                         1                                                         1 
+##                                              Fortess Road                                                Fryent Way 
+##                                                         1                                                         1 
+##                                           Fulham Broadway                                               Fulham Road 
+##                                                         1                                                         2 
+##                                              Garratt Lane                                         Gloucester Avenue 
+##                                                         1                                                         2 
+##                                          Gloucester Place                                             Goldhawk Road 
+##                                                         1                                                         1 
+##                                            Goodman&#39;s Yard                                              Goswell Road 
+##                                                         1                                                         1 
+##                                              Gower Street                                        Gracechurch Street 
+##                                                         1                                                         1 
+##                                               Grafton Way                                               Grange Road 
+##                                                         1                                                         1 
+##                                           Gray&#39;s Inn Road                                            Grays Inn Road 
+##                                                         1                                                         1 
+##                                       Great Chertsey Road                                        Great Dover Street 
+##                                                         2                                                         1 
+##                                        Great Eastern Road                                      Great Eastern Street 
+##                                                         1                                                         2 
+##                                           Great West Road                                        Great Western Road 
+##                                                         3                                                         1 
+##                                               Green Lanes                                         Grosvenor Gardens 
+##                                                         1                                                         1 
+##                                           Grosvenor Place                                            Grosvenor Road 
+##                                                         1                                                         1 
+##                                                Grove Road                                           Guilford Street 
+##                                                         1                                                         1 
+##                                              Hackney Road                                            Half Moon Lane 
+##                                                         1                                                         1 
+##                                          Hamilton Terrace                                   Hammersmith Bridge Road 
+##                                                         1                                                         1 
+##                                       Hammersmith Flyover                                          Hammersmith Road 
+##                                                         1                                                         1 
+##                                     Hampstead High Street                                            Hampstead Road 
+##                                                         1                                                         1 
+##                                        Hampton Court Road                                               Hanley Road 
+##                                                         2                                                         1 
+##                                            Harmood Street                                         Harrington Square 
+##                                                         1                                                         1 
+##                                               Harrow Road                                                Hatch Lane 
+##                                                         1                                                         1 
+##                                             Hatton Garden                                           Haverstock Hill 
+##                                                         1                                                         1 
+##                                                Hawks Road                                           Headstone Drive 
+##                                                         1                                                         1 
+##                                                Heath Road                                           Hemingford Road 
+##                                                         1                                                         1 
+##                                              High Holborn                                                 High Road 
+##                                                         1                                                         1 
+##                                               High Street                                 High Street Colliers Wood 
+##                                                         4                                                         1 
+##                                           Highbury Corner                                             Highbury Hill 
+##                                                         1                                                         1 
+##                                      Highgate High Street                                             Highgate Road 
+##                                                         1                                                         1 
+##                                           Hillmarton Road                                               Hinton Road 
+##                                                         2                                                         1 
+##                                              Hogarth Lane                                               Holborn Way 
+##                                                         2                                                         1 
+##                                              Holland Road                                             Holloway Road 
+##                                                         1                                                         1 
+##                                              Hornsey Road                                           Horseferry Road 
+##                                                         1                                                         1 
+##                                           Hyde Park Place                                               Ilford Hill 
+##                                                         1                                                         1 
+##                                              Isledon Road                                     Islington High Street 
+##                                                         1                                                         1 
+##                                              Jamaica Road                                         John Islip Street 
+##                                                         1                                                         1 
+##                                        John Ruskin Street                                               Judd Street 
+##                                                         1                                                         1 
+##                                             Junction Road                                           Kennington Lane 
+##                                                         1                                                         1 
+##                                      Kennington Park Road                                           Kennington Road 
+##                                                         3                                                         1 
+##                                    Kensington High Street                                         Kentish Town Road 
+##                                                         1                                                         2 
+##                                                  Kew Road                                         King Henry&#39;s Road 
+##                                                         2                                                         1 
+##                                               King Street                                       King William Street 
+##                                                         1                                                         1 
+##                                             King&#39;s Avenue                                       King&#39;s Cross Bridge 
+##                                                         1                                                         1 
+##                                         King&#39;s Cross Road                                               King&#39;s Road 
+##                                                         1                                                         2 
+##                                              Kings Avenue                                          Kingshill Avenue 
+##                                                         1                                                         1 
+##                                     Kingsland High Street                                            Kingsland Road 
+##                                                         1                                                         1 
+##                                             Kingston Road                                                  Kingsway 
+##                                                         1                                                         1 
+##                                             Knightsbridge                                            Ladbroke Grove 
+##                                                         1                                                         1 
+##                                            Lambeth Bridge                                       Lambeth Palace Road 
+##                                                         1                                                         1 
+##                                              Lambeth Road                                           Lancaster Place 
+##                                                         1                                                         1 
+##                                             Langham Place                                             Lavender Hill 
+##                                                         1                                                         1 
+##                                           Lea Bridge Road                                             Leamouth Road 
+##                                                         1                                                         1 
+##                                              Leman Street                                               Lennox Road 
+##                                                         1                                                         1 
+##                                          Leytonstone Road                                              Lilford Road 
+##                                                         1                                                         1 
+##                                               Lillie Road                                            Limehouse Link 
+##                                                         1                                                         1 
+##                                            Liverpool Road                                              Lombard Road 
+##                                                         1                                                         1 
+##                                             London Bridge                                               London Road 
+##                                                         1                                                         5 
+##                                                 Long Lane                                                 Long Road 
+##                                                         1                                                         1 
+##                                             Lonsdale Road                                         Loughborough Road 
+##                                                         1                                                         1 
+##                                       Lower Mortlake Road                                       Lower Richmond Road 
+##                                                         1                                                         1 
+##                                                Lower Road                                              Lupus Street 
+##                                                         1                                                         1 
+##                                            Lyttelton Road                                                 Main Road 
+##                                                         1                                                         1 
+##                                               Malden Road                                           Manchester Road 
+##                                                         1                                                         1 
+##                                            Mansell Street                                               Mare Street 
+##                                                         1                                                         1 
+##                                           Marshalsea Road                                           Marylebone Road 
+##                                                         1                                                         1 
+##                                        Merton High Street                                               Merton Road 
+##                                                         1                                                         1 
+##                                              Midland Road                                              Mildmay Road 
+##                                                         1                                                         1 
+##                                             Mile End Road                                             Milkwood Road 
+##                                                         1                                                         1 
+##                                                  Millbank                                              Mitcham Road 
+##                                                         1                                                         2 
+##                                              Monument Way                                           Moreland Street 
+##                                                         1                                                         1 
+##                                             Mortlake Road                                            New Cross Road 
+##                                                         1                                                         1 
+##                                             New Kent Road                                           New King&#39;s Road 
+##                                                         1                                                         1 
+##                                            New North Road                                                Newham Way 
+##                                                         2                                                         1 
+##                                        Newington Causeway                                           Newington Green 
+##                                                         1                                                         1 
+##                                            Nine Elms Lane                                       North Circular Road 
+##                                                         1                                                         1 
+##                                            North End Road                                                North Hill 
+##                                                         1                                                         1 
+## North-South Cycle Superhighway (Blackfriars Road section)                                     Northumberland Avenue 
+##                                                         1                                                         1 
+##                                            Northwold Road                                              Norwood Road 
+##                                                         1                                                         1 
+##                                         Notting Hill Gate                                             Oakley Street 
+##                                                         1                                                         1 
+##                                    Old Bethnal Green Road                                         Old Brompton Road 
+##                                                         1                                                         2 
+##                                             Old Ford Road                                             Old Kent Road 
+##                                                         1                                                         1 
+##                                       Old Marylebone Road                                                Old Street 
+##                                                         1                                                         2 
+##                                     Old Street Roundabout                                              Outer Circle 
+##                                                         1                                                         1 
+##                                                 Pall Mall                                              Pancras Road 
+##                                                         1                                                         1 
+##                                                 Park Lane                                                 Park Road 
+##                                                         1                                                         1 
+##                                            Parkhurst Road                                                   Parkway 
+##                                                         1                                                         1 
+##                                       Peckham High Street                                              Peckham Road 
+##                                                         1                                                         1 
+##                                               Peckham Rye                                         Pemberton Gardens 
+##                                                         1                                                         1 
+##                                            Pembridge Road                                             Pembroke Road 
+##                                                         1                                                         1 
+##                                               Penton Rise                                                Piccadilly 
+##                                                         1                                                         1 
+##                                      Piccadilly Underpass                                              Pimlico Road 
+##                                                         1                                                         1 
+##                                            Plender Street                                               Plough Lane 
+##                                                         1                                                         1 
+##                                               Pont Street                                           Porchester Road 
+##                                                         1                                                         1 
+##                                            Portland Place                                            Portman Street 
+##                                                         1                                                         1 
+##                                             Poynders Road                                            Prescot Street 
+##                                                         1                                                         1 
+##                                     Prince of Wales Drive                                      Prince of Wales Gate 
+##                                                         1                                                         1 
+##                                      Prince of Wales Road                                        Queen Street Place 
+##                                                         1                                                         1 
+##                                            Queen&#39;s Circus                                              Queen&#39;s Gate 
+##                                                         1                                                         1 
+##                                              Queen&#39;s Road                                         Queensbridge Road 
+##                                                         1                                                         1 
+##                                           Queenstown Road                                                Ram Street 
+##                                                         1                                                         1 
+##                                           Randolph Avenue                                              Rectory Lane 
+##                                                         1                                                         1 
+##                                              Rectory Road                                             Regent Street 
+##                                                         1                                                         1 
+##                                           Richmond Circus                                             Richmond Road 
+##                                                         1                                                         1 
+##                                             Rochester Row                                                Rolls Road 
+##                                                         1                                                         1 
+##                                                Roman Road                                                 Roman Way 
+##                                                         1                                                         2 
+##                                              Romford Road                                           Rosebery Avenue 
+##                                                         1                                                         1 
+##                                            Rosendale Road                                      Royal College Street 
+##                                                         1                                                         1 
+##                                          Royal Docks Road                                       Royal Hospital Road 
+##                                                         1                                                         2 
+##                                           Rush Green Road                                      Saint Botolph Street 
+##                                                         1                                                         1 
+##                                          Sandringham Road                                               Scrubs Lane 
+##                                                         1                                                         1 
+##                                        Seven Sisters Road                                            Seymour Street 
+##                                                         1                                                         1 
+##                                                Sheen Road                                      Shepherds Bush Green 
+##                                                         1                                                         1 
+##                                             Shirland Road                                        Shooters Hill Road 
+##                                                         1                                                         1 
+##                                    Shoreditch High Street                                            Shorter Street 
+##                                                         1                                                         1 
+##                                             Sloane Avenue                                             Sloane Square 
+##                                                         1                                                         1 
+##                                             Sloane Street                                      South Carriage Drive 
+##                                                         2                                                         2 
+##                                        South Lambeth Road                                             Southall Lane 
+##                                                         1                                                         1 
+##                                          Southampton Road                                           Southampton Row 
+##                                                         1                                                         1 
+##                                           Southampton Way                                            Southgate Road 
+##                                                         1                                                         1 
+##                                     Southwark Bridge Road                                       Southwark Park Road 
+##                                                         1                                                         1 
+##                                          Southwark Street                                          St Andrew Street 
+##                                                         1                                                         1 
+##                                            St John Street                                             St John&#39;s Way 
+##                                                         1                                                         1 
+##                                       St John&#39;s Wood Road                                           St. John Street 
+##                                                         1                                                         2 
+##                                           St. Paul&#39;s Road                                             Stamford Hill 
+##                                                         1                                                         1 
+##                                           Stamford Street                                        Stanwell Moor Road 
+##                                                         1                                                         1 
+##                                              Station Road                               Stoke Newington High Street 
+##                                                         1                                                         1 
+##                                      Stoke Newington Road                                                    Strand 
+##                                                         1                                                         1 
+##                                           Stratheden Road                                           Strawberry Vale 
+##                                                         1                                                         1 
+##                                       Streatham High Road                                            Streatham Hill 
+##                                                         1                                                         1 
+##                                           Streatham Place                                                Sun Street 
+##                                                         1                                                         1 
+##                                            Sussex Gardens                                         Sutherland Avenue 
+##                                                         1                                                         1 
+##                                               Swandon Way                                             Talgarth Road 
+##                                                         1                                                         1 
+##                                         Temple Mills Lane                                                The Avenue 
+##                                                         1                                                         1 
+##                                                  The Mall                                            Theobalds Road 
+##                                                         1                                                         1 
+##                                             Thurloe Place                                            Thurlow Street 
+##                                                         2                                                         1 
+##                                           Tollington Road                                             Tooley Street 
+##                                                         1                                                         1 
+##                                       Tooting High Street                                      Tottenham Court Road 
+##                                                         1                                                         1 
+##                                     Tower Bridge Approach                                         Tower Bridge Road 
+##                                                         1                                                         1 
+##                                            Trinity Street                                               Turney Road 
+##                                                         1                                                         1 
+##                                           Twickenham Road                                              Union Street 
+##                                                         4                                                         1 
+##                                              Unnamed road                                       Upper Richmond Road 
+##                                                        48                                                         1 
+##                                  Upper Richmond Road West                                 Upper Saint Martin&#39;s Lane 
+##                                                         1                                                         1 
+##                                              Upper Street                                        Upper Tooting Road 
+##                                                         1                                                         1 
+##                                             Vallance Road                                      Vauxhall Bridge Road 
+##                                                         1                                                         1 
+##                                       Victoria Embankment                                           Victoria Street 
+##                                                         1                                                         1 
+##                                             Villiers Road                                             Walworth Road 
+##                                                         1                                                         1 
+##                                    Wandsworth Bridge Road                                           Wandsworth Road 
+##                                                         1                                                         1 
+##                                           Warwick Gardens                                              Warwick Road 
+##                                                         1                                                         1 
+##                                           Waterloo Bridge                                             Waterloo Road 
+##                                                         1                                                         2 
+##                                       West Carriage Drive                                        West Cromwell Road 
+##                                                         1                                                         1 
+##                                      West India Dock Road                                            Westferry Road 
+##                                                         1                                                         2 
+##                                   Westminster Bridge Road                                                   Westway 
+##                                                         1                                                         1 
+##                                            Wharfdale Road                                   Whitechapel High Street 
+##                                                         1                                                         1 
+##                                          Whitechapel Road                                            Wigmore Street 
+##                                                         1                                                         1 
+##                                        William Henry Walk                                            Wimbledon Road 
+##                                                         1                                                         1 
+##                                              Yeading Lane                                                 York Road 
+##                                                         1                                                         2 
 ##                                                  York Way 
 ##                                                         1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       80 
-##            Spare lane(s) 
-##                      187 
-##    Estimated width &gt; 10m 
-##                      284</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       80 
-##            Spare lane(s) 
-##                      187 
-##    Estimated width &gt; 10m 
-##                      284 
-##                     NA&#39;s 
-##                       33</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       80 
-##            Spare lane(s) 
-##                      187 
-##    Estimated width &gt; 10m 
-##                      284 
-##                     NA&#39;s 
-##                       33</code></pre>
-<pre><code>## # A tibble: 80 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Kenn… &quot;A3&quot;               877
-##  2 Sout… &quot;A300&quot;            1155
-##  3 Chel… &quot;A3216&quot;            542
-##  4 Wate… &quot;A301&quot;            1164
-##  5 Kent… &quot;A400&quot;             903
-##  6 Jama… &quot;A200&quot;            1395
-##  7 Ceda… &quot;A3216&quot;            503
-##  8 Loug… &quot;&quot;                 599
-##  9 Brom… &quot;A4&quot;              1116
-## 10 Brix… &quot;A23&quot;             2823
-## # … with 70 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       80                      187                      284</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       80                      187                      284                       33</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       80                      187                      284                       33</code></pre>
+<pre><code>## # A tibble: 80 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Kennin… &quot;A3&quot;               877              4307              3777 30 mph                       12 TRUE             
+##  2 Southw… &quot;A300&quot;            1155              3385              3910 20 mph or le…                11 FALSE            
+##  3 Chelse… &quot;A3216&quot;            542              2641              1431 30 mph                       11 FALSE            
+##  4 Waterl… &quot;A301&quot;            1164              1814              2111 20 mph or le…                 8 TRUE             
+##  5 Kentis… &quot;A400&quot;             903              1773              1601 20 mph or le…                10 FALSE            
+##  6 Jamaic… &quot;A200&quot;            1395              1758              2452 30 mph                        7 TRUE             
+##  7 Cedars… &quot;A3216&quot;            503              1734               872 20 mph or le…                10 FALSE            
+##  8 Loughb… &quot;&quot;                 599              1690              1012 20 mph or le…                11 FALSE            
+##  9 Brompt… &quot;A4&quot;              1116              1480              1652 30 mph                       14 TRUE             
+## 10 Brixto… &quot;A23&quot;             2823              1460              4122 30 mph                       11 TRUE             
+## # … with 70 more rows</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,97 +388,41 @@ summary {
 ##      A126 
 ##   16   19</code></pre>
 <pre><code>## [1] 17</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1279    2133    2484    2938 
-## 3rd Qu.    Max. 
-##    3878    3878</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1279    2133    2484    2938    3878    3878</code></pre>
 <pre><code>## 
-## Arterial Road Purfleet 
-##                      4 
-##     Dock Approach Road 
-##                      4 
-##            London Road 
-##                     12 
-##  Marshfoot Interchange 
-##                      2 
-##               New Road 
-##                      8 
-##                  Other 
-##                     68 
-##        Purfleet Bypass 
-##                      7 
-##       St Andrew&#39;s Road 
-##                     11 
-##          Stanford Road 
-##                      5</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.2135  0.3691 
-## 3rd Qu.    Max. 
-##  0.7647  1.0000</code></pre>
+## Arterial Road Purfleet     Dock Approach Road            London Road  Marshfoot Interchange               New Road 
+##                      4                      4                     12                      2                      8 
+##                  Other        Purfleet Bypass       St Andrew&#39;s Road          Stanford Road 
+##                     68                      7                     11                      5</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.2135  0.3691  0.7647  1.0000</code></pre>
 <pre><code>## [1] 8</code></pre>
 <pre><code>## 
-##                   A126 
-##                      2 
-## Arterial Road Purfleet 
-##                      1 
-##          Calcutta Road 
-##                      1 
-##             Crown Road 
-##                      1 
-##     Dock Approach Road 
-##                      1 
-##            London Road 
-##                      4 
-##  Marshfoot Interchange 
-##                      1 
-##               New Road 
-##                      1 
-##        Purfleet Bypass 
-##                      1 
-##       St Andrew&#39;s Road 
-##                      1 
-##          Stanford Road 
-##                      1 
-##           Unnamed road 
-##                      2</code></pre>
+##                   A126 Arterial Road Purfleet          Calcutta Road             Crown Road     Dock Approach Road 
+##                      2                      1                      1                      1                      1 
+##            London Road  Marshfoot Interchange               New Road        Purfleet Bypass       St Andrew&#39;s Road 
+##                      4                      1                      1                      1                      1 
+##          Stanford Road           Unnamed road 
+##                      1                      2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                        1 
-##    Estimated width &gt; 10m 
-##                        6</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                        1 
-##    Estimated width &gt; 10m 
-##                        6 
-##                     NA&#39;s 
-##                        2</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                        1 
-##    Estimated width &gt; 10m 
-##                        6 
-##                     NA&#39;s 
-##                        2</code></pre>
-<pre><code>## # A tibble: 8 x 6
-##   Name  Reference `Length (m)`
-## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-## 1 A126  &quot;A126&quot;             656
-## 2 Lond… &quot;A1090&quot;            567
-## 3 Stan… &quot;A1013&quot;            627
-## 4 Dock… &quot;A1089&quot;           1402
-## 5 Calc… &quot;&quot;                 697
-## 6 A126  &quot;A126&quot;             712
-## 7 Purf… &quot;A1090&quot;           1330
-## 8 Mars… &quot;&quot;                 692
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                        8                        1                        6</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                        8                        1                        6                        2</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                        8                        1                        6                        2</code></pre>
+<pre><code>## # A tibble: 8 x 8
+##   Name     Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##   &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+## 1 A126     &quot;A126&quot;             656               352               231 30 mph                       10 FALSE            
+## 2 London … &quot;A1090&quot;            567               132                75 30 mph                       10 FALSE            
+## 3 Stanfor… &quot;A1013&quot;            627                86                54 40+ mph                      10 FALSE            
+## 4 Dock Ap… &quot;A1089&quot;           1402                83               116 40+ mph                       6 TRUE             
+## 5 Calcutt… &quot;&quot;                 697                74                52 30 mph                       10 FALSE            
+## 6 A126     &quot;A126&quot;             712                63                45 30 mph                       11 FALSE            
+## 7 Purflee… &quot;A1090&quot;           1330                54                72 30 mph                       10 FALSE            
+## 8 Marshfo… &quot;&quot;                 692                45                31 40+ mph                       6 TRUE</code></pre>
 
 
 

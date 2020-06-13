@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,266 +388,78 @@ summary {
 ##       A3015 A3125  A377  A379 B3123 
 ##   282     2     5    20     6     3</code></pre>
 <pre><code>## [1] 81</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1943    2038    8335    6118 
-## 3rd Qu.    Max. 
-##    8335    8335</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1943    2038    8335    6118    8335    8335</code></pre>
 <pre><code>## 
-##     Alphin Brook Road 
-##                    14 
-##       Alphington Road 
-##                    38 
-##        Ashburton Road 
-##                    10 
-##      Atlantic Highway 
-##                    21 
-##       Bad Homburg Way 
-##                     2 
-##         Besigheim Way 
-##                     1 
-##  Bishop&#39;s Tawton Road 
-##                    10 
-##         Braunton Road 
-##                     9 
-##           Bridge Road 
-##                    19 
-##       Burnthouse Lane 
-##                    10 
-##    Cowley Bridge Road 
-##                    11 
-##      Devon Expressway 
-##                    20 
-##           Exeter Road 
-##                    13 
-##          Exmouth Road 
-##                    19 
-##        Heavitree Road 
-##                    16 
-##    Hellevoetsluis Way 
-##                     7 
-##           High Street 
-##                    29 
-##      Hill Barton Road 
-##                    21 
-##          Honiton Road 
-##                     6 
-##       King&#39;s Ash Road 
-##                     3 
-##           Marldon Way 
-##                     5 
-##            New Street 
-##                    19 
-## North Devon Link Road 
-##                     3 
-##            North Road 
-##                     6 
-##       Old Exeter Road 
-##                     7 
-##                 Other 
-##                   613 
-##           Pinhoe Road 
-##                    24 
-##          Rifford Road 
-##                    13 
-##            Rydon Lane 
-##                    27 
-##         Sidmouth Road 
-##                     6 
-##   South Devon Highway 
-##                     5 
-##        Tavistock Road 
-##                     5 
-##          Torquay Road 
-##                    28</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.03123 0.26718 
-## 3rd Qu.    Max. 
-## 0.46746 1.00526</code></pre>
+##     Alphin Brook Road       Alphington Road        Ashburton Road      Atlantic Highway       Bad Homburg Way 
+##                    14                    38                    10                    21                     2 
+##         Besigheim Way  Bishop&#39;s Tawton Road         Braunton Road           Bridge Road       Burnthouse Lane 
+##                     1                    10                     9                    19                    10 
+##    Cowley Bridge Road      Devon Expressway           Exeter Road          Exmouth Road        Heavitree Road 
+##                    11                    20                    13                    19                    16 
+##    Hellevoetsluis Way           High Street      Hill Barton Road          Honiton Road       King&#39;s Ash Road 
+##                     7                    29                    21                     6                     3 
+##           Marldon Way            New Street North Devon Link Road            North Road       Old Exeter Road 
+##                     5                    19                     3                     6                     7 
+##                 Other           Pinhoe Road          Rifford Road            Rydon Lane         Sidmouth Road 
+##                   613                    24                    13                    27                     6 
+##   South Devon Highway        Tavistock Road          Torquay Road 
+##                     5                     5                    28</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.03123 0.26718 0.46746 1.00526</code></pre>
 <pre><code>## [1] 40</code></pre>
 <pre><code>## 
-##                   A30 
-##                     3 
-##                 A3015 
-##                     2 
-##                  A361 
-##                     3 
-##                  A375 
-##                     2 
-##                  A376 
-##                     2 
-##                  A377 
-##                     1 
-##                  A379 
-##                     2 
-##                  A380 
-##                     2 
-##                  A386 
-##                     2 
-##                   A39 
-##                     1 
-##        Alexandra Road 
-##                     1 
-##     Alphin Brook Road 
-##                     1 
-##       Alphington Road 
-##                     1 
-##        Ashburton Road 
-##                     1 
-##      Atlantic Highway 
-##                     2 
-##                 B3174 
-##                     1 
-##                 B3181 
-##                     1 
-##                 B3212 
-##                     1 
-##       Bad Homburg Way 
-##                     1 
-##         Besigheim Way 
-##                     1 
-##       Bickington Road 
-##                     1 
-##  Bishop&#39;s Tawton Road 
-##                     1 
-##         Braunton Road 
-##                     2 
-##           Bridge Road 
-##                     1 
-##       Burnthouse Lane 
-##                     1 
-##           Church Road 
-##                     1 
-##      Churscombe Cross 
-##                     1 
-##       Courtlands Road 
-##                     1 
-##           Cowick Lane 
-##                     1 
-##         Cowick Street 
-##                     1 
-##    Cowley Bridge Road 
-##                     2 
-##      Devon Expressway 
-##                     1 
-##         Dunsford Road 
-##                     1 
-##           Exeter Road 
-##                     3 
-##          Exmouth Road 
-##                     1 
-##           Fore Street 
-##                     1 
-##           Frog Street 
-##                     1 
-##        Heavitree Road 
-##                     1 
-##    Hellevoetsluis Way 
-##                     1 
-##          Hennock Road 
-##                     1 
-##          Heywood Road 
-##                     1 
-##           High Street 
-##                     2 
-##      Hill Barton Road 
-##                     1 
-##          Honiton Road 
-##                     3 
-##           Hulham Road 
-##                     1 
-##       King&#39;s Ash Road 
-##                     1 
-##           Lift Bridge 
-##                     1 
-##           London Road 
-##                     1 
-##          Marldon Road 
-##                     1 
-##           Marldon Way 
-##                     1 
-##  Morrisons Roundabout 
-##                     1 
-##            New Street 
-##                     1 
-## North Devon Link Road 
-##                     1 
-##            North Road 
-##                     1 
-##       Old Exeter Road 
-##                     1 
-##          Paris Street 
-##                     1 
-##   Penn Inn Roundabout 
-##                     1 
-##           Pinhoe Road 
-##                     2 
-##          Preston Down 
-##                     1 
-##          Red Cow Road 
-##                     1 
-##          Rifford Road 
-##                     1 
-## Roundswell Roundabout 
-##                     1 
-##            Rydon Lane 
-##                     2 
-##         Shirwell Road 
-##                     1 
-##         Sidmouth Road 
-##                     1 
-##   South Devon Highway 
-##                     1 
-##          Station Road 
-##                     1 
-##        Tavistock Road 
-##                     1 
-##          Torquay Road 
-##                     2 
-##          Unnamed road 
-##                     7 
+##                   A30                 A3015                  A361                  A375                  A376 
+##                     3                     2                     3                     2                     2 
+##                  A377                  A379                  A380                  A386                   A39 
+##                     1                     2                     2                     2                     1 
+##        Alexandra Road     Alphin Brook Road       Alphington Road        Ashburton Road      Atlantic Highway 
+##                     1                     1                     1                     1                     2 
+##                 B3174                 B3181                 B3212       Bad Homburg Way         Besigheim Way 
+##                     1                     1                     1                     1                     1 
+##       Bickington Road  Bishop&#39;s Tawton Road         Braunton Road           Bridge Road       Burnthouse Lane 
+##                     1                     1                     2                     1                     1 
+##           Church Road      Churscombe Cross       Courtlands Road           Cowick Lane         Cowick Street 
+##                     1                     1                     1                     1                     1 
+##    Cowley Bridge Road      Devon Expressway         Dunsford Road           Exeter Road          Exmouth Road 
+##                     2                     1                     1                     3                     1 
+##           Fore Street           Frog Street        Heavitree Road    Hellevoetsluis Way          Hennock Road 
+##                     1                     1                     1                     1                     1 
+##          Heywood Road           High Street      Hill Barton Road          Honiton Road           Hulham Road 
+##                     1                     2                     1                     3                     1 
+##       King&#39;s Ash Road           Lift Bridge           London Road          Marldon Road           Marldon Way 
+##                     1                     1                     1                     1                     1 
+##  Morrisons Roundabout            New Street North Devon Link Road            North Road       Old Exeter Road 
+##                     1                     1                     1                     1                     1 
+##          Paris Street   Penn Inn Roundabout           Pinhoe Road          Preston Down          Red Cow Road 
+##                     1                     1                     2                     1                     1 
+##          Rifford Road Roundswell Roundabout            Rydon Lane         Shirwell Road         Sidmouth Road 
+##                     1                     1                     2                     1                     1 
+##   South Devon Highway          Station Road        Tavistock Road          Torquay Road          Unnamed road 
+##                     1                     1                     1                     2                     7 
 ##         Woodbury Road 
 ##                     1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       40 
-##            Spare lane(s) 
-##                       18 
-##    Estimated width &gt; 10m 
-##                       37</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       40 
-##            Spare lane(s) 
-##                       18 
-##    Estimated width &gt; 10m 
-##                       37 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       40 
-##            Spare lane(s) 
-##                       18 
-##    Estimated width &gt; 10m 
-##                       37 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 40 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Riff… &quot;&quot;                 548
-##  2 Bick… &quot;A3125&quot;            710
-##  3 Burn… &quot;&quot;                 558
-##  4 Alph… &quot;A377&quot;            1312
-##  5 Heav… &quot;B3183&quot;            817
-##  6 Cowl… &quot;A377&quot;             573
-##  7 Pinh… &quot;B3212&quot;           1333
-##  8 Alph… &quot;B3123&quot;            548
-##  9 Sidm… &quot;A376&quot;             670
-## 10 Old … &quot;A377&quot;             625
-## # … with 30 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       40                       18                       37</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       40                       18                       37                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       40                       18                       37                        3</code></pre>
+<pre><code>## # A tibble: 40 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Riffor… &quot;&quot;                 548               288               158 20 mph or le…                11 FALSE            
+##  2 Bickin… &quot;A3125&quot;            710               224               159 30 mph                       10 FALSE            
+##  3 Burnth… &quot;&quot;                 558               161                90 20 mph or le…                11 FALSE            
+##  4 Alphin… &quot;A377&quot;            1312               150               197 30 mph                        9 TRUE             
+##  5 Heavit… &quot;B3183&quot;            817                91                74 30 mph                       10 TRUE             
+##  6 Cowley… &quot;A377&quot;             573                88                50 40+ mph                      10 FALSE            
+##  7 Pinhoe… &quot;B3212&quot;           1333                88               117 30 mph                       12 FALSE            
+##  8 Alphin… &quot;B3123&quot;            548                86                47 30 mph                        9 FALSE            
+##  9 Sidmou… &quot;A376&quot;             670                78                52 40+ mph                       7 TRUE             
+## 10 Old Ex… &quot;A377&quot;             625                75                47 30 mph                        7 TRUE             
+## # … with 30 more rows</code></pre>
 
 
 

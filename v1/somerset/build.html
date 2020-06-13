@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,218 +378,74 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A3027 A3038  A372   A38 A3807 
-##    96     6    26    35    61     6 
-## B3170 
-##     5</code></pre>
+##       A3027 A3038  A372   A38 A3807 B3170 
+##    96     6    26    35    61     6     5</code></pre>
 <pre><code>## [1] 51</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1046   12155   32387   21640 
-## 3rd Qu.    Max. 
-##   32387   32387</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1046   12155   32387   21640   32387   32387</code></pre>
 <pre><code>## 
-##     Adsborough Hill 
-##                   4 
-##           Bath Road 
-##                  12 
-##        Bristol Road 
-##                  51 
-##            Broadway 
-##                  27 
-##  Chritchard Parkway 
-##                   7 
-##          East Reach 
-##                  13 
-##       Hamilton Road 
-##                  17 
-##            Kingston 
-##                   6 
-##       Lysander Road 
-##                   8 
-##     Monmouth Street 
-##                   8 
-##               Other 
-##                 650 
-##        Pawlett Road 
-##                   8 
-##     Priorswood Road 
-##                  26 
-##           Queensway 
-##                   8 
-##        Taunton Road 
-##                  31 
-##           The Clink 
-##                  23 
-##             Toneway 
-##                  11 
-##     Watercombe Lane 
-##                   2 
-## Wellington New Road 
-##                  21 
-##     Wellington Road 
-##                  25</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.1072  0.2755 
-## 3rd Qu.    Max. 
-##  0.4710  1.0143</code></pre>
+##     Adsborough Hill           Bath Road        Bristol Road            Broadway  Chritchard Parkway 
+##                   4                  12                  51                  27                   7 
+##          East Reach       Hamilton Road            Kingston       Lysander Road     Monmouth Street 
+##                  13                  17                   6                   8                   8 
+##               Other        Pawlett Road     Priorswood Road           Queensway        Taunton Road 
+##                 650                   8                  26                   8                  31 
+##           The Clink             Toneway     Watercombe Lane Wellington New Road     Wellington Road 
+##                  23                  11                   2                  21                  25</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.1072  0.2755  0.4710  1.0143</code></pre>
 <pre><code>## [1] 28</code></pre>
 <pre><code>## 
-##                   A30 
-##                     2 
-##            A30; A3088 
-##                     1 
-##                  A358 
-##                     2 
-##                   A37 
-##                     1 
-##                   A38 
-##                     8 
-##                 A3807 
-##                     1 
-##                   A39 
-##                     2 
-##       Adsborough Hill 
-##                     1 
-##                 B3151 
-##                     1 
-##             Bath Road 
-##                     2 
-##          Bleak Bridge 
-##                     1 
-##       Bridgwater Road 
-##                     3 
-##          Bristol Road 
-##                     3 
-##              Broadway 
-##                     2 
-##    Chritchard Parkway 
-##                     1 
-##        Crowshute Link 
-##                     1 
-## East Brent Roundabout 
-##                     1 
-##            East Reach 
-##                     1 
-##  Edithmead Roundabout 
-##                     1 
-##           Fore Street 
-##                     1 
-##         Hamilton Road 
-##                     1 
-##         Hendford Hill 
-##                     1 
-##           High Street 
-##                     1 
-##   Hospital Roundabout 
-##                     1 
-##              Kingston 
-##                     1 
-##         Leycroft Road 
-##                     1 
-##         Lysander Road 
-##                     2 
-##        Mansfield Road 
-##                     1 
-##       Monmouth Street 
-##                     1 
-##          North Street 
-##                     1 
-##       Obridge Viaduct 
-##                     2 
-##          Pawlett Road 
-##                     1 
-##       Priorswood Road 
-##                     2 
-##         Priory Avenue 
-##                     1 
-##             Queensway 
-##                     1 
-##            Reckleford 
-##                     1 
-##            Roman Road 
-##                     1 
-##       Silk Mills Lane 
-##                     1 
-##       Silk Mills Road 
-##                     1 
-##      St Andrew&#39;s Road 
-##                     1 
-##          Stonegallows 
-##                     1 
-##           Street Road 
-##                     1 
-##           Tangier Way 
-##                     1 
-##          Taunton Road 
-##                     1 
-##             The Clink 
-##                     1 
-##               Toneway 
-##                     1 
-##          Unnamed road 
-##                     9 
-##       Watercombe Lane 
-##                     1 
-##   Wellington New Road 
-##                     1 
-##       Wellington Road 
-##                     2 
-##    West Buckland Road 
-##                     1 
-##           West Street 
-##                     1 
-##     Wiveliscombe Road 
-##                     1 
-##         Yallands Hill 
-##                     1</code></pre>
+##                   A30            A30; A3088                  A358                   A37                   A38 
+##                     2                     1                     2                     1                     8 
+##                 A3807                   A39       Adsborough Hill                 B3151             Bath Road 
+##                     1                     2                     1                     1                     2 
+##          Bleak Bridge       Bridgwater Road          Bristol Road              Broadway    Chritchard Parkway 
+##                     1                     3                     3                     2                     1 
+##        Crowshute Link East Brent Roundabout            East Reach  Edithmead Roundabout           Fore Street 
+##                     1                     1                     1                     1                     1 
+##         Hamilton Road         Hendford Hill           High Street   Hospital Roundabout              Kingston 
+##                     1                     1                     1                     1                     1 
+##         Leycroft Road         Lysander Road        Mansfield Road       Monmouth Street          North Street 
+##                     1                     2                     1                     1                     1 
+##       Obridge Viaduct          Pawlett Road       Priorswood Road         Priory Avenue             Queensway 
+##                     2                     1                     2                     1                     1 
+##            Reckleford            Roman Road       Silk Mills Lane       Silk Mills Road      St Andrew&#39;s Road 
+##                     1                     1                     1                     1                     1 
+##          Stonegallows           Street Road           Tangier Way          Taunton Road             The Clink 
+##                     1                     1                     1                     1                     1 
+##               Toneway          Unnamed road       Watercombe Lane   Wellington New Road       Wellington Road 
+##                     1                     9                     1                     1                     2 
+##    West Buckland Road           West Street     Wiveliscombe Road         Yallands Hill 
+##                     1                     1                     1                     1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       28 
-##            Spare lane(s) 
-##                       27 
-##    Estimated width &gt; 10m 
-##                       25</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       28 
-##            Spare lane(s) 
-##                       27 
-##    Estimated width &gt; 10m 
-##                       25 
-##                     NA&#39;s 
-##                        2</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       28 
-##            Spare lane(s) 
-##                       27 
-##    Estimated width &gt; 10m 
-##                       25 
-##                     NA&#39;s 
-##                        2</code></pre>
-<pre><code>## # A tibble: 28 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Broa… &quot;A38&quot;              839
-##  2 Taun… &quot;A38&quot;             1625
-##  3 Lysa… &quot;A3088&quot;            671
-##  4 Hami… &quot;&quot;                1105
-##  5 The … &quot;&quot;                1118
-##  6 Well… &quot;A38&quot;              762
-##  7 Monm… &quot;A38&quot;              617
-##  8 Broa… &quot;A39&quot;             1173
-##  9 Adsb… &quot;A38&quot;              648
-## 10 Lysa… &quot;A3088&quot;            575
-## # … with 18 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       28                       27                       25</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       28                       27                       25                        2</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       28                       27                       25                        2</code></pre>
+<pre><code>## # A tibble: 28 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Broadw… &quot;A38&quot;              839               365               306 30 mph                        7 TRUE             
+##  2 Taunto… &quot;A38&quot;             1625               337               548 30 mph                       10 FALSE            
+##  3 Lysand… &quot;A3088&quot;            671               221               148 40+ mph                       9 FALSE            
+##  4 Hamilt… &quot;&quot;                1105               213               235 30 mph                       11 FALSE            
+##  5 The Cl… &quot;&quot;                1118               205               229 30 mph                       11 FALSE            
+##  6 Wellin… &quot;A38&quot;              762               179               136 30 mph                        8 TRUE             
+##  7 Monmou… &quot;A38&quot;              617               172               106 30 mph                        6 TRUE             
+##  8 Broadw… &quot;A39&quot;             1173               170               199 30 mph                        8 TRUE             
+##  9 Adsbor… &quot;A38&quot;              648               155               100 40+ mph                      10 TRUE             
+## 10 Lysand… &quot;A3088&quot;            575               121                70 30 mph                       14 FALSE            
+## # … with 18 more rows</code></pre>
 
 
 

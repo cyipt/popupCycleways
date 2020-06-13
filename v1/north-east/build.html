@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,598 +378,154 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A1018 A1058 A1108 A1114 A1171 
-##   327     2    66     5     2     5 
-## A1290  A167  A184  A185  A186  A189 
-##     4    21     3     9     8    34 
-##  A191  A193  A194  A690  A695 B1297 
-##    20     1     1     9     2     2 
-## B1307 B1316 B1318 B1600 B6443 
-##    69     1    39     5     9</code></pre>
+##       A1018 A1058 A1108 A1114 A1171 A1290  A167  A184  A185  A186  A189  A191  A193  A194  A690  A695 B1297 B1307 
+##   327     2    66     5     2     5     4    21     3     9     8    34    20     1     1     9     2     2    69 
+## B1316 B1318 B1600 B6443 
+##     1    39     5     9</code></pre>
 <pre><code>## [1] 193</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    4422   12441   76086   58748 
-## 3rd Qu.    Max. 
-##   76086   76086</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    4422   12441   76086   58748   76086   76086</code></pre>
 <pre><code>## 
-##             Askew Road 
-##                     18 
-##            Astley Road 
-##                      8 
-##           Barrack Road 
-##                      9 
-##             Beach Road 
-##                     19 
-##          Benfield Road 
-##                     25 
-##           Bensham Road 
-##                     19 
-##            Benton Lane 
-##                     16 
-##       Benton Park Road 
-##                     20 
-##        Blaydon Highway 
-##                      9 
-##            Boldon Lane 
-##                     13 
-##         Central Avenue 
-##                     14 
-##             Coast Road 
-##                     74 
-##    Dame Dorothy Street 
-##                      6 
-##      Derwenthaugh Road 
-##                      5 
-##            Durham Road 
-##                     42 
-##               Earlsway 
-##                     14 
-##         Felling Bypass 
-##                     53 
-##      Fenham Hall Drive 
-##                     14 
-##           Front Street 
-##                     10 
-##           Fulwell Road 
-##                     17 
-##     Grainger Park Road 
-##                      8 
-##        Grandstand Road 
-##                      9 
-##        Great Lime Road 
-##                     20 
-##       Great North Road 
-##                     34 
-##         Greenfield Way 
-##                      7 
-##          Hartford Road 
-##                      2 
-##            Heaton Road 
-##                     13 
-##            Hexham Road 
-##                     20 
-##            High Street 
-##                     28 
-##         Hillheads Road 
-##                     13 
-##          Imeary Street 
-##                     12 
-##          Jedburgh Road 
-##                     18 
-##      Jesmond Dene Road 
-##                     10 
-##           Jesmond Road 
-##                     16 
-##            Kenton Road 
-##                      7 
-##       King George Road 
-##                     39 
-##         Kingsway North 
-##                     11 
-##         Kingsway South 
-##                     24 
-##       Livingstone Road 
-##                      5 
-##       Lobley Hill Road 
-##                     20 
-##     Middle Engine Lane 
-##                     10 
-##         Netherby Drive 
-##                      8 
-##          New York Road 
-##                     37 
-##         Newcastle Road 
-##                     37 
-##            Newton Road 
-##                     13 
-##    North Bridge Street 
-##                     20 
-##        Old Durham Road 
-##                     50 
-##           Osborne Road 
-##                      8 
-##                  Other 
-##                   1567 
-##       Pallion New Road 
-##                     16 
-##              Park Lane 
-##                      8 
-##              Park Road 
-##                      9 
-##      Park Road Central 
-##                      3 
-##        Park Road North 
-##                      4 
-##        Park Road South 
-##                     13 
-##           Plessey Road 
-##                     11 
-##         Ponteland Road 
-##                     29 
-## Queen Alexandra Bridge 
-##                      2 
-##        Queensway North 
-##                     14 
-##              Rake Lane 
-##                     35 
-##        Redheugh Bridge 
-##                      1 
-##            Ryhope Road 
-##                     24 
-##       Saint Mary&#39;s Way 
-##                      8 
-##    Saint Michael&#39;s Way 
-##                     19 
-##           Salters Lane 
-##                      8 
-##           Salters Road 
-##                     11 
-##         Sandyford Road 
-##                     15 
-##         Scotswood Road 
-##                     39 
-##       Seatonville Road 
-##                      8 
-##           Shields Road 
-##                     56 
-##           Shotton Road 
-##                     12 
-##    St James&#39; Boulevard 
-##                     19 
-##     St. Cuthbert&#39;s Way 
-##                      8 
-##       Stamfordham Road 
-##                     19 
-##          Stanhope Road 
-##                     22 
-##           Station Road 
-##                     20 
-##          Stockton Road 
-##                     11 
-##     Sunderland Highway 
-##                     47 
-##        Sunderland Road 
-##                      5 
-##           The Broadway 
-##                      8 
-##          Thompson Road 
-##                      8 
-##         Trimdon Street 
-##                     18 
-##        Two Ball Lonnen 
-##                     14 
-##            Tyne Bridge 
-##                      2 
-##         Tynemouth Road 
-##                      9 
-##     Victoria Road West 
-##                     11 
-##        Washington Road 
-##                      5 
-##         Wessington Way 
-##                     18 
-##              West Road 
-##                     35 
-##          Westgate Road 
-##                     37 
+##             Askew Road            Astley Road           Barrack Road             Beach Road          Benfield Road 
+##                     18                      8                      9                     19                     25 
+##           Bensham Road            Benton Lane       Benton Park Road        Blaydon Highway            Boldon Lane 
+##                     19                     16                     20                      9                     13 
+##         Central Avenue             Coast Road    Dame Dorothy Street      Derwenthaugh Road            Durham Road 
+##                     14                     74                      6                      5                     42 
+##               Earlsway         Felling Bypass      Fenham Hall Drive           Front Street           Fulwell Road 
+##                     14                     53                     14                     10                     17 
+##     Grainger Park Road        Grandstand Road        Great Lime Road       Great North Road         Greenfield Way 
+##                      8                      9                     20                     34                      7 
+##          Hartford Road            Heaton Road            Hexham Road            High Street         Hillheads Road 
+##                      2                     13                     20                     28                     13 
+##          Imeary Street          Jedburgh Road      Jesmond Dene Road           Jesmond Road            Kenton Road 
+##                     12                     18                     10                     16                      7 
+##       King George Road         Kingsway North         Kingsway South       Livingstone Road       Lobley Hill Road 
+##                     39                     11                     24                      5                     20 
+##     Middle Engine Lane         Netherby Drive          New York Road         Newcastle Road            Newton Road 
+##                     10                      8                     37                     37                     13 
+##    North Bridge Street        Old Durham Road           Osborne Road                  Other       Pallion New Road 
+##                     20                     50                      8                   1567                     16 
+##              Park Lane              Park Road      Park Road Central        Park Road North        Park Road South 
+##                      8                      9                      3                      4                     13 
+##           Plessey Road         Ponteland Road Queen Alexandra Bridge        Queensway North              Rake Lane 
+##                     11                     29                      2                     14                     35 
+##        Redheugh Bridge            Ryhope Road       Saint Mary&#39;s Way    Saint Michael&#39;s Way           Salters Lane 
+##                      1                     24                      8                     19                      8 
+##           Salters Road         Sandyford Road         Scotswood Road       Seatonville Road           Shields Road 
+##                     11                     15                     39                      8                     56 
+##           Shotton Road    St James&#39; Boulevard     St. Cuthbert&#39;s Way       Stamfordham Road          Stanhope Road 
+##                     12                     19                      8                     19                     22 
+##           Station Road          Stockton Road     Sunderland Highway        Sunderland Road           The Broadway 
+##                     20                     11                     47                      5                      8 
+##          Thompson Road         Trimdon Street        Two Ball Lonnen            Tyne Bridge         Tynemouth Road 
+##                      8                     18                     14                      2                      9 
+##     Victoria Road West        Washington Road         Wessington Way              West Road          Westgate Road 
+##                     11                      5                     18                     35                     37 
 ##           Whitley Road 
 ##                     10</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.0000  0.2095 
-## 3rd Qu.    Max. 
-##  0.3056  1.0909</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.2095  0.3056  1.0909</code></pre>
 <pre><code>## [1] 50</code></pre>
 <pre><code>## 
-##                  A1018 
-##                      2 
-##                  A1056 
-##                      1 
-##                  A1058 
-##                      1 
-##                  A1114 
-##                      1 
-##                  A1171 
-##                      1 
-##                  A1231 
-##                      5 
-##                  A1290 
-##                      1 
-##                   A167 
-##                      7 
-##                   A184 
-##                      1 
-##                   A185 
-##                      1 
-##                   A189 
-##                      5 
-##                    A19 
-##                      1 
-##                   A191 
-##                      4 
-##                   A192 
-##                      2 
-##                   A193 
-##                      3 
-##                   A194 
-##                      1 
-##                   A195 
-##                      1 
-##                   A693 
-##                      1 
-##                   A695 
-##                      3 
-##       Armstrong Street 
-##                      1 
-##             Askew Road 
-##                      1 
-##            Astley Road 
-##                      1 
-##                  B1298 
-##                      2 
-##                  B1307 
-##                      1 
-##                  B1318 
-##                      2 
-##                  B1426 
-##                      1 
-##                  B6288 
-##                      1 
-##                  B6324 
-##                      1 
-##                  B6395 
-##                      1 
-##                  B6532 
-##                      1 
-##           Barrack Road 
-##                      1 
-##             Beach Road 
-##                      2 
-##          Benfield Road 
-##                      1 
-##           Bensham Road 
-##                      1 
-##            Benton Lane 
-##                      2 
-##       Benton Park Road 
-##                      1 
-##            Benton Road 
-##                      1 
-##            Bewick Road 
-##                      1 
-##      Billy Mill Avenue 
-##                      1 
-##        Billy Mill Lane 
-##                      1 
-##         Blackwood Road 
-##                      1 
-##        Blaydon Highway 
-##                      1 
-##  Blue House Roundabout 
-##                      1 
-##            Boldon Lane 
-##                      1 
-##  Bridge End Roundabout 
-##                      1 
-##          Bridge Street 
-##                      1 
-##          Buddle Street 
-##                      1 
-##         Central Avenue 
-##                      1 
-##        Chichester Road 
-##                      2 
-##    Church Street North 
-##                      1 
-##           Clayton Road 
-##                      1 
-##  Coal House Roundabout 
-##                      1 
-##             Coast Road 
-##                      1 
-##    Dame Dorothy Street 
-##                      1 
-##      Derwenthaugh Road 
-##                      1 
-##      Derwentwater Road 
-##                      1 
-##            Dudley Lane 
-##                      1 
-##            Durant Road 
-##                      1 
-##            Durham Road 
-##                      2 
-##               Earlsway 
-##                      1 
-##           Earsdon Road 
-##                      1 
-##         Felling Bypass 
-##                      1 
-##      Fenham Hall Drive 
-##                      1 
-##       Forest Hall Road 
-##                      1 
-##                Fossway 
-##                      1 
-##           Freeman Road 
-##                      1 
-##           Front Street 
-##                      3 
-##           Fulwell Road 
-##                      1 
-##             Gallowgate 
-##                      1 
-##     Grainger Park Road 
-##                      1 
-##        Grandstand Road 
-##                      1 
-##        Great Lime Road 
-##                      1 
-##       Great North Road 
-##                      4 
-##         Greenfield Way 
-##                      1 
-##          Hartford Road 
-##                      1 
-##            Heaton Road 
-##                      1 
-##            Hexham Road 
-##                      1 
-##            High Street 
-##                      1 
-##         Hillheads Road 
-##                      1 
-##  Holystone Interchange 
-##                      1 
-##          Howard Street 
-##                      1 
-##          Imeary Street 
-##                      1 
-##          Jedburgh Road 
-##                      1 
-##      Jesmond Dene Road 
-##                      1 
-##           Jesmond Road 
-##                      2 
-##   Jesmond Vale Terrace 
-##                      1 
-##             Kayll Road 
-##                      1 
-##             Kenton Bar 
-##                      1 
-##            Kenton Road 
-##                      1 
-##       King George Road 
-##                      1 
-##         Kingsway North 
-##                      1 
-##         Kingsway South 
-##                      1 
-##       Livingstone Road 
-##                      1 
-##       Lobley Hill Road 
-##                      2 
-##            Main Street 
-##                      1 
-##           Matthew Bank 
-##                      1 
-##     Middle Engine Lane 
-##                      1 
-##              Mill Lane 
-##                      1 
-##         Netherby Drive 
-##                      1 
-##          New York Road 
-##                      1 
-##         Newcastle Road 
-##                      3 
-##         Newington Road 
-##                      1 
-##            Newton Road 
-##                      1 
-##           Ninth Avenue 
-##                      1 
-##    North Bridge Street 
-##                      1 
-##      North Hylton Road 
-##                      1 
-##           Northern Way 
-##                      1 
-##   Northumberland Place 
-##                      1 
-##        Old Durham Road 
-##                      1 
-##           Osborne Road 
-##                      1 
-##       Pallion New Road 
-##                      2 
-##              Park Lane 
-##                      1 
-##              Park Road 
-##                      1 
-##      Park Road Central 
-##                      1 
-##        Park Road North 
-##                      1 
-##        Park Road South 
-##                      1 
-##           Percy Street 
-##                      1 
-##           Plessey Road 
-##                      1 
-##         Ponteland Road 
-##                      2 
-##     Preston North Road 
-##                      1 
-##     Preston Road North 
-##                      2 
-## Queen Alexandra Bridge 
-##                      1 
-##        Queensway North 
-##                      1 
-##        Queensway South 
-##                      1 
-##              Rake Lane 
-##                      1 
-##        Redheugh Bridge 
-##                      1 
-##             Rotary Way 
-##                      1 
-##            Ryhope Road 
-##                      2 
-##       Saint Mary&#39;s Way 
-##                      1 
-##    Saint Michael&#39;s Way 
-##                      1 
-##           Salters Lane 
-##                      1 
-##           Salters Road 
-##                      1 
-##               Sandhill 
-##                      1 
-##         Sandyford Road 
-##                      2 
-##       Scotswood Bridge 
-##                      1 
-##         Scotswood Road 
-##                      1 
-##       Seatonville Road 
-##                      1 
-##           Shibdon Road 
-##                      1 
-##           Shields Road 
-##                      5 
-##           Shotton Road 
-##                      1 
-##         Silksworth Row 
-##                      1 
-##      South Church Road 
-##                      1 
-##         Southwick Road 
-##                      1 
-##             Spout Lane 
-##                      1 
-## Springfield Roundabout 
-##                      1 
-##    St James&#39; Boulevard 
-##                      2 
-##        St Peter&#39;s Road 
-##                      1 
-##     St. Cuthbert&#39;s Way 
-##                      1 
-##       Stamfordham Road 
-##                      1 
-##          Stanhope Road 
-##                      1 
-##           Station Road 
-##                      5 
-##          Stockton Road 
-##                      1 
-##     Sunderland Highway 
-##                      2 
-##        Sunderland Road 
-##                      3 
-##          Swalwell Bank 
-##                      1 
-##           The Broadway 
-##                      1 
-##          Thompson Road 
-##                      1 
-##         Trimdon Street 
-##                      1 
-##    Trimdon Street West 
-##                      1 
-##        Two Ball Lonnen 
-##                      1 
-##            Tyne Bridge 
-##                      1 
-##         Tynemouth Road 
-##                      2 
-##             Union Road 
-##                      1 
-##           Unnamed road 
-##                     24 
-##     Victoria Road West 
-##                      1 
-##        Washington Road 
-##                      2 
-##         Wessington Way 
-##                      1 
-##              West Road 
-##                      1 
-##          Westgate Road 
-##                      2 
-##           Whitley Road 
-##                      1 
+##                  A1018                  A1056                  A1058                  A1114                  A1171 
+##                      2                      1                      1                      1                      1 
+##                  A1231                  A1290                   A167                   A184                   A185 
+##                      5                      1                      7                      1                      1 
+##                   A189                    A19                   A191                   A192                   A193 
+##                      5                      1                      4                      2                      3 
+##                   A194                   A195                   A693                   A695       Armstrong Street 
+##                      1                      1                      1                      3                      1 
+##             Askew Road            Astley Road                  B1298                  B1307                  B1318 
+##                      1                      1                      2                      1                      2 
+##                  B1426                  B6288                  B6324                  B6395                  B6532 
+##                      1                      1                      1                      1                      1 
+##           Barrack Road             Beach Road          Benfield Road           Bensham Road            Benton Lane 
+##                      1                      2                      1                      1                      2 
+##       Benton Park Road            Benton Road            Bewick Road      Billy Mill Avenue        Billy Mill Lane 
+##                      1                      1                      1                      1                      1 
+##         Blackwood Road        Blaydon Highway  Blue House Roundabout            Boldon Lane  Bridge End Roundabout 
+##                      1                      1                      1                      1                      1 
+##          Bridge Street          Buddle Street         Central Avenue        Chichester Road    Church Street North 
+##                      1                      1                      1                      2                      1 
+##           Clayton Road  Coal House Roundabout             Coast Road    Dame Dorothy Street      Derwenthaugh Road 
+##                      1                      1                      1                      1                      1 
+##      Derwentwater Road            Dudley Lane            Durant Road            Durham Road               Earlsway 
+##                      1                      1                      1                      2                      1 
+##           Earsdon Road         Felling Bypass      Fenham Hall Drive       Forest Hall Road                Fossway 
+##                      1                      1                      1                      1                      1 
+##           Freeman Road           Front Street           Fulwell Road             Gallowgate     Grainger Park Road 
+##                      1                      3                      1                      1                      1 
+##        Grandstand Road        Great Lime Road       Great North Road         Greenfield Way          Hartford Road 
+##                      1                      1                      4                      1                      1 
+##            Heaton Road            Hexham Road            High Street         Hillheads Road  Holystone Interchange 
+##                      1                      1                      1                      1                      1 
+##          Howard Street          Imeary Street          Jedburgh Road      Jesmond Dene Road           Jesmond Road 
+##                      1                      1                      1                      1                      2 
+##   Jesmond Vale Terrace             Kayll Road             Kenton Bar            Kenton Road       King George Road 
+##                      1                      1                      1                      1                      1 
+##         Kingsway North         Kingsway South       Livingstone Road       Lobley Hill Road            Main Street 
+##                      1                      1                      1                      2                      1 
+##           Matthew Bank     Middle Engine Lane              Mill Lane         Netherby Drive          New York Road 
+##                      1                      1                      1                      1                      1 
+##         Newcastle Road         Newington Road            Newton Road           Ninth Avenue    North Bridge Street 
+##                      3                      1                      1                      1                      1 
+##      North Hylton Road           Northern Way   Northumberland Place        Old Durham Road           Osborne Road 
+##                      1                      1                      1                      1                      1 
+##       Pallion New Road              Park Lane              Park Road      Park Road Central        Park Road North 
+##                      2                      1                      1                      1                      1 
+##        Park Road South           Percy Street           Plessey Road         Ponteland Road     Preston North Road 
+##                      1                      1                      1                      2                      1 
+##     Preston Road North Queen Alexandra Bridge        Queensway North        Queensway South              Rake Lane 
+##                      2                      1                      1                      1                      1 
+##        Redheugh Bridge             Rotary Way            Ryhope Road       Saint Mary&#39;s Way    Saint Michael&#39;s Way 
+##                      1                      1                      2                      1                      1 
+##           Salters Lane           Salters Road               Sandhill         Sandyford Road       Scotswood Bridge 
+##                      1                      1                      1                      2                      1 
+##         Scotswood Road       Seatonville Road           Shibdon Road           Shields Road           Shotton Road 
+##                      1                      1                      1                      5                      1 
+##         Silksworth Row      South Church Road         Southwick Road             Spout Lane Springfield Roundabout 
+##                      1                      1                      1                      1                      1 
+##    St James&#39; Boulevard        St Peter&#39;s Road     St. Cuthbert&#39;s Way       Stamfordham Road          Stanhope Road 
+##                      2                      1                      1                      1                      1 
+##           Station Road          Stockton Road     Sunderland Highway        Sunderland Road          Swalwell Bank 
+##                      5                      1                      2                      3                      1 
+##           The Broadway          Thompson Road         Trimdon Street    Trimdon Street West        Two Ball Lonnen 
+##                      1                      1                      1                      1                      1 
+##            Tyne Bridge         Tynemouth Road             Union Road           Unnamed road     Victoria Road West 
+##                      1                      2                      1                     24                      1 
+##        Washington Road         Wessington Way              West Road          Westgate Road           Whitley Road 
+##                      2                      1                      1                      2                      1 
 ##       Williamfield Way 
 ##                      1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       50 
-##            Spare lane(s) 
-##                       64 
-##    Estimated width &gt; 10m 
-##                      117</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       50 
-##            Spare lane(s) 
-##                       64 
-##    Estimated width &gt; 10m 
-##                      117 
-##                     NA&#39;s 
-##                       21</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       50 
-##            Spare lane(s) 
-##                       64 
-##    Estimated width &gt; 10m 
-##                      117 
-##                     NA&#39;s 
-##                       21</code></pre>
-<pre><code>## # A tibble: 50 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Perc… &quot;B1307&quot;            857
-##  2 Sand… &quot;B1307&quot;            730
-##  3 Barr… &quot;A189&quot;            1062
-##  4 Jesm… &quot;A189&quot;             602
-##  5 Newt… &quot;&quot;                1020
-##  6 B1318 &quot;B1318&quot;            909
-##  7 Coas… &quot;A1058&quot;          17390
-##  8 Jesm… &quot;A1058&quot;            854
-##  9 Kent… &quot;&quot;                1023
-## 10 Heat… &quot;&quot;                1025
-## # … with 40 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       50                       64                      117</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       50                       64                      117                       21</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       50                       64                      117                       21</code></pre>
+<pre><code>## # A tibble: 50 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Percy … &quot;B1307&quot;            857               709               608 30 mph                       11 FALSE            
+##  2 Sandyf… &quot;B1307&quot;            730               578               422 30 mph                       10 FALSE            
+##  3 Barrac… &quot;A189&quot;            1062               281               298 30 mph                       11 TRUE             
+##  4 Jesmon… &quot;A189&quot;             602               252               152 30 mph                       11 FALSE            
+##  5 Newton… &quot;&quot;                1020               239               244 30 mph                       10 FALSE            
+##  6 B1318   &quot;B1318&quot;            909               230               209 30 mph                       10 FALSE            
+##  7 Coast … &quot;A1058&quot;          17390               215              3739 40+ mph                      11 TRUE             
+##  8 Jesmon… &quot;A1058&quot;            854               215               184 30 mph                        7 TRUE             
+##  9 Kenton… &quot;&quot;                1023               205               210 30 mph                       10 FALSE            
+## 10 Heaton… &quot;&quot;                1025               200               205 30 mph                       11 FALSE            
+## # … with 40 more rows</code></pre>
 
 
 

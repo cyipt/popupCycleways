@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,125 +388,49 @@ summary {
 ##        A329    A4 B3350 
 ##    86     6     2     4</code></pre>
 <pre><code>## [1] 37</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    2489    2716    2915    3199 
-## 3rd Qu.    Max. 
-##    3184    4682</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2489    2716    2915    3199    3184    4682</code></pre>
 <pre><code>## 
-##       Basingstoke Road 
-##                     13 
-##              Bath Road 
-##                      6 
-##          Berkshire Way 
-##                      8 
-##           Forbury Road 
-##                      9 
-##            King&#39;s Road 
-##                      8 
-##            London Road 
-##                    107 
-##       Lower Earley Way 
-##                      1 
-## Lower Earley Way North 
-##                      8 
-##                  Other 
-##                    163 
-##           Reading Road 
-##                     97 
-##           Rectory Road 
-##                      7 
-##         Wokingham Road 
-##                     59</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.1056  0.6549  0.5575 
-## 3rd Qu.    Max. 
-##  1.0000  1.0435</code></pre>
+##       Basingstoke Road              Bath Road          Berkshire Way           Forbury Road            King&#39;s Road 
+##                     13                      6                      8                      9                      8 
+##            London Road       Lower Earley Way Lower Earley Way North                  Other           Reading Road 
+##                    107                      1                      8                    163                     97 
+##           Rectory Road         Wokingham Road 
+##                      7                     59</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.1056  0.6549  0.5575  1.0000  1.0435</code></pre>
 <pre><code>## [1] 8</code></pre>
 <pre><code>## 
-##                        A4 
-##                         1 
-##                     B3270 
-##                         1 
-##          Basingstoke Road 
-##                         1 
-##                 Bath Road 
-##                         1 
-##             Berkshire Way 
-##                         1 
-##   Coppid Beach Roundabout 
-##                         1 
-##              Forbury Road 
-##                         1 
-##           Glebelands Road 
-##                         1 
-## Jennett&#39;s Park Roundabout 
-##                         1 
-##          King Street Lane 
-##                         1 
-##               King&#39;s Road 
-##                         1 
-##               London Road 
-##                         5 
-##          Lower Earley Way 
-##                         1 
-##    Lower Earley Way North 
-##                         1 
-##              Peach Street 
-##                         1 
-##                Pitts Lane 
-##                         1 
-##               Queens Road 
-##                         1 
-##              Reading Road 
-##                         2 
-##              Rectory Road 
-##                         1 
-##            Shinfield Road 
-##                         1 
-##              Unnamed road 
-##                         3 
-##           Wilderness Road 
-##                         1 
-##            Wokingham Road 
-##                         2</code></pre>
+##                        A4                     B3270          Basingstoke Road                 Bath Road 
+##                         1                         1                         1                         1 
+##             Berkshire Way   Coppid Beach Roundabout              Forbury Road           Glebelands Road 
+##                         1                         1                         1                         1 
+## Jennett&#39;s Park Roundabout          King Street Lane               King&#39;s Road               London Road 
+##                         1                         1                         1                         5 
+##          Lower Earley Way    Lower Earley Way North              Peach Street                Pitts Lane 
+##                         1                         1                         1                         1 
+##               Queens Road              Reading Road              Rectory Road            Shinfield Road 
+##                         1                         2                         1                         1 
+##              Unnamed road           Wilderness Road            Wokingham Road 
+##                         3                         1                         2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                        7</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                        7 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                        7 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 8 x 6
-##   Name  Reference `Length (m)`
-## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-## 1 Shin… A327               550
-## 2 Woki… A329              2014
-## 3 Lond… A4                1959
-## 4 Basi… B3031              654
-## 5 Bath… A4                1010
-## 6 Lond… A329              3095
-## 7 Forb… A329               519
-## 8 Peac… A329               868
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                        8                       13                        7</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                        8                       13                        7                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                        8                       13                        7                        3</code></pre>
+<pre><code>## # A tibble: 8 x 8
+##   Name    Reference `Length (m)` `Cycling potenti… `Length * potenti… `Speed limit` `Mean estimated … `Majority spare …
+##   &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;              &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+## 1 Shinfi… A327               550               100                 55 30 mph                       11 FALSE            
+## 2 Woking… A329              2014                97                195 30 mph                       11 FALSE            
+## 3 London… A4                1959                93                182 30 mph                        8 TRUE             
+## 4 Basing… B3031              654                87                 57 30 mph                       11 FALSE            
+## 5 Bath R… A4                1010                68                 69 40+ mph                      10 FALSE            
+## 6 London… A329              3095                53                164 30 mph                        9 FALSE            
+## 7 Forbur… A329               519                52                 27 30 mph                        7 TRUE             
+## 8 Peach … A329               868                44                 38 30 mph                        8 TRUE</code></pre>
 
 
 

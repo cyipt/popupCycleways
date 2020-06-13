@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,273 +378,103 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##        A523  A530  A532  A534 B5071 
-##    92     1     1    35    12     7 
-## B5076 
-##     4</code></pre>
+##        A523  A530  A532  A534 B5071 B5076 
+##    92     1     1    35    12     7     4</code></pre>
 <pre><code>## [1] 62</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1304    2938    4943    7940 
-## 3rd Qu.    Max. 
-##   14272   14272</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1304    2938    4943    7940   14272   14272</code></pre>
 <pre><code>## 
-##               Ainslie Way 
-##                         2 
-##               Birrell Way 
-##                         4 
-##               Buxton Road 
-##                        33 
-##             Chelford Road 
-##                        49 
-##              Chester Road 
-##                        38 
-##            Clayton Bypass 
-##                        14 
-##            Congleton Road 
-##                       108 
-##                Crewe Road 
-##                        37 
-##         Cumberland Street 
-##                        17 
-##                  Dog Lane 
-##                         1 
-##        Haslington By-pass 
-##                        21 
-##                Hibel Road 
-##                        15 
-##        Holmes Chapel Road 
-##                         7 
-##                  Kingsway 
-##                        14 
-##            Knutsford Road 
-##                         6 
-##               London Road 
-##                        84 
-##         London Road North 
-##                        15 
-##         London Road South 
-##                        21 
-##         Macclesfield Road 
-##                        27 
-##               MacLean Way 
-##                         6 
-##           Manchester Road 
-##                        20 
-##               Melrose Way 
-##                         4 
-##           Middlewich Road 
-##                         6 
-##             Nantwich Road 
-##                        36 
-##            Northwich Road 
-##                         4 
-##             Old Mill Road 
-##                         5 
-##                     Other 
-##                       244 
-##                 Park Lane 
-##                        24 
-##             Pendleton Way 
-##                         2 
-##                 Rood Hill 
-##                         9 
-##             Sandbach Road 
-##                        18 
-##                Spark Lane 
-##                         4 
-##               Storeys Way 
-##                         9 
-##             The Silk Road 
-##                        34 
-##                 West Road 
-##                        14 
-##               West Street 
-##                        13 
-##             Wilmslow Road 
-##                        28 
-## Wilmslow-Handforth Bypass 
-##                         4</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.0000  0.1721 
-## 3rd Qu.    Max. 
-##  0.1523  1.0084</code></pre>
+##               Ainslie Way               Birrell Way               Buxton Road             Chelford Road 
+##                         2                         4                        33                        49 
+##              Chester Road            Clayton Bypass            Congleton Road                Crewe Road 
+##                        38                        14                       108                        37 
+##         Cumberland Street                  Dog Lane        Haslington By-pass                Hibel Road 
+##                        17                         1                        21                        15 
+##        Holmes Chapel Road                  Kingsway            Knutsford Road               London Road 
+##                         7                        14                         6                        84 
+##         London Road North         London Road South         Macclesfield Road               MacLean Way 
+##                        15                        21                        27                         6 
+##           Manchester Road               Melrose Way           Middlewich Road             Nantwich Road 
+##                        20                         4                         6                        36 
+##            Northwich Road             Old Mill Road                     Other                 Park Lane 
+##                         4                         5                       244                        24 
+##             Pendleton Way                 Rood Hill             Sandbach Road                Spark Lane 
+##                         2                         9                        18                         4 
+##               Storeys Way             The Silk Road                 West Road               West Street 
+##                         9                        34                        14                        13 
+##             Wilmslow Road Wilmslow-Handforth Bypass 
+##                        28                         4</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.1721  0.1523  1.0084</code></pre>
 <pre><code>## [1] 20</code></pre>
 <pre><code>## 
-##                       A50 
-##                         1 
-##                      A523 
-##                         1 
-##                      A530 
-##                         1 
-##                      A534 
-##                         5 
-##                      A536 
-##                         1 
-##                        A6 
-##                         1 
-##               Ainslie Way 
-##                         1 
-##             Alderley Road 
-##                         1 
-##               Alum Bridge 
-##                         1 
-##                Beech Lane 
-##                         1 
-##               Birrell Way 
-##                         1 
-##       Bollington Old Road 
-##                         1 
-##              Broken Cross 
-##                         1 
-##               Buxton Road 
-##                         1 
-##             Chelford Road 
-##                         2 
-##              Chester Road 
-##                         5 
-##            Clayton Bypass 
-##                         1 
-##            Congleton Road 
-##                         3 
-##          Crewe Green Road 
-##                         2 
-##                Crewe Road 
-##                         4 
-##              Cross Street 
-##                         1 
-##         Cumberland Street 
-##                         1 
-##                 Dean Lane 
-##                         1 
-##             Dean Row Road 
-##                         1 
-##                  Dog Lane 
-##                         1 
-##        Haslington By-pass 
-##                         1 
-##                Hibel Road 
-##                         1 
-##        Holmes Chapel Road 
-##                         1 
-##           Hurdsfield Road 
-##                         1 
-##                  Kingsway 
-##                         1 
-##            Knutsford Road 
-##                         2 
-##               London Road 
-##                         4 
-##         London Road North 
-##                         2 
-##         London Road South 
-##                         1 
-##         Macclesfield Road 
-##                         2 
-##               MacLean Way 
-##                         1 
-##                 Macon Way 
-##                         1 
-##           Manchester Road 
-##                         2 
-##               Melrose Way 
-##                         1 
-##           Middlewich Road 
-##                         1 
-##               Mill Street 
-##                         1 
-##             Nantwich Road 
-##                         2 
-##            Newcastle Road 
-##                         1 
-##               Newton Bank 
-##                         1 
-##            Northwich Road 
-##                         1 
-##             Old Mill Road 
-##                         1 
-##                 Park Lane 
-##                         1 
-##             Pendleton Way 
-##                         1 
-##                 Rood Hill 
-##                         2 
-##             Sandbach Road 
-##                         2 
-##                Spark Lane 
-##                         1 
-##               Storeys Way 
-##                         1 
-##             The Silk Road 
-##                         1 
-##              Unnamed road 
-##                         3 
-##                Vernon Way 
-##                         2 
-##                 West Road 
-##                         1 
-##               West Street 
-##                         2 
-##             Wilmslow Road 
-##                         2 
-## Wilmslow-Handforth Bypass 
-##                         1</code></pre>
+##                       A50                      A523                      A530                      A534 
+##                         1                         1                         1                         5 
+##                      A536                        A6               Ainslie Way             Alderley Road 
+##                         1                         1                         1                         1 
+##               Alum Bridge                Beech Lane               Birrell Way       Bollington Old Road 
+##                         1                         1                         1                         1 
+##              Broken Cross               Buxton Road             Chelford Road              Chester Road 
+##                         1                         1                         2                         5 
+##            Clayton Bypass            Congleton Road          Crewe Green Road                Crewe Road 
+##                         1                         3                         2                         4 
+##              Cross Street         Cumberland Street                 Dean Lane             Dean Row Road 
+##                         1                         1                         1                         1 
+##                  Dog Lane        Haslington By-pass                Hibel Road        Holmes Chapel Road 
+##                         1                         1                         1                         1 
+##           Hurdsfield Road                  Kingsway            Knutsford Road               London Road 
+##                         1                         1                         2                         4 
+##         London Road North         London Road South         Macclesfield Road               MacLean Way 
+##                         2                         1                         2                         1 
+##                 Macon Way           Manchester Road               Melrose Way           Middlewich Road 
+##                         1                         2                         1                         1 
+##               Mill Street             Nantwich Road            Newcastle Road               Newton Bank 
+##                         1                         2                         1                         1 
+##            Northwich Road             Old Mill Road                 Park Lane             Pendleton Way 
+##                         1                         1                         1                         1 
+##                 Rood Hill             Sandbach Road                Spark Lane               Storeys Way 
+##                         2                         2                         1                         1 
+##             The Silk Road              Unnamed road                Vernon Way                 West Road 
+##                         1                         3                         2                         1 
+##               West Street             Wilmslow Road Wilmslow-Handforth Bypass 
+##                         2                         2                         1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       45 
-##    Estimated width &gt; 10m 
-##                       23</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       45 
-##    Estimated width &gt; 10m 
-##                       23 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                       45 
-##    Estimated width &gt; 10m 
-##                       23 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## # A tibble: 20 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 West… &quot;A532&quot;             508
-##  2 Nant… &quot;A534&quot;            1824
-##  3 Lond… &quot;A523&quot;            1429
-##  4 Crew… &quot;A534&quot;            2964
-##  5 Wilm… &quot;B5358&quot;           1638
-##  6 West… &quot;A34&quot;              741
-##  7 Crew… &quot;B5338&quot;            647
-##  8 Hasl… &quot;A534&quot;            3849
-##  9 Lond… &quot;A523&quot;            5447
-## 10 Buxt… &quot;A6&quot;              2169
-## 11 Lond… &quot;A523&quot;             630
-## 12 Ches… &quot;A537&quot;            1376
-## 13 Manc… &quot;&quot;                 806
-## 14 Macc… &quot;A523&quot;            1189
-## 15 Lond… &quot;A523&quot;             756
-## 16 Rood… &quot;A34&quot;              566
-## 17 West… &quot;A532&quot;             540
-## 18 Hibe… &quot;A537&quot;             760
-## 19 Sand… &quot;A534&quot;             524
-## 20 Cumb… &quot;A537&quot;             872
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                       45                       23</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                       45                       23                        1</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                       45                       23                        1</code></pre>
+<pre><code>## # A tibble: 20 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 West S… &quot;A532&quot;             508               294               149 30 mph                       10 FALSE            
+##  2 Nantwi… &quot;A534&quot;            1824               162               295 30 mph                        9 TRUE             
+##  3 London… &quot;A523&quot;            1429               157               224 30 mph                       10 TRUE             
+##  4 Crewe … &quot;A534&quot;            2964               151               448 30 mph                        9 TRUE             
+##  5 Wilmsl… &quot;B5358&quot;           1638               149               244 30 mph                       10 FALSE            
+##  6 West R… &quot;A34&quot;              741               131                97 30 mph                        8 TRUE             
+##  7 Crewe … &quot;B5338&quot;            647               120                78 30 mph                       10 FALSE            
+##  8 Haslin… &quot;A534&quot;            3849               103               396 40+ mph                       8 TRUE             
+##  9 London… &quot;A523&quot;            5447                98               534 40+ mph                       8 TRUE             
+## 10 Buxton… &quot;A6&quot;              2169                91               197 30 mph                        9 TRUE             
+## 11 London… &quot;A523&quot;             630                83                52 30 mph                       11 TRUE             
+## 12 Cheste… &quot;A537&quot;            1376                79               109 30 mph                        7 TRUE             
+## 13 Manche… &quot;&quot;                 806                77                62 40+ mph                      10 FALSE            
+## 14 Maccle… &quot;A523&quot;            1189                75                89 30 mph                       11 TRUE             
+## 15 London… &quot;A523&quot;             756                74                56 30 mph                       10 TRUE             
+## 16 Rood H… &quot;A34&quot;              566                71                40 30 mph                        9 TRUE             
+## 17 West S… &quot;A532&quot;             540                67                36 30 mph                       12 FALSE            
+## 18 Hibel … &quot;A537&quot;             760                67                51 30 mph                        9 TRUE             
+## 19 Sandba… &quot;A534&quot;             524                65                34 30 mph                        8 TRUE             
+## 20 Cumber… &quot;A537&quot;             872                62                54 30 mph                        7 TRUE</code></pre>
 
 
 

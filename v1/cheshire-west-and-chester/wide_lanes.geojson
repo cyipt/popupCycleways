@@ -108,6 +108,12 @@
 { "type": "Feature", "properties": { "name": "Civic Way", "ref": "", "maxspeed": "30 mph", "cycling_potential": 50.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.90197, 53.27677 ], [ -2.90167, 53.27651 ] ] } },
 { "type": "Feature", "properties": { "name": "Civic Way", "ref": "", "maxspeed": "30 mph", "cycling_potential": 44.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.90167, 53.27651 ], [ -2.90156, 53.27643 ] ] } },
 { "type": "Feature", "properties": { "name": "Civic Way", "ref": "", "maxspeed": "30 mph", "cycling_potential": 44.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.90156, 53.27643 ], [ -2.90143, 53.27634 ] ] } },
-{ "type": "Feature", "properties": { "name": "Wellington Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 100.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.90127, 53.27623 ], [ -2.90065, 53.2765 ] ] } }
+{ "type": "Feature", "properties": { "name": "Wellington Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 100.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.90127, 53.27623 ], [ -2.90065, 53.2765 ] ] } },
+{ "type": "Feature", "properties": { "name": "", "ref": "", "maxspeed": "30 mph", "cycling_potential": 54.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.51316, 53.23948 ], [ -2.51321, 53.2398 ], [ -2.51325, 53.24001 ] ] } },
+{ "type": "Feature", "properties": { "name": "London Road", "ref": "", "maxspeed": "40+ mph", "cycling_potential": 58.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.51315, 53.23854 ], [ -2.51319, 53.23865 ], [ -2.51321, 53.23872 ] ] } },
+{ "type": "Feature", "properties": { "name": "London Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 65.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.51306, 53.24031 ], [ -2.513, 53.24045 ] ] } },
+{ "type": "Feature", "properties": { "name": "London Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 86.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.51286, 53.24072 ], [ -2.51286, 53.2405 ], [ -2.51285, 53.24049 ] ] } },
+{ "type": "Feature", "properties": { "name": "London Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 36.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.51285, 53.24049 ], [ -2.5129, 53.24029 ] ] } },
+{ "type": "Feature", "properties": { "name": "London Road", "ref": "", "maxspeed": "30 mph", "cycling_potential": 143.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.51286, 53.24072 ], [ -2.51272, 53.24106 ] ] } }
 ]
 }

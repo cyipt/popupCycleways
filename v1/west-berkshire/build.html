@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,94 +388,48 @@ summary {
 ##          A4 B3241 B3421 B4009 
 ##    50     4    10     2     9</code></pre>
 <pre><code>## [1] 16</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    2038    2921    2973    4182 
-## 3rd Qu.    Max. 
-##    5966    5966</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2038    2921    2973    4182    5966    5966</code></pre>
 <pre><code>## 
-##                       Bath Road 
-##                             133 
-##                   Chapel Street 
-##                              14 
-##                     London Road 
-##                              27 
-## Newbury North/South Relief Road 
-##                              16 
-##                    Newtown Road 
-##                               8 
-##                           Other 
-##                              90 
+##                       Bath Road                   Chapel Street                     London Road 
+##                             133                              14                              27 
+## Newbury North/South Relief Road                    Newtown Road                           Other 
+##                              16                               8                              90 
 ##                  Western Avenue 
 ##                              12</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.03169 0.50057 0.49506 
-## 3rd Qu.    Max. 
-## 1.00000 1.01333</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.03169 0.50057 0.49506 1.00000 1.01333</code></pre>
 <pre><code>## [1] 11</code></pre>
 <pre><code>## 
-##                              A4 
-##                               8 
-##                       Bath Road 
-##                               6 
-##                   Chapel Street 
-##                               1 
-##                   Greenham Road 
-##                               1 
-##                  Hambridge Road 
-##                               1 
-##                     London Road 
-##                               2 
-## Newbury North/South Relief Road 
-##                               3 
-##                    Newtown Road 
-##                               1 
-##           Robin Hood Roundabout 
-##                               1 
-##                    Unnamed road 
-##                               2 
-##                  Western Avenue 
-##                               2</code></pre>
+##                              A4                       Bath Road                   Chapel Street 
+##                               8                               6                               1 
+##                   Greenham Road                  Hambridge Road                     London Road 
+##                               1                               1                               2 
+## Newbury North/South Relief Road                    Newtown Road           Robin Hood Roundabout 
+##                               3                               1                               1 
+##                    Unnamed road                  Western Avenue 
+##                               2                               2</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       11 
-##            Spare lane(s) 
-##                        7 
-##    Estimated width &gt; 10m 
-##                        6</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       11 
-##            Spare lane(s) 
-##                        7 
-##    Estimated width &gt; 10m 
-##                        6 
-##                     NA&#39;s 
-##                        4</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       11 
-##            Spare lane(s) 
-##                        7 
-##    Estimated width &gt; 10m 
-##                        6 
-##                     NA&#39;s 
-##                        4</code></pre>
-<pre><code>## # A tibble: 11 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Bath… A4                 969
-##  2 Newb… A339              1400
-##  3 A4    A4                 632
-##  4 Bath… A4                 568
-##  5 Bath… A4                6974
-##  6 Chap… A4                 533
-##  7 West… A4                 537
-##  8 Bath… A4                1407
-##  9 Bath… A4                4295
-## 10 Bath… A4                 581
-## 11 A4    A4                 504
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       11                        7                        6</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       11                        7                        6                        4</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       11                        7                        6                        4</code></pre>
+<pre><code>## # A tibble: 11 x 8
+##    Name     Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare…
+##    &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;           
+##  1 Bath Ro… A4                 969               217               210 30 mph                       10 FALSE           
+##  2 Newbury… A339              1400               205               287 40+ mph                       9 TRUE            
+##  3 A4       A4                 632               184               116 40+ mph                      10 FALSE           
+##  4 Bath Ro… A4                 568               133                76 40+ mph                      10 FALSE           
+##  5 Bath Ro… A4                6974                97               676 40+ mph                      11 TRUE            
+##  6 Chapel … A4                 533                95                51 30 mph                       10 FALSE           
+##  7 Western… A4                 537                65                35 40+ mph                      10 FALSE           
+##  8 Bath Ro… A4                1407                44                62 40+ mph                      10 FALSE           
+##  9 Bath Ro… A4                4295                43               185 40+ mph                      10 TRUE            
+## 10 Bath Ro… A4                 581                31                18 30 mph                       10 FALSE           
+## 11 A4       A4                 504                30                15 40+ mph                       9 TRUE</code></pre>
 
 
 

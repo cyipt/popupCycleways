@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,143 +378,63 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A6077 A6078  A666  A674 B6231 
-##     9     2     1    22     4     1 
-## B6447 
-##     1</code></pre>
+##       A6077 A6078  A666  A674 B6231 B6447 
+##     9     2     1    22     4     1     1</code></pre>
 <pre><code>## [1] 26</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   998.5  3381.7  7334.7  5289.3 
-## 3rd Qu.    Max. 
-##  7334.7  7334.7</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   998.5  3381.7  7334.7  5289.3  7334.7  7334.7</code></pre>
 <pre><code>## 
-##          Barbara Castle Way 
-##                          24 
-##              Blackburn Road 
-##                          65 
-##                 Bolton Road 
-##                          91 
-##            Duckworth Street 
-##                           8 
-## Freckleton Street Link Road 
-##                           7 
-##               Grimshaw Park 
-##                           9 
-##             Haslingden Road 
-##                          45 
-##        Higher Audley Street 
-##                          13 
-##                Higher Eanam 
-##                          17 
-##                   Lark Hill 
-##                           6 
-##         Lower Audley Street 
-##                          15 
-##                       Other 
-##                         201 
-##            Preston New Road 
-##                          15 
-##            Preston Old Road 
-##                          14 
-##            Whalley New Road 
-##                          46 
-##                Whalley Road 
-##                           9</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.00000 0.09704 
-## 3rd Qu.    Max. 
-## 0.09722 0.57395</code></pre>
+##          Barbara Castle Way              Blackburn Road                 Bolton Road            Duckworth Street 
+##                          24                          65                          91                           8 
+## Freckleton Street Link Road               Grimshaw Park             Haslingden Road        Higher Audley Street 
+##                           7                           9                          45                          13 
+##                Higher Eanam                   Lark Hill         Lower Audley Street                       Other 
+##                          17                           6                          15                         201 
+##            Preston New Road            Preston Old Road            Whalley New Road                Whalley Road 
+##                          15                          14                          46                           9</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.00000 0.09704 0.09722 0.57395</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre><code>## 
-##                       A6078 
-##                           1 
-##                        A666 
-##                           2 
-##            Alan Shearer Way 
-##                           1 
-##          Barbara Castle Way 
-##                           1 
-##              Blackburn Road 
-##                           3 
-##                 Bolton Road 
-##                           2 
-##            Duckworth Street 
-##                           1 
-## Freckleton Street Link Road 
-##                           1 
-##               Grimshaw Park 
-##                           1 
-##             Haslingden Road 
-##                           1 
-##        Higher Audley Street 
-##                           1 
-##                Higher Eanam 
-##                           1 
-##                   Lark Hill 
-##                           1 
-##         Lower Audley Street 
-##                           1 
-##             Montague Street 
-##                           1 
-##                   Park Road 
-##                           1 
-##                Penny Street 
-##                           1 
-##            Preston New Road 
-##                           1 
-##            Preston Old Road 
-##                           1 
-##                 School Lane 
-##                           1 
-##                Unnamed road 
-##                           2 
-##            Whalley New Road 
-##                           1 
-##                Whalley Road 
-##                           1</code></pre>
+##                       A6078                        A666            Alan Shearer Way          Barbara Castle Way 
+##                           1                           2                           1                           1 
+##              Blackburn Road                 Bolton Road            Duckworth Street Freckleton Street Link Road 
+##                           3                           2                           1                           1 
+##               Grimshaw Park             Haslingden Road        Higher Audley Street                Higher Eanam 
+##                           1                           1                           1                           1 
+##                   Lark Hill         Lower Audley Street             Montague Street                   Park Road 
+##                           1                           1                           1                           1 
+##                Penny Street            Preston New Road            Preston Old Road                 School Lane 
+##                           1                           1                           1                           1 
+##                Unnamed road            Whalley New Road                Whalley Road 
+##                           2                           1                           1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                        5</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                        5</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                        5</code></pre>
-<pre><code>## # A tibble: 10 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Lark… A666               572
-##  2 A666  A666               980
-##  3 Lowe… A6078              653
-##  4 Bolt… A666              3300
-##  5 Duck… A666               532
-##  6 Blac… A666               584
-##  7 Whal… A666              3099
-##  8 Grim… A6077              522
-##  9 Bolt… A666              1620
-## 10 Pres… A674              1645
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                       13                        5</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                       13                        5</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                       13                        5</code></pre>
+<pre><code>## # A tibble: 10 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Lark H… A666               572               131                75 30 mph                        9 TRUE             
+##  2 A666    A666               980               106               104 30 mph                        9 TRUE             
+##  3 Lower … A6078              653               102                67 30 mph                        9 TRUE             
+##  4 Bolton… A666              3300                98               323 30 mph                       10 TRUE             
+##  5 Duckwo… A666               532                96                51 30 mph                        8 TRUE             
+##  6 Blackb… A666               584                84                49 30 mph                       11 TRUE             
+##  7 Whalle… A666              3099                73               226 30 mph                        9 TRUE             
+##  8 Grimsh… A6077              522                62                32 30 mph                       10 TRUE             
+##  9 Bolton… A666              1620                48                78 30 mph                        9 TRUE             
+## 10 Presto… A674              1645                48                79 30 mph                       10 FALSE</code></pre>
 
 
 

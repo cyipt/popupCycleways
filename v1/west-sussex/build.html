@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,276 +378,98 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##       A2004 A2011 A2031 A2032   A23 
-##   192    11     3     9     3     3 
-##   A24  A259  A286 B2140 B2223 B2259 
-##     1    34     1     1     1    12</code></pre>
+##       A2004 A2011 A2031 A2032   A23   A24  A259  A286 B2140 B2223 B2259 
+##   192    11     3     9     3     3     1    34     1     1     1    12</code></pre>
 <pre><code>## [1] 90</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1270    3299    5301    5293 
-## 3rd Qu.    Max. 
-##    6200   11112</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1270    3299    5301    5293    6200   11112</code></pre>
 <pre><code>## 
-##           Albion Street 
-##                       7 
-##             Bognor Road 
-##                       5 
-##           Brighton Road 
-##                      54 
-##         Broadwater Road 
-##                      25 
-##  Broadwater Street West 
-##                      13 
-##           Copthorne Way 
-##                       1 
-##          Crawley Avenue 
-##                      52 
-##            Crawley Road 
-##                      24 
-##             Felpham Way 
-##                      19 
-##           Flansham Lane 
-##                       7 
-##            Gatwick Road 
-##                      15 
-##             Goring Road 
-##                      15 
-##            Grand Avenue 
-##                       6 
-##          Grinstead Lane 
-##                      10 
-##     Haslett Avenue East 
-##                      32 
-##        Hazelwick Avenue 
-##                       9 
-##            Horsham Road 
-##                       5 
-##                Kingsway 
-##                      11 
-##              Lewes Road 
-##                       2 
-##      Littlehampton Road 
-##                      29 
-##             London Road 
-##                      67 
-##               Main Road 
-##                      15 
-##             Manor Royal 
-##                      26 
-##                New Road 
-##                       5 
-##       Old Shoreham Road 
-##                      31 
-##                   Other 
-##                     449 
-## Roundstone By-Pass Road 
-##                       3 
-##       Rustington Bypass 
-##                       1 
-##        Shoreham By-Pass 
-##                      10 
-##        Sompting By-Pass 
-##                       5 
-##            Station Road 
-##                      11 
-##     Upper Brighton Road 
-##                      37 
+##           Albion Street             Bognor Road           Brighton Road         Broadwater Road 
+##                       7                       5                      54                      25 
+##  Broadwater Street West           Copthorne Way          Crawley Avenue            Crawley Road 
+##                      13                       1                      52                      24 
+##             Felpham Way           Flansham Lane            Gatwick Road             Goring Road 
+##                      19                       7                      15                      15 
+##            Grand Avenue          Grinstead Lane     Haslett Avenue East        Hazelwick Avenue 
+##                       6                      10                      32                       9 
+##            Horsham Road                Kingsway              Lewes Road      Littlehampton Road 
+##                       5                      11                       2                      29 
+##             London Road               Main Road             Manor Royal                New Road 
+##                      67                      15                      26                       5 
+##       Old Shoreham Road                   Other Roundstone By-Pass Road       Rustington Bypass 
+##                      31                     449                       3                       1 
+##        Shoreham By-Pass        Sompting By-Pass            Station Road     Upper Brighton Road 
+##                      10                       5                      11                      37 
 ##     Upper Shoreham Road 
 ##                      25</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.03392 0.29342 
-## 3rd Qu.    Max. 
-## 0.58151 1.07143</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.03392 0.29342 0.58151 1.07143</code></pre>
 <pre><code>## [1] 30</code></pre>
 <pre><code>## 
-##                     A2219 
-##                         1 
-##                       A23 
-##                         2 
-##                       A24 
-##                         1 
-##                      A259 
-##                         8 
-##                      A264 
-##                         2 
-##                       A27 
-##                         2 
-##             Albion Street 
-##                         1 
-##              Arundel Road 
-##                         1 
-##                     B2195 
-##                         1 
-##                 Bishopric 
-##                         1 
-##               Bognor Road 
-##                         1 
-##             Boundary Road 
-##                         1 
-##             Brighton Road 
-##                         7 
-##           Broadwater Road 
-##                         1 
-##    Broadwater Street West 
-##                         2 
-##             Copthorne Way 
-##                         1 
-##            Crawley Avenue 
-##                         2 
-##              Crawley Road 
-##                         2 
-##            Downland Drive 
-##                         1 
-##            Eastern Avenue 
-##                         1 
-##               Felpham Way 
-##                         3 
-##      Fishbourne Road West 
-##                         1 
-##       Fishersgate Terrace 
-##                         1 
-##             Flansham Lane 
-##                         1 
-##               Fleming Way 
-##                         1 
-##    Fleming Way Roundabout 
-##                         1 
-##            Franciscan Way 
-##                         1 
-##              Gatwick Road 
-##                         2 
-##   Gatwick Road Roundabout 
-##                         1 
-##               Goring Road 
-##                         1 
-##                Goring Way 
-##                         1 
-##              Grand Avenue 
-##                         1 
-##               Grange Road 
-##                         1 
-##            Grinstead Lane 
-##                         1 
-##       Haslett Avenue East 
-##                         1 
-##               Havant Road 
-##                         1 
-##          Hazelwick Avenue 
-##                         2 
-##               High Street 
-##                         1 
-##              Horsham Road 
-##                         2 
-##                Hurst Road 
-##                         1 
-##                  Kingsway 
-##                         1 
-##                Lewes Road 
-##                         1 
-##        Littlehampton Road 
-##                         1 
-##               London Road 
-##                         1 
-## Lowfield Heath Roundabout 
-##                         1 
-##                 Main Road 
-##                         1 
-##               Manor Royal 
-##                         1 
-##             Marine Parade 
-##                         1 
-##                 Mill Road 
-##                         1 
-##           New Church Road 
-##                         1 
-##                  New Road 
-##                         1 
-##              North Parade 
-##                         1 
-##              North Street 
-##                         1 
-##          Northgate Avenue 
-##                         1 
-##         Old Shoreham Road 
-##                         1 
-##   Roundstone By-Pass Road 
-##                         1 
-##         Rustington Bypass 
-##                         1 
-##          Shoreham By-Pass 
-##                         1 
-##          Sompting By-Pass 
-##                         1 
-##           South Farm Road 
-##                         1 
-##              South Street 
-##                         1 
-##          Southgate Avenue 
-##                         1 
-##              Station Road 
-##                         1 
-##              Teville Road 
-##                         1 
-##            Trafalgar Road 
-##                         1 
-##              Unnamed road 
-##                         7 
-##       Upper Brighton Road 
-##                         2 
-##       Upper Shoreham Road 
-##                         2 
-##             Victoria Road 
-##                         1 
-##         Worth Park Avenue 
-##                         1</code></pre>
+##                     A2219                       A23                       A24                      A259 
+##                         1                         2                         1                         8 
+##                      A264                       A27             Albion Street              Arundel Road 
+##                         2                         2                         1                         1 
+##                     B2195                 Bishopric               Bognor Road             Boundary Road 
+##                         1                         1                         1                         1 
+##             Brighton Road           Broadwater Road    Broadwater Street West             Copthorne Way 
+##                         7                         1                         2                         1 
+##            Crawley Avenue              Crawley Road            Downland Drive            Eastern Avenue 
+##                         2                         2                         1                         1 
+##               Felpham Way      Fishbourne Road West       Fishersgate Terrace             Flansham Lane 
+##                         3                         1                         1                         1 
+##               Fleming Way    Fleming Way Roundabout            Franciscan Way              Gatwick Road 
+##                         1                         1                         1                         2 
+##   Gatwick Road Roundabout               Goring Road                Goring Way              Grand Avenue 
+##                         1                         1                         1                         1 
+##               Grange Road            Grinstead Lane       Haslett Avenue East               Havant Road 
+##                         1                         1                         1                         1 
+##          Hazelwick Avenue               High Street              Horsham Road                Hurst Road 
+##                         2                         1                         2                         1 
+##                  Kingsway                Lewes Road        Littlehampton Road               London Road 
+##                         1                         1                         1                         1 
+## Lowfield Heath Roundabout                 Main Road               Manor Royal             Marine Parade 
+##                         1                         1                         1                         1 
+##                 Mill Road           New Church Road                  New Road              North Parade 
+##                         1                         1                         1                         1 
+##              North Street          Northgate Avenue         Old Shoreham Road   Roundstone By-Pass Road 
+##                         1                         1                         1                         1 
+##         Rustington Bypass          Shoreham By-Pass          Sompting By-Pass           South Farm Road 
+##                         1                         1                         1                         1 
+##              South Street          Southgate Avenue              Station Road              Teville Road 
+##                         1                         1                         1                         1 
+##            Trafalgar Road              Unnamed road       Upper Brighton Road       Upper Shoreham Road 
+##                         1                         7                         2                         2 
+##             Victoria Road         Worth Park Avenue 
+##                         1                         1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       22 
-##    Estimated width &gt; 10m 
-##                       39</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       22 
-##    Estimated width &gt; 10m 
-##                       39 
-##                     NA&#39;s 
-##                       11</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       22 
-##    Estimated width &gt; 10m 
-##                       39 
-##                     NA&#39;s 
-##                       11</code></pre>
-<pre><code>## # A tibble: 30 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Felp… &quot;B2259&quot;            564
-##  2 Nort… &quot;&quot;                 782
-##  3 Gori… &quot;A259&quot;            1110
-##  4 King… &quot;A259&quot;             540
-##  5 Felp… &quot;&quot;                 580
-##  6 Brig… &quot;A259&quot;             959
-##  7 Albi… &quot;A259&quot;             901
-##  8 Haze… &quot;&quot;                 580
-##  9 Fish… &quot;A259&quot;             691
-## 10 Brig… &quot;A23&quot;             1142
-## # … with 20 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       30                       22                       39</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       22                       39                       11</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       22                       39                       11</code></pre>
+<pre><code>## # A tibble: 30 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Felpha… &quot;B2259&quot;            564               315               178 30 mph                       10 FALSE            
+##  2 North … &quot;&quot;                 782               281               220 20 mph or le…                11 FALSE            
+##  3 Goring… &quot;A259&quot;            1110               250               278 30 mph                       10 FALSE            
+##  4 Kingsw… &quot;A259&quot;             540               234               126 30 mph                       12 FALSE            
+##  5 Felpha… &quot;&quot;                 580               232               135 30 mph                       11 FALSE            
+##  6 Bright… &quot;A259&quot;             959               223               214 30 mph                       12 FALSE            
+##  7 Albion… &quot;A259&quot;             901               194               175 30 mph                        9 FALSE            
+##  8 Hazelw… &quot;&quot;                 580               188               109 40+ mph                      11 FALSE            
+##  9 Fisher… &quot;A259&quot;             691               186               129 30 mph                       10 FALSE            
+## 10 Bright… &quot;A23&quot;             1142               144               164 30 mph                       10 FALSE            
+## # … with 20 more rows</code></pre>
 
 
 

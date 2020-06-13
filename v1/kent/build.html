@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,396 +378,122 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##          A2   A20 A2034 A2070  A226 
-##   257     5    23    12     1     2 
-##  A229  A250  A254  A255  A258  A259 
-##     5    13    16     2     3     4 
-##   A26   A28  A290  A292 B2008 B2014 
-##     5    10    19    31     7    12 
-## B2064 B2205 B2229 B2260   TM9 
-##    10    10     4     6     1</code></pre>
+##          A2   A20 A2034 A2070  A226  A229  A250  A254  A255  A258  A259   A26   A28  A290  A292 B2008 B2014 B2064 
+##   257     5    23    12     1     2     5    13    16     2     3     4     5    10    19    31     7    12    10 
+## B2205 B2229 B2260   TM9 
+##    10     4     6     1</code></pre>
 <pre><code>## [1] 134</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    2049    3850    6118    6745 
-## 3rd Qu.    Max. 
-##   12164   12307</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2049    3850    6118    6745   12164   12307</code></pre>
 <pre><code>## 
-##          Ashford Road 
-##                    31 
-##       Black Bull Road 
-##                    14 
-##          Bob Dunn Way 
-##                    22 
-##  Bradbourne Vale Road 
-##                    16 
-##       Canterbury Road 
-##                   115 
-##            Castle Way 
-##                    14 
-##          Chatham Road 
-##                     3 
-##  Cheriton High Street 
-##                    10 
-##         Cheriton Road 
-##                    23 
-##  Cherry Garden Avenue 
-##                    12 
-##      Churchill Avenue 
-##                    18 
-##   Crossways Boulevard 
-##                     6 
-##       Dartford Bypass 
-##                     1 
-##         Dartford Road 
-##                     8 
-##    Dumpton Park Drive 
-##                    18 
-##        Dymchurch Road 
-##                    12 
-##          Earls Avenue 
-##                     5 
-##          Eurolink Way 
-##                     8 
-##            Fairmeadow 
-##                    15 
-##       Folkestone Road 
-##                     5 
-##       George V Avenue 
-##                    12 
-##             Hall Road 
-##                    16 
-##           High Street 
-##                    15 
-##         Leybourne Way 
-##                     5 
-##           London Road 
-##                   128 
-##            Loose Road 
-##                    22 
-##       Lowfield Street 
-##                    10 
-##             Mace Lane 
-##                    11 
-##          Malling Road 
-##                     7 
-##          Margate Road 
-##                    33 
-##        Marine Terrace 
-##                     7 
-##      Mickleburgh Hill 
-##                     5 
-##        Northdown Road 
-##                    28 
-##                 Other 
-##                   871 
-##            Overcliffe 
-##                     9 
-##          Princes Road 
-##                     8 
-##      Quarry Hill Road 
-##                    14 
-##            Rheims Way 
-##                    45 
-##        Rochester Road 
-##                    15 
-##      Roman Villa Road 
-##                     1 
-## Royal Engineers&#39; Road 
-##                    26 
-##            Sea Street 
-##                    13 
-##      Shorncliffe Road 
-##                    12 
-##         Somerset Road 
-##                     9 
-##       Springhead Road 
-##                    10 
-##        St John&#39;s Road 
-##                    17 
-##          Station Road 
-##                    13 
-##           Sturry Road 
-##                    31 
-##       Thanington Road 
-##                    10 
-##             Vale Road 
-##                     5 
-##        Watling Street 
-##                    40 
-##   Westgate Bay Avenue 
-##                    11 
-##         Westwood Road 
-##                    16</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.1210  0.3105 
-## 3rd Qu.    Max. 
-##  0.5393  1.0294</code></pre>
+##          Ashford Road       Black Bull Road          Bob Dunn Way  Bradbourne Vale Road       Canterbury Road 
+##                    31                    14                    22                    16                   115 
+##            Castle Way          Chatham Road  Cheriton High Street         Cheriton Road  Cherry Garden Avenue 
+##                    14                     3                    10                    23                    12 
+##      Churchill Avenue   Crossways Boulevard       Dartford Bypass         Dartford Road    Dumpton Park Drive 
+##                    18                     6                     1                     8                    18 
+##        Dymchurch Road          Earls Avenue          Eurolink Way            Fairmeadow       Folkestone Road 
+##                    12                     5                     8                    15                     5 
+##       George V Avenue             Hall Road           High Street         Leybourne Way           London Road 
+##                    12                    16                    15                     5                   128 
+##            Loose Road       Lowfield Street             Mace Lane          Malling Road          Margate Road 
+##                    22                    10                    11                     7                    33 
+##        Marine Terrace      Mickleburgh Hill        Northdown Road                 Other            Overcliffe 
+##                     7                     5                    28                   871                     9 
+##          Princes Road      Quarry Hill Road            Rheims Way        Rochester Road      Roman Villa Road 
+##                     8                    14                    45                    15                     1 
+## Royal Engineers&#39; Road            Sea Street      Shorncliffe Road         Somerset Road       Springhead Road 
+##                    26                    13                    12                     9                    10 
+##        St John&#39;s Road          Station Road           Sturry Road       Thanington Road             Vale Road 
+##                    17                    13                    31                    10                     5 
+##        Watling Street   Westgate Bay Avenue         Westwood Road 
+##                    40                    11                    16</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.1210  0.3105  0.5393  1.0294</code></pre>
 <pre><code>## [1] 40</code></pre>
 <pre><code>## 
-##                       A2 
-##                        4 
-##                      A20 
-##                        3 
-##                    A2050 
-##                        1 
-##                     A206 
-##                        1 
-##                     A226 
-##                        1 
-##                     A227 
-##                        1 
-##                     A228 
-##                        2 
-##                     A229 
-##                        3 
-##                     A256 
-##                        1 
-##                     A259 
-##                        2 
-##                      A26 
-##                        3 
-##                      A28 
-##                        1 
-##                     A296 
-##                        1 
-##     Andrew Broughton Way 
-##                        1 
-##             Ashford Road 
-##                        4 
-##                    B2006 
-##                        1 
-##                    B2023 
-##                        1 
-##          Black Bull Road 
-##                        1 
-##             Bob Dunn Way 
-##                        1 
-##     Bradbourne Vale Road 
-##                        1 
-##                 Broadway 
-##                        1 
-##              Cannon Lane 
-##                        1 
-##          Canterbury Road 
-##                        3 
-##               Castle Way 
-##                        1 
-##             Chatham Road 
-##                        1 
-##     Cheriton High Street 
-##                        1 
-##     Cheriton Interchange 
-##                        1 
-##            Cheriton Road 
-##                        3 
-##     Cherry Garden Avenue 
-##                        1 
-##         Churchill Avenue 
-##                        1 
-##      Crossways Boulevard 
-##                        1 
-##          Dartford Bypass 
-##                        1 
-##            Dartford Road 
-##                        1 
-##       Dumpton Park Drive 
-##                        1 
-##           Dymchurch Road 
-##                        1 
-##             Earls Avenue 
-##                        1 
-##             Eurolink Way 
-##                        1 
-##               Fairmeadow 
-##                        1 
-##           Faversham Road 
-##                        1 
-##          Folkestone Road 
-##                        2 
-##          George V Avenue 
-##                        1 
-##    Greenhill Bridge Road 
-##                        1 
-##                Hall Road 
-##                        1 
-##           Hartsdown Road 
-##                        1 
-##              Hawley Road 
-##                        1 
-##             Hereson Road 
-##                        1 
-##           Hermitage Lane 
-##                        1 
-##              High Street 
-##                        1 
-## High Street St. Lawrence 
-##                        1 
-##               Hythe Road 
-##                        1 
-##              King Street 
-##                        1 
-##           Kingsmead Road 
-##                        1 
-##            Leybourne Way 
-##                        1 
-##          Lion Roundabout 
-##                        1 
-##              London Road 
-##                        8 
-##                 Longport 
-##                        1 
-##               Loose Road 
-##                        1 
-##       Lord Romney&#39;s Hill 
-##                        1 
-##          Lowfield Street 
-##                        1 
-##            Lunsford Lane 
-##                        1 
-##                Mace Lane 
-##                        1 
-##             Malling Road 
-##                        1 
-##             Margate Road 
-##                        2 
-##             Marine Drive 
-##                        1 
-##           Marine Terrace 
-##                        1 
-##         Mickleburgh Hill 
-##                        1 
-##            Millmead Road 
-##                        1 
-##              Milton Road 
-##                        2 
-##                Mote Road 
-##                        1 
-##            Mount Ephraim 
-##                        1 
-##             North Street 
-##                        1 
-##           Northdown Road 
-##                        1 
-##               Overcliffe 
-##                        1 
-##            Pavilion Road 
-##                        1 
-##             Pembury Road 
-##                        1 
-##            Pheasant Lane 
-##                        1 
-##             Princes Road 
-##                        2 
-##         Quarry Hill Road 
-##                        2 
-##            Ramsgate Road 
-##                        1 
-##               Rheims Way 
-##                        1 
-##           Rochester Road 
-##                        1 
-##         Roman Villa Road 
-##                        1 
-##    Royal Engineers&#39; Road 
-##                        1 
-##            Sandgate Road 
-##                        1 
-##     Scanlons Bridge Road 
-##                        1 
-##               Sea Street 
-##                        1 
-##                Seal Road 
-##                        1 
-##         Shorncliffe Road 
-##                        1 
-##            Somerset Road 
-##                        1 
-##            Sovereign Way 
-##                        1 
-##          Springhead Road 
-##                        1 
-##           St John&#39;s Road 
-##                        2 
-##       St. George&#39;s Place 
-##                        1 
-##       St. Michael&#39;s Road 
-##                        1 
-##        St. Peter&#39;s Place 
-##                        1 
-##             Station Road 
-##                        1 
-##              Sturry Road 
-##                        1 
-##              Sutton Road 
-##                        2 
-##          Thanington Road 
-##                        1 
-##                The Brent 
-##                        1 
-##             Unnamed road 
-##                       10 
-##                Vale Road 
-##                        1 
-##           Watling Street 
-##                        4 
-##      Westgate Bay Avenue 
-##                        1 
-##            Westwood Road 
-##                        2 
-##          Whitstable Road 
-##                        2 
-##                 Wincheap 
-##                        1 
-##              York Street 
-##                        1</code></pre>
+##                       A2                      A20                    A2050                     A206 
+##                        4                        3                        1                        1 
+##                     A226                     A227                     A228                     A229 
+##                        1                        1                        2                        3 
+##                     A256                     A259                      A26                      A28 
+##                        1                        2                        3                        1 
+##                     A296     Andrew Broughton Way             Ashford Road                    B2006 
+##                        1                        1                        4                        1 
+##                    B2023          Black Bull Road             Bob Dunn Way     Bradbourne Vale Road 
+##                        1                        1                        1                        1 
+##                 Broadway              Cannon Lane          Canterbury Road               Castle Way 
+##                        1                        1                        3                        1 
+##             Chatham Road     Cheriton High Street     Cheriton Interchange            Cheriton Road 
+##                        1                        1                        1                        3 
+##     Cherry Garden Avenue         Churchill Avenue      Crossways Boulevard          Dartford Bypass 
+##                        1                        1                        1                        1 
+##            Dartford Road       Dumpton Park Drive           Dymchurch Road             Earls Avenue 
+##                        1                        1                        1                        1 
+##             Eurolink Way               Fairmeadow           Faversham Road          Folkestone Road 
+##                        1                        1                        1                        2 
+##          George V Avenue    Greenhill Bridge Road                Hall Road           Hartsdown Road 
+##                        1                        1                        1                        1 
+##              Hawley Road             Hereson Road           Hermitage Lane              High Street 
+##                        1                        1                        1                        1 
+## High Street St. Lawrence               Hythe Road              King Street           Kingsmead Road 
+##                        1                        1                        1                        1 
+##            Leybourne Way          Lion Roundabout              London Road                 Longport 
+##                        1                        1                        8                        1 
+##               Loose Road       Lord Romney&#39;s Hill          Lowfield Street            Lunsford Lane 
+##                        1                        1                        1                        1 
+##                Mace Lane             Malling Road             Margate Road             Marine Drive 
+##                        1                        1                        2                        1 
+##           Marine Terrace         Mickleburgh Hill            Millmead Road              Milton Road 
+##                        1                        1                        1                        2 
+##                Mote Road            Mount Ephraim             North Street           Northdown Road 
+##                        1                        1                        1                        1 
+##               Overcliffe            Pavilion Road             Pembury Road            Pheasant Lane 
+##                        1                        1                        1                        1 
+##             Princes Road         Quarry Hill Road            Ramsgate Road               Rheims Way 
+##                        2                        2                        1                        1 
+##           Rochester Road         Roman Villa Road    Royal Engineers&#39; Road            Sandgate Road 
+##                        1                        1                        1                        1 
+##     Scanlons Bridge Road               Sea Street                Seal Road         Shorncliffe Road 
+##                        1                        1                        1                        1 
+##            Somerset Road            Sovereign Way          Springhead Road           St John&#39;s Road 
+##                        1                        1                        1                        2 
+##       St. George&#39;s Place       St. Michael&#39;s Road        St. Peter&#39;s Place             Station Road 
+##                        1                        1                        1                        1 
+##              Sturry Road              Sutton Road          Thanington Road                The Brent 
+##                        1                        2                        1                        1 
+##             Unnamed road                Vale Road           Watling Street      Westgate Bay Avenue 
+##                       10                        1                        4                        1 
+##            Westwood Road          Whitstable Road                 Wincheap              York Street 
+##                        2                        2                        1                        1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       40 
-##            Spare lane(s) 
-##                       34 
-##    Estimated width &gt; 10m 
-##                       69</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       40 
-##            Spare lane(s) 
-##                       34 
-##    Estimated width &gt; 10m 
-##                       69 
-##                     NA&#39;s 
-##                       11</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       40 
-##            Spare lane(s) 
-##                       34 
-##    Estimated width &gt; 10m 
-##                       69 
-##                     NA&#39;s 
-##                       11</code></pre>
-<pre><code>## # A tibble: 40 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Cher… A2034             1095
-##  2 Cher… B2064              575
-##  3 Marg… A254              1505
-##  4 Whit… A290               533
-##  5 St J… A26               1196
-##  6 High… B2260              675
-##  7 Lond… A226              2419
-##  8 Stur… A28               1087
-##  9 Lond… A20               2299
-## 10 Blac… A259               512
-## # … with 30 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       40                       34                       69</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       40                       34                       69                       11</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       40                       34                       69                       11</code></pre>
+<pre><code>## # A tibble: 40 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Cherit… A2034             1095               203               222 30 mph                       12 FALSE            
+##  2 Cherit… B2064              575               195               112 30 mph                       12 FALSE            
+##  3 Margat… A254              1505               185               278 30 mph                       10 FALSE            
+##  4 Whitst… A290               533               153                82 30 mph                       10 FALSE            
+##  5 St Joh… A26               1196               149               178 30 mph                       11 FALSE            
+##  6 High S… B2260              675               145                98 20 mph or le…                 9 FALSE            
+##  7 London… A226              2419               140               339 40+ mph                      11 FALSE            
+##  8 Sturry… A28               1087               129               140 30 mph                       10 TRUE             
+##  9 London… A20               2299               124               285 40+ mph                      10 FALSE            
+## 10 Black … A259               512               119                61 30 mph                        8 TRUE             
+## # … with 30 more rows</code></pre>
 
 
 

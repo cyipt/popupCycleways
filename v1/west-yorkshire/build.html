@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,730 +378,210 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A58   A61 A6110 A6120   A62 
-##   402    29    14     2    11     2 
-##  A638  A639   A64  A641  A643  A647 
-##     1     7     3     3     1    10 
-##   A65  A650  A651  A653  A655  A657 
-##    60     3     1    15     9     1 
-##  A660 B6157 B6432 B6481 
-##   108     1    20     1</code></pre>
+##         A58   A61 A6110 A6120   A62  A638  A639   A64  A641  A643  A647   A65  A650  A651  A653  A655  A657  A660 
+##   402    29    14     2    11     2     1     7     3     3     1    10    60     3     1    15     9     1   108 
+## B6157 B6432 B6481 
+##     1    20     1</code></pre>
 <pre><code>## [1] 272</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    2510    4803   10493   12682 
-## 3rd Qu.    Max. 
-##   18146   24736</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2510    4803   10493   12682   18146   24736</code></pre>
 <pre><code>## 
-##               Abbey Road 
-##                       27 
-##         Aire Valley Road 
-##                       23 
-##          Armley Gyratory 
-##                       12 
-##              Armley Road 
-##                       32 
-##                Balm Road 
-##                       18 
-##             Barrack Road 
-##                        4 
-##            Beckside Road 
-##                        8 
-##             Beeston Road 
-##                       39 
-##             Bierley Lane 
-##                       10 
-##             Bingley Road 
-##                       35 
-##            Bradford Road 
-##                      261 
-##           Britannia Road 
-##                       32 
-##                 Broadway 
-##                       38 
-##         Bruntcliffe Road 
-##                       16 
-##              Burley Road 
-##                       25 
-##       Burmantofts Street 
-##                       21 
-##             Burnley Road 
-##                       30 
-##               Canal Road 
-##                       30 
-##             Canal Street 
-##                        5 
-##        Canterbury Avenue 
-##                        2 
-##          Castleford Road 
-##                        9 
-##            Cemetery Road 
-##                        5 
-##          Chapeltown Road 
-##                       35 
-##           Clarendon Road 
-##                       13 
-##            Clay Pit Lane 
-##                       39 
-##         Cross Gates Road 
-##                        8 
-##         Crown Point Road 
-##                       22 
-##          Denby Dale Road 
-##                       69 
-##            Dewsbury Road 
-##                      238 
-##           Doncaster Road 
-##                      119 
-##              East Street 
-##                       17 
-##            Easterly Road 
-##                       49 
-##              Elland Road 
-##                       37 
-##             Gelderd Road 
-##                       28 
-##        Great Horton Road 
-##                       10 
-##      Great Wilson Street 
-##                       17 
-##             Halifax Road 
-##                       41 
-##           Hard Ings Road 
-##                       10 
-##           Harehills Road 
-##                       21 
-##           Harrogate Road 
-##                       38 
-##          Headingley Lane 
-##                       17 
-##             Horbury Road 
-##                       21 
-##       Horsforth New Road 
-##                       11 
-##       Horton Grange Road 
-##                       10 
-##        Huddersfield Road 
-##                       60 
-##             Hunslet Road 
-##                       49 
-##                Idle Road 
-##                        9 
-##       Ingram Distributor 
-##                       11 
-##                Ings Road 
-##                       35 
-##            Keighley Road 
-##                       37 
-##         Killinghall Road 
-##                       29 
-##                 Kingsway 
-##                        6 
-##                 Kirkgate 
-##                       16 
-##           Kirkstall Road 
-##                       89 
-##  Leeds and Bradford Road 
-##                       18 
-##               Leeds Road 
-##                      267 
-##             Legrams Lane 
-##                       13 
-##       Little Horton Lane 
-##                       16 
-##            Lockwood Road 
-##                       13 
-##                 Low Road 
-##                        7 
-##          Manchester Road 
-##                       56 
-##          Manningham Lane 
-##                       33 
-##               Marsh Lane 
-##                       23 
-##                Marsh Way 
-##                        6 
-##              Mayo Avenue 
-##                        8 
-##            Meanwood Road 
-##                       54 
-##           Middleton Road 
-##                       14 
-##             Midland Road 
-##                       10 
-##                Mill Lane 
-##                        7 
-##            Millshaw Road 
-##                        6 
-##            New Road Side 
-##                        9 
-##             North Street 
-##                       47 
-##                 Old Lane 
-##                       14 
-##                    Other 
-##                     1725 
-##               Otley Road 
-##                      113 
-##                 Owl Lane 
-##                        5 
-##                Park Lane 
-##                       20 
-##           Penistone Road 
-##                       47 
-##          Pontefract Road 
-##                       30 
-##             Queens Drive 
-##                        5 
-##            Regent Street 
-##                       21 
-##           Ring Road Adel 
-##                        6 
-##        Ring Road Farsley 
-##                       15 
-##       Ring Road Meanwood 
-##                       12 
-##       Ring Road Moortown 
-##                       52 
-##       Ring Road Weetwood 
-##                       11 
-##      Ring Road West Park 
-##                       26 
-##              Rooley Lane 
-##                       46 
-##            Roundhay Road 
-##                       47 
-##              Savile Road 
-##                       16 
-##          Scott Hall Road 
-##                       90 
-##               Selby Road 
-##                       36 
-##   Sheepscar Street South 
-##                       16 
-##    Shipley Airedale Road 
-##                       26 
-##       Sir Fred Hoyle Way 
-##                       14 
-##             Skipton Road 
-##                       16 
-##            Smiddles Lane 
-##                       12 
-## South Accommodation Road 
-##                       14 
-##             South Street 
-##                       17 
-##          Southfield Lane 
-##                       13 
-##           Stainland Road 
-##                        8 
-##         Stanningley Road 
-##                       34 
-##             Station Lane 
-##                        8 
-##             Sticker Lane 
-##                       25 
-##           Sunbridge Road 
-##                       15 
-##              The Headrow 
-##                       10 
-##            Thornton Road 
-##                       35 
-##           Tingley Common 
-##                       21 
-##                Tong Road 
-##                       32 
-##              Tong Street 
-##                       44 
-##              Valley Road 
-##                       10 
-##            Victoria Road 
-##                       15 
-##           Wakefield Road 
-##                      193 
-##          Wellington Road 
-##                       25 
-##        Wellington Street 
-##                       22 
-##             Westgate End 
-##                       13 
-##     Westgate Hill Street 
-##                       15 
-##            Wetherby Road 
-##                        5 
-##     Whitwood Common Lane 
-##                       10 
-##            Woodhead Road 
-##                        3 
-##           Woodhouse Lane 
-##                       57 
-##            Woodside Road 
-##                        6 
-##            Woodsley Road 
-##                       12 
-##                York Road 
-##                      105</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.01256 0.23063 
-## 3rd Qu.    Max. 
-## 0.29856 1.00971</code></pre>
+##               Abbey Road         Aire Valley Road          Armley Gyratory              Armley Road 
+##                       27                       23                       12                       32 
+##                Balm Road             Barrack Road            Beckside Road             Beeston Road 
+##                       18                        4                        8                       39 
+##             Bierley Lane             Bingley Road            Bradford Road           Britannia Road 
+##                       10                       35                      261                       32 
+##                 Broadway         Bruntcliffe Road              Burley Road       Burmantofts Street 
+##                       38                       16                       25                       21 
+##             Burnley Road               Canal Road             Canal Street        Canterbury Avenue 
+##                       30                       30                        5                        2 
+##          Castleford Road            Cemetery Road          Chapeltown Road           Clarendon Road 
+##                        9                        5                       35                       13 
+##            Clay Pit Lane         Cross Gates Road         Crown Point Road          Denby Dale Road 
+##                       39                        8                       22                       69 
+##            Dewsbury Road           Doncaster Road              East Street            Easterly Road 
+##                      238                      119                       17                       49 
+##              Elland Road             Gelderd Road        Great Horton Road      Great Wilson Street 
+##                       37                       28                       10                       17 
+##             Halifax Road           Hard Ings Road           Harehills Road           Harrogate Road 
+##                       41                       10                       21                       38 
+##          Headingley Lane             Horbury Road       Horsforth New Road       Horton Grange Road 
+##                       17                       21                       11                       10 
+##        Huddersfield Road             Hunslet Road                Idle Road       Ingram Distributor 
+##                       60                       49                        9                       11 
+##                Ings Road            Keighley Road         Killinghall Road                 Kingsway 
+##                       35                       37                       29                        6 
+##                 Kirkgate           Kirkstall Road  Leeds and Bradford Road               Leeds Road 
+##                       16                       89                       18                      267 
+##             Legrams Lane       Little Horton Lane            Lockwood Road                 Low Road 
+##                       13                       16                       13                        7 
+##          Manchester Road          Manningham Lane               Marsh Lane                Marsh Way 
+##                       56                       33                       23                        6 
+##              Mayo Avenue            Meanwood Road           Middleton Road             Midland Road 
+##                        8                       54                       14                       10 
+##                Mill Lane            Millshaw Road            New Road Side             North Street 
+##                        7                        6                        9                       47 
+##                 Old Lane                    Other               Otley Road                 Owl Lane 
+##                       14                     1725                      113                        5 
+##                Park Lane           Penistone Road          Pontefract Road             Queens Drive 
+##                       20                       47                       30                        5 
+##            Regent Street           Ring Road Adel        Ring Road Farsley       Ring Road Meanwood 
+##                       21                        6                       15                       12 
+##       Ring Road Moortown       Ring Road Weetwood      Ring Road West Park              Rooley Lane 
+##                       52                       11                       26                       46 
+##            Roundhay Road              Savile Road          Scott Hall Road               Selby Road 
+##                       47                       16                       90                       36 
+##   Sheepscar Street South    Shipley Airedale Road       Sir Fred Hoyle Way             Skipton Road 
+##                       16                       26                       14                       16 
+##            Smiddles Lane South Accommodation Road             South Street          Southfield Lane 
+##                       12                       14                       17                       13 
+##           Stainland Road         Stanningley Road             Station Lane             Sticker Lane 
+##                        8                       34                        8                       25 
+##           Sunbridge Road              The Headrow            Thornton Road           Tingley Common 
+##                       15                       10                       35                       21 
+##                Tong Road              Tong Street              Valley Road            Victoria Road 
+##                       32                       44                       10                       15 
+##           Wakefield Road          Wellington Road        Wellington Street             Westgate End 
+##                      193                       25                       22                       13 
+##     Westgate Hill Street            Wetherby Road     Whitwood Common Lane            Woodhead Road 
+##                       15                        5                       10                        3 
+##           Woodhouse Lane            Woodside Road            Woodsley Road                York Road 
+##                       57                        6                       12                      105</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.01256 0.23063 0.29856 1.00971</code></pre>
 <pre><code>## [1] 50</code></pre>
 <pre><code>## 
-##                       27 
-##                        1 
-##                      A58 
-##                        1 
-##                      A61 
-##                        7 
-##                    A6120 
-##                        3 
-##                     A629 
-##                        1 
-##                     A638 
-##                        3 
-##                     A646 
-##                        1 
-##                     A647 
-##                        1 
-##                      A65 
-##                        2 
-##                     A650 
-##                        3 
-##                     A655 
-##                        1 
-##                     A660 
-##                        1 
-##               Abbey Road 
-##                        2 
-##         Aire Valley Road 
-##                        1 
-##          Armley Gyratory 
-##                        1 
-##              Armley Road 
-##                        2 
-##              Asdale Road 
-##                        1 
-##          Atkinson Street 
-##                        1 
-##                Balm Road 
-##                        1 
-##            Barnsley Road 
-##                        1 
-##             Barrack Road 
-##                        1 
-##            Beckside Road 
-##                        1 
-##             Beeston Road 
-##                        1 
-##          Belle Isle Road 
-##                        1 
-##             Bierley Lane 
-##                        1 
-##             Bingley Road 
-##                        1 
-##            Bradford Road 
-##                        8 
-##              Bridge Road 
-##                        1 
-##            Bridge Street 
-##                        2 
-##           Britannia Road 
-##                        1 
-##             Broad Street 
-##                        1 
-##           Broadgate Lane 
-##                        1 
-##                 Broadway 
-##                        1 
-##         Bruntcliffe Road 
-##                        1 
-##              Burley Road 
-##                        1 
-##       Burmantofts Street 
-##                        1 
-##             Burnley Road 
-##                        2 
-##               Canal Road 
-##                        3 
-##             Canal Street 
-##                        1 
-##        Canterbury Avenue 
-##                        1 
-##                Carr Lane 
-##                        1 
-##          Castleford Road 
-##                        1 
-##            Cemetery Road 
-##                        1 
-##              Chapel Hill 
-##                        1 
-##          Chapeltown Road 
-##                        2 
-##                City Road 
-##                        1 
-##           Clarendon Road 
-##                        1 
-##            Clay Pit Lane 
-##                        2 
-##         Cleckheaton Road 
-##                        1 
-##          Commercial Road 
-##                        1 
-##        Commercial Street 
-##                        1 
-##       Cooper Bridge Road 
-##                        1 
-##      Cottingley New Road 
-##                        1 
-##             Croft Street 
-##                        2 
-##         Cross Gates Road 
-##                        1 
-##               Cross Lane 
-##                        1 
-##         Crown Point Road 
-##                        1 
-##          Denby Dale Road 
-##                        2 
-##            Dewsbury Road 
-##                        6 
-##           Doncaster Road 
-##                        4 
-##              East Street 
-##                        1 
-##            Easterly Road 
-##                        1 
-##              Elland Road 
-##                        2 
-##         Fairfield Avenue 
-##                        1 
-##             Foundry Lane 
-##                        1 
-##             Gelderd Road 
-##                        1 
-##            George Street 
-##                        1 
-##        Great Horton Road 
-##                        1 
-##      Great Wilson Street 
-##                        1 
-##               Green Lane 
-##                        1 
-##             Halifax Road 
-##                        3 
-##                Hall Ings 
-##                        1 
-##           Hard Ings Road 
-##                        1 
-##         Harehills Avenue 
-##                        1 
-##           Harehills Lane 
-##                        1 
-##           Harehills Road 
-##                        1 
-##           Harrogate Road 
-##                        3 
-##          Headingley Lane 
-##                        1 
-##           Henconner Lane 
-##                        1 
-##              High Street 
-##                        1 
-##             Horbury Road 
-##                        2 
-##       Horsforth New Road 
-##                        1 
-##       Horton Grange Road 
-##                        1 
-##        Huddersfield Road 
-##                        3 
-##             Hunslet Lane 
-##                        1 
-##             Hunslet Road 
-##                        1 
-##                Idle Road 
-##                        1 
-##       Ingram Distributor 
-##                        1 
-##            Ingrow Bridge 
-##                        1 
-##                Ings Road 
-##                        1 
-##               Ivy Street 
-##                        1 
-##            Keighley Road 
-##                        5 
-##         Killinghall Road 
-##                        1 
-##       King George Avenue 
-##                        1 
-##                 Kingsway 
-##                        1 
-##                 Kirkgate 
-##                        1 
-##           Kirkstall Road 
-##                        1 
-##         Knottingley Road 
-##                        1 
-##              Laisterdyke 
-##                        1 
-##  Leeds and Bradford Road 
-##                        1 
-##               Leeds Road 
-##                       10 
-##             Legrams Lane 
-##                        1 
-##         Listerhills Road 
-##                        1 
-##       Little Horton Lane 
-##                        1 
-##            Lockwood Road 
-##                        1 
-##                 Low Road 
-##                        1 
-## Lower Fitzwilliam Street 
-##                        1 
-##        Lower Town Street 
-##                        1 
-##              Main Street 
-##                        1 
-##          Manchester Road 
-##                        2 
-##          Manningham Lane 
-##                        1 
-##               Marsh Lane 
-##                        1 
-##                Marsh Way 
-##                        2 
-##              Mayo Avenue 
-##                        1 
-##            Meanwood Road 
-##                        2 
-##             Meltham Road 
-##                        1 
-##           Middleton Road 
-##                        1 
-##             Midland Road 
-##                        1 
-##                Mill Lane 
-##                        1 
-##            Millshaw Road 
-##                        1 
-##          Minsthorpe Lane 
-##                        1 
-##           New North Road 
-##                        1 
-##                 New Road 
-##                        2 
-##            New Road Side 
-##                        1 
-##              Nippet Lane 
-##                        1 
-##             North Street 
-##                        2 
-##                Northgate 
-##                        1 
-##            Oakworth Road 
-##                        1 
-##                 Old Lane 
-##                        1 
-##               Otley Road 
-##                        2 
-##                 Owl Lane 
-##                        1 
-##              Oxford Road 
-##                        1 
-##                Park Lane 
-##                        1 
-##           Penistone Road 
-##                        1 
-##          Pontefract Road 
-##                        2 
-##          Prince&#39;s Avenue 
-##                        1 
-##           Princes Avenue 
-##                        1 
-##            Quebec Street 
-##                        1 
-##             Queens Drive 
-##                        1 
-##            Regent Street 
-##                        1 
-##                Rein Road 
-##                        1 
-##         Richardshaw Lane 
-##                        1 
-##           Ring Road Adel 
-##                        1 
-##   Ring Road Beeston Park 
-##                        1 
-##        Ring Road Farsley 
-##                        1 
-##       Ring Road Meanwood 
-##                        1 
-##       Ring Road Moortown 
-##                        1 
-##       Ring Road Weetwood 
-##                        1 
-##      Ring Road West Park 
-##                        1 
-##              Rooley Lane 
-##                        1 
-##            Roundhay Road 
-##                        2 
-##              Savile Road 
-##                        2 
-##          Scott Hall Road 
-##                        1 
-##               Selby Road 
-##                        1 
-##                Shaw Lane 
-##                        1 
-##   Sheepscar Street South 
-##                        1 
-##    Shipley Airedale Road 
-##                        1 
-##       Sir Fred Hoyle Way 
-##                        1 
-##             Skipton Road 
-##                        1 
-##            Smiddles Lane 
-##                        1 
-##          Somerset Bridge 
-##                        1 
-## South Accommodation Road 
-##                        1 
-##             South Street 
-##                        1 
-##          Southfield Lane 
-##                        1 
-##         St Andrew&#39;s Road 
-##                        2 
-##           St Enochs Road 
-##                        1 
-##         St. Enoch&#39;s Road 
-##                        1 
-##           Stainbeck Road 
-##                        2 
-##           Stainland Road 
-##                        1 
-##         Stanningley Road 
-##                        3 
-##             Station Lane 
-##                        1 
-##             Sticker Lane 
-##                        1 
-##           Sunbridge Road 
-##                        2 
-##              The Headrow 
-##                        1 
-##                 The Oval 
-##                        1 
-##             Thornes Road 
-##                        1 
-##            Thornton Road 
-##                        2 
-##             Thwaite Gate 
-##                        1 
-##           Tingley Common 
-##                        1 
-##       Tingley Roundabout 
-##                        1 
-##                Tong Road 
-##                        1 
-##              Tong Street 
-##                        1 
-##              Town Street 
-##                        1 
-##             Unnamed road 
-##                       22 
-##              Valley Road 
-##                        1 
-##            Victoria Road 
-##                        1 
-##           Wakefield Road 
-##                       10 
-##          Wellington Road 
-##                        2 
-##        Wellington Street 
-##                        1 
-##             Wesley Place 
-##                        1 
-##                 Westgate 
-##                        1 
-##             Westgate End 
-##                        1 
-##     Westgate Hill Street 
-##                        1 
-##            Wetherby Road 
-##                        1 
-##             Whetley Lane 
-##                        1 
-##     Whitwood Common Lane 
-##                        1 
-##              Willow Road 
-##                        1 
-##        Willowbridge Lane 
-##                        1 
-##            Wilton Street 
-##                        1 
-##            Woodhead Road 
-##                        1 
-##           Woodhouse Lane 
-##                        1 
-##            Woodside Road 
-##                        1 
-##            Woodsley Road 
-##                        1 
-##                York Road 
-##                        1</code></pre>
+##                       27                      A58                      A61                    A6120 
+##                        1                        1                        7                        3 
+##                     A629                     A638                     A646                     A647 
+##                        1                        3                        1                        1 
+##                      A65                     A650                     A655                     A660 
+##                        2                        3                        1                        1 
+##               Abbey Road         Aire Valley Road          Armley Gyratory              Armley Road 
+##                        2                        1                        1                        2 
+##              Asdale Road          Atkinson Street                Balm Road            Barnsley Road 
+##                        1                        1                        1                        1 
+##             Barrack Road            Beckside Road             Beeston Road          Belle Isle Road 
+##                        1                        1                        1                        1 
+##             Bierley Lane             Bingley Road            Bradford Road              Bridge Road 
+##                        1                        1                        8                        1 
+##            Bridge Street           Britannia Road             Broad Street           Broadgate Lane 
+##                        2                        1                        1                        1 
+##                 Broadway         Bruntcliffe Road              Burley Road       Burmantofts Street 
+##                        1                        1                        1                        1 
+##             Burnley Road               Canal Road             Canal Street        Canterbury Avenue 
+##                        2                        3                        1                        1 
+##                Carr Lane          Castleford Road            Cemetery Road              Chapel Hill 
+##                        1                        1                        1                        1 
+##          Chapeltown Road                City Road           Clarendon Road            Clay Pit Lane 
+##                        2                        1                        1                        2 
+##         Cleckheaton Road          Commercial Road        Commercial Street       Cooper Bridge Road 
+##                        1                        1                        1                        1 
+##      Cottingley New Road             Croft Street         Cross Gates Road               Cross Lane 
+##                        1                        2                        1                        1 
+##         Crown Point Road          Denby Dale Road            Dewsbury Road           Doncaster Road 
+##                        1                        2                        6                        4 
+##              East Street            Easterly Road              Elland Road         Fairfield Avenue 
+##                        1                        1                        2                        1 
+##             Foundry Lane             Gelderd Road            George Street        Great Horton Road 
+##                        1                        1                        1                        1 
+##      Great Wilson Street               Green Lane             Halifax Road                Hall Ings 
+##                        1                        1                        3                        1 
+##           Hard Ings Road         Harehills Avenue           Harehills Lane           Harehills Road 
+##                        1                        1                        1                        1 
+##           Harrogate Road          Headingley Lane           Henconner Lane              High Street 
+##                        3                        1                        1                        1 
+##             Horbury Road       Horsforth New Road       Horton Grange Road        Huddersfield Road 
+##                        2                        1                        1                        3 
+##             Hunslet Lane             Hunslet Road                Idle Road       Ingram Distributor 
+##                        1                        1                        1                        1 
+##            Ingrow Bridge                Ings Road               Ivy Street            Keighley Road 
+##                        1                        1                        1                        5 
+##         Killinghall Road       King George Avenue                 Kingsway                 Kirkgate 
+##                        1                        1                        1                        1 
+##           Kirkstall Road         Knottingley Road              Laisterdyke  Leeds and Bradford Road 
+##                        1                        1                        1                        1 
+##               Leeds Road             Legrams Lane         Listerhills Road       Little Horton Lane 
+##                       10                        1                        1                        1 
+##            Lockwood Road                 Low Road Lower Fitzwilliam Street        Lower Town Street 
+##                        1                        1                        1                        1 
+##              Main Street          Manchester Road          Manningham Lane               Marsh Lane 
+##                        1                        2                        1                        1 
+##                Marsh Way              Mayo Avenue            Meanwood Road             Meltham Road 
+##                        2                        1                        2                        1 
+##           Middleton Road             Midland Road                Mill Lane            Millshaw Road 
+##                        1                        1                        1                        1 
+##          Minsthorpe Lane           New North Road                 New Road            New Road Side 
+##                        1                        1                        2                        1 
+##              Nippet Lane             North Street                Northgate            Oakworth Road 
+##                        1                        2                        1                        1 
+##                 Old Lane               Otley Road                 Owl Lane              Oxford Road 
+##                        1                        2                        1                        1 
+##                Park Lane           Penistone Road          Pontefract Road          Prince&#39;s Avenue 
+##                        1                        1                        2                        1 
+##           Princes Avenue            Quebec Street             Queens Drive            Regent Street 
+##                        1                        1                        1                        1 
+##                Rein Road         Richardshaw Lane           Ring Road Adel   Ring Road Beeston Park 
+##                        1                        1                        1                        1 
+##        Ring Road Farsley       Ring Road Meanwood       Ring Road Moortown       Ring Road Weetwood 
+##                        1                        1                        1                        1 
+##      Ring Road West Park              Rooley Lane            Roundhay Road              Savile Road 
+##                        1                        1                        2                        2 
+##          Scott Hall Road               Selby Road                Shaw Lane   Sheepscar Street South 
+##                        1                        1                        1                        1 
+##    Shipley Airedale Road       Sir Fred Hoyle Way             Skipton Road            Smiddles Lane 
+##                        1                        1                        1                        1 
+##          Somerset Bridge South Accommodation Road             South Street          Southfield Lane 
+##                        1                        1                        1                        1 
+##         St Andrew&#39;s Road           St Enochs Road         St. Enoch&#39;s Road           Stainbeck Road 
+##                        2                        1                        1                        2 
+##           Stainland Road         Stanningley Road             Station Lane             Sticker Lane 
+##                        1                        3                        1                        1 
+##           Sunbridge Road              The Headrow                 The Oval             Thornes Road 
+##                        2                        1                        1                        1 
+##            Thornton Road             Thwaite Gate           Tingley Common       Tingley Roundabout 
+##                        2                        1                        1                        1 
+##                Tong Road              Tong Street              Town Street             Unnamed road 
+##                        1                        1                        1                       22 
+##              Valley Road            Victoria Road           Wakefield Road          Wellington Road 
+##                        1                        1                       10                        2 
+##        Wellington Street             Wesley Place                 Westgate             Westgate End 
+##                        1                        1                        1                        1 
+##     Westgate Hill Street            Wetherby Road             Whetley Lane     Whitwood Common Lane 
+##                        1                        1                        1                        1 
+##              Willow Road        Willowbridge Lane            Wilton Street            Woodhead Road 
+##                        1                        1                        1                        1 
+##           Woodhouse Lane            Woodside Road            Woodsley Road                York Road 
+##                        1                        1                        1                        1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       50 
-##            Spare lane(s) 
-##                      110 
-##    Estimated width &gt; 10m 
-##                      134</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       50 
-##            Spare lane(s) 
-##                      110 
-##    Estimated width &gt; 10m 
-##                      134 
-##                     NA&#39;s 
-##                       15</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       50 
-##            Spare lane(s) 
-##                      110 
-##    Estimated width &gt; 10m 
-##                      134 
-##                     NA&#39;s 
-##                       15</code></pre>
-<pre><code>## # A tibble: 50 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Head… &quot;A660&quot;             971
-##  2 A660  &quot;A660&quot;             718
-##  3 Wood… &quot;A660&quot;            2438
-##  4 A65   &quot;A65&quot;              787
-##  5 Kirk… &quot;A65&quot;             4407
-##  6 Clay… &quot;A58&quot;             2235
-##  7 Low … &quot;A639&quot;             516
-##  8 Cast… &quot;&quot;                 551
-##  9 Chap… &quot;&quot;                1744
-## 10 Roun… &quot;&quot;                 909
-## # … with 40 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       50                      110                      134</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       50                      110                      134                       15</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       50                      110                      134                       15</code></pre>
+<pre><code>## # A tibble: 50 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Headin… &quot;A660&quot;             971               546               530 30 mph                       11 FALSE            
+##  2 A660    &quot;A660&quot;             718               414               297 30 mph                        8 TRUE             
+##  3 Woodho… &quot;A660&quot;            2438               372               907 30 mph                        9 TRUE             
+##  4 A65     &quot;A65&quot;              787               238               187 30 mph                        9 TRUE             
+##  5 Kirkst… &quot;A65&quot;             4407               237              1044 30 mph                       10 TRUE             
+##  6 Clay P… &quot;A58&quot;             2235               231               516 30 mph                       11 TRUE             
+##  7 Low Ro… &quot;A639&quot;             516               194               100 30 mph                       13 FALSE            
+##  8 Castle… &quot;&quot;                 551               188               104 30 mph                       10 FALSE            
+##  9 Chapel… &quot;&quot;                1744               163               284 30 mph                       11 FALSE            
+## 10 Roundh… &quot;&quot;                 909               161               146 30 mph                       13 FALSE            
+## # … with 40 more rows</code></pre>
 
 
 

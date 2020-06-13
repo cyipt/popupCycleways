@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,168 +388,66 @@ summary {
 ##       A3033  A370 B3440 
 ##    20     5     9    65</code></pre>
 <pre><code>## [1] 33</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1610    3524    4340    5781 
-## 3rd Qu.    Max. 
-##    9045    9045</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1610    3524    4340    5781    9045    9045</code></pre>
 <pre><code>## 
-##     Abbots Leigh Road 
-##                     8 
-## Ashton Gate Underpass 
-##                     9 
-##            Beach Road 
-##                    14 
-##            Brunel Way 
-##                    25 
-##   Gordano Interchange 
-##                    13 
-##          Hotwell Road 
-##                    20 
-##          Locking Road 
-##                    40 
-##       Marchfields Way 
-##                     7 
-##        Martcombe Road 
-##                     6 
-##      New Bristol Road 
-##                     3 
-##                 Other 
-##                   207 
-##         Portview Road 
-##                     7 
-##               Portway 
-##                    24 
-##           Queens Road 
-##                     7 
-##     Shirehampton Road 
-##                    16 
+##     Abbots Leigh Road Ashton Gate Underpass            Beach Road            Brunel Way   Gordano Interchange 
+##                     8                     9                    14                    25                    13 
+##          Hotwell Road          Locking Road       Marchfields Way        Martcombe Road      New Bristol Road 
+##                    20                    40                     7                     6                     3 
+##                 Other         Portview Road               Portway           Queens Road     Shirehampton Road 
+##                   207                     7                    24                     7                    16 
 ##      Winterstoke Road 
 ##                    27</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.2715  0.3990 
-## 3rd Qu.    Max. 
-##  0.8548  1.0189</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.2715  0.3990  0.8548  1.0189</code></pre>
 <pre><code>## [1] 19</code></pre>
 <pre><code>## 
-##                  A369 
-##                     1 
-##                  A370 
-##                     2 
-##                  A371 
-##                     1 
-##     Abbots Leigh Road 
-##                     1 
-## Ashton Gate Underpass 
-##                     1 
-##           Ashton Road 
-##                     1 
-##        Avonmouth Road 
-##                     1 
-##            Beach Road 
-##                     1 
-##             Boulevard 
-##                     1 
-##       Bridgwater Road 
-##                     1 
-##            Brunel Way 
-##                     2 
-##             Cabot Way 
-##                     1 
-##          Clifton Park 
-##                     1 
-##       Coronation Road 
-##                     1 
-##       Devonshire Road 
-##                     1 
-##            Drove Road 
-##                     2 
-##         Duckmoor Road 
-##                     1 
-##   Gordano Interchange 
-##                     1 
-##           Herluin Way 
-##                     1 
-##          Hotwell Road 
-##                     3 
-##     Kings Weston Road 
-##                     1 
-##      Knightstone Road 
-##                     1 
-##          Locking Road 
-##                     1 
-##       Marchfields Way 
-##                     1 
-##         Marine Parade 
-##                     1 
-##        Martcombe Road 
-##                     1 
-##        Mizzymead Road 
-##                     1 
-##      New Bristol Road 
-##                     1 
-##          North Street 
-##                     1 
-##         Portview Road 
-##                     1 
-##               Portway 
-##                     3 
-##           Queens Road 
-##                     1 
-##     Shirehampton Road 
-##                     1 
-##            Sylvan Way 
-##                     1 
-##  The Portbury Hundred 
-##                     1 
-##          Unnamed road 
-##                     3 
-##      Winterstoke Road 
-##                     1</code></pre>
+##                  A369                  A370                  A371     Abbots Leigh Road Ashton Gate Underpass 
+##                     1                     2                     1                     1                     1 
+##           Ashton Road        Avonmouth Road            Beach Road             Boulevard       Bridgwater Road 
+##                     1                     1                     1                     1                     1 
+##            Brunel Way             Cabot Way          Clifton Park       Coronation Road       Devonshire Road 
+##                     2                     1                     1                     1                     1 
+##            Drove Road         Duckmoor Road   Gordano Interchange           Herluin Way          Hotwell Road 
+##                     2                     1                     1                     1                     3 
+##     Kings Weston Road      Knightstone Road          Locking Road       Marchfields Way         Marine Parade 
+##                     1                     1                     1                     1                     1 
+##        Martcombe Road        Mizzymead Road      New Bristol Road          North Street         Portview Road 
+##                     1                     1                     1                     1                     1 
+##               Portway           Queens Road     Shirehampton Road            Sylvan Way  The Portbury Hundred 
+##                     3                     1                     1                     1                     1 
+##          Unnamed road      Winterstoke Road 
+##                     3                     1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       19 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                       14</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       19 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                       14</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       19 
-##            Spare lane(s) 
-##                       13 
-##    Estimated width &gt; 10m 
-##                       14</code></pre>
-<pre><code>## # A tibble: 19 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Lock… &quot;B3440&quot;           1816
-##  2 Hotw… &quot;A4&quot;               616
-##  3 Avon… &quot;&quot;                 600
-##  4 New … &quot;B3440&quot;            607
-##  5 Abbo… &quot;A369&quot;             737
-##  6 Brun… &quot;A370&quot;             604
-##  7 Shir… &quot;B4054&quot;            936
-##  8 A370  &quot;A370&quot;             703
-##  9 Duck… &quot;&quot;                 564
-## 10 Brid… &quot;A370&quot;             803
-## 11 A370  &quot;A370&quot;             905
-## 12 Knig… &quot;&quot;                 957
-## 13 Boul… &quot;&quot;                 603
-## 14 Wint… &quot;A3029&quot;            865
-## 15 Beac… &quot;A370&quot;            1155
-## 16 Mart… &quot;A369&quot;             906
-## 17 Quee… &quot;&quot;                 852
-## 18 Port… &quot;&quot;                 684
-## 19 Gord… &quot;A369&quot;             530
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       19                       13                       14</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       19                       13                       14</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       19                       13                       14</code></pre>
+<pre><code>## # A tibble: 19 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Lockin… &quot;B3440&quot;           1816               430               781 30 mph                       11 FALSE            
+##  2 Hotwel… &quot;A4&quot;               616               153                94 30 mph                       11 TRUE             
+##  3 Avonmo… &quot;&quot;                 600               151                91 20 mph or le…                13 FALSE            
+##  4 New Br… &quot;B3440&quot;            607               141                86 30 mph                       10 FALSE            
+##  5 Abbots… &quot;A369&quot;             737               133                98 30 mph                       10 FALSE            
+##  6 Brunel… &quot;A370&quot;             604               119                72 30 mph                       11 TRUE             
+##  7 Shireh… &quot;B4054&quot;            936               113               106 30 mph                       10 FALSE            
+##  8 A370    &quot;A370&quot;             703               101                71 30 mph                       12 FALSE            
+##  9 Duckmo… &quot;&quot;                 564                93                52 20 mph or le…                10 FALSE            
+## 10 Bridgw… &quot;A370&quot;             803                89                71 30 mph                       10 FALSE            
+## 11 A370    &quot;A370&quot;             905                72                65 40+ mph                      10 FALSE            
+## 12 Knight… &quot;&quot;                 957                71                68 30 mph                       10 FALSE            
+## 13 Boulev… &quot;&quot;                 603                70                42 30 mph                       11 FALSE            
+## 14 Winter… &quot;A3029&quot;            865                68                59 40+ mph                       9 TRUE             
+## 15 Beach … &quot;A370&quot;            1155                61                70 30 mph                       11 FALSE            
+## 16 Martco… &quot;A369&quot;             906                56                51 40+ mph                      11 FALSE            
+## 17 Queens… &quot;&quot;                 852                48                41 40+ mph                      10 FALSE            
+## 18 Portvi… &quot;&quot;                 684                46                31 20 mph or le…                 9 FALSE            
+## 19 Gordan… &quot;A369&quot;             530                31                16 40+ mph                      12 TRUE</code></pre>
 
 
 

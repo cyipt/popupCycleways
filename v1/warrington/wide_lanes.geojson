@@ -3,7 +3,10 @@
 "name": "wide_lanes",
 "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
+{ "type": "Feature", "properties": { "name": "Midland Way", "ref": "A57", "maxspeed": "30 mph", "cycling_potential": 20.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.59801, 53.39149 ], [ -2.59717, 53.39143 ] ] } },
 { "type": "Feature", "properties": { "name": "", "ref": "A57", "maxspeed": "30 mph", "cycling_potential": 163.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.5627, 53.39774 ], [ -2.56258, 53.39779 ], [ -2.56249, 53.39779 ], [ -2.56217, 53.39781 ], [ -2.56188, 53.39777 ] ] } },
+{ "type": "Feature", "properties": { "name": "Tarporley Road", "ref": "A49", "maxspeed": "40+ mph", "cycling_potential": 9.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.57234, 53.33566 ], [ -2.57241, 53.33573 ], [ -2.57276, 53.33602 ], [ -2.57378, 53.33687 ] ] } },
+{ "type": "Feature", "properties": { "name": "Tarporley Road", "ref": "A49", "maxspeed": "40+ mph", "cycling_potential": 94.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.57466, 53.33965 ], [ -2.57481, 53.33998 ] ] } },
 { "type": "Feature", "properties": { "name": "Warrington Road", "ref": "A574", "maxspeed": "30 mph", "cycling_potential": 78.0, "n_lanes": "2" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.52678, 53.43196 ], [ -2.52675, 53.43203 ] ] } },
 { "type": "Feature", "properties": { "name": "", "ref": "A574", "maxspeed": "40+ mph", "cycling_potential": 35.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.52798, 53.42982 ], [ -2.52789, 53.42983 ], [ -2.52774, 53.42986 ] ] } },
 { "type": "Feature", "properties": { "name": "", "ref": "A574", "maxspeed": "40+ mph", "cycling_potential": 8.0, "n_lanes": "1" }, "geometry": { "type": "LineString", "coordinates": [ [ -2.5278, 53.42953 ], [ -2.52803, 53.42965 ], [ -2.52825, 53.42971 ], [ -2.52846, 53.42977 ] ] } },

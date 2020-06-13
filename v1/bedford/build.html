@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,115 +388,47 @@ summary {
 ##       A5141  A600  B531 
 ##    43     5     1    24</code></pre>
 <pre><code>## [1] 16</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##   596.5  4883.2 12432.6  9342.8 
-## 3rd Qu.    Max. 
-## 12432.6 12432.6</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   596.5  4883.2 12432.6  9342.8 12432.6 12432.6</code></pre>
 <pre><code>## 
-##       Ampthill Road 
-##                  31 
-##      Clapham Bypass 
-##                   4 
-##        Clapham Road 
-##                  16 
-##     De Parys Avenue 
-##                   4 
-##     Goldington Road 
-##                   9 
-##      Kimbolton Road 
-##                  16 
-##           Mile Road 
-##                   4 
-##               Other 
-##                 149 
-##         Park Avenue 
-##                   7 
-## Paula Radcliffe Way 
-##                  17</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.04546 0.31482 0.44476 
-## 3rd Qu.    Max. 
-## 0.85697 1.00172</code></pre>
+##       Ampthill Road      Clapham Bypass        Clapham Road     De Parys Avenue     Goldington Road 
+##                  31                   4                  16                   4                   9 
+##      Kimbolton Road           Mile Road               Other         Park Avenue Paula Radcliffe Way 
+##                  16                   4                 149                   7                  17</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.04546 0.31482 0.44476 0.85697 1.00172</code></pre>
 <pre><code>## [1] 10</code></pre>
 <pre><code>## 
-##                A428 
-##                   1 
-##               A5141 
-##                   1 
-##                  A6 
-##                   1 
-##                A600 
-##                   1 
-##       Ampthill Road 
-##                   1 
-##      Britannia Road 
-##                   1 
-##      Clapham Bypass 
-##                   1 
-##        Clapham Road 
-##                   1 
-##     De Parys Avenue 
-##                   1 
-##     Goldington Road 
-##                   1 
-##       Kempston Road 
-##                   1 
-##      Kimbolton Road 
-##                   1 
-##           Mile Road 
-##                   1 
-##         Park Avenue 
-##                   1 
-## Paula Radcliffe Way 
-##                   1 
-##      Polhill Avenue 
-##                   1 
-##        Progress Way 
-##                   1 
-##    Tavistock Street 
-##                   1 
-##        Unnamed road 
-##                   4 
-##            West End 
-##                   1 
+##                A428               A5141                  A6                A600       Ampthill Road 
+##                   1                   1                   1                   1                   1 
+##      Britannia Road      Clapham Bypass        Clapham Road     De Parys Avenue     Goldington Road 
+##                   1                   1                   1                   1                   1 
+##       Kempston Road      Kimbolton Road           Mile Road         Park Avenue Paula Radcliffe Way 
+##                   1                   1                   1                   1                   1 
+##      Polhill Avenue        Progress Way    Tavistock Street        Unnamed road            West End 
+##                   1                   1                   1                   4                   1 
 ##       Wilstead Road 
 ##                   1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                        8</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                        8</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       10 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                        8</code></pre>
-<pre><code>## # A tibble: 10 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Park… &quot;&quot;                1034
-##  2 Brit… &quot;A5141&quot;            653
-##  3 Gold… &quot;A4280&quot;            513
-##  4 Tavi… &quot;A600&quot;            1017
-##  5 A428  &quot;A428&quot;            1214
-##  6 Kimb… &quot;B660&quot;             882
-##  7 Clap… &quot;A600&quot;             851
-##  8 De P… &quot;&quot;                 628
-##  9 Mile… &quot;A5134&quot;            516
-## 10 A5141 &quot;A5141&quot;            779
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        6                        8</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        6                        8</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       10                        6                        8</code></pre>
+<pre><code>## # A tibble: 10 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Park A… &quot;&quot;                1034               258               267 30 mph                       12 FALSE            
+##  2 Britan… &quot;A5141&quot;            653               218               142 30 mph                       11 FALSE            
+##  3 Goldin… &quot;A4280&quot;            513               208               107 30 mph                       11 FALSE            
+##  4 Tavist… &quot;A600&quot;            1017               132               134 30 mph                       11 FALSE            
+##  5 A428    &quot;A428&quot;            1214               122               148 40+ mph                      12 TRUE             
+##  6 Kimbol… &quot;B660&quot;             882               104                92 30 mph                       10 FALSE            
+##  7 Clapha… &quot;A600&quot;             851                78                66 30 mph                       11 FALSE            
+##  8 De Par… &quot;&quot;                 628                55                35 30 mph                       12 FALSE            
+##  9 Mile R… &quot;A5134&quot;            516                43                22 30 mph                       10 FALSE            
+## 10 A5141   &quot;A5141&quot;            779                42                33 40+ mph                      10 TRUE</code></pre>
 
 
 

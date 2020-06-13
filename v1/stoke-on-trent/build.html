@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,127 +378,69 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##         A34   A50  A500 A5006 A5007 
-##    24     1    13     1    10     5 
-## A5009   A52 B5041 B5045 B5046 
-##     1    15    25     8     1</code></pre>
+##         A34   A50  A500 A5006 A5007 A5009   A52 B5041 B5045 B5046 
+##    24     1    13     1    10     5     1    15    25     8     1</code></pre>
 <pre><code>## [1] 52</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1688    3185    5150    6400 
-## 3rd Qu.    Max. 
-##    9858    9858</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1688    3185    5150    6400    9858    9858</code></pre>
 <pre><code>## 
-##    Ash Bank Road    Bucknall Road 
-##                9               20 
-##    Cobridge Road     Etruria Road 
-##               23               36 
-##  Ford Green Road       Grove Road 
-##                9                4 
-##      King Street    Leek New Road 
-##               24               56 
-##        Leek Road      London Road 
-##               81               11 
-##   Newcastle Road            Other 
-##                3              109 
-##    Potteries Way      Scotia Road 
-##               15                9 
-## Shelton New Road    Trentham Road 
-##               17               15 
-##   Uttoxeter Road    Waterloo Road 
-##               16               28 
-##  Werrington Road 
-##               27</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-## 0.00000 0.00000 0.00000 0.04727 
-## 3rd Qu.    Max. 
-## 0.07963 0.45335</code></pre>
+##    Ash Bank Road    Bucknall Road    Cobridge Road     Etruria Road  Ford Green Road       Grove Road      King Street 
+##                9               20               23               36                9                4               24 
+##    Leek New Road        Leek Road      London Road   Newcastle Road            Other    Potteries Way      Scotia Road 
+##               56               81               11                3              109               15                9 
+## Shelton New Road    Trentham Road   Uttoxeter Road    Waterloo Road  Werrington Road 
+##               17               15               16               28               27</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00000 0.00000 0.00000 0.04727 0.07963 0.45335</code></pre>
 <pre><code>## [1] 20</code></pre>
 <pre><code>## 
-##              A5008                A52 
-##                  1                  1 
-##      Ash Bank Road Basford Roundabout 
-##                  1                  1 
-##      Bucknall Road      Cobridge Road 
-##                  2                  1 
-##    Copeland Street         Elder Road 
-##                  1                  1 
-##       Etruria Road  Etruria Vale Road 
-##                  2                  1 
-##    Ford Green Road         Grove Road 
-##                  1                  1 
-##        King Street      Leek New Road 
-##                  1                  1 
-##          Leek Road        London Road 
-##                  4                  1 
-##     Newcastle Road   Newcastle Street 
-##                  1                  1 
-##      Potteries Way        Regent Road 
-##                  1                  1 
-##        Scotia Road   Shelton New Road 
-##                  1                  1 
-##      Trentham Road       Unnamed road 
-##                  1                  2 
-##     Uttoxeter Road         Vale Place 
-##                  1                  1 
-##      Waterloo Road    Werrington Road 
-##                  1                  1</code></pre>
+##              A5008                A52      Ash Bank Road Basford Roundabout      Bucknall Road      Cobridge Road 
+##                  1                  1                  1                  1                  2                  1 
+##    Copeland Street         Elder Road       Etruria Road  Etruria Vale Road    Ford Green Road         Grove Road 
+##                  1                  1                  2                  1                  1                  1 
+##        King Street      Leek New Road          Leek Road        London Road     Newcastle Road   Newcastle Street 
+##                  1                  1                  4                  1                  1                  1 
+##      Potteries Way        Regent Road        Scotia Road   Shelton New Road      Trentham Road       Unnamed road 
+##                  1                  1                  1                  1                  1                  2 
+##     Uttoxeter Road         Vale Place      Waterloo Road    Werrington Road 
+##                  1                  1                  1                  1</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                        7</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                        7 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       20 
-##            Spare lane(s) 
-##                        6 
-##    Estimated width &gt; 10m 
-##                        7 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## # A tibble: 20 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Lond… &quot;B5041&quot;            577
-##  2 Shel… &quot;B5045&quot;            993
-##  3 King… &quot;A5007&quot;           1112
-##  4 Leek… &quot;A5009&quot;           1191
-##  5 Leek… &quot;A52&quot;             3242
-##  6 Newc… &quot;A34&quot;              892
-##  7 Wate… &quot;A50&quot;             1554
-##  8 Grov… &quot;&quot;                 552
-##  9 Cobr… &quot;A53&quot;             1464
-## 10 Werr… &quot;A52&quot;             1965
-## 11 Buck… &quot;A52&quot;              516
-## 12 Etru… &quot;A53&quot;             1062
-## 13 Etru… &quot;A53&quot;              796
-## 14 Scot… &quot;A50&quot;              686
-## 15 Utto… &quot;&quot;                 689
-## 16 Basf… &quot;A53&quot;              507
-## 17 Ford… &quot;B5051&quot;            791
-## 18 Buck… &quot;A5008&quot;            560
-## 19 Tren… &quot;A5035&quot;           1667
-## 20 Leek… &quot;A53&quot;             4360
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       20                        6                        7</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                        6                        7                        1</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       20                        6                        7                        1</code></pre>
+<pre><code>## # A tibble: 20 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 London… &quot;B5041&quot;            577               204               118 30 mph                       10 FALSE            
+##  2 Shelto… &quot;B5045&quot;            993               129               128 30 mph                       10 FALSE            
+##  3 King S… &quot;A5007&quot;           1112               128               142 30 mph                       10 FALSE            
+##  4 Leek R… &quot;A5009&quot;           1191               119               142 30 mph                       10 FALSE            
+##  5 Leek R… &quot;A52&quot;             3242               118               383 30 mph                       10 TRUE             
+##  6 Newcas… &quot;A34&quot;              892               116               103 40+ mph                       9 TRUE             
+##  7 Waterl… &quot;A50&quot;             1554                98               152 30 mph                       10 FALSE            
+##  8 Grove … &quot;&quot;                 552                88                49 30 mph                       10 FALSE            
+##  9 Cobrid… &quot;A53&quot;             1464                87               127 30 mph                       10 TRUE             
+## 10 Werrin… &quot;A52&quot;             1965                61               120 30 mph                        8 TRUE             
+## 11 Buckna… &quot;A52&quot;              516                59                30 30 mph                       10 TRUE             
+## 12 Etruri… &quot;A53&quot;             1062                58                62 40+ mph                       8 TRUE             
+## 13 Etruri… &quot;A53&quot;              796                57                45 30 mph                        8 TRUE             
+## 14 Scotia… &quot;A50&quot;              686                55                38 30 mph                       11 FALSE            
+## 15 Uttoxe… &quot;&quot;                 689                51                35 30 mph                        7 TRUE             
+## 16 Basfor… &quot;A53&quot;              507                50                25 30 mph                        8 TRUE             
+## 17 Ford G… &quot;B5051&quot;            791                50                40 30 mph                       10 FALSE            
+## 18 Buckna… &quot;A5008&quot;            560                49                27 30 mph                       11 TRUE             
+## 19 Trenth… &quot;A5035&quot;           1667                48                80 30 mph                       10 FALSE            
+## 20 Leek N… &quot;A53&quot;             4360                47               205 30 mph                        7 TRUE</code></pre>
 
 
 

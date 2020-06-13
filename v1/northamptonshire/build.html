@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,258 +378,90 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
 
 <pre><code>## &lt;environment: R_GlobalEnv&gt;</code></pre>
 <pre><code>## 
-##        A428 A4300 A4500  A508 A5095 
-##   157    15     2    22    18     1 
-## A5101 A5123 A6014 B6481 
-##     3    14     5     1</code></pre>
+##        A428 A4300 A4500  A508 A5095 A5101 A5123 A6014 B6481 
+##   157    15     2    22    18     1     3    14     5     1</code></pre>
 <pre><code>## [1] 61</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    2206    7011    9882   14553 
-## 3rd Qu.    Max. 
-##   25705   25705</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2206    7011    9882   14553   25705   25705</code></pre>
 <pre><code>## 
-##          Bants Lane 
-##                  11 
-##        Barrack Road 
-##                  35 
-##         Barton Road 
-##                   1 
-##        Bedford Road 
-##                   5 
-##      Danes Camp Way 
-##                   9 
-##     Geddington Road 
-##                  10 
-##      Grafton Street 
-##                  10 
-##     Harborough Road 
-##                  26 
-##     Harlestone Road 
-##                   9 
-##      Harrowden Hill 
-##                   2 
-##          Hennef Way 
-##                   4 
-##        Horse Market 
-##                  12 
-##      Kettering Road 
-##                  40 
-##       Kingsley Road 
-##                  15 
-##   Kingsthorpe Grove 
-##                   8 
-##    Kingsthorpe Road 
-##                  11 
-##         London Road 
-##                  19 
-##      Lumbertubs Way 
-##                  34 
-##             Mereway 
-##                   8 
-##           Niort Way 
-##                   4 
-##         Oakley Road 
-##                  11 
-##               Other 
-##                 402 
-##   Park Avenue North 
-##                   9 
-##     Rockingham Road 
-##                  12 
-##    Saint James Road 
-##                   8 
-##       St Peters Way 
-##                   4 
-##       Stamford Road 
-##                   2 
-##      Towcester Road 
-##                  14 
-##      Uppingham Road 
-##                   1 
-##           Upton Way 
-##                  14 
-##         Weedon Road 
-##                  11 
-##         Weldon Road 
-##                  18 
-## Wellingborough Road 
-##                  65</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.0000  0.0000  0.2467 
-## 3rd Qu.    Max. 
-##  0.3573  1.0263</code></pre>
+##          Bants Lane        Barrack Road         Barton Road        Bedford Road      Danes Camp Way 
+##                  11                  35                   1                   5                   9 
+##     Geddington Road      Grafton Street     Harborough Road     Harlestone Road      Harrowden Hill 
+##                  10                  10                  26                   9                   2 
+##          Hennef Way        Horse Market      Kettering Road       Kingsley Road   Kingsthorpe Grove 
+##                   4                  12                  40                  15                   8 
+##    Kingsthorpe Road         London Road      Lumbertubs Way             Mereway           Niort Way 
+##                  11                  19                  34                   8                   4 
+##         Oakley Road               Other   Park Avenue North     Rockingham Road    Saint James Road 
+##                  11                 402                   9                  12                   8 
+##       St Peters Way       Stamford Road      Towcester Road      Uppingham Road           Upton Way 
+##                   4                   2                  14                   1                  14 
+##         Weedon Road         Weldon Road Wellingborough Road 
+##                  11                  18                  65</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.0000  0.0000  0.2467  0.3573  1.0263</code></pre>
 <pre><code>## [1] 30</code></pre>
 <pre><code>## 
-##                         A422 
-##                            1 
-##                         A427 
-##                            1 
-##                         A428 
-##                            1 
-##                          A43 
-##                            2 
-##                          A45 
-##                            1 
-##                         A508 
-##                            3 
-##                         A509 
-##                            2 
-##                        A5123 
-##                            2 
-##                        A5199 
-##                            1 
-##                         A605 
-##                            1 
-##                        A6086 
-##                            1 
-##               Abington Grove 
-##                            1 
-##                   Bants Lane 
-##                            1 
-##                 Barrack Road 
-##                            1 
-##                  Barton Road 
-##                            1 
-##                 Bedford Road 
-##                            2 
-##                   Booth Rise 
-##                            1 
-##                Burleigh Road 
-##                            1 
-##              Chiltern Avenue 
-##                            1 
-##            Cliftonville Road 
-##                            1 
-##               Danes Camp Way 
-##                            1 
-##              Geddington Road 
-##                            1 
-##               Grafton Street 
-##                            1 
-##              Harborough Road 
-##                            1 
-## Harker Way (Corby Link Road) 
-##                            1 
-##              Harlestone Road 
-##                            2 
-##               Harrowden Hill 
-##                            1 
-##                   Hennef Way 
-##                            1 
-##                 Horse Market 
-##                            1 
-##               Kettering Road 
-##                            3 
-##                Kingsley Road 
-##                            1 
-##            Kingsthorpe Grove 
-##                            1 
-##             Kingsthorpe Road 
-##                            1 
-##                  London Road 
-##                            2 
-##                 Lower Mounts 
-##                            1 
-##               Lumbertubs Way 
-##                            1 
-##                      Mereway 
-##                            1 
-##                    Niort Way 
-##                            1 
-##              Northall Street 
-##                            1 
-##                  Oakley Road 
-##                            1 
-##            Park Avenue North 
-##                            1 
-##              Rockingham Road 
-##                            1 
-##          Saint Andrew&#39;s Road 
-##                            1 
-##             Saint James Road 
-##                            1 
-##          Spencer Bridge Road 
-##                            2 
-##                St Peters Way 
-##                            2 
-##               St. James Road 
-##                            1 
-##                Stamford Road 
-##                            1 
-##                 Stanion Lane 
-##                            1 
-##               The Embankment 
-##                            1 
-##                 Tollgate Way 
-##                            1 
-##               Towcester Road 
-##                            2 
-##           Turnells Mill Lane 
-##                            1 
-##                 Unnamed road 
-##                           11 
-##               Uppingham Road 
-##                            1 
-##                    Upton Way 
-##                            1 
-##           Victoria Promenade 
-##                            1 
-##               Watling Street 
-##                            1 
-##                  Weedon Road 
-##                            1 
-##                  Weldon Road 
-##                            1 
+##                         A422                         A427                         A428                          A43 
+##                            1                            1                            1                            2 
+##                          A45                         A508                         A509                        A5123 
+##                            1                            3                            2                            2 
+##                        A5199                         A605                        A6086               Abington Grove 
+##                            1                            1                            1                            1 
+##                   Bants Lane                 Barrack Road                  Barton Road                 Bedford Road 
+##                            1                            1                            1                            2 
+##                   Booth Rise                Burleigh Road              Chiltern Avenue            Cliftonville Road 
+##                            1                            1                            1                            1 
+##               Danes Camp Way              Geddington Road               Grafton Street              Harborough Road 
+##                            1                            1                            1                            1 
+## Harker Way (Corby Link Road)              Harlestone Road               Harrowden Hill                   Hennef Way 
+##                            1                            2                            1                            1 
+##                 Horse Market               Kettering Road                Kingsley Road            Kingsthorpe Grove 
+##                            1                            3                            1                            1 
+##             Kingsthorpe Road                  London Road                 Lower Mounts               Lumbertubs Way 
+##                            1                            2                            1                            1 
+##                      Mereway                    Niort Way              Northall Street                  Oakley Road 
+##                            1                            1                            1                            1 
+##            Park Avenue North              Rockingham Road          Saint Andrew&#39;s Road             Saint James Road 
+##                            1                            1                            1                            1 
+##          Spencer Bridge Road                St Peters Way               St. James Road                Stamford Road 
+##                            2                            2                            1                            1 
+##                 Stanion Lane               The Embankment                 Tollgate Way               Towcester Road 
+##                            1                            1                            1                            2 
+##           Turnells Mill Lane                 Unnamed road               Uppingham Road                    Upton Way 
+##                            1                           11                            1                            1 
+##           Victoria Promenade               Watling Street                  Weedon Road                  Weldon Road 
+##                            1                            1                            1                            1 
 ##          Wellingborough Road 
 ##                            3</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       22 
-##    Estimated width &gt; 10m 
-##                       31</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       22 
-##    Estimated width &gt; 10m 
-##                       31 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                       30 
-##            Spare lane(s) 
-##                       22 
-##    Estimated width &gt; 10m 
-##                       31 
-##                     NA&#39;s 
-##                        3</code></pre>
-<pre><code>## # A tibble: 30 x 6
-##    Name  Reference `Length (m)`
-##  * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-##  1 Kett… &quot;A5123&quot;           1736
-##  2 Sain… &quot;A428&quot;             527
-##  3 Weed… &quot;A4500&quot;            600
-##  4 Park… &quot;A5101&quot;            762
-##  5 Graf… &quot;&quot;                 552
-##  6 Well… &quot;A4500&quot;           1758
-##  7 King… &quot;A5095&quot;            513
-##  8 Gedd… &quot;A6086&quot;           1332
-##  9 Towc… &quot;A5123&quot;            996
-## 10 Rock… &quot;A6003&quot;            611
-## # … with 20 more rows, and 3 more
-## #   variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                       30                       22                       31</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       22                       31                        3</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                       30                       22                       31                        3</code></pre>
+<pre><code>## # A tibble: 30 x 8
+##    Name    Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##    &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+##  1 Ketter… &quot;A5123&quot;           1736               273               474 30 mph                       10 FALSE            
+##  2 Saint … &quot;A428&quot;             527               269               142 30 mph                       11 FALSE            
+##  3 Weedon… &quot;A4500&quot;            600               237               142 30 mph                       11 FALSE            
+##  4 Park A… &quot;A5101&quot;            762               202               154 30 mph                       11 FALSE            
+##  5 Grafto… &quot;&quot;                 552               170                94 30 mph                       14 FALSE            
+##  6 Wellin… &quot;A4500&quot;           1758               157               276 30 mph                       11 FALSE            
+##  7 Kingst… &quot;A5095&quot;            513               152                78 30 mph                       11 FALSE            
+##  8 Geddin… &quot;A6086&quot;           1332               149               198 40+ mph                      11 FALSE            
+##  9 Towces… &quot;A5123&quot;            996               131               130 30 mph                       10 FALSE            
+## 10 Rockin… &quot;A6003&quot;            611               112                68 30 mph                       10 FALSE            
+## # … with 20 more rows</code></pre>
 
 
 

@@ -11,7 +11,7 @@
 
 <meta name="author" content="robin" />
 
-<meta name="date" content="2020-06-05" />
+<meta name="date" content="2020-06-10" />
 
 <title>build.R</title>
 
@@ -378,7 +378,7 @@ summary {
 
 <h1 class="title toc-ignore">build.R</h1>
 <h4 class="author">robin</h4>
-<h4 class="date">2020-06-05</h4>
+<h4 class="date">2020-06-10</h4>
 
 </div>
 
@@ -388,89 +388,39 @@ summary {
 ##      A442 
 ##   52    2</code></pre>
 <pre><code>## [1] 31</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##    1089    1089    1181    1286 
-## 3rd Qu.    Max. 
-##    1445    1634</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    1089    1089    1181    1286    1445    1634</code></pre>
 <pre><code>## 
-##    Brockton Way New Trench Road 
-##              11               8 
-##           Other       Queensway 
-##             176              18 
-## Springhill Road 
-##               3</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 
-##  0.0000  0.1149  0.4552  0.4943 
-## 3rd Qu.    Max. 
-##  0.9862  1.0000</code></pre>
+##    Brockton Way New Trench Road           Other       Queensway Springhill Road 
+##              11               8             176              18               3</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##  0.0000  0.1149  0.4552  0.4943  0.9862  1.0000</code></pre>
 <pre><code>## [1] 8</code></pre>
 <pre><code>## 
-##                   A442 
-##                      3 
-##                   A518 
-##                      1 
-##                  B5061 
-##                      1 
-##                  B5072 
-##                      1 
-##           Brockton Way 
-##                      1 
-##       Castlefields Way 
-##                      1 
-##  Cuckoo Oak Roundabout 
-##                      1 
-##     Dothill Roundabout 
-##                      1 
-## Hadley Park Roundabout 
-##                      1 
-##        New Trench Road 
-##                      1 
-##              Queensway 
-##                      3 
-##  Shawbridge Roundabout 
-##                      1 
-##        Springhill Road 
-##                      1 
-##           Unnamed road 
-##                      5</code></pre>
+##                   A442                   A518                  B5061                  B5072           Brockton Way 
+##                      3                      1                      1                      1                      1 
+##       Castlefields Way  Cuckoo Oak Roundabout     Dothill Roundabout Hadley Park Roundabout        New Trench Road 
+##                      1                      1                      1                      1                      1 
+##              Queensway  Shawbridge Roundabout        Springhill Road           Unnamed road 
+##                      3                      1                      1                      5</code></pre>
 <pre><code>## 
-## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                        9</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                        9 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## Top ranked new cycleways 
-##                        8 
-##            Spare lane(s) 
-##                        4 
-##    Estimated width &gt; 10m 
-##                        9 
-##                     NA&#39;s 
-##                        1</code></pre>
-<pre><code>## # A tibble: 8 x 6
-##   Name  Reference `Length (m)`
-## * &lt;chr&gt; &lt;chr&gt;            &lt;dbl&gt;
-## 1 Cast… B4373              513
-## 2 New … A518              3617
-## 3 A442  A442              5315
-## 4 Shaw… A442               952
-## 5 Spri… B4373              536
-## 6 Doth… B5063              824
-## 7 B5072 B5072             1690
-## 8 Quee… A442              9059
-## # … with 3 more variables: `Cycling
-## #   potential` &lt;dbl&gt;, `Length *
-## #   potential (km)` &lt;dbl&gt;, `Speed
-## #   limit` &lt;chr&gt;</code></pre>
+## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m 
+##                        8                        4                        9</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                        8                        4                        9                        1</code></pre>
+<pre><code>## Top ranked new cycleways            Spare lane(s)    Estimated width &gt; 10m                     NA&#39;s 
+##                        8                        4                        9                        1</code></pre>
+<pre><code>## # A tibble: 8 x 8
+##   Name     Reference `Length (m)` `Cycling potenti… `Length * potent… `Speed limit` `Mean estimated … `Majority spare …
+##   &lt;chr&gt;    &lt;chr&gt;            &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;                     &lt;dbl&gt; &lt;lgl&gt;            
+## 1 Castlef… B4373              513                64                33 30 mph                       11 FALSE            
+## 2 New Tre… A518              3617                63               228 40+ mph                       9 TRUE             
+## 3 A442     A442              5315                57               303 40+ mph                       9 TRUE             
+## 4 Shawbri… A442               952                49                47 40+ mph                      10 FALSE            
+## 5 Springh… B4373              536                38                20 40+ mph                      10 FALSE            
+## 6 Dothill… B5063              824                34                28 40+ mph                      10 FALSE            
+## 7 B5072    B5072             1690                31                52 30 mph                       10 FALSE            
+## 8 Queensw… A442              9059                30               272 40+ mph                       8 TRUE</code></pre>
 
 
 
