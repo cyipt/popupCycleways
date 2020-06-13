@@ -1,7 +1,7 @@
 ---
-title: "Rapid Cycleway Prioritisation Tool"
-subtitle: "Technical specification"
-author: Dr Robin Lovelace & Dr Joey Talbot, Institute for Transport Studies, University of Leeds
+title: "Rapid Cycleway Prioritisation Tool: Technical specification"
+subtitle: "Version 1.0, June 2020, Institute for Transport Studies, University of Leeds"
+author: Dr Robin Lovelace & Dr Joey Talbot
 # output: bookdown::word_document2
 output:
   bookdown::pdf_document2:
@@ -17,6 +17,8 @@ bibliography:
 citr::tidy_bib_file("~/uaf/allrefs.bib", rmd_file = "report.Rmd", file = "report-refs.bib")
 citr::tidy_bib_file("article.Rmd", "~/uaf/allrefs.bib", file = "article-refs.bib")
 browseURL("report.pdf")
+piggyback::pb_upload("report.pdf")
+piggyback::pb_download_url("report.pdf")
 browseURL("report.docx")
 ```
 
@@ -40,6 +42,9 @@ knitr::include_graphics(c(
 
 
 # Introduction
+
+[Sustrans](https://www.sustrans.org.uk/) and the [Department for Transport](https://www.gov.uk/government/organisations/department-for-transport) commissioned ITS Leeds to develop the [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/) to help identifying promising locations for new cycleways in England.
+The immediate purpose of this project is to inform bids for Tranche 2 of the [Emergency Active Travel Fund](https://www.gov.uk/government/publications/emergency-active-travel-fund-local-transport-authority-allocations), particularly for authorities which have not yet developed Local Cycling and Walking Investment Plans ([LCWIP](https://www.gov.uk/government/publications/local-cycling-and-walking-infrastructure-plans-technical-guidance-and-tools)). 
 
 New statutory guidance and funding for active transport infrastructure was announced by the Secretary of State for Transport on May 9^th^, to support the UK's response to the COVID-19 crisis by enabling healthy and safe travel at a time of reduced capacity on public transport networks.^[
 https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19
@@ -68,7 +73,7 @@ The tool provides a national evidence base that, used alongside other sources of
 
 # Methods
 
-The approach was designed to identify roads and road segments where investment in new cycleways should be prioritised using a transparent methodology and nationally consistent datasets, alongside planning authority expertise and local knowledge.
+The approach was designed to identify roads and road segments where investment in new cycleways should be prioritised using a transparent methodology and nationally consistent datasets, alongside planning authority expertise and local knowledge [@lovelace_methods_2020].
 Strong and actionable datasets already exist to support strategic cycle network planning, notably the Propensity to Cycle Tool (PCT), a national planning support system.
 The PCT is already used by local authorities and contains key data showing not only current levels of cycling but also scenarios of growth in usage of cycling for everyday trips (for commuting and school travel).
 The scenarios include Government Target, which represents a doubling the number of cycling stages made by 2025 [@departmentfortransport_cycling_2017].
