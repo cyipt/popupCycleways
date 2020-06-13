@@ -269,34 +269,28 @@ At a time of reduced travel, fewer lanes dedicated to motor traffic are needed.
 Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
 This definition assumes no alteration of the navigable network for motor vehicles (other options such as making two-way streets one-way are not explored in this analysis).
 
-To identify road sections on which there is a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
+To identify road sections with a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
 All segments defined as having a spare lane using this method are shown in Figure \@ref(fig:levels) (left).
 
-We also included estimates of road width, flagging roads with an average estimated width of more than 10 m using OSM-derived data that had previously been generated for the Cycling Infrastructure Prioritisation Tool.
-10 m was selected because it is roughly the minimum width required for new cycleways created by road space reallocation measures.
+We also included estimates of road width, flagging roads with mean estimated width >= 10m using data previously generated for the Cycling Infrastructure Prioritisation Tool.
+We chose 10m because it represents the minimum typical width required to enable cycleway creation through road space reallocation.
 
 ## Attribute filtering and grouping
 
-To ensure the route recommendations we generated could achieve sufficient coherency, we undertook several stages of filtering and grouping of road segments. 
-Firstly, road segments were grouped together with neighbours within a 100m buffer, using the `igraph` R package. 
-Segments were additionally grouped by road reference number (i.e. 'A' or 'B' road number).
+To ensure our route recommendations could achieve sufficient coherency, we undertook several stages of road segment filtering and grouping. 
+Firstly, segments were grouped by road reference number (i.e. 'A' or 'B' road number).
+Road segments with a reference number were grouped together with neighbours within a 100m buffer, using the `igraph` R package. 
+Filtering then removed groups without distance weighted mean width >= 10 m or spare lanes along the majority of their length, and groups with distance weighted mean cycling potential below a minimum threshold defined as one twenty-fifth of the 99th percentile segment level cycling potential within the city. 
 
-Filtering was then applied.
-Roads without a reference number were subjected to stricter filtering conditions than roads with a reference number, in order to prevent the inclusion of unwanted short segments on side streets. 
-Any segment on a road with no reference number that had a cycling potential below a threshold of 30 was excluded from the analysis. 
-These segments were then grouped again, using a buffer of 20 m, and these (smaller) groups were filtered to exclude any group with a distance weighted mean cycling potential below the minimum grouped cycling potential threshold, which varied by region.
-Filtering also removed groups with length below 300 m, and groups that did not have distance weighted mean width of at least 10 m or spare lanes along the majority of their length.
+Segments without a reference number were subjected to stricter filtering criteria, to prevent the inclusion of unwanted short segments on side streets. 
+Any of these segments that had cycling potential below 30 were excluded from the analysis. 
+The segments were then grouped using a 20m buffer. 
+Filtering followed the same criteria as for other roads, plus an additional filter to remove groups with length below 300 m.
 
-For roads with a reference number, filtering simply removed groups with distance weighted mean cycling potential below the minimum grouped cycling potential threshold, and groups that did not have distance weighted mean width of at least 10 m or spare lanes along the majority of their length.
-
-The next step for all segments was a further round of grouping using a 100 m buffer, in which all previous groups were ignored. 
-The results of this were filtered to remove groups with length below 500 m. 
-We introduced this step to remove short sections that were distant from any other high cycling potential sections, and thus to improve the coherency of the results. 
-
-Additional grouping was undertaken using road names, building on top of the previous groupings. 
-Any continuous road section of the same name with length >= 500 m was assigned its own group.
-All other existing groups were labelled with the most frequent road name, or if they contained more than four different named roads they were labelled "Unnamed road."
-A final filter again removed groups without cycling potential above the minimum threshold or length >= 500 m.  
+For all segments, a novel round of grouping (ignoring previous groups) with a 100m buffer was then used to remove groups with length below 500 m. 
+This step removed short sections distant from any others, thus improving the coherency of the results.
+Finally, road names were used to identify continuous road sections with the same name of length >= 500m.
+Groups containing five or more different named roads were labelled "Unnamed road."
 
 An example of the impact of grouping strategy is shown in Figure \@ref(fig:levels). 
 Segments are grouped with a 100m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential. 
@@ -391,11 +385,9 @@ r_pct_top_n = r_pct_top %>%
 
 ## Selection of top routes
 
-The previous steps generate a set of road sections that have both cycle potential and sufficient road space for reallocation. 
-From these we then select top named routes and rank them by cycling potential. 
-Top routes must have cycling potential above the minimum threshold value, length >= 500m, and they must not be labelled "Unnamed road." 
-They must not have existing cycleways along more than 80% of their length. 
-A high threshold was chosen for this value because the presence of an existing cycleway on OSM does not mean that this is necessarily a high quality cycleway. 
+Top routes were selected from the results of the previous steps. 
+These must not be labelled "Unnamed road" or have existing cycleways along more than 80% of their length. 
+A high threshold was chosen here because the presence of an existing cycleway on OSM does not mean that this is necessarily a high quality cycleway. 
 Continuity of cycle provision is important for creating high quality networks [@parkin_designing_2018].
 
 <!-- ## Scenarios and visualisation -->
