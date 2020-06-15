@@ -1,0 +1,126 @@
+---
+title: "The Rapid Cycleway Prioritisation Tool"
+subtitle: "`r emojifont::emoji('rocket')`<br/>methods and results"
+author: "Robin Lovelace and Joey Talbot"
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport)"
+date: "Green Transport Recovery Series, 2020-06-17"
+output:
+  xaringan::moon_reader:
+    css: [default, robot, robot-fonts]
+    lib_dir: libs
+    nature: 
+      beforeInit: "https://platform.twitter.com/widgets.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r, echo=FALSE}
+knitr::include_graphics("https://pbs.twimg.com/media/EToi6UVXQAEmY2h?format=jpg&name=large")
+```
+
+
+<!-- 14h30-15h30 lecture part (this could already drift towards the practical part but doesn't have to ...) -->
+
+<!-- 15:30-16h00 coffee break -->
+
+<!-- 16h00-17h00 hands-on workshop (could be somewhat open-ended, we'll have the room all afternoon - but if we would go into extra time, we should make a short 'cut' around 17h such that those who have/want to go home can do so). -->
+
+<!-- Sally: see it as an opportunity - vital for change -->
+
+<!-- Lucy: Propensity to cycle tool -->
+
+<!-- It's brilliant, magic, helps imagine what the future could be like -->
+
+---
+
+# Motivations
+
+---
+
+# Data
+
+---
+
+# Methods
+
+---
+
+# Results
+
+
+---
+
+# Demo
+
+
+---
+
+---
+
+# Links I
+
+- Sheffield [infrastructure](https://www.cyclesheffield.org.uk/2018/01/01/cyclesheffield-response-to-portobello-trippet-lane-cycle-route-designs/)
+
+- Article on Yorkshire Voice on the Leeds-Bradford [Cycle Superhighway](http://www.yorkshire-voice.com/mixed-views-as-29m-cycle-superhighway-linking-leeds-and-bradford-nears-completion/)
+
+- A detailed article on the same cycleway by [Mark Strong](https://aseasyasridingabike.wordpress.com/2016/08/11/a-visit-to-the-leeds-bradford-cycle-superhighway/)
+
+- Academic article on thinking at level of cycleway networks (Buehler and Dill [2015](https://www.tandfonline.com/doi/full/10.1080/01441647.2015.1069908?journalCode=ttrv20))
+
+- The Propensity to Cycle Tool ([pct.bike](https://www.pct.bike/))
+
+- The Cycling Infrastructure Prioritisation Toolkit ([CyIPT.bike](https://www.cyipt.bike/existing/#13/53.4690/-2.2506/mapnik))
+
+- Consultation on the Torrington Place / Tavistock Place 'pop-up' cycleway from [Cambden.gov.uk](https://www.camden.gov.uk/documents/20142/3452947/Consultation+leaflet+FINAL.pdf/f628d6e8-c47b-82f1-cb40-8e24db78bea6)
+
+---
+
+# Links II
+
+- Map of pop-up interventions in response to COVID-19 from [CyclingUK](https://www.cyclinguk.org/covid-19-safe-space-social-distancing)
+
+- Maps of roads with 'spare lanes' in 10 cities from our our 'cyipt' [website](https://www.cyclinguk.org/article/10-cities-where-pop-bike-lanes-could-benefit-millions-explore-maps)
+
+- New statutory [guidance from DfT on road space reallocation](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities)
+
+- Analysis to support [road space reallocation in Manchester](https://github.com/cyipt/popupCycleways/blob/master/code/mcr-safe-streets-analysis.md#analysis-of-cycling-potential-around-key-corridors-in-greater-manchester)
+
+- Image of new [pop-up going in in Greater Manchester](https://github.com/cyipt/popupCycleways/issues/27)
+
+---
+
+# Limitations and next steps
+
+- Source: Adam Reynolds on a [GitHub issue](https://github.com/luukvdmeer/sfnetworks/issues/13)
+
+![](https://user-images.githubusercontent.com/1948692/74239070-0429a200-4ccf-11ea-8ce0-5530e84db2ff.jpeg)
+
+
+---
+
+# Thanks!
+
+Contact: me at
+
+- r. lovelace at leeds ac dot uk (email)
+
+- [`@robinlovelace`](https://twitter.com/robinlovelace) (Twitter)
+
+--
+
+- Check out www.pct.bike
+
+--
+
+- www.cyipt.bike
+
+--
+
+- Pop-up cycleway info: watch this space
+
+```{r, echo=FALSE, eval=FALSE}
+# export code from slides
+knitr::purl("tds-regional-street.Rmd")
+```
+
