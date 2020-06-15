@@ -1,8 +1,8 @@
 ---
 title: "The Rapid Cycleway Prioritisation Tool"
-subtitle: "🛣🚲🚀<br/>methods and results<br/>[cyipt.bike/rapid](https://www.cyipt.bike/rapid/)"
+subtitle: "methods and results<br/>[cyipt.bike/rapid](https://www.cyipt.bike/rapid/)"
 author: "Robin Lovelace and Joey Talbot"
-institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport). [Source code](https://github.com/cyipt/popupCycleways/blob/master/rapid-slides.Rmd)."
+institute: "University of Leeds, [Institute for Transport Studies](https://environment.leeds.ac.uk/transport).<br/>Publicly available [slides](https://www.cyipt.bike/rapid/slides/). Reproducible [code](https://github.com/cyipt/popupCycleways/blob/master/rapid-slides.Rmd). Paper [preprint](https://osf.io/7wjb6/)."
 date: "Green Transport Recovery Series, 2020-06-17"
 output:
   xaringan::moon_reader:
@@ -16,6 +16,7 @@ output:
 ---
 
 ```{r, engine='bash', eval=FALSE, echo=FALSE}
+# 🛣🚲🚀
 cp rapid-slides.html popupCycleways/v1/slides/index.html
 cp -Rv libs popupCycleways/v1/slides/
 cd popupCycleways
@@ -45,8 +46,6 @@ background-size: contain
 
 # Motivations 
 
---
-
 <br>
 <br>
 <br>
@@ -65,11 +64,11 @@ background-size: contain
 
 
 1) reduced capacity on public transport 2) need for space so physical distancing guidelines can be followed
-3) healthy restart 4) need to act fast
+3) healthy restart 4) need to act fast. Image credit: [TfL](https://twitter.com/W_Bradley/status/1268836932219478016).
 
 ---
 
-Plans from Leeds City Council responding to national [guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities) and [funding](https://www.gov.uk/government/news/2-billion-package-to-create-new-era-for-cycling-and-walking) for 'pop-up' cycleways:
+Plans from Leeds City Council responding to national [guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities) and [funding](https://www.gov.uk/government/news/2-billion-package-to-create-new-era-for-cycling-and-walking) for 'pop-up' cycleways (image credit: [Leeds City Council](https://news.leeds.gov.uk/news/leeds-city-council-announces-emergency-walking-and-cycling-plans-in-response-to-covid-19)):
 
 
 ![](https://pbs.twimg.com/media/EZ_-A0dXgAAlBzt?format=png&name=900x900)
@@ -85,6 +84,7 @@ Plans from Leeds City Council responding to national [guidance](https://www.gov.
 - Aim to highligh where gaps need to be filled
 
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-cycleways-leeds.png)
+Image credit: [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/)
 
 ---
 
@@ -100,6 +100,7 @@ Plans from Leeds City Council responding to national [guidance](https://www.gov.
 
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-top-leeds.png)
 
+Image credit: [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/)
 
 ---
 
@@ -136,6 +137,7 @@ DT::datatable(res_table, height = 600)
 - Join them up
 
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-cohesive-leeds.png)
+Image credit: [Rapid Cycleway Prioritisation Tool](https://www.cyipt.bike/rapid/)
 
 
 ---
@@ -230,6 +232,7 @@ See the results at [www.cyipt.bike/rapid/west-yorkshire](https://www.cyipt.bike/
   - Use local knowledge of new developments and other 'trip attractors
 - Prioritises routes in large cities in authorities with multiple settlements
   - Use alternative sources of information, including the PCT
+  - Do additional analysis, e.g. based on data downloaded from the Rapid tool or the PCT
 
 ---
 
@@ -270,9 +273,9 @@ Data about the tools informing the model can be found here:
 
 ---
 
-# Next steps
+## Next steps
 
-- Many future directions of travel including evidence to support [Low Traffic Neighbourhoods](https://github.com/luukvdmeer/sfnetworks/issues/13)
+Many future directions of travel including evidence to support [Low Traffic Neighbourhoods](https://github.com/luukvdmeer/sfnetworks/issues/13)
 
 ![](https://user-images.githubusercontent.com/1948692/74239070-0429a200-4ccf-11ea-8ce0-5530e84db2ff.jpeg)
 
@@ -305,3 +308,5 @@ Contact: me at
 <!-- Preprint of methods: -->
 <!-- Web tool (free and #opensource):  -->
 
+<!-- CWIS technical reports -->
+<!-- Cost per intervention type -->
