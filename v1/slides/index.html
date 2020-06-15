@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>The Rapid Cycleway Prioritisation Tool</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Robin Lovelace and Joey Talbot" />
+    <script src="libs/header-attrs-2.2/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/robot.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/robot-fonts.css" rel="stylesheet" />
+    <script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+    <script src="libs/jquery-1.12.4/jquery.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.13/datatables.js"></script>
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# The Rapid Cycleway Prioritisation Tool
+## 🛣🚲🚀<br/>methods and results<br/><a href="https://www.cyipt.bike/rapid/">cyipt.bike/rapid</a>
+### Robin Lovelace and Joey Talbot
+### University of Leeds, <a href="https://environment.leeds.ac.uk/transport">Institute for Transport Studies</a>. <a href="https://github.com/cyipt/popupCycleways/blob/master/rapid-slides.Rmd">Source code</a>.
+### Green Transport Recovery Series, 2020-06-17
+
+---
+
+
+
+
+
+
+
+background-image: url(https://pbs.twimg.com/media/EZvQNJlWoAE4D_c?format=jpg&amp;name=4096x4096)
+background-position: bottom
+background-size: contain
+
+# Motivations 
+
+--
+
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+
+
+1) reduced capacity on public transport 2) need for space so physical distancing guidelines can be followed
+3) healthy restart 4) need to act fast
+
+---
+
+Plans from Leeds City Council responding to national [guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities) and [funding](https://www.gov.uk/government/news/2-billion-package-to-create-new-era-for-cycling-and-walking) for 'pop-up' cycleways:
+
+
+![](https://pbs.twimg.com/media/EZ_-A0dXgAAlBzt?format=png&amp;name=900x900)
+
+
+---
+
+### Existing cycleways
+
+- Aims to identify **immediate** issues
+- From OpenStreetMap, March 2020
+- Contains sections of variable quality
+- Aim to highligh where gaps need to be filled
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-cycleways-leeds.png)
+
+---
+
+### How to identify ‘top ranked new cycleways’?
+
+&lt;!-- ![](figures/results-top-leeds.png) --&gt;
+
+- Aims to identify **short term priorities**
+- All road sections with spare lanes or estimated width &gt; 10 m (CyIPT)
+- Of those, which have a minum continuous length of at least 500 m?
+- Rank the roads by cycling potential (commute + school, Government Target)
+- Show the top n, where n depends on the size of the region (70 in London)
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-top-leeds.png)
+
+
+---
+
+Tablular results for Leeds
+
+<div id="htmlwidget-8dfa35a30946cba7299c" style="width:100%;height:600px;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8dfa35a30946cba7299c">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50"],["Headingley Lane","A660","Woodhouse Lane","A65","Kirkstall Road","Clay Pit Lane","Low Road","Castleford Road","Chapeltown Road","Roundhay Road","Dewsbury Road","Beeston Road","Old Lane","Otley Road","Broadway","Crown Point Road","Pontefract Road","Barnsley Road","Meanwood Road","Owl Lane","A655","Roundhay Road","Meanwood Road","Canal Road","The Headrow","Valley Road","Legrams Lane","North Street","Broadgate Lane","Keighley Road","Balm Road","Leeds Road","Dewsbury Road","Great Wilson Street","Hunslet Road","Abbey Road","Cemetery Road","Park Lane","Wakefield Road","Westgate End","Tingley Roundabout","Ring Road Adel","Wellington Road","Westgate Hill Street","Sir Fred Hoyle Way","Middleton Road","Canal Road","Horbury Road","Elland Road","Thornton Road"],["A660","A660","A660","A65","A65","A58","A639","","","","A6110","","","A660","A6120","A653","B6481","A61","","B6128","A655","A58","","A6037","","A6037","","","","A650","","A62","A653","A653","A639","A65","","","A629","A638","A653","A6120","A58","A650","A650","","A6037","A642","A643","B6145"],["Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways","Top ranked new cycleways"],[546,414,372,238,237,231,194,188,163,161,157,150,143,141,138,138,138,137,136,127,125,122,120,117,115,115,112,112,111,111,105,105,104,103,102,101,100,99,99,99,99,96,95,95,95,94,94,94,94,90],[false,true,true,true,true,true,false,false,false,false,true,false,false,true,false,true,false,false,false,false,false,true,false,false,true,false,false,true,false,true,false,false,true,true,true,false,false,true,true,true,true,true,true,true,true,false,false,false,false,false],["10-15 m","&lt;10 m","&lt;10 m","&lt;10 m","10-15 m","10-15 m","10-15 m","10-15 m","10-15 m","10-15 m","&lt;10 m","10-15 m","10-15 m","10-15 m","&lt;10 m","10-15 m","10-15 m","10-15 m","10-15 m","&lt;10 m","10-15 m","10-15 m","10-15 m","10-15 m","&lt;10 m","10-15 m","10-15 m","10-15 m","10-15 m","10-15 m","10-15 m","10-15 m","&lt;10 m","10-15 m","10-15 m","10-15 m","10-15 m","&lt;10 m","10-15 m","10-15 m","10-15 m","&lt;10 m","10-15 m","&lt;10 m","&lt;10 m","10-15 m","10-15 m","10-15 m","10-15 m","10-15 m"],[971,718,2438,787,4407,2235,516,551,1744,909,538,1478,895,7360,2620,932,963,1164,1783,710,728,1169,805,758,791,652,1020,1017,547,1156,608,3738,4603,698,2452,564,893,840,4236,707,1362,851,721,1414,6411,517,822,1855,1497,2197],[267,268,270,219,217,82,187,75,29,64,120,56,57,269,122,252,309,116,31,276,259,86,55,93,40,94,3,32,49,241,45,151,248,254,186,215,2,39,169,185,251,127,80,236,244,71,95,200,202,280],["30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","40+ mph","30 mph","30 mph","30 mph","40+ mph","30 mph","30 mph","30 mph","30 mph","40+ mph","40+ mph","30 mph","40+ mph","40+ mph","20 mph or less","30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","40+ mph","40+ mph","30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","30 mph","40+ mph","40+ mph","40+ mph","30 mph","40+ mph","30 mph","40+ mph","30 mph","30 mph","30 mph"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>ref<\/th>\n      <th>Status<\/th>\n      <th>mean_cycling_potential<\/th>\n      <th>spare_lane<\/th>\n      <th>Estimated.width<\/th>\n      <th>length..m.<\/th>\n      <th>group_id<\/th>\n      <th>speed_limit<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,7,8]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+
+
+---
+
+### How to identify a ‘cohesive network’?
+
+- Aims to support **long term planning**
+- Intended to show what a joined-up cycle network could look like if we were to consider new cycleways by either closing roads to motorised traffic or creating one-way systems
+- Find  roads that have high cycling potential on some or all of their length
+- Join them up
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-cohesive-leeds.png)
+
+
+---
+
+### How can I find the results for my area?
+
+.left-column[
+
+Head to [cyipt.bike/rapid/](https://www.cyipt.bike/rapid/)
+
+]
+
+.right-column[
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-regions.png)
+]
+
+---
+
+# How should I use these results?
+
+- Aim: to support evidence-based prioritisation of bids for Tranche 2 of the Emergency Active Travel Fund
+- Complementing local knowledge and stakeholder engagement
+- Scoping of options
+- Order of implementations
+
+Investment should depend on many factors including:
+
+- cycling potential (default metric to rank schemes)
+- total length of cycling infrastructure created
+- cycling potential multiplied by road section length
+
+
+---
+
+background-image: url("https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/facet-output.png")
+background-position: right
+background-size: contain
+
+--
+
+Every city in England
+
+## Results
+
+---
+
+# Case study demo: Leeds
+
+.left-column[
+
+Results in Leeds:
+
+
+```
+##              name
+## 1 Headingley Lane
+## 2            A660
+## 3  Woodhouse Lane
+## 4             A65
+## 5  Kirkstall Road
+```
+
+Cycleway planned for
+
+Kirkstall Road (source: [BBC](https://www.bbc.co.uk/news/uk-england-leeds-52577554))
+
+]
+
+.right-column[
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
+
+See the results at [www.cyipt.bike/rapid/west-yorkshire](https://www.cyipt.bike/rapid/west-yorkshire)
+
+]
+
+---
+
+---
+
+## Limitations
+
+- Narrow focus on road space reallocation options
+- No economic appraisal
+  - Use the Active Mode Appraisal Toolkit ([AMAT](https://www.gov.uk/government/publications/tag-social-and-distributional-impacts-worksheets)) 
+- The best locations for new cycleways may not always have space
+  - Search for parallel routes, which may be available
+- Many options not in top routes
+  - see cohesive network and look for other option
+- The road network data is from 2017 and widths are estimates
+  - Compare with real world knowledge
+- Only work and school trips included
+  - Use local knowledge of new developments and other 'trip attractors
+- Prioritises routes in large cities in authorities with multiple settlements
+  - Use alternative sources of information, including the PCT
+
+---
+
+## Where can I find further information about the tool?
+
+- See the technical specification [here](https://github.com/cyipt/popupCycleways/releases/download/v1/report.pdf)
+
+Data about the tools informing the model can be found here:
+
+- The [Propensity to Cycle Tool](https://www.pct.bike/)
+- The [Cycling Infrastructure Prioritisation Tool](https://www.cyipt.bike)
+- [OpenStreetMap](https://www.openstreetmap.org/#map=7/52.486/-2.428&amp;layers=C)
+
+- Code underlying the project can be accessed [here](https://github.com/cyipt/popupCycleways).
+- Support the project with technical input via the [GitHub issue tracker](https://github.com/cyipt/popupCycleways/issues/14)
+- Data generated by the project can be downloaded from GitHub (e.g. see GeoJSON files for London [here](https://github.com/cyipt/popupCycleways/tree/gh-pages/v1/greater-london)).
+
+
+---
+
+# Links
+
+- Academic article on thinking at level of cycleway networks (Buehler and Dill [2015](https://www.tandfonline.com/doi/full/10.1080/01441647.2015.1069908?journalCode=ttrv20))
+
+- The Propensity to Cycle Tool ([pct.bike](https://www.pct.bike/))
+
+- The Cycling Infrastructure Prioritisation Toolkit ([CyIPT.bike](https://www.cyipt.bike/existing/#13/53.4690/-2.2506/mapnik))
+
+- Consultation on the Torrington Place / Tavistock Place 'pop-up' cycleway from [Cambden.gov.uk](https://www.camden.gov.uk/documents/20142/3452947/Consultation+leaflet+FINAL.pdf/f628d6e8-c47b-82f1-cb40-8e24db78bea6)
+
+- Map of pop-up interventions in response to COVID-19 from [CyclingUK](https://www.cyclinguk.org/covid-19-safe-space-social-distancing)
+
+- New statutory [guidance from DfT on road space reallocation](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities)
+
+- Analysis to support [road space reallocation in Manchester](https://github.com/cyipt/popupCycleways/blob/master/code/mcr-safe-streets-analysis.md#analysis-of-cycling-potential-around-key-corridors-in-greater-manchester)
+
+- Image of new [pop-up going in in Greater Manchester](https://github.com/cyipt/popupCycleways/issues/27)
+
+---
+
+# Next steps
+
+- Many future directions of travel including evidence to support [Low Traffic Neighbourhoods](https://github.com/luukvdmeer/sfnetworks/issues/13)
+
+![](https://user-images.githubusercontent.com/1948692/74239070-0429a200-4ccf-11ea-8ce0-5530e84db2ff.jpeg)
+
+
+---
+
+# Thanks!
+
+Contact: me at
+
+- r. lovelace at leeds ac dot uk (email)
+
+- [`@robinlovelace`](https://twitter.com/robinlovelace) (Twitter)
+
+--
+
+- Check out www.pct.bike
+
+--
+
+- www.cyipt.bike/rapid
+
+&lt;!-- Tweet: @ launch --&gt;
+
+&lt;!-- The Rapid Cycleway Prioritisation Tool is finally launched 🚀 --&gt;
+
+&lt;!-- It provides evidence to support road space reallocation for active travel in response to #COVID19. --&gt;
+
+&lt;!-- Article: --&gt;
+&lt;!-- Preprint of methods: --&gt;
+&lt;!-- Web tool (free and #opensource):  --&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="https://platform.twitter.com/widgets.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
