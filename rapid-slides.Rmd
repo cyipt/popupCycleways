@@ -51,7 +51,14 @@ background-size: contain
 
 ### How to identify ‘top ranked new cycleways’?
 
-![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
+<!-- ![](figures/results-top-leeds.png) -->
+
+- All road sections with spare lanes or estimated width > 10 m (CyIPT)
+- Of those, which have a minum continuous length of at least 500 m?
+- Rank the roads by cycling potential (commute + school, Government Target)
+- Show the top n, where n depends on the size of the region (70 in London)
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-top-leeds.png)
 
 
 ---
