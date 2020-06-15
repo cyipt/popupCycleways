@@ -15,6 +15,26 @@ output:
       countIncrementalSlides: false
 ---
 
+```{r, engine='bash', eval=FALSE, echo=FALSE}
+cp rapid-slides.html popupCycleways/v1/slides/index.html
+cp -Rv libs popupCycleways/v1/slides/
+cd popupCycleways
+git status
+git add -A
+git commit -am 'Add slides'
+git push
+cd -
+```
+
+```{r, eval=FALSE, echo=FALSE}
+# Aim: make pdf slides
+pagedown::chrome_print("rapid-slides.html")
+browseURL("rapid-slides.pdf")
+piggyback::pb_upload("rapid-slides.pdf")
+piggyback::pb_download_url("rapid-slides.pdf")
+```
+
+
 ```{r, include=FALSE}
 library(dplyr)
 ```
@@ -195,8 +215,6 @@ See the results at [www.cyipt.bike/rapid/west-yorkshire](https://www.cyipt.bike/
 
 ---
 
----
-
 ## Limitations
 
 - Narrow focus on road space reallocation options
@@ -276,4 +294,14 @@ Contact: me at
 --
 
 - www.cyipt.bike/rapid
+
+<!-- Tweet: @ launch -->
+
+<!-- The Rapid Cycleway Prioritisation Tool is finally launched 🚀 -->
+
+<!-- It provides evidence to support road space reallocation for active travel in response to #COVID19. -->
+
+<!-- Article: -->
+<!-- Preprint of methods: -->
+<!-- Web tool (free and #opensource):  -->
 
