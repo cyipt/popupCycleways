@@ -88,8 +88,14 @@ DT::datatable(res_table, height = 600)
 
 ---
 
+### How to identify a ‘cohesive network’?
 
-# How does the tool identify what a ‘cohesive network’ might look like?
+- 'Long term layer'
+- Intended to show what a joined-up cycle network could look like if we were to consider new cycleways by either closing roads to motorised traffic or creating one-way systems
+- Find  roads that have high cycling potential on some or all of their length
+- Join them up!
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-cohesive-leeds.png)
 
 
 
