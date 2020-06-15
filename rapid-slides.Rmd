@@ -113,8 +113,20 @@ DT::datatable(res_table, height = 600)
 
 ---
 
-
 # How can I find the results for my area?
+
+.left-column[
+
+Head to https://www.cyipt.bike/rapid/
+
+]
+
+.right-column[
+
+![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/results-regions.png)
+
+
+]
 
 ---
 
