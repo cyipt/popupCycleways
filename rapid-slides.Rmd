@@ -49,14 +49,42 @@ background-size: contain
 
 ---
 
-# How does the tool identify ‘top ranked new cycleways’?
+### How to identify ‘top ranked new cycleways’?
 
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
+
+
+---
+
+Tablular results for Leeds
+
+```{r, echo=FALSE, out.height="100%"}
+res_leeds = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/top_routes.geojson")
+res_table = res_leeds %>%
+  sf::st_drop_geometry() %>% 
+  arrange(desc(mean_cycling_potential))
+# %>% 
+#   select(
+#     Name = name,
+#     Reference = ref,
+#     `Length (m)` = group_length,
+#     `Cycling potential` = mean_cycling_potential,
+#     `Length * potential (km)` = km_cycled,
+#     # `SRN` = srn,
+#     `Speed limit` = speed_limit,
+#     `Mean estimated width (m)` = mean_width,
+#     `Majority spare lane(s)?` = majority_spare_lane
+#     ) 
+DT::datatable(res_table, height = 600)
+```
+
 
 ---
 
 
 # How does the tool identify what a ‘cohesive network’ might look like?
+
+
 
 ---
 
@@ -84,9 +112,7 @@ Every city in England
 
 # Case study: Leeds
 
-.right-column[
-
---
+.left-column[
 
 Results in Leeds:
 
@@ -104,15 +130,13 @@ Cycleway planned for
 
 Kirkstall Road (source: [BBC](https://www.bbc.co.uk/news/uk-england-leeds-52577554))
 
-See the results at:
-
-[www.cyipt.bike/rapid/west-yorkshire](https://www.cyipt.bike/rapid/west-yorkshire)
-
 ]
 
-.left-column[
+.right-column[
 
 ![](https://raw.githubusercontent.com/cyipt/popupCycleways/master/figures/mapout.png)
+
+See the results at [www.cyipt.bike/rapid/west-yorkshire](https://www.cyipt.bike/rapid/west-yorkshire)
 
 ]
 
