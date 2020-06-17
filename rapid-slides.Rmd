@@ -177,12 +177,6 @@ background-image: url("https://raw.githubusercontent.com/cyipt/popupCycleways/ma
 background-position: right
 background-size: contain
 
---
-
-Every city in England
-
-## Results
-
 ---
 
 # Case study demo: Leeds
@@ -261,7 +255,7 @@ Data about the tools informing the model can be found here:
 
 - The Cycling Infrastructure Prioritisation Toolkit ([CyIPT.bike](https://www.cyipt.bike/existing/#13/53.4690/-2.2506/mapnik))
 
-- Consultation on the Torrington Place / Tavistock Place 'pop-up' cycleway from [Cambden.gov.uk](https://www.camden.gov.uk/documents/20142/3452947/Consultation+leaflet+FINAL.pdf/f628d6e8-c47b-82f1-cb40-8e24db78bea6)
+- Consultation on the Torrington Place / Tavistock Place 'pop-up' cycleway from [Camden.gov.uk](https://www.camden.gov.uk/documents/20142/3452947/Consultation+leaflet+FINAL.pdf/f628d6e8-c47b-82f1-cb40-8e24db78bea6)
 
 - Map of pop-up interventions in response to COVID-19 from [CyclingUK](https://www.cyclinguk.org/covid-19-safe-space-social-distancing)
 
