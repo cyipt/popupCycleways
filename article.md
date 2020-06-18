@@ -1,6 +1,6 @@
 Methods to prioritise pop-up active transport infrastructure
 ================
-Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths
+Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith
 
 # Abstract
 
@@ -9,19 +9,16 @@ Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smiths
 In the context of reduced public transport capacity in the wake of the
 COVID-19 pandemic, governments are scrambling to enable walking and
 cycling. A range of pop-up options exist. The focus of this article is
-lane reallocation, which represents a ‘quick win’ for cities with roads
-that have a spare lane during reduced motor traffic conditions. We found
-that the methods could condense the complexity of cities down to the
-most promising roads, which match intuition. The evidence resulting from
-the methods, and future refinements, could support more evidence-based
-use of resources that have been made available to support implementation
-of pop-up schemes.
-
-<!-- A range of pop-up options exists, including re-allocating road space, preventing through motor traffic and complete pedestrianisation of roads. -->
+road space reallocation, which represents a ‘quick win’ for cities with
+‘spare space’ along continuous road sections that have high latent
+cycling potential. We developed methods to condense the complexity of
+city networks down to the most promising roads, producing
+recommendations that match intuition. The resulting Rapid Cycleway
+Prioritisation Tool, deployed for all 78 transport authorities in
+England at the time of writing, supports evidence-based investment in
+pop-up and permanent schemes.
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
-
-<!-- Currently the intro is 350 words, just about OK! -->
 
 <!-- The COVID-19 pandemic has transformed all sectors of the economy, not least transport. -->
 
@@ -29,15 +26,13 @@ of pop-up schemes.
 
 Much attention has focused on the impacts of COVID-19 on long-distance
 travel patterns (e.g. Iacus et al. 2020; Jittrapirom and Tanaksaranond
-2020). Yet short distance travel patterns have also changed, with a
-notable increase in active travel, particularly cycling, in some areas
-(Harrabin 2020). The two main explanations for this are 1) the need
-increased need for exercise close to home during lockdowns for mental
-and physical health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020),
-and 2) a reduction in both public transport options and use (e.g. Tian
-et al. 2020). The second reason is particularly important given that
-many ‘key workers’ are low paid, with limited access to private
-automobiles.
+2020) but short distance travel patterns have also changed. There has
+been a notable increase in cycling in some areas (Harrabin 2020) due to
+the need increased need for exercise close to home for mental and
+physical health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020) and a
+reduction in public transport options (e.g. Tian et al. 2020). The
+second reason is particularly important given that many ‘key workers’
+are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
 
@@ -61,22 +56,22 @@ enable this shift and make it safer for people who choose to walk, cycle
 or wheel for essential trips or for exercise” (Transport Scotland 2020).
 On 9<sup>th</sup> May 2020, the UK government announced a £250 million
 package for pop-up active transport infrastructure (Reid 2020).
-Significantly, alongside this funding comes updated
-[guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19)
-on pop-up infrastructure and safety (Government 2020). Evidence is
-needed to ensure that such investment is spent effectively and where it
-is most needed.
+Significantly, alongside this funding comes updated [statutory
+guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19)
+on pop-up infrastructure and safety. Evidence is needed to ensure that
+such investment is spent effectively and where it is most needed.
 
 Most pop-up active transport infrastructure can be classified into three
 broad categories:
 
-1.  ‘filtered permeability’, e.g. as
-    [shown](https://twitter.com/CatrionaSwanson/status/1258322956595453952)
-    in (Salford City Council 2020)
-
+1.  ‘filtered permeability’, where measures such as point closures or
+    contraflow cycle lanes are used to design street networks in which
+    routes for cyclists are faster and more direct than routes for
+    drivers, e.g. as
+    [shown](https://twitter.com/TowerHamletsNow/status/1257564043856019458)
+    in \[Tower Hamlets\]
 2.  banning cars and to pedestrianise streets, as in New York’s ‘Open
     Streets’ scheme (Litman 2020)
-
 3.  the reallocation of one or more lanes on wide roads to create pop-up
     cycleways and pavements (Orsman 2020).
     <!-- interventions to prevent through traffic, with interventions as part of Salford's ['Liveable Streets' project](https://salfordliveablestreets.commonplace.is/) being a prominent example  -->
@@ -99,7 +94,7 @@ effective use of resources allocated to pop-up interventions.
 
 <div class="figure">
 
-<img src="saferstreets.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
+<img src="figures/saferstreets.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
 
 <p class="caption">
 
@@ -112,45 +107,53 @@ transport infrastructure.
 
 </div>
 
-<!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the 'pop-up' infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
-
-# METHODS AND DATA
-
-Three key datasets were used for the project:
-
-  - Estimates of cycling potential to work at the street segment level
-    from the UK Department for Transport funded Propensity to Cycle Tool
-    (PCT) project (Goodman et al. 2019; Lovelace et al. 2017; Lovelace
-    and Hama 2019)
-  - Data derived from OpenStreetMap, with several new variables added to
-    support cycling infrastructure planning (see www.cyipt.bike for an
-    overview)
-  - A list of hospital locations from the UK’s National Health Service
-    website
-    [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
-    <!-- - Data on the location of road traffic casualties from -->
-
-Datasets from the PCT and CyIPT project were merged, resulting in
-crucial variables summarised in Table 1. A map showing the spatial
-distribution of hospitals in the case study city of Leeds is shown in
-Figure <a href="#fig:hospitals">2</a>.
-
-Table 1: Summary of the road segment dataset for Leeds
-
-<img src="81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png" width="100%" />
-
 <div class="figure">
 
-<img src="article_files/figure-gfm/hospitals-1.png" alt="Overview map of input data, showing the main highway types and location of hospitals in Leeds" width="100%" />
+<img src="figures/widenmypath-bristol.png" alt="Screenshot from the website salfordliveablestreets.commonplace.is to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
 
 <p class="caption">
 
-Figure 2: Overview map of input data, showing the main highway types and
-location of hospitals in Leeds
+Figure 2: Screenshot from the website
+salfordliveablestreets.commonplace.is to support local responses to the
+COVID-19 pandemic, including the prioritisation of pop-up active
+transport infrastructure.
 
 </p>
 
 </div>
+
+<!-- With the rush to act, there is a great need for evidence of *where* new interventions should be prioritised. As with the medical science, research is needed now. Methods developed to identify locations of high walking and cycling potential can help ensure that the 'pop-up' infrastructure that goes in now is effective, safe, and placed where it is most needed. -->
+
+# METHODS AND DATA
+
+Two key datasets were used for the project:
+
+  - Estimates of cycling potential at the street segment level from the
+    UK Department for Transport funded Propensity to Cycle Tool (PCT)
+    project (Goodman et al. 2019; Lovelace et al. 2017)
+  - Data derived from OpenStreetMap, with several new variables added to
+    support cycling infrastructure planning (see www.cyipt.bike for an
+    overview)
+    <!-- - Data on the location of road traffic casualties from -->
+
+Datasets from the PCT and CyIPT project were merged, resulting in
+crucial variables summarised in Table 1. Cycling potential is defined as
+the number of one-way journeys to work and to school, under a scenario
+in which the government aim of doubling cycling levels is met. This does
+not include other types of journey such as leisure and shopping.
+
+Roads are classified by speed limit because this has been shown to be a
+key factor associated with the incidence of severe injuries and
+fatalities of cyclists (Chen and Shen 2016), with odds of cyclist injury
+on 20 mph roads in London found to be 21% lower than on 30 mph roads
+(Aldred et al. 2018). Therefore the suitability of roads for cycle
+infrastructure, the preferred degree of physical segregation, or the
+necessity to reduce traffic speeds could all be influenced by current
+speed limits.
+
+Table 1: Summary of the road segment dataset for Leeds
+
+<img src="81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png" width="100%" />
 
 <!-- Could say more about the case study city here if there is space -->
 
@@ -162,22 +165,21 @@ location of hospitals in Leeds
 
 We set a modifiable parameter `city_centre_buffer_radius` with an
 initial value of 8 km (5 miles) to geographically subset potential
-routes. 5 miles represents a distance that most people have the physical
+routes. This represents a distance that most people have the physical
 ability to cycle. Figure <a href="#fig:gsub">3</a> shows the result of
 subsetting based on physical distance from the centre vs plotting all
-possible transport network segments within the city boundaries. To
-ensure roads that could serve key destinations were included, the
-parameter `key_destination_buffer_radius` (initially set to 5 km) was
-used. <!-- could say more... -->
+possible transport network segments within the city boundaries. In some
+cases, regional geographies mean that roads close to an urban centre do
+not lie within the city boundaries. <!-- could say more... -->
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to a central point (Leeds city city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)." width="100%" />
+<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to a central point (Leeds city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)." width="100%" />
 
 <p class="caption">
 
 Figure 3: Illustration of geographic subsetting based on distance to a
-central point (Leeds city city centre in this case) rather than based on
+central point (Leeds city centre in this case) rather than based on
 location within somewhat arbitrarily shaped city boundaries. Radii of 5
 km, 8 km and 10 km are shown for reference (note that some roads within
 10 km of the center are outside the regional boundary).
@@ -186,27 +188,66 @@ km, 8 km and 10 km are shown for reference (note that some roads within
 
 </div>
 
-## Attribute filtering and grouping
+## Road attributes
 
 At a time of reduced travel, fewer lanes dedicated to motor traffic are
 needed. Based on this observation, we defined roads with a ‘spare lane’
 as those on which there is more than one lane in either direction. This
-definition assumes no reduction in mobility for motor vehicles (making
-two-way lanes one-way is another option not explored in this analysis).
+definition assumes no alteration of the navigable network for motor
+vehicles (other options such as making two-way streets one-way are not
+explored in this analysis).
 
-To identify road sections on which there is a spare lane we developed a
-simple algorithm that takes the OSM variable
+To identify road sections with a spare lane we developed a simple
+algorithm that takes the OSM variable
 [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is
 present and, if not, derives the number from the highway type and
 presence/absence of bus lanes. All segments defined as having a spare
-lane using this method is shown in Figure <a href="#fig:levels">4</a>
-(left). In future, this methodology could be enhanced to take into
-account the effect of lane widths, which increase the effective
-available space, and the presence of vehicle parking bays, which reduce
-it. The result of filtering by distance and cycling potential before and
-after grouping using graph membership of touching roads is shown in
-<a href="#fig:levels">4</a> (middle and right, respectively). Grouping
-linked roads before filtering results in a more cohesive network.
+lane using this method are shown in Figure <a href="#fig:levels">4</a>
+(left).
+
+We also included estimates of road width, flagging roads with mean
+estimated width \>= 10m using data previously generated for the Cycling
+Infrastructure Prioritisation Tool. We chose 10m because it represents
+the minimum typical width required to enable cycleway creation through
+road space reallocation.
+
+## Attribute filtering and grouping
+
+To ensure our route recommendations could achieve sufficient coherency,
+we undertook several stages of road segment filtering and grouping.
+Firstly, segments were grouped by road reference number (i.e. ‘A’ or ‘B’
+road number). Road segments with a reference number were grouped
+together with neighbours within a 100 m buffer, using the `igraph` R
+package. Filtering then removed groups without distance weighted mean
+width \>= 10 m or spare lanes along the majority of their length, and
+groups with distance weighted mean cycling potential below a minimum
+threshold defined as one twenty-fifth of the 99th percentile segment
+level cycling potential within the city.
+
+Segments without a reference number were subjected to stricter filtering
+criteria, to prevent the inclusion of unwanted short segments on side
+streets. Any of these segments that had cycling potential below 30 were
+excluded from the analysis. The segments were then grouped using a 20m
+buffer. Filtering followed the same criteria as for other roads, plus an
+additional filter to remove groups with length below 300 m.
+
+For all segments, a novel round of grouping (ignoring previous groups)
+with a 100 m buffer was then used to remove groups with length below 500
+m. This step removed short sections distant from any others, thus
+improving the coherency of the results. Finally, road names were used to
+identify continuous road sections with the same name of length \>= 500m.
+Groups containing five or more different named roads were labelled
+“Unnamed road.”
+
+An example of the impact of grouping strategy is shown in Figure
+<a href="#fig:levels">4</a>. Segments are grouped with a 100 m buffer,
+using the `igraph` R package; they are also filtered to exclude sections
+below a minimum length and cycling potential. The threshold length and
+cycling potential are adaptable depending on the nature of the region
+being studied and local cycling levels. We can see that grouping the
+segments first then filtering based on mean group-level attributes
+results in a more cohesive network than filtering individual segments
+then grouping the results.
 
 <!-- Note this could be a function in an R package.. -->
 
@@ -218,16 +259,26 @@ linked roads before filtering results in a more cohesive network.
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/levels-1.png" alt="Illustration of the 'group then filter' method to identify long sections with spare lanes *and* high cycling potential" width="100%" />
+<img src="article_files/figure-gfm/levels-1.png" alt="Illustration of the 'group then filter' method to identify roads with spare lanes that meet threshold values for length and cycling potential" width="100%" />
 
 <p class="caption">
 
 Figure 4: Illustration of the ‘group then filter’ method to identify
-long sections with spare lanes *and* high cycling potential
+roads with spare lanes that meet threshold values for length and cycling
+potential
 
 </p>
 
 </div>
+
+## Selection of top routes
+
+Top routes were selected from the results of the previous steps. These
+must not be labelled “Unnamed road” or have existing cycleways along
+more than 80% of their length. A high threshold was chosen here because
+the presence of an existing cycleway on OSM does not mean that this is
+necessarily a high quality cycleway. Continuity of cycle provision is
+important for creating high quality networks (Parkin 2018).
 
 <!-- ## Scenarios and visualisation -->
 
@@ -259,25 +310,24 @@ blue). The top 10 road groups are labelled.
 
 </div>
 
-| Name                  | Length (m) | Potential (Government Target) | Km/day (length \* potential) |
-| :-------------------- | ---------: | ----------------------------: | ---------------------------: |
-| Otley Road            |       1766 |                           758 |                         1339 |
-| Scott Hall Road       |       8723 |                           123 |                         1073 |
-| Ring Road Low Wortley |       5177 |                           151 |                          782 |
-| Dewsbury Road         |       4073 |                           175 |                          713 |
-| Woodhouse Lane        |       2206 |                           295 |                          651 |
-| Kirkstall Road        |       1557 |                           341 |                          531 |
-| Ring Road Moortown    |       4152 |                           123 |                          511 |
-| York Road             |       1883 |                           242 |                          456 |
-| Harrogate Road        |       3254 |                           123 |                          400 |
-| Ingram Distributor    |       2771 |                           137 |                          380 |
+| Name               | Length (m) | Potential (Government Target) | Km/day (length \* potential) |
+| :----------------- | ---------: | ----------------------------: | ---------------------------: |
+| Otley Road         |       1766 |                           412 |                          728 |
+| Kirkstall Road     |       2940 |                           240 |                          706 |
+| York Road          |       1967 |                           101 |                          199 |
+| Clay Pit Lane      |       2294 |                            97 |                          223 |
+| Harrogate Road     |       1762 |                            97 |                          171 |
+| Hunslet Road       |       1814 |                            97 |                          176 |
+| Ring Road Meanwood |       2528 |                            97 |                          245 |
+| Ring Road Moortown |       4429 |                            97 |                          430 |
+| Scott Hall Road    |       8723 |                            97 |                          846 |
+| Woodhouse Lane     |       2497 |                            97 |                          242 |
 
 Table 1: The top 10 candidate roads for space reallocation for pop-up
 lane reallocation interventions. Roads with ‘spare lanes’ identified
-using methods presented in the paper are ranked by km cycled per day
-(length of section multiplied by potential) under the Government Target
-scenario, representing a doubling in commuter cycling levels compared
-with 2011 levels.
+using methods presented in the paper are ranked by cycling potential
+under the Government Target scenario, representing a doubling in
+commuter and school cycling levels compared with 2011 levels.
 
 The approach is not without limitations. Its reliance on data rather
 than community engagement represents a rather top-down approach to
@@ -377,9 +427,33 @@ pop-up infrastructure is spent in an evidence-based way.
 
 <!-- All equations shall have all of their variables defined. -->
 
+<!-- Todo final bit -->
+
+<!-- - check over the responses to reviewers -->
+
+<!-- - double check and update the paper with new images from the tool  -->
+
 # References
 
 <div id="refs" class="references hanging-indent">
+
+<div id="ref-aldred_cycling_2018">
+
+Aldred, Rachel, Anna Goodman, John Gulliver, and James Woodcock. 2018.
+“Cycling Injury Risk in London: A Case-Control Study Exploring the
+Impact of Cycle Volumes, Motor Vehicle Volumes, and Road Characteristics
+Including Speed Limits.” *Accident Analysis & Prevention* 117 (August):
+75–84. <https://doi.org/10.1016/j.aap.2018.03.003>.
+
+</div>
+
+<div id="ref-chen_built_2016">
+
+Chen, Peng, and Qing Shen. 2016. “Built Environment Effects on Cyclist
+Injury Severity in Automobile-Involved Bicycle Crashes.” *Accident
+Analysis & Prevention* 86: 239–46.
+
+</div>
 
 <div id="ref-freeman_covid19_2020">
 
@@ -397,14 +471,6 @@ Nikolai Berkoff, Malcolm Morgan, Ali Abbas, and Robin Lovelace. 2019.
 Carbon Impacts: Application of the ‘Propensity to Cycle Tool’.” *Journal
 of Transport & Health* 12 (March): 263–78.
 <https://doi.org/10.1016/j.jth.2019.01.008>.
-
-</div>
-
-<div id="ref-govuk_transport-secretary_2020">
-
-Government, UK. 2020. “Transport Secretary’s Statement on Coronavirus
-(Covid-19): 9 May 2020.”
-https://www.gov.uk/government/speeches/transport-secretarys-statement-on-coronavirus-covid-19-9-may-2020.
 
 </div>
 
@@ -466,13 +532,6 @@ Transport and Land Use* 10 (1). <https://doi.org/10.5198/jtlu.2016.862>.
 
 </div>
 
-<div id="ref-R-pct">
-
-Lovelace, Robin, and Layik Hama. 2019. *Pct: Propensity to Cycle Tool*.
-https://www.pct.bike/.
-
-</div>
-
 <div id="ref-orsman_covid_2020">
 
 Orsman, B. 2020. “Covid 19 Coronavirus: Social Distancing Cones Rolled
@@ -480,10 +539,17 @@ Out Across Auckland.” *NZ Herald*, April.
 
 </div>
 
+<div id="ref-parkin_designing_2018">
+
+Parkin, John. 2018. *Designing for Cycle Traffic: International
+Principles and Practice*. ICE Publishing.
+
+</div>
+
 <div id="ref-reid_government_2020">
 
 Reid, Carlton. 2020. “U.K. Government Boosts Bicycling and Walking with
-Ambitious 2 Billion Post-Pandemic Plan.” *Forbes*.
+Ambitious Billion Post-Pandemic Plan.” *Forbes*.
 
 </div>
 
@@ -506,7 +572,7 @@ China.” *Science* 368 (6491): 638–42.
 
 <div id="ref-transportscotland_10_2020">
 
-Transport Scotland. 2020. “10 Million to Support Pop-up Active Travel
+Transport Scotland. 2020. “ Million to Support Pop-up Active Travel
 Infrastructure.”
 https://www.transport.gov.scot/news/10-million-to-support-pop-up-active-travel-infrastructure/.
 

@@ -2,7 +2,7 @@
 title: "Methods to prioritise pop-up active transport infrastructure"
 # : overview and findings from 10 UK cities"
 author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith"
-# output: bookdown::github_document2
+output: bookdown::github_document2
 # output: bookdown::html_document2
 # output:
 #   bookdown::pdf_document2:
@@ -107,6 +107,14 @@ if(!file.exists("r_main_leeds.Rds")) {
   download.file(u, "r_main_leeds.Rds")
 }
 rj = readRDS("r_main_leeds.Rds")
+# r_lanes_joined = r_lanes_joined[region, ]
+# saveRDS(r_lanes_joined, "r_lanes_joined.Rds")
+# piggyback::pb_upload("r_lanes_joined.Rds")
+if(!file.exists("r_lanes_joined.Rds")) {
+  u = "https://github.com/cyipt/popupCycleways/releases/download/v1/r_lanes_joined.Rds"
+  download.file(u, "r_lanes_joined.Rds")
+}
+r_lanes_joined = readRDS("r_lanes_joined.Rds")
 region = ukboundaries::leeds
 tmap_mode("plot")
 ```
@@ -114,7 +122,7 @@ tmap_mode("plot")
 ```{r parameters}
 regexclude = "welling"
 min_cycling_potential = 0
-min_grouped_cycling_potential = 100
+min_grouped_cycling_potential = 50
 min_grouped_length = 500
 city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
@@ -126,6 +134,7 @@ city_centre_buffer_large = stplanr::geo_buffer(city_centre, dist = city_centre_b
 ```
 
 ```{r preprocess}
+cy = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/cycleways.geojson")
 cy = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/cycleways.geojson")
 r_central = rj[city_centre_buffer, ]
 r_main = r_central %>% 
@@ -210,7 +219,7 @@ We chose 10m because it represents the minimum typical width required to enable 
 
 To ensure our route recommendations could achieve sufficient coherency, we undertook several stages of road segment filtering and grouping. 
 Firstly, segments were grouped by road reference number (i.e. 'A' or 'B' road number).
-Road segments with a reference number were grouped together with neighbours within a 100m buffer, using the `igraph` R package. 
+Road segments with a reference number were grouped together with neighbours within a 100 m buffer, using the `igraph` R package. 
 Filtering then removed groups without distance weighted mean width >= 10 m or spare lanes along the majority of their length, and groups with distance weighted mean cycling potential below a minimum threshold defined as one twenty-fifth of the 99th percentile segment level cycling potential within the city. 
 
 Segments without a reference number were subjected to stricter filtering criteria, to prevent the inclusion of unwanted short segments on side streets. 
@@ -218,13 +227,13 @@ Any of these segments that had cycling potential below 30 were excluded from the
 The segments were then grouped using a 20m buffer. 
 Filtering followed the same criteria as for other roads, plus an additional filter to remove groups with length below 300 m.
 
-For all segments, a novel round of grouping (ignoring previous groups) with a 100m buffer was then used to remove groups with length below 500 m. 
+For all segments, a novel round of grouping (ignoring previous groups) with a 100 m buffer was then used to remove groups with length below 500 m. 
 This step removed short sections distant from any others, thus improving the coherency of the results.
 Finally, road names were used to identify continuous road sections with the same name of length >= 500m.
 Groups containing five or more different named roads were labelled "Unnamed road."
 
 An example of the impact of grouping strategy is shown in Figure \@ref(fig:levels). 
-Segments are grouped with a 100m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential. 
+Segments are grouped with a 100 m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential. 
 The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels.
 We can see that grouping the segments first then filtering based on mean group-level attributes results in a more cohesive network than filtering individual segments then grouping the results. 
 
@@ -271,10 +280,10 @@ m0 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_layout(title = "Roads on which there are spare lanes.")
 m1 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_filter_before_grouping) + tm_lines() +
-  tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 100)")
+  tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 50)")
 m2 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
-  tm_shape(r_pct_lanes) + tm_lines("graph_group", palette = "Dark2") +
-  tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
+  tm_shape(r_lanes_joined) + tm_lines("group_id", palette = "Dark2") +
+  tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 50)")
 # todo show group membership with colours
 ma = tmap_arrange(m0, m1, m2, nrow = 1)
 ma
