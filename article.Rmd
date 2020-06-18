@@ -45,8 +45,7 @@ The resulting Rapid Cycleway Prioritisation Tool, deployed for all 78 transport 
 <!-- The COVID-19 pandemic has transformed all sectors of the economy, not least transport. -->
 <!-- [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020]. -->
 Much attention has focused on the impacts of COVID-19 on long-distance travel patterns [e.g. @iacus_estimating_2020; @jittrapirom_exploratory_2020] but short distance travel patterns have also changed.
-There has been a notable increase in active travel, particularly cycling, in some areas  [@harrabin_boom_2020].
-The two main explanations for this are 1) the need increased need for exercise close to home during lockdowns for mental and physical health [@jimenez-pavon_physical_2020], and 2) a reduction in both public transport options and use [e.g. @tian_investigation_2020].
+There has been a notable increase in cycling in some areas [@harrabin_boom_2020] due to the need increased need for exercise close to home for mental and physical health [@jimenez-pavon_physical_2020] and a reduction in public transport options [e.g. @tian_investigation_2020].
 The second reason is particularly important given that many 'key workers' are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
@@ -60,7 +59,7 @@ Many options are available to ensure that citizens can benefit from outdoor acti
 Installation of 'pop-up' active transport infrastructure has been endorsed and implemented in many places [@laker_world_2020].
 The Scottish government, for example, has provided £10 million "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
 On 9^th^ May 2020, the UK government announced a £250 million package for pop-up active transport infrastructure [@reid_government_2020].
-Significantly, alongside this funding comes updated [guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19) on pop-up infrastructure and safety [@govuk_transport-secretary_2020].
+Significantly, alongside this funding comes updated [statutory guidance](https://www.gov.uk/government/publications/reallocating-road-space-in-response-to-covid-19-statutory-guidance-for-local-authorities/traffic-management-act-2004-network-management-in-response-to-covid-19) on pop-up infrastructure and safety.
 Evidence is needed to ensure that such investment is spent effectively and where it is most needed.
 
 Most pop-up active transport infrastructure can be classified into three broad categories:
@@ -176,7 +175,7 @@ Datasets from the PCT and CyIPT project were merged, resulting in crucial variab
 Cycling potential is defined as the number of one-way journeys to work and to school, under a scenario in which the government aim of doubling cycling levels is met.
 This does not include other types of journey such as leisure and shopping.
 
-Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with the odds of cyclist injury on 20 mph roads in London being found to be 21% lower than on 30 mph roads [@aldred_cycling_2018]. 
+Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with odds of cyclist injury on 20 mph roads in London found to be 21% lower than on 30 mph roads [@aldred_cycling_2018]. 
 Therefore the suitability of roads for cycle infrastructure, the preferred degree of physical segregation, or the necessity to reduce traffic speeds could all be influenced by current speed limits.
 
 Table 1: Summary of the road segment dataset for Leeds
