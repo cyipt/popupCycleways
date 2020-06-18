@@ -96,45 +96,37 @@ knitr::include_graphics(c(
 library(sf)
 library(tidyverse)
 library(tmap)
-tmap_mode("plot")
-rtid = readr::read_csv("rtid.csv")
+region_name = "West Yorkshire"
+# source("code/build.R")
+# saveRDS(r_main_region, "r_main_region.Rds")
+# r_main_leeds = r_main_region[region, ]
+# saveRDS(r_main_leeds, "r_main_leeds.Rds")
+# piggyback::pb_upload("r_main_leeds.Rds")
+if(!file.exists("r_main_leeds.Rds")) {
+  u = "https://github.com/cyipt/popupCycleways/releases/download/v1/r_main_leeds.Rds"
+  download.file(u, "r_main_leeds.Rds")
+}
+rj = readRDS("r_main_leeds.Rds")
 region = ukboundaries::leeds
+tmap_mode("plot")
+```
+
+```{r parameters}
+regexclude = "welling"
+min_cycling_potential = 0
+min_grouped_cycling_potential = 100
+min_grouped_length = 500
+city_centre_buffer_radius_small = 5000
+city_centre_buffer_radius = 8000
+city_centre_buffer_radius_large = 10000
+city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
+city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
+city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
+city_centre_buffer_large = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_large)
 ```
 
 ```{r preprocess}
-# remove motorways
-r_original$highway_type = r_original$highway
-r_original$highway_type = gsub(pattern = "_link", replacement = "", r_original$highway)
-highway_table = table(r_original$highway)
-highway_rare = highway_table[highway_table < nrow(r_original) / 100]
-highway_remove = names(highway_rare)[!grepl(pattern = "motor|living|ped", x = names(highway_rare))]
-r_cleaned = r_original %>% 
-  filter(!grepl(pattern = "motorway", x = highway)) %>% 
-  mutate(highway_type = case_when(
-  highway_type %in% highway_remove ~ "other",
-  grepl(pattern = "path|track|trunk", highway_type) ~ "other",
-  grepl(pattern = "ped|liv", highway_type) ~ "pedestrian/living_street",
-  TRUE ~ highway_type
-  )) %>% 
-  mutate(maxspeed = case_when(
-    maxspeed <= 20 ~ "20 mph or less",
-    maxspeed > 20 & maxspeed <= 30 ~ "30 mph",
-    maxspeed > 30 ~ "40+ mph",
-  )) %>% 
-  mutate(cycling_potential = as.numeric(pctgov)) %>% 
-  select(name, ref, highway, maxspeed, pctgov, width, Existing, length, highway_type, cycling_potential, rtid, idGlobal)
-# table(r_cleaned$maxspeed)
-rj = inner_join(r_cleaned, rtid) %>% 
-  mutate(lanes_f = abs(lanespsvforward) + abs(lanesforward)) %>% 
-  mutate(lanes_b = abs(lanespsvbackward) + abs(lanesbackward)) %>% 
-  mutate(n_lanes_numeric = lanes_f + lanes_b) %>% 
-  mutate(n_lanes = as.character(n_lanes_numeric))
-rj$n_lanes_numeric[rj$n_lanes_numeric <= 0] = 1 
-rj$n_lanes[rj$n_lanes == "0"] = "1"
-rj$n_lanes[rj$n_lanes == "4"] = "4+"
-rj$n_lanes[rj$n_lanes == "5"] = "4+"
-rj$n_lanes[rj$n_lanes == "6"] = "4+"
-cy = r_cleaned %>% filter(highway == "cycleway")
+cy = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/cycleways.geojson")
 r_central = rj[city_centre_buffer, ]
 r_main = r_central %>% 
   filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
@@ -186,7 +178,7 @@ square = stplanr::geo_bb(shp = city_centre_buffer)
 m1 = tm_shape(r_main_region) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
-  tm_shape(region) + tm_borders() +
+  tm_shape(region) + tm_borders(col = "black", lwd = 2) +
   tm_shape(square) + tm_borders(lty = 3) +
   tm_scale_bar() 
 # m1
@@ -195,6 +187,7 @@ m2 = tm_shape(r_main) +
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
   tm_shape(city_centre_buffer_small) + tm_borders(lty = 2) +
   tm_shape(city_centre_buffer_large) + tm_borders(lty = 2) +
+  tm_shape(region) + tm_borders(col = "black", lwd = 2) +
   tm_shape(city_centre_buffer) + tm_borders() +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
@@ -259,7 +252,8 @@ r_pct_lanes = r_pct_lanes_all %>%
   mutate(group_length = sum(length)) %>% 
   mutate(cycling_potential_mean = weighted.mean(cycling_potential, w = length, na.rm = TRUE)) %>% 
   filter(cycling_potential_mean > min_grouped_cycling_potential)
-r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length)
+r_pct_lanes = r_pct_lanes %>% filter(group_length > min_grouped_length) %>% 
+  ungroup()
 
 r_pct_lanes$graph_group = r_pct_lanes$group
 group_table = table(r_pct_lanes$group)
