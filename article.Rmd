@@ -501,5 +501,10 @@ h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", en
 h$V1 = gsub(pattern = "")
 ```
 
+<!-- Todo final bit -->
+
+<!-- - check over the responses to reviewers -->
+<!-- - double check and update the paper with new images from the tool  -->
+
 # References
 

@@ -21,6 +21,7 @@ cp rapid-slides.html popupCycleways/v1/slides/index.html
 cp -Rv libs popupCycleways/v1/slides/
 cd popupCycleways
 git status
+git diff
 git add -A
 git commit -am 'Add slides'
 git push
