@@ -69,7 +69,7 @@ Evidence is needed to ensure that such investment is spent effectively and where
 Most pop-up active transport infrastructure can be classified into three broad categories:
 
 
-1. 'filtered permeability', e.g. as [shown](https://twitter.com/CatrionaSwanson/status/1258322956595453952) in [@salfordcitycouncil_salford_2020]
+1. 'filtered permeability', where measures such as point closures or contraflow cycle lanes are used to design street networks in which routes for cyclists are faster and more direct than routes for drivers, e.g. as [shown](https://twitter.com/TowerHamletsNow/status/1257564043856019458) in [Tower Hamlets]
 
 2. banning cars and to pedestrianise streets, as in New York's 'Open Streets' scheme [@litman_pandemicresilient_2020]
 3. the reallocation of one or more lanes on wide roads to create pop-up cycleways and pavements [@orsman_covid_2020].
@@ -110,16 +110,6 @@ if(!file.exists("rtid.csv")) {
   download.file(ur, "rtid.csv")
 }
 rtid = readr::read_csv("rtid.csv")
-# uh = "http://media.nhschoices.nhs.uk/data/foi/Hospital.csv"
-# download.file(uh, "uh.csv")
-h = readr::read_delim("uh-edited.csv", delim = "|")
-# nrow(h) # 1221 hospitals
-h_clean = h %>% 
-  mutate(Longitude = as.numeric(Longitude)) %>% 
-  mutate(Latitude = as.numeric(Latitude)) %>% 
-  filter(!is.na(Longitude)) %>% 
-  filter(!is.na(Latitude))
-hsf = h_clean %>% st_as_sf(coords = c("Longitude", "Latitude"), crs = 4326)
 region = ukboundaries::leeds
 tmap_mode("plot")
 ```
@@ -132,14 +122,10 @@ min_grouped_length = 500
 city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
-key_destination_buffer_radius = 5000
 city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
 city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
 city_centre_buffer_large = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_large)
-h_leeds = hsf[city_centre_buffer, ]
-h_leeds_buffer = stplanr::geo_buffer(h_leeds, dist = key_destination_buffer_radius)
-city_key_buffer = st_union(city_centre_buffer, st_union(h_leeds_buffer))
 ```
 
 ```{r preprocess}
@@ -176,18 +162,17 @@ rj$n_lanes[rj$n_lanes == "4"] = "4+"
 rj$n_lanes[rj$n_lanes == "5"] = "4+"
 rj$n_lanes[rj$n_lanes == "6"] = "4+"
 cy = r_cleaned %>% filter(highway == "cycleway")
-r_central = rj[city_key_buffer, ]
+r_central = rj[city_centre_buffer, ]
 r_main = r_central %>% 
   filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 r_main_region = rj %>% 
   filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 ```
 
-Three key datasets were used for the project:
+Two key datasets were used for the project:
 
 - Estimates of cycling potential at the street segment level from the UK Department for Transport funded Propensity to Cycle Tool (PCT) project [@goodman_scenarios_2019; @lovelace_propensity_2017]
 - Data derived from OpenStreetMap, with several new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overview)
-- A list of hospital locations from the UK's National Health Service website [www.nhs.uk](https://www.nhs.uk/about-us/nhs-website-datasets/)
 <!-- - Data on the location of road traffic casualties from -->
 
 Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Table 1.
@@ -196,8 +181,6 @@ This does not include other types of journey such as leisure and shopping.
 
 Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with the odds of cyclist injury on 20 mph roads in London being found to be 21% lower than on 30 mph roads [@aldred_cycling_2018]. 
 Therefore the suitability of roads for cycle infrastructure, the preferred degree of physical segregation, or the necessity to reduce traffic speeds could all be influenced by current speed limits.
-
-A map showing the spatial distribution of hospitals in the case study city of Leeds is shown in Figure \@ref(fig:hospitals).
 
 Table 1: Summary of the road segment dataset for Leeds
 
@@ -212,20 +195,6 @@ Table 1: Summary of the road segment dataset for Leeds
 knitr::include_graphics("81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png")
 ```
 
-```{r hospitals, fig.cap="Overview map of input data, showing the main highway types and location of hospitals in Leeds"}
-m1 = r_main_region %>%
-  mutate(`Highway type` = highway_type) %>% 
-  mutate(`Cycling potential` = case_when(cycling_potential < 100 ~ 100, TRUE ~ cycling_potential)) %>% 
-  tm_shape(bbox = st_bbox(city_centre_buffer)) +
-  tm_lines(col = "Highway type", palette = c("green", "black", "blue", "grey"),
-           lwd = "Cycling potential", scale = 5, lwd.legend = c(100, 200, 500, 1000),
-           lwd.legend.labels = c("0 - 100", "100 - 200", "200 - 500", "500+")) +
-  tm_shape(h_leeds) + tm_dots(size = 0.5, col = "ParentName", palette = "Dark2", title = "Hospital group") +
-  tm_layout(legend.outside = TRUE)
-# + tm_text("OrganisationName")
-m1
-```
-
 <!-- Could say more about the case study city here if there is space -->
 
 ## Geographic subsetting
@@ -235,7 +204,6 @@ m1
 We set a modifiable parameter `city_centre_buffer_radius` with an initial value of 8 km (5 miles) to geographically subset potential routes. This represents a distance that most people have the physical ability to cycle.
 Figure \@ref(fig:gsub) shows the result of subsetting based on physical distance from the centre vs plotting all possible transport network segments within the city boundaries. 
 In some cases, regional geographies mean that roads close to an urban centre do not lie within the city boundaries.
-To ensure roads that could serve key destinations were included, the parameter `key_destination_buffer_radius` (initially set to 5 km) was used.
 <!-- could say more... -->
 
 ```{r gsub, fig.cap="Illustration of geographic subsetting based on distance to a central point (Leeds city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)."}
@@ -247,17 +215,14 @@ m1 = tm_shape(r_main_region) +
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
   tm_shape(region) + tm_borders() +
   tm_shape(square) + tm_borders(lty = 3) +
-  tm_shape(h_leeds) + tm_dots(size = 0.5) +
   tm_scale_bar() 
 # m1
 m2 = tm_shape(r_main) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
-  tm_shape(city_centre_buffer) + tm_borders(lty = 2) +
   tm_shape(city_centre_buffer_small) + tm_borders(lty = 2) +
   tm_shape(city_centre_buffer_large) + tm_borders(lty = 2) +
-  tm_shape(city_key_buffer) + tm_borders() +
-  tm_shape(h_leeds) + tm_dots(size = 0.5) +
+  tm_shape(city_centre_buffer) + tm_borders() +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
 tmap_arrange(m1, m2, nrow = 1)
@@ -308,7 +273,8 @@ We can see that grouping the segments first then filtering based on mean group-l
 ```{r levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify roads with spare lanes that meet threshold values for length and cycling potential"}
 r_pct_lanes_all = r_central %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
-  filter(lanes_f > 1 | lanes_b > 1)
+  mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>%
+  filter(spare_lane | width >= 10) # need to add in roads >10m width
 # mapview::mapview(r_pct_lanes)
 
 touching_list = st_touches(r_pct_lanes_all)
@@ -333,13 +299,13 @@ r_filter_before_grouping = rj %>%
   filter(cycling_potential > min_grouped_cycling_potential) %>% 
   filter(length > 100)
 tmap_mode("plot")
-m0 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
+m0 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_pct_lanes_all) + tm_lines() +
   tm_layout(title = "Roads on which there are spare lanes.")
-m1 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
+m1 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_filter_before_grouping) + tm_lines() +
   tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 100)")
-m2 = tm_shape(city_key_buffer) + tm_borders(col = "grey") +
+m2 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_pct_lanes) + tm_lines("graph_group", palette = "Dark2") +
   tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 100)")
 # todo show group membership with colours
@@ -369,7 +335,7 @@ r_pct_no_overlap = r_pct_lanes %>%
 
 r_pct_top_n = r_pct_top %>% 
   group_by(name) %>% 
-  slice(which.max(km_day)) %>% 
+  slice(which.max(cycling_potential)) %>% 
   filter(name != "") %>% 
   ungroup() %>% 
   top_n(10, wt = km_day) 
@@ -407,7 +373,7 @@ tmap_mode("view")
 #   tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 4, alpha = 0.6) +
 #   tm_shape(r_pct_top_n) + tm_text("name") +
 #   tm_shape(h_leeds) + tm_dots(size = 0.1)
-knitr::include_graphics("figures/results-leeds.png")
+knitr::include_graphics("figures/results-leeds.png") # this needs changing
 ```
 
 ```{r}
@@ -489,16 +455,16 @@ Given the recent interest in and funding for pop-up cycleways, rolling-out the m
 <!-- All equations shall have all of their variables defined. -->
 
 ```{r, eval=FALSE}
-system("")
-# system("iconv -c -f utf-8 -t ascii uh.csv")
-system("iconv -f Latin-1 -t ascii uh.csv -o uh_new.csv")
-system("sd � , uh.csv")
-system("head uh.csv")
-h = readr::read_csv("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv")
-h = read.csv("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", , fileEncoding="latin1", sep = "¬", colClasses = c(NA, "NULL"))
-h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", encoding = "Latin-1")
-h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", encoding = "UTF-8")
-h$V1 = gsub(pattern = "")
+# system("")
+# # system("iconv -c -f utf-8 -t ascii uh.csv")
+# system("iconv -f Latin-1 -t ascii uh.csv -o uh_new.csv")
+# system("sd � , uh.csv")
+# system("head uh.csv")
+# h = readr::read_csv("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv")
+# h = read.csv("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", , fileEncoding="latin1", sep = "¬", colClasses = c(NA, "NULL"))
+# h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", encoding = "Latin-1")
+# h = data.table::fread("http://media.nhschoices.nhs.uk/data/foi/Hospital.csv", encoding = "UTF-8")
+# h$V1 = gsub(pattern = "")
 ```
 
 # References
