@@ -106,7 +106,11 @@ if(!file.exists("r_main_leeds.Rds")) {
   u = "https://github.com/cyipt/popupCycleways/releases/download/v1/r_main_leeds.Rds"
   download.file(u, "r_main_leeds.Rds")
 }
-rj = readRDS("r_main_leeds.Rds")
+if(file.exists("r_main_region.Rds")) {
+  rj = readRDS("r_main_region.Rds")
+} else {
+  rj = readRDS("r_main_leeds.Rds")
+}
 # r_lanes_joined = r_lanes_joined[region, ]
 # saveRDS(r_lanes_joined, "r_lanes_joined.Rds")
 # piggyback::pb_upload("r_lanes_joined.Rds")
@@ -127,6 +131,7 @@ min_grouped_length = 500
 city_centre_buffer_radius_small = 5000
 city_centre_buffer_radius = 8000
 city_centre_buffer_radius_large = 10000
+key_destination_buffer_radius = 5000
 city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
 city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
@@ -190,7 +195,8 @@ In some cases, regional geographies mean that roads close to an urban centre do 
 # nrow(rj)
 square = stplanr::geo_bb(shp = city_centre_buffer)
 r_main_region_key = r_main_region[city_key_buffer, ]
-m1 = tm_shape(r_main_region) +
+r_main_city = r_main_region[region, ]
+m1 = tm_shape(r_main_city) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
   tm_shape(region) + tm_borders(col = "black", lwd = 2) +
@@ -213,6 +219,7 @@ m3 = tm_shape(r_main_region_key) +
   tm_shape(city_centre_buffer_small) + tm_borders(lty = 2) +
   tm_shape(city_centre_buffer_large) + tm_borders(lty = 2) +
   tm_shape(city_key_buffer) + tm_borders() +
+  tm_shape(region) + tm_borders(col = "black", lwd = 2) +
   tm_shape(h_leeds) + tm_dots(size = 0.5) +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
