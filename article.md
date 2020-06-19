@@ -174,15 +174,15 @@ not lie within the city boundaries. <!-- could say more... -->
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on distance to a central point (Leeds city centre in this case) rather than based on location within somewhat arbitrarily shaped city boundaries. Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)." width="100%" />
+<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on administrative boundaries (left), distance to a central point (middle) and distance to city centre or key destinations (right). Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)." width="100%" />
 
 <p class="caption">
 
-Figure 3: Illustration of geographic subsetting based on distance to a
-central point (Leeds city centre in this case) rather than based on
-location within somewhat arbitrarily shaped city boundaries. Radii of 5
-km, 8 km and 10 km are shown for reference (note that some roads within
-10 km of the center are outside the regional boundary).
+Figure 3: Illustration of geographic subsetting based on administrative
+boundaries (left), distance to a central point (middle) and distance to
+city centre or key destinations (right). Radii of 5 km, 8 km and 10 km
+are shown for reference (note that some roads within 10 km of the center
+are outside the regional boundary).
 
 </p>
 
