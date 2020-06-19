@@ -233,37 +233,33 @@ tmap_arrange(m1, m2, m3, nrow = 1)
 
 ## Road attributes
 
-At a time of reduced travel, fewer lanes dedicated to motor traffic are needed.
-Based on this observation, we defined roads with a 'spare lane' as those on which there is more than one lane in either direction.
-This definition assumes no alteration of the navigable network for motor vehicles (other options such as making two-way streets one-way are not explored in this analysis).
+Pop-up cycleways can be placed either on the side of wide roads (as is the case on [South Road, Lancaster](https://www.lancasterguardian.co.uk/news/uk-news/mixed-reactions-new-lancaster-pop-cycle-lanes-busy-city-centre-road-2875909)) or in an entire lane that has been closed to motor traffic (as is the case on [Park Lane](https://metro.co.uk/2020/05/14/road-turns-giant-cycle-lane-make-social-distancing-easier-12703847/), London).
+Accordingly, we defined 'spare space' as either roads on which there is more than one lane in either direction or lane width above a threshold (set at 10 m based on feedback from engineers and the observation that South Road has a width of ~9 m yet can just fit cycleways protected by plastic 'wands').
+This definition assumes no alteration of the navigable network for motor vehicles.
 
 To identify road sections with a spare lane we developed a simple algorithm that takes the OSM variable [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is present and, if not, derives the number from the highway type and presence/absence of bus lanes.
-All segments defined as having a spare lane using this method are shown in Figure \@ref(fig:levels) (left).
-
-We also included estimates of road width, flagging roads with mean estimated width >= 10m using data previously generated for the Cycling Infrastructure Prioritisation Tool.
-We chose 10m because it represents the minimum typical width required to enable cycleway creation through road space reallocation.
+Width estimates were taken from the CyIPT tool (see [www.cyipt.bike](https://www.cyipt.bike/) for details).
+All segments defined as having a spare space using this method are shown in Figure \@ref(fig:levels) (left).
 
 ## Attribute filtering and grouping
 
 To ensure our route recommendations could achieve sufficient coherency, we undertook several stages of road segment filtering and grouping. 
-Firstly, segments were grouped by road reference number (i.e. 'A' or 'B' road number).
-Road segments with a reference number were grouped together with neighbours within a 100 m buffer, using the `igraph` R package. 
-Filtering then removed groups without distance weighted mean width >= 10 m or spare lanes along the majority of their length, and groups with distance weighted mean cycling potential below a minimum threshold defined as one twenty-fifth of the 99th percentile segment level cycling potential within the city. 
+Segments were grouped by road reference number (i.e. 'A' or 'B' road number) and by proximing, within a 100 m buffer.
+Filtering then removed groups without distance weighted mean width >= 10 m or spare lanes along the majority of their length, and groups with distance-weighted mean cycling potential below a minimum threshold.
+<!-- defined as one twenty-fifth of the 99th percentile segment level cycling potential within the city.  -->
 
 Segments without a reference number were subjected to stricter filtering criteria, to prevent the inclusion of unwanted short segments on side streets. 
-Any of these segments that had cycling potential below 30 were excluded from the analysis. 
-The segments were then grouped using a 20m buffer. 
-Filtering followed the same criteria as for other roads, plus an additional filter to remove groups with length below 300 m.
-
-For all segments, a novel round of grouping (ignoring previous groups) with a 100 m buffer was then used to remove groups with length below 500 m. 
+<!-- Any of these segments that had cycling potential below 30 were excluded from the analysis.  -->
+<!-- The segments were then grouped using a 20m buffer.  -->
+<!-- Filtering followed the same criteria as for other roads, plus an additional filter to remove groups with length below 300 m. -->
+For all segments, a final round of grouping (ignoring previous groups) with a 100 m buffer was then used to remove groups with length below 500 m. 
 This step removed short sections distant from any others, thus improving the coherency of the results.
 Finally, road names were used to identify continuous road sections with the same name of length >= 500m.
-Groups containing five or more different named roads were labelled "Unnamed road."
-
+Groups containing five or more different named roads were labeled "Unnamed road."
 An example of the impact of grouping strategy is shown in Figure \@ref(fig:levels). 
-Segments are grouped with a 100 m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential. 
-The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels.
-We can see that grouping the segments first then filtering based on mean group-level attributes results in a more cohesive network than filtering individual segments then grouping the results. 
+<!-- Segments are grouped with a 100 m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential.  -->
+<!-- The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels. -->
+The resulting network shows that grouping the segments first then filtering based on mean group-level attributes results in a more cohesive network than filtering individual segments then grouping the results. 
 
 
 <!-- Note this could be a function in an R package.. -->
@@ -319,31 +315,11 @@ ma
 ```
 
 ```{r joining}
-r_pct_grouped = r_pct_lanes %>%
-  group_by(name, group) %>%
-  summarise(
-    group_length = sum(length),
-    cycling_potential = round(weighted.mean(cycling_potential_mean, length))
-  )
-# summary(r_pct_grouped$group_length)
-r_pct_top = r_pct_grouped %>%
-  filter(group_length > min_grouped_length) %>% 
-  filter(cycling_potential > min_grouped_cycling_potential) %>% 
-  filter(!grepl(pattern = regexclude, name, ignore.case = TRUE)) %>% 
-  mutate(km_day = round(cycling_potential * group_length / 1000))
-# head(r_pct_top$km_day)
+top_routes = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/top_routes.geojson")
+top_routes_leeds = top_routes[region, ]
 
-r_pct_lanes_overlap = r_pct_lanes[r_pct_top, , op = sf::st_covered_by] # works
-# r_pct_no_overlap = st_difference(r_pct_lanes, r_pct_top) # slow
-r_pct_no_overlap = r_pct_lanes %>% 
-  filter(!idGlobal %in% r_pct_lanes_overlap$idGlobal)
-
-r_pct_top_n = r_pct_top %>% 
-  group_by(name) %>% 
-  slice(which.max(cycling_potential)) %>% 
-  filter(name != "") %>% 
-  ungroup() %>% 
-  top_n(10, wt = km_day) 
+r_pct_top_n = top_routes_leeds %>% 
+  top_n(10, wt = mean_cycling_potential) 
 # aim: make the labels go on the longest sections
 # %>% 
 #   st_cast("LINESTRING") %>% 
@@ -357,7 +333,7 @@ r_pct_top_n = r_pct_top %>%
 ## Selection of top routes
 
 Top routes were selected from the results of the previous steps. 
-These must not be labelled "Unnamed road" or have existing cycleways along more than 80% of their length. 
+These must not be labeled "Unnamed road" or have existing cycleways along more than 80% of their length. 
 A high threshold was chosen here because the presence of an existing cycleway on OSM does not mean that this is necessarily a high quality cycleway. 
 Continuity of cycle provision is important for creating high quality networks [@parkin_designing_2018].
 
@@ -368,7 +344,7 @@ Continuity of cycle provision is important for creating high quality networks [@
 
 # FINDINGS
 
-The results of the method are summarised in Figure \@ref(fig:res) (see [here](https://rpubs.com/anon-user/612999) for interactive version) and Table 2.
+The results of the method applied to the city of Leeds are shown in Figure \@ref(fig:res) (see [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for interactive version) and Table 2.
 We found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
 Reducing the 85,000 road segments for Leeds down to a handful of candidate segments with more than 1 lane near key destinations has great potential to support policy-makers, especially when decisions need to be made fast.
 
@@ -378,16 +354,23 @@ tmap_mode("view")
 #   tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 4, alpha = 0.6) +
 #   tm_shape(r_pct_top_n) + tm_text("name") +
 #   tm_shape(h_leeds) + tm_dots(size = 0.1)
-knitr::include_graphics("figures/results-leeds.png") # this needs changing
+knitr::include_graphics("figures/results-top-leeds.png") # this needs changing
 ```
 
 ```{r}
 res_table = r_pct_top_n %>% 
   sf::st_drop_geometry() %>% 
-  arrange(desc(cycling_potential)) %>% 
-  select(Name = name, `Length (m)` = group_length, `Potential (Government Target)` = cycling_potential, `Km/day (length * potential)` = km_day) 
+  arrange(desc(mean_cycling_potential)) %>% 
+  select(Name = name, `Length (m)` = length..m., `Potential (Government Target)` = mean_cycling_potential) %>% 
+  mutate(`Km/day (length * potential)` = `Potential (Government Target)` * `Length (m)`)
 knitr::kable(res_table, caption = "The top 10 candidate roads for space reallocation for pop-up lane reallocation interventions. Roads with 'spare lanes' identified using methods presented in the paper are ranked by cycling potential under the Government Target scenario, representing a doubling in commuter and school cycling levels compared with 2011 levels.", digits = 0)
 ```
+
+An illustration of the scale of the results is shown in Figure \@ref(fig:facets), which shows the results for six major cities in England.
+Local authorities are planning new pop-up cycleways informed by a range of sources of evidence, including the Rapid Cycleway Prioritisation Tool, and in many cases the plans match the routes highlighted by our tool.^[
+[Kirkstall Road](https://www.bbc.co.uk/news/uk-england-leeds-52577554) in Leeds and [Jamaica Road](https://www.se16.com/6208-work-starts-on-54m-cycleway-along-jamaica-road) in London are a couple of examples.
+Many more examples can be found on posts mentioning the tool on [social media](https://twitter.com/search?q=cyipt.bike%2Frapid).
+]
 
 The approach is not without limitations.
 Its reliance on data rather than community engagement represents a rather top-down approach to transport planning.

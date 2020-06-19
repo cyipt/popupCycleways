@@ -159,18 +159,31 @@ Table 1: Summary of the road segment dataset for Leeds
 
 ## Geographic subsetting
 
-<!-- The region of analysis may seem like a basic consideration: most cities have well-defined administrative zones. -->
+The region of analysis may seem like a basic consideration: most cities
+have well-defined administrative zones. In Leeds and many other cities,
+it makes sense to focus on the region directly surrounding the city
+centre, in a kind of ‘geographical triage’ to omit from the analysis
+pop-up options in the outskirts, focus valuable attention on the routes
+that are most likely to serve the highest number of people, and ensure
+that road sections outside administrative areas but close to key
+destinations are included.
 
-<!-- In Leeds and many other cities, it makes sense to focus on the region directly surrounding the city centre, in a kind of 'geographical triage' to omit from the analysis pop-up options in the outskirts and focus valuable attention on the routes that are most likely to serve the highest number of people. -->
+<!-- The parameter `city_centre_buffer_radius` with an initial value of 8 km (5 miles) to geographically subset potential routes. -->
 
-We set a modifiable parameter `city_centre_buffer_radius` with an
-initial value of 8 km (5 miles) to geographically subset potential
-routes. This represents a distance that most people have the physical
-ability to cycle. Figure <a href="#fig:gsub">3</a> shows the result of
-subsetting based on physical distance from the centre vs plotting all
-possible transport network segments within the city boundaries. In some
-cases, regional geographies mean that roads close to an urban centre do
-not lie within the city boundaries. <!-- could say more... -->
+<!-- This represents a distance that most people have the physical ability to cycle. -->
+
+Figure <a href="#fig:gsub">3</a> shows three broad strategies for
+geographic subsetting: based on administrative boundaries, distance from
+the centre, and distance from the centre and key destinations. The
+latter case (Figure <a href="#fig:gsub">3</a>, right) shows that
+administrative boundaries can exclude important roads. The definition of
+‘city centres’ and ‘key destinations’ is straightforward in clearly
+defined and well-understood city planning contexts. In contexts where
+the method must be deployed nationwide, however the use of such
+subsetting approaches was found to be problematic, so the Rapid Cycleway
+Prioritisation Tool for England (v1) uses the first subsetting option,
+but subsets by larger regional boundaries to encourage regional
+collaboration on cycleway network design. <!-- could say more... -->
 
 <div class="figure">
 
@@ -190,64 +203,59 @@ are outside the regional boundary).
 
 ## Road attributes
 
-At a time of reduced travel, fewer lanes dedicated to motor traffic are
-needed. Based on this observation, we defined roads with a ‘spare lane’
-as those on which there is more than one lane in either direction. This
-definition assumes no alteration of the navigable network for motor
-vehicles (other options such as making two-way streets one-way are not
-explored in this analysis).
+Pop-up cycleways can be placed either on the side of wide roads (as is
+the case on [South Road,
+Lancaster](https://www.lancasterguardian.co.uk/news/uk-news/mixed-reactions-new-lancaster-pop-cycle-lanes-busy-city-centre-road-2875909))
+or in an entire lane that has been closed to motor traffic (as is the
+case on [Park
+Lane](https://metro.co.uk/2020/05/14/road-turns-giant-cycle-lane-make-social-distancing-easier-12703847/),
+London). Accordingly, we defined ‘spare space’ as either roads on which
+there is more than one lane in either direction or lane width above a
+threshold (set at 10 m based on feedback from engineers and the
+observation that South Road has a width of \~9 m yet can just fit
+cycleways protected by plastic ‘wands’). This definition assumes no
+alteration of the navigable network for motor vehicles.
 
 To identify road sections with a spare lane we developed a simple
 algorithm that takes the OSM variable
 [`lanes`](https://wiki.openstreetmap.org/wiki/Key:lanes) if it is
 present and, if not, derives the number from the highway type and
-presence/absence of bus lanes. All segments defined as having a spare
-lane using this method are shown in Figure <a href="#fig:levels">4</a>
-(left).
-
-We also included estimates of road width, flagging roads with mean
-estimated width \>= 10m using data previously generated for the Cycling
-Infrastructure Prioritisation Tool. We chose 10m because it represents
-the minimum typical width required to enable cycleway creation through
-road space reallocation.
+presence/absence of bus lanes. Width estimates were taken from the CyIPT
+tool (see [www.cyipt.bike](https://www.cyipt.bike/) for details). All
+segments defined as having a spare space using this method are shown in
+Figure <a href="#fig:levels">4</a> (left).
 
 ## Attribute filtering and grouping
 
 To ensure our route recommendations could achieve sufficient coherency,
 we undertook several stages of road segment filtering and grouping.
-Firstly, segments were grouped by road reference number (i.e. ‘A’ or ‘B’
-road number). Road segments with a reference number were grouped
-together with neighbours within a 100 m buffer, using the `igraph` R
-package. Filtering then removed groups without distance weighted mean
-width \>= 10 m or spare lanes along the majority of their length, and
-groups with distance weighted mean cycling potential below a minimum
-threshold defined as one twenty-fifth of the 99th percentile segment
-level cycling potential within the city.
+Segments were grouped by road reference number (i.e. ‘A’ or ‘B’ road
+number) and by proximing, within a 100 m buffer. Filtering then removed
+groups without distance weighted mean width \>= 10 m or spare lanes
+along the majority of their length, and groups with distance-weighted
+mean cycling potential below a minimum threshold.
+<!-- defined as one twenty-fifth of the 99th percentile segment level cycling potential within the city.  -->
 
 Segments without a reference number were subjected to stricter filtering
 criteria, to prevent the inclusion of unwanted short segments on side
-streets. Any of these segments that had cycling potential below 30 were
-excluded from the analysis. The segments were then grouped using a 20m
-buffer. Filtering followed the same criteria as for other roads, plus an
-additional filter to remove groups with length below 300 m.
-
-For all segments, a novel round of grouping (ignoring previous groups)
+streets.
+<!-- Any of these segments that had cycling potential below 30 were excluded from the analysis.  -->
+<!-- The segments were then grouped using a 20m buffer.  -->
+<!-- Filtering followed the same criteria as for other roads, plus an additional filter to remove groups with length below 300 m. -->
+For all segments, a final round of grouping (ignoring previous groups)
 with a 100 m buffer was then used to remove groups with length below 500
 m. This step removed short sections distant from any others, thus
 improving the coherency of the results. Finally, road names were used to
 identify continuous road sections with the same name of length \>= 500m.
-Groups containing five or more different named roads were labelled
-“Unnamed road.”
-
-An example of the impact of grouping strategy is shown in Figure
-<a href="#fig:levels">4</a>. Segments are grouped with a 100 m buffer,
-using the `igraph` R package; they are also filtered to exclude sections
-below a minimum length and cycling potential. The threshold length and
-cycling potential are adaptable depending on the nature of the region
-being studied and local cycling levels. We can see that grouping the
-segments first then filtering based on mean group-level attributes
-results in a more cohesive network than filtering individual segments
-then grouping the results.
+Groups containing five or more different named roads were labeled
+“Unnamed road.” An example of the impact of grouping strategy is shown
+in Figure <a href="#fig:levels">4</a>.
+<!-- Segments are grouped with a 100 m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential.  -->
+<!-- The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels. -->
+The resulting network shows that grouping the segments first then
+filtering based on mean group-level attributes results in a more
+cohesive network than filtering individual segments then grouping the
+results.
 
 <!-- Note this could be a function in an R package.. -->
 
@@ -276,9 +284,9 @@ be estimated to have spare space), coloured by group membership.
 ## Selection of top routes
 
 Top routes were selected from the results of the previous steps. These
-must not be labelled “Unnamed road” or have existing cycleways along
-more than 80% of their length. A high threshold was chosen here because
-the presence of an existing cycleway on OSM does not mean that this is
+must not be labeled “Unnamed road” or have existing cycleways along more
+than 80% of their length. A high threshold was chosen here because the
+presence of an existing cycleway on OSM does not mean that this is
 necessarily a high quality cycleway. Continuity of cycle provision is
 important for creating high quality networks (Parkin 2018).
 
@@ -288,9 +296,10 @@ important for creating high quality networks (Parkin 2018).
 
 # FINDINGS
 
-The results of the method are summarised in Figure
-<a href="#fig:res">5</a> (see [here](https://rpubs.com/anon-user/612999)
-for interactive version) and Table 2. We found that analysis of open
+The results of the method applied to the city of Leeds are shown in
+Figure <a href="#fig:res">5</a> (see
+[cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for
+interactive version) and Table 2. We found that analysis of open
 transport network data, alongside careful selection of parameters, can
 generate plausible results for the prioritisation of pop-up cycle
 infrastructure. Reducing the 85,000 road segments for Leeds down to a
@@ -300,7 +309,7 @@ when decisions need to be made fast.
 
 <div class="figure">
 
-<img src="figures/results-leeds.png" alt="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled." width="100%" />
+<img src="figures/results-top-leeds.png" alt="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled." width="100%" />
 
 <p class="caption">
 
