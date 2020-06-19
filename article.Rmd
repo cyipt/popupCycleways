@@ -131,6 +131,9 @@ city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
 city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
 city_centre_buffer_large = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_large)
+h_leeds = hsf[city_centre_buffer, ]
+h_leeds_buffer = stplanr::geo_buffer(h_leeds, dist = key_destination_buffer_radius)
+city_key_buffer = st_union(city_centre_buffer, st_union(h_leeds_buffer))
 ```
 
 ```{r preprocess}
@@ -200,6 +203,17 @@ m2 = tm_shape(r_main) +
   tm_shape(city_centre_buffer) + tm_borders() +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
+m2 = tm_shape(r_main) +
+  tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
+           lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
+  tm_shape(city_centre_buffer_small) + tm_borders(lty = 2) +
+  tm_shape(city_centre_buffer_large) + tm_borders(lty = 2) +
+  tm_shape(region) + tm_borders(col = "black", lwd = 2) +
+  tm_shape(city_centre_buffer) + tm_borders() +
+  tm_scale_bar() +
+  tm_layout(legend.show = FALSE)
+
+
 tmap_arrange(m1, m2, nrow = 1)
 ```
 
@@ -245,12 +259,13 @@ We can see that grouping the segments first then filtering based on mean group-l
 <!-- An important distinction when developing methods for automated analysis of transport networks is the level of analysis. -->
 
 
-```{r levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify roads with spare lanes that meet threshold values for length and cycling potential"}
+```{r levels, fig.height=3, fig.cap="Illustration of the 'group then filter' method to identify roads with spare space that meet threshold values for length and cycling potential. The right hand panel contains roads on which the majority of segments have spare space (including segments that may not on their own be estimated to have spare space), coloured by group membership."}
 r_pct_lanes_all = r_central %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
   mutate(spare_lane = lanes_f > 1 | lanes_b > 1) %>%
   filter(spare_lane | width >= 10) # need to add in roads >10m width
 # mapview::mapview(r_pct_lanes)
+r_lanes_central = r_lanes_joined %>% sf::st_intersection(city_centre_buffer)
 
 touching_list = st_touches(r_pct_lanes_all)
 g = igraph::graph.adjlist(touching_list)
@@ -269,7 +284,7 @@ group_table = table(r_pct_lanes$group)
 top_groups = tail(sort(group_table), 5)
 r_pct_lanes$graph_group[!r_pct_lanes$graph_group %in% names(top_groups)] = "other"
 
-r_filter_before_grouping = rj %>% 
+r_filter_before_grouping = r_central %>% 
   filter(cycling_potential > min_cycling_potential) %>% 
   filter(lanes_f > 1 | lanes_b > 1) %>% 
   filter(cycling_potential > min_grouped_cycling_potential) %>% 
@@ -277,12 +292,12 @@ r_filter_before_grouping = rj %>%
 tmap_mode("plot")
 m0 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_pct_lanes_all) + tm_lines() +
-  tm_layout(title = "Roads on which there are spare lanes.")
+  tm_layout(title = "Roads on which there is 'spare space'.")
 m1 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
   tm_shape(r_filter_before_grouping) + tm_lines() +
   tm_layout(title = "Filter then group:\n(length > 100, cycling_potential > 50)")
 m2 = tm_shape(city_centre_buffer) + tm_borders(col = "grey") +
-  tm_shape(r_lanes_joined) + tm_lines("group_id", palette = "Dark2") +
+  tm_shape(r_lanes_central) + tm_lines("group_id", palette = "Dark2", legend.col.show = FALSE) +
   tm_layout(title = "Group then filter:\n(length > 500, cycling_potential > 50)")
 # todo show group membership with colours
 ma = tmap_arrange(m0, m1, m2, nrow = 1)

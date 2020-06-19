@@ -259,13 +259,15 @@ then grouping the results.
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/levels-1.png" alt="Illustration of the 'group then filter' method to identify roads with spare lanes that meet threshold values for length and cycling potential" width="100%" />
+<img src="article_files/figure-gfm/levels-1.png" alt="Illustration of the 'group then filter' method to identify roads with spare space that meet threshold values for length and cycling potential. The right hand panel contains roads on which the majority of segments have spare space (including segments that may not on their own be estimated to have spare space), coloured by group membership." width="100%" />
 
 <p class="caption">
 
 Figure 4: Illustration of the ‘group then filter’ method to identify
-roads with spare lanes that meet threshold values for length and cycling
-potential
+roads with spare space that meet threshold values for length and cycling
+potential. The right hand panel contains roads on which the majority of
+segments have spare space (including segments that may not on their own
+be estimated to have spare space), coloured by group membership.
 
 </p>
 
