@@ -131,6 +131,7 @@ city_centre = tmaptools::geocode_OSM("leeds", as.sf = TRUE)
 city_centre_buffer_small = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_small)
 city_centre_buffer = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius)
 city_centre_buffer_large = stplanr::geo_buffer(city_centre, dist = city_centre_buffer_radius_large)
+hsf = readRDS(url("https://github.com/cyipt/popupCycleways/releases/download/0.1/acute_hospitals.Rds"))
 h_leeds = hsf[city_centre_buffer, ]
 h_leeds_buffer = stplanr::geo_buffer(h_leeds, dist = key_destination_buffer_radius)
 city_key_buffer = st_union(city_centre_buffer, st_union(h_leeds_buffer))
@@ -140,6 +141,7 @@ city_key_buffer = st_union(city_centre_buffer, st_union(h_leeds_buffer))
 cy = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/cycleways.geojson")
 cy = sf::read_sf("https://www.cyipt.bike/rapid/west-yorkshire/cycleways.geojson")
 r_central = rj[city_centre_buffer, ]
+r_central_key = rj[city_key_buffer, ]
 r_main = r_central %>% 
   filter(grepl(pattern = "cycleway|primary|second|tert", highway_type))
 r_main_region = rj %>% 
@@ -187,6 +189,7 @@ In some cases, regional geographies mean that roads close to an urban centre do 
 # nrow(r_central)
 # nrow(rj)
 square = stplanr::geo_bb(shp = city_centre_buffer)
+r_main_region_key = r_main_region[city_key_buffer, ]
 m1 = tm_shape(r_main_region) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
@@ -203,18 +206,18 @@ m2 = tm_shape(r_main) +
   tm_shape(city_centre_buffer) + tm_borders() +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
-m2 = tm_shape(r_main) +
+m3 = tm_shape(r_main_region_key) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
+  tm_shape(city_centre_buffer) + tm_borders(lty = 2) +
   tm_shape(city_centre_buffer_small) + tm_borders(lty = 2) +
   tm_shape(city_centre_buffer_large) + tm_borders(lty = 2) +
-  tm_shape(region) + tm_borders(col = "black", lwd = 2) +
-  tm_shape(city_centre_buffer) + tm_borders() +
+  tm_shape(city_key_buffer) + tm_borders() +
+  tm_shape(h_leeds) + tm_dots(size = 0.5) +
   tm_scale_bar() +
   tm_layout(legend.show = FALSE)
-
-
-tmap_arrange(m1, m2, nrow = 1)
+# this take aaaages to render...
+tmap_arrange(m1, m2, m3, nrow = 1)
 ```
 
 ## Road attributes
