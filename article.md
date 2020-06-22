@@ -1,4 +1,5 @@
-Methods to prioritise pop-up active transport infrastructure
+Methods to prioritise pop-up active transport infrastructure and their
+application in a national cycleway prioritisation tool
 ================
 Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith
 
@@ -8,15 +9,16 @@ Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith
 
 In the context of reduced public transport capacity in the wake of the
 COVID-19 pandemic, governments are scrambling to enable walking and
-cycling. A range of pop-up options exist. The focus of this article is
-road space reallocation, which represents a ‘quick win’ for cities with
-‘spare space’ along continuous road sections that have high latent
-cycling potential. We developed methods to condense the complexity of
-city networks down to the most promising roads, producing
-recommendations that match intuition. The resulting Rapid Cycleway
-Prioritisation Tool, deployed for all 78 transport authorities in
-England at the time of writing, supports evidence-based investment in
-pop-up and permanent schemes.
+cycling while adhering to physical distancing guidelines. A range of
+pop-up options exist, include road space reallocation, which represents
+a ‘quick win’ for cities with ‘spare space’ along continuous road
+sections that have high latent cycling potential. We developed methods
+to condense the complexity of city networks down to the most promising
+roads for road space reallocation schemes. The resulting Rapid Cycleway
+Prioritisation Tool has been deployed for all cities England to help
+prioritise emergency funds for new cycleways nationwide. The methods and
+concepts could be used to support investment in pop-up infrastructure in
+cities worldwide.
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
@@ -122,10 +124,11 @@ Two key datasets were used for the project:
     <!-- - Data on the location of road traffic casualties from -->
 
 Datasets from the PCT and CyIPT project were merged, resulting in
-crucial variables summarised in Table 1. Cycling potential is defined as
-the number of one-way journeys to work and to school, under a scenario
-in which the government aim of doubling cycling levels is met. This does
-not include other types of journey such as leisure and shopping.
+crucial variables summarised in Figure 1. Cycling potential is defined
+as the number of one-way journeys to work and to school, under a
+scenario in which the government aim of doubling cycling levels is met.
+This does not include other types of journey such as leisure and
+shopping.
 
 Roads are classified by speed limit because this has been shown to be a
 key factor associated with the incidence of severe injuries and
@@ -136,9 +139,17 @@ infrastructure, the preferred degree of physical segregation, or the
 necessity to reduce traffic speeds could all be influenced by current
 speed limits.
 
-Table 1: Summary of the road segment dataset for Leeds
+<div class="figure">
 
-<img src="figures/table1.png" width="100%" />
+<img src="figures/table1.png" alt="Summary of the road segment dataset for Leeds." width="100%" />
+
+<p class="caption">
+
+Figure 2: Summary of the road segment dataset for Leeds.
+
+</p>
+
+</div>
 
 <!-- Could say more about the case study city here if there is space -->
 
@@ -157,10 +168,13 @@ destinations are included.
 
 <!-- This represents a distance that most people have the physical ability to cycle. -->
 
-Figure <a href="#fig:gsub">2</a> shows three broad strategies for
+Figure <a href="#fig:gsub">3</a> shows three broad strategies for
 geographic subsetting: based on administrative boundaries, distance from
-the centre, and distance from the centre and key destinations. The
-latter case (Figure <a href="#fig:gsub">2</a>, right) shows that
+the centre, and distance from the centre and key destinations. Major
+hospitals are used to illustrate the third strategy, as many key workers
+need to get to hospitals. Schools could also be used here as an example
+of a key destination that may not fit well within administrative zones.
+The latter case (Figure <a href="#fig:gsub">3</a>, right) shows that
 administrative boundaries can exclude important roads. The definition of
 ‘city centres’ and ‘key destinations’ is straightforward in clearly
 defined and well-understood city planning contexts. In contexts where
@@ -176,7 +190,7 @@ collaboration on cycleway network design. <!-- could say more... -->
 
 <p class="caption">
 
-Figure 2: Illustration of geographic subsetting based on administrative
+Figure 3: Illustration of geographic subsetting based on administrative
 boundaries (left), distance to a central point (middle) and distance to
 city centre or key destinations (right). Radii of 5 km, 8 km and 10 km
 are shown for reference (note that some roads within 10 km of the center
@@ -208,7 +222,7 @@ present and, if not, derives the number from the highway type and
 presence/absence of bus lanes. Width estimates were taken from the CyIPT
 tool (see [www.cyipt.bike](https://www.cyipt.bike/) for details). All
 segments defined as having a spare space using this method are shown in
-Figure <a href="#fig:levels">3</a> (left).
+Figure <a href="#fig:levels">4</a> (left).
 
 ## Attribute filtering and grouping
 
@@ -234,7 +248,7 @@ improving the coherency of the results. Finally, road names were used to
 identify continuous road sections with the same name of length \>= 500m.
 Groups containing five or more different named roads were labeled
 “Unnamed road.” An example of the impact of grouping strategy is shown
-in Figure <a href="#fig:levels">3</a>.
+in Figure <a href="#fig:levels">4</a>.
 <!-- Segments are grouped with a 100 m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential.  -->
 <!-- The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels. -->
 The resulting network shows that grouping the segments first then
@@ -256,7 +270,7 @@ results.
 
 <p class="caption">
 
-Figure 3: Illustration of the ‘group then filter’ method to identify
+Figure 4: Illustration of the ‘group then filter’ method to identify
 roads with spare space that meet threshold values for length and cycling
 potential. The right hand panel contains roads on which the majority of
 segments have spare space (including segments that may not on their own
@@ -282,9 +296,9 @@ important for creating high quality networks (Parkin 2018).
 # FINDINGS
 
 The results of the method applied to the city of Leeds are shown in
-Figure <a href="#fig:res">4</a> (see
+Figure <a href="#fig:res">5</a> (see
 [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for
-interactive version) and Table 2. We found that analysis of open
+interactive version) and Table 1. We found that analysis of open
 transport network data, alongside careful selection of parameters, can
 generate plausible results for the prioritisation of pop-up cycle
 infrastructure. Reducing the 85,000 road segments for Leeds down to a
@@ -298,7 +312,7 @@ when decisions need to be made fast.
 
 <p class="caption">
 
-Figure 4: Results, showing road segments with a spare lane (light blue)
+Figure 5: Results, showing road segments with a spare lane (light blue)
 and road groups with a minium threshold length, 1km in this case (dark
 blue). The top 10 road groups are labelled.
 
@@ -308,16 +322,16 @@ blue). The top 10 road groups are labelled.
 
 | Name            | Length (m) | Potential (Government Target) | Km/day (length \* potential) |
 | :-------------- | ---------: | ----------------------------: | ---------------------------: |
-| Headingley Lane |        971 |                           546 |                       530166 |
-| A660            |        718 |                           414 |                       297252 |
-| Woodhouse Lane  |       2438 |                           372 |                       906936 |
-| A65             |        787 |                           238 |                       187306 |
-| Kirkstall Road  |       4407 |                           237 |                      1044459 |
-| Clay Pit Lane   |       2235 |                           231 |                       516285 |
-| Low Road        |        516 |                           194 |                       100104 |
-| Chapeltown Road |       1744 |                           163 |                       284272 |
-| Roundhay Road   |        909 |                           161 |                       146349 |
-| Dewsbury Road   |        538 |                           157 |                        84466 |
+| Headingley Lane |        971 |                           546 |                          530 |
+| A660            |        718 |                           414 |                          297 |
+| Woodhouse Lane  |       2438 |                           372 |                          907 |
+| A65             |        787 |                           238 |                          187 |
+| Kirkstall Road  |       4407 |                           237 |                         1044 |
+| Clay Pit Lane   |       2235 |                           231 |                          516 |
+| Low Road        |        516 |                           194 |                          100 |
+| Chapeltown Road |       1744 |                           163 |                          284 |
+| Roundhay Road   |        909 |                           161 |                          146 |
+| Dewsbury Road   |        538 |                           157 |                           84 |
 
 Table 1: The top 10 candidate roads for space reallocation for pop-up
 lane reallocation interventions. Roads with ‘spare lanes’ identified
@@ -327,7 +341,7 @@ commuter and school cycling levels compared with 2011 levels.
 
 After initially developing the method for a single city, we applied the
 methods nationwide. An illustration of the scale of the results is shown
-in Figure <a href="#fig:facet">5</a>, which shows the results for six
+in Figure <a href="#fig:facet">6</a>, which shows the results for six
 major cities in England, including existing cycleway and ‘cohesive
 network’ layers, described on the tool’s website
 [cyipt.bike/rapid](https://www.cyipt.bike/rapid/). Local authorities are
@@ -341,7 +355,7 @@ cases the plans match the routes highlighted by our tool.\[1\]
 
 <p class="caption">
 
-Figure 5: Maps showing existing, disjointed cycleway networks (green),
+Figure 6: Maps showing existing, disjointed cycleway networks (green),
 potential cycleway routes on wide roads according to the Rapid Cycleway
 Prioritisation Tool (blue) and cohesive networks (purple) in 6 major
 cities
@@ -354,19 +368,21 @@ The approach is not without limitations. Its reliance on data rather
 than community engagement represents a rather top-down approach to
 transport planning. To overcome this issue, future work could seek to
 incorporate the results such as those presented above into a
-participatory map of the type shown in Figure 1. Further work could also
-extend the method in various ways, for example by refining estimates of
-cycling potential based on new parameters such as proximity to key
-destinations and estimates of road width. We welcome feedback on the
-results and methods \[link to code\].
+participatory map of the type shown in Figure
+<a href="#fig:commonplace">1</a>. Further work could also extend the
+method in various ways, for example by refining estimates of cycling
+potential based on new parameters such as proximity to key destinations
+and estimates of road width. We welcome feedback on the results and
+methods at
+[github.com/cyipt/popupCycleways](https://github.com/cyipt/popupCycleways).
 
 A major advantage of the approach is that it is scalable. It would be
-feasible to run the method for every city in the UK (and indeed beyond)
-for which there is data, given sufficient computer and developer
-resource. Given the recent interest in and funding for pop-up cycleways,
-rolling-out the method quickly, while being agile to adapt the method
-and parameters for different cities, could help ensure that funding for
-pop-up infrastructure is spent in an evidence-based way.
+feasible to internationalise the approach, given sufficient computer and
+developer resource to overcome the key data barriers: lack to cycling
+potential data and lack of road width data that are specific to the UK.
+<!-- Given the recent interest in and funding for pop-up cycleways, projects inspired by and building on the work presented in this paper, can help ensure that pop-up cycleway plans are evidence-based and effective, maximising the chances of them becoming permanent. -->
+In summary, the methods presented can help lock-in the benefits of
+COVID-19 related cycling booms long term.
 
 <!-- Guidance from https://transportfindings.org/for-authors -->
 
