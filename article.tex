@@ -37,7 +37,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Methods to prioritise pop-up active transport infrastructure and their application in a national cycleway prioritisation tool},
-  pdfauthor={Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith},
+  pdfauthor={Robin Lovelace, Joey Talbot, Malcolm Morgan, Martin-Lucas-Smith},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -90,7 +90,7 @@
   {\par}
 
 \title{Methods to prioritise pop-up active transport infrastructure and their application in a national cycleway prioritisation tool}
-\author{Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith}
+\author{Robin Lovelace, Joey Talbot, Malcolm Morgan, Martin-Lucas-Smith}
 \date{}
 
 \begin{document}
@@ -130,11 +130,11 @@ Most pop-up active transport infrastructure can be classified into three broad c
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  `filtered permeability', where measures such as point closures or contraflow cycle lanes are used to design street networks in which routes for cyclists are faster and more direct than routes for drivers, e.g.~as \href{https://twitter.com/TowerHamletsNow/status/1257564043856019458}{shown} in {[}Tower Hamlets{]}
+  Measures such as point closures or contraflow cycle lanes, which can be used to promote `filtered permeability', a strategy in which street networks are redesigned so that routes for cyclists are faster and more direct than routes for drivers. An example of this is \href{https://twitter.com/TowerHamletsNow/status/1257564043856019458}{shown} in {[}Tower Hamlets{]}.
 \item
-  banning cars and to pedestrianise streets, as in New York's `Open Streets' scheme (Litman 2020)
+  Measures to close roads entirely to motor traffic or to particular classes of vehicle, either permanently or at certain times of day, as in New York's `Open Streets' scheme (Litman 2020).
 \item
-  the reallocation of one or more lanes on wide roads to create pop-up cycleways and pavements (Orsman 2020).
+  Measures to reallocate space on wide roads to create new cycleways or to widen pavements (Orsman 2020).
 \end{enumerate}
 
 The focus of this article is on the third category.
@@ -145,10 +145,10 @@ How can automated data analysis and interactive visualisation methods help prior
 \end{quote}
 
 Because of the recent, localised and often ad-hoc nature of pop-up infrastructure, it is difficult to make, let alone test, hypotheses related to the research question.
-Our broad hypothesis is that digital tools based on open data, and crowdsourcing such as the interactive map used to support community-level responses to COVID-19 in Salford (Salford City Council 2020), illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
+Our broad hypothesis is that digital tools based on open data, combined with crowdsourcing such as the interactive map used to support community-level responses to COVID-19 in Salford (Salford City Council 2020), illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
 
 \begin{figure}
-\includegraphics[width=1\linewidth]{figures/widenmypath-bristol} \includegraphics[width=1\linewidth]{figures/saferstreets} \caption{Screenshots from the websites widenmypath.com (top) and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure.}\label{fig:commonplace}
+\includegraphics[width=1\linewidth]{figures/widenmypath} \includegraphics[width=1\linewidth]{figures/saferstreets} \caption{Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure.}\label{fig:commonplace}
 \end{figure}
 
 \hypertarget{methods-and-data}{%
@@ -168,7 +168,7 @@ Datasets from the PCT and CyIPT project were merged, resulting in crucial variab
 Cycling potential is defined as the number of one-way journeys to work and to school, under a scenario in which the government aim of doubling cycling levels is met.
 This does not include other types of journey such as leisure and shopping.
 
-Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists (Chen and Shen 2016), with odds of cyclist injury on 20 mph roads in London found to be 21\% lower than on 30 mph roads (Aldred et al. 2018).
+Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists (Chen and Shen 2016), with odds of cyclist injury on 20 mph (32.2 kmph) roads in London found to be 21\% lower than on 30 mph (48.3 kmph) roads (Aldred et al. 2018).
 Therefore the suitability of roads for cycle infrastructure, the preferred degree of physical segregation, or the necessity to reduce traffic speeds could all be influenced by current speed limits.
 
 \begin{table}
@@ -177,7 +177,7 @@ Therefore the suitability of roads for cycle infrastructure, the preferred degre
 \centering
 \begin{tabular}[t]{lllll}
 \toprule
- & 20 mph or less & 30 mph & 40+ mph & Overall\\
+ & 20 mph (32.2 kmph) or less & 30 mph (48.3 kmph) & 40+ mph (64.4 kmph) & Overall\\
 \midrule
 \addlinespace[0.3em]
 \multicolumn{5}{l}{\textbf{N. observations}}\\
