@@ -161,7 +161,7 @@ Two key datasets were used for the project:
 - Data derived from OpenStreetMap, with several new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overview)
 <!-- - Data on the location of road traffic casualties from -->
 
-Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Figure 1.
+Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Table 1.
 Cycling potential is defined as the number of one-way journeys to work and to school, under a scenario in which the government aim of doubling cycling levels is met.
 This does not include other types of journey such as leisure and shopping.
 
@@ -180,18 +180,18 @@ rj_leeds = readRDS("r_main_leeds.Rds")
 #   table1::table1(~ highway_type + cycling_potential + `width (m)` + n_lanes | maxspeed, data = .)
 t1 = readr::read_csv("input-data/t1.csv")[-1]
 n = c(
-  "N. observations",
-  "(N=4777)",
-  "(N=19241)",
-  "(N=3105)",
-  "(N=27123)"
+  "",
+  "4777",
+  "19241",
+  "3105",
+  "27123"
 )
 names(n) = names(t1)
 t2 = rbind(n, t1)
 names(t2)[1] = ""
 # t1
 t2 %>% 
-  kableExtra::kable(
+  kableExtra::kable(caption = "Summary of the road segment dataset for Leeds.",
     # escape = FALSE,
     booktabs = TRUE,
     # col.names = kableExtra::linebreak(names(t1)),
@@ -384,7 +384,7 @@ Continuity of cycle provision is important for creating high quality networks [@
 
 # FINDINGS
 
-The results of the method applied to the city of Leeds are shown in Figure \@ref(fig:res) (see [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for interactive version) and Table 1.
+The results of the method applied to the city of Leeds are shown in Figure \@ref(fig:res) (see [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for interactive version) and Table 2.
 We found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
 Reducing the 85,000 road segments for Leeds down to a handful of candidate segments with more than 1 lane near key destinations has great potential to support policy-makers, especially when decisions need to be made fast.
 
