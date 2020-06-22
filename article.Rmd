@@ -2,11 +2,11 @@
 title: "Methods to prioritise pop-up active transport infrastructure and their application in a national cycleway prioritisation tool"
 # : overview and findings from 10 UK cities"
 author: "Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith"
-output: bookdown::github_document2
+# output: bookdown::github_document2
 # output: bookdown::html_document2
-# output:
-#   bookdown::pdf_document2:
-#     keep_tex: true
+output:
+  bookdown::pdf_document2:
+    keep_tex: true
 # bibliography: references.bib
 bibliography: refs.bib
 ---
@@ -29,6 +29,8 @@ msgf = paste(fz, collapse = " ")
 msgf = gsub(pattern = "\\./", replacement = "", msgf)
 msg = paste("tar -cvf article.tar ", msgf)
 system(msg)
+install.packages("qwraps2")
+install.packages("reporttools")
 ```
 
 # Abstract
@@ -159,24 +161,55 @@ Two key datasets were used for the project:
 - Data derived from OpenStreetMap, with several new variables added to support cycling infrastructure planning (see www.cyipt.bike for an overview)
 <!-- - Data on the location of road traffic casualties from -->
 
-Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Figure 1.
+Datasets from the PCT and CyIPT project were merged, resulting in crucial variables summarised in Table 1.
 Cycling potential is defined as the number of one-way journeys to work and to school, under a scenario in which the government aim of doubling cycling levels is met.
 This does not include other types of journey such as leisure and shopping.
 
 Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with odds of cyclist injury on 20 mph roads in London found to be 21% lower than on 30 mph roads [@aldred_cycling_2018]. 
 Therefore the suitability of roads for cycle infrastructure, the preferred degree of physical segregation, or the necessity to reduce traffic speeds could all be influenced by current speed limits.
 
-```{r t1, results='asis', fig.cap="Summary of the road segment dataset for Leeds."}
-# rj_leeds = readRDS("r_main_leeds.Rds")
+```{r t1, results='asis', fig.cap="Summary of the road segment dataset for Leeds.", message=FALSE}
+rj_leeds = readRDS("r_main_leeds.Rds")
+# See https://cran.r-project.org/web/packages/qwraps2/vignettes/summary-statistics.html
 # rj_leeds %>%
-#   st_drop_geometry() %>% 
-#   mutate(`width (m)` = width) %>% 
-#   # select(name, highway_type, maxspeed, cycling_potential, width) %>% 
-#   table1::table1(~ highway_type + cycling_potential + `width (m)` + n_lanes | maxspeed, data = ., )
+#   st_drop_geometry() %>%
+#   mutate(`width (m)` = width) %>%
+#   select(name, highway_type, maxspeed, cycling_potential, `width (m)`, n_lanes) %>%
+#   group_by(maxspeed) %>% 
+#   # qwraps2::summary_table()
+#   table1::table1(~ highway_type + cycling_potential + `width (m)` + n_lanes | maxspeed, data = .)
+t1 = readr::read_csv("input-data/t1.csv")[-1]
+n = c(
+  "",
+  "4777",
+  "19241",
+  "3105",
+  "27123"
+)
+names(n) = names(t1)
+t2 = rbind(n, t1)
+names(t2)[1] = ""
+# t1
+t2 %>% 
+  kableExtra::kable(caption = "Summary of the road segment dataset for Leeds.",
+    # escape = FALSE,
+    booktabs = TRUE,
+    # col.names = kableExtra::linebreak(names(t1)),
+    format = "latex"
+    ) %>% 
+  kableExtra::kable_styling() %>% 
+  kableExtra::pack_rows("N. observations", 1, 2) %>% 
+  kableExtra::pack_rows("Highway type", 2, 13) %>% 
+  kableExtra::pack_rows("Cycling potential", 14, 15) %>%  
+  kableExtra::pack_rows("Width (m)", 16, 18) %>% 
+  kableExtra::pack_rows("N. lanes", 19, 22) 
+  
+# ?kableExtra
+  
 # ut = "https://user-images.githubusercontent.com/1825120/81476961-c32d2500-920c-11ea-8430-94c3afc2e27d.png"
 # knitr::include_graphics(ut)
 # system(paste("wget ", ut))
-knitr::include_graphics("figures/table1.png")
+# knitr::include_graphics("figures/table1.png")
 ```
 
 <!-- Could say more about the case study city here if there is space -->
@@ -351,7 +384,7 @@ Continuity of cycle provision is important for creating high quality networks [@
 
 # FINDINGS
 
-The results of the method applied to the city of Leeds are shown in Figure \@ref(fig:res) (see [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for interactive version) and Table 1.
+The results of the method applied to the city of Leeds are shown in Figure \@ref(fig:res) (see [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for interactive version) and Table 2.
 We found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
 Reducing the 85,000 road segments for Leeds down to a handful of candidate segments with more than 1 lane near key destinations has great potential to support policy-makers, especially when decisions need to be made fast.
 

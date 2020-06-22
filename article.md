@@ -139,17 +139,909 @@ infrastructure, the preferred degree of physical segregation, or the
 necessity to reduce traffic speeds could all be influenced by current
 speed limits.
 
-<div class="figure">
+# A tibble: 21 x 6
 
-<img src="figures/table1.png" alt="Summary of the road segment dataset for Leeds." width="100%" />
+Variable X2 `20 mph or less…`30 mph(N=192… `40+ mph\n(N=31… <chr> <chr>
+<chr> <chr> <chr> 1 highway… brid… 53 (1.1%) 0 (0%) 0 (0%) 2 <NA>
+cycl… 1214 (25.4%) 0 (0%) 0 (0%) 3 <NA> foot… 1332 (27.9%) 0 (0%) 0
+(0%) 4 <NA> other 187 (3.9%) 715 (3.7%) 1608 (51.8%) 5 <NA> pede… 22
+(0.5%) 0 (0%) 0 (0%) 6 <NA> prim… 14 (0.3%) 1432 (7.4%) 955 (30.8%) 7
+<NA> resi… 605 (12.7%) 8604 (44.7%) 0 (0%) 8 <NA> seco… 28 (0.6%) 1408
+(7.3%) 176 (5.7%) 9 <NA> serv… 1018 (21.3%) 7 (0.0%) 0 (0%) 10 <NA>
+tert… 170 (3.6%) 5206 (27.1%) 290 (9.3%) # … with 11 more rows, and 1
+more variable:`Overall(N=27123)\` <chr>
 
-<p class="caption">
+<table>
 
-Figure 2: Summary of the road segment dataset for Leeds.
+<thead>
 
-</p>
+<tr>
 
-</div>
+<th style="text-align:left;">
+
+Variable
+
+</th>
+
+<th style="text-align:left;">
+
+X2
+
+</th>
+
+<th style="text-align:left;">
+
+20 mph or less (N=4777)
+
+</th>
+
+<th style="text-align:left;">
+
+30 mph (N=19241)
+
+</th>
+
+<th style="text-align:left;">
+
+40+ mph (N=3105)
+
+</th>
+
+<th style="text-align:left;">
+
+Overall (N=27123)
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+highway\_type
+
+</td>
+
+<td style="text-align:left;">
+
+bridleway
+
+</td>
+
+<td style="text-align:left;">
+
+53 (1.1%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+53 (0.2%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+cycleway
+
+</td>
+
+<td style="text-align:left;">
+
+1214 (25.4%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+1214 (4.5%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+footway
+
+</td>
+
+<td style="text-align:left;">
+
+1332 (27.9%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+1332 (4.9%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+other
+
+</td>
+
+<td style="text-align:left;">
+
+187 (3.9%)
+
+</td>
+
+<td style="text-align:left;">
+
+715 (3.7%)
+
+</td>
+
+<td style="text-align:left;">
+
+1608 (51.8%)
+
+</td>
+
+<td style="text-align:left;">
+
+2510 (9.3%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+pedestrian/living\_street
+
+</td>
+
+<td style="text-align:left;">
+
+22 (0.5%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+22 (0.1%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+primary
+
+</td>
+
+<td style="text-align:left;">
+
+14 (0.3%)
+
+</td>
+
+<td style="text-align:left;">
+
+1432 (7.4%)
+
+</td>
+
+<td style="text-align:left;">
+
+955 (30.8%)
+
+</td>
+
+<td style="text-align:left;">
+
+2401 (8.9%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+residential
+
+</td>
+
+<td style="text-align:left;">
+
+605 (12.7%)
+
+</td>
+
+<td style="text-align:left;">
+
+8604 (44.7%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+9209 (34.0%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+secondary
+
+</td>
+
+<td style="text-align:left;">
+
+28 (0.6%)
+
+</td>
+
+<td style="text-align:left;">
+
+1408 (7.3%)
+
+</td>
+
+<td style="text-align:left;">
+
+176 (5.7%)
+
+</td>
+
+<td style="text-align:left;">
+
+1612 (5.9%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+service
+
+</td>
+
+<td style="text-align:left;">
+
+1018 (21.3%)
+
+</td>
+
+<td style="text-align:left;">
+
+7 (0.0%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+1025 (3.8%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+tertiary
+
+</td>
+
+<td style="text-align:left;">
+
+170 (3.6%)
+
+</td>
+
+<td style="text-align:left;">
+
+5206 (27.1%)
+
+</td>
+
+<td style="text-align:left;">
+
+290 (9.3%)
+
+</td>
+
+<td style="text-align:left;">
+
+5666 (20.9%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+unclassified
+
+</td>
+
+<td style="text-align:left;">
+
+134 (2.8%)
+
+</td>
+
+<td style="text-align:left;">
+
+1869 (9.7%)
+
+</td>
+
+<td style="text-align:left;">
+
+75 (2.4%)
+
+</td>
+
+<td style="text-align:left;">
+
+2078 (7.7%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+bus\_guideway
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+1 (0.0%)
+
+</td>
+
+<td style="text-align:left;">
+
+1 (0.0%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+cycling\_potential
+
+</td>
+
+<td style="text-align:left;">
+
+Mean (SD)
+
+</td>
+
+<td style="text-align:left;">
+
+39.0 (67.8)
+
+</td>
+
+<td style="text-align:left;">
+
+36.9 (66.7)
+
+</td>
+
+<td style="text-align:left;">
+
+40.7 (55.1)
+
+</td>
+
+<td style="text-align:left;">
+
+37.7 (65.7)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Median \[Min, Max\]
+
+</td>
+
+<td style="text-align:left;">
+
+14.0 \[1.00, 810\]
+
+</td>
+
+<td style="text-align:left;">
+
+15.0 \[1.00, 810\]
+
+</td>
+
+<td style="text-align:left;">
+
+24.0 \[1.00, 519\]
+
+</td>
+
+<td style="text-align:left;">
+
+16.0 \[1.00, 810\]
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+width (m)
+
+</td>
+
+<td style="text-align:left;">
+
+Mean (SD)
+
+</td>
+
+<td style="text-align:left;">
+
+6.62 (2.71)
+
+</td>
+
+<td style="text-align:left;">
+
+7.34 (2.28)
+
+</td>
+
+<td style="text-align:left;">
+
+8.84 (2.36)
+
+</td>
+
+<td style="text-align:left;">
+
+7.41 (2.42)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Median \[Min, Max\]
+
+</td>
+
+<td style="text-align:left;">
+
+7.00 \[1.00, 21.0\]
+
+</td>
+
+<td style="text-align:left;">
+
+7.00 \[1.00, 24.0\]
+
+</td>
+
+<td style="text-align:left;">
+
+9.00 \[2.00, 21.0\]
+
+</td>
+
+<td style="text-align:left;">
+
+7.00 \[1.00, 24.0\]
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+Missing
+
+</td>
+
+<td style="text-align:left;">
+
+1688 (35.3%)
+
+</td>
+
+<td style="text-align:left;">
+
+1225 (6.4%)
+
+</td>
+
+<td style="text-align:left;">
+
+447 (14.4%)
+
+</td>
+
+<td style="text-align:left;">
+
+3360 (12.4%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+n\_lanes
+
+</td>
+
+<td style="text-align:left;">
+
+1
+
+</td>
+
+<td style="text-align:left;">
+
+3840 (80.4%)
+
+</td>
+
+<td style="text-align:left;">
+
+1555 (8.1%)
+
+</td>
+
+<td style="text-align:left;">
+
+406 (13.1%)
+
+</td>
+
+<td style="text-align:left;">
+
+5801 (21.4%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+2
+
+</td>
+
+<td style="text-align:left;">
+
+937 (19.6%)
+
+</td>
+
+<td style="text-align:left;">
+
+16979 (88.2%)
+
+</td>
+
+<td style="text-align:left;">
+
+2266 (73.0%)
+
+</td>
+
+<td style="text-align:left;">
+
+20182 (74.4%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+3
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+490 (2.5%)
+
+</td>
+
+<td style="text-align:left;">
+
+289 (9.3%)
+
+</td>
+
+<td style="text-align:left;">
+
+779 (2.9%)
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+NA
+
+</td>
+
+<td style="text-align:left;">
+
+4+
+
+</td>
+
+<td style="text-align:left;">
+
+0 (0%)
+
+</td>
+
+<td style="text-align:left;">
+
+217 (1.1%)
+
+</td>
+
+<td style="text-align:left;">
+
+144 (4.6%)
+
+</td>
+
+<td style="text-align:left;">
+
+361 (1.3%)
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 <!-- Could say more about the case study city here if there is space -->
 
@@ -168,13 +1060,13 @@ destinations are included.
 
 <!-- This represents a distance that most people have the physical ability to cycle. -->
 
-Figure <a href="#fig:gsub">3</a> shows three broad strategies for
+Figure <a href="#fig:gsub">2</a> shows three broad strategies for
 geographic subsetting: based on administrative boundaries, distance from
 the centre, and distance from the centre and key destinations. Major
 hospitals are used to illustrate the third strategy, as many key workers
 need to get to hospitals. Schools could also be used here as an example
 of a key destination that may not fit well within administrative zones.
-The latter case (Figure <a href="#fig:gsub">3</a>, right) shows that
+The latter case (Figure <a href="#fig:gsub">2</a>, right) shows that
 administrative boundaries can exclude important roads. The definition of
 ‘city centres’ and ‘key destinations’ is straightforward in clearly
 defined and well-understood city planning contexts. In contexts where
@@ -190,7 +1082,7 @@ collaboration on cycleway network design. <!-- could say more... -->
 
 <p class="caption">
 
-Figure 3: Illustration of geographic subsetting based on administrative
+Figure 2: Illustration of geographic subsetting based on administrative
 boundaries (left), distance to a central point (middle) and distance to
 city centre or key destinations (right). Radii of 5 km, 8 km and 10 km
 are shown for reference (note that some roads within 10 km of the center
@@ -222,7 +1114,7 @@ present and, if not, derives the number from the highway type and
 presence/absence of bus lanes. Width estimates were taken from the CyIPT
 tool (see [www.cyipt.bike](https://www.cyipt.bike/) for details). All
 segments defined as having a spare space using this method are shown in
-Figure <a href="#fig:levels">4</a> (left).
+Figure <a href="#fig:levels">3</a> (left).
 
 ## Attribute filtering and grouping
 
@@ -248,7 +1140,7 @@ improving the coherency of the results. Finally, road names were used to
 identify continuous road sections with the same name of length \>= 500m.
 Groups containing five or more different named roads were labeled
 “Unnamed road.” An example of the impact of grouping strategy is shown
-in Figure <a href="#fig:levels">4</a>.
+in Figure <a href="#fig:levels">3</a>.
 <!-- Segments are grouped with a 100 m buffer, using the `igraph` R package; they are also filtered to exclude sections below a minimum length and cycling potential.  -->
 <!-- The threshold length and cycling potential are adaptable depending on the nature of the region being studied and local cycling levels. -->
 The resulting network shows that grouping the segments first then
@@ -270,7 +1162,7 @@ results.
 
 <p class="caption">
 
-Figure 4: Illustration of the ‘group then filter’ method to identify
+Figure 3: Illustration of the ‘group then filter’ method to identify
 roads with spare space that meet threshold values for length and cycling
 potential. The right hand panel contains roads on which the majority of
 segments have spare space (including segments that may not on their own
@@ -296,7 +1188,7 @@ important for creating high quality networks (Parkin 2018).
 # FINDINGS
 
 The results of the method applied to the city of Leeds are shown in
-Figure <a href="#fig:res">5</a> (see
+Figure <a href="#fig:res">4</a> (see
 [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for
 interactive version) and Table 1. We found that analysis of open
 transport network data, alongside careful selection of parameters, can
@@ -312,7 +1204,7 @@ when decisions need to be made fast.
 
 <p class="caption">
 
-Figure 5: Results, showing road segments with a spare lane (light blue)
+Figure 4: Results, showing road segments with a spare lane (light blue)
 and road groups with a minium threshold length, 1km in this case (dark
 blue). The top 10 road groups are labelled.
 
@@ -320,18 +1212,9 @@ blue). The top 10 road groups are labelled.
 
 </div>
 
-| Name            | Length (m) | Potential (Government Target) | Km/day (length \* potential) |
-| :-------------- | ---------: | ----------------------------: | ---------------------------: |
-| Headingley Lane |        971 |                           546 |                          530 |
-| A660            |        718 |                           414 |                          297 |
-| Woodhouse Lane  |       2438 |                           372 |                          907 |
-| A65             |        787 |                           238 |                          187 |
-| Kirkstall Road  |       4407 |                           237 |                         1044 |
-| Clay Pit Lane   |       2235 |                           231 |                          516 |
-| Low Road        |        516 |                           194 |                          100 |
-| Chapeltown Road |       1744 |                           163 |                          284 |
-| Roundhay Road   |        909 |                           161 |                          146 |
-| Dewsbury Road   |        538 |                           157 |                           84 |
+<table>
+
+<caption>
 
 Table 1: The top 10 candidate roads for space reallocation for pop-up
 lane reallocation interventions. Roads with ‘spare lanes’ identified
@@ -339,9 +1222,329 @@ using methods presented in the paper are ranked by cycling potential
 under the Government Target scenario, representing a doubling in
 commuter and school cycling levels compared with 2011 levels.
 
+</caption>
+
+<thead>
+
+<tr>
+
+<th style="text-align:left;">
+
+Name
+
+</th>
+
+<th style="text-align:right;">
+
+Length (m)
+
+</th>
+
+<th style="text-align:right;">
+
+Potential (Government Target)
+
+</th>
+
+<th style="text-align:right;">
+
+Km/day (length \* potential)
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:left;">
+
+Headingley Lane
+
+</td>
+
+<td style="text-align:right;">
+
+971
+
+</td>
+
+<td style="text-align:right;">
+
+546
+
+</td>
+
+<td style="text-align:right;">
+
+530
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+A660
+
+</td>
+
+<td style="text-align:right;">
+
+718
+
+</td>
+
+<td style="text-align:right;">
+
+414
+
+</td>
+
+<td style="text-align:right;">
+
+297
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Woodhouse Lane
+
+</td>
+
+<td style="text-align:right;">
+
+2438
+
+</td>
+
+<td style="text-align:right;">
+
+372
+
+</td>
+
+<td style="text-align:right;">
+
+907
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+A65
+
+</td>
+
+<td style="text-align:right;">
+
+787
+
+</td>
+
+<td style="text-align:right;">
+
+238
+
+</td>
+
+<td style="text-align:right;">
+
+187
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Kirkstall Road
+
+</td>
+
+<td style="text-align:right;">
+
+4407
+
+</td>
+
+<td style="text-align:right;">
+
+237
+
+</td>
+
+<td style="text-align:right;">
+
+1044
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Clay Pit Lane
+
+</td>
+
+<td style="text-align:right;">
+
+2235
+
+</td>
+
+<td style="text-align:right;">
+
+231
+
+</td>
+
+<td style="text-align:right;">
+
+516
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Low Road
+
+</td>
+
+<td style="text-align:right;">
+
+516
+
+</td>
+
+<td style="text-align:right;">
+
+194
+
+</td>
+
+<td style="text-align:right;">
+
+100
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Chapeltown Road
+
+</td>
+
+<td style="text-align:right;">
+
+1744
+
+</td>
+
+<td style="text-align:right;">
+
+163
+
+</td>
+
+<td style="text-align:right;">
+
+284
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Roundhay Road
+
+</td>
+
+<td style="text-align:right;">
+
+909
+
+</td>
+
+<td style="text-align:right;">
+
+161
+
+</td>
+
+<td style="text-align:right;">
+
+146
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:left;">
+
+Dewsbury Road
+
+</td>
+
+<td style="text-align:right;">
+
+538
+
+</td>
+
+<td style="text-align:right;">
+
+157
+
+</td>
+
+<td style="text-align:right;">
+
+84
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
 After initially developing the method for a single city, we applied the
 methods nationwide. An illustration of the scale of the results is shown
-in Figure <a href="#fig:facet">6</a>, which shows the results for six
+in Figure <a href="#fig:facet">5</a>, which shows the results for six
 major cities in England, including existing cycleway and ‘cohesive
 network’ layers, described on the tool’s website
 [cyipt.bike/rapid](https://www.cyipt.bike/rapid/). Local authorities are
@@ -355,7 +1558,7 @@ cases the plans match the routes highlighted by our tool.\[1\]
 
 <p class="caption">
 
-Figure 6: Maps showing existing, disjointed cycleway networks (green),
+Figure 5: Maps showing existing, disjointed cycleway networks (green),
 potential cycleway routes on wide roads according to the Rapid Cycleway
 Prioritisation Tool (blue) and cohesive networks (purple) in 6 major
 cities
