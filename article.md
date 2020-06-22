@@ -98,7 +98,7 @@ to more effective use of resources allocated to pop-up interventions.
 
 <div class="figure">
 
-<img src="figures/widenmypath.png" alt="Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" /><img src="figures/saferstreets.png" alt="Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
+<img src="figures/jpg/widenmypath.jpeg" alt="Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" /><img src="figures/jpg/saferstreets.jpeg" alt="Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
 
 <p class="caption">
 

@@ -84,8 +84,8 @@ Our broad hypothesis is that digital tools based on open data, combined with cro
 # knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
 # download.file("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png", "saferstreets.png")
 knitr::include_graphics(c(
-  "figures/widenmypath.png",
-  "figures/saferstreets.png"
+  "figures/jpg/widenmypath.jpeg",
+  "figures/jpg/saferstreets.jpeg"
   ))
 ```
 
@@ -390,7 +390,7 @@ The results of the method applied to the city of Leeds are shown in Figure \@ref
 We found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
 Reducing the 85,000 road segments for Leeds down to a handful of candidate segments with more than 1 lane near key destinations has great potential to support policy-makers, especially when decisions need to be made fast.
 
-```{r res, fig.cap="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."}
+```{r res, fig.cap="Results of the Rapid Cycleway Prioritisation Tool, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."}
 tmap_mode("view")
 # tm_shape(r_pct_no_overlap) + tm_lines(col = "lightblue", lwd = 4, alpha = 0.6) +
 #   tm_shape(r_pct_top) + tm_lines(col = "blue", lwd = 4, alpha = 0.6) +
