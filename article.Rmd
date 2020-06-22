@@ -79,13 +79,13 @@ The research question is:
 > How can automated data analysis and interactive visualisation methods help prioritise the reallocation of road space for pop-up active transport infrastructure?
 
 Because of the recent, localised and often ad-hoc nature of pop-up infrastructure, it is difficult to make, let alone test, hypotheses related to the research question.
-Our broad hypothesis is that digital tools based on open data, and crowdsourcing such as the interactive map used to support community-level responses to COVID-19 in Salford [@salfordcitycouncil_salford_2020], illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
+Our broad hypothesis is that digital tools based on open data, combined with crowdsourcing such as the interactive map used to support community-level responses to COVID-19 in Salford [@salfordcitycouncil_salford_2020], illustrated in Figure 1, can lead to more effective use of resources allocated to pop-up interventions.
 
-```{r commonplace, fig.cap="Screenshots from the websites widenmypath.com (top) and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure.", fig.show='hold'}
+```{r commonplace, fig.cap="Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure.", fig.show='hold'}
 # knitr::include_graphics("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png")
 # download.file("https://user-images.githubusercontent.com/1825120/81451234-ed82d200-917b-11ea-977d-fff1665378c5.png", "saferstreets.png")
 knitr::include_graphics(c(
-  "figures/widenmypath-bristol.png",
+  "figures/widenmypath.png",
   "figures/saferstreets.png"
   ))
 ```
@@ -165,7 +165,7 @@ Datasets from the PCT and CyIPT project were merged, resulting in crucial variab
 Cycling potential is defined as the number of one-way journeys to work and to school, under a scenario in which the government aim of doubling cycling levels is met.
 This does not include other types of journey such as leisure and shopping.
 
-Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with odds of cyclist injury on 20 mph roads in London found to be 21% lower than on 30 mph roads [@aldred_cycling_2018]. 
+Roads are classified by speed limit because this has been shown to be a key factor associated with the incidence of severe injuries and fatalities of cyclists [@chen_built_2016], with odds of cyclist injury on 20 mph (32.2 kmph) roads in London found to be 21% lower than on 30 mph (48.3 kmph) roads [@aldred_cycling_2018]. 
 Therefore the suitability of roads for cycle infrastructure, the preferred degree of physical segregation, or the necessity to reduce traffic speeds could all be influenced by current speed limits.
 
 ```{r t1, results='asis', fig.cap="Summary of the road segment dataset for Leeds.", message=FALSE}
@@ -179,6 +179,8 @@ rj_leeds = readRDS("r_main_leeds.Rds")
 #   # qwraps2::summary_table()
 #   table1::table1(~ highway_type + cycling_potential + `width (m)` + n_lanes | maxspeed, data = .)
 t1 = readr::read_csv("input-data/t1.csv")[-1]
+t1 = t1 %>% 
+  rename("20 mph (32.2 kmph) or less" = "20 mph or less", "30 mph (48.3 kmph)" = "30 mph", "40+ mph (64.4 kmph)" = "40+ mph")
 n = c(
   "",
   "4777",
