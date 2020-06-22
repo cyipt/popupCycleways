@@ -235,6 +235,9 @@ In contexts where the method must be deployed nationwide, however the use of suc
 square = stplanr::geo_bb(shp = city_centre_buffer)
 r_main_region_key = r_main_region[city_key_buffer, ]
 r_main_city = r_main_region[region, ]
+r_main_city$maxspeed[r_main_city$maxspeed == "20 mph or less"] = "20 mph (32.2 kmph) or less"
+r_main_city$maxspeed[r_main_city$maxspeed == "30 mph"] = "30 mph (48.3 kmph)"
+r_main_city$maxspeed[r_main_city$maxspeed == "40+ mph"] = "40+ mph (64.4+ kmph)"
 m0 = tm_shape(r_main_city) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
