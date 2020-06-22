@@ -39,7 +39,7 @@ install.packages("reporttools")
 In the context of reduced public transport capacity in the wake of the COVID-19 pandemic, governments are scrambling to enable walking and cycling while adhering to physical distancing guidelines.
 A range of pop-up options exist, include road space reallocation, which represents a 'quick win' for cities with 'spare space' along continuous road sections that have high latent cycling potential.
 We developed methods to condense the complexity of city networks down to the most promising roads for road space reallocation schemes.
-The resulting Rapid Cycleway Prioritisation Tool has been deployed for all cities England to help prioritise emergency funds for new cycleways nationwide.
+The resulting Rapid Cycleway Prioritisation Tool has been deployed for all Local Authorities in England to help prioritise emergency funds for new cycleways nationwide.
 The methods and concepts could be used to support investment in pop-up infrastructure in cities worldwide.
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
@@ -47,7 +47,7 @@ The methods and concepts could be used to support investment in pop-up infrastru
 <!-- The COVID-19 pandemic has transformed all sectors of the economy, not least transport. -->
 <!-- [Demand for long distance trips has plummetted](https://osf.io/preprints/socarxiv/v3g5d/) and [airline companies have gone bust](https://arxiv.org/abs/2004.08460) [@iacus_estimating_2020; @jittrapirom_exploratory_2020]. -->
 Much attention has focused on the impacts of COVID-19 on long-distance travel patterns [e.g. @iacus_estimating_2020; @jittrapirom_exploratory_2020] but short distance travel patterns have also changed.
-There has been a notable increase in cycling in some areas [@harrabin_boom_2020] due to the need increased need for exercise close to home for mental and physical health [@jimenez-pavon_physical_2020] and a reduction in public transport options [e.g. @tian_investigation_2020].
+There has been a notable increase in cycling in some areas [@harrabin_boom_2020] due to the increased need for exercise close to home for mental and physical health [@jimenez-pavon_physical_2020] and a reduction in public transport options [e.g. @tian_investigation_2020].
 The second reason is particularly important given that many 'key workers' are low paid, with limited access to private automobiles.
 
 <!-- due to cuts in services and fear of being infected while in enclosed spaces, meaning that walking and particularly cycling may be the only way that workers can reach key destinations such as hospitals. -->
@@ -57,7 +57,7 @@ The second reason is particularly important given that many 'key workers' are lo
 <!-- particularly in densly populated urban areas where pavements and cycleways may be narrow,  -->
 
 Local and national governments are working out how best to respond.
-Many options are available to ensure that citizens can benefit from outdoor activity while minimising health risks, ranging from the hand sanitiser provision to the creation of extra active transport space [@freeman_covid19_2020].
+Many options are available to ensure that citizens can benefit from outdoor activity while minimising health risks, ranging from hand sanitiser provision to the creation of extra active transport space [@freeman_covid19_2020].
 Installation of 'pop-up' active transport infrastructure has been endorsed and implemented in many places [@laker_world_2020].
 The Scottish government, for example, has provided £10 million "to keep key workers moving" by "reallocating road space to better enable this shift and make it safer for people who choose to walk, cycle or wheel for essential trips or for exercise" [@transportscotland_10_2020].
 On 9^th^ May 2020, the UK government announced a £250 million package for pop-up active transport infrastructure [@reid_government_2020].
@@ -420,8 +420,8 @@ knitr::include_graphics("figures/facet-output.png")
 
 The approach is not without limitations.
 Its reliance on data rather than community engagement represents a rather top-down approach to transport planning.
-To overcome this issue, future work could seek to incorporate the results such as those presented above into a participatory map of the type shown in Figure \@ref(fig:commonplace).
-Further work could also extend the method in various ways, for example by refining estimates of cycling potential based on new parameters such as proximity to key destinations and estimates of road width.
+The incorporation of our results into participatory maps such as the one presented in Figure \@ref(fig:commonplace) will help to mitigate this limitation.
+Further work could also extend the method in various ways, for example by refining estimates of cycling potential based on additional parameters such as proximity to key destinations.
 We welcome feedback on the results and methods at [github.com/cyipt/popupCycleways](https://github.com/cyipt/popupCycleways).
 
 A major advantage of the approach is that it is scalable.
