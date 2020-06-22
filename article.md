@@ -1,7 +1,7 @@
 Methods to prioritise pop-up active transport infrastructure and their
 application in a national cycleway prioritisation tool
 ================
-Robin Lovelace, Malcolm Morgan, Joey Talbot, Martin-Lucas-Smith
+Robin Lovelace, Joey Talbot, Malcolm Morgan, Martin-Lucas-Smith
 
 # Abstract
 
@@ -15,10 +15,10 @@ a ‘quick win’ for cities with ‘spare space’ along continuous road
 sections that have high latent cycling potential. We developed methods
 to condense the complexity of city networks down to the most promising
 roads for road space reallocation schemes. The resulting Rapid Cycleway
-Prioritisation Tool has been deployed for all cities England to help
-prioritise emergency funds for new cycleways nationwide. The methods and
-concepts could be used to support investment in pop-up infrastructure in
-cities worldwide.
+Prioritisation Tool has been deployed for all local and regional
+transport authorities in England to help prioritise emergency funds for
+new cycleways nationwide. The approach could be used to support
+investment in pop-up infrastructure in cities worldwide.
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
 
@@ -30,8 +30,8 @@ Much attention has focused on the impacts of COVID-19 on long-distance
 travel patterns (e.g. Iacus et al. 2020; Jittrapirom and Tanaksaranond
 2020) but short distance travel patterns have also changed. There has
 been a notable increase in cycling in some areas (Harrabin 2020) due to
-the need increased need for exercise close to home for mental and
-physical health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020) and a
+the increased need for exercise close to home for mental and physical
+health (Jim’enez-Pav’on, Carbonell-Baeza, and Lavie 2020) and a
 reduction in public transport options (e.g. Tian et al. 2020). The
 second reason is particularly important given that many ‘key workers’
 are low paid, with limited access to private automobiles.
@@ -48,7 +48,7 @@ are low paid, with limited access to private automobiles.
 
 Local and national governments are working out how best to respond. Many
 options are available to ensure that citizens can benefit from outdoor
-activity while minimising health risks, ranging from the hand sanitiser
+activity while minimising health risks, ranging from hand sanitiser
 provision to the creation of extra active transport space (Freeman and
 Eykelbosh 2020). Installation of ‘pop-up’ active transport
 infrastructure has been endorsed and implemented in many places (Laker
@@ -66,16 +66,18 @@ such investment is spent effectively and where it is most needed.
 Most pop-up active transport infrastructure can be classified into three
 broad categories:
 
-1.  ‘filtered permeability’, where measures such as point closures or
-    contraflow cycle lanes are used to design street networks in which
-    routes for cyclists are faster and more direct than routes for
-    drivers, e.g. as
+1.  Measures such as point closures or contraflow cycle lanes, which can
+    be used to promote ‘filtered permeability’, a strategy in which
+    street networks are redesigned so that routes for cyclists are
+    faster and more direct than routes for drivers. An example of this
+    is
     [shown](https://twitter.com/TowerHamletsNow/status/1257564043856019458)
-    in \[Tower Hamlets\]
-2.  banning cars and to pedestrianise streets, as in New York’s ‘Open
-    Streets’ scheme (Litman 2020)
-3.  the reallocation of one or more lanes on wide roads to create pop-up
-    cycleways and pavements (Orsman 2020).
+    in \[Tower Hamlets\].
+2.  Measures to close roads entirely to cars, either permanently or at
+    certain times of day, as in New York’s ‘Open Streets’ scheme (Litman
+    2020).
+3.  Measures to reallocate space on wide roads to create new cycleways
+    or to widen pavements (Orsman 2020).
     <!-- interventions to prevent through traffic, with interventions as part of Salford's ['Liveable Streets' project](https://salfordliveablestreets.commonplace.is/) being a prominent example  -->
     <!-- (see [here](https://twitter.com/CatrionaSwanson/status/1258322956595453952) for a photo illustrating this type of intervention) -->
 
@@ -89,18 +91,20 @@ question is:
 Because of the recent, localised and often ad-hoc nature of pop-up
 infrastructure, it is difficult to make, let alone test, hypotheses
 related to the research question. Our broad hypothesis is that digital
-tools based on open data, and crowdsourcing such as the interactive map
-used to support community-level responses to COVID-19 in Salford
-(Salford City Council 2020), illustrated in Figure 1, can lead to more
-effective use of resources allocated to pop-up interventions.
+tools based on open data, combined with crowdsourcing such as the
+interactive map used to support community-level responses to COVID-19 in
+Salford (Salford City Council 2020), illustrated in Figure 1, can lead
+to more effective use of resources allocated to pop-up interventions.
 
 <div class="figure">
 
-<img src="figures/widenmypath-bristol.png" alt="Screenshots from the websites widenmypath.com (top) and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" /><img src="figures/saferstreets.png" alt="Screenshots from the websites widenmypath.com (top) and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
+<img src="figures/widenmypath.png" alt="Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" /><img src="figures/saferstreets.png" alt="Screenshots from the websites widenmypath.com (top) which includes top cycle route recommendations generated using the methods outlined in this paper in an open web forum, and salfordliveablestreets.commonplace.is (bottom) to support local responses to the COVID-19 pandemic, including the prioritisation of pop-up active transport infrastructure." width="100%" />
 
 <p class="caption">
 
-Figure 1: Screenshots from the websites widenmypath.com (top) and
+Figure 1: Screenshots from the websites widenmypath.com (top) which
+includes top cycle route recommendations generated using the methods
+outlined in this paper in an open web forum, and
 salfordliveablestreets.commonplace.is (bottom) to support local
 responses to the COVID-19 pandemic, including the prioritisation of
 pop-up active transport infrastructure.
@@ -124,924 +128,19 @@ Two key datasets were used for the project:
     <!-- - Data on the location of road traffic casualties from -->
 
 Datasets from the PCT and CyIPT project were merged, resulting in
-crucial variables summarised in Figure 1. Cycling potential is defined
-as the number of one-way journeys to work and to school, under a
-scenario in which the government aim of doubling cycling levels is met.
-This does not include other types of journey such as leisure and
-shopping.
+crucial variables summarised in Table 1. Cycling potential is defined as
+the number of one-way journeys to work and to school, under a scenario
+in which the government aim of doubling cycling levels is met. This does
+not include other types of journey such as leisure and shopping.
 
 Roads are classified by speed limit because this has been shown to be a
 key factor associated with the incidence of severe injuries and
 fatalities of cyclists (Chen and Shen 2016), with odds of cyclist injury
-on 20 mph roads in London found to be 21% lower than on 30 mph roads
-(Aldred et al. 2018). Therefore the suitability of roads for cycle
-infrastructure, the preferred degree of physical segregation, or the
-necessity to reduce traffic speeds could all be influenced by current
-speed limits.
-
-# A tibble: 21 x 6
-
-Variable X2 `20 mph or less…`30 mph(N=192… `40+ mph\n(N=31… <chr> <chr>
-<chr> <chr> <chr> 1 highway… brid… 53 (1.1%) 0 (0%) 0 (0%) 2 <NA>
-cycl… 1214 (25.4%) 0 (0%) 0 (0%) 3 <NA> foot… 1332 (27.9%) 0 (0%) 0
-(0%) 4 <NA> other 187 (3.9%) 715 (3.7%) 1608 (51.8%) 5 <NA> pede… 22
-(0.5%) 0 (0%) 0 (0%) 6 <NA> prim… 14 (0.3%) 1432 (7.4%) 955 (30.8%) 7
-<NA> resi… 605 (12.7%) 8604 (44.7%) 0 (0%) 8 <NA> seco… 28 (0.6%) 1408
-(7.3%) 176 (5.7%) 9 <NA> serv… 1018 (21.3%) 7 (0.0%) 0 (0%) 10 <NA>
-tert… 170 (3.6%) 5206 (27.1%) 290 (9.3%) # … with 11 more rows, and 1
-more variable:`Overall(N=27123)\` <chr>
-
-<table>
-
-<thead>
-
-<tr>
-
-<th style="text-align:left;">
-
-Variable
-
-</th>
-
-<th style="text-align:left;">
-
-X2
-
-</th>
-
-<th style="text-align:left;">
-
-20 mph or less (N=4777)
-
-</th>
-
-<th style="text-align:left;">
-
-30 mph (N=19241)
-
-</th>
-
-<th style="text-align:left;">
-
-40+ mph (N=3105)
-
-</th>
-
-<th style="text-align:left;">
-
-Overall (N=27123)
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td style="text-align:left;">
-
-highway\_type
-
-</td>
-
-<td style="text-align:left;">
-
-bridleway
-
-</td>
-
-<td style="text-align:left;">
-
-53 (1.1%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-53 (0.2%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-cycleway
-
-</td>
-
-<td style="text-align:left;">
-
-1214 (25.4%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-1214 (4.5%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-footway
-
-</td>
-
-<td style="text-align:left;">
-
-1332 (27.9%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-1332 (4.9%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-other
-
-</td>
-
-<td style="text-align:left;">
-
-187 (3.9%)
-
-</td>
-
-<td style="text-align:left;">
-
-715 (3.7%)
-
-</td>
-
-<td style="text-align:left;">
-
-1608 (51.8%)
-
-</td>
-
-<td style="text-align:left;">
-
-2510 (9.3%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-pedestrian/living\_street
-
-</td>
-
-<td style="text-align:left;">
-
-22 (0.5%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-22 (0.1%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-primary
-
-</td>
-
-<td style="text-align:left;">
-
-14 (0.3%)
-
-</td>
-
-<td style="text-align:left;">
-
-1432 (7.4%)
-
-</td>
-
-<td style="text-align:left;">
-
-955 (30.8%)
-
-</td>
-
-<td style="text-align:left;">
-
-2401 (8.9%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-residential
-
-</td>
-
-<td style="text-align:left;">
-
-605 (12.7%)
-
-</td>
-
-<td style="text-align:left;">
-
-8604 (44.7%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-9209 (34.0%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-secondary
-
-</td>
-
-<td style="text-align:left;">
-
-28 (0.6%)
-
-</td>
-
-<td style="text-align:left;">
-
-1408 (7.3%)
-
-</td>
-
-<td style="text-align:left;">
-
-176 (5.7%)
-
-</td>
-
-<td style="text-align:left;">
-
-1612 (5.9%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-service
-
-</td>
-
-<td style="text-align:left;">
-
-1018 (21.3%)
-
-</td>
-
-<td style="text-align:left;">
-
-7 (0.0%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-1025 (3.8%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-tertiary
-
-</td>
-
-<td style="text-align:left;">
-
-170 (3.6%)
-
-</td>
-
-<td style="text-align:left;">
-
-5206 (27.1%)
-
-</td>
-
-<td style="text-align:left;">
-
-290 (9.3%)
-
-</td>
-
-<td style="text-align:left;">
-
-5666 (20.9%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-unclassified
-
-</td>
-
-<td style="text-align:left;">
-
-134 (2.8%)
-
-</td>
-
-<td style="text-align:left;">
-
-1869 (9.7%)
-
-</td>
-
-<td style="text-align:left;">
-
-75 (2.4%)
-
-</td>
-
-<td style="text-align:left;">
-
-2078 (7.7%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-bus\_guideway
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-1 (0.0%)
-
-</td>
-
-<td style="text-align:left;">
-
-1 (0.0%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-cycling\_potential
-
-</td>
-
-<td style="text-align:left;">
-
-Mean (SD)
-
-</td>
-
-<td style="text-align:left;">
-
-39.0 (67.8)
-
-</td>
-
-<td style="text-align:left;">
-
-36.9 (66.7)
-
-</td>
-
-<td style="text-align:left;">
-
-40.7 (55.1)
-
-</td>
-
-<td style="text-align:left;">
-
-37.7 (65.7)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-Median \[Min, Max\]
-
-</td>
-
-<td style="text-align:left;">
-
-14.0 \[1.00, 810\]
-
-</td>
-
-<td style="text-align:left;">
-
-15.0 \[1.00, 810\]
-
-</td>
-
-<td style="text-align:left;">
-
-24.0 \[1.00, 519\]
-
-</td>
-
-<td style="text-align:left;">
-
-16.0 \[1.00, 810\]
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-width (m)
-
-</td>
-
-<td style="text-align:left;">
-
-Mean (SD)
-
-</td>
-
-<td style="text-align:left;">
-
-6.62 (2.71)
-
-</td>
-
-<td style="text-align:left;">
-
-7.34 (2.28)
-
-</td>
-
-<td style="text-align:left;">
-
-8.84 (2.36)
-
-</td>
-
-<td style="text-align:left;">
-
-7.41 (2.42)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-Median \[Min, Max\]
-
-</td>
-
-<td style="text-align:left;">
-
-7.00 \[1.00, 21.0\]
-
-</td>
-
-<td style="text-align:left;">
-
-7.00 \[1.00, 24.0\]
-
-</td>
-
-<td style="text-align:left;">
-
-9.00 \[2.00, 21.0\]
-
-</td>
-
-<td style="text-align:left;">
-
-7.00 \[1.00, 24.0\]
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-Missing
-
-</td>
-
-<td style="text-align:left;">
-
-1688 (35.3%)
-
-</td>
-
-<td style="text-align:left;">
-
-1225 (6.4%)
-
-</td>
-
-<td style="text-align:left;">
-
-447 (14.4%)
-
-</td>
-
-<td style="text-align:left;">
-
-3360 (12.4%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-n\_lanes
-
-</td>
-
-<td style="text-align:left;">
-
-1
-
-</td>
-
-<td style="text-align:left;">
-
-3840 (80.4%)
-
-</td>
-
-<td style="text-align:left;">
-
-1555 (8.1%)
-
-</td>
-
-<td style="text-align:left;">
-
-406 (13.1%)
-
-</td>
-
-<td style="text-align:left;">
-
-5801 (21.4%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-2
-
-</td>
-
-<td style="text-align:left;">
-
-937 (19.6%)
-
-</td>
-
-<td style="text-align:left;">
-
-16979 (88.2%)
-
-</td>
-
-<td style="text-align:left;">
-
-2266 (73.0%)
-
-</td>
-
-<td style="text-align:left;">
-
-20182 (74.4%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-3
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-490 (2.5%)
-
-</td>
-
-<td style="text-align:left;">
-
-289 (9.3%)
-
-</td>
-
-<td style="text-align:left;">
-
-779 (2.9%)
-
-</td>
-
-</tr>
-
-<tr>
-
-<td style="text-align:left;">
-
-NA
-
-</td>
-
-<td style="text-align:left;">
-
-4+
-
-</td>
-
-<td style="text-align:left;">
-
-0 (0%)
-
-</td>
-
-<td style="text-align:left;">
-
-217 (1.1%)
-
-</td>
-
-<td style="text-align:left;">
-
-144 (4.6%)
-
-</td>
-
-<td style="text-align:left;">
-
-361 (1.3%)
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
+on 20 mph (32.2 kmph) roads in London found to be 21% lower than on 30
+mph (48.3 kmph) roads (Aldred et al. 2018). Therefore the suitability of
+roads for cycle infrastructure, the preferred degree of physical
+segregation, or the necessity to reduce traffic speeds could all be
+influenced by current speed limits.
 
 <!-- Could say more about the case study city here if there is space -->
 
@@ -1078,7 +177,7 @@ collaboration on cycleway network design. <!-- could say more... -->
 
 <div class="figure">
 
-<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on administrative boundaries (left), distance to a central point (middle) and distance to city centre or key destinations (right). Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary)." width="100%" />
+<img src="article_files/figure-gfm/gsub-1.png" alt="Illustration of geographic subsetting based on administrative boundaries (left), distance to a central point (middle) and distance to city centre or key destinations (right). Radii of 5 km, 8 km and 10 km are shown for reference (note that some roads within 10 km of the center are outside the regional boundary). Units of speed are in miles per hour (mph), with 20, 30 and 40 mph representing 32, 48 and 64 kilometers per hour respectively." width="100%" />
 
 <p class="caption">
 
@@ -1086,7 +185,9 @@ Figure 2: Illustration of geographic subsetting based on administrative
 boundaries (left), distance to a central point (middle) and distance to
 city centre or key destinations (right). Radii of 5 km, 8 km and 10 km
 are shown for reference (note that some roads within 10 km of the center
-are outside the regional boundary).
+are outside the regional boundary). Units of speed are in miles per hour
+(mph), with 20, 30 and 40 mph representing 32, 48 and 64 kilometers per
+hour respectively.
 
 </p>
 
@@ -1190,7 +291,7 @@ important for creating high quality networks (Parkin 2018).
 The results of the method applied to the city of Leeds are shown in
 Figure <a href="#fig:res">4</a> (see
 [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for
-interactive version) and Table 1. We found that analysis of open
+interactive version) and Table 2. We found that analysis of open
 transport network data, alongside careful selection of parameters, can
 generate plausible results for the prioritisation of pop-up cycle
 infrastructure. Reducing the 85,000 road segments for Leeds down to a
@@ -1569,14 +670,13 @@ cities
 
 The approach is not without limitations. Its reliance on data rather
 than community engagement represents a rather top-down approach to
-transport planning. To overcome this issue, future work could seek to
-incorporate the results such as those presented above into a
-participatory map of the type shown in Figure
-<a href="#fig:commonplace">1</a>. Further work could also extend the
-method in various ways, for example by refining estimates of cycling
-potential based on new parameters such as proximity to key destinations
-and estimates of road width. We welcome feedback on the results and
-methods at
+transport planning. The incorporation of our results into participatory
+maps such as the one presented in Figure
+<a href="#fig:commonplace">1</a> will help to mitigate this limitation.
+Further work could also extend the method in various ways, for example
+by refining estimates of cycling potential based on additional
+parameters such as proximity to key destinations. We welcome feedback on
+the results and methods at
 [github.com/cyipt/popupCycleways](https://github.com/cyipt/popupCycleways).
 
 A major advantage of the approach is that it is scalable. It would be

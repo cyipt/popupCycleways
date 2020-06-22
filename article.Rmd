@@ -2,11 +2,11 @@
 title: "Methods to prioritise pop-up active transport infrastructure and their application in a national cycleway prioritisation tool"
 # : overview and findings from 10 UK cities"
 author: "Robin Lovelace, Joey Talbot, Malcolm Morgan, Martin-Lucas-Smith"
-# output: bookdown::github_document2
+output: bookdown::github_document2
 # output: bookdown::html_document2
-output:
-  bookdown::pdf_document2:
-    keep_tex: true
+# output:
+#   bookdown::pdf_document2:
+#     keep_tex: true
 # bibliography: references.bib
 bibliography: refs.bib
 ---
