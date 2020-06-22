@@ -39,7 +39,7 @@ install.packages("reporttools")
 In the context of reduced public transport capacity in the wake of the COVID-19 pandemic, governments are scrambling to enable walking and cycling while adhering to physical distancing guidelines.
 A range of pop-up options exist, include road space reallocation, which represents a 'quick win' for cities with 'spare space' along continuous road sections that have high latent cycling potential.
 We developed methods to condense the complexity of city networks down to the most promising roads for road space reallocation schemes.
-The resulting Rapid Cycleway Prioritisation Tool has been deployed for all Local Authorities in England to help prioritise emergency funds for new cycleways nationwide.
+The resulting Rapid Cycleway Prioritisation Tool has been deployed for all local and regional transport authorities in England to help prioritise emergency funds for new cycleways nationwide.
 The methods and concepts could be used to support investment in pop-up infrastructure in cities worldwide.
 
 # RESEARCH QUESTIONS AND HYPOTHESIS
@@ -234,9 +234,9 @@ In contexts where the method must be deployed nationwide, however the use of suc
 square = stplanr::geo_bb(shp = city_centre_buffer)
 r_main_region_key = r_main_region[city_key_buffer, ]
 r_main_city = r_main_region[region, ]
-r_main_city$maxspeed[r_main_city$maxspeed == "20 mph or less"] = "20 mph (32.2 kmph) or less"
-r_main_city$maxspeed[r_main_city$maxspeed == "30 mph"] = "30 mph (48.3 kmph)"
-r_main_city$maxspeed[r_main_city$maxspeed == "40+ mph"] = "40+ mph (64.4+ kmph)"
+r_main_city$maxspeed[r_main_city$maxspeed == "20 mph or less"] = "20 mph"
+# r_main_city$maxspeed[r_main_city$maxspeed == "30 mph"] = "30 mph (48.3 kmph)"
+# r_main_city$maxspeed[r_main_city$maxspeed == "40+ mph"] = "40+ mph (64.4+ kmph)"
 m0 = tm_shape(r_main_city) +
   tm_lines("maxspeed", palette = "-Set1", lwd = "n_lanes_numeric", scale = 5,
            lwd.legend = c(1, 2, 3, 4, 5, 6), title.lwd = "Number of lanes") +
