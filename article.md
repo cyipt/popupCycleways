@@ -294,10 +294,9 @@ Figure <a href="#fig:res">4</a> (see
 interactive version) and Table 2. We found that analysis of open
 transport network data, alongside careful selection of parameters, can
 generate plausible results for the prioritisation of pop-up cycle
-infrastructure. Reducing the 85,000 road segments for Leeds down to a
-handful of candidate segments with more than 1 lane near key
-destinations has great potential to support policy-makers, especially
-when decisions need to be made fast.
+infrastructure. Reducing tens of thousands of road segments Leeds down
+to a handful of promising named road sections has great potential to
+support policy-makers, especially when decisions need to be made fast.
 
 <div class="figure">
 

@@ -2,11 +2,11 @@
 title: "Methods to prioritise pop-up active transport infrastructure and their application in a national cycleway prioritisation tool"
 # : overview and findings from 10 UK cities"
 author: "Robin Lovelace, Joey Talbot, Malcolm Morgan, Martin-Lucas-Smith"
-# output: bookdown::github_document2
+output: bookdown::github_document2
 # output: bookdown::html_document2
-output:
-  bookdown::pdf_document2:
-    keep_tex: true
+# output:
+#   bookdown::pdf_document2:
+#     keep_tex: true
 # bibliography: references.bib
 bibliography: refs.bib
 ---
@@ -388,7 +388,7 @@ Continuity of cycle provision is important for creating high quality networks [@
 
 The results of the method applied to the city of Leeds are shown in Figure \@ref(fig:res) (see [cyipt.bike/rapid](https://www.cyipt.bike/rapid/west-yorkshire/) for interactive version) and Table 2.
 We found that analysis of open transport network data, alongside careful selection of parameters, can generate plausible results for the prioritisation of pop-up cycle infrastructure.
-Reducing the 85,000 road segments for Leeds down to a handful of candidate segments with more than 1 lane near key destinations has great potential to support policy-makers, especially when decisions need to be made fast.
+Reducing tens of thousands of road segments Leeds down to a handful of promising named road sections has great potential to support policy-makers, especially when decisions need to be made fast.
 
 ```{r res, fig.cap="Results of the Rapid Cycleway Prioritisation Tool, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled."}
 tmap_mode("view")
