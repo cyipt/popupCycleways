@@ -427,7 +427,7 @@ Further work could also extend the method in various ways, for example by refini
 We welcome feedback on the results and methods at [github.com/cyipt/popupCycleways](https://github.com/cyipt/popupCycleways).
 
 A major advantage of the approach is that it is scalable.
-It would be feasible to internationalise the approach, given sufficient computer and developer resource to overcome the key data barriers: lack to cycling potential data and lack of road width data that are specific to the UK.
+It would be feasible to internationalise the approach, given sufficient computer and developer resource to overcome the key data barriers: lack of cycling potential and road width data.
 <!-- Given the recent interest in and funding for pop-up cycleways, projects inspired by and building on the work presented in this paper, can help ensure that pop-up cycleway plans are evidence-based and effective, maximising the chances of them becoming permanent. -->
 In summary, the methods presented can help lock-in the benefits of COVID-19 related cycling booms long term.
 
