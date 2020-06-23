@@ -301,13 +301,14 @@ when decisions need to be made fast.
 
 <div class="figure">
 
-<img src="figures/results-top-leeds.png" alt="Results, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled." width="100%" />
+<img src="figures/results-top-leeds.png" alt="Results of the Rapid Cycleway Prioritisation Tool, showing road segments with a spare lane (light blue) and road groups with a minium threshold length, 1km in this case (dark blue). The top 10 road groups are labelled." width="100%" />
 
 <p class="caption">
 
-Figure 4: Results, showing road segments with a spare lane (light blue)
-and road groups with a minium threshold length, 1km in this case (dark
-blue). The top 10 road groups are labelled.
+Figure 4: Results of the Rapid Cycleway Prioritisation Tool, showing
+road segments with a spare lane (light blue) and road groups with a
+minium threshold length, 1km in this case (dark blue). The top 10 road
+groups are labelled.
 
 </p>
 
@@ -681,8 +682,8 @@ the results and methods at
 
 A major advantage of the approach is that it is scalable. It would be
 feasible to internationalise the approach, given sufficient computer and
-developer resource to overcome the key data barriers: lack to cycling
-potential data and lack of road width data that are specific to the UK.
+developer resource to overcome the key data barriers: lack of cycling
+potential and road width data.
 <!-- Given the recent interest in and funding for pop-up cycleways, projects inspired by and building on the work presented in this paper, can help ensure that pop-up cycleway plans are evidence-based and effective, maximising the chances of them becoming permanent. -->
 In summary, the methods presented can help lock-in the benefits of
 COVID-19 related cycling booms long term.
