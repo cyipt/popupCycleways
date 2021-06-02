@@ -1,0 +1,80 @@
+Name,n,LA_names,Level
+Cambridgeshire and Peterborough,2,"Peterborough,Cambridgeshire",Combined authority
+Greater London,32,"Barking and Dagenham,Barnet,Bexley,Brent,Bromley,Camden,Croydon,Ealing,Enfield,Greenwich,Hackney,Hammersmith and Fulham,Haringey,Harrow,Havering,Hillingdon,Hounslow,Islington,Kensington and Chelsea,Kingston upon Thames,Lambeth,Lewisham,Merton,Newham,Redbridge,Richmond upon Thames,Southwark,Sutton,Tower Hamlets,Waltham Forest,Wandsworth,Westminster",Combined authority
+Greater Manchester,10,"Bolton,Bury,Manchester,Oldham,Rochdale,Salford,Stockport,Tameside,Trafford,Wigan",Combined authority
+Liverpool City Region,6,"Halton,Knowsley,Liverpool,St. Helens,Sefton,Wirral",Combined authority
+North East,7,"County Durham,Northumberland,Newcastle upon Tyne,North Tyneside,South Tyneside,Sunderland,Gateshead",Combined authority
+Sheffield City Region,4,"Barnsley,Doncaster,Rotherham,Sheffield",Combined authority
+Tees Valley,5,"Hartlepool,Middlesbrough,Redcar and Cleveland,Stockton-on-Tees,Darlington",Combined authority
+West Midlands,7,"Birmingham,Coventry,Dudley,Sandwell,Solihull,Walsall,Wolverhampton",Combined authority
+West of England,3,"Bath and North East Somerset,Bristol, City of,South Gloucestershire",Combined authority
+West Yorkshire,5,"Bradford,Calderdale,Kirklees,Leeds,Wakefield",Combined authority
+Warrington,1,,UA
+Blackburn with Darwen,1,,UA
+Blackpool,1,,UA
+"Kingston upon Hull, City of",1,,UA
+East Riding of Yorkshire,1,,UA
+North East Lincolnshire,1,,UA
+North Lincolnshire,1,,UA
+York,1,,UA
+Derby,1,,UA
+Leicester,1,,UA
+Rutland,1,,UA
+Nottingham,1,,UA
+"Herefordshire, County of",1,,UA
+Telford and Wrekin,1,,UA
+Stoke-on-Trent,1,,UA
+North Somerset,1,,UA
+Plymouth,1,,UA
+Torbay,1,,UA
+Swindon,1,,UA
+Luton,1,,UA
+Southend-on-Sea,1,,UA
+Thurrock,1,,UA
+Medway,1,,UA
+Bracknell Forest,1,,UA
+West Berkshire,1,,UA
+Reading,1,,UA
+Slough,1,,UA
+Windsor and Maidenhead,1,,UA
+Wokingham,1,,UA
+Milton Keynes,1,,UA
+Brighton and Hove,1,,UA
+Portsmouth,1,,UA
+Southampton,1,,UA
+Isle of Wight,1,,UA
+Cheshire East,1,,UA
+Cheshire West and Chester,1,,UA
+Shropshire,1,,UA
+Cornwall,1,,UA
+Isles of Scilly,1,,UA
+Wiltshire,1,,UA
+Bedford,1,,UA
+Central Bedfordshire,1,,UA
+Buckinghamshire,1,,County
+Cumbria,1,,County
+Derbyshire,1,,County
+Devon,1,,County
+Dorset,1,,County
+East Sussex,1,,County
+Essex,1,,County
+Gloucestershire,1,,County
+Hampshire,1,,County
+Hertfordshire,1,,County
+Kent,1,,County
+Lancashire,1,,County
+Leicestershire,1,,County
+Lincolnshire,1,,County
+Norfolk,1,,County
+Northamptonshire,1,,County
+North Yorkshire,1,,County
+Nottinghamshire,1,,County
+Oxfordshire,1,,County
+Somerset,1,,County
+Staffordshire,1,,County
+Suffolk,1,,County
+Surrey,1,,County
+Warwickshire,1,,County
+West Sussex,1,,County
+Worcestershire,1,,County
+"Bournemouth, Christchurch and Poole",1,,UA
